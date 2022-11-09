@@ -106,6 +106,14 @@ export const heroBlockSchema: TinaTemplate = {
     },
     {
       type: "string",
+      label: "Padding",
+      name: "padding",
+      ui: {
+        component: "paddingControl",
+      }
+    },
+    {
+      type: "string",
       label: "Headline",
       name: "headline",
     },

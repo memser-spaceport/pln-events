@@ -1,4 +1,4 @@
-import { defineStaticConfig } from "tinacms";
+import { defineStaticConfig, wrapFieldsWithMeta } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
 import { featureBlockSchema } from "../components/blocks/features";
 import { heroBlockSchema } from "../components/blocks/hero";
@@ -403,6 +403,55 @@ const config = defineStaticConfig({
       },
     ],
   },
+  cmsCallback: (cms) => {
+    import("../plugins").then(({ SectionListItemsPlugin }) => {
+      cms.plugins.add(SectionListItemsPlugin);
+    });
+    import("../plugins").then(({ itemListFieldPlugin }) => {
+      cms.plugins.add(itemListFieldPlugin);
+    });
+    import("../plugins").then(({ emailFieldPlugin }) => {
+      cms.plugins.add(emailFieldPlugin);
+    });
+    import("../plugins").then(({ typeControlFieldPlugin }) => {
+      cms.plugins.add(typeControlFieldPlugin);
+    });
+    import("../plugins").then(({ typeSizeControlFieldPlugin }) => {
+      cms.plugins.add(typeSizeControlFieldPlugin);
+    });
+    import("../plugins").then(({ colorControlFieldPlugin }) => {
+      cms.plugins.add(colorControlFieldPlugin);
+    });
+    import("../plugins").then(({ fillControlFieldPlugin }) => {
+      cms.plugins.add(fillControlFieldPlugin);
+    });
+    import("../plugins").then(({ alignmentControlFieldPlugin }) => {
+      cms.plugins.add(alignmentControlFieldPlugin);
+    });
+    import("../plugins").then(({ imageControlFieldPlugin }) => {
+      cms.plugins.add(imageControlFieldPlugin);
+    });
+    import("../plugins").then(({ paddingControlFieldPlugin }) => {
+      cms.plugins.add(paddingControlFieldPlugin);
+    });
+    import("../plugins").then(({ borderControlFieldPlugin }) => {
+      cms.plugins.add(borderControlFieldPlugin);
+    });
+    import("../plugins").then(({ selectFieldPlugin }) => {
+      cms.plugins.add(selectFieldPlugin);
+    });
+    import("../plugins").then(({ featureContentControlPlugin }) => {
+      cms.plugins.add(featureContentControlPlugin);
+    });
+    import("../plugins").then(({ featureImageControlPlugin }) => {
+      cms.plugins.add(featureImageControlPlugin);
+    });
+    import("../plugins").then(({ ruledTitlePlugin }) => {
+      cms.plugins.add(ruledTitlePlugin);
+    });
+    
+    return cms
+  }
 });
 
 export default config;
