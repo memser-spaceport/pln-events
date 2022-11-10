@@ -1,6 +1,7 @@
 import { defineStaticConfig, wrapFieldsWithMeta } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
 import { featureBlockSchema } from "../components/blocks/features";
+import { embedBlockSchema } from "../components/blocks/embed";
 import { heroBlockSchema } from "../components/blocks/hero";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { iconSchema } from "../components/util/icon";
@@ -393,6 +394,7 @@ const config = defineStaticConfig({
               visualSelector: true,
             },
             templates: [
+              embedBlockSchema,
               heroBlockSchema,
               featureBlockSchema,
               contentBlockSchema,
