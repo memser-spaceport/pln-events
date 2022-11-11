@@ -27,6 +27,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".forestry/types.ts",
-    ".forestry/config.ts"
-  ]
+    ".forestry/config.ts",
+    ".tina/schema/navigation-label.ts",
+    ".tina/schema/background.ts"
+   ]
 }

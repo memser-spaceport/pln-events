@@ -5,7 +5,7 @@ import { minHeightOptions } from "../util/options"
 import { backgroundSchema } from "../../.tina/schema/background"
 import { navigationLabelSchema } from "../../.tina/schema/navigation-label";
 
-export const Embed = ({ data, parentField = "" }) => {
+export const Feature = ({ data, parentField = "" }) => {
   const padding = data.style?.padding
   const width = data.style?.fullWidth ? "" : "max-w-desktop-full mx-auto"
 
@@ -21,9 +21,9 @@ export const Embed = ({ data, parentField = "" }) => {
   );
 };
 
-export const embedBlockSchema: any = {
-  label: "Embed",
-  name: "embed",
+export const featureBlockSchema: any = {
+  label: "Feature",
+  name: "feature",
   fields: [
     {
       label: "Section Style",

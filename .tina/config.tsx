@@ -1,10 +1,11 @@
 import { defineStaticConfig, wrapFieldsWithMeta } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
-import { featureBlockSchema } from "../components/blocks/features";
+// import { featureBlockSchema } from "../components/blocks/features";
 import { embedBlockSchema } from "../components/blocks/embed";
 import { heroBlockSchema } from "../components/blocks/hero";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { iconSchema } from "../components/util/icon";
+import { colorOptions } from "../components/util/options";
 
 const config = defineStaticConfig({
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
@@ -154,6 +155,132 @@ const config = defineStaticConfig({
           global: true,
         },
         fields: [
+          {
+            type: "string",
+            label: "Site Url",
+            name: "siteUrl",
+          },
+          {
+            type: "string",
+            label: "Google Tag Manager ID",
+            name: "gtmId",
+          },
+          {
+            type: "image",
+            label: "Favicon",
+            name: "favicon",
+            description: "Should be a 48x48px png",
+          },
+          {
+            type: "string",
+            label: "Desktop Width",
+            name: "desktopWidth",
+          },
+          {
+            type: "string",
+            label: "Background Color",
+            name: "backgroundColor",
+            ui: {
+              component: "colorControl",
+            },
+            options: colorOptions,
+          },
+          {
+            label: "",
+            name: "rule",
+            type: "string",
+            ui: {
+              component: "ruledTitle",
+            },
+          },
+
+          {
+            type: "object",
+            label: "Colors",
+            name: "colors",
+            fields: [
+              {
+                type: "string",
+                label: "Primary",
+                name: "primary",
+                ui: {
+                  component: "color",
+                },
+              },
+              {
+                type: "string",
+                label: "Accent 1",
+                name: "accent1",
+                ui: {
+                  component: "color",
+                },
+              },
+              {
+                type: "string",
+                label: "Accent 2",
+                name: "accent2",
+                ui: {
+                  component: "color",
+                },
+              },
+              {
+                type: "string",
+                label: "Accent 3",
+                name: "accent3",
+                ui: {
+                  component: "color",
+                },
+              },
+              {
+                type: "string",
+                label: "Accent 4",
+                name: "accent4",
+                ui: {
+                  component: "color",
+                },
+              },
+              {
+                type: "string",
+                label: "White",
+                name: "white",
+                ui: {
+                  component: "color",
+                },
+              },
+              {
+                type: "string",
+                label: "Gray Light",
+                name: "grayLight",
+                ui: {
+                  component: "color",
+                },
+              },
+              {
+                type: "string",
+                label: "Gray",
+                name: "gray",
+                ui: {
+                  component: "color",
+                },
+              },
+              {
+                type: "string",
+                label: "Gray Dark",
+                name: "grayDark",
+                ui: {
+                  component: "color",
+                },
+              },
+              {
+                type: "string",
+                label: "Black",
+                name: "black",
+                ui: {
+                  component: "color",
+                },
+              },
+            ]
+          },
           {
             type: "object",
             label: "Header",
@@ -396,7 +523,7 @@ const config = defineStaticConfig({
             templates: [
               embedBlockSchema,
               heroBlockSchema,
-              featureBlockSchema,
+              // featureBlockSchema,
               contentBlockSchema,
               testimonialBlockSchema,
             ],
