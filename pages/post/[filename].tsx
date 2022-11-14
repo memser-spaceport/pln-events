@@ -20,7 +20,7 @@ export default function BlogPostPage(
     );
   }
   return (
-    <Layout>
+    <Layout rawData={null} data={null}>
       <div>No data</div>;
     </Layout>
   );
