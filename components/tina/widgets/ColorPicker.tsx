@@ -5,7 +5,7 @@ import { client } from "../../../.tina/__generated__/client";
 Color picker expects the value prop to match one of the colorOptions
 */
 interface ColorPickerProps {
-  onClick: Function;
+  onClick;
   value: string;
   className?: string;
   width?: number;

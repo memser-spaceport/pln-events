@@ -33,7 +33,7 @@ export const SectionListItemsPlugin = {
       return { ...item, label: label }
     }
     
-    let templates = {}
+    const templates = {}
     Object.keys(props.field.templates).forEach((key) => {
       templates[key] = {
         ...props.field.templates[key],
@@ -65,7 +65,7 @@ export const emailFieldPlugin = {
   __type: 'field',
   name: 'emailField',
   validate: (email, allValues, meta, field) => {
-    let isValidEmail = /.*@.*\..*/.test(email)
+    const isValidEmail = /.*@.*\..*/.test(email)
     if (!isValidEmail) return 'Invalid email address'
   },
 }

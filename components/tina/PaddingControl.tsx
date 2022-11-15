@@ -41,7 +41,7 @@ export const spacingOptions: {label: string, value: string}[] = [
   { label: "384", value: "96" },
 ]
 
-function buildOptions(prefix: string = '', isMobile:boolean = false) {
+function buildOptions(prefix = '', isMobile = false) {
   const mobilePrefix = isMobile ? 'sm:' : ''
   return prefixSelectValues(spacingOptions, `${mobilePrefix}${prefix}`)
 }

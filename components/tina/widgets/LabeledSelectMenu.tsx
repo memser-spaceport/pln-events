@@ -8,7 +8,7 @@ interface props {
     label: string,
     value: string
   }[];
-  onChange: Function;
+  onChange;
   className?: string;
 }
 

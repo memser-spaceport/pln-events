@@ -7,7 +7,7 @@ interface IconPickerProps {
     label: string,
     value: string
   }[];
-  onClick: Function;
+  onClick;
   value: string;
   menuPosition?: string;
   className?: string;

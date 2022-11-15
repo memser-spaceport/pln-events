@@ -18,7 +18,7 @@ const margins = [
   { label: "margin-left", value: "ml-auto" },
 ]
 
-function buildOptions(options: { label: string, value: string }[] = [], isMobile: boolean = false) {
+function buildOptions(options: { label: string, value: string }[] = [], isMobile = false) {
   const mobilePrefix = isMobile ? 'sm:' : ''
   return prefixSelectValues(options, `${mobilePrefix}`)
 }

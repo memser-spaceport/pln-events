@@ -10,13 +10,13 @@ export default function HomePage(
   const posts = props.data.postConnection.edges;
 
   return (
-    <Layout>
+    <div>
       <Section className="flex-1">
         <Container size="large">
           <Posts data={posts} />
         </Container>
       </Section>
-    </Layout>
+    </div>
   );
 }
 
