@@ -11,13 +11,6 @@ interface ColorPickerProps {
   width?: number;
 }
 
-// export const getGlobalColors = async () => {
-//   const tinaProps = await client.queries.global({
-//     relativePath: `../global/index.json`,
-//   });
-//   return tinaProps?.data?.global?.colors
-// };
-
 export default function ColorPicker(props:ColorPickerProps) {
   const colorOptions = [
     { label: "Primary", value: "primary"},
@@ -49,7 +42,6 @@ export default function ColorPicker(props:ColorPickerProps) {
   }
 
   useEffect(() => {
-    console.log("USE EFFECT")
     const fetchData = async () => {
       const data = await client.queries.global({relativePath: `../global/index.json`})
       setGlobalData(data);
@@ -60,21 +52,24 @@ export default function ColorPicker(props:ColorPickerProps) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   });
   
-
-  const pickerClasses = `absolute left-0 w-44 p-2 z-20 border shadow bg-white grid grid-cols-5 gap-2`
+  const pickerClasses = `absolute left-0 p-2 border shadow bg-white`
   const pickerStyles = {
-      display: isActive ? "grid" : "none",
-      top: "calc(100% + 8px)",
-      borderRadius: "3px",
-      borderColor: "var(--tina-color-grey-2)",
+    display: isActive ? "grid" : "none",
+    gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
+    gap: "8px",
+    zIndex: "1000",
+    width: "176px",
+    top: "calc(100% + 8px)",
+    borderRadius: "3px",
+    borderColor: "var(--tina-color-grey-2)",
   }
   
   const colorChipClasses = `bg-${props.value} border-box absolute w-7 h-7 rounded-sm`
   const colorChipStyles = {
-      border: props.value === "white" ? "1px solid var(--tina-color-grey-2)" : "",
-      top: "5px",
-      left: "5px",
-      width: props.width ? `${props.width - 12}px` : '',
+    border: props.value === "white" ? "1px solid var(--tina-color-grey-2)" : "",
+    top: "5px",
+    left: "5px",
+    width: props.width ? `${props.width - 12}px` : '',
   }
 
   const buttonClasses = `${props.className} relative cursor-pointer py-1 px-2 h-10 w-10 border border-gray-100 text-gray-500 text-sm p-1 h-9 shadow rounded-md hover:text-blue-400 hover:border-gray-200 focus:shadow-outline focus:border-blue-500 focus:text-blue-500`;
@@ -86,20 +81,19 @@ export default function ColorPicker(props:ColorPickerProps) {
   }
 
   const pickerOptions = colorOptions.map((option) => {
+    const globalColors = globalData?.data?.global?.colors
+    const color = (globalColors && globalColors[option.value]) || "#000000"
     const border = option.value === "white" ? "border border-tina-gray2" : ""
     return <div
       onClick={() => handleClick(option.value)}
-      style={{background: "#000000"}}
-      className={`w-6 h-6 cursor-pointer rounded-sm ${border}`}
+      style={{background: color}}
+      className={`${JSON.stringify(color)} w-6 h-6 cursor-pointer rounded-sm ${border}`}
       key={option.value}
     ></div>
   });
 
   return (
     <div id="colorpicker" ref={clickOutsideRef} onClick={togglePicker} className={buttonClasses} style={buttonStyles}>
-      <div>
-        Global Colors: {JSON.stringify(globalData)}
-      </div>
       <div className={colorChipClasses} style={colorChipStyles}></div>
       <div className={pickerClasses} style={pickerStyles}>
         {pickerOptions}
