@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { client } from "../../../.tina/__generated__/client";
 
 /*
 Color picker expects the value prop to match one of the colorOptions
@@ -9,6 +10,14 @@ interface ColorPickerProps {
   className?: string;
   width?: number;
 }
+
+// export const getGlobalColors = async () => {
+//   const tinaProps = await client.queries.global({
+//     relativePath: `../global/index.json`,
+//   });
+//   return tinaProps?.data?.global?.colors
+// };
+
 export default function ColorPicker(props:ColorPickerProps) {
   const colorOptions = [
     { label: "Primary", value: "primary"},
@@ -22,6 +31,7 @@ export default function ColorPicker(props:ColorPickerProps) {
     { label: "Gray Dark", value: "gray-dark"},
     { label: "Black", value: "black"},
   ]
+  const [globalData, setGlobalData] = useState(null)
   const [isActive, setIsActive] = useState(false)
   const clickOutsideRef = useRef(null);
 
@@ -39,6 +49,13 @@ export default function ColorPicker(props:ColorPickerProps) {
   }
 
   useEffect(() => {
+    console.log("USE EFFECT")
+    const fetchData = async () => {
+      const data = await client.queries.global({relativePath: `../global/index.json`})
+      setGlobalData(data);
+    };
+    fetchData().catch(console.error)
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   });
@@ -72,13 +89,17 @@ export default function ColorPicker(props:ColorPickerProps) {
     const border = option.value === "white" ? "border border-tina-gray2" : ""
     return <div
       onClick={() => handleClick(option.value)}
-      className={`w-6 h-6 cursor-pointer rounded-sm ${border} bg-${option.value}`}
+      style={{background: "#000000"}}
+      className={`w-6 h-6 cursor-pointer rounded-sm ${border}`}
       key={option.value}
     ></div>
   });
 
   return (
     <div id="colorpicker" ref={clickOutsideRef} onClick={togglePicker} className={buttonClasses} style={buttonStyles}>
+      <div>
+        Global Colors: {JSON.stringify(globalData)}
+      </div>
       <div className={colorChipClasses} style={colorChipStyles}></div>
       <div className={pickerClasses} style={pickerStyles}>
         {pickerOptions}
