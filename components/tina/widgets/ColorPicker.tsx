@@ -24,7 +24,7 @@ export default function ColorPicker(props:ColorPickerProps) {
     { label: "Gray Dark", value: "gray-dark"},
     { label: "Black", value: "black"},
   ]
-  const [globalData, setGlobalData] = useState(null)
+  const [globalColors, setGlobalColors] = useState(null)
   const [isActive, setIsActive] = useState(false)
   const clickOutsideRef = useRef(null);
 
@@ -43,8 +43,9 @@ export default function ColorPicker(props:ColorPickerProps) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await client.queries.global({relativePath: `../global/index.json`})
-      setGlobalData(data);
+      const fetchedData = await client.queries.global({relativePath: `../global/index.json`})
+      const colors = fetchedData?.data?.global?.colors || {}
+      setGlobalColors(colors);
     };
     fetchData().catch(console.error)
 
@@ -64,8 +65,9 @@ export default function ColorPicker(props:ColorPickerProps) {
     borderColor: "var(--tina-color-grey-2)",
   }
   
-  const colorChipClasses = `bg-${props.value} border-box absolute w-7 h-7 rounded-sm`
+  const colorChipClasses = `border-box absolute w-7 h-7 rounded-sm`
   const colorChipStyles = {
+    background: (globalColors && globalColors[props.value]) || "#000000",
     border: props.value === "white" ? "1px solid var(--tina-color-grey-2)" : "",
     top: "5px",
     left: "5px",
@@ -81,13 +83,11 @@ export default function ColorPicker(props:ColorPickerProps) {
   }
 
   const pickerOptions = colorOptions.map((option) => {
-    const globalColors = globalData?.data?.global?.colors
-    const color = (globalColors && globalColors[option.value]) || "#000000"
     const border = option.value === "white" ? "border border-tina-gray2" : ""
     return <div
       onClick={() => handleClick(option.value)}
-      style={{background: color}}
-      className={`${JSON.stringify(color)} w-6 h-6 cursor-pointer rounded-sm ${border}`}
+      style={{background: (globalColors && globalColors[option.value]) || "#000000"}}
+      className={`w-6 h-6 cursor-pointer rounded-sm ${border}`}
       key={option.value}
     ></div>
   });
