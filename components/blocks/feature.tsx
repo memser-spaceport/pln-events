@@ -49,8 +49,7 @@ export const Feature = ({ data, parentField = '' }) => {
   return (
     <Section background={data.background} navigationLabel={data.navigationLabel}>
         <div className={`relative flex w-full max-w-site-full mx-auto ${style?.padding} ${style?.alignment}`}>
-          <h1>Feature</h1>
-          {JSON.stringify(data)}
+          {/* {JSON.stringify(data)} */}
           <div className={`${imageWrapClasses(style)}`}>
             {data.image?.src && (
               <>
@@ -72,15 +71,6 @@ export const Feature = ({ data, parentField = '' }) => {
             )}
           </div>
           <div className={`flex-none ${style.featureContent}`}>
-            {/* <Content
-              data = {data}
-              styles = {style}
-              alignment = {`${textAlign} ${textAlignMobile}`}            
-              width = "w-full"
-              parentField = {parentField}
-              className = ""
-            /> */}
-            <p>Content Below</p>
             <Content
               data = {data}
               styles = {style}
