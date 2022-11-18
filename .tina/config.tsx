@@ -2,7 +2,6 @@ import { defineStaticConfig, wrapFieldsWithMeta } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
 import { featureBlockSchema } from "../components/blocks/feature";
 import { embedBlockSchema } from "../components/blocks/embed";
-import { iconSchema } from "../components/util/icon";
 import { colorOptions } from "../components/util/options";
 
 const config = defineStaticConfig({
@@ -284,7 +283,6 @@ const config = defineStaticConfig({
             label: "Header",
             name: "header",
             fields: [
-              iconSchema,
               {
                 type: "string",
                 label: "Color",

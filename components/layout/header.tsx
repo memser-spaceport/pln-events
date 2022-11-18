@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { Container } from "../util/container";
-import { Icon } from "../util/icon";
 
 export const Header = ({ data }) => {
   const headerColor = {
@@ -58,15 +57,6 @@ export const Header = ({ data }) => {
           <h4 className="select-none text-lg font-bold tracking-tight my-4 transition duration-150 ease-out transform">
             <Link href="/" passHref>
               <a className="flex items-center">
-                <Icon
-                  parentColor={data.color}
-                  data={{
-                    name: data.icon.name,
-                    color: data.icon.color,
-                    style: data.icon.style,
-                  }}
-                  className="inline-block h-auto w-10 mr-1"
-                />{" "}
                 Tina Starter
               </a>
             </Link>

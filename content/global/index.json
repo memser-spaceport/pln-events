@@ -14,11 +14,6 @@
     "black": "#000000"
   },
   "header": {
-    "icon": {
-      "color": "orange",
-      "style": "float",
-      "name": "tina"
-    },
     "color": "default",
     "nav": [
       {
