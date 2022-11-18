@@ -141,14 +141,14 @@ export const featureBlockSchema: any = {
             component: "featureContentControl",
           }
         },
-        // {
-        //   label: "Typography",
-        //   name: "typographyTitle",
-        //   type: "string",
-        //   ui: {
-        //     component: "ruledTitle",
-        //   },
-        // },
+        {
+          label: "Typography",
+          name: "typographyTitle",
+          type: "string",
+          ui: {
+            component: "ruledTitle",
+          },
+        },
         // {
         //   type: "string",
         //   label: "Label",
