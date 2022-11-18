@@ -1,8 +1,5 @@
-import { Container } from "../components/util/container";
-import { Section } from "../components/util/section";
 import { Posts } from "../components/posts";
 import { client } from "../.tina/__generated__/client";
-import { Layout } from "../components/layout";
 
 export default function HomePage(
   props: AsyncReturnType<typeof getStaticProps>["props"]
@@ -11,11 +8,11 @@ export default function HomePage(
 
   return (
     <div>
-      <Section className="flex-1">
-        <Container size="large">
+      <div>
+        <div>
           <Posts data={posts} />
-        </Container>
-      </Section>
+        </div>
+      </div>
     </div>
   );
 }

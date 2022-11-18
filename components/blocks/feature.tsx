@@ -2,10 +2,8 @@ import * as React from 'react';
 import { Section } from '../section';
 import { Content } from '../content';
 import { hasWord, getWordWith } from '../../helpers/utilities';
-
-import { minHeightOptions } from "../util/options"
-import { backgroundSchema } from "../../.tina/schema/background"
-import { navigationLabelSchema } from "../../.tina/schema/navigation-label";
+import { backgroundSchema } from "../../schema/background"
+import { navigationLabelSchema } from "../../schema/navigation-label";
 
 const imageWrapWidthClasses = (isVertical: boolean, isMobile: boolean) => {
   const mobilePrefix = isMobile ? 'sm:' : ''

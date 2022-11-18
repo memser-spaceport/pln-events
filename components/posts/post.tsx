@@ -12,8 +12,6 @@ limitations under the License.
 */
 
 import React from "react";
-import { Container } from "../util/container";
-import { Section } from "../util/section";
 import format from "date-fns/format";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Prism } from "tinacms/dist/rich-text/prism";
@@ -131,8 +129,8 @@ export const Post = (props) => {
   }
 
   return (
-    <Section className="flex-1">
-      <Container className={`flex-1 max-w-4xl pb-2`} size="large">
+    <div>
+      <div>
         <h2
           data-tinafield="title"
           className={`w-full relative	mb-8 text-6xl font-extrabold tracking-normal text-center title-font`}
@@ -171,7 +169,7 @@ export const Post = (props) => {
             {formattedDate}
           </p>
         </div>
-      </Container>
+      </div>
       {props.heroImg && (
         <div data-tinafield="heroImg" className="">
           <img
@@ -180,11 +178,11 @@ export const Post = (props) => {
           />
         </div>
       )}
-      <Container className={`flex-1 max-w-4xl pt-4`} size="large">
+      <div className={`flex-1 max-w-4xl pt-4`}>
         <div className="prose dark:prose-dark  w-full max-w-none">
           <TinaMarkdown components={components} content={props._body} />
         </div>
-      </Container>
-    </Section>
+      </div>
+    </div>
   );
 };

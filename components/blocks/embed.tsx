@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Section } from "../section";
 
-import { minHeightOptions } from "../util/options"
-import { backgroundSchema } from "../../.tina/schema/background"
-import { navigationLabelSchema } from "../../.tina/schema/navigation-label";
+import { minHeightOptions } from "../../schema/options"
+import { backgroundSchema } from "../../schema/background"
+import { navigationLabelSchema } from "../../schema/navigation-label";
 
 export const Embed = ({ data, parentField = "" }) => {
   const padding = data.style?.padding

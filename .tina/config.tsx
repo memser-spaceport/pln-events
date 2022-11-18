@@ -1,7 +1,7 @@
 import { defineStaticConfig, wrapFieldsWithMeta } from "tinacms";
 import { featureBlockSchema } from "../components/blocks/feature";
 import { embedBlockSchema } from "../components/blocks/embed";
-import { colorOptions } from "../components/util/options";
+import { colorOptions } from "../schema/options";
 
 const config = defineStaticConfig({
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
@@ -188,8 +188,22 @@ const config = defineStaticConfig({
             ui: {
               component: "ruledTitle",
             },
+          },    
+          {
+            type: "object",
+            label: "Typography",
+            name: "typography",
+            fields: [
+              {
+                type: "string",
+                label: "Primary",
+                name: "primary",
+                ui: {
+                  component: "color",
+                },
+              },
+            ]
           },
-      
           {
             type: "object",
             label: "Colors",

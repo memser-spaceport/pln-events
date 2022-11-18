@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { Container } from "../util/container";
 
 export const Header = ({ data }) => {
   const headerColor = {
@@ -52,7 +51,7 @@ export const Header = ({ data }) => {
 
   return (
     <div className={`bg-gradient-to-b ${headerColorCss}`}>
-      <Container size="custom" className="py-0 relative z-10 max-w-8xl">
+      <div>
         <div className="flex items-center justify-between">
           <h4 className="select-none text-lg font-bold tracking-tight my-4 transition duration-150 ease-out transform">
             <Link href="/" passHref>
@@ -86,7 +85,7 @@ export const Header = ({ data }) => {
             data.color === "primary" ? `via-white` : `via-black dark:via-white`
           } to-transparent bottom-0 left-4 right-4 -z-1 opacity-5`}
         />
-      </Container>
+      </div>
     </div>
   );
 };
