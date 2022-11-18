@@ -1,8 +1,6 @@
 import React from "react";
-import { useTheme } from "../layout";
 
 export const Section = ({ children, color = "", className = "" }) => {
-  const theme = useTheme();
   const sectionColor = {
     default:
       "text-gray-800 dark:text-gray-50 bg-gradient-to-br from-gray-50 dark:from-gray-800 via-transparent to-transparent",
@@ -22,12 +20,7 @@ export const Section = ({ children, color = "", className = "" }) => {
         "text-white bg-yellow-500 bg-gradient-to-br from-yellow-500 to-yellow-600",
     },
   };
-  const sectionColorCss =
-    color === "primary"
-      ? sectionColor.primary[theme.color]
-      : sectionColor[color]
-      ? sectionColor[color]
-      : sectionColor.default;
+  const sectionColorCss = sectionColor[color];
 
   return (
     <section

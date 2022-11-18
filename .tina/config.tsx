@@ -2,10 +2,10 @@ import { defineStaticConfig, wrapFieldsWithMeta } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
 import { featureBlockSchema } from "../components/blocks/feature";
 import { embedBlockSchema } from "../components/blocks/embed";
-import { heroBlockSchema } from "../components/blocks/hero";
 import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { iconSchema } from "../components/util/icon";
 import { colorOptions } from "../components/util/options";
+import { globalSchema } from "./schema/global";
 
 const config = defineStaticConfig({
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
@@ -193,7 +193,7 @@ const config = defineStaticConfig({
               component: "ruledTitle",
             },
           },
-
+      
           {
             type: "object",
             label: "Colors",
@@ -368,105 +368,6 @@ const config = defineStaticConfig({
               },
             ],
           },
-          {
-            type: "object",
-            label: "Theme",
-            name: "theme",
-            fields: [
-              {
-                type: "string",
-                label: "Primary Color",
-                name: "color",
-                options: [
-                  {
-                    label: "Blue",
-                    value: "blue",
-                  },
-                  {
-                    label: "Teal",
-                    value: "teal",
-                  },
-                  {
-                    label: "Green",
-                    value: "green",
-                  },
-                  {
-                    label: "Red",
-                    value: "red",
-                  },
-                  {
-                    label: "Pink",
-                    value: "pink",
-                  },
-                  {
-                    label: "Purple",
-                    value: "purple",
-                  },
-                  {
-                    label: "Orange",
-                    value: "orange",
-                  },
-                  {
-                    label: "Yellow",
-                    value: "yellow",
-                  },
-                ],
-              },
-              {
-                type: "string",
-                name: "font",
-                label: "Font Family",
-                options: [
-                  {
-                    label: "System Sans",
-                    value: "sans",
-                  },
-                  {
-                    label: "Nunito",
-                    value: "nunito",
-                  },
-                  {
-                    label: "Lato",
-                    value: "lato",
-                  },
-                ],
-              },
-              {
-                type: "string",
-                name: "icon",
-                label: "Icon Set",
-                options: [
-                  {
-                    label: "Boxicons",
-                    value: "boxicon",
-                  },
-                  {
-                    label: "Heroicons",
-                    value: "heroicon",
-                  },
-                ],
-              },
-              {
-                type: "string",
-                name: "darkMode",
-                label: "Dark Mode",
-                options: [
-                  {
-                    label: "System",
-                    value: "system",
-                  },
-                  {
-                    label: "Light",
-                    value: "light",
-                  },
-                  {
-                    label: "Dark",
-                    value: "dark",
-                  },
-                ],
-              },
-            ],
-          },
         ],
       },
       {
@@ -522,7 +423,6 @@ const config = defineStaticConfig({
             },
             templates: [
               embedBlockSchema,
-              heroBlockSchema,
               featureBlockSchema,
               contentBlockSchema,
               testimonialBlockSchema,

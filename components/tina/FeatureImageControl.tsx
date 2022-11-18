@@ -2,15 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getStyleMatch, prefixSelectValues } from '../../helpers/utilities';
 import Control from './Control';
 import IconPicker from './widgets/IconPicker';
-
-const NumberGroup = ({value, label="", className="", onChange}) => {
-  return (
-    <div className={`relative pl-6 ${className}`}>
-      <span className="absolute text-xs text-gray-300 font-bold top-3 left-0.5">{label}</span>
-      <input value={value} onChange={onChange} type="number" step="1" placeholder="auto" className="border border-gray-100 shadow text-gray-500 text-sm p-1 pl-2 h-10 w-full rounded-md hover:border-gray-200 focus:border-blue-500" />
-    </div>
-  );
-};
+import PixelField from './widgets/PixelField';
 
 const margins = [
   { label: "margin-right", value: "mr-auto" },
@@ -38,10 +30,10 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
 
   return (
     <div className="mb-4">
-      <div className="grid grid-cols-3 gap-2">
-        <NumberGroup value={width.replace(`${mobilePrefix}wpx-`, '')} label="W"  onChange={event => setWidth(`${mobilePrefix}wpx-${event.target.value}`)}  />
-        <NumberGroup value={height.replace(`${mobilePrefix}hpx-`, '')} label="H" onChange={event => setHeight(`${mobilePrefix}hpx-${event.target.value}`)} />
-        <IconPicker value={margin} onClick={value => setMargin(value)} options={marginOptions} menuPosition="right" className="flex-none" />
+      <div className="flex items-center gap-2">
+        <PixelField value={width.replace(`${mobilePrefix}wpx-`, '')} label="W"  onChange={event => setWidth(`${mobilePrefix}wpx-${event.target.value}`)} className="flex-1" />
+        <PixelField value={height.replace(`${mobilePrefix}hpx-`, '')} label="H" onChange={event => setHeight(`${mobilePrefix}hpx-${event.target.value}`)} className="flex-1" />
+        <IconPicker value={margin} onClick={value => setMargin(value)} options={marginOptions} menuPosition="right" />
       </div>
       <input type="text" value={`${width} ${height} ${margin}`} className="hidden" />
     </div>

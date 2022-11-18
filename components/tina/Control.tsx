@@ -38,7 +38,14 @@ export default function Control({ field, input, fieldRow }) {
         {desktopRow}
         {hasMobileStyles &&
           <div className="flex gap-2 mb-2 relative">
-            <div className="absolute -left-4 top-2.5 pl-px" style={{ color: "var(--tina-color-grey-4" }}>
+            <div
+              className="absolute -left-4 top-2.5 pl-px"
+              style={{
+                color: "var(--tina-color-grey-4)",
+                top: "10px",
+                left: "-14px",
+              }}
+            >
               <IconMobile />
             </div>
             <div className="w-full flex-1">

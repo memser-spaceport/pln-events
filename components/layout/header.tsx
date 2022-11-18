@@ -1,12 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import { Container } from "../util/container";
-import { useTheme } from ".";
 import { Icon } from "../util/icon";
 
 export const Header = ({ data }) => {
-  const theme = useTheme();
-
   const headerColor = {
     default:
       "text-black dark:text-white from-gray-50 to-white dark:from-gray-700 dark:to-gray-800",
@@ -24,7 +21,7 @@ export const Header = ({ data }) => {
 
   const headerColorCss =
     data.color === "primary"
-      ? headerColor.primary[theme.color]
+      ? headerColor.default
       : headerColor.default;
 
   const activeItemClasses = {
@@ -83,10 +80,7 @@ export const Header = ({ data }) => {
                       location.pathname == "/"
                     : windowUrl.includes(item.href);
                 return (
-                  <li
-                    key={`${item.label}-${i}`}
-                    className={activeItem ? activeItemClasses[theme.color] : ""}
-                  >
+                  <li key={`${item.label}-${i}`}>
                     <Link href={`${prefix}/${item.href}`} passHref>
                       <a className="select-none	text-base inline-block tracking-wide font-regular transition duration-150 ease-out opacity-70 hover:opacity-100 py-8">
                         {item.label}

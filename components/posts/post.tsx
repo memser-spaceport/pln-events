@@ -14,7 +14,6 @@ limitations under the License.
 import React from "react";
 import { Container } from "../util/container";
 import { Section } from "../util/section";
-import { useTheme } from "../layout";
 import format from "date-fns/format";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Prism } from "tinacms/dist/rich-text/prism";
@@ -111,7 +110,6 @@ const components: Components<{
 };
 
 export const Post = (props) => {
-  const theme = useTheme();
   const titleColorClasses = {
     blue: "from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500",
     teal: "from-teal-400 to-teal-600 dark:from-teal-300 dark:to-teal-500",
@@ -140,9 +138,7 @@ export const Post = (props) => {
           className={`w-full relative	mb-8 text-6xl font-extrabold tracking-normal text-center title-font`}
         >
           <span
-            className={`bg-clip-text text-transparent bg-gradient-to-r ${
-              titleColorClasses[theme.color]
-            }`}
+            className={`bg-clip-text text-transparent bg-gradient-to-r`}
           >
             {props.title}
           </span>

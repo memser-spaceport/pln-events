@@ -36,7 +36,6 @@ import {
   HiUser,
 } from "react-icons/hi";
 import { FiAperture } from "react-icons/fi";
-import { useTheme } from "../layout";
 import { FaBeer, FaCoffee } from "react-icons/fa";
 import TinaIconSvg from "../../public/tina.svg";
 import type { TinaField } from "tinacms";
@@ -116,10 +115,9 @@ export const Icon = ({
   className = "",
   tinaField = "",
 }) => {
-  const theme = useTheme();
 
   const iconName = data.name || Object.keys(iconOptions)[0];
-  const IconSVG = iconOptions[iconName][theme.icon === "boxicon" ? "bi" : "hi"];
+  const IconSVG = iconOptions[iconName]["hi"];
 
   const iconSizeClasses = data.size && iconSizeClass[data.size];
 
@@ -127,10 +125,6 @@ export const Icon = ({
      I would love a better solution that doesn't require so much repetition */
 
   const iconColor = data.color
-    ? data.color === "primary"
-      ? theme.color
-      : data.color
-    : theme.color;
 
   if (data.style == "circle") {
     return (
@@ -141,22 +135,14 @@ export const Icon = ({
         <IconSVG className="w-2/3 h-2/3" />
       </div>
     );
-  } else {
-    const iconColorClasses =
-      iconColorClass[
-        parentColor === "primary" &&
-        (iconColor === theme.color || iconColor === "primary")
-          ? "white"
-          : iconColor
-      ].regular;
-    return (
-      <IconSVG
-        data-tinafield={tinaField}
-        className={`${iconSizeClasses} ${iconColorClasses} ${className}`}
-      />
-    );
-  }
-};
+  } 
+  return (
+    <IconSVG
+      data-tinafield={tinaField}
+      className={`${iconSizeClasses} ${className}`}
+    />
+  );
+}
 
 const formatFieldLabel = (value: string) => {
   return value.charAt(0).toUpperCase() + value.slice(1);

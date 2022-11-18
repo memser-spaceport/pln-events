@@ -1,5 +1,6 @@
 {
-  "backgroundColor": "undefined",
+  "desktopWidth": "1000",
+  "backgroundColor": "accent1",
   "colors": {
     "primary": "#0090FF",
     "accent1": "#0E4465",
@@ -41,11 +42,5 @@
       "twitter": "/",
       "instagram": "/"
     }
-  },
-  "theme": {
-    "color": "blue",
-    "font": "sans",
-    "icon": "boxicon",
-    "darkMode": "system"
   }
 }

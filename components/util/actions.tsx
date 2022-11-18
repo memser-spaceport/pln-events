@@ -1,7 +1,6 @@
 import Link from "next/link";
 import * as React from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
-import { useTheme } from "../layout";
 
 export const Actions = ({
   parentColor = "default",
@@ -9,7 +8,6 @@ export const Actions = ({
   className = "",
   actions,
 }) => {
-  const theme = useTheme();
   const buttonColorClasses = {
     blue: "text-white bg-blue-500 hover:bg-blue-600 bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-400 hover:to-blue-500",
     teal: "text-white bg-teal-500 hover:bg-teal-600 bg-gradient-to-r from-teal-400 to-teal-600 hover:from-teal-400 hover:to-teal-500",
@@ -65,11 +63,7 @@ export const Actions = ({
               <Link key={index} href={action.link ? action.link : "/"}>
                 <button
                   data-tinafield={`${parentField}.${index}`}
-                  className={`z-10 relative flex items-center px-7 py-3 font-semibold text-lg transition duration-150 ease-out  rounded transform focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 whitespace-nowrap ${
-                    parentColor === "primary"
-                      ? invertedButtonColorClasses[theme.color]
-                      : buttonColorClasses[theme.color]
-                  }`}
+                  className={`z-10 relative flex items-center px-7 py-3 font-semibold text-lg transition duration-150 ease-out  rounded transform focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 whitespace-nowrap`}
                 >
                   {action.label}
                   {action.icon && (
@@ -86,11 +80,7 @@ export const Actions = ({
               <Link key={index} href={action.link ? action.link : "/"} passHref>
                 <a
                   data-tinafield={`${parentField}.${index}`}
-                  className={`group inline-flex items-center font-semibold text-lg transition duration-150 ease-out ${
-                    parentColor === "primary"
-                      ? `text-white  hover:text-gray-50`
-                      : linkButtonColorClasses[theme.color]
-                  }`}
+                  className={`group inline-flex items-center font-semibold text-lg transition duration-150 ease-out`}
                   style={{
                     textShadow: `0 3px 7px rgba(var(--color-rgb-blue-400),0.2)`,
                   }}
