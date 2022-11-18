@@ -2,10 +2,8 @@ import { defineStaticConfig, wrapFieldsWithMeta } from "tinacms";
 import { contentBlockSchema } from "../components/blocks/content";
 import { featureBlockSchema } from "../components/blocks/feature";
 import { embedBlockSchema } from "../components/blocks/embed";
-import { testimonialBlockSchema } from "../components/blocks/testimonial";
 import { iconSchema } from "../components/util/icon";
 import { colorOptions } from "../components/util/options";
-import { globalSchema } from "./schema/global";
 
 const config = defineStaticConfig({
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
@@ -425,7 +423,6 @@ const config = defineStaticConfig({
               embedBlockSchema,
               featureBlockSchema,
               contentBlockSchema,
-              testimonialBlockSchema,
             ],
           },
         ],
