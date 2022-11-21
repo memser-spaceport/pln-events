@@ -21,7 +21,7 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
   const [margin, setMargin] = useState(getStyleMatch(marginOptions, inputValue));
   const getWidth = () => inputValue.split(' ').find(item => item.includes(`${mobilePrefix}wpx-`))
   const [width, setWidth] = useState(getWidth() || "")
-  const getHeight = () => inputValue.split(' ').find(item => item.includes(`${mobilePrefix}wpx-`))
+  const getHeight = () => inputValue.split(' ').find(item => item.includes(`${mobilePrefix}hpx-`))
   const [height, setHeight] = useState(getHeight() || "")
 
   useEffect(() => {
