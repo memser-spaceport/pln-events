@@ -1,6 +1,9 @@
 {
   "desktopWidth": "1000",
   "backgroundColor": "accent1",
+  "typography": {
+    "headlineMd": "font-Archivo-Black:wght@400 spx-60 tpx-5 lpx-20 mpx-20 font-bold"
+  },
   "colors": {
     "primary": "#0090FF",
     "accent1": "#0E4465",

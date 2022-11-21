@@ -26,9 +26,9 @@ export const Content = ({
   // The first block gets an h1, others get an h2
   const headlineElement = () => {
     if (data?.headline && parentField === 'blocks.0') {
-      return <h1 className={`${styles?.headlineStyles}`} data-tinafield={`${parentField}.headline`}>{data.headline}</h1>
+      return <h1 className={`mg-headline-md ${styles?.headlineStyles}`} data-tinafield={`${parentField}.headline`}>{data.headline}</h1>
     } else if (data?.headline) {
-      return <h2 className={`${styles?.headlineStyles}`} data-tinafield={`${parentField}.headline`}>{data.headline}</h2>
+      return <h2 className={`mg-healine-md ${styles?.headlineStyles}`} data-tinafield={`${parentField}.headline`}>{data.headline}</h2>
     }
   }
   return (

@@ -6,6 +6,14 @@ import layoutData from "../../content/global/index.json";
 
 export const Layout = ({ rawData, data = layoutData, children }) => {
   const global = rawData.global
+  const headlineMdClasses = global?.typography?.headlineMd?.split(" ")
+  const headlineMd = {
+    family: headlineMdClasses.find(item => item.includes("font-"))?.replace("font-", "").replace("-", " "),
+    fontSize: headlineMdClasses.find(item => item.includes("spx-"))?.replace("spx-", ""),
+    leading: headlineMdClasses.find(item => item.includes("lpx-"))?.replace("lpx-", ""),
+    tracking: headlineMdClasses.find(item => item.includes("tpx-"))?.replace("tpx-", ""),
+    margin: headlineMdClasses.find(item => item.includes("mpx-"))?.replace("mpx-", ""),
+  }
 
   return (
     <>    
@@ -39,6 +47,13 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
             html {
               background-color: var(--${global?.backgroundColor}-color);
               scroll-behavior: smooth;
+            }
+            .mg-headline-md {
+              font-family: "${headlineMd.family}";
+              font-size: ${headlineMd.fontSize}px;
+              line-height: ${headlineMd.leading}px;
+              letter-spacing: ${headlineMd.tracking}px;
+              margin-bottom: ${headlineMd.margin}px;
             }
             .markdown a:not(.button) {
               color: var(--${global?.links?.color}-color);

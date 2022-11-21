@@ -10,6 +10,7 @@ import PaddingControl from './components/tina/PaddingControl'
 import RuledTitle from './components/tina/RuledTitle'
 import SelectField from './components/tina/SelectField'
 import TypeControl from './components/tina/TypeControl'
+import TypographyControl from './components/tina/TypographyControl'
 import TypeSizeControl from './components/tina/TypeSizeControl'
 
 export const SectionListItemsPlugin = {
@@ -134,6 +135,12 @@ export const typeControlFieldPlugin = {
   Component: TypeControl,
   __type: 'field',
   name: 'typeControl',
+}
+
+export const typographyControlFieldPlugin = {
+  Component: TypographyControl,
+  __type: 'field',
+  name: 'typographyControl',
 }
 
 export const typeSizeControlFieldPlugin = {

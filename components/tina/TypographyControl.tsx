@@ -1,68 +1,72 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { getStyleMatch, prefixSelectValues } from '../../helpers/utilities';
+import React, { useState, useEffect } from 'react';
+import { getStyleMatch } from '../../helpers/utilities';
+import { fontOptions } from './options/font-options';
 import Control from './Control';
-import IconPicker from './widgets/IconPicker';
-import LabeledSelectMenu from './widgets/LabeledSelectMenu';
+import SelectMenu from './widgets/SelectMenu';
+import ToggleButton from './widgets/ToggleButton';
+import PixelField from './widgets/PixelField';
+import IconGap from './icons/IconGap';
 
-// Font, Bold, Size, Leading, Tracking,
+// Font, Size(spx), Leading(lpx), Tracking(tpx), Bold
+// - Store/Retrieve font as sluggified?
+// - Maybe allow weight selection independant of Family
 
-const widths = [
-  { label: "20%", value: "w-1/5"},
-  { label: "25%", value: "w-1/4"},
-  { label: "33%", value: "w-1/3"},
-  { label: "40%", value: "w-2/5"},
-  { label: "50%", value: "w-1/2"},
-  { label: "60%", value: "w-3/5"},
-  { label: "66%", value: "w-2/3"},
-  { label: "75%", value: "w-3/4"},
-  { label: "80%", value: "w-4/5"},
-  { label: "100%", value: "w-full"},
+// - Pixel Field Icons
+// - Headline CSS in Layout file
+// - Maybe don't mix bold and weights
+
+const weightOptions = [
+  { label: "B", value: "font-bold" }
 ]
-const heights = [
-  { label: "auto", value: "min-h-0" },
-  { label: "400", value: "min-h-100" },
-  { label: "480", value: "min-h-120" },
-  { label: "560", value: "min-h-140" },
-  { label: "640", value: "min-h-160" },
-  { label: "720", value: "min-h-180" },
-  { label: "800", value: "min-h-200" },
-  { label: "Screen", value: "min-h-screen" },
-];
-const alignments = [
-  { label: "text-left", value: "text-left"},
-  { label: "text-center", value: "text-center"},
-  { label: "text-right", value: "text-right"},
-]
+const hyphenatedFontOptions = fontOptions.map(item => {
+  return {
+    label: item.label,
+    value: `font-${item.value.replace(" ", "-")}`
+  }
+})
 
-function buildOptions(options: { label: string, value: string }[] = [], isMobile = false) {
-  const mobilePrefix = isMobile ? 'sm:' : ''
-  return prefixSelectValues(options, `${mobilePrefix}`)
-}
+// Font stored as prefixed hyphenated value
+// Select menu access font value
 
 const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false }) => {
-  const widthOptions = buildOptions(widths, isMobile)
-  const [width, setWidth] = useState(getStyleMatch(widthOptions, inputValue));
-  const heightOptions = buildOptions(heights, isMobile)
-  const [height, setHeight] = useState(getStyleMatch(heightOptions, inputValue));
-  const alignmentOptions = buildOptions(alignments, isMobile)
-  const [alignment, setAlignment] = useState(getStyleMatch(alignmentOptions, inputValue));
+  const getFont = () => inputValue.split(' ').find(item => item.includes(`font-`))
+  const [font, setFont] = useState(getFont() || "");
+  const getSize = () => inputValue.split(' ').find(item => item.includes(`spx-`))
+  const [size, setSize] = useState(getSize() || "")
+  const getTracking = () => inputValue.split(' ').find(item => item.includes(`tpx-`))
+  const [tracking, setTracking] = useState(getTracking() || "")
+  const getLeading = () => inputValue.split(' ').find(item => item.includes(`lpx-`))
+  const [leading, setLeading] = useState(getLeading() || "")
+  const getMargin = () => inputValue.split(' ').find(item => item.includes(`mpx-`))
+  const [margin, setMargin] = useState(getMargin() || "")
+
+  const [weight, setWeight] = useState(getStyleMatch(weightOptions, inputValue));
 
   useEffect(() => {
-    onUpdate(`${width} ${height} ${alignment}`)
-  }, [width, height, alignment]);
+    onUpdate(`${font} ${size} ${tracking} ${leading} ${margin} ${weight}`)
+  }, [font, size, tracking, leading, margin, weight]);
 
   return (
     <div className="mb-4">
-       <div className="flex items-center gap-2">
-          <LabeledSelectMenu label="W" value={width} onChange={setWidth} options={widthOptions} className="flex-1" />
-          <LabeledSelectMenu label="H" value={height} onChange={setHeight} options={heightOptions} className="flex-1" />
-          <IconPicker value={alignment} onClick={value => setAlignment(value)} options={alignmentOptions} menuPosition="right" />
+      <div className="flex items-center gap-2 mb-2">
+        <SelectMenu value={font} onChange={setFont} options={hyphenatedFontOptions} className="flex-1" />
+        <ToggleButton value={weight} onClick={setWeight} options={weightOptions} className="w-9 shrink-0" />
       </div>
-      <input type="text" value={`${width} ${height} ${alignment}`} className="hidden" />
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        gap: "8px",
+      }}>
+        <PixelField value={size.replace(`spx-`, '')} label="Font Size" icon={<IconGap />} onChange={event => setSize(`spx-${event.target.value}`)} className="" />
+        <PixelField value={leading.replace(`lpx-`, '')} label="Line Height" icon={<IconGap />} onChange={event => setLeading(`lpx-${event.target.value}`)} className="" />
+        <PixelField value={tracking.replace(`tpx-`, '')} label="Tracking" icon={<IconGap />} onChange={event => setTracking(`tpx-${event.target.value}`)} className="" />
+        <PixelField value={margin.replace(`mpx-`, '')} label="Margin" icon={<IconGap />} onChange={event => setMargin(`mpx-${event.target.value}`)} className="" />
+      </div>
+      <input type="text" value={`${font} ${size} ${tracking} ${leading} ${margin} ${weight}`} className="mt-4" />
     </div>
   )
 }
 
-export default function FeatureContentControl({ field, input }) {
+export default function TypographyControl({ field, input }) {
   return <Control field={field} input={input} fieldRow={<FieldRow />} isResponsive={false} />
 }

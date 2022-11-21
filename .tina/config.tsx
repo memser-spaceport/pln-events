@@ -196,10 +196,10 @@ const config = defineStaticConfig({
             fields: [
               {
                 type: "string",
-                label: "Primary",
-                name: "primary",
+                label: "Headline MD",
+                name: "headlineMd",
                 ui: {
-                  component: "color",
+                  component: "typographyControl",
                 },
               },
             ]
@@ -449,12 +449,6 @@ const config = defineStaticConfig({
     import("../plugins").then(({ emailFieldPlugin }) => {
       cms.plugins.add(emailFieldPlugin);
     });
-    import("../plugins").then(({ typeControlFieldPlugin }) => {
-      cms.plugins.add(typeControlFieldPlugin);
-    });
-    import("../plugins").then(({ typeSizeControlFieldPlugin }) => {
-      cms.plugins.add(typeSizeControlFieldPlugin);
-    });
     import("../plugins").then(({ colorControlFieldPlugin }) => {
       cms.plugins.add(colorControlFieldPlugin);
     });
@@ -484,6 +478,15 @@ const config = defineStaticConfig({
     });
     import("../plugins").then(({ ruledTitlePlugin }) => {
       cms.plugins.add(ruledTitlePlugin);
+    });
+    import("../plugins").then(({ typeControlFieldPlugin }) => {
+      cms.plugins.add(typeControlFieldPlugin);
+    });
+    import("../plugins").then(({ typographyControlFieldPlugin }) => {
+      cms.plugins.add(typographyControlFieldPlugin);
+    });
+    import("../plugins").then(({ typeSizeControlFieldPlugin }) => {
+      cms.plugins.add(typeSizeControlFieldPlugin);
     });
     
     return cms
