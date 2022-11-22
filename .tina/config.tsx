@@ -196,8 +196,88 @@ const config = defineStaticConfig({
             fields: [
               {
                 type: "string",
-                label: "Headline MD",
+                label: "XS Headline",
+                name: "headlineXs",
+                ui: {
+                  component: "typographyControl",
+                },
+              },
+              {
+                type: "string",
+                label: "SM Headline",
+                name: "headlineSm",
+                ui: {
+                  component: "typographyControl",
+                },
+              },
+              {
+                type: "string",
+                label: "MD Headline",
                 name: "headlineMd",
+                ui: {
+                  component: "typographyControl",
+                },
+              },
+              {
+                type: "string",
+                label: "LG Headline",
+                name: "headlineLg",
+                ui: {
+                  component: "typographyControl",
+                },
+              },
+              {
+                type: "string",
+                label: "XL Headline",
+                name: "headlineXl",
+                ui: {
+                  component: "typographyControl",
+                },
+              },
+              {
+                label: "",
+                name: "rule",
+                type: "string",
+                ui: {
+                  component: "ruledTitle",
+                },
+              },
+              {
+                type: "string",
+                label: "XS Body",
+                name: "bodyXs",
+                ui: {
+                  component: "typographyControl",
+                },
+              },
+              {
+                type: "string",
+                label: "SM Body",
+                name: "bodySm",
+                ui: {
+                  component: "typographyControl",
+                },
+              },
+              {
+                type: "string",
+                label: "MD Body",
+                name: "bodyMd",
+                ui: {
+                  component: "typographyControl",
+                },
+              },
+              {
+                type: "string",
+                label: "LG Body",
+                name: "bodyLg",
+                ui: {
+                  component: "typographyControl",
+                },
+              },
+              {
+                type: "string",
+                label: "XL Body",
+                name: "bodyXl",
                 ui: {
                   component: "typographyControl",
                 },
@@ -403,6 +483,7 @@ const config = defineStaticConfig({
         label: "Pages",
         name: "page",
         path: "content/pages",
+        format: "md",
         ui: {
           router: ({ document }) => {
             if (document._sys.filename === "home") {
@@ -484,9 +565,6 @@ const config = defineStaticConfig({
     });
     import("../plugins").then(({ typographyControlFieldPlugin }) => {
       cms.plugins.add(typographyControlFieldPlugin);
-    });
-    import("../plugins").then(({ typeSizeControlFieldPlugin }) => {
-      cms.plugins.add(typeSizeControlFieldPlugin);
     });
     
     return cms

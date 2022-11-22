@@ -50,7 +50,7 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
   }, [width, height, alignment]);
 
   return (
-    <div className="mb-4">
+    <div className="">
        <div className="flex items-center gap-2">
           <LabeledSelectMenu label="W" value={width} onChange={setWidth} options={widthOptions} className="flex-1" />
           <LabeledSelectMenu label="H" value={height} onChange={setHeight} options={heightOptions} className="flex-1" />

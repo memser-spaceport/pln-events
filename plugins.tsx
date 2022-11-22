@@ -11,7 +11,6 @@ import RuledTitle from './components/tina/RuledTitle'
 import SelectField from './components/tina/SelectField'
 import TypeControl from './components/tina/TypeControl'
 import TypographyControl from './components/tina/TypographyControl'
-import TypeSizeControl from './components/tina/TypeSizeControl'
 
 export const SectionListItemsPlugin = {
   ...BlocksFieldPlugin,
@@ -141,10 +140,4 @@ export const typographyControlFieldPlugin = {
   Component: TypographyControl,
   __type: 'field',
   name: 'typographyControl',
-}
-
-export const typeSizeControlFieldPlugin = {
-  Component: TypeSizeControl,
-  __type: 'field',
-  name: 'typeSizeControl',
 }

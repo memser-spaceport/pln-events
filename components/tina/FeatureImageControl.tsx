@@ -29,7 +29,7 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
   }, [width, height, margin]);
 
   return (
-    <div className="mb-4">
+    <div className="">
       <div className="flex items-center gap-2">
         <PixelField value={width.replace(`${mobilePrefix}wpx-`, '')} label="W"  onChange={event => setWidth(`${mobilePrefix}wpx-${event.target.value}`)} className="flex-1" />
         <PixelField value={height.replace(`${mobilePrefix}hpx-`, '')} label="H" onChange={event => setHeight(`${mobilePrefix}hpx-${event.target.value}`)} className="flex-1" />

@@ -6,6 +6,10 @@ blocks:
       padding: pt-10 pb-10 pr-5 pl-5
       featureImage: '  mr-auto'
       featureContent: w-1/2 undefined text-left
+      labelStyles: undefined mg-headline-xs undefined
+      headlineStyles: text-primary mg-headline-xs undefined
+      subheadStyles: undefined mg-headline-xs undefined
+      textStyles: undefined mg-headline-xs undefined
     background:
       fillStyles: from-accent1 to-accent3 bg-gradient-to-br opacity-100
     label: Label

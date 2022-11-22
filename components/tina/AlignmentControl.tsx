@@ -58,7 +58,7 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
 
   return (
     <>
-      <div className="flex gap-2 mb-2">
+      <div className="flex gap-2">
         <div className="flex-1">
           <SelectMenu value={layout} onChange={setLayout} options={layoutOptionsPrefixed} className="w-full" />
         </div>

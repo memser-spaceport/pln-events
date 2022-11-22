@@ -2,7 +2,16 @@
   "desktopWidth": "1000",
   "backgroundColor": "accent1",
   "typography": {
-    "headlineMd": "font-Archivo-Black:wght@400 spx-60 tpx-5 lpx-20 mpx-20 font-bold"
+    "headlineXs": "{\"family\":\"Inter:wght@400;700\",\"size\":\"24\",\"lineHeight\":\"30\",\"letterSpacing\":\"\"}",
+    "headlineSm": "{\"family\":\"Inter:wght@400;700\",\"size\":\"34\",\"lineHeight\":\"40\",\"letterSpacing\":\"5\"}",
+    "headlineMd": "{\"family\":\"Inter:wght@400;700\",\"size\":\"39\",\"lineHeight\":\"48\",\"letterSpacing\":\"5\"}",
+    "headlineLg": "{\"family\":\"Inter:wght@400;700\",\"size\":\"48\",\"lineHeight\":\"60\",\"letterSpacing\":\"\"}",
+    "headlineXl": "{\"family\":\"Inter:wght@400;700\",\"size\":\"120\",\"lineHeight\":\"120\",\"letterSpacing\":\"\"}",
+    "bodyXs": "{\"family\":\"Inter:wght@400;700\",\"size\":\"14\",\"lineHeight\":\"\",\"letterSpacing\":\"\"}",
+    "bodySm": "{\"family\":\"Inter:wght@400;700\",\"size\":\"16\",\"lineHeight\":\"\",\"letterSpacing\":\"\"}",
+    "bodyMd": "{\"family\":\"Inter:wght@400;700\",\"size\":\"24\",\"lineHeight\":\"\",\"letterSpacing\":\"\"}",
+    "bodyLg": "{\"family\":\"Inter:wght@400;700\",\"size\":\"32\",\"lineHeight\":\"\",\"letterSpacing\":\"\"}",
+    "bodyXl": "{\"family\":\"Inter:wght@400;700\",\"size\":\"48\",\"lineHeight\":\"\",\"letterSpacing\":\"\"}"
   },
   "colors": {
     "primary": "#0090FF",
