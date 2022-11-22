@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getStyleMatch } from '../../helpers/utilities'
+import Control from './Control';
 import SelectMenu from './widgets/SelectMenu';
 import ColorPicker from './widgets/ColorPicker';
-import IconMobile from './icons/IconMobile';
 import IconMargin from './icons/IconMargin';
-import FieldLabel from './widgets/FieldLabel';
-import { getStyleMatch } from './widgets/helpers'
 
 function buildColorOptions(prefix?) {
   const options = [
@@ -84,84 +83,38 @@ function buildMarginOptions(prefix?) {
   return formattedOptions;
 }
 
-export default function TypeControl({ field, input, meta }) {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [hasMobileStyles, setHasMobileStyles] = useState(input.value.includes("sm:"));
-
-  const colorOptions = buildColorOptions();
-  const colorOptionsMobile = buildColorOptions('sm:');
-  const fontOptions = buildFontOptions();
-  const fontOptionsMobile = buildFontOptions('sm:');
-  const marginOptions = buildMarginOptions();
-  const marginOptionsMobile = buildMarginOptions('sm:');
-
-  const [color, setColor] = useState(getStyleMatch(colorOptions, input.value));
-  const [colorMobile, setColorMobile] = useState(getStyleMatch(colorOptionsMobile, input.value));
-  const [font, setFont] = useState(getStyleMatch(fontOptions, input.value));
-  const [fontMobile, setFontMobile] = useState(getStyleMatch(fontOptionsMobile, input.value));
-  const [margin, setMargin] = useState(getStyleMatch(marginOptions, input.value));
-  const [marginMobile, setMarginMobile] = useState(getStyleMatch(marginOptionsMobile, input.value));
-
-  function toggleMobile() {
-    setHasMobileStyles(!hasMobileStyles)
-  }
-
-  function updateHiddenField() {
-    const input = inputRef.current;
-    const lastValue = input.value;
-    const defaultClasses = `${color} ${font} ${margin}`;
-    const mobileClasses = `${colorMobile} ${fontMobile} ${marginMobile}`;
-    if (mobileClasses.includes("undefined")) {
-      setColorMobile(`sm:${color || 'text-white'}`)
-      setFontMobile(`sm:${font || 'mg-headline-md'}`)
-      setMarginMobile(`sm:${margin || 'mb-0'}`)
-    }
-    const newValue = hasMobileStyles ? `${defaultClasses} ${mobileClasses}` : defaultClasses;
-    input.value = newValue;
-    (input as any)._valueTracker?.setValue(lastValue);
-    input.dispatchEvent(new Event("input", {bubbles: true}));
-  }
+const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false }) => {
+  const prefix = isMobile ? "sm:" : ""
+  const colorOptions = buildColorOptions(prefix);
+  const fontOptions = buildFontOptions(prefix);
+  const marginOptions = buildMarginOptions(prefix);
+  const [color, setColor] = useState(getStyleMatch(colorOptions, inputValue));
+  const [font, setFont] = useState(getStyleMatch(fontOptions, inputValue));
+  const [margin, setMargin] = useState(getStyleMatch(marginOptions, inputValue));
   
-  useEffect(() => {
-    updateHiddenField()
-  }, [color, font, margin, colorMobile, fontMobile, marginMobile, hasMobileStyles, inputRef.current]);
+  function handleSetColor(value: String) {
+    setColor(`${prefix}text-${value}`)
+  }
 
-  function handleSetColor(value: string) {
-    setColor(`text-${value}`)
-  }
-  function handleSetColorMobile(value: string) {
-    setColorMobile(`sm:text-${value}`)
-  }
+  useEffect(() => {
+    onUpdate(`${color} ${font} ${margin}`)
+  }, [color, font, margin]);
 
   return (
     <>
-      <FieldLabel label={field.label} hasMobileStyles={hasMobileStyles} onMobileToggle={toggleMobile} mobileMode={true} />
-      <div className="mb-4">
-        <div className="flex mb-2 items-center gap-2">
-          <ColorPicker value={color?.replace('text-','')} onClick={handleSetColor} className="w-9" />
-          <SelectMenu value={font} onChange={setFont} options={fontOptions} className="w-12 flex-1" />
-          <div className="w-3.5 pr-.5">
-            <IconMargin className="float-right" />
-          </div>
-          <SelectMenu value={margin} onChange={setMargin} options={marginOptions} className="w-12 " />
+      <div className="flex gap-2">
+        <ColorPicker value={`${color?.replace('text-','').replace(prefix, '')}`} onClick={handleSetColor} className="w-9" />
+        <SelectMenu value={font} onChange={setFont} options={fontOptions} className="w-12 flex-1" />
+        <div style={{ padding: "9px 2px 0 0", width: "14px"}}>
+          <IconMargin className="float-right" />
         </div>
-        {hasMobileStyles &&
-          <div className="flex mb-2 relative">
-            <div className="absolute -left-4 top-2.5 pl-px">
-              <IconMobile />
-            </div>
-            <div className="flex items-center w-full">
-              <ColorPicker value={colorMobile?.replace('sm:text-','')} onClick={handleSetColorMobile} className="mr-2" />
-              <SelectMenu value={fontMobile} onChange={setFontMobile} options={fontOptionsMobile} className="flex-grow mr-2" />
-              <div className="w-6 pr-1">
-                <IconMargin className="float-right" />
-              </div>
-              <SelectMenu value={marginMobile} onChange={setMarginMobile} options={marginOptionsMobile} className="w-12 mr-2" />
-            </div>
-          </div>
-        }
+        <SelectMenu value={margin} onChange={setMargin} options={marginOptions} className="w-12 " />
       </div>
-      <input ref={inputRef} type="text" {...input}  className="hidden" />
+      <input type="text" value={`${color} ${font} ${margin}`} className="hidden" />
     </>
   )
+}
+
+export default function TypeControl({ field, input }) {
+  return <Control field={field} input={input} fieldRow={<FieldRow />} />
 }
