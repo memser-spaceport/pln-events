@@ -171,6 +171,130 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
             .markdown a {
               text-decoration: underline;
             }
+
+            @media only screen and (max-width: 700px) {
+              .mg-headline-xs {
+                font-size: ${headlineXs.smSize || headlineXs.size}px;
+                line-height: ${headlineXs.smLineHeight || headlineXs.lineHeight}px;
+                letter-spacing: ${headlineXs.smLetterSpacing || headlineXs.letterSpacing}px;
+                margin-bottom: ${headlineXs.smMargin || headlineXs.margin}px;
+              }
+              .mg-headline-sm {
+                font-size: ${headlineSm.smSize || headlineSm.size}px;
+                line-height: ${headlineSm.smLineHeight || headlineSm.lineHeight}px;
+                letter-spacing: ${headlineSm.smLetterSpacing || headlineSm.letterSpacing}px;
+                margin-bottom: ${headlineSm.smMargin || headlineSm.margin}px;
+              }
+              .mg-headline-md {
+                font-size: ${headlineMd.smSize || headlineMd.size}px;
+                line-height: ${headlineMd.smLineHeight || headlineMd.lineHeight}px;
+                letter-spacing: ${headlineMd.smLetterSpacing || headlineMd.letterSpacing}px;
+                margin-bottom: ${headlineMd.smMargin || headlineMd.margin}px;
+              }
+              .mg-headline-lg {
+                font-size: ${headlineLg.smSize || headlineLg.size}px;
+                line-height: ${headlineLg.smLineHeight || headlineLg.lineHeight}px;
+                letter-spacing: ${headlineLg.smLetterSpacing || headlineLg.letterSpacing}px;
+                margin-bottom: ${headlineLg.smMargin || headlineLg.margin}px;
+              }
+              .mg-headline-xl {
+                font-size: ${headlineXl.smSize || headlineXl.size}px;
+                line-height: ${headlineXl.smLineHeight || headlineXl.lineHeight}px;
+                letter-spacing: ${headlineXl.smLetterSpacing || headlineXl.letterSpacing}px;
+                margin-bottom: ${headlineXl.smMargin || headlineXl.margin}px;
+              }
+              .mg-body-xs {
+                font-size: ${bodyXs.smSize || bodyXs.size}px;
+                line-height: ${bodyXs.smLineHeight || bodyXs.lineHeight}px;
+                letter-spacing: ${bodyXs.smLetterSpacing || bodyXs.letterSpacing}px;
+                margin-bottom: ${bodyXs.smMargin || bodyXs.margin}px;
+              }
+              .mg-body-sm {
+                font-size: ${bodySm.smSize || bodySm.size}px;
+                line-height: ${bodySm.smLineHeight || bodySm.lineHeight}px;
+                letter-spacing: ${bodySm.smLetterSpacing || bodySm.letterSpacing}px;
+                margin-bottom: ${bodySm.smMargin || bodySm.margin}px;
+              }
+              .mg-body-md {
+                font-size: ${bodyMd.smSize || bodyMd.size}px;
+                line-height: ${bodyMd.smLineHeight || bodyMd.lineHeight}px;
+                letter-spacing: ${bodyMd.smLetterSpacing || bodyMd.letterSpacing}px;
+                margin-bottom: ${bodyMd.smMargin || bodyMd.margin}px;
+              }
+              .mg-body-lg {
+                font-size: ${bodyLg.smSize || bodyLg.size}px;
+                line-height: ${bodyLg.smLineHeight || bodyLg.lineHeight}px;
+                letter-spacing: ${bodyLg.smLetterSpacing || bodyLg.letterSpacing}px;
+                margin-bottom: ${bodyLg.smMargin || bodyLg.margin}px;
+              }
+              .mg-body-xl {
+                font-size: ${bodyXl.smSize || bodyXl.size}px;
+                line-height: ${bodyXl.smLineHeight || bodyXl.lineHeight}px;
+                letter-spacing: ${bodyXl.smLetterSpacing || bodyXl.letterSpacing}px;
+                margin-bottom: ${bodyXl.smMargin || bodyXl.margin}px;
+              }
+
+              .sm\\:mg-headline-xs {
+                font-size: ${headlineXs.smSize || headlineXs.size}px;
+                line-height: ${headlineXs.smLineHeight || headlineXs.lineHeight}px;
+                letter-spacing: ${headlineXs.smLetterSpacing || headlineXs.letterSpacing}px;
+                margin-bottom: ${headlineXs.smMargin || headlineXs.margin}px;
+              }
+              .sm\\:mg-headline-sm {
+                font-size: ${headlineSm.smSize || headlineSm.size}px;
+                line-height: ${headlineSm.smLineHeight || headlineSm.lineHeight}px;
+                letter-spacing: ${headlineSm.smLetterSpacing || headlineSm.letterSpacing}px;
+                margin-bottom: ${headlineSm.smMargin || headlineSm.margin}px;
+              }
+              .sm\\:mg-headline-md {
+                font-size: ${headlineMd.smSize || headlineMd.size}px;
+                line-height: ${headlineMd.smLineHeight || headlineMd.lineHeight}px;
+                letter-spacing: ${headlineMd.smLetterSpacing || headlineMd.letterSpacing}px;
+                margin-bottom: ${headlineMd.smMargin || headlineMd.margin}px;
+              }
+              .sm\\:mg-headline-lg {
+                font-size: ${headlineLg.smSize || headlineLg.size}px;
+                line-height: ${headlineLg.smLineHeight || headlineLg.lineHeight}px;
+                letter-spacing: ${headlineLg.smLetterSpacing || headlineLg.letterSpacing}px;
+                margin-bottom: ${headlineLg.smMargin || headlineLg.margin}px;
+              }
+              .sm\\:mg-headline-xl {
+                font-size: ${headlineXl.smSize || headlineXl.size}px;
+                line-height: ${headlineXl.smLineHeight || headlineXl.lineHeight}px;
+                letter-spacing: ${headlineXl.smLetterSpacing || headlineXl.letterSpacing}px;
+                margin-bottom: ${headlineXl.smMargin || headlineXl.margin}px;
+              }
+              .sm\\:mg-body-xs {
+                font-size: ${bodyXs.smSize || bodyXs.size}px;
+                line-height: ${bodyXs.smLineHeight || bodyXs.lineHeight}px;
+                letter-spacing: ${bodyXs.smLetterSpacing || bodyXs.letterSpacing}px;
+                margin-bottom: ${bodyXs.smMargin || bodyXs.margin}px;
+              }
+              .sm\\:mg-body-sm {
+                font-size: ${bodySm.smSize || bodySm.size}px;
+                line-height: ${bodySm.smLineHeight || bodySm.lineHeight}px;
+                letter-spacing: ${bodySm.smLetterSpacing || bodySm.letterSpacing}px;
+                margin-bottom: ${bodySm.smMargin || bodySm.margin}px;
+              }
+              .sm\\:mg-body-md {
+                font-size: ${bodyMd.smSize || bodyMd.size}px;
+                line-height: ${bodyMd.smLineHeight || bodyMd.lineHeight}px;
+                letter-spacing: ${bodyMd.smLetterSpacing || bodyMd.letterSpacing}px;
+                margin-bottom: ${bodyMd.smMargin || bodyMd.margin}px;
+              }
+              .sm\\:mg-body-lg {
+                font-size: ${bodyLg.smSize || bodyLg.size}px;
+                line-height: ${bodyLg.smLineHeight || bodyLg.lineHeight}px;
+                letter-spacing: ${bodyLg.smLetterSpacing || bodyLg.letterSpacing}px;
+                margin-bottom: ${bodyLg.smMargin || bodyLg.margin}px;
+              }
+              .sm\\:mg-body-xl {
+                font-size: ${bodyXl.smSize || bodyXl.size}px;
+                line-height: ${bodyXl.smLineHeight || bodyXl.lineHeight}px;
+                letter-spacing: ${bodyXl.smLetterSpacing || bodyXl.letterSpacing}px;
+                margin-bottom: ${bodyXl.smMargin || bodyXl.margin}px;
+              }
+            }
           `,
           }}
         />

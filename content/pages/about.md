@@ -7,7 +7,9 @@ blocks:
       featureImage: '  mx-auto'
       featureContent: w-1/2 undefined text-left
       labelStyles: text-white mg-headline-xs undefined
-      headlineStyles: text-primary mg-headline-lg undefined
+      headlineStyles: >-
+        text-primary mg-headline-lg undefined sm:text-accent2 sm:mg-headline-xl
+        sm:mb-20
       subheadStyles: text-gray mg-headline-xs mb-10
       textStyles: text-white mg-body-sm undefined
     background:
