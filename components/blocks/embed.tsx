@@ -31,6 +31,11 @@ export const embedBlockSchema: any = {
       type: "object",
       fields: [
         {
+          label: "Full Width",
+          name: "fullWidth",
+          type: "boolean",
+        },
+        {
           label: "Minimum Height",
           name: "minHeight",
           type: "string",
@@ -39,11 +44,6 @@ export const embedBlockSchema: any = {
             mobileMode: true,
           },
           options: minHeightOptions,
-        },
-        {
-          label: "Full Width",
-          name: "fullWidth",
-          type: "boolean",
         },
         {
           label: "Padding",
