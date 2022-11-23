@@ -32,7 +32,6 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
   const fontFamilies = typeStyles.map(type => getFontFamily(type))
   const uniqueFontFamilies =  unique(fontFamilies);
 
-
   function unique(list) {
     return list.sort().filter(function(item, pos, ary) {
         return !pos || item != ary[pos - 1];
@@ -49,9 +48,14 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
     }
   }
 
-  function stripFontWeight(fontName) {
-    const parts = fontName.split(":wght")
-    return parts[0]
+  function justFontFamily(fontName) {
+    const parts = fontName.split(":wght@")
+    return parts[0] || ""
+  }
+  
+  function justFontWeight(fontName) {
+    const parts = fontName.split(":wght@")
+    return Number(parts[1]) || 400
   }
 
   return (
@@ -88,70 +92,80 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
               scroll-behavior: smooth;
             }
             .mg-headline-xs {
-              font-family: "${stripFontWeight(headlineXs.family)}";
+              font-family: "${justFontFamily(headlineXs.family)}";
+              font-weight: ${justFontWeight(headlineXs.family)};
               font-size: ${headlineXs.size}px;
               line-height: ${headlineXs.lineHeight}px;
               letter-spacing: ${headlineXs.letterSpacing}px;
               margin-bottom: ${headlineXs.margin}px;
             }
             .mg-headline-sm {
-              font-family: "${stripFontWeight(headlineSm.family)}";
+              font-family: "${justFontFamily(headlineSm.family)}";
+              font-weight: ${justFontWeight(headlineSm.family)};
               font-size: ${headlineSm.size}px;
               line-height: ${headlineSm.lineHeight}px;
               letter-spacing: ${headlineSm.letterSpacing}px;
               margin-bottom: ${headlineSm.margin}px;
             }
             .mg-headline-md {
-              font-family: "${stripFontWeight(headlineMd.family)}";
+              font-family: "${justFontFamily(headlineMd.family)}";
+              font-weight: ${justFontWeight(headlineMd.family)};
               font-size: ${headlineMd.size}px;
               line-height: ${headlineMd.lineHeight}px;
               letter-spacing: ${headlineMd.letterSpacing}px;
               margin-bottom: ${headlineMd.margin}px;
             }
             .mg-headline-lg {
-              font-family: "${stripFontWeight(headlineLg.family)}";
+              font-family: "${justFontFamily(headlineLg.family)}";
+              font-weight: ${justFontWeight(headlineLg.family)};
               font-size: ${headlineLg.size}px;
               line-height: ${headlineLg.lineHeight}px;
               letter-spacing: ${headlineLg.letterSpacing}px;
               margin-bottom: ${headlineLg.margin}px;
             }
             .mg-headline-xl {
-              font-family: "${stripFontWeight(headlineXl.family)}";
+              font-family: "${justFontFamily(headlineXl.family)}";
+              font-weight: ${justFontWeight(headlineXl.family)};
               font-size: ${headlineXl.size}px;
               line-height: ${headlineXl.lineHeight}px;
               letter-spacing: ${headlineXl.letterSpacing}px;
               margin-bottom: ${headlineXl.margin}px;
             }
             .mg-body-xs {
-              font-family: "${stripFontWeight(bodyXs.family)}";
+              font-family: "${justFontFamily(bodyXs.family)}";
+              font-weight: ${justFontWeight(bodyXs.family)};
               font-size: ${bodyXs.size}px;
               line-height: ${bodyXs.lineHeight}px;
               letter-spacing: ${bodyXs.letterSpacing}px;
               margin-bottom: ${bodyXs.margin}px;
             }
             .mg-body-sm {
-              font-family: "${stripFontWeight(bodySm.family)}";
+              font-family: "${justFontFamily(bodySm.family)}";
+              font-weight: ${justFontWeight(bodySm.family)};
               font-size: ${bodySm.size}px;
               line-height: ${bodySm.lineHeight}px;
               letter-spacing: ${bodySm.letterSpacing}px;
               margin-bottom: ${bodySm.margin}px;
             }
             .mg-body-md {
-              font-family: "${stripFontWeight(bodyMd.family)}";
+              font-family: "${justFontFamily(bodyMd.family)}";
+              font-weight: ${justFontWeight(bodyMd.family)};
               font-size: ${bodyMd.size}px;
               line-height: ${bodyMd.lineHeight}px;
               letter-spacing: ${bodyMd.letterSpacing}px;
               margin-bottom: ${bodyMd.margin}px;
             }
             .mg-body-lg {
-              font-family: "${stripFontWeight(bodyLg.family)}";
+              font-family: "${justFontFamily(bodyLg.family)}";
+              font-weight: ${justFontWeight(bodyLg.family)};
               font-size: ${bodyLg.size}px;
               line-height: ${bodyLg.lineHeight}px;
               letter-spacing: ${bodyLg.letterSpacing}px;
               margin-bottom: ${bodyLg.margin}px;
             }
             .mg-body-xl {
-              font-family: "${stripFontWeight(bodyXl.family)}";
+              font-family: "${justFontFamily(bodyXl.family)}";
+              font-weight: ${justFontWeight(bodyXl.family)};
               font-size: ${bodyXl.size}px;
               line-height: ${bodyXl.lineHeight}px;
               letter-spacing: ${bodyXl.letterSpacing}px;
