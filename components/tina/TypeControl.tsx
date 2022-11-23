@@ -51,6 +51,7 @@ function buildFontOptions(prefix?) {
 
 function buildMarginOptions(prefix?) {
   const options = [
+    { label: "default", value: "" },
     { label: "0", value: "mb-0" },
     { label: "1", value: "mb-px" },
     { label: "2", value: "mb-0.5" },
@@ -108,7 +109,7 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
         <div style={{ padding: "9px 2px 0 0", width: "14px"}}>
           <IconMargin className="float-right" />
         </div>
-        <SelectMenu value={margin} onChange={setMargin} options={marginOptions} className="w-12 " />
+        <SelectMenu value={margin} onChange={setMargin} options={marginOptions} className="w-16 " />
       </div>
       <input type="text" value={`${color} ${font} ${margin}`} className="hidden" />
     </>
