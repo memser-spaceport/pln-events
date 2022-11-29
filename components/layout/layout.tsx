@@ -320,10 +320,10 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
         )}
       </Head>
       <div
-        className={`min-h-screen flex flex-col`}
+        className={`flex flex-col`}
       >
         <Header data={data?.header} />
-        <div className={`min-h-screen flex flex-col`}>
+        <div className={`flex flex-col`}>
           {children}
         </div>
       </div>

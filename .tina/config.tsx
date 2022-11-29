@@ -1,6 +1,7 @@
 import { defineStaticConfig, wrapFieldsWithMeta } from "tinacms";
 import { featureBlockSchema } from "../components/blocks/feature";
 import { embedBlockSchema } from "../components/blocks/embed";
+import { tailwindFeatureBlockSchema } from "../components/blocks/tailwind-feature"
 import { colorOptions, roundedOptions } from "../schema/options";
 
 const config = defineStaticConfig({
@@ -568,6 +569,7 @@ const config = defineStaticConfig({
             templates: [
               embedBlockSchema,
               featureBlockSchema,
+              tailwindFeatureBlockSchema,
             ],
           },
         ],

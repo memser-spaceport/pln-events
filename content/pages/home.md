@@ -18,6 +18,27 @@ blocks:
     body: |
       Copy
     _template: feature
+  - tailwind:
+      section: ''
+      wrap: ''
+      imageWrap: ''
+      image: ''
+      contentWrap: ''
+      content: ''
+      label: ''
+      headline: ''
+      subhead: ''
+      text: ''
+      buttons: ''
+    label: ''
+    headline: This is the main headline
+    subhead: Here is a subhead
+    body: |
+      This is a rich text component you can add hyperlinks, etc.
+    buttons:
+      - label: one
+        link: '#one'
+    _template: tailwindFeature
   - style:
       minHeight: min-h-0
       padding: pt-5 pb-6 undefined pl-10
