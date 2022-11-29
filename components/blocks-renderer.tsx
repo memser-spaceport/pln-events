@@ -3,6 +3,7 @@ import type { Page } from "../.tina/__generated__/types";
 import { Feature } from "./blocks/feature";
 import { Embed } from "./blocks/embed";
 import { TailwindFeature } from "./blocks/tailwind-feature";
+import { TailwindCards } from "./blocks/tailwind-cards";
 
 export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
   return (
@@ -35,6 +36,15 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
                     key={i + block.__typename}
                   >
                     <TailwindFeature data={block} parentField={`blocks.${i}`} />
+                  </div>
+                );
+              case "PageBlocksTailwindCards":
+                return (
+                  <div
+                    data-tinafield={`blocks.${i}`}
+                    key={i + block.__typename}
+                  >
+                    <TailwindCards data={block} parentField={`blocks.${i}`} />
                   </div>
                 );
               default:
