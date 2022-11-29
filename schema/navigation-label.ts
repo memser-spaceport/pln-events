@@ -1,4 +1,3 @@
-
 export const navigationLabelSchema = {
   label: "Navigation Label",
   name: "navigationLabel",

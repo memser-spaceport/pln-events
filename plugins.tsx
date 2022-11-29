@@ -1,6 +1,7 @@
 import { TextField, GroupListField, BlocksFieldPlugin } from 'tinacms'
 import AlignmentControl from './components/tina/AlignmentControl'
 import BorderControl from './components/tina/BorderControl'
+import ButtonTypographyControl from './components/tina/ButtonTypographyControl'
 import ColorControl from './components/tina/ColorControl'
 import FeatureContentControl from './components/tina/FeatureContentControl'
 import FeatureImageControl from './components/tina/FeatureImageControl'
@@ -80,6 +81,13 @@ export const borderControlFieldPlugin = {
   Component: BorderControl,
   __type: 'field',
   name: 'borderControl',
+}
+
+
+export const buttonTypographyControlFieldPlugin = {
+  Component: ButtonTypographyControl,
+  __type: 'field',
+  name: 'buttonTypographyControl',
 }
 
 export const colorControlFieldPlugin = {

@@ -1,7 +1,7 @@
 import { defineStaticConfig, wrapFieldsWithMeta } from "tinacms";
 import { featureBlockSchema } from "../components/blocks/feature";
 import { embedBlockSchema } from "../components/blocks/embed";
-import { colorOptions } from "../schema/options";
+import { colorOptions, roundedOptions } from "../schema/options";
 
 const config = defineStaticConfig({
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
@@ -373,6 +373,60 @@ const config = defineStaticConfig({
           },
           {
             type: "object",
+            label: "Buttons",
+            name: "buttons",
+            list: true,
+            fields: [
+              {
+                label: "Name",
+                name: "name",
+                type: "string",
+              },
+              {
+                label: "Fill",
+                name: "fill",
+                type: "string",
+                ui: {
+                  component: "fillControl",
+                },
+              },
+              {
+                label: "Typography",
+                name: "typography",
+                type: "string",
+                ui: {
+                  component: "buttonTypographyControl",
+                },
+              },
+              {
+                label: "Padding",
+                name: "padding",
+                type: "string",
+                ui: {
+                  component: "paddingControl",
+                }
+              },
+              {
+                label: "Border",
+                name: "primaryBorder",
+                type: "string",
+                ui: {
+                  component: "borderControl",
+                },
+              },
+              {
+                label: "Rounded",
+                name: "primaryRounded",
+                type: "string",
+                ui: {
+                  component: "selectField",
+                },
+                options: roundedOptions,
+              },
+            ]
+          },
+          {
+            type: "object",
             label: "Header",
             name: "header",
             fields: [
@@ -529,6 +583,9 @@ const config = defineStaticConfig({
     });
     import("../plugins").then(({ emailFieldPlugin }) => {
       cms.plugins.add(emailFieldPlugin);
+    });
+    import("../plugins").then(({ buttonTypographyControlFieldPlugin }) => {
+      cms.plugins.add(buttonTypographyControlFieldPlugin);
     });
     import("../plugins").then(({ colorControlFieldPlugin }) => {
       cms.plugins.add(colorControlFieldPlugin);

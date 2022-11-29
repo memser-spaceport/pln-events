@@ -5,13 +5,13 @@
     "headlineXs": "{\"family\":\"Inter:wght@100\",\"size\":\"24\",\"lineHeight\":\"30\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"12\",\"smLineHeight\":\"30\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
     "headlineSm": "{\"family\":\"Inter:wght@400;700\",\"size\":\"34\",\"lineHeight\":\"40\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"12\",\"smLineHeight\":\"40\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
     "headlineMd": "{\"family\":\"Inter:wght@900\",\"size\":\"39\",\"lineHeight\":\"48\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"12\",\"smLineHeight\":\"48\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
-    "headlineLg": "{\"family\":\"Inter:wght@900\",\"size\":\"48\",\"lineHeight\":\"60\",\"letterSpacing\":\"0\",\"margin\":\"40\",\"smSize\":\"12\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"40\"}",
+    "headlineLg": "{\"family\":\"Inter:wght@900\",\"size\":\"48\",\"lineHeight\":\"60\",\"letterSpacing\":\"0\",\"margin\":\"40\",\"smSize\":\"40\",\"smLineHeight\":\"50\",\"smLetterSpacing\":\"0\",\"smMargin\":\"20\"}",
     "headlineXl": "{\"family\":\"Inter:wght@900\",\"size\":\"120\",\"lineHeight\":\"120\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
     "bodyXs": "{\"family\":\"Inter:wght@400;700\",\"size\":\"14\",\"lineHeight\":\"16\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
-    "bodySm": "{\"family\":\"Inter:wght@400;700\",\"size\":\"16\",\"lineHeight\":\"16\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
-    "bodyMd": "{\"family\":\"Inter:wght@400;700\",\"size\":\"24\",\"lineHeight\":\"16\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
-    "bodyLg": "{\"family\":\"Inter:wght@400;700\",\"size\":\"32\",\"lineHeight\":\"16\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
-    "bodyXl": "{\"family\":\"Inter:wght@400;700\",\"size\":\"48\",\"lineHeight\":\"16\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}"
+    "bodySm": "{\"family\":\"Inter:wght@400;700\",\"size\":\"16\",\"lineHeight\":\"26\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
+    "bodyMd": "{\"family\":\"Inter:wght@400;700\",\"size\":\"24\",\"lineHeight\":\"21\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
+    "bodyLg": "{\"family\":\"Inter:wght@400;700\",\"size\":\"32\",\"lineHeight\":\"22\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
+    "bodyXl": "{\"family\":\"Inter:wght@400;700\",\"size\":\"48\",\"lineHeight\":\"17\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}"
   },
   "colors": {
     "primary": "#0090FF",
@@ -25,6 +25,36 @@
     "grayDark": "#7B7A80",
     "black": "#000000"
   },
+  "buttonTypes": {
+    "primary": "#0090FF",
+    "accent1": "#0E4465",
+    "accent2": "#1BBF6E",
+    "accent3": "#2DD0DB",
+    "accent4": "#00D0DB",
+    "white": "#FFFFFF",
+    "grayLight": "#E8E8EF",
+    "gray": "#B0B0BF",
+    "grayDark": "#7B7A80",
+    "black": "#000000"
+  },
+  "buttons": [
+    {
+      "name": "Minor",
+      "fill": "bg-accent2 opacity-100",
+      "typography": "{\"color\":\"text-primary\",\"family\":\"Arial\",\"size\":\"20\",\"lineHeight\":\"20\",\"letterSpacing\":\"0\",\"smSize\":\"20\",\"smLineHeight\":\"20\",\"smLetterSpacing\":\"0\"}",
+      "padding": "undefined undefined undefined undefined",
+      "primaryBorder": "border-white border-0",
+      "primaryRounded": "undefined"
+    },
+    {
+      "name": "Major",
+      "fill": "bg-primary opacity-100",
+      "typography": "{\"color\":\"white\",\"family\":\"Arial\",\"size\":\"36\",\"lineHeight\":\"36\",\"letterSpacing\":\"0\",\"smSize\":\"36\",\"smLineHeight\":\"29\",\"smLetterSpacing\":\"0\"}",
+      "padding": "pt-2.5 pb-2.5 pr-2.5 pl-2.5",
+      "primaryBorder": "border-white border-0",
+      "primaryRounded": "undefined"
+    }
+  ],
   "header": {
     "color": "default",
     "nav": [

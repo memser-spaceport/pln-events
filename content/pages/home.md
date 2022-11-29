@@ -3,13 +3,13 @@ title: Tina Cloud Starter
 blocks:
   - style:
       alignment: 'flex-row-reverse items-start '
-      padding: pt-10 pb-10 pr-5 pl-5
+      padding: 'pt-10 pb-10 pr-10 pl-10 sm:pt-10 sm:pb-10 sm:pr-5 sm:pl-5'
       featureImage: '  mr-auto'
       featureContent: w-1/2 undefined text-left
-      labelStyles: undefined mg-headline-xs undefined
-      headlineStyles: text-primary mg-headline-xs undefined
-      subheadStyles: undefined mg-headline-xs undefined
-      textStyles: undefined mg-headline-xs undefined
+      labelStyles: text-white mg-headline-xs undefined
+      headlineStyles: text-primary mg-headline-lg mb-0
+      subheadStyles: text-gray mg-headline-sm mb-5
+      textStyles: text-white mg-body-sm undefined
     background:
       fillStyles: from-accent1 to-accent3 bg-gradient-to-br opacity-100
     label: Label
