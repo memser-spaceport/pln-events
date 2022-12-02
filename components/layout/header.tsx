@@ -56,7 +56,7 @@ export const Header = ({ data }) => {
           <h4 className="select-none text-lg font-bold tracking-tight my-4 transition duration-150 ease-out transform">
             <Link href="/" passHref>
               <a className="flex items-center">
-                Tina Starter
+                
               </a>
             </Link>
           </h4>

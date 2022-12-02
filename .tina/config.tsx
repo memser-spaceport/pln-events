@@ -32,6 +32,85 @@ const config = defineStaticConfig({
   schema: {
     collections: [
       {
+        label: "Events",
+        name: "event",
+        path: "content/events",
+        format: "mdx",
+        ui: {
+          router: ({ document }) => {
+            return `/event/${document._sys.filename}`;
+          },
+        },
+        fields: [
+          {
+            label: "Event Name",
+            name: "eventName",
+            type: "string",
+            isTitle: true,
+            required: true,
+          },
+          {
+            label: "Event Website",
+            name: "website",
+            type: "string",
+          },
+          {
+            label: "Location",
+            name: "location",
+            type: "string",
+          },
+          {
+            label: "Start Date",
+            name: "startDate",
+            type: "datetime",
+            ui: {
+              dateFormat: "MMMM DD YYYY",
+              timeFormat: "hh:mm A",
+            },
+          },
+          {
+            label: "End Date",
+            name: "endDate",
+            type: "datetime",
+            ui: {
+              dateFormat: "MMMM DD YYYY",
+              timeFormat: "hh:mm A",
+            },
+          },
+          {
+            label: "Directly Responsibile Individual",
+            name: "dri",
+            type: "string",
+          },
+          
+          {
+            label: 'Juan Speaking',
+            name: 'juanSpeaking',
+            type: 'string',
+            options: [
+              {
+                label: 'Unknown',
+                value: 'unknown',
+              },
+              {
+                label: 'Yes',
+                value: 'yes',
+              },
+              {
+                label: 'No',
+                value: 'no',
+              },
+            ],
+          },
+          {
+            type: "rich-text",
+            label: "Body",
+            name: "_body",
+            isBody: true,
+          },
+        ],
+      },
+      {
         label: "Blog Posts",
         name: "post",
         path: "content/posts",

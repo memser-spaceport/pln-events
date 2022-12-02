@@ -1,50 +1,34 @@
 ---
-title: Tina Cloud Starter
+title: Events
 blocks:
   - style:
       alignment: 'flex-row-reverse items-start '
-      padding: 'pt-10 pb-10 pr-10 pl-10 sm:pt-10 sm:pb-10 sm:pr-5 sm:pl-5'
-      featureImage: '  mr-auto'
-      featureContent: w-1/2 undefined text-left
-      labelStyles: text-white mg-headline-xs undefined
-      headlineStyles: text-primary mg-headline-lg mb-0
-      subheadStyles: text-gray mg-headline-sm mb-5
-      textStyles: text-white mg-body-sm undefined
-    background:
-      fillStyles: from-accent1 to-accent3 bg-gradient-to-br opacity-100
-    label: Label
-    headline: Headline
-    subhead: Subhead
-    body: |
-      Copy
-    _template: feature
-  - tailwind:
-      section: ''
-      wrap: ''
-      imageWrap: ''
-      image: ''
-      contentWrap: ''
-      content: ''
-      label: ''
-      headline: ''
-      subhead: ''
-      text: ''
-      buttons: ''
+      padding: pt-20 pb-20 pr-20 pl-20
+      featureImage: '  mx-auto'
+      featureContent: w-2/3 min-h-0 text-left
+      labelStyles: text-black undefined mb-0
+      headlineStyles: text-black mg-headline-md mb-0
+      subheadStyles: text-black undefined mb-0
+      textStyles: text-black undefined mb-0
+    image:
+      src: /uploads/tina-illustration.webp
     label: ''
-    headline: This is the main headline
-    subhead: Here is a subhead
-    body: |
-      This is a rich text component you can add hyperlinks, etc.
-    buttons:
-      - label: one
-        link: '#one'
-    _template: tailwindFeature
+    headline: PL Network Events
+    body: ''
+    _template: feature
   - style:
-      minHeight: min-h-0
-      padding: pt-5 pb-6 undefined pl-10
-    background:
-      fillStyles: bg-gray-light opacity-100
-    markup: I'm an embed
-    _template: embed
+      alignment: 'flex-col items-center '
+      padding: pt-20 pb-20 pr-10 pl-10
+      featureImage: '  mx-auto'
+      featureContent: w-1/2 min-h-0 text-left
+      labelStyles: text-black undefined mb-0
+      headlineStyles: text-black mg-headline-md mb-0
+      subheadStyles: text-black undefined mb-0
+      textStyles: text-black undefined mb-0
+    label: ''
+    headline: Featured Events
+    body: |
+      A carousel would go here.
+    _template: feature
 ---
 

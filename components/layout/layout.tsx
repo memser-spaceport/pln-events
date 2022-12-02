@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import { Header } from "./header";
-import { Footer } from "./footer";
 import layoutData from "../../content/global/index.json";
 
 const systemFonts = ['Arial','Courier','Geneva','Georgia', 'Helvetica','Impact','Lucida Console','Lucida Grande','Monaco','Palatino','Tahoma','Times New Roman','Verdana']

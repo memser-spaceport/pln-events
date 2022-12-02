@@ -15,6 +15,17 @@ query pageQuery {
         }
       }
     }
+  },
+  eventConnection {
+    edges {
+      node {
+        id
+        _values
+        _sys {
+          filename
+        }
+      }
+    }
   }
 }
 
@@ -35,5 +46,12 @@ query blogPostQuery($relativePath: String!) {
         avatar
       }
     }
+  }
+}
+
+query eventQuery($relativePath: String!) {
+  ...LayoutQueryFragment
+  event(relativePath: $relativePath) {
+    ...EventParts
   }
 }
