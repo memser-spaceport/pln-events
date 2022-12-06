@@ -1,5 +1,6 @@
 ---
 title: About
+buttonStyle: minor
 blocks:
   - style:
       alignment: 'flex-row-reverse items-start '

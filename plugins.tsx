@@ -1,8 +1,10 @@
+import React from "react";
 import { TextField, GroupListField, BlocksFieldPlugin } from 'tinacms'
 import AlignmentControl from './components/tina/AlignmentControl'
 import BorderControl from './components/tina/BorderControl'
 import ButtonTypographyControl from './components/tina/ButtonTypographyControl'
 import ColorControl from './components/tina/ColorControl'
+import ButtonControl from './components/tina/ButtonControl'
 import FeatureContentControl from './components/tina/FeatureContentControl'
 import FeatureImageControl from './components/tina/FeatureImageControl'
 import FillControl from './components/tina/FillControl'
@@ -94,6 +96,12 @@ export const colorControlFieldPlugin = {
   Component: ColorControl,
   __type: 'field',
   name: 'colorControl',
+}
+
+export const buttonControlFieldPlugin = {
+  Component: ButtonControl,
+  __type: 'field',
+  name: 'buttonControl',
 }
 
 export const featureContentControlPlugin = {

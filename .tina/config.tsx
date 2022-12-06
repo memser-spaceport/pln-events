@@ -379,10 +379,13 @@ const config = defineStaticConfig({
             label: "Buttons",
             name: "buttons",
             list: true,
+            ui: {
+              component: "itemListField"
+            },
             fields: [
               {
-                label: "Name",
-                name: "name",
+                label: "Label",
+                name: "label",
                 type: "string",
               },
               {
@@ -595,6 +598,9 @@ const config = defineStaticConfig({
     });
     import("../plugins").then(({ colorControlFieldPlugin }) => {
       cms.plugins.add(colorControlFieldPlugin);
+    });
+    import("../plugins").then(({ buttonControlFieldPlugin }) => {
+      cms.plugins.add(buttonControlFieldPlugin);
     });
     import("../plugins").then(({ fillControlFieldPlugin }) => {
       cms.plugins.add(fillControlFieldPlugin);

@@ -23,7 +23,7 @@ export default function SelectField({ field, input }) {
         <div className="flex gap-2">
           <SelectMenu value={selected} onChange={setSelected} options={options} className="w-full" />
         </div>
-        <input type="text" value={`${selected}`} className="hidden" />
+        <input type="text" defaultValue={`${selected}`} className="hidden" />
       </>
     )
   }

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Section } from '../section';
 import { Content } from '../content';
 import { hasWord, getWordWith } from '../../helpers/utilities';
+import { buttonsSchema } from "../../schema/buttons"
 import { backgroundSchema } from "../../schema/background"
 import { navigationLabelSchema } from "../../schema/navigation-label";
 
@@ -229,6 +230,7 @@ export const featureBlockSchema: any = {
       name: "body",
       type: "rich-text",
     },
+    buttonsSchema,
     navigationLabelSchema,
   ],
 };

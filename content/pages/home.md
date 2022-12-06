@@ -17,6 +17,10 @@ blocks:
     subhead: Subhead
     body: |
       Copy
+    buttons:
+      - label: Button Label
+        link: google.com
+        buttonStyle: primary
     _template: feature
   - tailwind:
       section: ''
