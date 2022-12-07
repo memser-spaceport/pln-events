@@ -93,7 +93,7 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
   const [font, setFont] = useState(getStyleMatch(fontOptions, inputValue));
   const [margin, setMargin] = useState(getStyleMatch(marginOptions, inputValue));
   
-  function handleSetColor(value: String) {
+  function handleSetColor(value: string) {
     setColor(`${prefix}text-${value}`)
   }
 
