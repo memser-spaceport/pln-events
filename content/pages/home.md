@@ -7,11 +7,11 @@ blocks:
       featureContent: w-1/2 min-h-0 text-left
       labelStyles: text-black undefined mb-0
       headlineStyles: text-black mg-headline-lg mb-0
-      subheadStyles: text-black undefined mb-0
+      subheadStyles: text-black undefined mb-5
       textStyles: text-black mg-body-md mb-24
     label: ''
     headline: PL Network Events
-    subhead: ''
+    subhead: '[Alpha Version]'
     body: |
       Some Copy
     buttons:
