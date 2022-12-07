@@ -16,8 +16,7 @@ export default function EventPage(
     return (
       <Layout rawData={data} data={data.global as any}>
         <ul className="p-10 m-10 bg-white text-black rounded">
-          <li>Name: {data.event.name}</li>
-          <li>Org: {data.event.org}</li>
+          <li>Name: {data.event.eventName}</li>
           <li>DRI: {data.event.dri}</li>
           <li>Website: {data.event.website}</li>
           <li>startDate: {data.event.startDate}</li>
