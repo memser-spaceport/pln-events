@@ -1,34 +1,37 @@
 ---
-title: Events
 blocks:
   - style:
-      alignment: 'flex-row-reverse items-start '
-      padding: pt-20 pb-20 pr-20 pl-20
-      featureImage: '  mx-auto'
-      featureContent: w-2/3 min-h-0 text-left
-      labelStyles: text-black undefined mb-0
-      headlineStyles: text-black mg-headline-md mb-0
-      subheadStyles: text-black undefined mb-0
-      textStyles: text-black undefined mb-0
-    image:
-      src: /uploads/tina-illustration.webp
-    label: ''
-    headline: PL Network Events
-    body: ''
-    _template: feature
-  - style:
-      alignment: 'flex-col items-center '
+      alignment: 'flex-row-reverse items-center '
       padding: pt-20 pb-20 pr-10 pl-10
       featureImage: '  mx-auto'
       featureContent: w-1/2 min-h-0 text-left
       labelStyles: text-black undefined mb-0
-      headlineStyles: text-black mg-headline-md mb-0
+      headlineStyles: text-black undefined mb-0
       subheadStyles: text-black undefined mb-0
-      textStyles: text-black undefined mb-0
+      textStyles: text-black undefined mb-24
     label: ''
-    headline: Featured Events
+    headline: PL Network Events
+    subhead: ''
     body: |
-      A carousel would go here.
+      Some Copy
+    buttons:
+      - label: Add Event
+        link: '#'
+        buttonStyle: primary
     _template: feature
+  - style:
+      fullWidth: false
+      minHeight: min-h-100
+      padding: pt-4 pb-20 pr-10 pl-10
+      labelStyles: undefined mg-body-md mb-2
+      headlineStyles: undefined mg-headline-sm mb-1
+      subheadStyles: 'undefined mg-headline-xs '
+      textStyles: 'undefined undefined '
+    background:
+      fillStyles: from-white to-gray bg-gradient-to-br opacity-100
+    _template: eventTimeline
+meta:
+  title: PL Network Events
+  description: A listing of all PL Network events
 ---
 

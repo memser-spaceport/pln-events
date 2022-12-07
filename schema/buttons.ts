@@ -15,17 +15,12 @@ export const buttonsSchema = {
       type: "string",
     },
     {
-      label: "Type",
-      name: "type",
       type: "string",
+      label: "Button Style",
+      name: "buttonStyle",
       ui: {
-        component: "select",
+        component: "buttonControl",
       },
-      options: [
-        { label: "Primary", value: "primary" },
-        { label: "Secondary", value: "secondary" },
-        { label: "Minor", value: "minor" },
-      ],
     },
   ],
 }

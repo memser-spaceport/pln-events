@@ -80,7 +80,7 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
           <IconPicker value={contentAlign} onClick={value => setContentAlign(value)} options={contentAlignVerticalOptionsPrefixed} menuPosition="right" />
         )}
       </div>
-      <input type="text" value={`${layout} ${contentAlign} ${gap}`} className="hidden" />
+      <input type="text" defaultValue={`${layout} ${contentAlign} ${gap}`} className="hidden" />
     </>
   )
 }

@@ -4,6 +4,7 @@ import { cardsBlockSchema } from "../components/blocks/cards";
 import { embedBlockSchema } from "../components/blocks/embed";
 import { tailwindFeatureBlockSchema } from "../components/blocks/tailwind-feature"
 import { tailwindCardsBlockSchema } from "../components/blocks/tailwind-cards"
+import { eventTimelineBlockSchema } from "../components/blocks/event-timeline"
 import { colorOptions, roundedOptions } from "../schema/options";
 
 const config = defineStaticConfig({
@@ -458,10 +459,13 @@ const config = defineStaticConfig({
             label: "Buttons",
             name: "buttons",
             list: true,
+            ui: {
+              component: "itemListField"
+            },
             fields: [
               {
-                label: "Name",
-                name: "name",
+                label: "Label",
+                name: "label",
                 type: "string",
               },
               {
@@ -509,47 +513,140 @@ const config = defineStaticConfig({
           },
           {
             type: "object",
-            label: "Header",
-            name: "header",
+            label: "Logo",
+            name: "logo",
             fields: [
               {
                 type: "string",
-                label: "Color",
-                name: "color",
-                options: [
-                  { label: "Default", value: "default" },
-                  { label: "Primary", value: "primary" },
-                ],
+                label: "Logo Type",
+                name: "logoType",
+                description: "Only visible if there is no image."
               },
               {
-                type: "object",
-                label: "Nav Links",
-                name: "nav",
-                list: true,
+                type: "string",
+                label: "Logo Type Style",
+                name: "logoTypeStyle",
                 ui: {
-                  itemProps: (item) => {
-                    return { label: item?.label };
-                  },
+                  component: "typeControl"
+                }
+              },
+              {
+                type: "image",
+                label: "Logo Image",
+                name: "image",
+              },
+              {
+                type: "string",
+                label: "Logo Width",
+                name: "imageWidth",
+              },
+              {
+                type: "string",
+                label: "Logo Height",
+                name: "imageHeight",
+              },
+              {
+                type: "string",
+                label: "Logo Margin",
+                description: "Space between logo and nav",
+                name: "imageMargin",
+              },
+            ]
+          },          
+          {
+            type: "object",
+            label: "Header",
+            name: "nav",
+            fields: [
+              {
+                label: "Navigation",
+                description: "Additional links in the header",
+                name: "navItems",
+                list: true,
+                type: "object",
+                ui: {
+                  component: "itemListField",
                   defaultItem: {
-                    href: "home",
-                    label: "Home",
+                    label: "Nav Item",
+                    link: "/",
                   },
                 },
                 fields: [
                   {
-                    type: "string",
+                  label: "Label",
+                  name: "label",
+                  type: "string"
+                  }, {
                     label: "Link",
-                    name: "href",
-                  },
-                  {
+                    name: "link",
+                    description: "Items with Sub Navigation will ignore this link",
                     type: "string",
-                    label: "Label",
-                    name: "label",
-                  },
+                  }, {
+                    label: "Sub Navigation",
+                    description: "Links below the main nav item",
+                    name: "subNavItems",
+                    list: true,
+                    type: "object",
+                    ui: {
+                      component: "itemListField",
+                      defaultItem: {
+                        label: "Sub Nav Item",
+                        link: "/",
+                      },
+                    },
+                    fields: [
+                      {
+                        label: "Label",
+                        name: "label",
+                        type: "string"
+                      }, {
+                        label: "Link",
+                        name: "link",
+                        type: "string",
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                label: "Alignment",
+                name: "navAlignment",
+                type: "string",
+                ui: {
+                  component: "select",
+                },
+                options: [
+                  { label: "Left", value: "text-left" },
+                  { label: "Center", value: "text-center" },
+                  { label: "Right", value: "text-right" },
                 ],
               },
-            ],
-          },
+              {
+                type: "string",
+                label: "Navigation Style",
+                name: "navTypeStyle",
+                ui: {
+                  component: "typeControl"
+                }
+              },
+              {
+                label: "Mobile Background Color",
+                name: "navBackgroundColor",
+                type: "string",
+                ui: {
+                  component: "fillControl"
+                }
+              },
+              {
+                label: "Header Padding",
+                name: "padding",
+                type: "string",
+                ui: {
+                  component: "paddingControl",
+                }
+              },
+            ]
+          },          
           {
             type: "object",
             label: "Footer",
@@ -633,13 +730,6 @@ const config = defineStaticConfig({
         },
         fields: [
           {
-            type: "string",
-            label: "Title",
-            name: "title",
-            isTitle: true,
-            required: true,
-          },
-          {
             type: "object",
             list: true,
             name: "blocks",
@@ -653,7 +743,32 @@ const config = defineStaticConfig({
               featureBlockSchema,
               tailwindFeatureBlockSchema,
               tailwindCardsBlockSchema,
+              eventTimelineBlockSchema,
             ],
+          },
+          {
+            type: "object",
+            label: "Meta",
+            description: "Page title, description, social sharing image",
+            name: "meta",
+            fields: [
+              {
+                type: "string",
+                label: "Page Title",
+                name: "title",
+              },
+              {
+                type: "string",
+                label: "Page Description",
+                name: "description",
+              },
+              {
+                type: "image",
+                label: "Social Sharing Image",
+                name: "ogImage",
+                description: "1200x630 jpeg, varies across platforms and may end up slightly cropped.",
+              },
+            ]
           },
         ],
       },
@@ -674,6 +789,9 @@ const config = defineStaticConfig({
     });
     import("../plugins").then(({ colorControlFieldPlugin }) => {
       cms.plugins.add(colorControlFieldPlugin);
+    });
+    import("../plugins").then(({ buttonControlFieldPlugin }) => {
+      cms.plugins.add(buttonControlFieldPlugin);
     });
     import("../plugins").then(({ fillControlFieldPlugin }) => {
       cms.plugins.add(fillControlFieldPlugin);

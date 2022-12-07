@@ -1,17 +1,19 @@
 {
+  "siteUrl": "example.com",
+  "gtmId": "ABC123",
   "desktopWidth": "1000",
   "backgroundColor": "white",
   "typography": {
-    "headlineXs": "{\"family\":\"Inter:wght@400\",\"size\":\"16\",\"lineHeight\":\"30\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"12\",\"smLineHeight\":\"30\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
-    "headlineSm": "{\"family\":\"Inter:wght@400\",\"size\":\"20\",\"lineHeight\":\"40\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"12\",\"smLineHeight\":\"40\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
-    "headlineMd": "{\"family\":\"Inter:wght@900\",\"size\":\"27\",\"lineHeight\":\"48\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"12\",\"smLineHeight\":\"48\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
-    "headlineLg": "{\"family\":\"Inter:wght@900\",\"size\":\"50\",\"lineHeight\":\"60\",\"letterSpacing\":\"0\",\"margin\":\"20\",\"smSize\":\"40\",\"smLineHeight\":\"50\",\"smLetterSpacing\":\"0\",\"smMargin\":\"20\"}",
-    "headlineXl": "{\"family\":\"Inter:wght@900\",\"size\":\"120\",\"lineHeight\":\"120\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
-    "bodyXs": "{\"family\":\"Inter:wght@400;700\",\"size\":\"15\",\"lineHeight\":\"16\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
-    "bodySm": "{\"family\":\"Inter:wght@400;700\",\"size\":\"16\",\"lineHeight\":\"7\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
-    "bodyMd": "{\"family\":\"Inter:wght@400;700\",\"size\":\"16\",\"lineHeight\":\"21\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
-    "bodyLg": "{\"family\":\"Inter:wght@400;700\",\"size\":\"32\",\"lineHeight\":\"22\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
-    "bodyXl": "{\"family\":\"Inter:wght@400;700\",\"size\":\"48\",\"lineHeight\":\"17\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}"
+    "headlineXs": "{\"family\":\"Inter:wght@900\",\"size\":\"14\",\"lineHeight\":\"20\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"14\",\"smLineHeight\":\"20\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
+    "headlineSm": "{\"family\":\"Inter:wght@900\",\"size\":\"18\",\"lineHeight\":\"28\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"18\",\"smLineHeight\":\"28\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
+    "headlineMd": "{\"family\":\"Inter:wght@900\",\"size\":\"24\",\"lineHeight\":\"34\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"24\",\"smLineHeight\":\"34\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
+    "headlineLg": "{\"family\":\"Inter:wght@900\",\"size\":\"30\",\"lineHeight\":\"36\",\"letterSpacing\":\"0\",\"margin\":\"20\",\"smSize\":\"30\",\"smLineHeight\":\"36\",\"smLetterSpacing\":\"0\",\"smMargin\":\"20\"}",
+    "headlineXl": "{\"family\":\"Inter:wght@900\",\"size\":\"48\",\"lineHeight\":\"60\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"48\",\"smLineHeight\":\"60\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
+    "bodyXs": "{\"family\":\"Inter:wght@300\",\"size\":\"12\",\"lineHeight\":\"16\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"12\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
+    "bodySm": "{\"family\":\"Inter:wght@300\",\"size\":\"14\",\"lineHeight\":\"20\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"14\",\"smLineHeight\":\"20\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
+    "bodyMd": "{\"family\":\"Inter:wght@300\",\"size\":\"15\",\"lineHeight\":\"24\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"15\",\"smLineHeight\":\"24\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
+    "bodyLg": "{\"family\":\"Inter:wght@300\",\"size\":\"18\",\"lineHeight\":\"30\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"18\",\"smLineHeight\":\"30\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}",
+    "bodyXl": "{\"family\":\"Inter:wght@300\",\"size\":\"21\",\"lineHeight\":\"36\",\"letterSpacing\":\"0\",\"margin\":\"0\",\"smSize\":\"21\",\"smLineHeight\":\"36\",\"smLetterSpacing\":\"0\",\"smMargin\":\"0\"}"
   },
   "colors": {
     "primary": "#0090FF",
@@ -27,24 +29,35 @@
   },
   "buttons": [
     {
-      "name": "Minor",
+      "label": "Primary",
+      "fill": "bg-primary opacity-100",
+      "typography": "{\"color\":\"white\",\"family\":\"Arial\",\"size\":\"18\",\"lineHeight\":\"28\",\"letterSpacing\":\"0\",\"smSize\":\"18\",\"smLineHeight\":\"28\",\"smLetterSpacing\":\"0\"}",
+      "padding": "pt-2.5 pb-2.5 pr-5 pl-5",
+      "primaryBorder": "border-primary border-0",
+      "primaryRounded": "rounded-md"
+    },
+    {
+      "label": "Minor",
       "fill": "bg-accent2 opacity-100",
-      "typography": "{\"color\":\"text-primary\",\"family\":\"Arial\",\"size\":\"20\",\"lineHeight\":\"20\",\"letterSpacing\":\"0\",\"smSize\":\"20\",\"smLineHeight\":\"20\",\"smLetterSpacing\":\"0\"}",
+      "typography": "{\"color\":\"accent4\",\"family\":\"Arial\",\"size\":\"20\",\"lineHeight\":\"20\",\"letterSpacing\":\"0\",\"smSize\":\"20\",\"smLineHeight\":\"20\",\"smLetterSpacing\":\"0\"}",
       "padding": "undefined undefined undefined undefined",
       "primaryBorder": "border-white border-0",
       "primaryRounded": "undefined"
     },
     {
-      "name": "Major",
-      "fill": "bg-primary opacity-100",
-      "typography": "{\"color\":\"white\",\"family\":\"Arial\",\"size\":\"36\",\"lineHeight\":\"36\",\"letterSpacing\":\"0\",\"smSize\":\"36\",\"smLineHeight\":\"29\",\"smLetterSpacing\":\"0\"}",
-      "padding": "pt-2.5 pb-2.5 pr-2.5 pl-2.5",
+      "label": "Outline",
+      "fill": " opacity-100",
+      "typography": "{\"color\":\"gray\",\"family\":\"Arial\",\"size\":\"16\",\"lineHeight\":\"16\",\"letterSpacing\":\"0\",\"smSize\":\"16\",\"smLineHeight\":\"16\",\"smLetterSpacing\":\"0\"}",
+      "padding": "undefined undefined undefined undefined",
       "primaryBorder": "border-white border-0",
       "primaryRounded": "undefined"
     }
   ],
-  "header": {
-    "color": "default"
+  "nav": {
+    "navAlignment": "text-right",
+    "navTypeStyle": "text-accent2 mg-body-sm ",
+    "navBackgroundColor": " opacity-100",
+    "padding": "undefined undefined undefined undefined"
   },
   "footer": {
     "color": "default",

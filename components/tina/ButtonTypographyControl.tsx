@@ -101,7 +101,7 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
         <PixelField value={smLineHeight} label="Line Height" icon={<IconLineHeight />} onChange={event => setSmLineHeight(event.target.value)} className="" />
         <PixelField value={smLetterSpacing} label="Tracking" icon={<IconLetterSpacing />} onChange={event => setSmLetterSpacing(event.target.value)} className="" />
       </div>
-      <input type="text" value={`${jsonInput()}`} className="hidden" onChange={() => {}} />
+      <input type="text" defaultValue={`${jsonInput()}`} className="hidden" />
     </div>
   )
 }

@@ -5,8 +5,9 @@ import { Cards } from "./blocks/cards";
 import { Embed } from "./blocks/embed";
 import { TailwindFeature } from "./blocks/tailwind-feature";
 import { TailwindCards } from "./blocks/tailwind-cards";
+import { EventTimeline } from "./blocks/event-timeline";
 
-export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
+export const Blocks = (props: any) => {
   return (
     <>
       {props.blocks
@@ -55,6 +56,15 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
                     key={i + block.__typename}
                   >
                     <TailwindCards data={block} parentField={`blocks.${i}`} />
+                  </div>
+                );
+              case "PageBlocksEventTimeline":
+                return (
+                  <div
+                    data-tinafield={`blocks.${i}`}
+                    key={i + block.__typename}
+                  >
+                    <EventTimeline data={block} events={props.events} parentField={`blocks.${i}`} />
                   </div>
                 );
               default:
