@@ -13,7 +13,7 @@ blocks:
     headline: PL Network Events
     subhead: '[Alpha Version]'
     body: |
-      Some Copy
+      A listing of events in the PL Network.
     buttons:
       - label: Add Event
         link: '#'
