@@ -1,9 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { Header } from "./header";
-import { Footer } from "./footer";
 import layoutData from "../../content/global/index.json";
-import { roundedOptions } from "../../schema/options";
 
 const systemFonts = ['Arial','Courier','Geneva','Georgia', 'Helvetica','Impact','Lucida Console','Lucida Grande','Monaco','Palatino','Tahoma','Times New Roman','Verdana']
 const customFonts = ['Suisse Intl']
@@ -452,7 +450,7 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
       <div
         className={`flex flex-col`}
       >
-        <Header data={data?.header} />
+        <Header blocks={page?.blocks} globalData={global} />
         <div className={`flex flex-col`}>
           {children}
         </div>

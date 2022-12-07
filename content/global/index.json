@@ -53,22 +53,17 @@
       "primaryRounded": "undefined"
     }
   ],
-  "header": {
-    "color": "default",
-    "nav": [
+  "nav": {
+    "navItems": [
       {
-        "href": "",
-        "label": "Home"
-      },
-      {
-        "href": "about",
-        "label": "About"
-      },
-      {
-        "href": "posts",
-        "label": "Blog"
+        "label": "Nav Item",
+        "link": "/"
       }
-    ]
+    ],
+    "navAlignment": "text-right",
+    "navTypeStyle": "text-accent2 mg-body-sm ",
+    "navBackgroundColor": " opacity-100",
+    "padding": "undefined undefined undefined undefined"
   },
   "footer": {
     "color": "default",
