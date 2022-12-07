@@ -14,15 +14,17 @@ export default function BlogPostPage(
   });
   if (data && data.post) {
     return (
-      <Layout rawData={data} data={data.global as any}>
-        <Post {...data.post} />;
-      </Layout>
+      <p>Post</p>
+      // <Layout rawData={data} data={data.global as any}>
+      //   <Post {...data.post} />
+      // </Layout>
     );
   }
   return (
-    <Layout rawData={null} data={null}>
-      <div>No data</div>;
-    </Layout>
+    <p>No data</p>
+    // <Layout rawData={null} data={null}>
+    //   <div>No data</div>;
+    // </Layout>
   );
 }
 

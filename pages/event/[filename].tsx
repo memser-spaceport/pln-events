@@ -14,20 +14,22 @@ export default function EventPage(
   });
   if (data && data.event) {
     return (
-      <Layout rawData={data} data={data.global as any}>
-        <ul className="p-10 m-10 bg-white text-black rounded">
-          <li>Name: {data.event.eventName}</li>
-          <li>DRI: {data.event.dri}</li>
-          <li>Website: {data.event.website}</li>
-          <li>startDate: {data.event.startDate}</li>
-        </ul>
-      </Layout>
+      <p>Event</p>
+      // <Layout rawData={data} data={data.global as any}>
+      //   <ul className="p-10 m-10 bg-white text-black rounded">
+      //     <li>Name: {data.event.eventName}</li>
+      //     <li>DRI: {data.event.dri}</li>
+      //     <li>Website: {data.event.website}</li>
+      //     <li>startDate: {data.event.startDate}</li>
+      //   </ul>
+      // </Layout>
     );
   }
   return (
-    <Layout rawData={null} data={null}>
-      <div>No data</div>;
-    </Layout>
+    <p>No Data</p>
+    // <Layout rawData={null} data={null}>
+    //   <div>No data</div>;
+    // </Layout>
   );
 }
 
