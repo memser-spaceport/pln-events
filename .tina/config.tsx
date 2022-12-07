@@ -593,9 +593,6 @@ const config = defineStaticConfig({
                 label: "Social Sharing Image",
                 name: "ogImage",
                 description: "1200x630 jpeg, varies across platforms and may end up slightly cropped.",
-                ui: {
-                  clearable: true,
-                }
               },
             ]
           },
