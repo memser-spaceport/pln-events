@@ -1,5 +1,4 @@
 ---
-title: Tina Cloud Starter
 blocks:
   - style:
       alignment: 'flex-row-reverse items-start '
@@ -50,5 +49,8 @@ blocks:
       fillStyles: bg-gray-light opacity-100
     markup: I'm an embed
     _template: embed
+meta:
+  pageTitle: Home Page
+  pageDescription: Home page description
 ---
 

@@ -557,13 +557,6 @@ const config = defineStaticConfig({
         },
         fields: [
           {
-            type: "string",
-            label: "Title",
-            name: "title",
-            isTitle: true,
-            required: true,
-          },
-          {
             type: "object",
             list: true,
             name: "blocks",
@@ -578,6 +571,33 @@ const config = defineStaticConfig({
               tailwindFeatureBlockSchema,
               tailwindCardsBlockSchema,
             ],
+          },
+          {
+            type: "object",
+            label: "Meta",
+            description: "Page title, description, social sharing image",
+            name: "meta",
+            fields: [
+              {
+                type: "string",
+                label: "Page Title",
+                name: "title",
+              },
+              {
+                type: "string",
+                label: "Page Description",
+                name: "description",
+              },
+              {
+                type: "image",
+                label: "Social Sharing Image",
+                name: "ogImage",
+                description: "1200x630 jpeg, varies across platforms and may end up slightly cropped.",
+                ui: {
+                  clearable: true,
+                }
+              },
+            ]
           },
         ],
       },

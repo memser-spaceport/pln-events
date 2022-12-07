@@ -1,4 +1,6 @@
 {
+  "siteUrl": "example.com",
+  "gtmId": "ABC123",
   "desktopWidth": "1000",
   "backgroundColor": "accent1",
   "typography": {
@@ -28,10 +30,10 @@
   "buttons": [
     {
       "label": "Primary",
-      "fill": " opacity-100",
-      "typography": "{\"color\":\"accent1\",\"family\":\"Arial\",\"size\":\"18\",\"lineHeight\":\"28\",\"letterSpacing\":\"0\",\"smSize\":\"18\",\"smLineHeight\":\"28\",\"smLetterSpacing\":\"0\"}",
+      "fill": "bg-primary opacity-100",
+      "typography": "{\"color\":\"white\",\"family\":\"Arial\",\"size\":\"18\",\"lineHeight\":\"28\",\"letterSpacing\":\"0\",\"smSize\":\"18\",\"smLineHeight\":\"28\",\"smLetterSpacing\":\"0\"}",
       "padding": "pt-2.5 pb-2.5 pr-5 pl-5",
-      "primaryBorder": "border-primary border-2",
+      "primaryBorder": "border-primary border-0",
       "primaryRounded": "rounded-md"
     },
     {

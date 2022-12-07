@@ -18,6 +18,7 @@ const googleFontsLink = (fonts) => {
 }
 
 export const Layout = ({ rawData, data = layoutData, children }) => {
+  const page = rawData.page
   const global = rawData.global
   const headlineXs = JSON.parse(global?.typography?.headlineXs) || {}
   const headlineSm = JSON.parse(global?.typography?.headlineSm) || {}
@@ -162,14 +163,23 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
   return (
     <>    
       <Head>
-        <title>Tina Page Title</title>
+        <title>{page.title}</title>
+        <meta name="description" content={page.meta?.description} />
+        <link rel="icon" type="image/png" sizes="48x48" href={global.favicon} />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        {page.meta?.ogImage &&
+          <>
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta property="og:site_name" content={global.siteUrl} />
+            <meta property="og:url" content={global.siteUrl} />
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content={page.meta?.title} />
+            <meta property="og:description" content={page.meta?.description} />
+            <meta property="og:image" content={page.meta?.siteImage} />
+          </>
+        }
         <style
           id="customProperties"
-          // There is logic in the TypeControl component that figures out the custom property
-          // names to populate the font option labels.
-          // The typecontrol component should be revised with more direct access to data in 
-          // the future and then this comment should be removed.
           dangerouslySetInnerHTML={{
             __html: `
             :root {
@@ -414,6 +424,24 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
           `,
           }}
         />
+
+        {/* Google Analytics */}
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${global.gtmId}`} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            if (document.location.hostname.replace("www.", "") === "${global.siteUrl}") {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${global.gtmId}', {
+                  page_path: window.location.pathname,
+                });
+              }
+            `,
+          }}
+        />
+
         {/* Google Fonts */ }
         <link rel="preconnect" href="https://fonts.googleapis.com"></link>
         <link rel="preconnect" href="https://fonts.gstatic.com"></link>
