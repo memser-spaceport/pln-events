@@ -6,9 +6,9 @@ blocks:
       featureImage: '  mx-auto'
       featureContent: w-1/2 min-h-0 text-left
       labelStyles: text-black undefined mb-0
-      headlineStyles: text-black undefined mb-0
+      headlineStyles: text-black mg-headline-lg mb-0
       subheadStyles: text-black undefined mb-0
-      textStyles: text-black undefined mb-24
+      textStyles: text-black mg-body-md mb-24
     label: ''
     headline: PL Network Events
     subhead: ''
@@ -28,7 +28,7 @@ blocks:
       subheadStyles: 'undefined mg-headline-xs '
       textStyles: 'undefined undefined '
     background:
-      fillStyles: from-white to-gray bg-gradient-to-br opacity-100
+      fillStyles: ' opacity-100'
     _template: eventTimeline
 meta:
   title: PL Network Events
