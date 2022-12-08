@@ -15,7 +15,7 @@ blocks:
     headline: PL Network Events
     subhead: '[Alpha Version]'
     body: |
-      A listing of events in the PL Network.
+      A listing of events in the PL Network
     buttons:
       - label: Add Event
         link: 'https://github.com/pathfindertools/pl-network-events'
