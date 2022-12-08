@@ -19,8 +19,8 @@
     "primary": "#0090FF",
     "accent1": "#0E4465",
     "accent2": "#1BBF6E",
-    "accent3": "#2DD0DB",
-    "accent4": "#00D0DB",
+    "accent3": "#DBEDF9",
+    "accent4": "#F5F9FE",
     "white": "#FFFFFF",
     "grayLight": "#E8E8EF",
     "gray": "#B0B0BF",
@@ -29,10 +29,18 @@
   },
   "buttons": [
     {
+      "label": "Small",
+      "fill": "bg-primary opacity-100",
+      "typography": "{\"color\":\"white\",\"family\":\"Inter:wght@400\",\"size\":\"14\",\"lineHeight\":\"14\",\"letterSpacing\":\"0\",\"smSize\":\"14\",\"smLineHeight\":\"14\",\"smLetterSpacing\":\"0\"}",
+      "padding": "pt-2 pb-2 pr-6 pl-6",
+      "primaryBorder": "border-white border-0",
+      "primaryRounded": "rounded"
+    },
+    {
       "label": "Primary",
       "fill": "bg-primary opacity-100",
-      "typography": "{\"color\":\"white\",\"family\":\"Arial\",\"size\":\"18\",\"lineHeight\":\"28\",\"letterSpacing\":\"0\",\"smSize\":\"18\",\"smLineHeight\":\"28\",\"smLetterSpacing\":\"0\"}",
-      "padding": "pt-2.5 pb-2.5 pr-5 pl-5",
+      "typography": "{\"color\":\"white\",\"family\":\"Arial\",\"size\":\"18\",\"lineHeight\":\"18\",\"letterSpacing\":\"0\",\"smSize\":\"18\",\"smLineHeight\":\"28\",\"smLetterSpacing\":\"0\"}",
+      "padding": "pt-2.5 pb-2.5 pr-9 pl-9",
       "primaryBorder": "border-primary border-0",
       "primaryRounded": "rounded-md"
     },
@@ -53,11 +61,15 @@
       "primaryRounded": "undefined"
     }
   ],
+  "logo": {
+    "logoTypeStyle": "undefined undefined ",
+    "image": "/uploads/protocol-labs-network-small-logo.svg"
+  },
   "nav": {
     "navAlignment": "text-right",
     "navTypeStyle": "text-accent2 mg-body-sm ",
     "navBackgroundColor": " opacity-100",
-    "padding": "undefined undefined undefined undefined"
+    "padding": "pt-7 pb-10 pr-10 pl-8"
   },
   "footer": {
     "color": "default",

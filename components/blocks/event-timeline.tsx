@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useState } from "react";
 import { Section } from "../section";
 import { Content } from "../content"
 import { minHeightOptions } from "../../schema/options"
@@ -8,6 +8,9 @@ import { navigationLabelSchema } from "../../schema/navigation-label";
 export const EventTimeline = ({ data, events, parentField = "" }) => {
   const padding = data.style?.padding
   const width = data.style?.fullWidth ? "" : "max-w-desktop-full mx-auto"
+  const sortedEvents = events.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  let labels = []
 
   return (
     <Section
@@ -15,21 +18,30 @@ export const EventTimeline = ({ data, events, parentField = "" }) => {
       navigationLabel={data.navigationLabel}
     >
       <div className={`${width} ${padding} ${data.style?.minHeight}`}>
-      <p className="max-w-desktop-full mx-auto mb-10 text-center">Navigation Here to jump to a month - it should be sticky</p>
         <div className="relative max-w-desktop-full mx-auto border-l border-primary mb-10 ml-60">
-          {events && events.map((event, index) => {
+          {sortedEvents && sortedEvents.map((event, index) => {
             const startDate = new Date(event.startDate)
             const endDate = new Date(event.endDate)
+            const startMonth = months[startDate?.getMonth()]
+            const hideMonthLabel = labels.includes(startMonth)
+            if (!hideMonthLabel) {
+              labels = [...labels, startMonth]
+            }
             const contentData = {
-              label: `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`,
+              label: `${startMonth} -- ${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`,
               headline: event.eventName,
               subhead: event.location,
               body: event.description,
+              buttons: event.website && [{
+                label: 'Details',
+                link: event.website,
+                buttonStyle: 'small',
+              }]
             }
             return (
               <div className="mb-10 ml-4" key={index}>
-                {(index === 0 && 
-                  <div className="absolute -left-20">January</div>
+                {(!hideMonthLabel && 
+                  <div className="absolute -left-36 w-32 text-right">{startMonth}</div>
                 )}
                 <div className="absolute w-3 h-3 bg-primary rounded-full mt-1.5 -left-1.5"></div>
                 <Content
