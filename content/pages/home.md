@@ -7,7 +7,7 @@ blocks:
       featureContent: w-1/2 min-h-0 text-left
       labelStyles: text-black undefined mb-0
       headlineStyles: text-black mg-headline-xl mb-0
-      subheadStyles: text-primary mg-headline-sm mb-5
+      subheadStyles: text-gray mg-body-xl mb-5
       textStyles: text-black mg-body-md mb-24
     background:
       fillStyles: from-accent3 to-accent4 bg-gradient-to-tl opacity-100
