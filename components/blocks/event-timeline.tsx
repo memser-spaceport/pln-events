@@ -28,7 +28,7 @@ export const EventTimeline = ({ data, events, parentField = "" }) => {
               labels = [...labels, startMonth]
             }
             const contentData = {
-              label: `${startMonth} -- ${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`,
+              label: `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`,
               headline: event.eventName,
               subhead: event.location,
               body: event.description,
