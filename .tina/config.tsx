@@ -36,7 +36,7 @@ const config = defineStaticConfig({
         label: "Events",
         name: "event",
         path: "content/events",
-        format: "mdx",
+        format: "md",
         ui: {
           router: ({ document }) => {
             return `/event/${document._sys.filename}`;
