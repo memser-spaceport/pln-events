@@ -4,7 +4,7 @@ blocks:
       alignment: 'flex-row-reverse items-center '
       padding: pt-44 pb-20 pr-10 pl-10
       featureImage: '  mx-auto'
-      featureContent: w-1/2 min-h-0 text-left
+      featureContent: 'w-1/2 min-h-0 text-left sm:w-full sm:min-h-0 sm:text-left'
       labelStyles: text-black undefined mb-0
       headlineStyles: text-black mg-headline-xl mb-0
       subheadStyles: text-gray mg-body-xl mb-5
