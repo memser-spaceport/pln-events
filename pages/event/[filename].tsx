@@ -35,7 +35,7 @@ export default function EventPage(
 
 export const getStaticProps = async ({ params }) => {
   const tinaProps = await client.queries.eventQuery({
-    relativePath: `${params.filename}.mdx`,
+    relativePath: `${params.filename}.md`,
   });
   return {
     props: {
