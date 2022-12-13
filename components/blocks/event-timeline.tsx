@@ -32,7 +32,7 @@ export const EventTimeline = ({ data, events, parentField = "" }) => {
               labels = [...labels, startMonth]
             }
             return (
-              <div className="mb-5 ml-4" key={index}>
+              <div className={`mb-5 ml-4 ${!hideMonthLabel && index !== 0 &&  "mt-16"}`} key={index}>
                 {(!hideMonthLabel &&
                   <div className="absolute -left-36 w-32 text-right">{startMonth}</div>
                 )}
