@@ -200,6 +200,13 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
               background-color: var(--${global?.backgroundColor}-color);
               scroll-behavior: smooth;
             }
+            h1 a,
+            h2 a,
+            h3 a,
+            h4 a,
+            .markdown a {
+              color: ${global?.colors?.primary};
+            }
             ${buttonClasses()}
             .mg-headline-xs {
               font-family: "${justFontFamily(headlineXs.family)}";
