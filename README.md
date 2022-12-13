@@ -20,5 +20,5 @@ juanSpeaking: yes, no or blank
 5. The Spaceport team will review and merge your event into the website
 
 ## Editing Events
-If you've already created your event but want to add or change details in the .toml file, create a PR with your edit requests, along with any comments. The Spaceport team will review and merge your changes to the website.
+If you've already created your event but want to add or change details in the .md file, create a PR with your edit requests, along with any comments. The Spaceport team will review and merge your changes to the website.
 
