@@ -13,11 +13,11 @@ blocks:
       fillStyles: from-accent3 to-accent4 bg-gradient-to-tl opacity-100
     label: ''
     headline: PL Network Events
-    subhead: '[Alpha Version]'
+    subhead: '[Beta Version]'
     body: |
       See below a list of events in the PL Network
     buttons:
-      - label: Add Event
+      - label: Submit Event
         link: 'https://github.com/pathfindertools/pl-network-events'
         buttonStyle: primary
     _template: feature
@@ -27,7 +27,7 @@ blocks:
       padding: pt-20 pb-20 pr-10 pl-10
       labelStyles: text-gray mg-body-sm mb-1
       headlineStyles: undefined mg-headline-sm mb-0
-      subheadStyles: text-primary mg-headline-xs mb-3.5
+      subheadStyles: text-gray mg-headline-xs mb-3.5
       textStyles: 'undefined undefined '
     background:
       fillStyles: ' opacity-100'
