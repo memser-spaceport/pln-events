@@ -1,7 +1,8 @@
 ---
 eventName: Founder's Summit
+website: 
 location: TBD
-startDate: 3/1/23
-endDate: 3/1/23
-juanSpeaking: 
+startDate: April
+endDate: April
+tag: PLN Event
 ---

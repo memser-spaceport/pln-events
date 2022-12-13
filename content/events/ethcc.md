@@ -1,7 +1,8 @@
 ---
 eventName: EthCC
+website: https://ethcc.io/
 location: Paris, France
-startDate: 7/15/23
-endDate: 7/15/23
-juanSpeaking: 
+startDate: July
+endDate: July
+tag: Industry Event
 ---

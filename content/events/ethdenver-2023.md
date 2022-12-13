@@ -1,7 +1,8 @@
 ---
 eventName: ETHDenver 2023
-location: River North, Denver, CO
+website: https://www.ethdenver.com/attend
+location: River North, Denver, CO and online
 startDate: 2/24/2023
 endDate: 03/05/2023
-juanSpeaking: 
+tag: Industry Event
 ---
