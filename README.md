@@ -22,3 +22,9 @@ juanSpeaking: yes, no or blank
 ## Editing Events
 If you've already created your event but want to add or change details in the .md file, create a PR with your edit requests, along with any comments. The Spaceport team will review and merge your changes to the website.
 
+# Developers
+This is a [Microgen](https://github.com/pathfindertools/microgen) site.
+
+To run the site locally ```yarn install``` and ```yarn dev```.
+
+See full documentation in the Microgen repo.
