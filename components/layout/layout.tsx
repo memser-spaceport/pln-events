@@ -161,7 +161,7 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
   return (
     <>    
       <Head>
-        <title>{page.title}</title>
+        <title>{page.meta?.title}</title>
         <meta name="description" content={page.meta?.description} />
         <link rel="icon" type="image/png" sizes="48x48" href={global.favicon} />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
