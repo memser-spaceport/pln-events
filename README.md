@@ -10,9 +10,9 @@ We encourage you to submit your events to this site via a pull request on github
 ---
 eventName: Your Event
 location: Somewhere
+website: http://www.example.com
 startDate: 02/06/2023
 endDate: 02/09/2023
-juanSpeaking: yes, no or blank
 ---
 ```
 3. Fill in the template with details for your event
