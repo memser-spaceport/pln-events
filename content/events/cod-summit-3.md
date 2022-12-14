@@ -1,8 +1,10 @@
 ---
 eventName: CoD Summit 3
 website: Coming Soon
-location: TBD
-startDate: 03/2023
-endDate: 03/2023
-tag: 
+location: Location TBD
+startDate: '2023-03-01T06:00:00.000Z'
+endDate: '2023-03-01T06:00:00.000Z'
+dateTBD: true
+juanSpeaking: unknown
 ---
+

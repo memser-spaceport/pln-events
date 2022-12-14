@@ -20,6 +20,7 @@ export default function DynamicPage(
         location: event.node?.location,
         startDate: event.node?.startDate,
         endDate: event.node?.endDate,
+        dateTBD: event.node?.dateTBD,
         dri: event.node?.dri,
         juanSpeaking: event.node?.juanSpeaking,
         _body: event.node?._body,

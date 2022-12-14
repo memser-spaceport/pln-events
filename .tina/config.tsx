@@ -79,11 +79,16 @@ const config = defineStaticConfig({
             },
           },
           {
+            label: "Date TBD",
+            name: "dateTBD",
+            description: 'Enter approximate dates and tick this box to put event in correct month but render label as TBD',
+            type: 'boolean'
+          },
+          {
             label: "Directly Responsibile Individual",
             name: "dri",
             type: "string",
           },
-          
           {
             label: 'Juan Speaking',
             name: 'juanSpeaking',
@@ -102,12 +107,6 @@ const config = defineStaticConfig({
                 value: 'no',
               },
             ],
-          },
-          {
-            type: "rich-text",
-            label: "Body",
-            name: "_body",
-            isBody: true,
           },
         ],
       },
