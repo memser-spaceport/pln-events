@@ -22,8 +22,8 @@ export default function DynamicPage(
         endDate: event.node?.endDate,
         dateTBD: event.node?.dateTBD,
         dri: event.node?.dri,
+        tag: event.node?.tag,
         juanSpeaking: event.node?.juanSpeaking,
-        _body: event.node?._body,
       }
     )
   })

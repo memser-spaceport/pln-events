@@ -12,10 +12,6 @@ const IconLink = ({width="12"}) => {
   )
 }
 
-function isValidDate(d) {
-  return d instanceof Date && !isNaN(d);
-}
-
 export const EventTimeline = ({ data, events, parentField = "" }) => {
   const styles = data.style
   const padding = data.style?.padding
@@ -61,6 +57,11 @@ export const EventTimeline = ({ data, events, parentField = "" }) => {
                   <h4 className={`${styles.subheadStyles}`} data-tinafield={`${parentField}.subhead`}>
                     {event.location}
                   </h4>
+                }
+                {event.tag &&
+                  <span className="bg-primary inline-block mg-body-xs px-3 py-1 rounded-full relative -top-2">
+                    {event.tag}
+                  </span>
                 }
               </div>
             )

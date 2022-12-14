@@ -90,6 +90,11 @@ const config = defineStaticConfig({
             type: "string",
           },
           {
+            label: "Tag",
+            name: "tag",
+            type: "string",
+          },
+          {
             label: 'Juan Speaking',
             name: 'juanSpeaking',
             type: 'string',
