@@ -59,7 +59,7 @@ export const EventTimeline = ({ data, events, parentField = "" }) => {
                   </h4>
                 }
                 {event.tag &&
-                  <span className="bg-primary inline-block mg-body-xs px-3 py-1 rounded-full relative -top-2">
+                  <span className="bg-primary text-white inline-block mg-body-xs px-3 py-1 rounded-full relative -top-2">
                     {event.tag}
                   </span>
                 }
