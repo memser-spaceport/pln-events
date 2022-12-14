@@ -3,7 +3,7 @@ import { useTina } from "tinacms/dist/react";
 import { Layout } from "../components/layout";
 import { client } from "../.tina/__generated__/client";
 
-export default function HomePage(
+export default function DynamicPage(
   props: AsyncReturnType<typeof getStaticProps>["props"]
 ) {
   const { data } = useTina({
