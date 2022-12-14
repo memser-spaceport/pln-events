@@ -27,4 +27,4 @@ This is a [Microgen](https://github.com/pathfindertools/microgen) site.
 
 To run the site locally ```yarn install``` and ```yarn dev```.
 
-See full documentation in the Microgen repo.
+See full documentation in the Microgen repository.
