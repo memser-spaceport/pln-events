@@ -2,7 +2,7 @@
 eventName: Btokyo
 website: 
 location: Tokyo, Japan
-startDate: 31/03/2023
-endDate: 31/03/2023
+startDate: 03/31/2023
+endDate: 03/31/2023
 tag: Industry Event
 ---
