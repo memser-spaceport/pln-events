@@ -19,7 +19,7 @@ dateTBD: false
 ```
 3. Fill in the template with details for your event
 4. Create a PR to this repo to add this new file
-5. The Spaceport team will review and merge your event into the website
+5. The Member Services team will review and merge your event into the website
 
 Start date & end date are required to display the event on the timeline.
 
