@@ -20,7 +20,7 @@ tag: PLN Event, Industry Event or blank
 4. Create a PR to this repo to add this new file
 5. The Spaceport team will review and merge your event into the website
 
-Dates are required for timeline but you can add the following to your event to communicate that the dates you added are still TBD.
+Dates are required for timeline display but you can add the following to your event to communicate that the dates you added are still TBD.
 
 ```dateTBD: true```
 
