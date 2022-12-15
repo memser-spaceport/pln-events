@@ -93,6 +93,20 @@ const config = defineStaticConfig({
             label: "Tag",
             name: "tag",
             type: "string",
+            options: [
+              {
+                label: 'None',
+                value: '',
+              },
+              {
+                label: 'PLN Event',
+                value: 'PLN Event',
+              },
+              {
+                label: 'Industry Event',
+                value: 'Industry Event',
+              },
+            ],
           },
           {
             label: 'Juan Speaking',
