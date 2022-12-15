@@ -9,20 +9,21 @@ We encourage you to submit your events to this site via a pull request on github
 ```
 ---
 eventName: Your Event
-location: Somewhere
-website: http://www.example.com
+location: "City, Country" or "Location TBD"
+website: http://www.example.com or leave blank
 startDate: 02/06/2023
 endDate: 02/09/2023
-tag: PLN Event, Industry Event or blank
+tag: "PLN Event" or "Industry Event"
+dateTBD: false
 ---
 ```
 3. Fill in the template with details for your event
 4. Create a PR to this repo to add this new file
 5. The Spaceport team will review and merge your event into the website
 
-Dates are required for timeline display but you can add the following to your event to communicate that the dates you added are still TBD.
+Start date & end date are required to display the event on the timeline.
 
-```dateTBD: true```
+If you don't have concrete dates, add the approximate dates & set ```dateTBD: true```.
 
 ## Editing Events
 If you've already created your event but want to add or change details in the .md file, create a PR with your edit requests, along with any comments. The Spaceport team will review and merge your changes to the website.
