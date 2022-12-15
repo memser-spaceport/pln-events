@@ -13,11 +13,16 @@ location: Somewhere
 website: http://www.example.com
 startDate: 02/06/2023
 endDate: 02/09/2023
+tag: PLN Event, Industry Event or blank
 ---
 ```
 3. Fill in the template with details for your event
 4. Create a PR to this repo to add this new file
 5. The Spaceport team will review and merge your event into the website
+
+Dates are required for timeline but you can add the following to your event to communicate that the dates you added are still TBD.
+
+```dateTBD: true```
 
 ## Editing Events
 If you've already created your event but want to add or change details in the .md file, create a PR with your edit requests, along with any comments. The Spaceport team will review and merge your changes to the website.
