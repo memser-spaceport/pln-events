@@ -2,7 +2,10 @@ import * as React from "react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { linkTarget } from "../../helpers/utilities";
 import { Section } from "../section";
+import { buttonsSchema } from "../../schema/buttons"
 import { backgroundSchema } from "../../schema/background"
+import { contentSchema } from "../../schema/content"
+import { imageSchema } from '../../schema/image';
 import { navigationLabelSchema } from "../../schema/navigation-label";
 
 export const TailwindFeature = ({ data, parentField = ""  }) => {
@@ -53,7 +56,6 @@ export const TailwindFeature = ({ data, parentField = ""  }) => {
     </Section>
   );
 };
-
 
 export const tailwindFeatureBlockSchema: any = {
   label: "Tailwind Feature",
@@ -161,81 +163,10 @@ export const tailwindFeatureBlockSchema: any = {
         },
       ],
     },
-    {
-      label: "Image",
-      name: "image",
-      type: "object",
-      fields: [
-        {
-          label: "Image Source",
-          name: "src",
-          type: "image",
-          ui: {
-            clearable: true,
-          }
-        },
-        {
-          name: "alt",
-          label: "Alt Text",
-          type: "string",
-        }
-      ],
-    },
     backgroundSchema,
-    {
-      label: "",
-      name: "rule",
-      type: "string",
-      ui: {
-        component: "ruledTitle",
-      },
-    },
-    {
-      label: "Label",
-      name: "label",
-      type: "string",
-    },
-    {
-      label: "Headline",
-      name: "headline",
-      type: "string",
-    },
-    {
-      label: "Subhead",
-      name: "subhead",
-      type: "string",
-    },
-    {
-      label: "Body",
-      name: "body",
-      type: "rich-text",
-    },
-    {
-      type: "object",
-      label: "Buttons",
-      name: "buttons",
-      list: true,
-      fields: [
-        {
-          label: "Label",
-          name: "label",
-          type: "string",
-        },
-        {
-          label: "Link",
-          name: "link",
-          type: "string",
-        },
-      ],
-    },
-    {
-      label: "",
-      name: "rule2",
-      type: "string",
-      ui: {
-        component: "ruledTitle",
-      },
-    },
+    imageSchema,
+    ...contentSchema,
+    buttonsSchema,
     navigationLabelSchema,
   ],
 };

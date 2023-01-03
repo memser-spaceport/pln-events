@@ -4,7 +4,10 @@ import { Content } from '../content';
 import { hasWord, getWordWith } from '../../helpers/utilities';
 import { buttonsSchema } from "../../schema/buttons"
 import { backgroundSchema } from "../../schema/background"
+import { contentSchema } from "../../schema/content"
+import { imageSchema } from '../../schema/image';
 import { navigationLabelSchema } from "../../schema/navigation-label";
+import { typographySchema } from "../../schema/typography"
 
 const imageWrapWidthClasses = (isVertical: boolean, isMobile: boolean) => {
   const mobilePrefix = isMobile ? 'sm:' : ''
@@ -47,36 +50,36 @@ export const Feature = ({ data, parentField = '' }) => {
   const textAlign = getWordWith(style.featureContent, 'text-')
   return (
     <Section background={data.background} navigationLabel={data.navigationLabel}>
-        <div className={`relative flex w-full max-w-site-full mx-auto ${style?.padding} ${style?.alignment}`}>
-          <div className={`${imageWrapClasses(style)}`}>
-            {data.image?.src && (
-              <>
-                <img
-                  className={`sm:hidden ${imgClasses(style, false)}`}
-                  style={imgStyles(style, false)}
-                  alt={data.image?.alt}
-                  src={data.image?.src}
-                  data-tinafield={`${parentField}.image`}
-                />
-                <img
-                  className={`hidden sm:block ${imgClasses(style, true)}`}
-                  style={imgStyles(style, true)}
-                  alt={data.image?.alt}
-                  src={data.image?.src}
-                  data-tinafield={`${parentField}.image`}
-                />
-              </>
-            )}
-          </div>
-          <div className={`flex-none ${style.featureContent}`}>
-            <Content
-              data = {data}
-              styles = {style}
-              alignment = {`${textAlign} ${textAlignMobile}`}            
-              width = "w-full"
-              parentField = {parentField}
-              className = ""
-            />
+      <div className={`relative flex w-full max-w-site-full mx-auto ${style?.padding} ${style?.alignment}`}>
+        <div className={`${imageWrapClasses(style)}`}>
+          {data.image?.src && (
+            <>
+              <img
+                className={`sm:hidden ${imgClasses(style, false)}`}
+                style={imgStyles(style, false)}
+                alt={data.image?.alt}
+                src={data.image?.src}
+                data-tinafield={`${parentField}.image`}
+              />
+              <img
+                className={`hidden sm:block ${imgClasses(style, true)}`}
+                style={imgStyles(style, true)}
+                alt={data.image?.alt}
+                src={data.image?.src}
+                data-tinafield={`${parentField}.image`}
+              />
+            </>
+          )}
+        </div>
+        <div className={`flex-none ${style.featureContent}`}>
+          <Content
+            data = {data}
+            styles = {style}
+            alignment = {`${textAlign} ${textAlignMobile}`}
+            width = "w-full"
+            parentField = {parentField}
+            className = ""
+          />
         </div>
       </div>
     </Section>
@@ -139,97 +142,12 @@ export const featureBlockSchema: any = {
             component: "featureContentControl",
           }
         },
-        {
-          label: "Typography",
-          name: "typographyTitle",
-          type: "string",
-          ui: {
-            component: "ruledTitle",
-          },
-        },
-        {
-          type: "string",
-          label: "Label",
-          name: "labelStyles",
-          ui: {
-            component: "typeControl"
-          }
-        },
-        {
-          type: "string",
-          label: "Headline",
-          name: "headlineStyles",
-          ui: {
-            component: "typeControl"
-          }
-        },
-        {
-          type: "string",
-          label: "Subhead",
-          name: "subheadStyles",
-          ui: {
-            component: "typeControl"
-          }
-        },
-        {
-          type: "string",
-          label: "Text",
-          name: "textStyles",
-          ui: {
-            component: "typeControl"
-          }
-        }
+        ...typographySchema,
       ],
     },
     backgroundSchema,
-    {
-      label: "Image",
-      name: "image",
-      type: "object",
-      fields: [
-        {
-          label: "Image Source",
-          name: "src",
-          type: "image",
-          ui: {
-            clearable: true,
-          }
-        },
-        {
-          name: "alt",
-          label: "Alt Text",
-          type: "string",
-        }
-      ],
-    },
-    {
-      label: "",
-      name: "rule",
-      type: "string",
-      ui: {
-        component: "ruledTitle",
-      },
-    },
-    {
-      label: "Label",
-      name: "label",
-      type: "string",
-    },
-    {
-      label: "Headline",
-      name: "headline",
-      type: "string",
-    },
-    {
-      label: "Subhead",
-      name: "subhead",
-      type: "string",
-    },
-    {
-      label: "Body",
-      name: "body",
-      type: "rich-text",
-    },
+    imageSchema,
+    ...contentSchema,
     buttonsSchema,
     navigationLabelSchema,
   ],

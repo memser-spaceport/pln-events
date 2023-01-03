@@ -4,6 +4,7 @@ import { linkTarget } from "../../helpers/utilities";
 import { Section } from "../section";
 import { backgroundSchema } from "../../schema/background"
 import { buttonsSchema } from "../../schema/buttons";
+import { contentSchema } from "../../schema/content"
 import { navigationLabelSchema } from "../../schema/navigation-label";
 
 const Card = ({ data, index, tw, parentField = ""  }) => {
@@ -295,55 +296,8 @@ export const tailwindCardsBlockSchema: any = {
         },
       ],
     },
-    {
-      label: "Image",
-      name: "image",
-      type: "object",
-      fields: [
-        {
-          label: "Image Source",
-          name: "src",
-          type: "image",
-          ui: {
-            clearable: true,
-          }
-        },
-        {
-          name: "alt",
-          label: "Alt Text",
-          type: "string",
-        }
-      ],
-    },
     backgroundSchema,
-    {
-      label: "",
-      name: "rule",
-      type: "string",
-      ui: {
-        component: "ruledTitle",
-      },
-    },
-    {
-      label: "Label",
-      name: "label",
-      type: "string",
-    },
-    {
-      label: "Headline",
-      name: "headline",
-      type: "string",
-    },
-    {
-      label: "Subhead",
-      name: "subhead",
-      type: "string",
-    },
-    {
-      label: "Body",
-      name: "body",
-      type: "rich-text",
-    },
+    ...contentSchema,
     buttonsSchema,
     {
       type: "object",
@@ -403,14 +357,6 @@ export const tailwindCardsBlockSchema: any = {
           description: "A button will be included if you have a link and button label, with only a link the entire card is linked"
         },
       ]
-    },
-    {
-      label: "",
-      name: "rule2",
-      type: "string",
-      ui: {
-        component: "ruledTitle",
-      },
     },
     navigationLabelSchema,
   ],

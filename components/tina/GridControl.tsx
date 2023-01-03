@@ -2,25 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { getStyleMatch, prefixSelectValues } from '../../helpers/utilities'
 import Control from './Control';
 import IconGap from './icons/IconGap';
-import IconGapVertical from './icons/IconGapVertical';
 import IconPicker from './widgets/IconPicker';
 import SelectMenu from './widgets/SelectMenu';
 
-const layoutOptions = [
-  { label: "right content", value: "flex-row"},
-  { label: "left content", value: "flex-row-reverse"},
-  { label: "bottom content", value: "flex-col"},
-  { label: "top content", value: "flex-col-reverse"},
+const columnOptions = [
+  { label: "1 Column", value: "grid-cols-1"},
+  { label: "2 Columns", value: "grid-cols-2"},
+  { label: "3 Columns", value: "grid-cols-3"},
+  { label: "4 Columns", value: "grid-cols-4"},
+  { label: "5 Columns", value: "grid-cols-5"},
+  { label: "6 Columns", value: "grid-cols-6"},
+  { label: "7 Columns", value: "grid-cols-7"},
+  { label: "8 Columns", value: "grid-cols-8"},
 ]
 const contentAlignOptions = [
-  { label: "items-start", value: "items-start"},
-  { label: "items-center", value: "items-center"},
-  { label: "items-end", value: "items-end"},
-]
-const contentAlignVerticalOptions = [
-  { label: "items-start-vertical", value: "items-start"},
-  { label: "items-center-vertical", value: "items-center"},
-  { label: "items-end-vertical", value: "items-end"},
+  { label: "items-start-vertical", value: "justify-start"},
+  { label: "items-center-vertical", value: "justify-center"},
+  { label: "items-end-vertical", value: "justify-end"},
 ]
 const gapOptions = [
   { label: "0", value: ""},
@@ -44,47 +42,37 @@ function buildOptions(options: {label: string, value: string }[] = [{label: '', 
 }
 
 const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false }) => {
-  const layoutOptionsPrefixed = buildOptions(layoutOptions, isMobile)
+  const columnOptionsPrefixed = buildOptions(columnOptions, isMobile)
   const contentAlignOptionsPrefixed = buildOptions(contentAlignOptions, isMobile)
-  const contentAlignVerticalOptionsPrefixed = buildOptions(contentAlignVerticalOptions, isMobile)
   const gapOptionsPrefixed = buildOptions(gapOptions, isMobile)
-  const [layout, setLayout] = useState(getStyleMatch(layoutOptionsPrefixed, inputValue) || "flex-row");
+  
+  const [columns, setColumns] = useState(getStyleMatch(columnOptionsPrefixed, inputValue) || "grid-cols-1");
   const [contentAlign, setContentAlign] = useState(getStyleMatch(contentAlignOptionsPrefixed, inputValue) || "items-start");
   const [gap, setGap] = useState(getStyleMatch(gapOptionsPrefixed, inputValue) || "");
 
   useEffect(() => {
-    onUpdate(`${layout} ${contentAlign} ${gap}`)
-  }, [layout, contentAlign, gap]);
+    onUpdate(`${columns} ${contentAlign} ${gap}`)
+  }, [columns, contentAlign, gap]);
 
   return (
     <>
       <div className="flex gap-2">
         <div className="flex-1">
-          <SelectMenu value={layout} onChange={setLayout} options={layoutOptionsPrefixed} className="w-full" />
+          <SelectMenu value={columns} onChange={setColumns} options={columnOptionsPrefixed} className="w-full" />
         </div>
         <div className="flex gap-2 flex-1">
           <div className="w-6 pl-2 pt-3">
-            {layout.includes("row") && (
-              <IconGap className="float-right" />
-            )}
-            {layout.includes("col") && (
-              <IconGapVertical className="float-right" />
-            )}
+            <IconGap className="float-right" />
           </div>
           <SelectMenu value={gap} onChange={setGap} options={gapOptionsPrefixed} className="flex-1" />  
         </div>
-        {layout.includes("row") && (
-          <IconPicker value={contentAlign} onClick={value => setContentAlign(value)} options={contentAlignOptionsPrefixed} menuPosition="right" />
-        )}
-        {layout.includes("col") && (
-          <IconPicker value={contentAlign} onClick={value => setContentAlign(value)} options={contentAlignVerticalOptionsPrefixed} menuPosition="right" />
-        )}
+        <IconPicker value={contentAlign} onClick={value => setContentAlign(value)} options={contentAlignOptionsPrefixed} menuPosition="right" />
       </div>
-      <input type="text" defaultValue={`${layout} ${contentAlign} ${gap}`} className="hidden" />
+      <input type="text" defaultValue={`${columns} ${contentAlign} ${gap}`} className="hidden" />
     </>
   )
 }
 
-export default function AlignmentControl({ field, input }) {
+export default function GridControl({ field, input }) {
   return <Control field={field} input={input} fieldRow={<FieldRow />} />
 }

@@ -5,11 +5,6 @@ query pageQuery {
       node {
         id
         _values
-        author {
-          ... on Author {
-            ...AuthorParts
-          }
-        }
         _sys {
           filename
         }
@@ -40,12 +35,6 @@ query blogPostQuery($relativePath: String!) {
   ...LayoutQueryFragment
   post(relativePath: $relativePath) {
     ...PostParts
-    author {
-      ... on Author {
-        name
-        avatar
-      }
-    }
   }
 }
 

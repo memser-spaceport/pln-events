@@ -1,83 +1,129 @@
 import * as React from 'react';
+import { hasWord, getWordWith } from '../../helpers/utilities';
 import { Section } from '../section';
 import { Content } from '../content';
+
+import { buttonsSchema } from "../../schema/buttons"
 import { backgroundSchema } from "../../schema/background"
+import { contentSchema } from "../../schema/content"
 import { navigationLabelSchema } from "../../schema/navigation-label";
+import { typographySchema } from "../../schema/typography"
+import { imageSchema } from '../../schema/image';
+
+const wrapWidthClasses = (isVertical: boolean, isMobile: boolean) => {
+  const mobilePrefix = isMobile ? 'sm:' : ''
+  return isVertical ? `${mobilePrefix}w-full ${mobilePrefix}max-w-site-full` : ''
+}
+
+const wrapClasses = (style) => {
+  const isVertical:boolean = hasWord(style.alignment, 'flex-col flex-col-reverse')
+  const isVerticalMobile:boolean = hasWord(style.alignment, 'sm:flex-col sm:flex-col-reverse')
+  const widthClasses = wrapWidthClasses(isVertical, false)
+  const mobileWidthClasses = wrapWidthClasses(isVerticalMobile, true)
+  return `relative h-full flex-1 ${widthClasses} ${mobileWidthClasses}`
+}
+
+const cardImgStyles = (cardStyle, isMobile:boolean) => {
+  const classes: [string] = cardStyle?.image?.split(' ') || []
+  let imageWidth
+  let imageHeight
+  if (isMobile) {
+    imageWidth = classes.find(item => item.substring(0,7) === 'sm:wpx-')?.replace(`sm:wpx-`, '')
+    imageHeight = classes.find(item => item.substring(0,7) === 'sm:hpx-')?.replace(`sm:wpx-`, '')
+  } else {
+    imageWidth = classes.find(item => item.substring(0,4) === 'wpx-')?.replace(`wpx-`, '')
+    imageHeight = classes.find(item => item.substring(0,4) === 'hpx-')?.replace(`hpx-`, '')
+  }
+  return {
+    width: imageWidth ? `${imageWidth}px` : 'auto',
+    height: imageHeight ? `${imageHeight}px` : 'auto'
+  }
+}
+
+const cardImgClasses = (cardStyle, isMobile:boolean) => {
+  const classes: [string] = cardStyle?.image?.split(' ') || []
+  if (isMobile) {
+    return classes.filter(item => item.includes('sm:object-')).join(' ')
+  } else {
+    return classes.filter(item => item.includes('object-')).join(' ')
+  }
+}
 
 const Card = ({ data, index, cardstyle, parentField = "" }) => {
-  const wrapClasses = data.link && data.buttonLabel ? 'pb-20' : '';
-
-  return (
-    <div className={`flex flex-col relative sm:mb-6 ${cardstyle?.borderStyles}`} data-tinafield={`${parentField}.${index}`}>
-      <div>
-        {data.image && (
-          <img
-            alt={data.image.alt || data.headline}
-            src={data.image.src}
-            className={`w-full ${cardstyle?.imageStyles}`}
-            data-tinafield={`${parentField}.${index}.image`}
-          />
-        )}
-      </div>
-      <div
-        className={` ${wrapClasses} relative flex-1 text-left border-box ${cardstyle?.padding}`}
-      >
-        <div className={`${cardstyle?.fillStyles} absolute inset-0 -z-1`} />
-        {data.label && (
-          <p className={cardstyle?.labelStyles} data-tinafield={`${parentField}.${index}.label`}>{data.label}</p>
-        )}
-        {data.headline && (
-          <h3 className={cardstyle?.headlineStyles} data-tinafield={`${parentField}.${index}.headline`}>{data.headline}</h3>
-        )}
-        {data.subhead && (
-          <h4 className={cardstyle?.subheadStyles} data-tinafield={`${parentField}.${index}.subhead`}>{data.subhead}</h4>
-        )}
-        {/* {data.text && (
-          <div className={`markdown ${cardstyle?.textStyles}`} data-tinafield={`${parentField}.${index}.text`}>
-            <TinaMarkdown content={data.text} />
-          </div>
-        )}
-        {data.link && data.buttonLabel && (
-          <Buttons buttons={[{
-            link: data.link,
-            label: data.buttonLabel,
-            type: cardstyle?.buttonType
-          }]} className="absolute bottom-4"  data-tinafield={`${parentField}.${index}.link`} />
-        )} */}
-
-      </div>
+  return (    
+    <div className={`relative w-full flex ${cardstyle?.alignment} ${cardstyle?.borderStyles}`} data-tinafield={`${parentField}.${index}`}>
+      <div className={`${cardstyle?.fillStyles} absolute inset-0 -z-1`} />
       {data.link && !data.buttonLabel && (
-        <a href={data.link} className="absolute inset-0 z-20" data-tinafield={`${parentField}.${index}.link.0`} />
+        <a className={`absolute inset-0 -z-20`} href={data.link} />
       )}
+      {data.image?.src && (
+        <div className='flex-none'>
+          <div className={`${cardstyle?.imagePadding} sm:hidden`} style={cardImgStyles(cardstyle, false)}>
+            <img
+              className={`sm:hidden ${cardImgClasses(cardstyle, false)}`}
+              style={cardImgStyles(cardstyle, false)}
+              alt={data.image.alt || data.headline}
+              src={data.image.src}
+              data-tinafield={`${parentField}.image`}
+            />
+          </div>
+          <div className={`${cardstyle?.imagePadding} hidden sm:block`} style={cardImgStyles(cardstyle, true)}>
+            <img
+              className={`hidden sm:block  ${cardImgClasses(cardstyle, true)}`}
+              style={cardImgStyles(cardstyle, true)}
+              alt={data.image.alt || data.headline}
+              src={data.image.src}
+              data-tinafield={`${parentField}.image`}
+            />
+          </div>
+        </div>
+      )}
+      <div className={`flex-1 h-full flex flex-col ${cardstyle.buttonLayout} ${cardstyle?.contentPadding}`} >
+        <Content
+          data = {data}
+          styles = {cardstyle}
+          alignment = {``}
+          width = "w-full"
+          parentField = {parentField}
+          className = ""
+        />
+        <div>
+          {data.link && data.buttonLabel && (
+            <a href={data.link} className={`btn-${cardstyle?.buttonType} ${cardstyle?.buttonWidth}`} data-tinafield={`${parentField}.${index}.link.0`}>
+              {data.buttonLabel}
+            </a>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
 
 export const Cards = ({ data, parentField = "" }) => {
-  const gridCols = {
-    "1": "grid-cols-1",
-    "2": "grid-cols-2",
-    "3": "grid-cols-3",
-    "4": "grid-cols-4",
-    "5": "grid-cols-5",
-    "6": "grid-cols-6",
-  }
+  const style = data.style || {}
+  const textAlignMobile = getWordWith(style.featureContent, 'sm:text-')
+  const textAlign = getWordWith(style.featureContent, 'text-')
 
   return (
     <Section background={data.background} navigationLabel={data.navigationLabel}>
-      <div className={`max-w-desktop-full mx-auto ${data.style?.padding} ${data.style?.textAlignment} ${data.style?.minHeight}`}>
-        <Content
-          data={data}
-          styles={data.style}
-          alignment={data.style?.alignment}
-          width={data.style?.contentWidth}
-          parentField={parentField}
-        />
-        <div className={`grid sm:block gap-10 ${gridCols[data.style?.columns]}`}>
-          {data.items &&
-            data.items.map(function (block, index) {
-              return <Card key={index} index={index} data={block} cardstyle={data.cardStyle} parentField={`${parentField}.items`} />;
-            })}
+      <div className={`relative flex w-full max-w-site-full mx-auto ${style?.padding} ${style?.alignment}`}>
+        <div className={`${wrapClasses(style)}`}>
+          <div className={`grid sm:block ${data.cardStyle.grid}`}>
+            {data.items &&
+              data.items.map(function (block, index) {
+                return <Card key={index} index={index} data={block} cardstyle={data.cardStyle} parentField={`${parentField}.items`} />;
+              })}
+          </div>
+        </div>
+        <div className={`flex-none justify-center ${style.featureContent}`}>
+          <Content
+            data = {data}
+            styles = {style}
+            alignment = {`${textAlign} ${textAlignMobile}`}
+            width = "w-full"
+            parentField = {parentField}
+            className = ""
+          />
         </div>
       </div>
     </Section>
@@ -87,18 +133,6 @@ export const Cards = ({ data, parentField = "" }) => {
 const defaultCard = {
   headline: "Here's Another Card",
   subhead: "Card Subhead",
-  text: {
-    children: [
-      {
-        type: "p",
-        children: [
-          {
-            text: "This is a rich text component you can add hyperlinks, etc."
-          }
-        ]
-      }
-    ]
-  },
 };
 
 export const cardsBlockSchema: any = {
@@ -109,32 +143,15 @@ export const cardsBlockSchema: any = {
       label: "",
       headline: "This is a headline",
       subhead: "Here is a subhead",
-      body: {
-        children: [
-          {
-            type: "p",
-            children: [
-              {
-                text: "This is a rich text component you can add hyperlinks, etc."
-              }
-            ]
-          }
-        ]
-      },
       style: {
-        textAlignment: "text-left",
-        minHeight: "min-h-0",
         padding: "pt-20 pr-20 pb-20 pl-20",
-        contentWidth: "w-full",
-        columns: "3",
+        featureContent: "w-1/2 min-h-0 text-left",
         labelStyles: "text-black font-1 text-sm mb-0",
         headlineStyles: "text-black font-1 text-5xl mb-0",
         subheadStyles: "text-black font-1 text-3xl mb-0",
         textStyles: "text-black font-1 text-md mb-0",
-        contentOrder: "labelHeadingsContent",
       },
       cardStyle: {
-        type: "solid",
         fillStyles: "bg-gray",
         padding: "pt-4 pr-4 pb-4 pl-4",
         labelStyles: "text-black text-sm mb-0",
@@ -147,9 +164,6 @@ export const cardsBlockSchema: any = {
     },
   },
   fields: [
-
-
-
     {
       type: "object",
       label: "Section Styles",
@@ -158,27 +172,16 @@ export const cardsBlockSchema: any = {
         component: "group",
       },
       fields: [
-        // {
-        //   label: "Text Alignment",
-        //   name: "textAlignment",
-        //   type: "string",
-        //   ui: {
-        //     component: "selectField",
-        //   },
-        //   options: hAlignOptions,
-        // },
-        // {
-        //   label: "Minimum Height",
-        //   name: "minHeight",
-        //   type: "string",
-        //   ui: {
-        //     component: "selectField",
-        //     mobileMode: true,
-        //   },
-        //   options: minHeightOptions,
-        // },
         {
-          label: "Content Padding",
+          label: "Alignment",
+          name: "alignment",
+          type: "string",
+          ui: {
+            component: "alignmentControl",
+          },
+        },
+        {
+          label: "Padding",
           name: "padding",
           type: "string",
           ui: {
@@ -186,77 +189,14 @@ export const cardsBlockSchema: any = {
           }
         },
         {
-          label: "Content Width",
-          name: "contentWidth",
+          label: "Content",
+          name: "featureContent",
           type: "string",
           ui: {
-            component: "selectField",
-          },
-          options: [
-            { label: "100%", value: "w-full" },
-            { label: "75%", value: "w-9/12" },
-            { label: "66%", value: "w-8/12" },
-            { label: "50%", value: "w-6/12" },
-            { label: "33%", value: "w-4/12" },
-            { label: "25%", value: "w-3/12" },
-          ],
-        },
-        {
-          label: "Columns",
-          name: "columns",
-          ui: {
-            component: "selectField",
-          },
-          type: "string",
-          options: [
-            { label: "1", value: "1" },
-            { label: "2", value: "2" },
-            { label: "3", value: "3" },
-            { label: "4", value: "4" },
-            { label: "5", value: "5" },
-            { label: "6", value: "6" },
-          ],
-        },
-        {
-          label: "Typography",
-          name: "typographyTitle",
-          type: "string",
-          ui: {
-            component: "ruledTitle",
-          },
-        },
-        {
-          type: "string",
-          label: "Label Style",
-          name: "labelStyles",
-          ui: {
-            component: "typeControl"
+            component: "featureContentControl",
           }
         },
-        {
-          type: "string",
-          label: "Headline Style",
-          name: "headlineStyles",
-          ui: {
-            component: "typeControl"
-          }
-        },
-        {
-          type: "string",
-          label: "Subhead Style",
-          name: "subheadStyles",
-          ui: {
-            component: "typeControl"
-          }
-        },
-        {
-          type: "string",
-          label: "Text Style",
-          name: "textStyles",
-          ui: {
-            component: "typeControl"
-          }
-        },
+        ...typographySchema
       ],
     },
     {
@@ -276,8 +216,40 @@ export const cardsBlockSchema: any = {
           }
         },
         {
-          label: "Padding",
-          name: "padding",
+          label: "Grid",
+          name: "grid",
+          type: "string",
+          ui: {
+            component: "gridControl",
+          },
+        },
+        {
+          label: "Alignment",
+          name: "alignment",
+          type: "string",
+          ui: {
+            component: "cardAlignmentControl",
+          },
+        },
+        {
+          label: "Image",
+          name: "image",
+          type: "string",
+          ui: {
+            component: "imageControl",
+          }
+        },
+        {
+          label: "Image Padding",
+          name: "imagePadding",
+          type: "string",
+          ui: {
+            component: "paddingControl",
+          }
+        },
+        {
+          label: "Content Padding",
+          name: "contentPadding",
           type: "string",
           ui: {
             component: "paddingControl",
@@ -291,54 +263,7 @@ export const cardsBlockSchema: any = {
             component: "borderControl"
           }
         },
-        {
-          type: "string",
-          label: "Image",
-          name: "imageStyles",
-          ui: {
-            component: "imageControl"
-          }
-        },
-        {
-          label: "Typography",
-          name: "typographyTitle",
-          type: "string",
-          ui: {
-            component: "ruledTitle",
-          },
-        },
-        {
-          type: "string",
-          label: "Label",
-          name: "labelStyles",
-          ui: {
-            component: "typeControl"
-          }
-        },
-        {
-          type: "string",
-          label: "Headline",
-          name: "headlineStyles",
-          ui: {
-            component: "typeControl"
-          }
-        },
-        {
-          type: "string",
-          label: "Subhead",
-          name: "subheadStyles",
-          ui: {
-            component: "typeControl"
-          }
-        },
-        {
-          type: "string",
-          label: "Text",
-          name: "textStyles",
-          ui: {
-            component: "typeControl"
-          }
-        },
+        ...typographySchema,
         {
           label: "Button",
           name: "buttonTitle",
@@ -348,88 +273,50 @@ export const cardsBlockSchema: any = {
           },
         },
         {
-          label: "Type",
+          type: "string",
+          label: "Button Type",
           name: "buttonType",
+          ui: {
+            component: "buttonControl",
+          },
+        },
+        {
+          label: "Layout",
+          name: "buttonLayout",
           type: "string",
           ui: {
             component: "selectField",
           },
           options: [
-            { label: "Primary", value: "primary" },
-            { label: "Secondary", value: "secondary" },
-            { label: "Minor", value: "minor" },
+            { label: "Under Content", value: "justify-start" },
+            { label: "Bottom", value: "justify-between" },
+          ],
+        },
+        {
+          label: "Width",
+          name: "buttonWidth",
+          type: "string",
+          ui: {
+            component: "selectField",
+          },
+          options: [
+            { label: "Auto", value: "w-auto" },
+            { label: "Full", value: "w-full" },
           ],
         },
       ],
     },
     backgroundSchema,
-    {
-      label: "Label",
-      name: "label",
-      type: "string",
-    },
-    {
-      label: "Headline",
-      name: "headline",
-      type: "string",
-    },
-    {
-      label: "Subhead",
-      name: "subhead",
-      type: "string",
-    },
-    {
-      label: "Body",
-      name: "body",
-      type: "rich-text",
-    },
-    // buttonsSchema,
+    ...contentSchema,
+    buttonsSchema,
     {
       type: "object",
       label: "Cards",
       name: "items",
       list: true,
       fields: [
-        {
-          label: "Image",
-          name: "image",
-          type: "object",
-          fields: [
-            {
-              label: "Image Source",
-              name: "src",
-              type: "image",
-              ui: {
-                clearable: true,
-              }
-            },
-            {
-              name: "alt",
-              label: "Alt Text",
-              type: "string",
-            },
-          ],
-        },
-        {
-          type: "string",
-          label: "Label",
-          name: "label",
-        },
-        {
-          type: "string",
-          label: "Title",
-          name: "headline",
-        },
-        {
-          label: "Subhead",
-          name: "subhead",
-          type: "string",
-        },
-        {
-          label: "Text",
-          name: "text",
-          type: "rich-text",
-        },
+        imageSchema,
+        ...contentSchema,
         {
           type: "string",
           label: "Link",

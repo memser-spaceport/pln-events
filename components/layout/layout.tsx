@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { Header } from "./header";
+import { Blocks } from "../../components/blocks-renderer";
 import layoutData from "../../content/global/index.json";
 
 const systemFonts = ['Arial','Courier','Geneva','Georgia', 'Helvetica','Impact','Lucida Console','Lucida Grande','Monaco','Palatino','Tahoma','Times New Roman','Verdana']
@@ -28,7 +29,7 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
   const bodyMd = JSON.parse(global?.typography?.bodyMd) || {}
   const bodyLg = JSON.parse(global?.typography?.bodyLg) || {}
   const bodyXl = JSON.parse(global?.typography?.bodyXl) || {}
-  const typeStyles = ["headlineXs", "headlineSm", "headlineMd", "headlineLg", "headlineXl"]
+  const typeStyles = ["headlineXs", "headlineSm", "headlineMd", "headlineLg", "headlineXl","bodyXs", "bodySm", "bodyMd", "bodyLg", "bodyXl"]
   const fontFamilies = typeStyles.map(type => getFontFamily(type))
   const uniqueFontFamilies =  unique(fontFamilies);
 
@@ -136,6 +137,7 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
 
     return `
       .btn-${slugify(obj.label)} {
+        display: inline-block;
         color: var(--${color}-color);
         background: ${getBackground(obj)};
         font-family: ${type.family};
@@ -144,6 +146,7 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
         letter-spacing: ${type.letterSpacing}px;
         padding: ${getPadding(obj, "pt-")} ${getPadding(obj, "pr-")} ${getPadding(obj, "pb-")} ${getPadding(obj, "pl-")};
         border-radius: ${getRadius(obj)};
+        text-align: center;
         ${getBorder(obj)};
       }
     `
@@ -205,7 +208,7 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
             h3 a,
             h4 a,
             .markdown a {
-              color: ${global?.colors?.primary};
+              color: var(--${global?.linkColor}-color);
             }
             ${buttonClasses()}
             .mg-headline-xs {
@@ -460,6 +463,7 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
         <Header blocks={page?.blocks} globalData={global} />
         <div className={`flex flex-col`}>
           {children}
+          <Blocks blocks={global.blocks} />
         </div>
       </div>
     </>

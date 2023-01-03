@@ -37,6 +37,11 @@ const gapOptions = [
   { label: "160", value: "gap-40"},
   { label: "192", value: "gap-48"},
 ]
+const textAlignments = [
+  { label: "text-left", value: "text-left"},
+  { label: "text-center", value: "text-center"},
+  { label: "text-right", value: "text-right"},
+]
 
 function buildOptions(options: {label: string, value: string }[] = [{label: '', value: ''}], isMobile = false) {
   const mobilePrefix = isMobile ? 'sm:' : ''
@@ -48,13 +53,15 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
   const contentAlignOptionsPrefixed = buildOptions(contentAlignOptions, isMobile)
   const contentAlignVerticalOptionsPrefixed = buildOptions(contentAlignVerticalOptions, isMobile)
   const gapOptionsPrefixed = buildOptions(gapOptions, isMobile)
+  const textAlignmentOptions = buildOptions(textAlignments, isMobile)
   const [layout, setLayout] = useState(getStyleMatch(layoutOptionsPrefixed, inputValue) || "flex-row");
   const [contentAlign, setContentAlign] = useState(getStyleMatch(contentAlignOptionsPrefixed, inputValue) || "items-start");
   const [gap, setGap] = useState(getStyleMatch(gapOptionsPrefixed, inputValue) || "");
+  const [textAlignment, setTextAlignment] = useState(getStyleMatch(textAlignmentOptions, inputValue));
 
   useEffect(() => {
-    onUpdate(`${layout} ${contentAlign} ${gap}`)
-  }, [layout, contentAlign, gap]);
+    onUpdate(`${layout} ${contentAlign} ${gap} ${textAlignment}`)
+  }, [layout, contentAlign, gap, textAlignment]);
 
   return (
     <>
@@ -79,12 +86,13 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
         {layout.includes("col") && (
           <IconPicker value={contentAlign} onClick={value => setContentAlign(value)} options={contentAlignVerticalOptionsPrefixed} menuPosition="right" />
         )}
+        <IconPicker value={textAlignment} onClick={value => setTextAlignment(value)} options={textAlignmentOptions} menuPosition="right" />
       </div>
       <input type="text" defaultValue={`${layout} ${contentAlign} ${gap}`} className="hidden" />
     </>
   )
 }
 
-export default function AlignmentControl({ field, input }) {
+export default function CardAlignmentControl({ field, input }) {
   return <Control field={field} input={input} fieldRow={<FieldRow />} />
 }

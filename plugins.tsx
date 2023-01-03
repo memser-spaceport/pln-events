@@ -2,12 +2,14 @@ import React from "react";
 import { TextField, GroupListField, BlocksFieldPlugin } from 'tinacms'
 import AlignmentControl from './components/tina/AlignmentControl'
 import BorderControl from './components/tina/BorderControl'
-import ButtonTypographyControl from './components/tina/ButtonTypographyControl'
-import ColorControl from './components/tina/ColorControl'
 import ButtonControl from './components/tina/ButtonControl'
+import ButtonTypographyControl from './components/tina/ButtonTypographyControl'
+import CardAlignmentControl from './components/tina/CardAlignmentControl'
+import ColorControl from './components/tina/ColorControl'
 import FeatureContentControl from './components/tina/FeatureContentControl'
 import FeatureImageControl from './components/tina/FeatureImageControl'
 import FillControl from './components/tina/FillControl'
+import GridControl from './components/tina/GridControl'
 import ImageControl from './components/tina/ImageControl'
 import PaddingControl from './components/tina/PaddingControl'
 import RuledTitle from './components/tina/RuledTitle'
@@ -92,6 +94,13 @@ export const buttonTypographyControlFieldPlugin = {
   name: 'buttonTypographyControl',
 }
 
+export const cardAlignmentControlFieldPlugin = {
+  Component: CardAlignmentControl,
+  __type: 'field',
+  name: 'cardAlignmentControl',
+}
+
+
 export const colorControlFieldPlugin = {
   Component: ColorControl,
   __type: 'field',
@@ -120,6 +129,12 @@ export const fillControlFieldPlugin = {
   Component: FillControl,
   __type: 'field',
   name: 'fillControl',
+}
+
+export const gridControlFieldPlugin = {
+  Component: GridControl,
+  __type: 'field',
+  name: 'gridControl',
 }
 
 export const imageControlFieldPlugin = {

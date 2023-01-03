@@ -41,19 +41,6 @@ export const Posts = ({ data }) => {
                 <TinaMarkdown content={post._values.excerpt} />
               </div>
               <div className="flex items-center -mb-2">
-                <div className="flex-shrink-0 mr-2">
-                  <img
-                    className="h-10 w-10 object-cover rounded-full shadow-sm"
-                    src={post?.author?.avatar}
-                    alt={post?.author?.name}
-                  />
-                </div>
-                <p className="text-sm font-medium text-gray-600 group-hover:text-gray-800 dark:text-gray-200 dark:group-hover:text-white">
-                  {post?.author?.name}
-                </p>
-                <span className="font-bold text-gray-200 dark:text-gray-500 mx-2">
-                  —
-                </span>
                 <p className="text-sm text-gray-400 group-hover:text-gray-500 dark:text-gray-300 dark:group-hover:text-gray-150">
                   {post.date}
                 </p>

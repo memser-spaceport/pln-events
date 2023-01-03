@@ -39,7 +39,6 @@ export default function IconPicker(props:IconPickerProps) {
   const options = props.options.map((option) => {
     return (
       <>
-        <style>{".icon-picker-option:hover { background: #f6f6f9; }"}</style>
         <div
           onClick={() => handleClick(option.value)}
           className={`icon-picker-option inline-flex w-8 h-8 items-center rounded-sm cursor-pointer`}
@@ -62,6 +61,7 @@ export default function IconPicker(props:IconPickerProps) {
         height: "40px"
       }}
     >
+      <style>{".icon-picker-option:hover { background: #f6f6f9; }"}</style>
       <Icon icon={currentOption?.label?.replace('sm:', '')} />
       <Icon icon="angle-down" className="absolute right-0 top-2.5 text-primary h-3.5" />
       <div
@@ -74,7 +74,7 @@ export default function IconPicker(props:IconPickerProps) {
           borderRadius: "3px",
           borderColor: "var(--tina-color-grey-2)",
       }}>
-        <div className="flex gap-1">
+        <div className="grid gap-1" style={{gridTemplateColumns: "1fr 1fr 1fr", gridTemplateRows: "1fr"}}>
           {options}
         </div>
       </div>
