@@ -53,8 +53,10 @@ export const getStaticProps = async ({ params }) => {
 
 export const getStaticPaths = async () => {
   const pagesListData = await client.queries.pageConnection();
+  const pageList = pagesListData.data.pageConnection.edges
+  const pageListFiltered = pageList.filter((page) => page.node._sys.filename !== "index")
   return {
-    paths: pagesListData.data.pageConnection.edges.map((page) => ({
+    paths: pageListFiltered.map((page) => ({
       params: { filename: page.node._sys.filename },
     })),
     fallback: false,
