@@ -13,7 +13,7 @@ module.exports = {
     return [
       {
         source: "/",
-        destination: "/index",
+        destination: "/index.html",
       },
       {
         source: "/admin",
