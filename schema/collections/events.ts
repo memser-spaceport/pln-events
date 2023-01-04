@@ -3,11 +3,11 @@ export const eventCollectionSchema: any = {
   name: "event",
   path: "content/events",
   format: "md",
-  ui: {
-    router: ({ document }) => {
-      return `/event/${document._sys.filename}`;
-    },
-  },
+  // ui: {
+  //   router: ({ document }) => {
+  //     return `/event/${document._sys.filename}`;
+  //   },
+  // },
   fields: [
     {
       label: "Event Name",

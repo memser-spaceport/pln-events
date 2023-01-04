@@ -3,11 +3,11 @@ export const postCollectionSchema: any = {
   name: "post",
   path: "content/posts",
   format: "mdx",
-  ui: {
-    router: ({ document }) => {
-      return `/post/${document._sys.filename}`;
-    },
-  },
+  // ui: {
+  //   router: ({ document }) => {
+  //     return `/post/${document._sys.filename}`;
+  //   },
+  // },
   fields: [
     {
       type: "string",
