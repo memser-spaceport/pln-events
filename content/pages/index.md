@@ -12,7 +12,7 @@ blocks:
     background:
       fillStyles: from-accent3 to-accent4 bg-gradient-to-tl opacity-100
     label: ''
-    headline: PL Network Events
+    headline: PL Network Events Index
     subhead: '[Beta Version]'
     body: |
       See below a list of events in the PL Network

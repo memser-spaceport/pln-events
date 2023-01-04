@@ -48,11 +48,8 @@ const config = defineStaticConfig({
         format: "md",
         ui: {
           router: ({ document }) => {
-            if (document._sys.filename === "home") {
+            if (document._sys.filename === "index") {
               return `/`;
-            }
-            if (document._sys.filename === "about") {
-              return `/about`;
             }
             return undefined;
           },
