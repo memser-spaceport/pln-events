@@ -17,7 +17,7 @@ module.exports = {
       },
       {
         source: "/admin",
-        destination: "/admin/index",
+        destination: "/admin/index.html",
       },
     ];
   },
