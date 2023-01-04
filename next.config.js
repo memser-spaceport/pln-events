@@ -12,11 +12,11 @@ module.exports = {
     return [
       {
         source: "/",
-        destination: "/index.html",
+        destination: "/index",
       },
       {
         source: "/admin",
-        destination: "/admin/index.html",
+        destination: "/admin/index",
       },
     ];
   },
