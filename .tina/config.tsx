@@ -46,14 +46,6 @@ const config = defineStaticConfig({
         name: "page",
         path: "content/pages",
         format: "md",
-        ui: {
-          router: ({ document }) => {
-            if (document._sys.filename === "index") {
-              return `/`;
-            }
-            return undefined;
-          },
-        },
         fields: [
           {
             type: "object",
