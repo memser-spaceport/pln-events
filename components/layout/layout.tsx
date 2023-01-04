@@ -76,7 +76,7 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
       const value = paddingClass?.replace(paddingPrefix, "") * 4
       return `${value}px`
     }
-    const getRadius = (obj, isMobile = false) => {
+    const getRadius = (obj) => {
       const roundedOptions = {
         "rounded-none": "0px",
         "rounded-sm": "2px",
@@ -90,7 +90,10 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
       }
       return roundedOptions[obj.primaryRounded]
     }
-    const getBorder = (obj, isMobile = false) => {
+    const getBorder = (obj) => {
+      if (!obj.primaryBorder) {
+        return ""
+      }
       const borderClasses = obj.primaryBorder.split(" ")
       const borderColor = borderClasses[0].replace("border-", "")
       const borderWidth = borderClasses[1].split("-").at(-1)
@@ -129,7 +132,7 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
       const backgroundColorClass = tailwindClasses.find(item => item.includes("bg-")) || ""
       return backgroundColorClass.replace("bg-", "")
     }
-    const getBackground = (obj, isMobile = false) => {
+    const getBackground = (obj) => {
       const fillClass: string = obj.fill
       const isGradient: boolean = fillClass.includes("gradient")
       return isGradient ? getGradient(fillClass) : `var(--${getBackgroundColor(fillClass)}-color)`
