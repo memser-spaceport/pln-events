@@ -38,7 +38,7 @@ buttons:
       {"color":"white","family":"Inter:wght@400","size":"18","lineHeight":"18","letterSpacing":"0","smSize":"18","smLineHeight":"18","smLetterSpacing":"0"}
     padding: pt-2.5 pb-2.5 pr-9 pl-9
     primaryBorder: border-primary border-0
-    primaryRounded: undefined
+    primaryRounded: rounded
 linkColor: primary
 ---
 
