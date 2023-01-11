@@ -1,5 +1,5 @@
 export const postCollectionSchema: any = {
-  label: "Blog Posts",
+  label: "Posts",
   name: "post",
   path: "content/posts",
   format: "mdx",

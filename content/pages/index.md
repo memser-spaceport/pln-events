@@ -5,10 +5,10 @@ blocks:
       padding: pt-44 pb-20 pr-10 pl-10
       featureImage: '  mx-auto'
       featureContent: 'w-1/2 min-h-0 text-left sm:w-full sm:min-h-0 sm:text-left'
-      labelStyles: text-black undefined mb-0
-      headlineStyles: text-black mg-headline-xl mb-0
-      subheadStyles: text-gray mg-body-xl mb-5
-      textStyles: text-black mg-body-md mb-24
+      labelStyles: 'text-black  '
+      headlineStyles: 'text-black mg-headline-large '
+      subheadStyles: 'text-gray  '
+      textStyles: 'text-black  '
     background:
       fillStyles: from-accent3 to-accent4 bg-gradient-to-tl opacity-100
     label: ''
@@ -25,10 +25,10 @@ blocks:
       fullWidth: false
       minHeight: min-h-100
       padding: pt-20 pb-20 pr-10 pl-10
-      labelStyles: text-gray mg-body-sm mb-1
-      headlineStyles: undefined mg-headline-sm mb-0
-      subheadStyles: text-gray mg-headline-xs mb-3.5
-      textStyles: 'undefined undefined '
+      labelStyles: text-gray  mb-1
+      headlineStyles: undefined mg-headline-medium mb-0
+      subheadStyles: text-gray  mb-3.5
+      textStyles: 'undefined  '
     background:
       fillStyles: ' opacity-100'
     _template: eventTimeline
@@ -36,6 +36,4 @@ meta:
   title: PL Network Events
   description: A listing of all PL Network events
 ---
-
-
 

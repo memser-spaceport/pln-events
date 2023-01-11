@@ -12,6 +12,7 @@ import { eventTimelineBlockSchema } from "../components/blocks/event-timeline"
 import { eventCollectionSchema } from "../schema/collections/events"
 import { postCollectionSchema } from "../schema/collections/posts"
 import { globalCollectionSchema } from "../schema/collections/global"
+import { themeCollectionSchema } from "../schema/collections/themes"
 
 const config = defineStaticConfig({
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
@@ -38,9 +39,6 @@ const config = defineStaticConfig({
   },
   schema: {
     collections: [
-      eventCollectionSchema,
-      postCollectionSchema,
-      globalCollectionSchema,
       {
         label: "Pages",
         name: "page",
@@ -98,6 +96,10 @@ const config = defineStaticConfig({
           },
         ],
       },
+      postCollectionSchema,
+      eventCollectionSchema,
+      themeCollectionSchema,
+      globalCollectionSchema,
     ],
   },
   cmsCallback: (cms) => {

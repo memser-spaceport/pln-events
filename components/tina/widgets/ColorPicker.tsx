@@ -44,7 +44,7 @@ export default function ColorPicker(props:ColorPickerProps) {
   useEffect(() => {
     const fetchData = async () => {
       const fetchedData = await client.queries.global({relativePath: `../global/index.json`})
-      const colors = fetchedData?.data?.global?.colors || {}
+      const colors = fetchedData?.data?.global?.theme?.colors || {}
       setGlobalColors(colors);
     };
     fetchData().catch(console.error)

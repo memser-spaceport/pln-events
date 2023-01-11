@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { client } from "../../../.tina/__generated__/client";
 
-interface ButtonPickerProps {
+interface TypographyPickerProps {
   onChange;
   value: string;
   className?: string;
 }
-export default function ButtonPicker(props:ButtonPickerProps) {
+export default function TypographyPicker(props:TypographyPickerProps) {
   const [options, setOptions] = useState([{label: "...", value: "loading"}])
-
   
   useEffect(() => {
     const fetchData = async () => {
       const fetchedData = await client.queries.global({relativePath: `../global/index.json`})
-      const buttonTypeData = fetchedData?.data?.global?.theme?.buttons
-      const options = buttonTypeData.map(item => ({ label: item.label, value: item.label.toLowerCase() }))
+      const data = fetchedData?.data?.global?.theme?.typo
+      const options = data.map(item => ({ label: item.label, value: `mg-${item.label.replace(" ", "-").toLowerCase()}` }))
       setOptions(options);
     };
     fetchData().catch(console.error)
   });
   
-  function handleChange(event) {
+  function handleChange (event) {
     props.onChange(event.target.value);
   }
   

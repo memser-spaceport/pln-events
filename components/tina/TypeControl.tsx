@@ -3,6 +3,7 @@ import { getStyleMatch } from '../../helpers/utilities'
 import Control from './Control';
 import SelectMenu from './widgets/SelectMenu';
 import ColorPicker from './widgets/ColorPicker';
+import TypographyPicker from './widgets/TypographyPicker';
 import IconMargin from './icons/IconMargin';
 
 function buildColorOptions(prefix?) {
@@ -90,7 +91,7 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
   const fontOptions = buildFontOptions(prefix);
   const marginOptions = buildMarginOptions(prefix);
   const [color, setColor] = useState(getStyleMatch(colorOptions, inputValue));
-  const [font, setFont] = useState(getStyleMatch(fontOptions, inputValue));
+  const [font, setFont] = useState("");
   const [margin, setMargin] = useState(getStyleMatch(marginOptions, inputValue));
   
   function handleSetColor(value: string) {
@@ -105,7 +106,7 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
     <>
       <div className="flex gap-2">
         <ColorPicker value={`${color?.replace('text-','').replace(prefix, '')}`} onClick={handleSetColor} className="w-9" />
-        <SelectMenu value={font} onChange={setFont} options={fontOptions} className="w-12 flex-1" />
+        <TypographyPicker value={font} onChange={setFont} className="w-12 flex-1" />
         <div style={{ padding: "9px 2px 0 0", width: "14px"}}>
           <IconMargin className="float-right" />
         </div>
