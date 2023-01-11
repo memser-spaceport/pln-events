@@ -7,8 +7,8 @@ blocks:
       featureContent: 'w-1/2 min-h-0 text-left sm:w-full sm:min-h-0 sm:text-left'
       labelStyles: 'text-black  '
       headlineStyles: 'text-black mg-headline-large '
-      subheadStyles: 'text-gray  '
-      textStyles: 'text-black  '
+      subheadStyles: text-gray mg-copy-large mb-7
+      textStyles: text-black mg-copy-medium mb-24
     background:
       fillStyles: from-accent3 to-accent4 bg-gradient-to-tl opacity-100
     label: ''
@@ -26,10 +26,10 @@ blocks:
       fullWidth: false
       minHeight: min-h-100
       padding: pt-20 pb-20 pr-10 pl-10
-      labelStyles: text-gray  mb-1
-      headlineStyles: undefined mg-headline-medium mb-0
-      subheadStyles: text-gray  mb-3.5
-      textStyles: 'undefined  '
+      labelStyles: text-gray mg-copy-medium mb-2
+      headlineStyles: undefined mg-headline-medium mb-1
+      subheadStyles: text-gray mg-copy-medium mb-6
+      textStyles: text-white mg-copy-small mb-0
     background:
       fillStyles: ' opacity-100'
     _template: eventTimeline
