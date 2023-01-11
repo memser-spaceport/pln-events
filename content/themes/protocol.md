@@ -15,14 +15,13 @@ colors:
 typo:
   - label: Headline Small
     typography: >-
-      {"family":"Assistant:wght@800","size":"12","lineHeight":"16","letterSpacing":"0","margin":"0","smSize":"16","smLineHeight":"16","smLetterSpacing":"0","smMargin":"0"}
+      {"family":"Inter:wght@400","size":"12","lineHeight":"16","letterSpacing":"0","margin":"0","smSize":"16","smLineHeight":"16","smLetterSpacing":"0","smMargin":"0"}
   - label: Headline Medium
     typography: >-
-      {"family":"Barlow
-      Condensed:wght@300","size":"16","lineHeight":"16","letterSpacing":"0","margin":"0","smSize":"16","smLineHeight":"16","smLetterSpacing":"0","smMargin":"0"}
+      {"family":"Inter:wght@900","size":"16","lineHeight":"16","letterSpacing":"0","margin":"0","smSize":"16","smLineHeight":"16","smLetterSpacing":"0","smMargin":"0"}
   - label: Headline Large
     typography: >-
-      {"family":"Cormorant:wght@400","size":"40","lineHeight":"40","letterSpacing":"0","margin":"0","smSize":"32","smLineHeight":"32","smLetterSpacing":"0","smMargin":"0"}
+      {"family":"Inter:wght@900","size":"40","lineHeight":"40","letterSpacing":"0","margin":"0","smSize":"32","smLineHeight":"32","smLetterSpacing":"0","smMargin":"0"}
 buttons:
   - label: Small
     fill: bg-primary opacity-100

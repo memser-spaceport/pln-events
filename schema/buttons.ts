@@ -22,5 +22,10 @@ export const buttonsSchema = {
         component: "buttonControl",
       },
     },
+    {
+      label: "Fathom Tracking ID",
+      name: "fathomId",
+      type: "string",
+    },
   ],
 }

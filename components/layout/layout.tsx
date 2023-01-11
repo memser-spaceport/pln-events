@@ -239,9 +239,6 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
           `,
           }}
         />
-         
-        {/* Fathom Analytics */}
-        <script src="https://cdn.usefathom.com/script.js" data-site="RBFTFNYG" defer></script>
         
         {/* Google Analytics */}
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${global.gtmId}`} />

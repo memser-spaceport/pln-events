@@ -27,6 +27,11 @@ export const globalCollectionSchema: any = {
       name: "gtmId",
     },
     {
+      label: "Fathom Site ID",
+      name: "fathomSiteId",
+      type: "string",
+    },
+    {
       type: "image",
       label: "Favicon",
       name: "favicon",

@@ -1,8 +1,9 @@
 {
-  "siteUrl": "example.com",
-  "gtmId": "ABC123",
-  "theme": "content/themes/protocol.md",
+  "siteUrl": "events.plnetwork.io",
+  "gtmId": "",
+  "fathomSiteId": "RBFTFNYG",
   "backgroundColor": "white",
+  "theme": "content/themes/protocol.md",
   "logo": {
     "logoTypeStyle": "undefined undefined ",
     "image": "/uploads/protocol-labs-network-small-logo.svg"
