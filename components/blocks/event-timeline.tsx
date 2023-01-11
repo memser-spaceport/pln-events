@@ -62,9 +62,9 @@ export const EventTimeline = ({ data, events, parentField = "" }) => {
                 )}
                 <div className="absolute w-3 h-3 bg-primary rounded-full mt-1.5 -left-1.5"></div>
                 {date &&
-                  <span className={`${styles.labelStyles}`} data-tinafield={`${parentField}.label`}>
+                  <p className={`${styles.labelStyles}`} data-tinafield={`${parentField}.label`}>
                     {date}
-                  </span>
+                  </p>
                 }
                 <h2 className={`${styles.headlineStyles}`} data-tinafield={`${parentField}.headline`}>
                   <EventTimelineHeadline name={event.eventName} website={event.website} fathomId={data.fathomId} />
@@ -75,7 +75,7 @@ export const EventTimeline = ({ data, events, parentField = "" }) => {
                   </h4>
                 }
                 {event.tag &&
-                  <span className="bg-gray text-white inline-block mg-body-xs px-3 py-1 rounded-full relative -top-2">
+                  <span className={`bg-gray inline-block px-3 py-1 rounded-full relative -top-2 ${styles.textStyles}`}>
                     {event.tag}
                   </span>
                 }
