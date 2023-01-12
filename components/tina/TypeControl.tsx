@@ -3,8 +3,8 @@ import { getStyleMatch } from '../../helpers/utilities'
 import Control from './Control';
 import SelectMenu from './widgets/SelectMenu';
 import ColorPicker from './widgets/ColorPicker';
-import TypographyPicker from './widgets/TypographyPicker';
 import IconMargin from './icons/IconMargin';
+import { client } from "../../.tina/__generated__/client";
 
 function buildColorOptions(prefix?) {
   const options = [
@@ -18,28 +18,6 @@ function buildColorOptions(prefix?) {
     { label: "Gray", value: "text-gray"},
     { label: "Gray Dark", value: "text-gray-dark"},
     { label: "Black", value: "text-black"},
-  ]
-  const formattedOptions = options.map(option => {
-    return {
-      label: option.label,
-      value: `${prefix || ""}${option.value}`
-    }
-  });
-  return formattedOptions;
-}
-
-function buildFontOptions(prefix?) {
-  const options = [
-    { label: "Headline Xs", value: "mg-headline-xs" },
-    { label: "Headline Sm", value: "mg-headline-sm" },
-    { label: "Headline Md", value: "mg-headline-md" },
-    { label: "Headline Lg", value: "mg-headline-lg" },
-    { label: "Headline Xl", value: "mg-headline-xl" },
-    { label: "Body Xs", value: "mg-body-xs" },
-    { label: "Body Sm", value: "mg-body-sm" },
-    { label: "Body Md", value: "mg-body-md" },
-    { label: "Body Lg", value: "mg-body-lg" },
-    { label: "Body Xl", value: "mg-body-xl" },
   ]
   const formattedOptions = options.map(option => {
     return {
@@ -85,18 +63,37 @@ function buildMarginOptions(prefix?) {
   return formattedOptions;
 }
 
+function getFontClass(classString: string) {
+  const classes = classString.split(" ")
+  return classes.find(item => item.includes("mg-"))
+}
+
 const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false }) => {
   const prefix = isMobile ? "sm:" : ""
   const colorOptions = buildColorOptions(prefix);
-  const fontOptions = buildFontOptions(prefix);
+  const [fontOptions, setFontOptions] = useState([{ label: "loading", value: "loading" }]);
   const marginOptions = buildMarginOptions(prefix);
   const [color, setColor] = useState(getStyleMatch(colorOptions, inputValue));
-  const [font, setFont] = useState("");
+  const [font, setFont] = useState(getFontClass(inputValue));
   const [margin, setMargin] = useState(getStyleMatch(marginOptions, inputValue));
   
   function handleSetColor(value: string) {
     setColor(`${prefix}text-${value}`)
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedData = await client.queries.global({relativePath: `../global/index.json`})
+        const data = fetchedData?.data?.global?.theme?.typo
+        const options = data.map(item => ({ label: item.label, value: `mg-${item.label.replace(" ", "-").toLowerCase()}` }))
+        setFontOptions(options);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     onUpdate(`${color} ${font} ${margin}`)
@@ -106,11 +103,11 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
     <>
       <div className="flex gap-2">
         <ColorPicker value={`${color?.replace('text-','').replace(prefix, '')}`} onClick={handleSetColor} className="w-9" />
-        <TypographyPicker value={font} onChange={setFont} className="w-12 flex-1" />
+        <SelectMenu value={font} onChange={setFont} options={fontOptions} className="w-12 flex-1 " />
         <div style={{ padding: "9px 2px 0 0", width: "14px"}}>
           <IconMargin className="float-right" />
         </div>
-        <SelectMenu value={margin} onChange={setMargin} options={marginOptions} className="w-16 " />
+        <SelectMenu value={margin} onChange={setMargin} options={marginOptions} className="w-16" />
       </div>
       <input type="text" value={`${color} ${font} ${margin}`} className="hidden" />
     </>
