@@ -91,16 +91,17 @@ export const featureBlockSchema: any = {
   name: "feature",
   ui: {
     defaultItem: {
-      label: "I am a label",
+      headline: "Headline",
+      subhead: "Subhead",
       style: {
         alignment: "flex-row items-center gap-0",
         padding: "pt-20 pb-20 pr-10 pl-10",
         featureImage: "mx-auto",
         featureContent: "w-1/2 min-h-0 text-left",
-        labelStyles: "text-black font-1 text-sm mb-0",
-        headlineStyles: "text-black font-1 text-5xl mb-0",
-        subheadStyles: "text-black font-1 text-3xl mb-0",
-        textStyles: "text-black font-1 text-md mb-0",
+        labelStyles: "text-black",
+        headlineStyles: "text-black",
+        subheadStyles: "text-black",
+        textStyles: "text-black",
       },
     },
   },
