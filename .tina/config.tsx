@@ -62,9 +62,9 @@ const config = defineStaticConfig({
               visualSelector: true,
             },
             templates: [
+              featureBlockSchema,
               cardsBlockSchema,
               embedBlockSchema,
-              featureBlockSchema,
               tailwindFeatureBlockSchema,
               tailwindCardsBlockSchema,
               eventTimelineBlockSchema,
