@@ -91,6 +91,21 @@ export const EventTimeline = ({ data, events, parentField = "" }) => {
 export const eventTimelineBlockSchema: any = {
   label: "Event Timeline",
   name: "eventTimeline",
+  ui: {
+    defaultItem: {
+      headline: "Headline",
+      subhead: "Subhead",
+      style: {
+        fullWidth: false,
+        minHeight: "min-h-100",
+        padding: "pt-20 pb-20 pr-10 pl-10",
+        labelStyles: "text-black",
+        headlineStyles: "text-black",
+        subheadStyles: "text-black mb-4",
+        textStyles: "text-black",
+      },
+    },
+  },
   fields: [
     {
       label: "Section Style",

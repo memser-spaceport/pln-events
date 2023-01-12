@@ -26,9 +26,9 @@ blocks:
       fullWidth: false
       minHeight: min-h-100
       padding: pt-20 pb-20 pr-10 pl-10
-      labelStyles: text-gray mg-copy-medium mb-2
-      headlineStyles: undefined mg-headline-medium mb-1
-      subheadStyles: text-gray mg-headline-small mb-6
+      labelStyles: text-gray mg-copy-medium mb-0
+      headlineStyles: undefined mg-headline-medium mb-0
+      subheadStyles: text-gray mg-headline-small mb-5
       textStyles: text-white mg-copy-small mb-0
     background:
       fillStyles: ' opacity-100'

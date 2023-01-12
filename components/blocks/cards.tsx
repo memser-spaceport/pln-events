@@ -131,8 +131,8 @@ export const Cards = ({ data, parentField = "" }) => {
 };
 
 const defaultCard = {
-  headline: "Here's Another Card",
-  subhead: "Card Subhead",
+  headline: "Headline",
+  subhead: "Subhead",
 };
 
 export const cardsBlockSchema: any = {
@@ -141,24 +141,26 @@ export const cardsBlockSchema: any = {
   ui: {
     defaultItem: {
       label: "",
-      headline: "This is a headline",
-      subhead: "Here is a subhead",
+      headline: "Headline",
+      subhead: "Subhead",
       style: {
-        padding: "pt-20 pr-20 pb-20 pl-20",
+        alignment: "flex-col-reverse items-start gap-6",
+        padding: "pt-20 pb-20 pr-20 pl-20",
         featureContent: "w-1/2 min-h-0 text-left",
-        labelStyles: "text-black font-1 text-sm mb-0",
-        headlineStyles: "text-black font-1 text-5xl mb-0",
-        subheadStyles: "text-black font-1 text-3xl mb-0",
-        textStyles: "text-black font-1 text-md mb-0",
+        labelStyles: "text-black",
+        headlineStyles: "text-black",
+        subheadStyles: "text-black",
+        textStyles: "text-black",
       },
       cardStyle: {
         fillStyles: "bg-gray",
-        padding: "pt-4 pr-4 pb-4 pl-4",
-        labelStyles: "text-black text-sm mb-0",
-        headlineStyles: "text-black text-2xl mb-0",
-        subheadStyles: "text-black text-lg mb-0",
-        textStyles: "text-black text-sm mb-0",
-        buttonType: "solid",
+        grid: "grid-cols-3 items-start gap-6",
+        imagePadding: "pt-0 pr-0 pb-0 pl-0",
+        contentPadding: "pt-2 pr-2 pb-2 pl-2",
+        labelStyles: "text-black",
+        headlineStyles: "text-black",
+        subheadStyles: "text-black",
+        textStyles: "text-black",
       },
       items: [defaultCard, defaultCard, defaultCard],
     },
