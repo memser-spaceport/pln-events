@@ -31,12 +31,12 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
       family: family || "Arial",
       size: size || "16",
       lineHeight: lineHeight || "16",
-      letterSpacing: letterSpacing || "0",
-      margin: margin || "0",
-      smSize: smSize || "16",
-      smLineHeight: smLineHeight || "16",
-      smLetterSpacing: smLetterSpacing || "0",
-      smMargin: smMargin || "0",
+      letterSpacing: letterSpacing || "",
+      margin: margin || "",
+      smSize: smSize || "",
+      smLineHeight: smLineHeight || "",
+      smLetterSpacing: smLetterSpacing || "",
+      smMargin: smMargin || "",
     })
   }
 
