@@ -14,7 +14,7 @@ export const Embed = ({ data, parentField = "" }) => {
       background={data.background}
       navigationLabel={data.navigationLabel}
     >
-      <div className={`border ${width} ${padding} ${data.style?.minHeight}`}>
+      <div className={`${width} ${padding} ${data.style?.minHeight}`}>
         <div dangerouslySetInnerHTML={{ __html: data.markup }}></div>
       </div>
     </Section>
