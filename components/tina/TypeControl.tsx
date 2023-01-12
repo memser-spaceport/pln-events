@@ -87,7 +87,7 @@ const FieldRow = ({ inputValue='', onUpdate=(value)=>{ value }, isMobile = false
         const fetchedData = await client.queries.global({relativePath: `../global/index.json`})
         const data = fetchedData?.data?.global?.theme?.typo
         const options = data.map(item => ({ label: item.label, value: `mg-${item.label.replace(" ", "-").toLowerCase()}` }))
-        setFontOptions(options);
+        setFontOptions([{ label: "default", value: "" }, ...options]);
       } catch (error) {
         console.log("error", error);
       }
