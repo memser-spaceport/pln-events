@@ -34,6 +34,7 @@ blocks:
       fillStyles: ' opacity-100'
     fathomId: DULOJY8I
     _template: eventTimeline
+backgroundColor: white
 meta:
   title: PL Network Events
   description: A listing of all PL Network events

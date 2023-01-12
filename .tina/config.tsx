@@ -1,4 +1,5 @@
 import { defineStaticConfig } from "tinacms";
+import { colorOptions } from "../schema/options";
 
 // Blocks
 import { featureBlockSchema } from "../components/blocks/feature";
@@ -69,6 +70,15 @@ const config = defineStaticConfig({
               tailwindCardsBlockSchema,
               eventTimelineBlockSchema,
             ],
+          },
+          {
+            type: "string",
+            label: "Background Color",
+            name: "backgroundColor",
+            ui: {
+              component: "colorControl",
+            },
+            options: colorOptions,
           },
           {
             type: "object",

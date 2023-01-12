@@ -22,6 +22,12 @@ export const globalCollectionSchema: any = {
       name: "siteUrl",
     },
     {
+      type: "image",
+      label: "Favicon",
+      name: "favicon",
+      description: "Should be a 48x48px png",
+    },
+    {
       type: "string",
       label: "Google Tag Manager ID",
       name: "gtmId",
@@ -30,21 +36,6 @@ export const globalCollectionSchema: any = {
       label: "Fathom Site ID",
       name: "fathomSiteId",
       type: "string",
-    },
-    {
-      type: "image",
-      label: "Favicon",
-      name: "favicon",
-      description: "Should be a 48x48px png",
-    },
-    {
-      type: "string",
-      label: "Background Color",
-      name: "backgroundColor",
-      ui: {
-        component: "colorControl",
-      },
-      options: colorOptions,
     },
     {
       label: 'Theme',

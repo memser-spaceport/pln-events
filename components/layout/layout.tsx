@@ -192,7 +192,7 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
             :root {
               --site-width: ${global?.theme?.desktopWidth}px;
               --edge-width: calc((100% - var(--site-width)) / 2);
-              --background-color: ${global?.backgroundColor};
+              --background-color: ${page?.backgroundColor};
               --primary-color: ${global?.theme?.colors?.primary};
               --accent1-color: ${global?.theme?.colors?.accent1};
               --accent2-color: ${global?.theme?.colors?.accent2};
@@ -206,7 +206,7 @@ export const Layout = ({ rawData, data = layoutData, children }) => {
               --link-color: ${global?.links?.color};              
             }
             html {
-              background-color: var(--${global?.backgroundColor}-color);
+              background-color: var(--${page?.backgroundColor}-color);
               scroll-behavior: smooth;
             }
             h1 a,
