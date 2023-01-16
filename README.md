@@ -17,7 +17,7 @@ tag: "PLN Event" or "Industry Event"
 dateTBD: false
 ---
 ```
-3. Fill in the template with details for your event
+3. Fill in the template with details for your event, please use month/day/year format for dates
 4. Create a PR to this repo to add this new file
 5. The Member Services team will review and merge your event into the website
 
