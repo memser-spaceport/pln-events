@@ -2,9 +2,9 @@
 eventName: CoD Summit 3
 website:
 location: Location TBD
-startDate: '2023-04-01T06:00:00.000Z'
-endDate: '2023-04-01T06:00:00.000Z'
+startDate: 04/01/2023
+endDate: 04/01/2023
 dateTBD: true
-juanSpeaking: unknown
+tag: PLN Event
 ---
 
