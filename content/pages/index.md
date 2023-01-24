@@ -13,7 +13,7 @@ blocks:
       fillStyles: from-accent3 to-accent4 bg-gradient-to-tl opacity-100
     label: ''
     headline: 'PL Network Events '
-    subhead: '[ Beta Version ]'
+    subhead: '[ BETA VERSION ]'
     body: |
       See below a list of events in the PL Network.
     buttons:
@@ -39,4 +39,5 @@ meta:
   title: PL Network Events
   description: A listing of all PL Network events
 ---
+
 
