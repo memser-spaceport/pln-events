@@ -18,7 +18,7 @@ blocks:
       See below a list of events in the PL Network.
     buttons:
       - label: Submit Event
-        link: 'https://github.com/pathfindertools/pl-network-events'
+        link: 'https://github.com/memser-spaceport/pln-events'
         buttonStyle: primary
         fathomId: CXB9QJA8
     _template: feature
@@ -39,6 +39,7 @@ meta:
   title: PL Network Events
   description: A listing of all PL Network events
 ---
+
 
 
 
