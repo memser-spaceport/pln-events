@@ -1,5 +1,5 @@
 ---
-eventName: The Filecoin Sanctuary at WEF (FF organized)
+eventName: The Filecoin Sanctuary at WEF
 website: 
 location: Davos, Switzerland
 startDate: 1/15/2023

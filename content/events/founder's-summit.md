@@ -1,5 +1,5 @@
 ---
-eventName: Founder's Summit
+eventName: Founders Day
 website: 
 location: Location TBD
 startDate: 04/02/2023

@@ -1,5 +1,5 @@
 ---
-eventName: JobCrypt Web3 & Blockchain Talks Munich Germany, Sponsored by the Filecoin Orbit Programme
+eventName: JobCrypt Web3 & Blockchain Talks
 location: "Munich, Germany"
 website: https://www.jobcrypt.com/pages/promotions/munich/2023-01-25-In-Person-Talk.html
 startDate: 01/25/2023
