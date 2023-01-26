@@ -18,7 +18,7 @@ blocks:
       See below a list of events in the PL Network.
     buttons:
       - label: Submit Event
-        link: 'https://github.com/memser-spaceport/pln-events'
+        link: 'https://github.com/memser-spaceport/pln-events#submitting-events'
         buttonStyle: primary
         fathomId: CXB9QJA8
     _template: feature
