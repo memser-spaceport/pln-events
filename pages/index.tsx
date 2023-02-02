@@ -40,7 +40,7 @@ export const getStaticProps = async ({ params }) => {
   const tinaProps = await client.queries.contentQuery({
     relativePath: `index.md`,
   });
-  const eventsListData = await client.queries.eventConnection();
+  const eventsListData = await client.queries.eventConnection({ last: -1 });
   return {
     props: {
       data: tinaProps.data,
