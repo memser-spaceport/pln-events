@@ -15,7 +15,7 @@ blocks:
     headline: 'PL Network Events '
     subhead: '[ Beta Version ]'
     body: |
-      See below a list of events in the PL Network..
+      See below a list of events in the PL Network.
     buttons:
       - label: Submit Event
         link: 'https://github.com/memser-spaceport/pln-events#submitting-events'
@@ -39,6 +39,7 @@ meta:
   title: PL Network Events
   description: A listing of all PL Network events
 ---
+
 
 
 
