@@ -17,6 +17,11 @@ export const eventCollectionSchema: any = {
       required: true,
     },
     {
+      label: "Description",
+      name: "eventDescription",
+      type: "string",
+    },
+    {
       label: "Event Website",
       name: "website",
       type: "string",
