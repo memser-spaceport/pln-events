@@ -2,6 +2,7 @@
   "siteUrl": "events.plnetwork.io",
   "gtmId": "",
   "fathomSiteId": "RBFTFNYG",
+  "favicon": "/favicon.ico",
   "theme": "content/themes/protocol.md",
   "logo": {
     "logoTypeStyle": "undefined undefined ",
