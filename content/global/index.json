@@ -12,5 +12,6 @@
     "navTypeStyle": "text-accent2 mg-body-sm ",
     "navBackgroundColor": " opacity-100",
     "padding": "pt-7 pb-10 pr-10 pl-8"
-  }
+  },
+  "favicon": "/uploads/protocol-labs-network-small-logo.svg"
 }
