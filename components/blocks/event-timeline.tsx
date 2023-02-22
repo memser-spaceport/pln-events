@@ -46,42 +46,105 @@ export const EventTimeline = ({ data, events, parentField = "" }) => {
     >
       <div className={`${width} ${padding} ${data.style?.minHeight}`}>
         <div className="relative max-w-desktop-full mx-auto border-l border-primary mb-10 ml-60">
-          {sortedEvents && sortedEvents.map((event, index) => {
-            const startDate = new Date(event.startDate)
-            const endDate = new Date(event.endDate)
-            const startMonth = months[startDate?.getMonth()]
-            const date = event.dateTBD === true ? 'Date TBD' : `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`
-            const hideMonthLabel = labels.includes(startMonth)
-            if (!hideMonthLabel) {
-              labels = [...labels, startMonth]
-            }
-            return (
-              <div className={`mb-5 ml-4 ${!hideMonthLabel && index !== 0 &&  "mt-16"}`} key={index}>
-                {(!hideMonthLabel &&
-                  <div className="absolute -left-36 w-32 text-right">{startMonth}</div>
-                )}
-                <div className="absolute w-3 h-3 bg-primary rounded-full mt-1.5 -left-1.5"></div>
-                {date &&
-                  <p className={`${styles.labelStyles}`} data-tinafield={`${parentField}.label`}>
-                    {date}
-                  </p>
-                }
-                <h2 className={`${styles.headlineStyles}`} data-tinafield={`${parentField}.headline`}>
-                  <EventTimelineHeadline name={event.eventName} website={event.website} fathomId={data.fathomId} />
-                </h2>
-                {event.location &&
-                  <h4 className={`${styles.subheadStyles}`} data-tinafield={`${parentField}.subhead`}>
-                    {event.location}
-                  </h4>
-                }
-                {event.tag &&
-                  <span className={`bg-gray inline-block px-3 py-1 rounded-full relative -top-2 ${styles.textStyles}`}>
-                    {event.tag}
-                  </span>
-                }
-              </div>
-            )
-          })}
+          {sortedEvents &&
+            sortedEvents.map((event, index) => {
+              const startDate = new Date(event.startDate);
+              const endDate = new Date(event.endDate);
+              const startMonth = months[startDate?.getMonth()];
+              const date =
+                event.dateTBD === true
+                  ? "Date TBD"
+                  : `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
+              const hideMonthLabel = labels.includes(startMonth);
+              if (!hideMonthLabel) {
+                labels = [...labels, startMonth];
+              }
+              return (
+                <div
+                  className={`mb-5 ml-4 ${
+                    !hideMonthLabel && index !== 0 && "mt-16"
+                  }`}
+                  key={index}
+                >
+                  {!hideMonthLabel && (
+                    <div className="absolute -left-36 w-32 text-right">
+                      {startMonth}
+                    </div>
+                  )}
+                  <div className="absolute w-3 h-3 bg-primary rounded-full mt-1.5 -left-1.5"></div>
+                  {date && (
+                    <p
+                      className={`${styles.labelStyles}`}
+                      data-tinafield={`${parentField}.label`}
+                    >
+                      {date}
+                    </p>
+                  )}
+                  <h2
+                    className={`${styles.headlineStyles}`}
+                    data-tinafield={`${parentField}.headline`}
+                  >
+                    <EventTimelineHeadline
+                      name={event.eventName}
+                      website={event.website}
+                      fathomId={data.fathomId}
+                    />
+                  </h2>
+                  {event.location && (
+                    <h4
+                      className={`${styles.subheadStyles}`}
+                      data-tinafield={`${parentField}.subhead`}
+                    >
+                      {event.location}
+                    </h4>
+                  )}
+
+                  {event.eventDescription && (
+                    <p
+                      className="text-gray"
+                    >
+                      {event.eventDescription}
+                    </p>
+                  )}
+
+                  <div>
+                    {event.eventType && (
+                      <span
+                        className={`border-solid border-gray border inline-block px-3 py-1 rounded-full relative ${styles.textStyles} text-gray`}
+                      >
+                        {event.eventType}
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    {event.eventTopic?.length &&
+                      event.eventTopic.map((topic) => {
+                        return (
+                          <span
+                            className={`border-solid border-gray border inline-block px-3 py-1 rounded-full relative ${styles.textStyles} text-gray`}
+                          >
+                            {topic}
+                          </span>
+                        );
+                      })}
+                  </div>
+                  <div>
+                    {event.tag && (
+                      <span
+                        className={`bg-gray inline-block px-3 py-1 rounded-full relative ${styles.textStyles}`}
+                      >
+                        {event.tag}
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    {event.eventLogo && (
+                      <img className="top-2 m-2" src={event.eventLogo} style={{"width": "40px"}}/>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
     </Section>
