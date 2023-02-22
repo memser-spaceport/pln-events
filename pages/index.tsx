@@ -40,6 +40,8 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
       tagLogo = '/icons/pln-industry-icon.svg'
     }
 
+    
+
 
 
 

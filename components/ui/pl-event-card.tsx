@@ -6,6 +6,12 @@ function PlEventCard(props) {
     const description = props?.description ?? '';
     const location = props?.location ?? ''
     const website = props?.website ?? ''
+    const eventType = props?.eventType ?? '';
+    const venueName = props?.venueName ?? '';
+    const venueAddress = props?.venueAddress ?? '';
+    const venueMapsLink = props?.venueMapsLink ?? '';
+    const fullAddress = `${venueName}, ${venueAddress}, ${location}`;
+
 
     // images/logos
     const tagLogo = props?.tagLogo ?? ''
@@ -20,9 +26,10 @@ function PlEventCard(props) {
                     <img className="pec__info__tag__img" src={tagLogo} />
                     <p className="pec__info__tag__text">{tag}</p>
                 </div>
-                <div className="pec__info__type">
-
-                </div>
+               {eventType &&  <div className="pec__info__type">
+                  <img className="pec__info__tag__img" src={`/icons/pln-event-virtual.svg`} />
+                    <p className="pec__info__tag__text">{eventType}</p>
+                </div>}
             </div>
             {!website && <p className="pec__eventname">{eventName}</p>}
             {website && <a className="pec__eventname" href={website} target="_blank"><p className="pec__eventname--link">{eventName}</p></a>}
@@ -30,10 +37,13 @@ function PlEventCard(props) {
                 <img className="pec__calender__icon" src={calenderLogo}/>
                 <p className="pec__calender__text">{fullDateFormat}</p>
             </div>
+            {topics.map(v => <p>{v}</p>)}
             <p>{description}</p>
             <div className="pec__location">
                 <img className="pec__location__img" src={locationLogo}/>
-                <p className="pec__location__text">{location}</p>
+                {!venueMapsLink && <p className="pec__location__text">{fullAddress}</p>}
+                {venueMapsLink && <a href={venueMapsLink} target="_blank"><p className="pec__location__text">{fullAddress}</p></a>}
+
             </div>
            
         </div>
@@ -57,6 +67,8 @@ function PlEventCard(props) {
             .pec__location__img {width: 12px; height: 12px; margin-right: 8px;}
             .pec__location__text {color: #64748B; font-size: 12px;}
             
+            .pec__info__type {margin-left: 16px; display: flex; align-items: center;}
+
             .timeline {position: absolute; height: 100%; left: 50%; top: 0; width: 1px; background: #CBD5E1;}
             `
             }
