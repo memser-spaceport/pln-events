@@ -36,7 +36,7 @@ function HpSideBar(props) {
         const yearElement = document.getElementById("year-ps-input");
         const locationElement = document.getElementById("location-ps-input")
         const topic = document.getElementById("topic-ps-input");
-        const eventType = document.getElementById("eventtype-ps-input");
+        const eventType = document.getElementById("eventType-ps-input");
         const toggle = document.getElementById("isPlnEventOnly-pl-toggle")
         yearElement.value = 'All'
         locationElement.value = 'All';
