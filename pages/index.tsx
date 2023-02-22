@@ -26,8 +26,8 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
     const showEndDate = startDay === endDay ? false : true;
     const fullDateFormat = startMonthIndex === endMonthIndex ? `${months[startMonthIndex]} ${startDateValue.getDate()} ${showEndDate ? '-' : ''} ${showEndDate ? endDateValue.getDate() : ''}, ${endDateValue.getFullYear()} ` : `${months[startMonthIndex]} ${startDateValue.getDate()} - ${months[endMonthIndex]} ${endDateValue.getDate()}, ${startDateValue.getFullYear()}`
 
-    if (event.node.topics) {
-      event.node['topicitems'] = event.node.topics.split(',').map(v => v.trim())
+    if (event?.node?.eventTopic) {
+      event.node['topicitems'] = event.node.eventTopic
     }
 
     // Logos/images
@@ -52,8 +52,15 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
       dateTBD: event.node?.dateTBD,
       dri: event.node?.dri,
       tag: event.node?.tag,
+      description: event?.node?.eventDescription,
       juanSpeaking: event.node?.juanSpeaking,
-      topics: event.node?.topics,
+      eventOrg: event?.node?.eventOrg,
+      eventLogo: event?.node?.eventLogo,
+      eventType: event?.node?.eventType,
+      venueName: event?.node?.venueName,
+      venueMapsLink: event?.node?.venueMapsLink,
+      venueAddress: event?.node?.venueAddress,
+      topics: event.node?.eventTopic,
       topicitems: event?.node?.topicitems ?? [],
       startDateTimeStamp,
       startMonthIndex,
