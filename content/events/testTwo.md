@@ -5,7 +5,6 @@ eventTopic:
 - "Web3"
 eventType: "Virtual"
 location: 
-venueMapsLink: "https://goo.gl/maps/2EgwGL7DsJYehj3g7"
 website: "http://www.google.com"
 startDate: "12/27/2023"
 endDate: "12/28/2023"
