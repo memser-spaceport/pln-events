@@ -1,5 +1,5 @@
 export const getUniqueValuesFromEvents = (key, allEvents) => {
-    let items = [];
+    const items = [];
     switch (key) {
         case 'startYear':
         case 'location':

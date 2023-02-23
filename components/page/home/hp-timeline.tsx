@@ -16,7 +16,7 @@ function HpTimeline(props) {
             const foundItem = monthWiseEvents[foundItemIndex];
             const foundEventId = foundItem.events.findIndex(ev => ev.startDateTimeStamp >= currentTimeStamp);
             if(foundEventId > -1) {
-                let foundEventItem = foundItem.events[foundEventId];
+                const foundEventItem = foundItem.events[foundEventId];
                 const scrollItem = document.getElementById(`m-${currentMonthId}-${foundEventItem.startDay}`);
                 if(scrollItem) {
                     scrollItem.scrollIntoView({behavior: "smooth", block: "start", inline: "start"})
