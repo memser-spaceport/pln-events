@@ -4,7 +4,7 @@ eventDescription: "Short Description of your event"
 eventTopic:
 - "Web3"
 eventType: "Virtual"
-location: "Taumatawhakatangihangakoauauotamateaturipukakap"
+location: "Location TBD"
 venueName: "Art museum"
 venueMapsLink: "https://goo.gl/maps/2EgwGL7DsJYehj3g7"
 venueAddress: "fernway"
