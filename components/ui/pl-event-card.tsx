@@ -25,10 +25,10 @@ function PlEventCard(props) {
     return <>
         <div className="pec">
             <div className="pec__info">
-                <div className="pec__info__tag">
+               {tag && <div className="pec__info__tag">
                     <img className="pec__info__tag__img" src={tagLogo} />
                     <p className="pec__info__tag__text">{tag}</p>
-                </div>
+                </div>}
                {eventType &&  <div className="pec__info__type">
                   <img className="pec__info__tag__img" src={`/icons/pln-event-${eventType.toLowerCase().trim()}.svg`} />
                     <p className="pec__info__tag__text">{eventType}</p>
