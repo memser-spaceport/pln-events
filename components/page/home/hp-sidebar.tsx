@@ -8,7 +8,7 @@ import { getUniqueValuesFromEvents } from "./hp-helper";
 function HpSideBar(props) {
     const events = props.events ?? [];
     const filters = [
-        {name: "Year", type: 'select', items: getUniqueValuesFromEvents('startYear', [...events]), placeholder: 'Filter by year', defaultValue: '2022', dropdownImgUrl: '/icons/arrow-down-filled.svg', identifierId: 'year', iconUrl: '/icons/pl-calender-icon.svg'},
+        {name: "Year", type: 'select', items: getUniqueValuesFromEvents('startYear', [...events]), placeholder: 'Filter by year', defaultValue: new Date().getFullYear().toString(), dropdownImgUrl: '/icons/arrow-down-filled.svg', identifierId: 'year', iconUrl: '/icons/pl-calender-icon.svg'},
         {name: "Location", type: 'select', items: getUniqueValuesFromEvents('location', [...events]), placeholder: 'Filter by location', defaultValue: 'All', dropdownImgUrl: '/icons/arrow-down-filled.svg', identifierId: 'location', iconUrl: '/icons/pl-location-icon.svg'},
         {name: "Event Type", type: 'tags', items: ['Virtual', 'Conference', 'Social'], identifierId: 'eventType'},
         {name: "Topics", type: 'select', items: getUniqueValuesFromEvents('topics', [...events]), placeholder:'Filter by topics', defaultValue: 'All', dropdownImgUrl: '/icons/arrow-down-filled.svg', identifierId: 'topic', iconUrl: '/icons/pl-topics-icon.svg'},
@@ -22,7 +22,7 @@ function HpSideBar(props) {
         const topic = document.getElementById("topic-ps-input");
         const eventType = document.getElementById("eventType-pl-tag");
         const toggle = document.getElementById("isPlnEventOnly-pl-toggle")
-        yearElement.value = 'All'
+        yearElement.value = new Date().getFullYear().toString()
         locationElement.value = 'All';
         topic.value = 'All'
         eventType.value = ''

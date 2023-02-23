@@ -46,7 +46,7 @@ function HpTimeline(props) {
             {/*** SCROLL UP TO VIEW PAST ***/}
             {!isScrolledUp && <div className="hmt__scollup">
                 <img className="hmt__scollup__img" src="/icons/scroll-up-icon.svg"/>
-                <p className="hmt__scollup__text">Scroll up to view past events -</p>
+                <p className="hmt__scollup__text">Scroll up to view past events</p>
             </div>}
 
             <div className="hmt__cn">
