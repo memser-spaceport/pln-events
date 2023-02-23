@@ -7,7 +7,7 @@ import { getUniqueValuesFromEvents } from "./hp-helper";
 
 function HpSideBar(props) {
     const events = props.events ?? [];
-    const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+    const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString());
     const [selectedLocation, setSelectedLocation] = useState('All');
     const [selectedTopic, setSelectedTopic] = useState('All')
 
@@ -23,11 +23,11 @@ function HpSideBar(props) {
 
     const onFilterChange = props.onFilterChange;
     const onClearFilters = () => {
-        const yearElement = document.getElementById("year-ps-input");
-        const locationElement = document.getElementById("location-ps-input")
-        const topic = document.getElementById("topic-ps-input");
-        const eventType = document.getElementById("eventType-pl-tag");
-        const toggle = document.getElementById("isPlnEventOnly-pl-toggle")
+        const yearElement = document.getElementById("year-ps-input") as HTMLInputElement;
+        const locationElement = document.getElementById("location-ps-input")  as HTMLInputElement;
+        const topic = document.getElementById("topic-ps-input") as HTMLInputElement;
+        const eventType = document.getElementById("eventType-pl-tag")  as HTMLInputElement;
+        const toggle = document.getElementById("isPlnEventOnly-pl-toggle")  as HTMLInputElement
 
         yearElement.value = new Date().getFullYear().toString();
         setSelectedYear('')
@@ -38,9 +38,8 @@ function HpSideBar(props) {
         setSelectedTopic('')
         setSelectedTopic('All')
         topic.value = 'All'
-       
-        eventType?.value = ''
-        toggle?.checked = false;
+        eventType.value = ''
+        toggle.checked = false;
         props.onClearFilters();
     }
      

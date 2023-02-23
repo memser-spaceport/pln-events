@@ -166,7 +166,7 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
   </>
 }
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async ({ params })  => {
 
   const eventsListData = await client.queries.eventConnection({ last: -1 });
   return {
