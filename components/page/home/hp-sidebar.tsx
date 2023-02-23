@@ -1,47 +1,31 @@
 import { useState } from "react";
 import PlSelect from "../../ui/pl-select";
+import PlTags from "../../ui/pl-tags";
 import PlToggle from "../../ui/pl-toggle";
+import { getUniqueValuesFromEvents } from "./hp-helper";
 
 
 function HpSideBar(props) {
     const events = props.events ?? [];
-    const [defaultFilters, setDefaultFilters] = useState({year: 'All', location: ''})
-    let allYears = [];
-    let location = ['All'];
-    let eventType = ['All'];
-    let topics = ['All'];
-    events.forEach(ev => {
-        if(!allYears.includes(ev.startYear)) {
-            allYears.push(ev.startYear)
-        }
-        if(!location.includes(ev.location)) {
-            location.push(ev.location)
-        }
-
-        if(!eventType.includes(ev.eventType) && ev.eventType) {
-            eventType.push(ev.eventType)
-        }
-
-        ev.topicitems.forEach(t => {
-            if(!topics.includes(t)) {
-                topics.push(t)
-            }
-        })
-
-        console.log(eventType)
-    })
+    const filters = [
+        {name: "Year", type: 'select', items: getUniqueValuesFromEvents('startYear', [...events]), placeholder: 'Filter by year', defaultValue: '2022', dropdownImgUrl: '/icons/arrow-down-filled.svg', identifierId: 'year', iconUrl: '/icons/pl-calender-icon.svg'},
+        {name: "Location", type: 'select', items: getUniqueValuesFromEvents('location', [...events]), placeholder: 'Filter by location', defaultValue: 'All', dropdownImgUrl: '/icons/arrow-down-filled.svg', identifierId: 'location', iconUrl: '/icons/pl-location-icon.svg'},
+        {name: "Event Type", type: 'tags', items: ['Virtual', 'Conference', 'Social'], identifierId: 'eventType'},
+        {name: "Topics", type: 'select', items: getUniqueValuesFromEvents('topics', [...events]), placeholder:'Filter by topics', defaultValue: 'All', dropdownImgUrl: '/icons/arrow-down-filled.svg', identifierId: 'topic', iconUrl: '/icons/pl-topics-icon.svg'},
+       
+    ]
 
     const onFilterChange = props.onFilterChange;
     const onClearFilters = () => {
         const yearElement = document.getElementById("year-ps-input");
         const locationElement = document.getElementById("location-ps-input")
         const topic = document.getElementById("topic-ps-input");
-        const eventType = document.getElementById("eventType-ps-input");
+        const eventType = document.getElementById("eventType-pl-tag");
         const toggle = document.getElementById("isPlnEventOnly-pl-toggle")
         yearElement.value = 'All'
         locationElement.value = 'All';
         topic.value = 'All'
-        eventType.value = 'All'
+        eventType.value = ''
         toggle.checked = false;
         props.onClearFilters();
     }
@@ -56,22 +40,12 @@ function HpSideBar(props) {
                 <p className="hpsb__pln__title">Show PLN Events only</p>
                 <PlToggle  itemId="isPlnEventOnly" activeItem={false} callback={onFilterChange}/>
             </div>
-            <div className="hpsb__year">
-                <h4 className="hpsb__year__title">Year</h4>
-                <PlSelect selectArrowImgSrc="/icons/arrow-down-filled.svg" itemId="year" callback={onFilterChange} activeItem={`${new Date().getFullYear()}`} placeholder="Filter by Year" items={[...allYears]}/>
-            </div>
-            <div className="hpsb__location">
-                <h4 className="hpsb__location__title">Location</h4>
-                <PlSelect selectArrowImgSrc="/icons/arrow-down-filled.svg" itemId="location" callback={onFilterChange} activeItem="All" placeholder="Filter by location" items={[...location]}/>
-            </div> 
-            <div className="hpsb__location">
-                <h4 className="hpsb__location__title">Topics</h4>
-                <PlSelect selectArrowImgSrc="/icons/arrow-down-filled.svg" itemId="topic" callback={onFilterChange} activeItem="All" placeholder="Filter By Topics" items={[...topics]}/>
-            </div>
-            <div className="hpsb__eventtype">
-                <h4 className="hpsb__eventtype__title">Event Type</h4>
-                <PlSelect selectArrowImgSrc="/icons/arrow-down-filled.svg" itemId="eventType" callback={onFilterChange} activeItem="All" placeholder="Filter By Event Type" items={[...eventType]}/>
-            </div>
+           
+            {filters.map(filter => <div className="hpsb__location">
+                <h4 className="hpsb__location__title">{filter.name}</h4>
+                {filter.type === 'select' && <PlSelect callback={onFilterChange} {...filter}/>}
+                {filter.type === 'tags' && <PlTags callback={onFilterChange} itemId={filter.identifierId} items={filter.items}/>}
+            </div>)}
 
         </div>
         <style jsx>

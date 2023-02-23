@@ -4,7 +4,9 @@ import PlEventCard from "../../ui/pl-event-card";
 function HpTimeline(props) {
     const monthWiseEvents = props.monthWiseEvents || [];
     const [isScrolledUp, setScrollUp] = useState(false);
-
+    const totalEventsCount = monthWiseEvents.reduce((count, m) => {
+        return count + m.events.length
+    }, 0)
 
     const onScrollToCurrentMonth = () => {
         const currentTimeStamp = new Date().getTime()
@@ -17,7 +19,7 @@ function HpTimeline(props) {
                 let foundEventItem = foundItem.events[foundEventId];
                 const scrollItem = document.getElementById(`m-${currentMonthId}-${foundEventItem.startDay}`);
                 if(scrollItem) {
-                    scrollItem.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
+                    scrollItem.scrollIntoView({behavior: "smooth", block: "start", inline: "start"})
                 }
             }
         }
@@ -36,7 +38,7 @@ function HpTimeline(props) {
 
     useEffect(() => {
         onScrollToCurrentMonth();
-    }, [])
+    }, [props.filters])
 
     return <>
         <div onScroll={onContentScroll} id="timeline-cn" className="hmt">
@@ -44,10 +46,13 @@ function HpTimeline(props) {
             {/*** SCROLL UP TO VIEW PAST ***/}
             {!isScrolledUp && <div className="hmt__scollup">
                 <img className="hmt__scollup__img" src="/icons/scroll-up-icon.svg"/>
-                <p className="hmt__scollup__text">Scroll up to view past events</p>
+                <p className="hmt__scollup__text">Scroll up to view past events -</p>
             </div>}
 
             <div className="hmt__cn">
+                {totalEventsCount === 0 && <div className="hmt__cn__empty">
+                    No results found. Please try changing filters
+                    </div>}
                 {monthWiseEvents.map(me => <div id={`m-${me.index}`} className="hmt__cn__sec">
                     {/*** MONTH DROPDOWN ***/}
                     <p className="hmt__cn__sec__month">{me.name}</p>
@@ -55,10 +60,9 @@ function HpTimeline(props) {
                     {/*** TIMELINE UI ***/}
                     <div className="hmt__cn__sec__timeline"></div>
 
-
                     {/*** EVENT CARD ***/}
-                    {me.events.map((event, eventIndex) => <div id={`m-${me.index}-${event.startDay}`} className={`hmt__cn__sec__event`}>
-                        <div className={`hmt__cn__sec__event__item ${(eventIndex + 1) % 2 !== 0 ? 'left' : 'right'}`}>
+                    {me.events.map((event, eventIndex) => <div id={`m-${me.index}-${event.startDay}-cn`} className={`hmt__cn__sec__event`}>
+                        <div id={`m-${me.index}-${event.startDay}`}  className={`hmt__cn__sec__event__item ${(eventIndex + 1) % 2 !== 0 ? 'left' : 'right'}`}>
                             <PlEventCard {...event} />
                             <div className={`hmt__cn__sec__event__timeline ${(eventIndex + 1) % 2 !== 0 ? 'hmt__cn__sec__event__timeline--left' : 'hmt__cn__sec__event__timeline--right'}`}></div>
                             <div className={`hmt__cn__sec__event__databox ${(eventIndex + 1) % 2 !== 0 ? 'hmt__cn__sec__event__databox--left' : 'hmt__cn__sec__event__databox--right'}`}>
@@ -81,6 +85,7 @@ function HpTimeline(props) {
             .hmt__scollup__text {font-size: 12px;}
             
             .hmt__cn {position: relative;}
+            .hmt__cn__empty {background: white; border: 1px solid lightgrey; text-align: center; margin-top: 40px; width: 400px; padding: 24px;}
             .hmt__cn__sec {width: 670px; display: flex; position: relative;  flex-direction: column; align-items: center;}
             .hmt__cn__sec__month {background: white;  position: sticky; top: 30px; padding: 6px 24px; color: #0F172A; border-radius: 10px; font-size: 11px; font-weight: 500; border: 1px solid #CBD5E1;z-index: 3; width: fit-content; margin: 32px 0;}
             .hmt__cn__sec__event { width: 670px; position: relative;}
