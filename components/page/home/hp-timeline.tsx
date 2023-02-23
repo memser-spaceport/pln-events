@@ -51,7 +51,7 @@ function HpTimeline(props) {
 
             <div className="hmt__cn">
                 {totalEventsCount === 0 && <div className="hmt__cn__empty">
-                    No results found. Please try changing filters
+                    No matching events available.
                     </div>}
                 {monthWiseEvents.map(me => <div id={`m-${me.index}`} className="hmt__cn__sec">
                     {/*** MONTH DROPDOWN ***/}
