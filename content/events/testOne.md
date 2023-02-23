@@ -4,7 +4,7 @@ eventDescription: "Short Description of your event"
 eventTopic:
 - "Web3"
 eventType: "Social"
-location: "Koenigsegg"
+location: "Koenigsegg YY"
 venueName: "Art museum"
 venueMapsLink: "https://goo.gl/maps/2EgwGL7DsJYehj3g79"
 venueAddress: "fernway"
