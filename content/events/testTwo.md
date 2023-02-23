@@ -10,7 +10,7 @@ venueMapsLink: "https://goo.gl/maps/2EgwGL7DsJYehj3g7"
 venueAddress: "fernway"
 website: "http://www.google.com"
 startDate: "12/27/2023"
-endDate: "01/02/2024"
+endDate: "12/28/2023"
 tag: "PLN Event"
 dateTBD: false
 ---
