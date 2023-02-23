@@ -11,6 +11,6 @@ venueAddress: "fernway"
 website: "http://www.google.com"
 startDate: "12/28/2023"
 endDate: "12/29/2023"
-tag: "Industryy Event"
+tag: "Block Event"
 dateTBD: false
 ---
