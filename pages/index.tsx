@@ -9,6 +9,7 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
   const eventsData = props.data.eventConnection.edges;
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const events = [...eventsData].map(event => {
+
     // Start Date
     const startDateValue = new Date(event.node?.startDate);
     const startDateTimeStamp = startDateValue.getTime()
@@ -16,6 +17,7 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
     const startDay = startDateValue.getDate();
     const startDayString = startDateValue.toLocaleDateString('us-en', { weekday: 'short' });
     const startYear = startDateValue.getFullYear()
+
     // End Date
     const endDateValue = new Date(event.node?.endDate);
     const endDateTimeStamp = endDateValue.getTime();
@@ -34,15 +36,12 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
     const locationLogo = '/icons/pln-location-icon.svg'
     const calenderLogo = '/icons/calender-icon.svg'
     let tagLogo = ''
+
     if(event?.node?.tag?.toLowerCase().trim() === 'pln event') {
       tagLogo = '/icons/pln-event-icon.svg'
     } else if (event?.node?.tag?.toLowerCase().trim() === 'industry event') {
       tagLogo = '/icons/pln-industry-icon.svg'
     }
-
-    
-
-
 
 
     return {
@@ -75,13 +74,14 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
       fullDateFormat,
       tagLogo,
       calenderLogo,
-      locationLogo
+      locationLogo,
+      externalLinkIcon: '/icons/pl-external-icon.svg'
     }
   })
 
   const orderedEventsList = [...events].sort((a,b) => a.startDateTimeStamp - b.startDateTimeStamp)
 
-  const [filters, setFilters] = useState({ year: `${new Date().getFullYear()}`, location: 'All', isPlnEventOnly: false, eventname: 'All', topic: 'All', eventType: 'All' })
+  const [filters, setFilters] = useState({ year: `${new Date().getFullYear()}`, location: 'All', isPlnEventOnly: false, eventname: 'All', topic: 'All', eventType: '',  })
 
   const filterdList = [...orderedEventsList].filter(item => {
 
@@ -98,7 +98,7 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
       return false
     }
 
-    if (filters.eventType !== 'All' && item?.eventType !== filters.eventType) {
+    if (filters.eventType !== '' && filters?.eventType?.toLowerCase().trim() !== item?.eventType?.toLowerCase().trim()) {
       return false
     }
 
@@ -118,7 +118,10 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
       index: i,
       events: [...forSpecificMonth]
     }
-    monthWiseEvents.push(newMonthData);
+    if (forSpecificMonth.length > 0) {
+      monthWiseEvents.push(newMonthData);
+    }
+   
   })
 
 
@@ -126,12 +129,12 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
     let newFilter = { ...filters }
     newFilter[name] = value
     setFilters({ ...newFilter })
-
+    console.log(name, value)
     // setFilters(v => v[name] = value)
   }
 
   const onClearFilters = () => {
-    setFilters({ year: `${new Date().getFullYear()}`, location: 'All', isPlnEventOnly: false, eventname: 'All', topic: 'All', eventType: 'All' })
+    setFilters({ year: `${new Date().getFullYear()}`, location: 'All', isPlnEventOnly: false, eventname: 'All', topic: 'All', eventType: '' })
     
   }
 
@@ -147,7 +150,7 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
 
       {/*** EVENTS TIMELINE ***/}
       <div className="hp__maincontent">
-        <HpTimeline monthWiseEvents={monthWiseEvents}/>
+        <HpTimeline filters={filters} monthWiseEvents={monthWiseEvents}/>
       </div>
     </div>
     <style jsx>
