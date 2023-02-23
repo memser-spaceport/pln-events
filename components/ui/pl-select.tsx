@@ -12,8 +12,8 @@ function PlSelect(props) {
     const setSelectedItem = props.onItemChange;
     const [isPaneActive, setPaneActiveStatus] = useState(false);
     const [filteredItems, setFilteredItems] = useState([...items])
-    const inputRef = useRef()
-    const paneRef = useRef()
+    const inputRef = useRef<HTMLInputElement>()
+    const paneRef = useRef<HTMLDivElement>()
  
     const onInputChange = (e) => {
         setPaneActiveStatus(true)
