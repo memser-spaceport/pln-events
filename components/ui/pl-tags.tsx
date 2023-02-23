@@ -2,7 +2,7 @@ import {useRef, useState} from 'react'
 function PlTags(props) {
     const items = props.items;
     const itemId = props.itemId;
-    const inputRef = useRef()
+    const inputRef = useRef<HTMLInputElement>()
     const callback = props.callback;
     const onItemSelected = (item) => {
         if(inputRef.current.value === item) {
