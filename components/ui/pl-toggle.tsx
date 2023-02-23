@@ -1,7 +1,7 @@
 import { useRef } from "react"
 
 function PlToggle(props) {
-    const checkRef = useRef();
+    const checkRef = useRef<HTMLInputElement>();
     const callback = props.callback;
     const itemId = props.itemId;
 
