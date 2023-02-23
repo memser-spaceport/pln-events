@@ -39,8 +39,8 @@ function HpSideBar(props) {
         setSelectedTopic('All')
         topic.value = 'All'
        
-        eventType.value = ''
-        toggle.checked = false;
+        eventType?.value = ''
+        toggle?.checked = false;
         props.onClearFilters();
     }
      
