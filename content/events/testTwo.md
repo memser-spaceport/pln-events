@@ -9,8 +9,8 @@ venueName: "Art museum"
 venueMapsLink: "https://goo.gl/maps/2EgwGL7DsJYehj3g7"
 venueAddress: "fernway"
 website: "http://www.google.com"
-startDate: "02/27/2023"
-endDate: "03/02/2023"
+startDate: "02/27/2024"
+endDate: "03/02/2024"
 tag: "PLN Event"
 dateTBD: false
 ---
