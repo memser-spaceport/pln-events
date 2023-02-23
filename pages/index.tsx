@@ -26,7 +26,7 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
 
     // Event date format
     const showEndDate = startDay === endDay ? false : true;
-    const fullDateFormat = startMonthIndex === endMonthIndex ? `${months[startMonthIndex]} ${startDateValue.getDate()} ${showEndDate ? '-' : ''} ${showEndDate ? endDateValue.getDate() : ''}, ${endDateValue.getFullYear()} ` : `${months[startMonthIndex]} ${startDateValue.getDate()} - ${months[endMonthIndex]} ${endDateValue.getDate()}, ${startDateValue.getFullYear()}`
+    const fullDateFormat = startMonthIndex === endMonthIndex ? `${months[startMonthIndex]} ${startDateValue.getDate()} ${showEndDate ? '-' : ''} ${showEndDate ? endDateValue.getDate() : ''}, ${endDateValue.getFullYear()} ` : `${months[startMonthIndex]} ${startDateValue.getDate()} - ${months[endMonthIndex]} ${endDateValue.getDate()}, ${endDateValue.getFullYear()}`
 
     if (event?.node?.eventTopic) {
       event.node['topicitems'] = event.node.eventTopic

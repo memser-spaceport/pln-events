@@ -11,9 +11,10 @@ function PlEventCard(props) {
     const venueAddress = props?.venueAddress ?? '';
     const venueMapsLink = props?.venueMapsLink ?? '';
     const fullAddress = [venueName.trim(), venueAddress.trim(), location.trim()];
+    const dateTBD = props.dateTBD
     
     const fullAddressValue = [...fullAddress].filter(v => v !== '').join(", ")
-    console.log(fullAddress, fullAddressValue)
+
 
     // images/logos
     const tagLogo = props?.tagLogo ?? ''
@@ -29,27 +30,29 @@ function PlEventCard(props) {
                     <p className="pec__info__tag__text">{tag}</p>
                 </div>
                {eventType &&  <div className="pec__info__type">
-                  <img className="pec__info__tag__img" src={`/icons/pln-event-virtual.svg`} />
+                  <img className="pec__info__tag__img" src={`/icons/pln-event-${eventType.toLowerCase().trim()}.svg`} />
                     <p className="pec__info__tag__text">{eventType}</p>
                 </div>}
             </div>
             {!website && <p className="pec__eventname">{eventName}</p>}
             {website && <p className="pec__eventname"><a className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p>}
             {topics.length > 0 && <div className="pec__topics">
-                {topics.map(v => <p className="pec__topics__item">{v}</p>)}
+                {topics.map((v, vindex) => vindex <=3 ?<p className="pec__topics__item">{v}</p> : null )}
             </div>}
 
             {description && <p className="pec__desc">{description}</p>}
             <div className="pec__calender">
                 <img className="pec__calender__icon" src={calenderLogo}/>
-                <p className="pec__calender__text">{fullDateFormat}</p>
+                {!dateTBD && <p className="pec__calender__text">{fullDateFormat}</p>}
+                {dateTBD && <p className="pec__calender__text">Date TBD</p>}
+                
             </div>
            
            
             <div className="pec__location">
                 <img className="pec__location__img" src={locationLogo}/>
                 {!venueMapsLink && <p className="pec__location__text">{fullAddressValue}</p>}
-                {venueMapsLink && <a className="pec__location__link" href={venueMapsLink} target="_blank"><p className="pec__location__text title">{fullAddressValue}</p></a>}
+                {venueMapsLink && <a className="pec__location__link" href={venueMapsLink} target="_blank"><p className="pec__location__text location-blue">{fullAddressValue}</p></a>}
                 
             </div>
            
@@ -59,7 +62,8 @@ function PlEventCard(props) {
                 `
               
             .pec {width: 100%;}
-            .blue {  }
+            .blue { }
+            
             .title {display: inline-block;}
             .title:after{
                   content: "";
@@ -81,16 +85,17 @@ function PlEventCard(props) {
             .pec__calender {display: flex; align-items: center;}
             .pec__calender__icon {width: 12px; height: 12px; margin-right: 8px;}
             .pec__calender__text {font-size: 12px;}
-            .pec__location__link {display: flex;}
+            .pec__location__link {display: flex; color: blue !important;}
 
             .pec__location {display: flex; align-items: center; margin:8px 0;}
             .pec__location__img {width: 12px; height: 12px; margin-right: 8px;}
-            .pec__location__text {color: #64748B; font-size: 12px; margin-right: 4px;}
+            .pec__location__text {color: #64748B; font-size: 12px; margin-right: 4px; display: flex; flex-wrap: wrap;}
             
             .pec__info__type {margin-left: 16px; display: flex; align-items: center;}
-            .pec__topics {display: flex; margin: 8px 0;}
+            .pec__topics {display: flex; margin: 8px 0;flex-wrap: wrap;}
             .pec__topics__item {padding: 4px 12px; border: 1px solid #CBD5E1; border-radius: 8px; margin-right: 8px; color: grey; font-size: 12px;}
             .timeline {position: absolute; height: 100%; left: 50%; top: 0; width: 1px; background: #CBD5E1;}
+            .location-blue {color: #156ff7;}
             `
             }
         </style>

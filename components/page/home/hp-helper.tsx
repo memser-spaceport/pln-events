@@ -1,7 +1,7 @@
 export const getUniqueValuesFromEvents = (key, allEvents) => {
     let items = [];
     switch (key) {
-        case 'year':
+        case 'startYear':
         case 'location':
         case 'eventType':
             if(key !== 'startYear') {

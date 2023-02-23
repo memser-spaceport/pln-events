@@ -8,7 +8,8 @@ function PlSelect(props) {
     const callback = props.callback;
     const dropdownImgUrl = props.dropdownImgUrl ?? ''
     const iconUrl = props.iconUrl ?? '';
-    const [selectedItem, setSelectedItem] = useState(activeItem);
+    const selectedItem = props.selectedItem ?? '';
+    const setSelectedItem = props.onItemChange;
     const [isPaneActive, setPaneActiveStatus] = useState(false);
     const [filteredItems, setFilteredItems] = useState([...items])
     const inputRef = useRef()
@@ -31,6 +32,7 @@ function PlSelect(props) {
         setSelectedItem(item);
         inputRef.current.value = item;
         setPaneActiveStatus(false)
+        setFilteredItems([...items])
         if(callback) {
             callback(itemId, item, index)
         }
@@ -43,7 +45,6 @@ function PlSelect(props) {
             if (!paneRef.current || paneRef?.current?.contains(event.target)) {
                 return;
             } else {
-                console.log(paneRef.current, event.target)
                 setPaneActiveStatus(false)
             }
            
@@ -55,6 +56,15 @@ function PlSelect(props) {
             document.removeEventListener("touchstart", listener);
         };
     }, [])
+
+    useEffect(() => {
+        console.log(selectedItem)
+        if(selectedItem === 'All' || selectedItem === '') {
+            console.log('cleared ', items)
+            setFilteredItems([...items])
+           
+        } 
+    }, [props])
 
 
     return <>
