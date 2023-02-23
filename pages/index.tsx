@@ -126,7 +126,7 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
 
 
   const onFilterChange = (name, value, index) => {
-    let newFilter = { ...filters }
+    const newFilter = { ...filters }
     newFilter[name] = value
     setFilters({ ...newFilter })
     console.log(name, value)
