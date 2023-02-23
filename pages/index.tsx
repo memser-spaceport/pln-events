@@ -28,9 +28,7 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
     const showEndDate = startDay === endDay ? false : true;
     const fullDateFormat = startMonthIndex === endMonthIndex ? `${months[startMonthIndex]} ${startDateValue.getDate()} ${showEndDate ? '-' : ''} ${showEndDate ? endDateValue.getDate() : ''}, ${endDateValue.getFullYear()} ` : `${months[startMonthIndex]} ${startDateValue.getDate()} - ${months[endMonthIndex]} ${endDateValue.getDate()}, ${endDateValue.getFullYear()}`
 
-    if (event?.node?.eventTopic) {
-      event.node['topicitems'] = event.node.eventTopic
-    }
+
 
     // Logos/images
     const locationLogo = '/icons/pln-location-icon.svg'
@@ -62,7 +60,6 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
       venueMapsLink: event?.node?.venueMapsLink,
       venueAddress: event?.node?.venueAddress,
       topics: event.node?.eventTopic,
-      topicitems: event?.node?.topicitems ?? [],
       startDateTimeStamp,
       startMonthIndex,
       startDay,
