@@ -1,0 +1,96 @@
+import { useEffect, useRef, useState } from "react";
+
+function PlSelect(props) {
+    const itemId = props.identifierId
+    const items = props.items ?? [];
+    const placeholder = props.placeholder ?? ''
+    const activeItem = props.defaultValue ?? ''
+    const callback = props.callback;
+    const dropdownImgUrl = props.dropdownImgUrl ?? ''
+    const iconUrl = props.iconUrl ?? '';
+    const selectedItem = props.selectedItem ?? '';
+    const setSelectedItem = props.onItemChange;
+    const [isPaneActive, setPaneActiveStatus] = useState(false);
+    const [filteredItems, setFilteredItems] = useState([...items])
+    const inputRef = useRef()
+    const paneRef = useRef()
+ 
+    const onInputChange = (e) => {
+        setPaneActiveStatus(true)
+        if(e.target.value.trim() === '') {
+            setSelectedItem(activeItem);
+            setFilteredItems([...items])
+            callback(itemId, activeItem, 0)
+        } else {
+            const filteredValues = [...items].filter(v => v.toLowerCase().includes(e.target.value.toLowerCase()))
+            setFilteredItems([...filteredValues])
+        }
+       
+    }
+
+    const onSelectChange = (item, index) => {
+        setSelectedItem(item);
+        inputRef.current.value = item;
+        setPaneActiveStatus(false)
+        setFilteredItems([...items])
+        if(callback) {
+            callback(itemId, item, index)
+        }
+    }
+
+    useEffect(() => {
+        inputRef.current.value = selectedItem
+        const listener = (event) => {
+            // Do nothing if clicking ref's element or descendent elements
+            if (!paneRef.current || paneRef?.current?.contains(event.target)) {
+                return;
+            } else {
+                setPaneActiveStatus(false)
+            }
+           
+        };
+        document.addEventListener("mousedown", listener);
+        document.addEventListener("touchstart", listener);
+        return () => {
+            document.removeEventListener("mousedown", listener);
+            document.removeEventListener("touchstart", listener);
+        };
+    }, [])
+
+    useEffect(() => {
+        console.log(selectedItem)
+        if(selectedItem === 'All' || selectedItem === '') {
+            console.log('cleared ', items)
+            setFilteredItems([...items])
+           
+        } 
+    }, [props])
+
+
+    return <>
+        <div id={`${itemId}-ps`} className="ps">
+            <input disabled={items.length <= 1 ? true : false} placeholder={placeholder} id={`${itemId}-ps-input`} onClick={e => setPaneActiveStatus(v => !v)} onChange={onInputChange} className="ps__input" ref={inputRef} type="text" />
+            {isPaneActive && <div ref={paneRef} id={`${itemId}-ps-pane`} className="ps__pane">
+                {filteredItems.map((item, index) => <p id={`${itemId}-ps-pane-${index}`} className={`ps__pane__item ${selectedItem === item ? 'ps__pane__item--active': ''}`} onClick={e => onSelectChange(item, index)}>{item}</p>)}
+            </div>}
+            {iconUrl && <img className="ps__icon" src={iconUrl}/>}
+            {(dropdownImgUrl && items.length > 1) && <img className="ps__arrow" onClick={e => setPaneActiveStatus(v => !v)}  src={dropdownImgUrl} />}
+        </div>
+
+        <style jsx>
+            {
+                `
+                .ps {position: relative; width: 100%;}
+                .ps__pane {z-index: 4; max-height: 200px; overflow-y: auto; box-shadow:0px 2px 6px rgba(15, 23, 42, 0.16); border-radius: 8px; position: absolute; border: 1px solid #E2E8F0; top: 38px; left:0; background: white; width: calc(100%); padding: 8px 16px;}
+                .ps__arrow {position: absolute; cursor:pointer; top: 8px; right: 8px; width:20px; height: 20px;}
+                .ps__icon {position: absolute; cursor: pointer; top: 8px; left: 8px; width: 20px; height: 20px;}
+                .ps__pane__item { font-size: 13px; padding: 4px 0; cursor: pointer;}
+                .ps__input {border: 1px solid #CBD5E1; font-size: 13px; width: calc(100%); outline: none; border-radius: 8px; padding: 8px 16px 8px 34px;}
+                .ps__pane__item--active {font-weight: 700;}
+                `
+            }
+        </style>
+    </>
+}
+
+export default PlSelect
