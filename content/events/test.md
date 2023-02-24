@@ -8,8 +8,8 @@ location: India
 venueName: Test
 venueMapsLink: 'https://goo.gl/maps/LvEbp436mAdmHGi89'
 venueAddress: Royapettah
-startDate: '2023-01-01T03:30:00.000Z'
-endDate: '2023-01-05T03:30:00.000Z'
+startDate: '01/01/2023'
+endDate: '01/05/2023'
 dri: Aswin Raj
 eventTopic:
   - Web3
