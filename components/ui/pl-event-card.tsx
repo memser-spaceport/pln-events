@@ -1,4 +1,5 @@
 function PlEventCard(props) {
+    console.log(props)
     const eventName = props?.eventName ?? '';
     const topics = props?.topics ?? [];
     const tag = props?.tag ?? ''
