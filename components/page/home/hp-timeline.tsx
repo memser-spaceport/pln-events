@@ -80,29 +80,29 @@ function HpTimeline(props) {
                 `
             .hmt {width: 100%; height: 100%; overflow-y:scroll; position: relative; display: flex; flex-direction: column; align-items: center; padding-bottom: 50px;}
             
-            .hmt__scollup {width: 100%; display: flex; position: sticky; z-index: 5; top:0px; justify-content: center; align-items: center; padding: 5px 0; background: linear-gradient(180deg, #F1F5F9 0%, rgba(241, 245, 249, 0.92) 39.05%); color: black;}
+            .hmt__scollup {width: 100%; display: flex; position: sticky; z-index: 5; top:0px; justify-content: center; align-items: center; padding: 13px 0; background: linear-gradient(180deg, #F1F5F9 0%, rgba(241, 245, 249, 0.92) 39.05%); color: #0F172A; font-size: 13px;}
             .hmt__scollup__img {width: 8px; margin-right: 8px; height: 8px;}
             .hmt__scollup__text {font-size: 12px;}
             
             .hmt__cn {position: relative;}
             .hmt__cn__empty {background: white; border: 1px solid lightgrey; text-align: center; margin-top: 40px; width: 400px; padding: 24px;}
-            .hmt__cn__sec {width: 670px; display: flex; position: relative;  flex-direction: column; align-items: center;}
-            .hmt__cn__sec__month {background: white;  position: sticky; top: 30px; padding: 6px 24px; color: #0F172A; border-radius: 10px; font-size: 11px; font-weight: 500; border: 1px solid #CBD5E1;z-index: 3; width: fit-content; margin: 32px 0;}
-            .hmt__cn__sec__event { width: 670px; position: relative;}
-            .hmt__cn__sec__event__item {border: 1px solid #CBD5E1; position: relative; width: 300px; border-radius: 8px;  background: white; padding: 16px;}
+            .hmt__cn__sec {width: 800px; display: flex; position: relative;  flex-direction: column; align-items: center;}
+            .hmt__cn__sec__month {background: white;  position: sticky; top: 42px; padding: 6px 16px; color: #0F172A; border-radius: 100px; font-size: 13px; font-weight: 400; border: 0.5px solid #CBD5E1;z-index: 3; width: fit-content; margin: 32px 0;}
+            .hmt__cn__sec__event { width: 800px; position: relative;}
+            .hmt__cn__sec__event__item {position: relative; width: 354px; }
           
             .hmt__cn__sec__timeline {position: absolute; height: 100%; left: 50%; top: 0; width: 1px; background: #CBD5E1;}
 
            
-            .hmt__cn__sec__event__timeline {position: absolute; width: 21px; height: 1px; background: #CBD5E1;}
-            .hmt__cn__sec__event__timeline--left { top: 10px; right: -21px;}
-            .hmt__cn__sec__event__timeline--right { top: 10px; left: -21px;}
+            .hmt__cn__sec__event__timeline {position: absolute; width: 23px; height: 1px; border-bottom: 1px solid #cbd5e1;}
+            .hmt__cn__sec__event__timeline--left { top: 22px; right: -23px;}
+            .hmt__cn__sec__event__timeline--right { top: 22px; left: -23px;}
             
-            .hmt__cn__sec__event__databox {position: absolute; border-radius: 2px; width: 36px; color: white; font-size: 14px;  display: flex; flex-direction: column; align-items: center; justify-content: center; height: 36px; background: #8C55D3; }
-            .hmt__cn__sec__event__databox--left { top: 0; right: -52px;}
-            .hmt__cn__sec__event__databox--right { top: 0; left: -52px;}
-            .hmt__cn__sec__event__databox__date {font-size: 12px; font-weight: 700; margin-bottom: 0px;}
-            .hmt__cn__sec__event__databox__day {font-size: 10px; text-transform: uppercase;}
+            .hmt__cn__sec__event__databox {position: absolute; border-radius: 2px; width: 44px; color: white; font-size: 14px;  display: flex; flex-direction: column; align-items: center; justify-content: center; height: 44px; background: #8C55D3; }
+            .hmt__cn__sec__event__databox--left { top: 0; right: -67px;}
+            .hmt__cn__sec__event__databox--right { top: 0; left: -67px;}
+            .hmt__cn__sec__event__databox__date {font-size: 16px; font-weight: 600; margin-bottom: 0px;}
+            .hmt__cn__sec__event__databox__day {font-size: 12px; font-weight: 400; text-transform: uppercase;}
  
 
             .left {float: left;}
