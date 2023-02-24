@@ -50,25 +50,13 @@ function PlEventCard(props) {
             </a>
           </p>
         )}
-        {/* <>tags --- {JSON.stringify(topics)}</>
-        <div className="pec__topics">
-          <p className="pec__topics__item">tag1</p>
-          <p className="pec__topics__item">tag2</p>
-          <p className="pec__topics__item">tag3</p>
-          <p className="pec__topics__item">tag4</p>
-        </div> */}
-        <div className="pec__topics">
-          {topics.map((v) => (
-            <p className="pec__topics__item">{String(v)}</p>
-          ))}
-        </div>
-        {/* {
+        {topics.length && (
           <div className="pec__topics">
             {topics.map((v) => (
-              <p className="pec__topics__item">{`y-${v}-z`}</p>
+              <p className="pec__topics__item">{String(v)}</p>
             ))}
           </div>
-        } */}
+        )}
         <p className="pec__desc">{description}</p>
         <div className="pec__calender">
           <img alt="" className="pec__calender__icon" src={calenderLogo} />
