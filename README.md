@@ -4,23 +4,13 @@ This website is a listing of events happening within the Protocol Labs Network.
 ## Submitting Events
 We encourage you to submit your events to this site via a pull request on github, to do so...
 
-1. Create a new file in ```/content/events``` and name it your-event-name.md
-2. Copy and paste the following template into your new file
-```
----
-eventName: Your Event
-location: "City, Country" or "Location TBD"
-website: http://www.example.com or leave blank
-startDate: 02/06/2023
-endDate: 02/09/2023
-tag: "PLN Event" or "Industry Event"
-dateTBD: false
----
-```
-3. Fill in the template with details for your event, please use month/day/year format for dates
+1. Please download a copy of the template from the path: ```eventTemplate/template_short_event.md```
+2. Using the template please fill details related to your event and rename the file as ```<your-event-name>.md```
+3. Place the finished file in the path: ```/content/events```
 4. Create a PR to this repo to add this new file
 5. The Member Services team will review and merge your event into the website
 
+## Important points before raising Pull Request
 Start date & end date are required to display the event on the timeline.
 
 If you don't have concrete dates, add the approximate dates & set ```dateTBD: true```.
