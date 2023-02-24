@@ -9,6 +9,5 @@ tag: PLN Event
 dateTBD: false
 venueName: Upper Larimer
 eventTopic:
-  - Filecoin
 venueMapsLink: 'https://goo.gl/maps/VgRMRxWxT1DKuGBN8'
 ---
