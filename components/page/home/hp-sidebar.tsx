@@ -69,12 +69,13 @@ function HpSideBar(props) {
              .hpsb__year {padding: 16px 24px 0 24px;}
              .hpsb__year__title {font-size: 13px;  margin-bottom: 8px;}
              .hpsb__filters {padding: 16px 24px; border-bottom: 1px solid #CBD5E1; display: flex; justify-content: space-between; align-items: center;} 
-             .hpsb__filters__clear {font-size: 14px; color: #156FF7; cursor: pointer;}
+             .hpsb__filters__title {font-size: 16px;}
+             .hpsb__filters__clear {font-size: 13px; color: #156FF7; cursor: pointer;}
              .hpsb__pln {padding: 24px; border-bottom: 1px solid #CBD5E1; align-items: center; display: flex; justify-content: space-between;}
              .hpsb__pln__title {color: #475569; font-size: 14px;}
 
-             .hpsb__location {padding: 16px 24px 0 24px;}
-             .hpsb__location__title {font-size: 13px; margin-bottom: 8px; }
+             .hpsb__location {padding: 20px 24px 0 24px;}
+             .hpsb__location__title {font-size: 13px; margin-bottom: 10px; font-weight: 600; }
 
              .hpsb__eventtype {padding: 16px 24px 0 24px;}
              .hpsb__eventtype__title {font-size: 13px; margin-bottom: 8px; }

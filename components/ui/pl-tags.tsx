@@ -24,10 +24,10 @@ function PlTags(props) {
         <style jsx>
             {
                 `
-                .plt {width: 100%; display: flex; flex-wrap:wrap;}
-                .plt__item {font-size: 12px; cursor: pointer; margin-right:8px;  padding: 3px 12px; border: 1px solid lightgrey; border-radius: 8px;}
+                .plt {width: 100%; display: inline-flex; flex-wrap:wrap;}
+                .plt__item {font-size: 12px; color: #0F172A; cursor: pointer;  padding: 6px 12px; border: 1px solid lightgrey; border-radius: 20px;}
                 .plt__item--active {background: #dbeafe; color: #1d4ed8; border: 1px solid #1d4ed8;}
-                .plt__hidden {visibility: hidden; height: 1px;}
+                .plt__hidden {visibility: hidden; height: 1px; width: 1px;}
                 `
             }
         </style>
