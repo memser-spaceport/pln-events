@@ -8,6 +8,4 @@ endDate: 02/28/2023
 tag: PLN Event
 dateTBD: false
 venueName: Upper Larimer
-eventTopic:
-venueMapsLink: 'https://goo.gl/maps/VgRMRxWxT1DKuGBN8'
 ---
