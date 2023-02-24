@@ -8,8 +8,8 @@ endDate: '2023-03-01T00:00:00.000Z'
 tag: PLN Event
 dateTBD: false
 eventTopic:
-  - Hackathon
-  - Plenary Talks
+- "Hackathon"
+- "Plenary Talks"
 venueName: Improper City
 venueMapsLink: 'https://goo.gl/maps/UseT3u6vFmpFHMmv8'
 
