@@ -1,7 +1,6 @@
 import { trackGoal } from "fathom-client";
 
 function AppHeader() {
-   
     return <>
         <header className="ah">
             <div className="ah__logo">
