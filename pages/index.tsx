@@ -1,3 +1,4 @@
+import { trackGoal } from "fathom-client";
 import { useState } from "react";
 import { useTina } from "tinacms/dist/react";
 import { client } from "../.tina/__generated__/client";
@@ -123,6 +124,17 @@ export default function IndexPage(props: AsyncReturnType<typeof getStaticProps>[
 
 
   const onFilterChange = (name, value, index) => {
+    if(name === 'year') {
+      trackGoal('EES2EVT9', 0)
+    } else if (name === 'location') {
+      trackGoal('VCSUHFMW', 0)
+    } else if (name === 'isPlnEventOnly') {
+      trackGoal('JGCGLRN8', 0)
+    } else if (name === 'topic') {
+      trackGoal('YEM46DUS', 0)
+    } else if(name === 'eventType') {
+      trackGoal('A4CRP5C0', 0)
+    }
     const newFilter = { ...filters }
     newFilter[name] = value
     setFilters({ ...newFilter })
