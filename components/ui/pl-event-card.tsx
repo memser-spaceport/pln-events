@@ -1,7 +1,7 @@
 function PlEventCard(props) {
     console.log(props)
     const eventName = props?.eventName ?? '';
-    const topics = props?.topics ?? [];
+    const topics = props?.topics || [];
     const tag = props?.tag ?? ''
     const fullDateFormat = props?.fullDateFormat ?? ''
     const description = props?.description ?? '';
@@ -26,37 +26,37 @@ function PlEventCard(props) {
     return <>
         <div className="pec">
             <div className="pec__info">
-               {tag && <div className="pec__info__tag">
+                {tag && <div className="pec__info__tag">
                     <img className="pec__info__tag__img" src={tagLogo} />
                     <p className="pec__info__tag__text">{tag}</p>
                 </div>}
-               {eventType &&  <div className="pec__info__type">
-                  <img className="pec__info__tag__img" src={`/icons/pln-event-${eventType.toLowerCase().trim()}.svg`} />
+                {eventType && <div className="pec__info__type">
+                    <img className="pec__info__tag__img" src={`/icons/pln-event-${eventType.toLowerCase().trim()}.svg`} />
                     <p className="pec__info__tag__text">{eventType}</p>
                 </div>}
             </div>
             {!website && <p className="pec__eventname">{eventName}</p>}
             {website && <p className="pec__eventname"><a className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p>}
-            {trimmedTopics.length > 0 && <div className="pec__topics">
-                {trimmedTopics.map(v => <p className="pec__topics__item">{v}</p> )}
-            </div>}
+            <div className="pec__topics">
+                {topics.map(v => <p className="pec__topics__item">{v}</p>)}
+            </div>
 
             {description && <p className="pec__desc">{description}</p>}
             <div className="pec__calender">
-                <img className="pec__calender__icon" src={calenderLogo}/>
+                <img className="pec__calender__icon" src={calenderLogo} />
                 {!dateTBD && <p className="pec__calender__text">{fullDateFormat}</p>}
                 {dateTBD && <p className="pec__calender__text">Date TBD</p>}
-                
+
             </div>
-           
-           
+
+
             <div className="pec__location">
-                <img className="pec__location__img" src={locationLogo}/>
+                <img className="pec__location__img" src={locationLogo} />
                 {!venueMapsLink && <p className="pec__location__text">{fullAddressValue}</p>}
                 {venueMapsLink && <a className="pec__location__link" href={venueMapsLink} target="_blank"><p className="pec__location__text location-blue">{fullAddressValue}</p></a>}
-                
+
             </div>
-           
+
         </div>
         <style jsx>
             {
