@@ -24,6 +24,8 @@ function PlToggle(props) {
                 display: inline-block;
                 width: 36px;
                 height: 20px;
+                border-radius: 25px;
+                border: 0.4px solid rgba(203, 213, 225, 0.4);
               }
               
               .switch input { 
@@ -39,9 +41,10 @@ function PlToggle(props) {
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background-color: #ccc;
+                background-color: #F1F5F9;
                 -webkit-transition: .4s;
                 transition: .4s;
+          
               }
               
               .slider:before {
@@ -49,9 +52,10 @@ function PlToggle(props) {
                 content: "";
                 height: 16px;
                 width: 16px;
-                left: 4px;
+                left: 2px;
                 bottom: 2px;
                 background-color: white;
+                box-shadow:  0px 0px 2px rgba(15, 23, 42, 0.16);
                 -webkit-transition: .4s;
                 transition: .4s;
               }
@@ -61,13 +65,13 @@ function PlToggle(props) {
               }
               
               input:focus + .slider {
-                box-shadow: 0 0 1px #2196F3;
+               
               }
               
               input:checked + .slider:before {
-                -webkit-transform: translateX(14px);
-                -ms-transform: translateX(14px);
-                transform: translateX(14px);
+                -webkit-transform: translateX(16px);
+                -ms-transform: translateX(16px);
+                transform: translateX(16px);
               }
               
               /* Rounded sliders */

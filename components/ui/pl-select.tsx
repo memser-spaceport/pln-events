@@ -83,9 +83,9 @@ function PlSelect(props) {
                 .ps {position: relative; width: 100%;}
                 .ps__pane {z-index: 4; max-height: 200px; overflow-y: auto; box-shadow:0px 2px 6px rgba(15, 23, 42, 0.16); border-radius: 8px; position: absolute; border: 1px solid #E2E8F0; top: 38px; left:0; background: white; width: calc(100%); padding: 8px 16px;}
                 .ps__arrow {position: absolute; cursor:pointer; top: 8px; right: 8px; width:20px; height: 20px;}
-                .ps__icon {position: absolute; cursor: pointer; top: 8px; left: 8px; width: 20px; height: 20px;}
+                .ps__icon {position: absolute; cursor: pointer; top: 6px; left: 8px; width: 20px; height: 20px;}
                 .ps__pane__item { font-size: 13px; padding: 4px 0; cursor: pointer;}
-                .ps__input {border: 1px solid #CBD5E1; font-size: 13px; width: calc(100%); outline: none; border-radius: 8px; padding: 8px 16px 8px 34px;}
+                .ps__input {border: 1px solid #CBD5E1; font-size: 14px; width: calc(100% - 48px); outline: none; border-radius: 8px; padding: 8px 16px 8px 34px;}
                 .ps__pane__item--active {font-weight: 700;}
                 `
             }
