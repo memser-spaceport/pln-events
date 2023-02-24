@@ -10,13 +10,13 @@ eventTopic:
 - "Labs"
 - "Protocol"
 eventType: "Conference"
-location: "Äteritsiputeritsipuolilautatsijänkä"
-venueName: "Woodend Sanctuary & Mansion"
+location: "Boston, United States"
+venueName: 
 venueMapsLink: "https://goo.gl/maps/nc2XkXNU7e67iFa68"
-venueAddress: "fernway"
+venueAddress: 
 website: "https://www.koenigsegg.com/"
-startDate: "4/27/2023"
-endDate: "4/27/2023"
-tag: 
-dateTBD: true
+startDate: "2/27/2023"
+endDate: "2/27/2023"
+tag: "PLN Event"
+dateTBD: false
 ---
