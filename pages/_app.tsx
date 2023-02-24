@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Router from 'next/router';
 import * as Fathom from 'fathom-client';
 
-const isBrowser = typeof window !== 'undefined';
+ const isBrowser = typeof window !== 'undefined';
 
 if(isBrowser) {
   // For the first page load
@@ -14,17 +14,28 @@ if(isBrowser) {
       Fathom.trackPageview()
     }
   });
-}
+} 
 
 const App = ({ Component, pageProps }) => {
   // Initialize Fathom when the app loads
-  useEffect(() => {
-    Fathom.load(pageProps.data.global.fathomSiteId, {
-      includedDomains: [pageProps.data.global.siteUrl]
+   useEffect(() => {
+    Fathom.load('RBFTFNYG', {
+      includedDomains: ['events.plnetwork.io']
     })
-  }, [])
+  }, []) 
 
-  return <Component {...pageProps} />
+  return <>
+  <Component {...pageProps} />
+  <style jsx>
+    {
+      `
+      body > div {width: 100%; height:100%;}
+      
+      
+      `
+    }
+  </style>
+  </>
 };
 
 export default App;
