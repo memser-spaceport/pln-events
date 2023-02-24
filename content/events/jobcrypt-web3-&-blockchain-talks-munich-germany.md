@@ -6,4 +6,7 @@ startDate: 01/25/2023
 endDate: 01/25/2023
 tag: "PLN Event" 
 dateTBD: false
+eventTopic:
+  - Web3
+  - Blockchain
 ---
