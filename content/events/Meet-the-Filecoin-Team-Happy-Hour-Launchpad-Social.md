@@ -1,5 +1,5 @@
 ---
-eventName: Meet the Filecoin Team Happy Hour + Launchpad Social
+eventName: Meet the Filecoin Team
 eventType: Social
 location: Denver, United States
 website: 
