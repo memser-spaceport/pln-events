@@ -11,8 +11,8 @@ eventTopic:
   - Hackathon
   - Keynote
   - Talks
-venueName: Improper City
-venueMapsLink: 'https://goo.gl/maps/UseT3u6vFmpFHMmv8'
+venueName: Upper Larimer
+venueMapsLink: 'https://goo.gl/maps/ppBopWmrNEZD4QHo9'
 
 ---
 
