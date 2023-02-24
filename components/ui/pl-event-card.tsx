@@ -36,9 +36,9 @@ function PlEventCard(props) {
             </div>
             {!website && <p className="pec__eventname">{eventName}</p>}
             {website && <p className="pec__eventname"><a className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p>}
-            <div className="pec__topics">
-                {topics.map(v => <p className="pec__topics__item">{v}</p> )}
-            </div>
+            {topics.length > 0 && <div className="pec__topics">
+                {topics.map((v, vindex) => vindex <=3 ?<p className="pec__topics__item">{v}</p> : null )}
+            </div>}
 
             {description && <p className="pec__desc">{description}</p>}
             <div className="pec__calender">
