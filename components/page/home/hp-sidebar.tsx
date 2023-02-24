@@ -1,3 +1,4 @@
+import { trackGoal } from "fathom-client";
 import { useState } from "react";
 import PlSelect from "../../ui/pl-select";
 import PlTags from "../../ui/pl-tags";
@@ -23,6 +24,7 @@ function HpSideBar(props) {
 
     const onFilterChange = props.onFilterChange;
     const onClearFilters = () => {
+        trackGoal('H1OKCTIN', 0)
         const yearElement = document.getElementById("year-ps-input") as HTMLInputElement;
         const locationElement = document.getElementById("location-ps-input")  as HTMLInputElement;
         const topic = document.getElementById("topic-ps-input") as HTMLInputElement;

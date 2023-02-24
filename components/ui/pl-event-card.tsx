@@ -12,6 +12,7 @@ function PlEventCard(props) {
     const venueMapsLink = props?.venueMapsLink ?? '';
     const fullAddress = [venueName.trim(), venueAddress.trim(), location.trim()];
     const dateTBD = props.dateTBD
+    const onLinkItemClicked = props.onLinkItemClicked;
     
     const fullAddressValue = [...fullAddress].filter(v => v !== '').join(", ")
 
@@ -21,6 +22,12 @@ function PlEventCard(props) {
     const calenderLogo = props.calenderLogo ?? ''
     const locationLogo = props.locationLogo ?? ''
     const externalLinkIcon = props.externalLinkIcon;
+
+    const onLinkClicked = (item) => {
+         if(onLinkItemClicked) {
+            onLinkItemClicked(item)
+         }
+    }
 
     return <>
         <div className="pec">
@@ -35,7 +42,7 @@ function PlEventCard(props) {
                 </div>}
             </div>
             {!website && <p className="pec__eventname">{eventName}</p>}
-            {website && <p className="pec__eventname"><a className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p>}
+            {website && <p className="pec__eventname"><a onClick={() => onLinkClicked('event')} className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p>}
             <div className="pec__topics">
                 {topics.map(v => <p className="pec__topics__item">{v}</p>)}
             </div>
@@ -52,7 +59,7 @@ function PlEventCard(props) {
             <div className="pec__location">
                 <img className="pec__location__img" src={locationLogo}/>
                 {!venueMapsLink && <p className="pec__location__text">{fullAddressValue}</p>}
-                {venueMapsLink && <a className="pec__location__link" href={venueMapsLink} target="_blank"><p className="pec__location__text location-blue">{fullAddressValue}</p></a>}
+                {venueMapsLink && <a onClick={() => onLinkClicked('location')} className="pec__location__link" href={venueMapsLink} target="_blank"><p className="pec__location__text location-blue">{fullAddressValue}</p></a>}
                 
             </div>
            
