@@ -1,6 +1,9 @@
 import { trackGoal } from "fathom-client";
 
 function AppHeader() {
+    const onJoinTeam = () => {
+        trackGoal('CXB9QJA8', 0)
+    }
     return <>
         <header className="ah">
             <div className="ah__logo">
@@ -9,7 +12,7 @@ function AppHeader() {
                     <h1 className="ah__logo__heading__text">Protocol Labs</h1>
                     <h1 className="ah__logo__heading__text">Network Events</h1>
                 </div></div>
-            <a className="ah__btn" target="_blank" href="https://github.com/memser-spaceport/pln-events#submitting-events">Host an event</a>
+            <a onClick={onJoinTeam} className="ah__btn" target="_blank" href="https://github.com/memser-spaceport/pln-events#submitting-events">Host an event</a>
         </header>
         <style jsx>
             {

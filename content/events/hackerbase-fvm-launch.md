@@ -12,6 +12,4 @@ eventTopic:
 - "Plenary Talks"
 venueName: Improper City
 venueMapsLink: 'https://goo.gl/maps/UseT3u6vFmpFHMmv8'
-
 ---
-
