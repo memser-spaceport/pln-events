@@ -5,4 +5,6 @@ location: Vienna, Austria
 startDate: 06/28/2023
 endDate: 06/29/2023
 tag: Industry Event
+eventTopic:
+  - Web3
 ---

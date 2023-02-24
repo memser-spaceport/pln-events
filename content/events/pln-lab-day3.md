@@ -1,6 +1,7 @@
 ---
 eventName: PLN Lab Day
 location: Virtual
+eventType: Virtual
 website: 
 startDate: 05/17/2023
 endDate: 05/17/2023
