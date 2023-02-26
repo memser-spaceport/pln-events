@@ -8,10 +8,9 @@ eventDescription: The FVM (Filecoin Virtual Machine) brings smart contracts and 
 
 <!--- topics will show up as labels on the event card.Only a maximum of 4 tags will be displayed on the event card. Some referneces for topics - Blockchain, Web3, Cryptocurrency, Tech Taks,Workshop etc.-->
 eventTopic: 
-  - FMV in the context of Filecoin's masterplan
-  - FVM - introduction & technical overview
-  - How FVM will unlock value for Web3 and beyond
-  - How builders are unlocking opportunities around FVM
+  - Keynote
+  - Builders Showcase
+  - Happy Hour
 
 <!--- Type of the event: Please choose one among the below options or just leave it blank-->
 eventType: Conference
