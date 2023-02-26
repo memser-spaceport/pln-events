@@ -1,6 +1,6 @@
 ---
 eventName: Test event
-location: 'Boston, United States'
+location: 'TAUMATAWHAKATANGIHANGAKOAUAUOTAMATEATURIPUKAKAPIKI-MAUNGAHORONUKUPOKAIWHENUAKITNATAHU'
 website: 'https://lu.ma/Afterlab'
 startDate: '02/26/2023'
 endDate: '02/26/2023'
