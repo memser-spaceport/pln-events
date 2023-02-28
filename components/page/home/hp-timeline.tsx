@@ -97,7 +97,7 @@ function HpTimeline(props) {
             .hmt__cn__sec {width: 100%; display: flex; position: relative;  flex-direction: column; align-items: center;}
             .hmt__cn__sec__month {background: white;  position: sticky; top: 42px; padding: 6px 16px; color: #0F172A; border-radius: 100px; font-size: 13px; font-weight: 400; border: 0.5px solid #CBD5E1;z-index: 3; width: fit-content; margin: 32px 0;}
             .hmt__cn__sec__event { width: 100%; position: relative; margin: 16px 0; display: flex; justify-content: center;}
-            .hmt__cn__sec__event__item {position: relative; width: calc(100% - 32px); }
+            .hmt__cn__sec__event__item {position: relative; width: calc(100vw - 32px);}
           
             .hmt__cn__sec__timeline {position: absolute; height: 100%; left: 50%; top: 0; width: 1px; background: #CBD5E1;}
 
