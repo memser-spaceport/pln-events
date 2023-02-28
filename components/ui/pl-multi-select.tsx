@@ -37,7 +37,9 @@ function PlMultiSelect(props) {
 
     const onClearSelection = () => {
         if(onClearMultiSelect) {
+            setPaneActiveStatus(false)
             onClearMultiSelect(itemId);
+            
         }
     }
 
@@ -114,7 +116,7 @@ function PlMultiSelect(props) {
                 .plms__pane__head__searchicon {position: absolute; top: 27px; left: 26px;}
                 .plms__pane__list {overflow-y: auto; max-height: 160px; padding: 8px 16px;}
                 .plms__pane__list__item {display: flex; justify-content: space-between; cursor: pointer; width: 100%; padding: 6px 0;}
-                .plms__pane__list__item__text {color: #0F172A; overflow-hidden; font-size: 14px; font-weight: 400; flex: 1; text-align:left;}
+                .plms__pane__list__item__text {color: #0F172A; overflow-hidden; font-size: 14px; font-weight: 400; flex: 1; text-align:left; text-transform: capitalize;}
                 .plms__pane__list__item__logo {width: 20px; height: 20px; border: 1px solid grey; background: grey; border-radius: 50%; margin-right: 8px;}
                 .plms__pane__list__item__check {width: 20px; height: 20px; border: 1px solid #CBD5E1; border-radius: 4px; margin-left: 8px;}
                 .plms__pane__list__item__check--active {background: #156FF7; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 4px; margin-left: 8px;}

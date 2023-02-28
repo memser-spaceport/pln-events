@@ -5,7 +5,7 @@ import { client } from "../.tina/__generated__/client";
 import AppHeader from '../components/core/app-header'
 import { getFilteredEvents, getFormattedEvents, getInitialState, getMonthWiseEvents, HpContext, months, reducerFunction } from "../components/page/home/hp-helper";
 import HpTimeline from "../components/page/home/hp-timeline";
-import { useReducer } from 'react'
+import { useReducer, useEffect } from 'react'
 import HpFilters from "../components/page/home/hp-filters";
 
 export default function IndexPage(props) {
@@ -13,23 +13,29 @@ export default function IndexPage(props) {
   const eventsData = props.data.eventConnection.edges;
   const events = getFormattedEvents([...eventsData])
   const [state, dispatch] = useReducer(reducerFunction, getInitialState([...events]))
-  console.log(state)
   const orderedEventsList = [...events].sort((a, b) => a.startDateTimeStamp - b.startDateTimeStamp)
   const filterdList = getFilteredEvents([...orderedEventsList], { ...state.filters })
   const monthWiseEvents = getMonthWiseEvents([...filterdList])
+  const filterdListCount = filterdList.length;
 
   const toggleMobileFilter = () => {
     dispatch({ type: 'toggleMobileFilter' })
   }
 
+  const onClearFilters = () => {
+    dispatch({ type: 'clearAllFilters' })
+  }
+
   const onContentScroll = () => {
     const container = document.getElementById('main-content');
     if (container.scrollTop > 5) {
-      dispatch({type: 'setScrollupStatus', value: true})
+      dispatch({ type: 'setScrollupStatus', value: true })
     } else {
-      dispatch({type: 'setScrollupStatus', value: false})
+      dispatch({ type: 'setScrollupStatus', value: false })
     }
   }
+
+ 
 
 
   return <>
@@ -38,7 +44,7 @@ export default function IndexPage(props) {
       <div className="hp">
         {/*** EVENTS FILTERING ***/}
         <div className="hp__sidebar">
-          <HpFilters events={[...events]} />
+          <HpFilters filteredCount={filterdListCount} events={[...events]} />
         </div>
 
         {/*** EVENTS TIMELINE ***/}
@@ -48,9 +54,10 @@ export default function IndexPage(props) {
               <img className="hp__maincontent__tools__filter__icon" src="/icons/pln-filter-icon.svg" />
               <p className="hp__maincontent__tools__filter__text">Filters</p>
             </div>
+            <p onClick={onClearFilters} className="hp__maincontent__tools__clear">Clear filters</p>
           </div>
           {/*** SCROLL UP TO VIEW PAST ***/}
-          { state.flags.isScrolledUp && <div className="hmt__scollup">
+          {state.flags.isScrolledUp && <div className="hmt__scollup">
             <img className="hmt__scollup__img" src="/icons/scroll-up-icon.svg" />
             <p className="hmt__scollup__text">Scroll up to view past events</p>
           </div>}
@@ -59,7 +66,7 @@ export default function IndexPage(props) {
       </div>
 
       {state.flags.isMobileFilterActive && <div className="mfilter">
-        <HpFilters events={[...events]} />
+        <HpFilters filteredCount={filterdListCount} events={[...events]} />
       </div>}
 
     </HpContext.Provider>
@@ -73,16 +80,16 @@ export default function IndexPage(props) {
       .hp__maincontent__tools__filter {display: flex; align-items: center; justify-content: center; border: 1px solid #CBD5E1; border-radius: 4px; padding: 5px 12px; cursor: pointer; z-index: 3;}
       .hp__maincontent__tools__filter__icon {width:16px; height: 16px; margin-right: 8px;}
       .hp__maincontent__tools__filter__text {font-size: 13px; font-weight: 400;}
-      
+      .hp__maincontent__tools__clear {color: #156FF7; font-size: 13px; cursor: pointer;}
       .hmt__scollup {width: 100%; display: flex; position: sticky; z-index: 5; top:105px; justify-content: center; align-items: center; padding: 13px 0; background: linear-gradient(180deg, #F1F5F9 0%, rgba(241, 245, 249, 0.92) 39.05%); color: #0F172A; font-size: 13px;}
       .hmt__scollup__img {width: 8px; margin-right: 8px; height: 8px;}
       .hmt__scollup__text {font-size: 12px;}
-
-      .mfilter{display: block; width: 100%; height: 100%; position: fixed; top:0; left:0; right:0; background: white; z-index: 10;}
+      
+      .mfilter{display: block; width: 100%; overflow-y: scroll; height: 100%; boz-sizing: content-box; padding-bottom: 70px; position: fixed; top:0; left:0; right:0; background: white; z-index: 10;}
       @media(min-width: 1200px) {
         .mfilter {display: none;}
         .hmt__scollup {top: 0;}
-        .hp__sidebar {width: 300px; border: 1px solid #CBD5E1; display: block; padding-top: 60px;}
+        .hp__sidebar {width: 300px; border: 1px solid #CBD5E1; display: block; padding-top: 60px; box-sizing: content-box;}
         .hp__maincontent {width: calc(100% - 300px); padding-top: 60px; background: #f2f7fb; height: 100%;}
         .hp__maincontent__tools {display: none;}
       }

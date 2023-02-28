@@ -9,10 +9,11 @@ import PlMultiSelect from "../../ui/pl-multi-select";
 import PlSingleSelect from "../../ui/pl-single-select";
 
 function HpFilters(props) {
+    
     const events = props.events ?? [];
+    const filteredCount = props?.filteredCount;
     const { state, dispatch } = useContext(HpContext);
     const { filters, flags } = state
-    console.log(filters)
     const filterValues = [
         { name: "Year", type: 'single-select', items: getUniqueValuesFromEvents('startYear', [...events]), selectedItem: filters.year, placeholder: 'Filter by year', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'year', iconUrl: '/icons/pl-calender-icon.svg' },
         { name: "Locations", type: 'multi-select', items: getUniqueValuesFromEvents('location', [...events]), selectedItems: filters.locations, placeholder: 'Filter by location', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'locations', iconUrl: '/icons/pl-location-icon.svg' },
@@ -24,7 +25,6 @@ function HpFilters(props) {
 
 
     const onFilterChange = (type, key, value) => {
-        console.log(type, key, value);
         if (key === 'year') {
             trackGoal('EES2EVT9', 0)
           } else if (key === 'locations') {
@@ -57,7 +57,6 @@ function HpFilters(props) {
     }
 
     const onClosePopup = () => {
-        dispatch({ type: 'clearAllFilters' });
         dispatch({ type: 'toggleMobileFilter' });
     }
 
@@ -88,14 +87,14 @@ function HpFilters(props) {
             </div>)}
             <div className="hpf__mtools">
                 <div onClick={onMobileClear} className="hpf__mtools__clear">Clear all</div>
-                <div onClick={onApplyMobileFilter} className="hpf__mtools__apply">Apply</div>
+                <div onClick={onApplyMobileFilter} className="hpf__mtools__apply">{`View ${filteredCount > 0 ? `${filteredCount} events` : ''}`}</div>
             </div>
         </div>
         <style jsx>
             {
                 `
                 
-             .hpf {width: 100%; height: 100%; overflow-y: scroll; padding-bottom: 24px;}
+             .hpf {width: 100%; height: 100%;overflow-y: scroll; padding-bottom: 90px;}
              .hpf__mtools {position: fixed; bottom:0; left:0; right:0; width: 100%; height: 60px; display: flex; align-items: center; justify-content: center; background: white; z-index: 11; padding: 12px 16px; box-shadow: 0px -2px 4px #E2E8F0;}
              .hpf__year {padding: 16px 24px 0 24px;}
              .hpf__year__title {font-size: 13px;  margin-bottom: 8px;}

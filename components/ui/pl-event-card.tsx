@@ -71,8 +71,9 @@ function PlEventCard(props) {
                 
             </div>
             {(eventHosts.length > 0) && <div className="pec__hosts">
-                {eventHosts.map(eh => <div className="pec__hosts__item">
+                {eventHosts.map((eh, ehIndex) => <div className="pec__hosts__item">
                     <img className="pec__hosts__item__img" src={`${eh.logo}`}/>
+                    {(ehIndex === 0) && <img className="pec__hosts__item__primimg" src={eh.primaryIcon}/>}
                 </div>)}
                 {(eventHosts.length === 1) && <p className="pec__hosts__item__text">{eventHosts[0].name}</p>}
 
@@ -112,10 +113,11 @@ function PlEventCard(props) {
             .pec__contacts__link__img {width:26px; height: 26px; margin-right:4px;}
 
             .pec__hosts {display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px;}
-            .pec__hosts__item {display: flex; align-items: center;}
+            .pec__hosts__item {display: flex; align-items: center; position: relative;}
             .pec__hosts__item__img {width: 48px; height: 48px;}
             .pec__hosts__item__text {font-size: 13px; font-weight: 600; color: #475569; text-transform: capitalize;}
-            
+            .pec__hosts__item__primimg {position: absolute; top: -4px; right: -4px; width: 20px; height: 20px;}
+
             .pec__info__type {margin-left: 16px; display: flex; align-items: center; flex:1;}
             .pec__topics {display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;}
             .pec__topics__item {padding: 6px 16px; border: 1px solid #CBD5E1; border-radius: 20px; color: #0F172A; font-size: 12px;}

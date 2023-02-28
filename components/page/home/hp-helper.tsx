@@ -66,6 +66,7 @@ export const getFormattedEvents = (events) => {
       return {
         name: splitted[0],
         logo: `/uploads/${splitted[1]}`,
+        primaryIcon: `/icons/pln-primary-host.svg`
       }
     }) ?? []
 
@@ -185,6 +186,7 @@ export const getFilteredEvents = (allEvents, filters) => {
       return false
     }
 
+
     if (filters.isPlnEventOnly && item?.tag?.toLowerCase().trim() !== 'pln event') {
       return false
     }
@@ -198,6 +200,19 @@ export const getFilteredEvents = (allEvents, filters) => {
       const eventTopics = item?.topics ?? [];
       eventTopics.forEach(topic => {
         if (filters.topics.includes(topic)) {
+          result = true;
+        }
+      })
+      if (!result) {
+        return false
+      }
+    }
+
+    if (filters.eventHosts.length > 0) {
+      let result = false;
+      const eventHosts = item?.eventHosts ?? [];
+      eventHosts.forEach(eh => {
+        if (filters.eventHosts.includes(eh.name)) {
           result = true;
         }
       })
