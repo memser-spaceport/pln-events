@@ -7,6 +7,7 @@ import { getFilteredEvents, getFormattedEvents, getInitialState, getMonthWiseEve
 import HpTimeline from "../components/page/home/hp-timeline";
 import { useReducer, useEffect } from 'react'
 import HpFilters from "../components/page/home/hp-filters";
+import HpFilterHead from "../components/page/home/hp-filter-head";
 
 export default function IndexPage(props) {
   const { data } = useTina({ query: props.query, variables: props.variables, data: props.data, });
@@ -17,6 +18,7 @@ export default function IndexPage(props) {
   const filterdList = getFilteredEvents([...orderedEventsList], { ...state.filters })
   const monthWiseEvents = getMonthWiseEvents([...filterdList])
   const filterdListCount = filterdList.length;
+
 
   const toggleMobileFilter = () => {
     dispatch({ type: 'toggleMobileFilter' })
@@ -49,13 +51,7 @@ export default function IndexPage(props) {
 
         {/*** EVENTS TIMELINE ***/}
         <div id="main-content" onScroll={onContentScroll} className="hp__maincontent">
-          <div className="hp__maincontent__tools">
-            <div onClick={toggleMobileFilter} className="hp__maincontent__tools__filter">
-              <img className="hp__maincontent__tools__filter__icon" src="/icons/pln-filter-icon.svg" />
-              <p className="hp__maincontent__tools__filter__text">Filters</p>
-            </div>
-            <p onClick={onClearFilters} className="hp__maincontent__tools__clear">Clear filters</p>
-          </div>
+           <HpFilterHead/>
           {/*** SCROLL UP TO VIEW PAST ***/}
           {state.flags.isScrolledUp && <div className="hmt__scollup">
             <img className="hmt__scollup__img" src="/icons/scroll-up-icon.svg" />

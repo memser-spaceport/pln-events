@@ -166,9 +166,36 @@ export const reducerFunction = (oldstate, action) => {
   }
 }
 
+export const getNoFiltersApplied = (filters) => {
+  let count = 0;
+  if(filters.locations.length > 0) {
+    count++
+  }
+  if(filters.topics.length > 0) {
+    count++
+  }
+
+  if(filters.year !== `${new Date().getFullYear()}`) {
+    count++
+  }
+
+  if(filters.eventType !== '') {
+    count++
+  }
+
+  if(filters.eventHosts.length > 0) {
+    count++
+  }
+  if(filters.isPlnEventOnly === true) {
+    count++
+  }
+
+  return count;
+}
+
 export const getInitialState = (events) => {
   return {
-    filteredItems: { year: `${new Date().getFullYear()}`, location: [], isPlnEventOnly: false, topic: [], eventHosts: [], eventType: '' },
+    filteredItems: { year: `${new Date().getFullYear()}`, location: [], isPlnEventOnly: false, topics: [], eventHosts: [], eventType: '' },
     filters: { year: `${new Date().getFullYear()}`, isPlnEventOnly: false, locations: [], topics: [], eventHosts: [], eventType: '' },
     flags: { isMobileFilterActive: false, isScrolledUp: false },
     events: [...events],
