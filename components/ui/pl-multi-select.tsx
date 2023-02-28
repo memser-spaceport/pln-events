@@ -101,7 +101,7 @@ function PlMultiSelect(props) {
                 .plms {position: relative; width: 100%; height: 36px;}
                 .plms__info {position: relative; height: 38px; align-items: center; width: 100%; font-size: 14px; border: 1px solid #CBD5E1; border-radius: 8px; padding: 8px 12px; display: flex; cursor: pointer;}
                 .plms__info__icon {width: 16px; height: 16px; margin-right: 8px;}
-                .plms__info__text {color: #475569; text-transform: capitalize; flex: 1; font-weight: 500; font-size: 14px;}
+                .plms__info__text {color: #475569; overflow: hidden; text-transform: capitalize; flex: 1; font-weight: 500; font-size: 14px;}
                 .plms__info__close {background: #64748B;width: 20px; display: flex; align-items: center; justify-content: center; height: 20px; border-radius: 0 100px 100px 0;}
                 .plms__info__close__img {width: 16px; height: 16px;}
                 .plms__info__count {background: #64748B;width: 20px; display: flex; align-items: center; justify-content: center; height: 20px; border-radius: 100px 0 0 100px; margin-right: 1px;}
@@ -113,7 +113,7 @@ function PlMultiSelect(props) {
                 .plms__pane__head__searchicon {position: absolute; top: 27px; left: 26px;}
                 .plms__pane__list {overflow-y: auto; max-height: 160px; padding: 8px 16px;}
                 .plms__pane__list__item {display: flex; justify-content: space-between; cursor: pointer; width: 100%; padding: 6px 0;}
-                .plms__pane__list__item__text {color: #0F172A; font-size: 14px; font-weight: 400; flex: 1; text-align:left;}
+                .plms__pane__list__item__text {color: #0F172A; overflow-hidden; font-size: 14px; font-weight: 400; flex: 1; text-align:left;}
                 .plms__pane__list__item__logo {width: 20px; height: 20px; border: 1px solid grey; background: grey; border-radius: 50%; margin-right: 8px;}
                 .plms__pane__list__item__check {width: 20px; height: 20px; border: 1px solid #CBD5E1; border-radius: 4px; margin-left: 8px;}
                 .plms__pane__list__item__check--active {background: #156FF7; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 4px; margin-left: 8px;}

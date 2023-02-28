@@ -105,7 +105,7 @@ function PlEventCard(props) {
 
             .pec__location {display: flex; align-items: center; margin:16px 0; margin-bottom: 20px;}
             .pec__location__img {width: 12px; height: 12px; margin-right: 4px;}
-            .pec__location__text {color: #64748B; font-size: 12px; margin-right: 4px; display: flex; flex-wrap: wrap;}
+            .pec__location__text {color: #64748B; font-size: 12px; margin-right: 4px; display: flex; overflow: hidden; flex-wrap: wrap;}
             
             .pec__contacts {display: flex; flex-wrap: wrap; gap: 0 8px; margin-bottom: 16px; align-items: center;}
             .pec__contacts__link {text-decoration: none;}
