@@ -5,6 +5,7 @@ function PlMultiSelect(props) {
     const itemId = props.identifierId;
     const type = props.type ?? '';
     const items = props.items ?? [];
+    const name = props.name ?? '';
     const placeholder = props.placeholder ?? ''
     const callback = props.callback;
     const dropdownImgUrl = props.dropdownImgUrl ?? ''
@@ -63,7 +64,7 @@ function PlMultiSelect(props) {
         <div ref={paneRef} className="plms">
             <div title={selectedItems.length > 0 ? selectedItems.join(','): ``} id="tesssst" onClick={() => setPaneActiveStatus(v => !v)} className="plms__info">
                 <img src={iconUrl} className="plms__info__icon"/>
-                {(selectedItems.length === 0) && <div className="plms__info__text">{`Select ${itemId}`}</div>}
+                {(selectedItems.length === 0) && <div className="plms__info__text">{`Select ${name}`}</div>}
                 {(selectedItems.length === 1) && <div className="plms__info__text">{selectedItems[0]}</div>}
                 {(selectedItems.length > 1) && <div className="plms__info__text">Multiple</div>}
                 
@@ -84,7 +85,7 @@ function PlMultiSelect(props) {
                 </div>
                 <div className="plms__pane__list">
                     {filteredItems.map((item, index) => <div onClick={e => onItemSelected(item)} className="plms__pane__list__item">
-                        <div className="plms__pane__list__item__logo"></div>
+                       {/*  <div className="plms__pane__list__item__logo"></div> */}
                         <p id={`${itemId}-ps-pane-${index}`} className={`plms__pane__list__item__text ${selectedItems.includes(item) ? 'ps__pane__item--active' : ''}`} >{item}</p>
                         {!selectedItems.includes(item) && <div className="plms__pane__list__item__check"></div>}
                         {selectedItems.includes(item) && <div className="plms__pane__list__item__check--active">

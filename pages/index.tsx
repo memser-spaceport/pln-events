@@ -45,7 +45,7 @@ export default function IndexPage(props) {
         </div>
       </div>
 
-      {state.flags.isMobileFilterActive &&  <div className="mfilter">
+      {state.flags.isMobileFilterActive && <div className="mfilter">
         <HpFilters events={[...events]}/>
       </div>}
       

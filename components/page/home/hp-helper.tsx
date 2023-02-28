@@ -22,6 +22,12 @@ export const getUniqueValuesFromEvents = (key, allEvents) => {
           }
         })
       })
+      break;
+    case 'eventHosts':
+      allEvents.forEach(event => {
+        event.eventHosts.forEach(v => items.push(v.name))
+      })
+      break;
   }
 
   return items;
