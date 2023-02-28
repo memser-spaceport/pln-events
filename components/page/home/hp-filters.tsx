@@ -12,10 +12,11 @@ function HpFilters(props) {
     const events = props.events ?? [];
     const { state, dispatch } = useContext(HpContext);
     const { filters, flags } = state
-
+    console.log(filters)
     const filterValues = [
         { name: "Year", type: 'single-select', items: getUniqueValuesFromEvents('startYear', [...events]), selectedItem: filters.year, placeholder: 'Filter by year', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'year', iconUrl: '/icons/pl-calender-icon.svg' },
-        { name: "Location", type: 'multi-select', items: getUniqueValuesFromEvents('location', [...events]), selectedItems: filters.locations, placeholder: 'Filter by location', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'locations', iconUrl: '/icons/pl-location-icon.svg' },
+        { name: "Locations", type: 'multi-select', items: getUniqueValuesFromEvents('location', [...events]), selectedItems: filters.locations, placeholder: 'Filter by location', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'locations', iconUrl: '/icons/pl-location-icon.svg' },
+        { name: "Event Hosts", type: 'multi-select', items: getUniqueValuesFromEvents('eventHosts', [...events]), selectedItems: filters.eventHosts, placeholder: 'Filter by Host Name', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'eventHosts', iconUrl: '/icons/pln-hosts-icon.svg' },
         { name: "Event Type", type: 'tags', items: ['Virtual', 'Conference', 'Social'], selectedItem: filters.eventType, identifierId: 'eventType' },
         { name: "Topics", type: 'multi-select', items: getUniqueValuesFromEvents('topics', [...events]), selectedItems: filters.topics, placeholder: 'Filter by topics', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'topics', iconUrl: '/icons/pl-topics-icon.svg' },
 
@@ -73,7 +74,7 @@ function HpFilters(props) {
             <div className="hpf__head">
                 <h3 className="hpf__head__title">Filters</h3>
                 <p onClick={onClearFilters} className="hpf__head__clear">Clear All</p>
-                <img onClick={onClosePopup} src="/icons/pln-close-black.svg" className="hpsb__head__close"/>
+                <img onClick={onClosePopup} src="/icons/pln-close-black.svg" className="hpf__head__close"/>
             </div>
             <div className="hpf__pln">
                 <p className="hpf__pln__title">Show PLN Events only</p>
@@ -109,13 +110,13 @@ function HpFilters(props) {
 
              .hpf__eventtype {padding: 16px 24px 0 24px;}
              .hpf__eventtype__title {font-size: 13px; margin-bottom: 8px; }
-             .hpsb__head__close {width: 16px; height: 16px; cursor: pointer;}
+             .hpf__head__close {width: 16px; height: 16px; cursor: pointer;}
              .hpf__mtools__clear {border: 1px solid #CBD5E1; margin-right: 16px; padding: 6px 24px; font-size: 14px; font-weight: 600; border-radius: 100px;}
              .hpf__mtools__apply {background: #156FF7; color: white;  padding: 6px 24px; font-size: 14px; font-weight: 600; border-radius: 100px;}
              @media(min-width: 1200px) {
                 .hpf__mtools {display: none;}
-                .hpsb__head__clear {display: block; font-size: 13px; color: #156FF7; cursor: pointer;}
-                .hpsb__head__close {display: none;}
+                .hpf__head__clear {display: block; font-size: 13px; color: #156FF7; cursor: pointer;}
+                .hpf__head__close {display: none;}
              }
             `
             }

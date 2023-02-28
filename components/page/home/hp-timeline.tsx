@@ -49,14 +49,7 @@ function HpTimeline(props) {
 
 
     return <>
-        <div onScroll={onContentScroll} id="timeline-cn" className="hmt">
-
-            {/*** SCROLL UP TO VIEW PAST ***/}
-            {!isScrolledUp && <div className="hmt__scollup">
-                <img className="hmt__scollup__img" src="/icons/scroll-up-icon.svg"/>
-                <p className="hmt__scollup__text">Scroll up to view past events</p>
-            </div>}
-
+        <div id="timeline-cn" className="hmt">
             <div className="hmt__cn">
                 {totalEventsCount === 0 && <div className="hmt__cn__empty">
                     No matching events available.
@@ -86,16 +79,13 @@ function HpTimeline(props) {
         <style jsx>
             {
                 `
-            .hmt {width: 100%; height: 100%; overflow-y:scroll; position: relative; display: flex; flex-direction: column; align-items: center; padding-bottom: 50px;}
-            
-            .hmt__scollup {width: 100%; display: flex; position: sticky; z-index: 5; top:0px; justify-content: center; align-items: center; padding: 13px 0; background: linear-gradient(180deg, #F1F5F9 0%, rgba(241, 245, 249, 0.92) 39.05%); color: #0F172A; font-size: 13px;}
-            .hmt__scollup__img {width: 8px; margin-right: 8px; height: 8px;}
-            .hmt__scollup__text {font-size: 12px;}
+            .hmt {width: 100%; height: 100%; position: relative; display: flex; flex-direction: column; align-items: center;}
+   
             
             .hmt__cn {position: relative;}
             .hmt__cn__empty {background: white; border: 1px solid lightgrey; text-align: center; margin-top: 40px; width: 400px; padding: 24px;}
             .hmt__cn__sec {width: 100%; display: flex; position: relative;  flex-direction: column; align-items: center;}
-            .hmt__cn__sec__month {background: white;  position: sticky; top: 42px; padding: 6px 16px; color: #0F172A; border-radius: 100px; font-size: 13px; font-weight: 400; border: 0.5px solid #CBD5E1;z-index: 3; width: fit-content; margin: 32px 0;}
+            .hmt__cn__sec__month {background: white;  position: sticky;  top: 150px; padding: 6px 16px; color: #0F172A; border-radius: 100px; font-size: 13px; font-weight: 400; border: 0.5px solid #CBD5E1;z-index: 3; width: fit-content; margin: 32px 0;}
             .hmt__cn__sec__event { width: 100%; position: relative; margin: 16px 0; display: flex; justify-content: center;}
             .hmt__cn__sec__event__item {position: relative; width: calc(100vw - 32px);}
           
@@ -119,12 +109,14 @@ function HpTimeline(props) {
             @media(min-width: 1200px) {
                 .left {float: left;}
                 .right {float: right; margin-top: -12%;} 
+                .hmt__cn__sec__month {top: 42px;}
                 .hmt__cn__sec {width: 800px; display: flex; position: relative;  flex-direction: column; align-items: center;}
                 .hmt__cn__sec__event { width: 800px; position: relative; margin:0; display: block;}
                 .hmt__cn__sec__event__item {position: relative; width: 354px; }
                 .hmt__cn__sec__event__timeline {position: absolute; display: block; width: 23px; height: 1px; border-bottom: 1px solid #cbd5e1;}
                 .hmt__cn__sec__event__timeline--left { top: 22px; right: -23px;}
                 .hmt__cn__sec__event__timeline--right { top: 22px; left: -23px;}
+                
                 
                 .hmt__cn__sec__event__databox {position: absolute; border-radius: 2px; width: 44px; color: white; font-size: 14px;  display: flex; flex-direction: column; align-items: center; justify-content: center; height: 44px; background: #8C55D3; }
                 .hmt__cn__sec__event__databox--left { top: 0; right: -67px;}

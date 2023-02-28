@@ -22,6 +22,12 @@ export const getUniqueValuesFromEvents = (key, allEvents) => {
           }
         })
       })
+      break;
+    case 'eventHosts':
+      allEvents.forEach(event => {
+        event.eventHosts.forEach(v => items.push(v.name))
+      })
+      break;
   }
 
   return items;
@@ -153,14 +159,17 @@ export const reducerFunction = (oldstate, action) => {
       newState.filters = resetted.filters;
       newState.filteredItems = resetted.filteredEvents;
       return newState;
+    case 'setScrollupStatus':
+      newState.flags.isScrolledUp = action.value;
+      return newState;
   }
 }
 
 export const getInitialState = (events) => {
   return {
-    filteredItems: { year: `${new Date().getFullYear()}`, location: [], isPlnEventOnly: false, topic: [], eventType: '' },
-    filters: { year: `${new Date().getFullYear()}`, isPlnEventOnly: false, locations: [], topics: [], hosts: [], eventType: '' },
-    flags: { isMobileFilterActive: false },
+    filteredItems: { year: `${new Date().getFullYear()}`, location: [], isPlnEventOnly: false, topic: [], eventHosts: [], eventType: '' },
+    filters: { year: `${new Date().getFullYear()}`, isPlnEventOnly: false, locations: [], topics: [], eventHosts: [], eventType: '' },
+    flags: { isMobileFilterActive: false, isScrolledUp: false },
     events: [...events],
     filteredEvents: [...events]
   }
