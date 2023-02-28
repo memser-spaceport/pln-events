@@ -43,6 +43,10 @@ function HpTimeline(props) {
         }
     }
 
+    useEffect(() => {
+        onScrollToCurrentMonth(monthWiseEvents);
+    }, [props.filters])
+
 
     return <>
         <div onScroll={onContentScroll} id="timeline-cn" className="hmt">
@@ -92,8 +96,8 @@ function HpTimeline(props) {
             .hmt__cn__empty {background: white; border: 1px solid lightgrey; text-align: center; margin-top: 40px; width: 400px; padding: 24px;}
             .hmt__cn__sec {width: 100%; display: flex; position: relative;  flex-direction: column; align-items: center;}
             .hmt__cn__sec__month {background: white;  position: sticky; top: 42px; padding: 6px 16px; color: #0F172A; border-radius: 100px; font-size: 13px; font-weight: 400; border: 0.5px solid #CBD5E1;z-index: 3; width: fit-content; margin: 32px 0;}
-            .hmt__cn__sec__event { width: 100%; position: relative; margin: 16px 0}
-            .hmt__cn__sec__event__item {position: relative; width: 354px; }
+            .hmt__cn__sec__event { width: 100%; position: relative; margin: 16px 0; display: flex; justify-content: center;}
+            .hmt__cn__sec__event__item {position: relative; width: calc(100% - 32px); }
           
             .hmt__cn__sec__timeline {position: absolute; height: 100%; left: 50%; top: 0; width: 1px; background: #CBD5E1;}
 
@@ -116,8 +120,8 @@ function HpTimeline(props) {
                 .left {float: left;}
                 .right {float: right; margin-top: -12%;} 
                 .hmt__cn__sec {width: 800px; display: flex; position: relative;  flex-direction: column; align-items: center;}
-                .hmt__cn__sec__event { width: 800px; position: relative; margin:0;}
-
+                .hmt__cn__sec__event { width: 800px; position: relative; margin:0; display: block;}
+                .hmt__cn__sec__event__item {position: relative; width: 354px; }
                 .hmt__cn__sec__event__timeline {position: absolute; display: block; width: 23px; height: 1px; border-bottom: 1px solid #cbd5e1;}
                 .hmt__cn__sec__event__timeline--left { top: 22px; right: -23px;}
                 .hmt__cn__sec__event__timeline--right { top: 22px; left: -23px;}

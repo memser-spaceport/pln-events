@@ -11,6 +11,8 @@ function PlEventCard(props) {
     const venueAddress = props?.venueAddress ?? '';
     const venueMapsLink = props?.venueMapsLink ?? '';
     const isFeaturedEvent = props?.isFeaturedEvent ?? false;
+    const eventHosts = props.eventHosts ?? [];
+    const preferredContacts = props.preferredContacts ?? [];
     const fullAddress = [venueName.trim(), venueAddress.trim(), location.trim()];
     const dateTBD = props.dateTBD
     const onLinkItemClicked = props.onLinkItemClicked;
@@ -49,6 +51,9 @@ function PlEventCard(props) {
             {(trimmedTopics.length > 0) && <div className="pec__topics">
                 {trimmedTopics.map(v => <p className="pec__topics__item">{v}</p>)}
             </div>}
+            {(preferredContacts.length > 0) && <div className="pec__contacts">
+                    {preferredContacts.map(c => <a className="pec__contacts__link" href={c.link} target="_blank"><img className="pec__contacts__link__img" src={c.logo}/></a>)}
+                </div>}
 
             {description && <p className="pec__desc">{description}</p>}
             <div className="pec__calender">
@@ -65,6 +70,13 @@ function PlEventCard(props) {
                 {venueMapsLink && <a onClick={() => onLinkClicked('location')} className="pec__location__link" href={venueMapsLink} target="_blank"><p className="pec__location__text location-blue">{fullAddressValue}</p></a>}
                 
             </div>
+            {(eventHosts.length > 0) && <div className="pec__hosts">
+                {eventHosts.map(eh => <div className="pec__hosts__item">
+                    <img className="pec__hosts__item__img" src={`${eh.logo}`}/>
+                </div>)}
+                {(eventHosts.length === 1) && <p className="pec__hosts__item__text">{eventHosts[0].name}</p>}
+
+            </div>}
            
         </div>
         <style jsx>
@@ -94,6 +106,15 @@ function PlEventCard(props) {
             .pec__location {display: flex; align-items: center; margin:16px 0; margin-bottom: 20px;}
             .pec__location__img {width: 12px; height: 12px; margin-right: 4px;}
             .pec__location__text {color: #64748B; font-size: 12px; margin-right: 4px; display: flex; flex-wrap: wrap;}
+            
+            .pec__contacts {display: flex; flex-wrap: wrap; gap: 0 8px; margin-bottom: 16px; align-items: center;}
+            .pec__contacts__link {text-decoration: none;}
+            .pec__contacts__link__img {width:26px; height: 26px;}
+
+            .pec__hosts {display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px;}
+            .pec__hosts__item {display: flex; align-items: center;}
+            .pec__hosts__item__img {width: 48px; height: 48px;}
+            .pec__hosts__item__text {font-size: 13px; font-weight: 600; color: #475569; text-transform: capitalize;}
             
             .pec__info__type {margin-left: 16px; display: flex; align-items: center; flex:1;}
             .pec__topics {display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;}

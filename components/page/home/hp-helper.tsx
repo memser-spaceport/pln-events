@@ -55,13 +55,24 @@ export const getFormattedEvents = (events) => {
     const eventHosts = event?.node?.eventHosts?.map(hs => {
       const splitted = hs.split('|');
       if(splitted.length === 1) {
-        splitted.push('')
+        splitted.push('pln-default-host-logo.svg')
       }
       return {
         name: splitted[0],
-        logo: splitted[1],
+        logo: `/uploads/${splitted[1]}`,
       }
-    })
+    }) ?? []
+
+    // Preferred Contacts
+    const preferredContacts = event?.node?.preferredContacts?.map(pc => {
+      const splitted = pc.split('|');
+      const supportedLinks = ['twitter', 'discord', 'telegram']
+      return {
+        name: splitted[0],
+        logo: supportedLinks.includes(splitted[0].toLowerCase().trim()) ?`/icons/pln-contacts-${splitted[0]}.svg` : `/icons/pln-contacts-default.svg`,
+        link: splitted[1]
+      }
+    }) ?? []
 
     // Logos/images
     const locationLogo = '/icons/pln-location-icon.svg'
@@ -92,7 +103,9 @@ export const getFormattedEvents = (events) => {
       venueMapsLink: event?.node?.venueMapsLink,
       venueAddress: event?.node?.venueAddress,
       topics: event.node?.eventTopic,
+      isFeaturedEvent: event?.node?.isFeaturedEvent ?? false,
       eventHosts,
+      preferredContacts,
       startDateTimeStamp,
       startMonthIndex,
       startDay,
