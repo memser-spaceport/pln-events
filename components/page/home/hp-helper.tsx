@@ -226,7 +226,9 @@ export const getFilteredEvents = (allEvents, filters) => {
 
   return filteredItems;
 }
-
+export const daysInMonth = (month, year) => {
+  return new Date(year, month, 0).getDate();
+}
 export const getMonthWiseEvents = (filterdList) => {
   const monthWiseEvents = []
   months.forEach((m, i) => {
