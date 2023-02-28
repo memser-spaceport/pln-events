@@ -5,7 +5,7 @@ import { client } from "../.tina/__generated__/client";
 import AppHeader from '../components/core/app-header'
 import { getFilteredEvents, getFormattedEvents, getInitialState, getMonthWiseEvents, HpContext, months, reducerFunction } from "../components/page/home/hp-helper";
 import HpTimeline from "../components/page/home/hp-timeline";
-import { useReducer } from 'react'
+import { useReducer, useEffect } from 'react'
 import HpFilters from "../components/page/home/hp-filters";
 
 export default function IndexPage(props) {
@@ -34,6 +34,8 @@ export default function IndexPage(props) {
       dispatch({ type: 'setScrollupStatus', value: false })
     }
   }
+
+ 
 
 
   return <>

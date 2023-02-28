@@ -12,10 +12,8 @@ function HpFilters(props) {
     
     const events = props.events ?? [];
     const filteredCount = props?.filteredCount;
-    console.log(filteredCount)
     const { state, dispatch } = useContext(HpContext);
     const { filters, flags } = state
-    console.log(filters)
     const filterValues = [
         { name: "Year", type: 'single-select', items: getUniqueValuesFromEvents('startYear', [...events]), selectedItem: filters.year, placeholder: 'Filter by year', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'year', iconUrl: '/icons/pl-calender-icon.svg' },
         { name: "Locations", type: 'multi-select', items: getUniqueValuesFromEvents('location', [...events]), selectedItems: filters.locations, placeholder: 'Filter by location', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'locations', iconUrl: '/icons/pl-location-icon.svg' },
@@ -27,7 +25,6 @@ function HpFilters(props) {
 
 
     const onFilterChange = (type, key, value) => {
-        console.log(type, key, value);
         if (key === 'year') {
             trackGoal('EES2EVT9', 0)
           } else if (key === 'locations') {

@@ -1,18 +1,31 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PlEventCard from "../../ui/pl-event-card";
 import { trackGoal } from "fathom-client";
+import { HpContext } from "./hp-helper";
 
 function HpTimeline(props) {
     const monthWiseEvents = props.monthWiseEvents || [];
-    const [isScrolledUp, setScrollUp] = useState(false);
-    const totalEventsCount = monthWiseEvents.reduce((count, m) => {return count + m.events.length}, 0)
+    const totalEventsCount = monthWiseEvents.reduce((count, m) => { return count + m.events.length }, 0)
+    const {state}  = useContext(HpContext)
 
-    const onScrollToCurrentMonth = (monthsData) => {
+
+
+    const onLinkItemClicked = (item) => {
+        if (item === 'event') {
+            trackGoal('DULOJY8I', 0)
+        } else if (item === 'location') {
+            trackGoal('UKSYEJLH', 0)
+        }
+    }
+
+    const onScrollToCurrentMonth = () => {
         const currentTimeStamp = new Date().getTime()
         const currentMonthId = new Date().getMonth();
-        const foundItemIndex = [...monthsData].findIndex(m => m.index >= currentMonthId);
-        if(foundItemIndex > -1) {
-            const foundItem = monthsData[foundItemIndex];
+        const foundItemIndex = [...monthWiseEvents].findIndex(m => m.index >= currentMonthId);
+
+
+         if(foundItemIndex > -1) {
+            const foundItem = monthWiseEvents[foundItemIndex];
             const foundEventId = foundItem.events.findIndex(ev => ev.startDateTimeStamp >= currentTimeStamp);
             if(foundEventId > -1) {
                 const foundEventItem = foundItem.events[foundEventId];
@@ -21,31 +34,15 @@ function HpTimeline(props) {
                     scrollItem.scrollIntoView({behavior: "smooth", block: "start", inline: "start"})
                 }
             }
-        }
-        
-        setScrollUp(currentMonthId <= 1)
-    }
-
-    const onContentScroll = () => {
-        const container = document.getElementById('timeline-cn');
-        if(container.scrollTop < 5) {
-            setScrollUp(true)
-        } else {
-            setScrollUp(false)
-        }
-    }
-
-    const onLinkItemClicked = (item) => {
-        if(item === 'event') {
-            trackGoal('DULOJY8I', 0)
-        } else if (item === 'location') {
-            trackGoal('UKSYEJLH', 0)
-        }
+        } 
     }
 
     useEffect(() => {
-        onScrollToCurrentMonth(monthWiseEvents);
-    }, [props.filters])
+        console.log(state.filters, 'changed')
+        onScrollToCurrentMonth();
+    }, [state.filters])
+
+
 
 
     return <>
@@ -53,7 +50,8 @@ function HpTimeline(props) {
             <div className="hmt__cn">
                 {totalEventsCount === 0 && <div className="hmt__cn__empty">
                     No matching events available.
-                    </div>}
+                </div>}
+                
                 {monthWiseEvents.map(me => <div id={`m-${me.index}`} className="hmt__cn__sec">
                     {/*** MONTH DROPDOWN ***/}
                     <p className="hmt__cn__sec__month">{me.name}</p>
@@ -63,7 +61,7 @@ function HpTimeline(props) {
 
                     {/*** EVENT CARD ***/}
                     {me.events.map((event, eventIndex) => <div id={`m-${me.index}-${event.startDay}-cn`} className={`hmt__cn__sec__event`}>
-                        <div id={`m-${me.index}-${event.startDay}`}  className={`hmt__cn__sec__event__item ${(eventIndex + 1) % 2 !== 0 ? 'left' : 'right'}`}>
+                        <div id={`m-${me.index}-${event.startDay}`} className={`hmt__cn__sec__event__item ${(eventIndex + 1) % 2 !== 0 ? 'left' : 'right'}`}>
                             <PlEventCard onLinkItemClicked={onLinkItemClicked} {...event} />
                             <div className={`hmt__cn__sec__event__timeline ${(eventIndex + 1) % 2 !== 0 ? 'hmt__cn__sec__event__timeline--left' : 'hmt__cn__sec__event__timeline--right'}`}></div>
                             <div className={`hmt__cn__sec__event__databox ${(eventIndex + 1) % 2 !== 0 ? 'hmt__cn__sec__event__databox--left' : 'hmt__cn__sec__event__databox--right'}`}>

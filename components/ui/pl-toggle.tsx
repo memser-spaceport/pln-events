@@ -5,7 +5,6 @@ function PlToggle(props) {
     const callback = props.callback;
     const itemId = props.itemId;
     const activeItem = props.activeItem;
-    console.log(activeItem)
 
     const onSelectionChange = (e) => {
         if(callback) {
