@@ -9,7 +9,8 @@ tag: PLN Event
 dateTBD: false
 eventTopic:
   - Hackathon
-  - Plenary Talks
+  - Keynote
+  - Talks
 venueName: Improper City
 venueMapsLink: 'https://goo.gl/maps/UseT3u6vFmpFHMmv8'
 

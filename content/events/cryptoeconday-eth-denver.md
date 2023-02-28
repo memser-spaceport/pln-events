@@ -10,5 +10,5 @@ eventTopic:
   - Talks
   - Cryptoeconomics
 venueName: Coors Field
-venueMapsLink: 'https://goo.gl/maps/TotLrqCvvUf4T2xc9'
+venueMapsLink: 'https://goo.gl/maps/HABbRxFe3EojaMav8'
 ---
