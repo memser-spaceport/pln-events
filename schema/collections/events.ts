@@ -93,6 +93,23 @@ export const eventCollectionSchema: any = {
       list: true,
     },
     {
+      label: "Event Hosts",
+      name: "eventHosts",
+      type: "string",
+      list: true,
+    },
+    {
+      label: "Preferred Contacts",
+      name: "preferredContacts",
+      type: "string",
+      list: true,
+    },
+    {
+      label: "Is Featured Event",
+      name: "isFeaturedEvent",
+      type: "boolean",
+    },
+    {
       label: "Event Type",
       name: "eventType",
       type: "string",
