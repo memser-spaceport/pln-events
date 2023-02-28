@@ -2,7 +2,7 @@ import { useState } from "react";
 import PlSelect from "../../ui/pl-select";
 import PlTags from "../../ui/pl-tags";
 import PlToggle from "../../ui/pl-toggle";
-import { getUniqueValuesFromEvents, HpContext } from "./hp-helper";
+import { getNoFiltersApplied, getUniqueValuesFromEvents, HpContext } from "./hp-helper";
 import { useContext } from 'react'
 import { trackGoal } from "fathom-client";
 import PlMultiSelect from "../../ui/pl-multi-select";
@@ -22,7 +22,7 @@ function HpFilters(props) {
         { name: "Topics", type: 'multi-select', items: getUniqueValuesFromEvents('topics', [...events]), selectedItems: filters.topics, placeholder: 'Filter by topics', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'topics', iconUrl: '/icons/pl-topics-icon.svg' },
 
     ]
-
+    const filterCount = getNoFiltersApplied(filters);
 
     const onFilterChange = (type, key, value) => {
         if (key === 'year') {
@@ -71,7 +71,8 @@ function HpFilters(props) {
     return <>
         <div className="hpf">
             <div className="hpf__head">
-                <h3 className="hpf__head__title">Filters</h3>
+                <h3 className="hpf__head__title">{`Filters`}</h3>
+                {(filterCount > 0) && <p className="hpf__head__count">{filterCount}</p>}
                 <p onClick={onClearFilters} className="hpf__head__clear">Clear All</p>
                 <img onClick={onClosePopup} src="/icons/pln-close-black.svg" className="hpf__head__close"/>
             </div>
@@ -98,7 +99,8 @@ function HpFilters(props) {
              .hpf__mtools {position: fixed; bottom:0; left:0; right:0; width: 100%; height: 60px; display: flex; align-items: center; justify-content: center; background: white; z-index: 11; padding: 12px 16px; box-shadow: 0px -2px 4px #E2E8F0;}
              .hpf__year {padding: 16px 24px 0 24px;}
              .hpf__year__title {font-size: 13px;  margin-bottom: 8px;}
-             .hpf__head {padding: 16px 24px; border-bottom: 1px solid #CBD5E1; display: flex; justify-content: space-between; align-items: center;} 
+             .hpf__head {padding: 16px 24px; border-bottom: 1px solid #CBD5E1; display: flex; position: relative; justify-content: space-between; align-items: center;} 
+             .hpf__head__count {background: #156FF7; color: white; position: absolute; top:16px; left: 80px; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px;}
              .hpf__head__title {font-size: 16px;}
              .hpf__head__clear {display: none;}
              .hpf__pln {padding: 24px; border-bottom: 1px solid #CBD5E1; align-items: center; display: flex; justify-content: space-between;}
