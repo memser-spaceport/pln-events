@@ -11,6 +11,7 @@ preferredContacts:
   - 'discord|https://www.google.com'
 eventHosts:
   - 'protocol|protocol_labs.jpeg'
+  - 'asdasdas|protocol_labs.jpeg'
 isFeaturedEvent: true
 ---
 

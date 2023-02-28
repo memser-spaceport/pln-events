@@ -66,6 +66,7 @@ export const getFormattedEvents = (events) => {
       return {
         name: splitted[0],
         logo: `/uploads/${splitted[1]}`,
+        primaryIcon: `/icons/pln-primary-host.svg`
       }
     }) ?? []
 
