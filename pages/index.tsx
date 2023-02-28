@@ -61,7 +61,7 @@ export default function IndexPage(props) {
             <img className="hmt__scollup__img" src="/icons/scroll-up-icon.svg" />
             <p className="hmt__scollup__text">Scroll up to view past events</p>
           </div>}
-          <HpTimeline filters={state.filters} monthWiseEvents={monthWiseEvents} />
+          <HpTimeline filterdListCount={filterdListCount} filters={state.filters} monthWiseEvents={monthWiseEvents} />
         </div>
       </div>
 

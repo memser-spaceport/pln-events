@@ -4,7 +4,8 @@ import { trackGoal } from "fathom-client";
 import { HpContext } from "./hp-helper";
 
 function HpTimeline(props) {
-    const monthWiseEvents = props.monthWiseEvents || [];
+    const monthWiseEvents = props.monthWiseEvents ?? [];
+    const filterdListCount = props.filterdListCount ?? 0
     const totalEventsCount = monthWiseEvents.reduce((count, m) => { return count + m.events.length }, 0)
     const {state}  = useContext(HpContext)
 
@@ -31,16 +32,16 @@ function HpTimeline(props) {
                 const foundEventItem = foundItem.events[foundEventId];
                 const scrollItem = document.getElementById(`m-${currentMonthId}-${foundEventItem.startDay}`);
                 if(scrollItem) {
-                    scrollItem.scrollIntoView({behavior: "smooth", block: "start", inline: "start"})
+                    scrollItem.scrollIntoView({behavior: "smooth", block: "nearest"})
                 }
             }
         } 
     }
 
     useEffect(() => {
-        console.log(state.filters, 'changed')
+        console.log(filterdListCount, 'changed')
         onScrollToCurrentMonth();
-    }, [state.filters])
+    }, [filterdListCount])
 
 
 
