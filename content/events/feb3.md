@@ -4,8 +4,8 @@ eventDescription: This is the description of the event which is the description 
 eventType: Social
 website: https://lu.ma/ceddenver
 location: location TBD
-startDate: 02/03/2023
-endDate: 02/03/2023
+startDate: 03/01/2023
+endDate: 03/02/2023
 tag: Industry Event
 eventTopic:
   - Talks 3
