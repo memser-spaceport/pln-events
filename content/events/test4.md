@@ -4,7 +4,7 @@ eventDescription: This is the description of the event which is the description 
 eventType: Social
 website: https://lu.ma/ceddenver
 location: Boston, United States
-startDate: 12/12/2022
+startDate: 12/28/2022
 endDate: 12/15/2022
 tag: PLN Event
 eventTopic:
@@ -23,7 +23,5 @@ preferredContacts:
   - discord|https://discord.com/
 eventHosts:
   - VijHosts|no-logo-present.jpg
-  - WinsHosts|wins-logo.jpg
-  - ManHosts|wins-logo.jpeg
 dateTBD: false
 ---
