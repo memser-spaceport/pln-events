@@ -7,8 +7,8 @@ function HpTimeline(props) {
     const monthWiseEvents = props.monthWiseEvents ?? [];
     const filterdListCount = props.filterdListCount ?? 0
     const totalEventsCount = monthWiseEvents.reduce((count, m) => { return count + m.events.length }, 0)
-    const {state}  = useContext(HpContext)
-
+    const { state } = useContext(HpContext)
+    const { events } = state
 
 
     const onLinkItemClicked = (item) => {
@@ -21,21 +21,15 @@ function HpTimeline(props) {
 
     const onScrollToCurrentMonth = () => {
         const currentTimeStamp = new Date().getTime()
-        const currentMonthId = new Date().getMonth();
-        const foundItemIndex = [...monthWiseEvents].findIndex(m => m.index >= currentMonthId);
-
-
-         if(foundItemIndex > -1) {
-            const foundItem = monthWiseEvents[foundItemIndex];
-            const foundEventId = foundItem.events.findIndex(ev => ev.startDateTimeStamp >= currentTimeStamp);
-            if(foundEventId > -1) {
-                const foundEventItem = foundItem.events[foundEventId];
-                const scrollItem = document.getElementById(`m-${currentMonthId}-${foundEventItem.startDay}`);
-                if(scrollItem) {
-                    scrollItem.scrollIntoView({behavior: "smooth", block: "nearest"})
-                }
+        const futureTimeStamps = events.map(ev => ev.startDateTimeStamp).filter(v => v >= currentTimeStamp).sort((a, b) => a - b)
+        if (futureTimeStamps.length > 0) {
+            const foundDate = new Date(futureTimeStamps[0]);
+            const scrollItem = document.getElementById(`m-${foundDate.getMonth()}-${foundDate.getDate()}`);
+            if (scrollItem) {
+                scrollItem.scrollIntoView({ behavior: "smooth", block: "nearest" })
             }
-        } 
+        }
+
     }
 
     useEffect(() => {
@@ -52,7 +46,7 @@ function HpTimeline(props) {
                 {totalEventsCount === 0 && <div className="hmt__cn__empty">
                     No matching events available.
                 </div>}
-                
+
                 {monthWiseEvents.map(me => <div id={`m-${me.index}`} className="hmt__cn__sec">
                     {/*** MONTH DROPDOWN ***/}
                     <p className="hmt__cn__sec__month">{me.name}</p>
