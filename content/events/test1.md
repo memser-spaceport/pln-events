@@ -1,5 +1,6 @@
 ---
 eventName: Wins @ Test 1
+eventDescription: This is the description of the event which is the description of the event with details about the event and ehence the dedcsripton is long for me to test
 eventType: Conference
 website: https://lu.ma/ceddenver
 location: Denver, United States

@@ -1,10 +1,11 @@
 ---
 eventName: Man @ Test + 2
+eventDescription: This is the description of the event which is the description of the event with details about the event and ehence the dedcsripton is long for me to test
 eventType: Virtual
 website: https://lu.ma/ceddenver
 location: location TBD
-startDate: 02/25/2023
-endDate: 02/25/2023
+startDate: 01/25/2023
+endDate: 01/25/2023
 tag: Industry Event
 eventTopic:
   - Talks 3
