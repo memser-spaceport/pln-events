@@ -23,6 +23,6 @@ preferredContacts:
   - discord|https://discord.com/
 eventHosts:
   - WinsHosts|wins-logo.jpg
-  - ManHosts|wins-logo.jpeg
+  - ManHosts|wins-logo.jpg
 dateTBD: false
 ---
