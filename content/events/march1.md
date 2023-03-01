@@ -13,7 +13,7 @@ eventTopic:
   - Talks 2
   - Cryptoeconomics 2
   - Talks 3
-  - Cryptoeconomics 3
+  - Cryptoeconomics3
 venueName: Coors Field
 venueAddress: Fernway
 venueMapsLink: 'https://goo.gl/maps/HABbRxFe3EojaMav8'
