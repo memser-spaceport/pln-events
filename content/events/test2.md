@@ -25,5 +25,5 @@ eventHosts:
   - VijHosts|no-logo-present.jpg
   - WinsHosts|wins-logo.jpg
   - ManHosts|wins-logo.jpeg
-dateTBD: true
+dateTBD: false
 ---
