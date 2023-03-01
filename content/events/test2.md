@@ -7,11 +7,12 @@ startDate: 02/25/2023
 endDate: 02/25/2023
 tag: Industry Event
 eventTopic:
-  - Cryptoeconomics 1
-  - Talks 2
-  - Cryptoeconomics 2
   - Talks 3
   - Cryptoeconomics 3
+  - Talks 4
+  - Cryptoeconomics 4
+  - Talks 5
+  - Cryptoeconomics 5
 venueName: 
 venueAddress: 
 venueMapsLink: 'https://goo.gl/maps/HABbRxFe3EojaMav8'
