@@ -3,7 +3,7 @@ eventName: Winsretecfgcx @ Test erewr0 + sdfsf
 eventDescription: This is the description of the event which is the description of the event with details about the event and ehence the dedcsripton is long for me to test
 eventType: Conference
 website: https://lu.ma/ceddenver
-location: Denver, United States
+location: Michigan, United States
 startDate: 03/30/2023
 endDate: 04/01/2023
 tag: PLN Event
