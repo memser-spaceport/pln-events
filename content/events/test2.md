@@ -4,8 +4,8 @@ eventDescription: This is the description of the event which is the description 
 eventType: Virtual
 website: https://lu.ma/ceddenver
 location: location TBD
-startDate: 01/25/2023
-endDate: 01/25/2023
+startDate: 02/25/2023
+endDate: 02/25/2023
 tag: Industry Event
 eventTopic:
   - Talks 3
