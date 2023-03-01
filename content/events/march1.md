@@ -8,9 +8,9 @@ startDate: 03/01/2023
 endDate: 03/01/2023
 tag: PLN Event
 eventTopic:
-  - Talks 1
-  - Cryptoeconomics 1
-  - Talks 2
+  - Denver
+  - Michigan
+  - United States
   - Cryptoeconomics 2
   - Talks 3
   - Cryptoeconomics3
