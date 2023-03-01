@@ -24,6 +24,6 @@ preferredContacts:
 eventHosts:
   - WinsHosts|wins-logo.jpg
   - ManHosts
-  - VijHosts|
-dateTBD: true
+  - VijHosts|hand_logo.jpg
+dateTBD: false
 ---

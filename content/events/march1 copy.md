@@ -23,7 +23,7 @@ preferredContacts:
   - discord|https://discord.com/
 eventHosts:
   - WinsHosts|wins-logo.jpg
-  - ManHosts
+  - ManHosts|hand_logo.jpg
   - VijHosts|
-dateTBD: true
+dateTBD: false
 ---
