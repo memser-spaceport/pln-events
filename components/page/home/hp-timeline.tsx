@@ -24,6 +24,7 @@ function HpTimeline(props) {
         const futureTimeStamps = events.map(ev => ev.startDateTimeStamp).filter(v => v >= currentTimeStamp).sort((a, b) => a - b)
         if (futureTimeStamps.length > 0) {
             const foundDate = new Date(futureTimeStamps[0]);
+            console.log(foundDate, currentTimeStamp);
             const scrollItem = document.getElementById(`m-${foundDate.getMonth()}-${foundDate.getDate()}`);
             if (scrollItem) {
                 scrollItem.scrollIntoView({ behavior: "smooth", block: "nearest" })
