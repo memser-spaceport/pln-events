@@ -1,18 +1,19 @@
 ---
-eventName: Filecoin Virtual Machine Hacker Base
+eventName: FVM HackerBase
 eventType: Conference
 location: 'Denver, United States'
 website: 'https://events.fil.org/fvm-hackerbase'
-startDate: '2023-02-28T00:00:00.000Z'
-endDate: '2023-03-01T00:00:00.000Z'
+startDate: '2023-02-28'
+endDate: '2023-03-01'
 tag: PLN Event
 dateTBD: false
 eventTopic:
   - Hackathon
   - Keynote
-  - Talks
-venueName: Improper City
-venueMapsLink: 'https://goo.gl/maps/UseT3u6vFmpFHMmv8'
+  - Lightning Talks
+  - Co-working
+venueName: Upper Larimer
+venueMapsLink: 'https://goo.gl/maps/ppBopWmrNEZD4QHo9'
 
 ---
 
