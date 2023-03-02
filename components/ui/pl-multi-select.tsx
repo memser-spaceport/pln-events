@@ -39,6 +39,7 @@ function PlMultiSelect(props) {
         if (onClearMultiSelect) {
             setPaneActiveStatus(false)
             onClearMultiSelect(itemId);
+            setfilteredItems([...items])
 
         }
     }
@@ -61,10 +62,16 @@ function PlMultiSelect(props) {
         };
     }, [])
 
+    useEffect(() => {
+        if(!isPaneActive) {
+            setfilteredItems([...items])
+        }
+    }, [isPaneActive])
+
 
     return <>
         <div ref={paneRef} className="plms">
-            <div title={selectedItems.length > 0 ? selectedItems.join(',') : ``} id="tesssst" onClick={() => setPaneActiveStatus(v => !v)} className="plms__info">
+            <div title={selectedItems.length > 0 ? selectedItems.join('|') : ``} id="tesssst" onClick={() => setPaneActiveStatus(v => !v)} className="plms__info">
                 <img src={iconUrl} className="plms__info__icon" />
                 {(selectedItems.length === 0) && <div className="plms__info__text">{`Select ${name}`}</div>}
                 {(selectedItems.length === 1) && <div className="plms__info__text">{selectedItems[0]}</div>}

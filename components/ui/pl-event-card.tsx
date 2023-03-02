@@ -72,7 +72,7 @@ function PlEventCard(props) {
             </div>
             {(eventHosts.length > 0) && <div className="pec__hosts">
                 {eventHosts.map((eh, ehIndex) => <div className="pec__hosts__item">
-                    <img className="pec__hosts__item__img" src={`${eh.logo}`}/>
+                    <img className="pec__hosts__item__img" title={eh.name} src={`${eh.logo}`}/>
                     {(ehIndex === 0) && <img className="pec__hosts__item__primimg" src={eh.primaryIcon}/>}
                 </div>)}
                 {(eventHosts.length === 1) && <p className="pec__hosts__item__text">{eventHosts[0].name}</p>}

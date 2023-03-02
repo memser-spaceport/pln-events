@@ -20,13 +20,7 @@ export default function IndexPage(props) {
   const filterdListCount = filterdList.length;
 
 
-  const toggleMobileFilter = () => {
-    dispatch({ type: 'toggleMobileFilter' })
-  }
-
-  const onClearFilters = () => {
-    dispatch({ type: 'clearAllFilters' })
-  }
+ 
 
   const onContentScroll = () => {
     const container = document.getElementById('main-content');
