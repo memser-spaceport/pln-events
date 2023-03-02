@@ -8,42 +8,56 @@ function HpMonthBox(props) {
     const paneRef = useRef<HTMLDivElement>();
     const monthsRef = useRef<HTMLDivElement>();
     const allData = props.allData || [];
-    const monthsAvailable = allData.map(v => v.name);
+    const monthsAvailable = [...allData]
     const currenMonthId = new Date().getMonth();
 
 
     const onMonthClicked = () => {
-        if(allData.length > 0) {
+        if (allData.length > 0) {
             setPaneStatus(v => !v)
         }
     }
 
     const onNavigate = (type, index) => {
-       
-        if (type === 'prev' && (currentIndex - 1) >= 0) {
-            const scrollItem = document.getElementById(`m-${currentIndex - 1}`);
-            if (scrollItem) {
-                scrollItem.scrollIntoView({ behavior: "smooth", block: "start" })
+
+        if (type === 'prev') {
+            const itemIndex = allData.findIndex(v => v.index === currentIndex);
+            if (itemIndex - 1 >= 0) {
+                const newItem = allData[itemIndex - 1]
+                const scrollItem = document.getElementById(`m-${newItem.index}`);
+                if (scrollItem) {
+                    scrollItem.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
             }
-        }  else if (type === 'next' && (currentIndex + 1) < allData.length) {
-            const scrollItem = document.getElementById(`m-${currentIndex + 1}`);
-            if (scrollItem) {
-                scrollItem.scrollIntoView({ behavior: "smooth", block: "start" })
+
+        } else if (type === 'next') {
+            const itemIndex = allData.findIndex(v => v.index === currentIndex);
+            if (itemIndex + 1 < allData.length) {
+                const newItem = allData[itemIndex + 1]
+                const scrollItem = document.getElementById(`m-${newItem.index}`);
+                if (scrollItem) {
+                    scrollItem.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
             }
-        } else if (type === 'current' && currenMonthId < allData.length && currenMonthId >= 0) {
-            const scrollItem = document.getElementById(`m-${currenMonthId}`);
-            if (scrollItem) {
-                scrollItem.scrollIntoView({ behavior: "smooth", block: "start" })
+
+        } else if (type === 'current') {
+            const itemIndex = allData.findIndex(v => v.index === currenMonthId)
+            if(itemIndex > -1) {
+                const scrollItem = document.getElementById(`m-${currenMonthId}`);
+                if (scrollItem) {
+                    scrollItem.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
             }
+            
         } else if (type === 'direct') {
             const scrollItem = document.getElementById(`m-${index}`);
             if (scrollItem) {
                 scrollItem.scrollIntoView({ behavior: "smooth", block: "start" })
             }
-        } 
+        }
         setPaneStatus(false)
         setMonthsPaneStatus(false)
-       
+
     }
 
     useEffect(() => {
@@ -82,11 +96,11 @@ function HpMonthBox(props) {
                 <div onClick={() => onNavigate('next', 0)} className="hpmp__pane__item">Next Month</div>
                 <div onClick={() => setMonthsPaneStatus(v => !v)} className="hpmp__pane__item">
                     <p>Specific Month</p>
-                    <img className="hpmp__pane__item__img" src="/icons/pln-right-arrow.svg"/>
+                    <img className="hpmp__pane__item__img" src="/icons/pln-right-arrow.svg" />
                 </div>
             </div>}
             {isMonthsPaneActive && <div className="hpmp__monthspane">
-                {monthsAvailable.map((m, mIndex) => <p onClick={() => onNavigate('direct', mIndex)} className="hpmp__monthspane__item">{m}</p>)}
+                {monthsAvailable.map((m, mIndex) => <p onClick={() => onNavigate('direct', m.index)} className="hpmp__monthspane__item">{m.name}</p>)}
             </div>}
         </div>
         <style jsx>
