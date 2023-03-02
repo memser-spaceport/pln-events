@@ -85,12 +85,12 @@ function PlDateRange(props) {
 
     return <>
         <div className="pldr">
-            <div onClick={() => onDateBoxClicked('start')} className="pldr__start">
+            <div onClick={() => onDateBoxClicked('start')} className={`pldr__start ${monthViewData.type === 'start'? 'active': ''}`}>
                 <img className="pldr__start__img" src={iconUrl} />
                 <p className="pldr__start__text">{startDateText}</p>
             </div>
             <p>-</p>
-            <div onClick={() => onDateBoxClicked('end')} className="pldr__end">
+            <div onClick={() => onDateBoxClicked('end')} className={`pldr__end ${monthViewData.type === 'end'? 'active': ''}`}>
                 <img className="pldr__start__img" src={iconUrl} />
                 <p className="pldr__start__text">{endDateText}</p>
             </div>
@@ -120,7 +120,7 @@ function PlDateRange(props) {
                 .pldr__start__img {width: 16px; height: 16px; margin-right: 10px;}
                 .pldr__end {padding: 4px 0 px; display: flex;  cursor: pointer; font-weight: 500; font-size: 14px; color: #156FF7; margin-left: 10px;}
                 .pldr__end__img {width: 16px; height: 16px; margin-right: 8px;}
-                .pldr__mv {position: absolute; top: 40px; left:0;  width: 236px; padding: 16px; background: white; box-shadow: 0px 2px 6px rgba(15, 23, 42, 0.16); border-radius: 13px; background: white; z-index: 5;}
+                .pldr__mv {position: absolute; top: 40px; left:auto; right:auto;  width: 236px; padding: 16px; background: white; box-shadow: 0px 2px 6px rgba(15, 23, 42, 0.16); border-radius: 13px; background: white; z-index: 5;}
                 .pldr__head {display: flex; border-bottom: 1px solid lightgrey; align-items: center; justify-content: center; font-size: 13px; padding: 8px 0;}
                 .pldr__month {display: flex; padding: 0 16px; align-items: center; justify-content: center; font-size: 13px; padding: 8px 0;}
                 .pldr__month__empty {width: 40px; height: 40px;}
@@ -131,6 +131,10 @@ function PlDateRange(props) {
                 .pldr__mv__daycn__item {width: 25px; cursor: pointer; height: 25px; font-size: 13px; font-weight: 500; color: #0F172A; display: flex; align-items: center; justify-content: center; margin-right: 4px; margin-bottom: 4px;}
                 .pldr__mv__daycn__head {width: 25px; cursor: pointer; color: #9C9D9F; font-weight: 600; height: 25px; font-size: 13px; display: flex; align-items: center; justify-content: center; margin-right: 4px; margin-bottom: 4px;}
                 .pldr__mv__daycn__item--active {background: #156FF7; color: white; border-radius: 50%;}
+                .active {color: #0060f1; font-weight: 700;}
+                @media(min-width: 1200px) {
+                    .pldr__mv {left:0; right:0;}
+                }
                 `
                 
             }

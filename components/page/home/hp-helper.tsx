@@ -58,17 +58,20 @@ export const getFormattedEvents = (events) => {
     const fullDateFormat = startMonthIndex === endMonthIndex ? `${months[startMonthIndex]} ${startDateValue.getDate()} ${showEndDate ? '-' : ''} ${showEndDate ? endDateValue.getDate() : ''}, ${endDateValue.getFullYear()} ` : `${months[startMonthIndex]} ${startDateValue.getDate()} - ${months[endMonthIndex]} ${endDateValue.getDate()}, ${endDateValue.getFullYear()}`
 
     // Host names
-    const eventHosts = event?.node?.eventHosts?.map(hs => {
+    const tempEventNames = []
+    const eventHosts = []
+    event?.node?.eventHosts?.forEach(hs => {
       const splitted = hs.split('|');
       if (splitted.length === 1) {
         splitted.push('pln-default-host-logo.svg')
       }
-      return {
-        name: splitted[0],
-        logo: `/uploads/${splitted[1]}`,
-        primaryIcon: `/icons/pln-primary-host.svg`
+     
+      if(!tempEventNames.includes(splitted[0])) {
+        tempEventNames.push( splitted[0])
+        const newHostEmtry = {name: splitted[0], logo: `/uploads/${splitted[1]}`, primaryIcon: `/icons/pln-primary-host.svg`}
+        eventHosts.push(newHostEmtry)
       }
-    }) ?? []
+    }) 
 
     // Preferred Contacts
     const preferredContacts = event?.node?.preferredContacts?.map(pc => {
@@ -80,6 +83,10 @@ export const getFormattedEvents = (events) => {
         link: splitted[1]
       }
     }) ?? []
+
+    //trimming topics
+    const allTopics = event.node?.eventTopic ?? []
+    const trimmedTopics = allTopics.slice(0, 4);
 
     // Logos/images
     const locationLogo = '/icons/pln-location-icon.svg'
@@ -109,9 +116,9 @@ export const getFormattedEvents = (events) => {
       venueName: event?.node?.venueName,
       venueMapsLink: event?.node?.venueMapsLink,
       venueAddress: event?.node?.venueAddress,
-      topics: event.node?.eventTopic,
       isFeaturedEvent: event?.node?.isFeaturedEvent ?? false,
-      eventHosts,
+      topics: [...trimmedTopics],
+      eventHosts: eventHosts ?? [],
       preferredContacts,
       startDateTimeStamp,
       startMonthIndex,
