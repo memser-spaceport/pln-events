@@ -8,7 +8,7 @@ function HpMonthBox(props) {
     const paneRef = useRef<HTMLDivElement>();
     const monthsRef = useRef<HTMLDivElement>();
     const allData = props.allData || [];
-    const monthsAvailable = allData.map(v => v.name);
+    const monthsAvailable = [...allData]
     const currenMonthId = new Date().getMonth();
 
 
@@ -86,7 +86,7 @@ function HpMonthBox(props) {
                 </div>
             </div>}
             {isMonthsPaneActive && <div className="hpmp__monthspane">
-                {monthsAvailable.map((m, mIndex) => <p onClick={() => onNavigate('direct', mIndex)} className="hpmp__monthspane__item">{m}</p>)}
+                {monthsAvailable.map((m, mIndex) => <p onClick={() => onNavigate('direct', m.index)} className="hpmp__monthspane__item">{m.name}</p>)}
             </div>}
         </div>
         <style jsx>
