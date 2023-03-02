@@ -11,7 +11,7 @@ function PlDateRange(props) {
    
 
 
-    const paneRef = useRef()
+    const paneRef = useRef<HTMLInputElement>()
     const [monthViewData, setMonthViewData] = useState({ isActive: false, month: - 1, type: '' });
     const selectedDay = monthViewData.type === 'start' ? startDate.getDate() : endDate.getDate();
     const selectedMonth = monthViewData.type === 'start' ? startDate.getMonth() : endDate.getMonth()
