@@ -56,7 +56,11 @@ function PlSingleSelect(props) {
         };
     }, [])
 
-
+    useEffect(() => {
+        if(!isPaneActive) {
+            setfilteredItems([...items])
+        }
+    }, [isPaneActive])
 
     return <>
         <div ref={paneRef} className="plms">
@@ -74,7 +78,7 @@ function PlSingleSelect(props) {
                 </div>}
                 <div className="plms__pane__list">
                     {filteredItems.map((item, index) => <div onClick={e => onItemSelected(item)} className="plms__pane__list__item">
-                        <div className="plms__pane__list__item__logo"></div>
+                      
                         <p id={`${itemId}-ps-pane-${index}`} className={`plms__pane__list__item__text`} >{item}</p>
                         {(selectedItem !== item) && <div className="plms__pane__list__item__check"></div>}
                         {(selectedItem === item) && <div className="plms__pane__list__item__check--active">

@@ -60,7 +60,7 @@ export const getFormattedEvents = (events) => {
     // Host names
     const eventHosts = event?.node?.eventHosts?.map(hs => {
       const splitted = hs.split('|');
-      if(splitted.length === 1) {
+      if (splitted.length === 1) {
         splitted.push('pln-default-host-logo.svg')
       }
       return {
@@ -76,7 +76,7 @@ export const getFormattedEvents = (events) => {
       const supportedLinks = ['twitter', 'discord', 'telegram']
       return {
         name: splitted[0],
-        logo: supportedLinks.includes(splitted[0].toLowerCase().trim()) ?`/icons/pln-contacts-${splitted[0]}.svg` : `/icons/pln-contacts-default.svg`,
+        logo: supportedLinks.includes(splitted[0].toLowerCase().trim()) ? `/icons/pln-contacts-${splitted[0]}.svg` : `/icons/pln-contacts-default.svg`,
         link: splitted[1]
       }
     }) ?? []
@@ -163,44 +163,74 @@ export const reducerFunction = (oldstate, action) => {
     case 'setScrollupStatus':
       newState.flags.isScrolledUp = action.value;
       return newState;
+    case 'setStartDateRange':
+      newState.filters.dateRange.start = action.value;
+      return newState;
+    case 'setEndDateRange':
+      newState.filters.dateRange.end = action.value;
+      return newState;
+
   }
 }
 
 export const getNoFiltersApplied = (filters) => {
   let count = 0;
-  if(filters.locations.length > 0) {
+  if (filters.locations.length > 0) {
     count++
   }
-  if(filters.topics.length > 0) {
-    count++
-  }
-
-  if(filters.year !== `${new Date().getFullYear()}`) {
+  if (filters.topics.length > 0) {
     count++
   }
 
-  if(filters.eventType !== '') {
+  if (filters.year !== `${new Date().getFullYear()}`) {
     count++
   }
 
-  if(filters.eventHosts.length > 0) {
+  if (filters.eventType !== '') {
     count++
   }
-  if(filters.isPlnEventOnly === true) {
+
+  if (filters.eventHosts.length > 0) {
     count++
   }
+  if (filters.isPlnEventOnly === true) {
+    count++
+  }
+
+  if(filters.dateRange.start.toLocaleDateString() !== new Date(`01/01/${new Date().getFullYear()}`).toLocaleDateString() ||  filters.dateRange.end.toLocaleDateString() !== new Date(`12/31/${new Date().getFullYear()}`).toLocaleDateString()) {
+    count++
+  }
+ 
 
   return count;
 }
 
 export const getInitialState = (events) => {
   return {
-    filteredItems: { year: `${new Date().getFullYear()}`, location: [], isPlnEventOnly: false, topics: [], eventHosts: [], eventType: '' },
-    filters: { year: `${new Date().getFullYear()}`, isPlnEventOnly: false, locations: [], topics: [], eventHosts: [], eventType: '' },
+    filteredItems: { year: `${new Date().getFullYear()}`, location: [], isPlnEventOnly: false, topics: [], eventHosts: [], eventType: '', dateRange: { start: new Date(`01/01/${new Date().getFullYear()}`), end: new Date(`12/31/${new Date().getFullYear()}`) } },
+    filters: { year: `${new Date().getFullYear()}`, isPlnEventOnly: false, locations: [], topics: [], eventHosts: [], eventType: '', dateRange: { start: new Date(`01/01/${new Date().getFullYear()}`), end: new Date(`12/31/${new Date().getFullYear()}`) } },
     flags: { isMobileFilterActive: false, isScrolledUp: false },
     events: [...events],
     filteredEvents: [...events]
   }
+}
+
+export const getDaysValue = (count, monthValue) => {
+  const newDate = new Date(`${monthValue}/01/2023`)
+  const items = [];
+  const countForEmpty = newDate.getDay()
+  console.log(countForEmpty, monthValue, newDate)
+  if (count === 0) {
+    return []
+  }
+  for (let j = 1; j <= countForEmpty; j++) {
+    items.push("")
+  }
+  for (let i = 1; i <= count; i++) {
+    items.push(i)
+  }
+
+  return items
 }
 
 export const getFilteredEvents = (allEvents, filters) => {
@@ -219,6 +249,14 @@ export const getFilteredEvents = (allEvents, filters) => {
     }
 
     if (filters.eventType !== '' && filters?.eventType?.toLowerCase().trim() !== item?.eventType?.toLowerCase().trim()) {
+      return false
+    }
+
+    if(filters.dateRange.start.getTime() !== new Date(`01/01/${filters.year}`).getTime() && filters.dateRange.start.getTime() > item?.startDateTimeStamp) {
+      return false
+    }
+
+    if(filters.dateRange.end.getTime() !== new Date(`12/31/${filters.year}`).getTime() && filters.dateRange.end.getTime() < item?.startDateTimeStamp) {
       return false
     }
 

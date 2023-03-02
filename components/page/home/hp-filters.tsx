@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import { trackGoal } from "fathom-client";
 import PlMultiSelect from "../../ui/pl-multi-select";
 import PlSingleSelect from "../../ui/pl-single-select";
+import PlDateRange from '../../ui/pl-date-range';
 
 function HpFilters(props) {
     
@@ -17,6 +18,7 @@ function HpFilters(props) {
     const filterValues = [
         { name: "Year", type: 'single-select', items: getUniqueValuesFromEvents('startYear', [...events]), selectedItem: filters.year, placeholder: 'Filter by year', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'year', iconUrl: '/icons/pl-calender-icon.svg' },
         { name: "Locations", type: 'multi-select', items: getUniqueValuesFromEvents('location', [...events]), selectedItems: filters.locations, placeholder: 'Filter by location', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'locations', iconUrl: '/icons/pl-location-icon.svg' },
+        { name: "Schedule", type: 'date-range', identifierId: 'eventHosts', iconUrl: '/icons/pl-calender-icon.svg', dateRange: filters.dateRange },
         { name: "Event Hosts", type: 'multi-select', items: getUniqueValuesFromEvents('eventHosts', [...events]), selectedItems: filters.eventHosts, placeholder: 'Filter by Host Name', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'eventHosts', iconUrl: '/icons/pln-hosts-icon.svg' },
         { name: "Event Type", type: 'tags', items: ['Virtual', 'Conference', 'Social'], selectedItem: filters.eventType, identifierId: 'eventType' },
         { name: "Topics", type: 'multi-select', items: getUniqueValuesFromEvents('topics', [...events]), selectedItems: filters.topics, placeholder: 'Filter by topics', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'topics', iconUrl: '/icons/pl-topics-icon.svg' },
@@ -44,6 +46,8 @@ function HpFilters(props) {
             }
         } else if (type === 'single-select' || type === 'toggle') {
             dispatch({ type: 'setSingleSelectFilter', key, value })
+        } else if (type === 'date-range') {
+            dispatch({ type: key === 'start'? 'setStartDateRange': 'setEndDateRange', value })
         }
     }
 
@@ -82,6 +86,7 @@ function HpFilters(props) {
             </div>
             {filterValues.map(filter => <div className="hpf__filters">
                 <h4 className="hpf__filters__title">{filter.name}</h4>
+                {filter.type === 'date-range' && <PlDateRange callback={onFilterChange} {...filter}/>}
                 {filter.type === 'single-select' && <PlSingleSelect callback={onFilterChange} {...filter} />}
                 {filter.type === 'multi-select' && <PlMultiSelect onClearMultiSelect={onClearMultiSelect} callback={onFilterChange} {...filter} />}
                 {filter.type === 'tags' && <PlTags callback={onFilterChange} {...filter} />}
@@ -112,8 +117,8 @@ function HpFilters(props) {
              .hpf__eventtype {padding: 16px 24px 0 24px;}
              .hpf__eventtype__title {font-size: 13px; margin-bottom: 8px; }
              .hpf__head__close {width: 16px; height: 16px; cursor: pointer;}
-             .hpf__mtools__clear {border: 1px solid #CBD5E1; margin-right: 16px; padding: 6px 24px; font-size: 14px; font-weight: 600; border-radius: 100px;}
-             .hpf__mtools__apply {background: #156FF7; color: white;  padding: 6px 24px; font-size: 14px; font-weight: 600; border-radius: 100px;}
+             .hpf__mtools__clear {border: 1px solid #CBD5E1; margin-right: 16px; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 100px;}
+             .hpf__mtools__apply {background: #156FF7; color: white;  padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 100px;}
              @media(min-width: 1200px) {
                 .hpf__mtools {display: none;}
                 .hpf__head__clear {display: block; font-size: 13px; color: #156FF7; cursor: pointer;}

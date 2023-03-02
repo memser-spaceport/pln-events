@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { getNoFiltersApplied,HpContext } from '../../page/home/hp-helper'
+import { getNoFiltersApplied,HpContext } from './hp-helper'
 
 function HpFilterHead(props) {
     const {state, dispatch} = useContext(HpContext)

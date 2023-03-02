@@ -21,7 +21,26 @@ function HpTimeline(props) {
 
     const onScrollToCurrentMonth = () => {
         const currentTimeStamp = new Date().getTime()
-        const futureTimeStamps = events.map(ev => ev.startDateTimeStamp).filter(v => v >= currentTimeStamp).sort((a, b) => a - b)
+        const currenMonthId = new Date().getMonth();
+        const currentDay = new Date().getDate()
+        const filteredMonthData = monthWiseEvents.filter(m => m.index >= currenMonthId);
+        if(filteredMonthData.length > 0)  {
+           const selectedMonthData =  filteredMonthData[0];
+           const filteredEvents = selectedMonthData.events.filter(ev => ev.startDay >= currentDay);
+           if(filteredEvents.length > 0) {
+                const selectedEvent = filteredEvents[0];
+                const scrollItem = document.getElementById(`m-${selectedEvent.startMonthIndex}-${selectedEvent.startDay}`);
+                if (scrollItem) {
+                    scrollItem.scrollIntoView({ behavior: "smooth", block: "center" })
+                }
+
+           }
+        }
+
+
+       /*  const futureTimeStamps = events.map(ev => ev.startDateTimeStamp).filter(v => v >= currentTimeStamp).sort((a, b) => a - b)
+        
+        
         if (futureTimeStamps.length > 0) {
             const foundDate = new Date(futureTimeStamps[0]);
             console.log(foundDate, currentTimeStamp);
@@ -29,8 +48,7 @@ function HpTimeline(props) {
             if (scrollItem) {
                 scrollItem.scrollIntoView({ behavior: "smooth", block: "nearest" })
             }
-        }
-
+        } */
     }
 
     useEffect(() => {
@@ -77,7 +95,7 @@ function HpTimeline(props) {
    
             
             .hmt__cn {position: relative;}
-            .hmt__cn__empty {background: white; border: 1px solid lightgrey; text-align: center; margin-top: 40px; width: 400px; padding: 24px;}
+            .hmt__cn__empty {background: white; border: 1px solid lightgrey; text-align: center; margin-top: 80px; width: 200px; padding: 24px;}
             .hmt__cn__sec {width: 100%; display: flex; position: relative;  flex-direction: column; align-items: center;}
             .hmt__cn__sec__month {background: white;  position: sticky;  top: 150px; padding: 6px 16px; color: #0F172A; border-radius: 100px; font-size: 13px; font-weight: 400; border: 0.5px solid #CBD5E1;z-index: 3; width: fit-content; margin: 32px 0;}
             .hmt__cn__sec__event { width: 100%; position: relative; margin: 16px 0; display: flex; justify-content: center;}
@@ -111,7 +129,7 @@ function HpTimeline(props) {
                 .hmt__cn__sec__event__timeline--left { top: 22px; right: -23px;}
                 .hmt__cn__sec__event__timeline--right { top: 22px; left: -23px;}
                 
-                
+                .hmt__cn__empty {width: 400px; margin-top: 40px;}
                 .hmt__cn__sec__event__databox {position: absolute; border-radius: 2px; width: 44px; color: white; font-size: 14px;  display: flex; flex-direction: column; align-items: center; justify-content: center; height: 44px; background: #8C55D3; }
                 .hmt__cn__sec__event__databox--left { top: 0; right: -67px;}
                 .hmt__cn__sec__event__databox--right { top: 0; left: -67px;}

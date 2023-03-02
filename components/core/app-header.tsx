@@ -12,7 +12,7 @@ function AppHeader() {
                     <h1 className="ah__logo__heading__text">Protocol Labs</h1>
                     <h1 className="ah__logo__heading__text">Network Events</h1>
                 </div></div>
-            <a className="ah__btn" onClick={onHostEventClicked} target="_blank" href="https://github.com/memser-spaceport/pln-events#submitting-events">Host an event</a>
+            <a className="ah__btn" onClick={onHostEventClicked} target="_blank" href="https://github.com/memser-spaceport/pln-events#submitting-events">Submit an event</a>
             {/* <img src="/icons/pln-menu-icon.svg" className="ah__menu"/> */}
         </header>
         <style jsx>
