@@ -226,7 +226,6 @@ export const getDaysValue = (count, monthValue) => {
   const newDate = new Date(`${monthValue}/01/2023`)
   const items = [];
   const countForEmpty = newDate.getDay()
-  console.log(countForEmpty, monthValue, newDate)
   if (count === 0) {
     return []
   }

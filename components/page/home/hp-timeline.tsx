@@ -40,7 +40,6 @@ function HpTimeline(props) {
     }
 
     useEffect(() => {
-        console.log(filterdListCount, 'changed')
         onScrollToCurrentMonth();
     }, [filterdListCount])
 
@@ -54,9 +53,9 @@ function HpTimeline(props) {
                     No matching events available.
                 </div>}
 
-                {monthWiseEvents.map((me, monthIndex) => <div id={`m-${me.index}`} className="hmt__cn__sec">
+                {monthWiseEvents.map(me => <div id={`m-${me.index}`} className="hmt__cn__sec">
                     {/*** MONTH DROPDOWN ***/}
-                    <div className="hmt__cn__sec__month"><HpMonthBox {...me} allData={[...monthWiseEvents]} currentIndex={monthIndex}/></div>
+                    <div className="hmt__cn__sec__month"><HpMonthBox {...me} allData={[...monthWiseEvents]} currentIndex={me.index}/></div>
                     
                     {/*** TIMELINE UI ***/}
                     <div className="hmt__cn__sec__timeline"></div>
