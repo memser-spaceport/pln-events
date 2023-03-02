@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import PlEventCard from "../../ui/pl-event-card";
 import { trackGoal } from "fathom-client";
 import { HpContext } from "./hp-helper";
+import HpMonthBox from "./hp-month-box";
 
 function HpTimeline(props) {
     const monthWiseEvents = props.monthWiseEvents ?? [];
@@ -36,19 +37,6 @@ function HpTimeline(props) {
 
            }
         }
-
-
-       /*  const futureTimeStamps = events.map(ev => ev.startDateTimeStamp).filter(v => v >= currentTimeStamp).sort((a, b) => a - b)
-        
-        
-        if (futureTimeStamps.length > 0) {
-            const foundDate = new Date(futureTimeStamps[0]);
-            console.log(foundDate, currentTimeStamp);
-            const scrollItem = document.getElementById(`m-${foundDate.getMonth()}-${foundDate.getDate()}`);
-            if (scrollItem) {
-                scrollItem.scrollIntoView({ behavior: "smooth", block: "nearest" })
-            }
-        } */
     }
 
     useEffect(() => {
@@ -62,14 +50,14 @@ function HpTimeline(props) {
     return <>
         <div id="timeline-cn" className="hmt">
             <div className="hmt__cn">
-                {totalEventsCount === 0 && <div className="hmt__cn__empty">
+                {(totalEventsCount === 0) && <div className="hmt__cn__empty">
                     No matching events available.
                 </div>}
 
-                {monthWiseEvents.map(me => <div id={`m-${me.index}`} className="hmt__cn__sec">
+                {monthWiseEvents.map((me, monthIndex) => <div id={`m-${me.index}`} className="hmt__cn__sec">
                     {/*** MONTH DROPDOWN ***/}
-                    <p className="hmt__cn__sec__month">{me.name}</p>
-
+                    <div className="hmt__cn__sec__month"><HpMonthBox {...me} allData={[...monthWiseEvents]} currentIndex={monthIndex}/></div>
+                    
                     {/*** TIMELINE UI ***/}
                     <div className="hmt__cn__sec__timeline"></div>
 
@@ -86,6 +74,7 @@ function HpTimeline(props) {
                     </div>
                     )}
                 </div>)}
+                <div className="dummy"></div>
             </div>
         </div>
         <style jsx>
@@ -95,9 +84,10 @@ function HpTimeline(props) {
    
             
             .hmt__cn {position: relative;}
-            .hmt__cn__empty {background: white; border: 1px solid lightgrey; text-align: center; margin-top: 80px; width: 200px; padding: 24px;}
+            .hmt__cn__empty {background: white; border: 1px solid lightgrey; text-align: center; margin-top: 180px; width: 270px; padding: 24px;}
             .hmt__cn__sec {width: 100%; display: flex; position: relative;  flex-direction: column; align-items: center;}
-            .hmt__cn__sec__month {background: white;  position: sticky;  top: 150px; padding: 6px 16px; color: #0F172A; border-radius: 100px; font-size: 13px; font-weight: 400; border: 0.5px solid #CBD5E1;z-index: 3; width: fit-content; margin: 32px 0;}
+            .hmt__cn__sec__month { position: sticky; z-index: 3; top: 150px; margin: 32px 0;}
+           
             .hmt__cn__sec__event { width: 100%; position: relative; margin: 16px 0; display: flex; justify-content: center;}
             .hmt__cn__sec__event__item {position: relative; width: calc(100vw - 32px);}
           
@@ -117,11 +107,13 @@ function HpTimeline(props) {
 
             .left {}
             .right {} 
-
+            .dummy {width: 100%; height: 60px;}
             @media(min-width: 1200px) {
                 .left {float: left;}
                 .right {float: right; margin-top: -12%;} 
+               
                 .hmt__cn__sec__month {top: 42px;}
+                .hmt__cn__sec__month__test {position: sticky; top: 72px;}
                 .hmt__cn__sec {width: 800px; display: flex; position: relative;  flex-direction: column; align-items: center;}
                 .hmt__cn__sec__event { width: 800px; position: relative; margin:0; display: block;}
                 .hmt__cn__sec__event__item {position: relative; width: 354px; }
