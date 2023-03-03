@@ -43,7 +43,7 @@ export const months = ["January", "February", "March", "April", "May", "June", "
 export const getFormattedEvents = (events) => {
   const allEvents = events ?? [];
   const formattedEvents = allEvents.map(event => {
-
+    console.log(event.node?.eventName, event?.node?.startDate, new Date(event?.node?.startDate), new Date(event?.node?.startDate).getTime())
     // Start Date
     const startDateValue = new Date(event.node?.startDate);
     const startDateTimeStamp = startDateValue.getTime()
