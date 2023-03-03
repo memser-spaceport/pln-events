@@ -4,15 +4,16 @@ function PlToggle(props) {
     const checkRef = useRef<HTMLInputElement>();
     const callback = props.callback;
     const itemId = props.itemId;
+    const activeItem = props.activeItem;
 
     const onSelectionChange = (e) => {
         if(callback) {
-            callback(itemId, checkRef.current.checked)
+            callback('single-select',itemId, checkRef.current.checked)
         }
     }
     return <>
         <label className="switch">
-            <input id={`${itemId}-pl-toggle`} onChange={onSelectionChange} ref={checkRef} type="checkbox"/>
+            <input id={`${itemId}-pl-toggle`} checked={activeItem} onChange={onSelectionChange} ref={checkRef} type="checkbox"/>
             <span className="slider round"></span>
         </label>
 
