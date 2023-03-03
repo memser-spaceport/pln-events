@@ -130,14 +130,14 @@ function HpMonthBox(props) {
             {
                 `
                 
-                 .bordertop {height: 2px; margin: 5px 0; width: 100%; border: 1px solid #cbd5e1;}
+                 .bordertop {height: 2px; margin: 5px 0; width: 100%; border-bottom: 0.5px solid #cbd5e1;}
                 .hpmp {position: relative;  background: white; z-index:1; padding: 6px 16px; color: #0F172A; border-radius: 100px; font-size: 13px; font-weight: 400; border: 0.5px solid #CBD5E1; width: fit-content;}
                 .hpmp__month {display: flex; cursor: pointer; align-items: center; justify-content: center;}
                 .hpmp__month__text {color: #0F172A; font-size: 13px; font-weight: 400; margin-right: 8px;}
                 .hpmp__month__img {display: block;}
                 .hpmp__monthspane {position: absolute; display: block; top:28px; left: 180px; width: 104px; padding: 4px 8px; border: 1px solid #CBD5E1; border-radius: 4px; background: white;}
                 .hpmp__monthspane__item {color: #475569; font-size: 13px; cursor: pointer; font-weight: 400; padding: 10px;}
-                .hpmp__pane {position: absolute; display: block; z-index: 5; padding: 10px 0; top: 30px; left: -25px; height: 180px; width: 151px; border-radius: 4px; overflow-y: scroll; background: white; border: 1px solid #CBD5E1;}
+                .hpmp__pane {position: absolute; display: block; z-index: 5; padding: 10px 0; top: 30px; left: -25px; height: 250px; width: 151px; border-radius: 4px; overflow-y: scroll; background: white; border: 1px solid #CBD5E1;}
                 .hpmp__pane__item {padding: 10px 16px; display: flex; cursor: pointer; font-size: 13px; color: #475569; font-weight: 400;}
                 .hpmp__pane__item__img {margin-left: 8px;}
                 .hpmp__pane__head {font-size: 11px; font-weight: 700; color: #475569; padding: 10px 16px; }
