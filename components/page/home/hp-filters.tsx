@@ -37,6 +37,10 @@ function HpFilters(props) {
             trackGoal('YEM46DUS', 0)
           } else if (key === 'eventType') {
             trackGoal('A4CRP5C0', 0)
+          } else if (key === 'eventHosts') {
+            trackGoal('FVQKH5ME', 0)
+          } else if (type === 'date-range') {
+            trackGoal('KP7PRKOU', 0)
           }
         if (type === 'multi-select') {
             if (filters[key].includes(value)) {
