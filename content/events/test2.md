@@ -21,7 +21,7 @@ endDate: 12/25/2023
 tag: "Industry Event"
 dateTBD: false
 preferredContacts:
-  - whatsapp|https://discord.com/
+  - rocket|https://discord.com/
   - instagram|https://telegram.org/
 eventHosts:
   - WinsHosts|wins-logo.jpg
