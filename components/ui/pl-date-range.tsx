@@ -1,14 +1,13 @@
 import { useState, useRef, useEffect } from "react";
-import { months, daysInMonth, getDaysValue } from "../page/home/hp-helper";
+import { months } from "../page/home/hp-helper";
 
-function PlDateRange(props) {
+function  PlDateRange(props) {
     const dateRange = props?.dateRange;
     const iconUrl = props?.iconUrl;
     const callback = props?.callback;
     const startDate = dateRange?.start ?? new Date(`01/01/${new Date().getFullYear()}`)
     const endDate = dateRange?.end ?? new Date(`12/31/${new Date().getFullYear()}`)
-    const selectedYear = startDate.getFullYear();
-   
+    const selectedYear = props.selectedYear
 
 
     const paneRef = useRef<HTMLInputElement>()
@@ -18,7 +17,8 @@ function PlDateRange(props) {
     const dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
     const startDateText = `${startDate.getDate()} ${months[startDate.getMonth()].slice(0, 3)}`;
     const endDateText = `${endDate.getDate()} ${months[endDate.getMonth()].slice(0, 3)}`;
-    const daysValues = getDaysInMonths(monthViewData, startDate.getFullYear())
+    const daysValues = getDaysInMonths(monthViewData, selectedYear);
+    const restrictedMonth = monthViewData.type === 'start' ? startDate.getMonth() : endDate.getMonth()
    
     const onDateBoxClicked = (type) => {
         if (monthViewData.isActive) {
@@ -27,7 +27,7 @@ function PlDateRange(props) {
         }
         if (type === 'start') {
             setMonthViewData({ isActive: true, month: startDate.getMonth(), type: 'start' })
-        } else {
+        } else if(type === 'end') {
             setMonthViewData({ isActive: true, month: endDate.getMonth(), type: 'end' })
         }
     }
@@ -41,20 +41,25 @@ function PlDateRange(props) {
     }
 
     const onDaySelected = (day) => {
+        if(day === "") {
+            return;
+        }
         const newDateValue = new Date(`${monthViewData.month + 1}/${day}/${selectedYear}`);
         const newDateValueTimeStamp = newDateValue.getTime()
         const resetEndDateValue = new Date(`12/31/${selectedYear}`)
         const resetStartDateValue = new Date(`01/01/${selectedYear}`)
         if (monthViewData.type === 'start') {
-            if(newDateValueTimeStamp >= resetEndDateValue.getTime() || newDateValueTimeStamp >= endDate.getTime()) {
-                callback('date-range', 'start', new Date(`01/01/${selectedYear}`))
+            if(newDateValueTimeStamp >= resetEndDateValue.getTime() || newDateValueTimeStamp > endDate.getTime()) {
+                callback('date-range', 'start', newDateValue)
+                callback('date-range', 'end', new Date(`12/31/${selectedYear}`))
             } else {
                 callback('date-range', 'start', new Date(`${monthViewData.month + 1}/${day}/${selectedYear}`))
             }
            
         } else {
-            if(newDateValueTimeStamp <= resetStartDateValue.getTime() || newDateValueTimeStamp <= startDate.getTime()) {
-                callback('date-range', 'end', new Date(`12/31/${selectedYear}`))
+            if(newDateValueTimeStamp <= resetStartDateValue.getTime() || newDateValueTimeStamp < startDate.getTime()) {
+                callback('date-range', 'end', newDateValue)
+                callback('date-range', 'start', new Date(`01/01/${selectedYear}`))
             } else {
                 callback('date-range', 'end', new Date(`${monthViewData.month + 1}/${day}/${selectedYear}`))
             }
@@ -108,7 +113,10 @@ function PlDateRange(props) {
                 </div>
                 <div className="pldr__mv__daycn">
                     {dayNames.map(v => <p className="pldr__mv__daycn__head">{v}</p>)}
-                    {daysValues.map(v => <p onClick={() => onDaySelected(v)} className={`pldr__mv__daycn__item ${(selectedDay === v && selectedMonth === monthViewData.month) ? 'pldr__mv__daycn__item--active': ''}`}>{v}</p>)}
+                    {daysValues.map(v => <div>
+                        {((monthViewData.type === 'start' && monthViewData.month > endDate.getMonth()) || (monthViewData.type === 'end' && monthViewData.month < startDate.getMonth()) || (monthViewData.type === 'start' && monthViewData.month === endDate.getMonth() && v > endDate.getDate()) ||  (monthViewData.type === 'end' && monthViewData.month === startDate.getMonth() && v < startDate.getDate()) ) ? <p className="pldr__mv__daycn__item--noactive">{v}</p> : 
+                        <p onClick={() => onDaySelected(v)} className={`pldr__mv__daycn__item ${((selectedDay === v) && (selectedMonth === monthViewData.month)) ? 'pldr__mv__daycn__item--active': ''}`}>{v}</p>}
+                    </div>)}
                 </div>
             </div>}
         </div>
@@ -131,6 +139,7 @@ function PlDateRange(props) {
                 .pldr__mv__daycn__item {width: 25px; cursor: pointer; height: 25px; font-size: 13px; font-weight: 500; color: #0F172A; display: flex; align-items: center; justify-content: center; margin-right: 4px; margin-bottom: 4px;}
                 .pldr__mv__daycn__head {width: 25px; cursor: pointer; color: #9C9D9F; font-weight: 600; height: 25px; font-size: 13px; display: flex; align-items: center; justify-content: center; margin-right: 4px; margin-bottom: 4px;}
                 .pldr__mv__daycn__item--active {background: #156FF7; color: white; border-radius: 50%;}
+                .pldr__mv__daycn__item--noactive {width: 25px; cursor: pointer; height: 25px; font-size: 13px; font-weight: 500; color: lightgrey; cursor: not-allowed; display: flex; align-items: center; justify-content: center; margin-right: 4px; margin-bottom: 4px;}
                 .active {color: #0060f1; font-weight: 700;}
                 @media(min-width: 1200px) {
                     .pldr__mv {left:0; right:0;}
@@ -154,7 +163,7 @@ function getDaysInMonths(monthViewData, year){
         return []
     } 
 
-    const newDate = new Date(`${monthViewData.month + 1}/01/2023`);
+    const newDate = new Date(`${monthViewData.month + 1}/01/${year}`);
     const preFillValues = newDate.getDay();
 
     for(let j=1; j <= preFillValues; j++) {

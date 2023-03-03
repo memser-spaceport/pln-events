@@ -46,6 +46,11 @@ function HpFilters(props) {
             }
         } else if (type === 'single-select' || type === 'toggle') {
             dispatch({ type: 'setSingleSelectFilter', key, value })
+            if(key === 'year') {
+               
+                dispatch({ type:'setStartDateRange', value: new Date(`${filters.dateRange.start.getMonth() + 1}/${filters.dateRange.start.getDate()}/${value}`)});
+               dispatch({ type:'setEndDateRange', value: new Date(`${filters.dateRange.end.getMonth() + 1}/${filters.dateRange.end.getDate()}/${value}`)});
+            }
         } else if (type === 'date-range') {
             dispatch({ type: key === 'start'? 'setStartDateRange': 'setEndDateRange', value })
         }
@@ -86,14 +91,14 @@ function HpFilters(props) {
             </div>
             {filterValues.map(filter => <div className="hpf__filters">
                 <h4 className="hpf__filters__title">{filter.name}</h4>
-                {filter.type === 'date-range' && <PlDateRange callback={onFilterChange} {...filter}/>}
+                {filter.type === 'date-range' && <PlDateRange selectedYear={filters.year} callback={onFilterChange} {...filter}/>}
                 {filter.type === 'single-select' && <PlSingleSelect callback={onFilterChange} {...filter} />}
                 {filter.type === 'multi-select' && <PlMultiSelect onClearMultiSelect={onClearMultiSelect} callback={onFilterChange} {...filter} />}
                 {filter.type === 'tags' && <PlTags callback={onFilterChange} {...filter} />}
             </div>)}
             <div className="hpf__mtools">
                 <div onClick={onMobileClear} className="hpf__mtools__clear">Clear all</div>
-                <div onClick={onApplyMobileFilter} className="hpf__mtools__apply">{`View ${filteredCount > 0 ? `${filteredCount} events` : ''}`}</div>
+                <div onClick={onApplyMobileFilter} className="hpf__mtools__apply">{`View ${filteredCount} event(s)`}</div>
             </div>
         </div>
         <style jsx>
