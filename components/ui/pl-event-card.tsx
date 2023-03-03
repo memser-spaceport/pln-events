@@ -36,7 +36,7 @@ function PlEventCard(props) {
         <div className={`pec ${isFeaturedEvent ? 'pec--feat': ''}`}>
             <div className="pec__info">
                <div className="pec__info__tag">
-                   {tag &&  <img className="pec__info__tag__img" src={tagLogo} />}
+                   {(tag && tagLogo) && <img className="pec__info__tag__img" src={tagLogo} />}
                    {tag && <p className="pec__info__tag__text">{tag}</p>}
                 </div>
                <div className="pec__info__type">
@@ -59,6 +59,7 @@ function PlEventCard(props) {
             <div className="pec__calender">
                 <img className="pec__calender__icon" src={calenderLogo}/>
                 {!dateTBD && <p className="pec__calender__text">{fullDateFormat}</p>}
+
                 {dateTBD && <p className="pec__calender__text">Date TBD</p>}
                 
             </div>
