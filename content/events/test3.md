@@ -15,8 +15,8 @@ venueName: Denver zoo
 venueAddress: Venue address
 venueMapsLink: "https://goo.gl/maps/nc2XkXNU7e67iFa68"
 website: "https://www.koenigsegg.com/"
-startDate: 10/24/2022
-endDate: 10/25/2022
+startDate: 10/24/2023
+endDate: 10/25/2023
 tag: "Industry Event"
 dateTBD: false
 preferredContacts:

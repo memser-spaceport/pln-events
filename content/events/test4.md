@@ -15,8 +15,8 @@ venueName: Washington Beach
 venueAddress: Venue address
 venueMapsLink: "https://goo.gl/maps/nc2XkXNU7e67iFa68"
 website: "https://www.koenigsegg.com/"
-startDate: 3/04/2022
-endDate: 3/04/2022
+startDate: 3/04/2023
+endDate: 3/04/2023
 tag: "PLN Event"
 dateTBD: false
 preferredContacts:
