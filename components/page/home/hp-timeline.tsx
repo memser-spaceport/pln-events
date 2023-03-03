@@ -85,7 +85,7 @@ function HpTimeline(props) {
             .hmt__cn {position: relative;}
             .hmt__cn__empty {background: white; border: 1px solid lightgrey; text-align: center; margin-top: 180px; width: 270px; padding: 24px;}
             .hmt__cn__sec {width: 100%; display: flex; position: relative;  flex-direction: column; align-items: center;}
-            .hmt__cn__sec__month { position: sticky; z-index: 3; top: 150px; margin: 32px 0;}
+            .hmt__cn__sec__month { position: sticky; z-index: 1; top: 150px; margin: 32px 0;}
            
             .hmt__cn__sec__event { width: 100%; position: relative; margin: 16px 0; display: flex; justify-content: center;}
             .hmt__cn__sec__event__item {position: relative; width: calc(100vw - 32px);}

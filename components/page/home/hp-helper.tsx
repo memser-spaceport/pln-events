@@ -25,7 +25,12 @@ export const getUniqueValuesFromEvents = (key, allEvents) => {
       break;
     case 'eventHosts':
       allEvents.forEach(event => {
-        event.eventHosts.forEach(v => items.push(v.name))
+        event.eventHosts.forEach(v => {
+          if(!items.includes(v.name)) {
+            items.push(v.name)
+          }
+          
+        })
       })
       break;
   }
@@ -76,7 +81,7 @@ export const getFormattedEvents = (events) => {
     // Preferred Contacts
     const preferredContacts = event?.node?.preferredContacts?.map(pc => {
       const splitted = pc.split('|');
-      const supportedLinks = ['twitter', 'discord', 'telegram']
+      const supportedLinks = ['twitter', 'discord', 'telegram', 'whatsapp', 'facebook', 'instagram']
       return {
         name: splitted[0],
         logo: supportedLinks.includes(splitted[0].toLowerCase().trim()) ? `/icons/pln-contacts-${splitted[0]}.svg` : `/icons/pln-contacts-default.svg`,
@@ -258,7 +263,7 @@ export const getFilteredEvents = (allEvents, filters) => {
       return false
     }
 
-    if(filters.dateRange.start.getTime() !== new Date(`01/01/${filters.year}`).getTime() && filters.dateRange.start.getTime() > item?.startDateTimeStamp) {
+    if(filters.dateRange.start.getTime() !== new Date(`01/01/${filters.year}`).getTime() && filters.dateRange.start.getTime() > item?.endDateTimeStamp) {
       return false
     }
 
