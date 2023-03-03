@@ -4,6 +4,7 @@ eventDescription: "Short Description of my event Selecting an option on the filt
 eventTopic: 
     - "Web3"
     - "Hello"
+    - "Yab3"
     - "Yes"
     - "BlockChain dfsf sfdsf sdf sfdtopic new"    
     - "GM"
@@ -25,4 +26,5 @@ preferredContacts:
 eventHosts:
   - WinsHosts|wins-logo.jpg
   - ManHosts|hand_logo.jpg
+  - WeesHosts|wins-logo.jpg
 ---
