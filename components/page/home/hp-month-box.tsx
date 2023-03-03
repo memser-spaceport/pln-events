@@ -28,6 +28,9 @@ function HpMonthBox(props) {
         }
 
         if (type === 'prev') {
+            if(currentIndex === 0 || !monthIndexes.includes(currentIndex - 1)) {
+                return;
+            }
             const itemIndex = allData.findIndex(v => v.index === currentIndex);
             if (itemIndex - 1 >= 0) {
                 const newItem = allData[itemIndex - 1]
@@ -38,6 +41,9 @@ function HpMonthBox(props) {
             }
 
         } else if (type === 'next') {
+            if(currentIndex === 11 || !monthIndexes.includes(currentIndex + 1)) {
+                return;
+            }
             const itemIndex = allData.findIndex(v => v.index === currentIndex);
             if (itemIndex + 1 < allData.length) {
                 const newItem = allData[itemIndex + 1]
