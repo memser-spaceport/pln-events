@@ -26,7 +26,7 @@ export const eventCollectionSchema: any = {
       name: "website",
       type: "string",
     },
-    {
+    /* {
       label: "Organization",
       name: "eventOrg",
       type: "string",
@@ -35,7 +35,7 @@ export const eventCollectionSchema: any = {
       label: "Event Logo",
       name: "eventLogo",
       type: "image",
-    },
+    }, */
     {
       label: "Location",
       name: "location",

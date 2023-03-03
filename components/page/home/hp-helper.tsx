@@ -22,6 +22,17 @@ export const getUniqueValuesFromEvents = (key, allEvents) => {
           }
         })
       })
+      break;
+    case 'eventHosts':
+      allEvents.forEach(event => {
+        event.eventHosts.forEach(v => {
+          if(!items.includes(v.name)) {
+            items.push(v.name)
+          }
+          
+        })
+      })
+      break;
   }
 
   return items;
@@ -52,16 +63,35 @@ export const getFormattedEvents = (events) => {
     const fullDateFormat = startMonthIndex === endMonthIndex ? `${months[startMonthIndex]} ${startDateValue.getDate()} ${showEndDate ? '-' : ''} ${showEndDate ? endDateValue.getDate() : ''}, ${endDateValue.getFullYear()} ` : `${months[startMonthIndex]} ${startDateValue.getDate()} - ${months[endMonthIndex]} ${endDateValue.getDate()}, ${endDateValue.getFullYear()}`
 
     // Host names
-    const eventHosts = event?.node?.eventHosts?.map(hs => {
+    const tempEventNames = []
+    const eventHosts = []
+    event?.node?.eventHosts?.forEach(hs => {
       const splitted = hs.split('|');
-      if(splitted.length === 1) {
-        splitted.push('')
+      if (splitted.length === 1) {
+        splitted.push('pln-default-host-logo.svg')
       }
+     
+      if(!tempEventNames.includes(splitted[0])) {
+        tempEventNames.push( splitted[0])
+        const newHostEmtry = {name: splitted[0], logo: `/uploads/${splitted[1]}`, primaryIcon: `/icons/pln-primary-host.svg`}
+        eventHosts.push(newHostEmtry)
+      }
+    }) 
+
+    // Preferred Contacts
+    const preferredContacts = event?.node?.preferredContacts?.map(pc => {
+      const splitted = pc.split('|');
+      const supportedLinks = ['twitter', 'discord', 'telegram', 'whatsapp', 'facebook', 'instagram']
       return {
         name: splitted[0],
-        logo: splitted[1],
+        logo: supportedLinks.includes(splitted[0].toLowerCase().trim()) ? `/icons/pln-contacts-${splitted[0]}.svg` : `/icons/pln-contacts-default.svg`,
+        link: splitted[1]
       }
-    })
+    }) ?? []
+
+    //trimming topics
+    const allTopics = event.node?.eventTopic ?? []
+    const trimmedTopics = allTopics.slice(0, 4);
 
     // Logos/images
     const locationLogo = '/icons/pln-location-icon.svg'
@@ -91,8 +121,10 @@ export const getFormattedEvents = (events) => {
       venueName: event?.node?.venueName,
       venueMapsLink: event?.node?.venueMapsLink,
       venueAddress: event?.node?.venueAddress,
-      topics: event.node?.eventTopic,
-      eventHosts,
+      isFeaturedEvent: event?.node?.isFeaturedEvent ?? false,
+      topics: [...trimmedTopics],
+      eventHosts: eventHosts ?? [],
+      preferredContacts,
       startDateTimeStamp,
       startMonthIndex,
       startDay,
@@ -140,17 +172,76 @@ export const reducerFunction = (oldstate, action) => {
       newState.filters = resetted.filters;
       newState.filteredItems = resetted.filteredEvents;
       return newState;
+    case 'setScrollupStatus':
+      newState.flags.isScrolledUp = action.value;
+      return newState;
+    case 'setStartDateRange':
+      newState.filters.dateRange.start = action.value;
+      return newState;
+    case 'setEndDateRange':
+      newState.filters.dateRange.end = action.value;
+      return newState;
+
   }
+}
+
+export const getNoFiltersApplied = (filters) => {
+  let count = 0;
+  if (filters.locations.length > 0) {
+    count++
+  }
+  if (filters.topics.length > 0) {
+    count++
+  }
+
+  if (filters.year !== `${new Date().getFullYear()}`) {
+    count++
+  }
+
+  if (filters.eventType !== '') {
+    count++
+  }
+
+  if (filters.eventHosts.length > 0) {
+    count++
+  }
+  if (filters.isPlnEventOnly === true) {
+    count++
+  }
+
+  if(filters.dateRange.start.toLocaleDateString() !== new Date(`01/01/${new Date().getFullYear()}`).toLocaleDateString() ||  filters.dateRange.end.toLocaleDateString() !== new Date(`12/31/${new Date().getFullYear()}`).toLocaleDateString()) {
+    count++
+  }
+ 
+
+  return count;
 }
 
 export const getInitialState = (events) => {
   return {
-    filteredItems: { year: `${new Date().getFullYear()}`, location: [], isPlnEventOnly: false, topic: [], eventType: '' },
-    filters: { year: `${new Date().getFullYear()}`, isPlnEventOnly: false, locations: [], topics: [], hosts: [], eventType: '' },
-    flags: { isMobileFilterActive: false },
+    filteredItems: { year: `${new Date().getFullYear()}`, location: [], isPlnEventOnly: false, topics: [], eventHosts: [], eventType: '', dateRange: { start: new Date(`01/01/${new Date().getFullYear()}`), end: new Date(`12/31/${new Date().getFullYear()}`) } },
+    filters: { year: `${new Date().getFullYear()}`, isPlnEventOnly: false, locations: [], topics: [], eventHosts: [], eventType: '', dateRange: { start: new Date(`01/01/${new Date().getFullYear()}`), end: new Date(`12/31/${new Date().getFullYear()}`) } },
+    flags: { isMobileFilterActive: false, isScrolledUp: false },
     events: [...events],
     filteredEvents: [...events]
   }
+}
+
+export const getDaysValue = (count, monthValue) => {
+  const newDate = new Date(`${monthValue}/01/2023`)
+  const items = [];
+  const countForEmpty = newDate.getDay()
+  if (count === 0) {
+    return []
+  }
+  for (let j = 1; j <= countForEmpty; j++) {
+    items.push("")
+  }
+  for (let i = 1; i <= count; i++) {
+    items.push(i)
+  }
+
+  return items
 }
 
 export const getFilteredEvents = (allEvents, filters) => {
@@ -163,11 +254,20 @@ export const getFilteredEvents = (allEvents, filters) => {
       return false
     }
 
+
     if (filters.isPlnEventOnly && item?.tag?.toLowerCase().trim() !== 'pln event') {
       return false
     }
 
     if (filters.eventType !== '' && filters?.eventType?.toLowerCase().trim() !== item?.eventType?.toLowerCase().trim()) {
+      return false
+    }
+
+    if(filters.dateRange.start.getTime() !== new Date(`01/01/${filters.year}`).getTime() && filters.dateRange.start.getTime() > item?.endDateTimeStamp) {
+      return false
+    }
+
+    if(filters.dateRange.end.getTime() !== new Date(`12/31/${filters.year}`).getTime() && filters.dateRange.end.getTime() < item?.startDateTimeStamp) {
       return false
     }
 
@@ -184,12 +284,27 @@ export const getFilteredEvents = (allEvents, filters) => {
       }
     }
 
+    if (filters.eventHosts.length > 0) {
+      let result = false;
+      const eventHosts = item?.eventHosts ?? [];
+      eventHosts.forEach(eh => {
+        if (filters.eventHosts.includes(eh.name)) {
+          result = true;
+        }
+      })
+      if (!result) {
+        return false
+      }
+    }
+
     return true;
   })
 
   return filteredItems;
 }
-
+export const daysInMonth = (month, year) => {
+  return new Date(year, month, 0).getDate();
+}
 export const getMonthWiseEvents = (filterdList) => {
   const monthWiseEvents = []
   months.forEach((m, i) => {
