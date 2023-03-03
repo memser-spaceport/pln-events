@@ -23,6 +23,10 @@ preferredContacts:
   - twitter|https://twitter.com/TweetsSupportin?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
   - facebook|https://www.facebook.com/
   - twitter|https://twitter.com/TweetsSupportin?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
+  - whatsapp|https://www.whatsapp.com/
+  - instagram|https://www.instagram.com/
+  - discord|https://www.whatsapp.com/
+  - telegram|https://www.instagram.com/
 eventHosts:
   - WinsHosts|wins-logo.jpg
 ---
