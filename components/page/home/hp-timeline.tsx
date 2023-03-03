@@ -39,6 +39,10 @@ function HpTimeline(props) {
         }
     }
 
+    const onMonthClicked = () => {
+        trackGoal('GY01KNTS', 0)
+    }
+
     useEffect(() => {
         onScrollToCurrentMonth();
     }, [filterdListCount])
@@ -55,7 +59,7 @@ function HpTimeline(props) {
 
                 {monthWiseEvents.map(me => <div id={`m-${me.index}`} className="hmt__cn__sec">
                     {/*** MONTH DROPDOWN ***/}
-                    <div className="hmt__cn__sec__month"><HpMonthBox {...me} allData={[...monthWiseEvents]} currentIndex={me.index}/></div>
+                    <div onClick={onMonthClicked} className="hmt__cn__sec__month"><HpMonthBox {...me} allData={[...monthWiseEvents]} currentIndex={me.index}/></div>
                     
                     {/*** TIMELINE UI ***/}
                     <div className="hmt__cn__sec__timeline"></div>
