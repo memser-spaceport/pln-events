@@ -1,27 +1,28 @@
 ---
-eventName: Event 1
+eventName: Event 4
 eventDescription: "Short Description of my event Selecting an option on the filters with longer text-overlaps the down arrow (displayed on the combo box)"
 eventTopic: 
-    - "BlockChain dfsf sfdsf sdf sfdtopic new"
     - "Web3"
     - "Hello"
     - "Yes"
+    - "BlockChain dfsf sfdsf sdf sfdtopic new"    
     - "GM"
     - "Labs"
     - "Protocol"
-eventType: "Conference"
-location: "Boston, United States"
-venueName: Boston arts museum
-venueAddress: Fernway street
+eventType: "Virtual"
+location: "Denver, United States"
+venueName: Denver zoo
+venueAddress: Venue address
 venueMapsLink: "https://goo.gl/maps/nc2XkXNU7e67iFa68"
 website: "https://www.koenigsegg.com/"
-startDate: 01/01/2023
-endDate: 01/02/2023
-tag: "PLN Event"
+startDate: 2/29/2024
+endDate: 2/29/2024
+tag: "Industry Event"
 dateTBD: false
 preferredContacts:
-  - twitter|https://twitter.com/TweetsSupportin?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
-  - facebook|https://www.facebook.com/
+  - discord|https://www.whatsapp.com/
+  - telegram|https://www.instagram.com/
 eventHosts:
+  - ManHosts|hand_logo.jpg
   - WinsHosts|wins-logo.jpg
 ---
