@@ -20,8 +20,8 @@ endDate: 12/25/2023
 tag: "Industry Event"
 dateTBD: false
 preferredContacts:
-  - twitter|https://twitter.com/TweetsSupportin?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
-  - facebook|https://www.facebook.com/
+  - discord|https://discord.com/
+  - telegram|https://telegram.org/
 eventHosts:
   - WinsHosts|wins-logo.jpg
   - ManHosts|hand_logo.jpg

@@ -20,7 +20,7 @@ endDate: 3/04/2022
 tag: "PLN Event"
 dateTBD: false
 preferredContacts:
-  - twitter|https://twitter.com/TweetsSupportin?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
+  - rocket|https://www.nba.com/rockets
   - facebook|https://www.facebook.com/
 eventHosts:
   - WinsHosts|wins-logo.jpg

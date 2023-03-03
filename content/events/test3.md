@@ -20,8 +20,8 @@ endDate: 10/25/2022
 tag: "Industry Event"
 dateTBD: false
 preferredContacts:
-  - twitter|https://twitter.com/TweetsSupportin?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
-  - facebook|https://www.facebook.com/
+  - whatsapp|https://www.whatsapp.com/
+  - instagram|https://www.instagram.com/
 eventHosts:
   - WinsHosts|wins-logo.jpg
   - ManHosts|hand_logo.jpg
