@@ -47,20 +47,20 @@ export const getFormattedEvents = (events) => {
     // Start Date
     const startDateValue = new Date(event.node?.startDate);
     const startDateTimeStamp = startDateValue.getTime()
-    const startMonthIndex = startDateValue.getMonth();
-    const startDay = startDateValue.getDate();
+    const startMonthIndex = startDateValue.getUTCMonth();
+    const startDay = startDateValue.getUTCDate();
     const startDayString = startDateValue.toLocaleDateString('us-en', { weekday: 'short' });
-    const startYear = startDateValue.getFullYear()
+    const startYear = startDateValue.getUTCFullYear()
 
     // End Date
     const endDateValue = new Date(event.node?.endDate);
     const endDateTimeStamp = endDateValue.getTime();
-    const endMonthIndex = endDateValue.getMonth();
-    const endDay = endDateValue.getDate();
+    const endMonthIndex = endDateValue.getUTCMonth();
+    const endDay = endDateValue.getUTCDate();
 
     // Event date format
     const showEndDate = startDay === endDay ? false : true;
-    const fullDateFormat = startMonthIndex === endMonthIndex ? `${months[startMonthIndex]} ${startDateValue.getDate()} ${showEndDate ? '-' : ''} ${showEndDate ? endDateValue.getDate() : ''}, ${endDateValue.getFullYear()} ` : `${months[startMonthIndex]} ${startDateValue.getDate()} - ${months[endMonthIndex]} ${endDateValue.getDate()}, ${endDateValue.getFullYear()}`
+    const fullDateFormat = startMonthIndex === endMonthIndex ? `${months[startMonthIndex]} ${startDateValue.getUTCDate()} ${showEndDate ? '-' : ''} ${showEndDate ? endDateValue.getUTCDate() : ''}, ${endDateValue.getUTCFullYear()} ` : `${months[startMonthIndex]} ${startDateValue.getUTCDate()} - ${months[endMonthIndex]} ${endDateValue.getUTCDate()}, ${endDateValue.getUTCFullYear()}`
 
     // Host names
     const tempEventNames = []
@@ -194,7 +194,7 @@ export const getNoFiltersApplied = (filters) => {
     count++
   }
 
-  if (filters.year !== `${new Date().getFullYear()}`) {
+  if (filters.year !== `${new Date().getUTCFullYear()}`) {
     count++
   }
 
@@ -209,7 +209,7 @@ export const getNoFiltersApplied = (filters) => {
     count++
   }
 
-  if(filters.dateRange.start.toLocaleDateString() !== new Date(`01/01/${new Date().getFullYear()}`).toLocaleDateString() ||  filters.dateRange.end.toLocaleDateString() !== new Date(`12/31/${new Date().getFullYear()}`).toLocaleDateString()) {
+  if(filters.dateRange.start.toLocaleDateString() !== new Date(`01/01/${new Date().getUTCFullYear()}`).toLocaleDateString() ||  filters.dateRange.end.toLocaleDateString() !== new Date(`12/31/${new Date().getUTCFullYear()}`).toLocaleDateString()) {
     count++
   }
  
@@ -219,8 +219,8 @@ export const getNoFiltersApplied = (filters) => {
 
 export const getInitialState = (events) => {
   return {
-    filteredItems: { year: `${new Date().getFullYear()}`, location: [], isPlnEventOnly: false, topics: [], eventHosts: [], eventType: '', dateRange: { start: new Date(`01/01/${new Date().getFullYear()}`), end: new Date(`12/31/${new Date().getFullYear()}`) } },
-    filters: { year: `${new Date().getFullYear()}`, isPlnEventOnly: false, locations: [], topics: [], eventHosts: [], eventType: '', dateRange: { start: new Date(`01/01/${new Date().getFullYear()}`), end: new Date(`12/31/${new Date().getFullYear()}`) } },
+    filteredItems: { year: `${new Date().getUTCFullYear()}`, location: [], isPlnEventOnly: false, topics: [], eventHosts: [], eventType: '', dateRange: { start: new Date(`01/01/${new Date().getUTCFullYear()}`), end: new Date(`12/31/${new Date().getUTCFullYear()}`) } },
+    filters: { year: `${new Date().getUTCFullYear()}`, isPlnEventOnly: false, locations: [], topics: [], eventHosts: [], eventType: '', dateRange: { start: new Date(`01/01/${new Date().getUTCFullYear()}`), end: new Date(`12/31/${new Date().getUTCFullYear()}`) } },
     flags: { isMobileFilterActive: false, isScrolledUp: false },
     events: [...events],
     filteredEvents: [...events]
@@ -230,7 +230,7 @@ export const getInitialState = (events) => {
 export const getDaysValue = (count, monthValue) => {
   const newDate = new Date(`${monthValue}/01/2023`)
   const items = [];
-  const countForEmpty = newDate.getDay()
+  const countForEmpty = newDate.getUTCDay()
   if (count === 0) {
     return []
   }
@@ -303,7 +303,7 @@ export const getFilteredEvents = (allEvents, filters) => {
   return filteredItems;
 }
 export const daysInMonth = (month, year) => {
-  return new Date(year, month, 0).getDate();
+  return new Date(year, month, 0).getUTCDate();
 }
 export const getMonthWiseEvents = (filterdList) => {
   const monthWiseEvents = []

@@ -5,20 +5,20 @@ function  PlDateRange(props) {
     const dateRange = props?.dateRange;
     const iconUrl = props?.iconUrl;
     const callback = props?.callback;
-    const startDate = dateRange?.start ?? new Date(`01/01/${new Date().getFullYear()}`)
-    const endDate = dateRange?.end ?? new Date(`12/31/${new Date().getFullYear()}`)
+    const startDate = dateRange?.start ?? new Date(`01/01/${new Date().getUTCFullYear()}`)
+    const endDate = dateRange?.end ?? new Date(`12/31/${new Date().getUTCFullYear()}`)
     const selectedYear = props.selectedYear
 
 
     const paneRef = useRef<HTMLInputElement>()
     const [monthViewData, setMonthViewData] = useState({ isActive: false, month: - 1, type: '' });
-    const selectedDay = monthViewData.type === 'start' ? startDate.getDate() : endDate.getDate();
-    const selectedMonth = monthViewData.type === 'start' ? startDate.getMonth() : endDate.getMonth()
+    const selectedDay = monthViewData.type === 'start' ? startDate.getUTCDate() : endDate.getUTCDate();
+    const selectedMonth = monthViewData.type === 'start' ? startDate.getUTCMonth() : endDate.getUTCMonth()
     const dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-    const startDateText = `${startDate.getDate()} ${months[startDate.getMonth()].slice(0, 3)}`;
-    const endDateText = `${endDate.getDate()} ${months[endDate.getMonth()].slice(0, 3)}`;
+    const startDateText = `${startDate.getUTCDate()} ${months[startDate.getUTCMonth()].slice(0, 3)}`;
+    const endDateText = `${endDate.getUTCDate()} ${months[endDate.getUTCMonth()].slice(0, 3)}`;
     const daysValues = getDaysInMonths(monthViewData, selectedYear);
-    const restrictedMonth = monthViewData.type === 'start' ? startDate.getMonth() : endDate.getMonth()
+    const restrictedMonth = monthViewData.type === 'start' ? startDate.getUTCMonth() : endDate.getUTCMonth()
    
     const onDateBoxClicked = (type) => {
         if (monthViewData.isActive) {
@@ -26,9 +26,9 @@ function  PlDateRange(props) {
             return
         }
         if (type === 'start') {
-            setMonthViewData({ isActive: true, month: startDate.getMonth(), type: 'start' })
+            setMonthViewData({ isActive: true, month: startDate.getUTCMonth(), type: 'start' })
         } else if(type === 'end') {
-            setMonthViewData({ isActive: true, month: endDate.getMonth(), type: 'end' })
+            setMonthViewData({ isActive: true, month: endDate.getUTCMonth(), type: 'end' })
         }
     }
 
@@ -114,7 +114,7 @@ function  PlDateRange(props) {
                 <div className="pldr__mv__daycn">
                     {dayNames.map(v => <p className="pldr__mv__daycn__head">{v}</p>)}
                     {daysValues.map(v => <div>
-                        {((monthViewData.type === 'start' && monthViewData.month > endDate.getMonth()) || (monthViewData.type === 'end' && monthViewData.month < startDate.getMonth()) || (monthViewData.type === 'start' && monthViewData.month === endDate.getMonth() && v > endDate.getDate()) ||  (monthViewData.type === 'end' && monthViewData.month === startDate.getMonth() && v < startDate.getDate()) ) ? <p className="pldr__mv__daycn__item--noactive">{v}</p> : 
+                        {((monthViewData.type === 'start' && monthViewData.month > endDate.getUTCMonth()) || (monthViewData.type === 'end' && monthViewData.month < startDate.getUTCMonth()) || (monthViewData.type === 'start' && monthViewData.month === endDate.getUTCMonth() && v > endDate.getUTCDate()) ||  (monthViewData.type === 'end' && monthViewData.month === startDate.getUTCMonth() && v < startDate.getUTCDate()) ) ? <p className="pldr__mv__daycn__item--noactive">{v}</p> : 
                         <p onClick={() => onDaySelected(v)} className={`pldr__mv__daycn__item ${((selectedDay === v) && (selectedMonth === monthViewData.month)) ? 'pldr__mv__daycn__item--active': ''}`}>{v}</p>}
                     </div>)}
                 </div>
@@ -158,13 +158,13 @@ function getDaysInMonths(monthViewData, year){
         return []
     }
 
-    const noOfDaysInMonth = new Date(year, monthViewData.month + 1, 0).getDate();
+    const noOfDaysInMonth = new Date(year, monthViewData.month + 1, 0).getUTCDate();
     if(noOfDaysInMonth === 0) {
         return []
     } 
 
     const newDate = new Date(`${monthViewData.month + 1}/01/${year}`);
-    const preFillValues = newDate.getDay();
+    const preFillValues = newDate.getUTCDay();
 
     for(let j=1; j <= preFillValues; j++) {
         items.push("")
