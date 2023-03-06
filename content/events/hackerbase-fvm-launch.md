@@ -3,8 +3,8 @@ eventName: FVM HackerBase
 eventType: Conference
 location: 'Denver, United States'
 website: 'https://events.fil.org/fvm-hackerbase'
-startDate: '2023-02-28'
-endDate: '2023-03-01'
+startDate: '02/28/2023'
+endDate: '03/01/2023'
 tag: PLN Event
 dateTBD: false
 eventTopic:
