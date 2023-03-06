@@ -2,10 +2,11 @@ import "../styles.css";
 import React, { useEffect } from 'react';
 import Router from 'next/router';
 import * as Fathom from 'fathom-client';
+import Head from 'next/head'
 
- const isBrowser = typeof window !== 'undefined';
+const isBrowser = typeof window !== 'undefined';
 
-if(isBrowser) {
+if (isBrowser) {
   // For the first page load
   Fathom.trackPageview()
   // Subsequent route changes
@@ -14,27 +15,33 @@ if(isBrowser) {
       Fathom.trackPageview()
     }
   });
-} 
+}
 
 const App = ({ Component, pageProps }) => {
   // Initialize Fathom when the app loads
-   useEffect(() => {
+  useEffect(() => {
     Fathom.load('RBFTFNYG', {
       includedDomains: ['events.plnetwork.io']
     })
-  }, []) 
+  }, [])
 
   return <>
-  <Component {...pageProps} />
-  <style jsx>
-    {
-      `
+    <Component {...pageProps} />
+    <Head>
+      <meta charSet="UTF-8" />
+      <title>PL Network Events</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1" />
+      <meta name="description" content="A listing of all PL Network events"></meta>
+    </Head>
+    <style jsx>
+      {
+        `
       body > div {width: 100%; height:100%;}
       
       
       `
-    }
-  </style>
+      }
+    </style>
   </>
 };
 

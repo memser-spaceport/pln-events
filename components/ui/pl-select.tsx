@@ -9,6 +9,7 @@ function PlSelect(props) {
     const dropdownImgUrl = props.dropdownImgUrl ?? ''
     const iconUrl = props.iconUrl ?? '';
     const selectedItem = props.selectedItem ?? '';
+    const selectedItems = props.selectedItems ?? [];
     const setSelectedItem = props.onItemChange;
     const [isPaneActive, setPaneActiveStatus] = useState(false);
     const [filteredItems, setFilteredItems] = useState([...items])
@@ -19,27 +20,19 @@ function PlSelect(props) {
         setPaneActiveStatus(true)
         if(e.target.value.trim() === '') {
             setSelectedItem(activeItem);
-            setFilteredItems([...items])
-            callback(itemId, activeItem, 0)
+            setFilteredItems([...items]);
         } else {
             const filteredValues = [...items].filter(v => v.toLowerCase().includes(e.target.value.toLowerCase()))
             setFilteredItems([...filteredValues])
-        }
+        } 
        
     }
 
-    const onSelectChange = (item, index) => {
-        setSelectedItem(item);
-        inputRef.current.value = item;
-        setPaneActiveStatus(false)
-        setFilteredItems([...items])
-        if(callback) {
-            callback(itemId, item, index)
-        }
+    const onItemSelected = (item, index) => {
+         callback(itemId, item, index);
     }
 
     useEffect(() => {
-        inputRef.current.value = selectedItem
         const listener = (event) => {
             // Do nothing if clicking ref's element or descendent elements
             if (!paneRef.current || paneRef?.current?.contains(event.target)) {
@@ -57,21 +50,12 @@ function PlSelect(props) {
         };
     }, [])
 
-    useEffect(() => {
-        console.log(selectedItem)
-        if(selectedItem === 'All' || selectedItem === '') {
-            console.log('cleared ', items)
-            setFilteredItems([...items])
-           
-        } 
-    }, [props])
-
-
+ 
     return <>
         <div id={`${itemId}-ps`} className="ps">
             <input disabled={items.length <= 1 ? true : false} placeholder={placeholder} id={`${itemId}-ps-input`} onClick={e => setPaneActiveStatus(v => !v)} onChange={onInputChange} className="ps__input" ref={inputRef} type="text" />
-            {isPaneActive && <div ref={paneRef} id={`${itemId}-ps-pane`} className="ps__pane">
-                {filteredItems.map((item, index) => <p id={`${itemId}-ps-pane-${index}`} className={`ps__pane__item ${selectedItem === item ? 'ps__pane__item--active': ''}`} onClick={e => onSelectChange(item, index)}>{item}</p>)}
+            {isPaneActive && <div   id={`${itemId}-ps-pane`} className="ps__pane">
+                {filteredItems.map((item, index) => <p id={`${itemId}-ps-pane-${index}`} className={`ps__pane__item ${selectedItems.includes(item) ? 'ps__pane__item--active': ''}`} onClick={e => onItemSelected(item, index)}>{item}</p>)}
             </div>}
             {iconUrl && <img className="ps__icon" src={iconUrl}/>}
             {(dropdownImgUrl && items.length > 1) && <img className="ps__arrow" onClick={e => setPaneActiveStatus(v => !v)}  src={dropdownImgUrl} />}

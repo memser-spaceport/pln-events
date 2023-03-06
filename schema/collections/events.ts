@@ -26,7 +26,7 @@ export const eventCollectionSchema: any = {
       name: "website",
       type: "string",
     },
-    {
+    /* {
       label: "Organization",
       name: "eventOrg",
       type: "string",
@@ -35,7 +35,7 @@ export const eventCollectionSchema: any = {
       label: "Event Logo",
       name: "eventLogo",
       type: "image",
-    },
+    }, */
     {
       label: "Location",
       name: "location",
@@ -91,6 +91,23 @@ export const eventCollectionSchema: any = {
       name: "eventTopic",
       type: "string",
       list: true,
+    },
+    {
+      label: "Event Hosts",
+      name: "eventHosts",
+      type: "string",
+      list: true,
+    },
+    {
+      label: "Preferred Contacts",
+      name: "preferredContacts",
+      type: "string",
+      list: true,
+    },
+    {
+      label: "Is Featured Event",
+      name: "isFeaturedEvent",
+      type: "boolean",
     },
     {
       label: "Event Type",
