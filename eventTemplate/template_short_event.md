@@ -3,6 +3,7 @@ eventName: "<Your_Event_Name>" #the name of your track or event and its mandator
 eventDescription: "<Short_Description_of_your_event>" #short description of your track or event limiting to 100-150 characters
 
 #topics will show up as labels on the event card.Only a maximum of 4 tags will be displayed on the event card. Some referneces for topics - Blockchain, Web3, Cryptocurrency, Tech Taks,Workshop etc.
+
 eventTopic: 
   - "<Topic_1>"
   - "<Topic_2>"
@@ -30,9 +31,11 @@ tag: "PLN Event" or "Industry Event" #Mention any one of the event types. Don't 
 dateTBD: false or true #If you don't have concrete dates, add the approximate dates & set dateTBD: true.
 
 #Preferred social means of contacts-this is a placeholder for social handle like Twitter, Discord and so on and not to be mistaken for email contacts for eg.   - 'twitter|https://twitter.com/IPFS/status/1629199396700098560?s=20'
+
 preferredContacts:
   - '<contact_means>|<contact_url>'
 
 #Event host names and their respective logos-place the logo file on the path 'public/uploads' for eg.   - IPFS|ipfs-logo.png
+
 eventHosts:
   - <host_name>|<host_logo>
