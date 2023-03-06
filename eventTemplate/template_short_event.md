@@ -1,5 +1,4 @@
-
-
+---
 <!--- the name of your track or event and its mandatory -->
 eventName: "<Your_Event_Name>"
 
@@ -42,3 +41,4 @@ tag: "PLN Event" or "Industry Event"
 
 <!--- If you don't have concrete dates, add the approximate dates & set dateTBD: true.-->
 dateTBD: false or true
+---
