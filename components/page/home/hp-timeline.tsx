@@ -22,8 +22,8 @@ function HpTimeline(props) {
 
     const onScrollToCurrentMonth = () => {
         const currentTimeStamp = new Date().getTime()
-        const currenMonthId = new Date().getUTCMonth();
-        const currentDay = new Date().getUTCDate()
+        const currenMonthId = new Date().getMonth();
+        const currentDay = new Date().getDate()
         const filteredMonthData = monthWiseEvents.filter(m => m.index >= currenMonthId);
         if(filteredMonthData.length > 0)  {
            const selectedMonthData =  filteredMonthData[0];

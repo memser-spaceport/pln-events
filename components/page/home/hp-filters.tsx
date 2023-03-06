@@ -52,8 +52,8 @@ function HpFilters(props) {
             dispatch({ type: 'setSingleSelectFilter', key, value })
             if(key === 'year') {
                
-                dispatch({ type:'setStartDateRange', value: new Date(`${filters.dateRange.start.getUTCMonth() + 1}/${filters.dateRange.start.getUTCDate()}/${value}`)});
-               dispatch({ type:'setEndDateRange', value: new Date(`${filters.dateRange.end.getUTCMonth() + 1}/${filters.dateRange.end.getUTCDate()}/${value}`)});
+                dispatch({ type:'setStartDateRange', value: new Date(`${filters.dateRange.start.getMonth() + 1}/${filters.dateRange.start.getDate()}/${value}`)});
+               dispatch({ type:'setEndDateRange', value: new Date(`${filters.dateRange.end.getMonth() + 1}/${filters.dateRange.end.getDate()}/${value}`)});
             }
         } else if (type === 'date-range') {
             dispatch({ type: key === 'start'? 'setStartDateRange': 'setEndDateRange', value })

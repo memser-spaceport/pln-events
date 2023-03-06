@@ -12,7 +12,7 @@ function HpMonthBox(props) {
     const monthsAvailable = [...allData];
     const monthIndexes = monthsAvailable.map(m => m.index);
     const onlyMonthNames = monthsAvailable.map(m => m.name);
-    const currenMonthId = new Date().getUTCMonth();
+    const currenMonthId = new Date().getMonth();
     const isCurrentHasEvents = monthIndexes.includes(currenMonthId);
    
 
