@@ -1,4 +1,3 @@
----
 eventName: "<Your_Event_Name>" #the name of your track or event and its mandatory
 
 eventDescription: "<Short_Description_of_your_event>" #short description of your track or event limiting to 100-150 characters
@@ -37,4 +36,3 @@ preferredContacts:
 #Event host names and their respective logos-place the logo file on the path 'public/uploads' for eg.   - IPFS|ipfs-logo.png
 eventHosts:
   - <host_name>|<host_logo>
----
