@@ -17,6 +17,7 @@ function PlEventCard(props) {
     const dateTBD = props.dateTBD
     const onLinkItemClicked = props.onLinkItemClicked;
     const trimmedTopics = topics.slice(0, 4);
+    const isTopicsAvailable = trimmedTopics.length > 0;
     const fullAddressValue = [...fullAddress].filter(v => v !== '').join(", ")
 
 
@@ -48,9 +49,9 @@ function PlEventCard(props) {
             </div>
             {!website && <p className="pec__eventname">{eventName}</p>}
             {website && <p className="pec__eventname"><a onClick={() => onLinkClicked('event')} className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p>}
-            {(trimmedTopics.length > 0) && <div className="pec__topics">
+            <div className={`pec__topics ${!isTopicsAvailable ? 'hide': ''}`}>
                 {trimmedTopics.map(v => <p className="pec__topics__item">{v}</p>)}
-            </div>}
+            </div>
             {(preferredContacts.length > 0) && <div className="pec__contacts">
                     {preferredContacts.map(c => <a className="pec__contacts__link" href={c.link} target="_blank"><img title={c.name} className="pec__contacts__link__img" src={c.logo}/></a>)}
                 </div>}
@@ -124,6 +125,7 @@ function PlEventCard(props) {
             .pec__topics__item {padding: 6px 16px; border: 1px solid #CBD5E1; border-radius: 20px; color: #0F172A; font-size: 12px;}
             .timeline {position: absolute; height: 100%; left: 50%; top: 0; width: 1px; background: #CBD5E1;}
             .location-blue {color: #156ff7;}
+            .hide {display: none;}
             `
             }
         </style>
