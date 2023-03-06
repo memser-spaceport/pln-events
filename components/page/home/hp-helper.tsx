@@ -26,10 +26,10 @@ export const getUniqueValuesFromEvents = (key, allEvents) => {
     case 'eventHosts':
       allEvents.forEach(event => {
         event.eventHosts.forEach(v => {
-          if(!items.includes(v.name)) {
+          if (!items.includes(v.name)) {
             items.push(v.name)
           }
-          
+
         })
       })
       break;
@@ -70,13 +70,13 @@ export const getFormattedEvents = (events) => {
       if (splitted.length === 1) {
         splitted.push('pln-default-host-logo.svg')
       }
-     
-      if(!tempEventNames.includes(splitted[0])) {
-        tempEventNames.push( splitted[0])
-        const newHostEmtry = {name: splitted[0], logo: `/uploads/${splitted[1]}`, primaryIcon: `/icons/pln-primary-host.svg`}
+
+      if (!tempEventNames.includes(splitted[0])) {
+        tempEventNames.push(splitted[0])
+        const newHostEmtry = { name: splitted[0], logo: `/uploads/${splitted[1]}`, primaryIcon: `/icons/pln-primary-host.svg` }
         eventHosts.push(newHostEmtry)
       }
-    }) 
+    })
 
     // Preferred Contacts
     const preferredContacts = event?.node?.preferredContacts?.map(pc => {
@@ -209,10 +209,10 @@ export const getNoFiltersApplied = (filters) => {
     count++
   }
 
-  if(filters.dateRange.start.toLocaleDateString() !== new Date(`01/01/${new Date().getFullYear()}`).toLocaleDateString() ||  filters.dateRange.end.toLocaleDateString() !== new Date(`12/31/${new Date().getFullYear()}`).toLocaleDateString()) {
+  if (filters.dateRange.start.toLocaleDateString() !== new Date(`01/01/${new Date().getFullYear()}`).toLocaleDateString() || filters.dateRange.end.toLocaleDateString() !== new Date(`12/31/${new Date().getFullYear()}`).toLocaleDateString()) {
     count++
   }
- 
+
 
   return count;
 }
@@ -230,7 +230,7 @@ export const getInitialState = (events) => {
 export const getDaysValue = (count, monthValue) => {
   const newDate = new Date(`${monthValue}/01/2023`)
   const items = [];
-  const countForEmpty = newDate.getDay()
+  const countForEmpty = newDate.getUTCDay()
   if (count === 0) {
     return []
   }
@@ -263,11 +263,11 @@ export const getFilteredEvents = (allEvents, filters) => {
       return false
     }
 
-    if(filters.dateRange.start.getTime() !== new Date(`01/01/${filters.year}`).getTime() && filters.dateRange.start.getTime() > item?.endDateTimeStamp) {
+    if (filters.dateRange.start.getTime() !== new Date(`01/01/${filters.year}`).getTime() && filters.dateRange.start.getTime() > item?.endDateTimeStamp) {
       return false
     }
 
-    if(filters.dateRange.end.getTime() !== new Date(`12/31/${filters.year}`).getTime() && filters.dateRange.end.getTime() < item?.startDateTimeStamp) {
+    if (filters.dateRange.end.getTime() !== new Date(`12/31/${filters.year}`).getTime() && filters.dateRange.end.getTime() < item?.startDateTimeStamp) {
       return false
     }
 
