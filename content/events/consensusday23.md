@@ -15,7 +15,7 @@ eventTopic:
 eventType: "Virtual"
 
 <!--- Specify the location of the event.If you aren't sure about the location then mention "Location TBD" -->
-location: 
+location: Virtual
 
 <!--- the event venue name (will show up on the event card) or just leave it blank-->
 venueName: 
