@@ -66,7 +66,12 @@ function HpCalendar(props) {
     useEffect(() => {
         function changeCalendarHeight() {
             const calendarContainer = document.getElementById("calendar-cn")
-            setCalendarHeight(calendarContainer.clientHeight)
+            if(window.innerWidth < 1200) {
+                setCalendarHeight(window.innerHeight - 155)
+            } else {
+                setCalendarHeight(window.innerHeight - 90)
+            }
+            
         }
         changeCalendarHeight()
         window.addEventListener("resize", changeCalendarHeight)
@@ -131,7 +136,7 @@ function HpCalendar(props) {
             .hpc__head__info__item__img {width: 16px; height: 16px;}
             .hpc__head__info__item__text {font-size: 11px;}
             
-            .hpc__calendar {height: calc(100vh - 215px); margin-top: -25px;}
+            .hpc__calendar {height: calc(100vh - 255px); margin-top: -25px;}
             
             .eventCard {display: flex; position: fixed; top:0; left:0; right:0; width: 100vw; align-items: center; justify-content: center; height: 100vh; background: rgb(0,0,0,0.8); z-index: 15;}
             .eventCard__item {width: 90vw; position: relative;}
