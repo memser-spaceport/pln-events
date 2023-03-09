@@ -8,6 +8,7 @@ import HpTimeline from "../components/page/home/hp-timeline";
 import { useReducer, useEffect } from 'react'
 import HpFilters from "../components/page/home/hp-filters";
 import HpFilterHead from "../components/page/home/hp-filter-head";
+import HpCalendar from "../components/page/home/hp-calendar";
 
 export default function IndexPage(props) {
   const { data } = useTina({ query: props.query, variables: props.variables, data: props.data, });
@@ -18,9 +19,16 @@ export default function IndexPage(props) {
   const filterdList = getFilteredEvents([...orderedEventsList], { ...state.filters })
   const monthWiseEvents = getMonthWiseEvents([...filterdList])
   const filterdListCount = filterdList.length;
-
-
- 
+  const finalEvents = [...filterdList].map(f => {
+    const endDateValue = new Date(f.endDateValue);
+    endDateValue.setSeconds(endDateValue.getSeconds() + 10);
+    return {
+        title: f.eventName,
+        start: f.startDateValue,
+        end: endDateValue,
+        ...f
+    }
+})
 
   const onContentScroll = () => {
     const container = document.getElementById('main-content');
@@ -47,11 +55,17 @@ export default function IndexPage(props) {
         <div id="main-content" onScroll={onContentScroll} className="hp__maincontent">
            <HpFilterHead/>
           {/*** SCROLL UP TO VIEW PAST ***/}
-          {state.flags.isScrolledUp && <div className="hmt__scollup">
+          {(state.flags.isScrolledUp && state.flags.eventMenu === 'timeline') && <div className="hmt__scollup">
             <img className="hmt__scollup__img" src="/icons/scroll-up-icon.svg" />
             <p className="hmt__scollup__text">Scroll up to view past events</p>
           </div>}
-          <HpTimeline filterdListCount={filterdListCount} filters={state.filters} monthWiseEvents={monthWiseEvents} />
+          
+          {/**** TIMELINE VIEW ****/}
+          {(state?.flags?.eventMenu === 'timeline') &&  <HpTimeline filterdListCount={filterdListCount} filters={state.filters} monthWiseEvents={monthWiseEvents} />}
+
+
+          {/**** CALENDAR VIEW ****/}
+         {state?.flags?.eventMenu === 'calendar' &&  <HpCalendar eventItems={finalEvents} filters={state.filters} monthWiseEvents={monthWiseEvents} filterdListCount={filterdListCount}/>}
         </div>
       </div>
 

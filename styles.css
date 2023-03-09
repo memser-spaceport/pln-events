@@ -1,9 +1,54 @@
-
-body, h1, h2, h3, h4, div, img, p, aside, main, header, footer {margin:0; padding:0; box-sizing: border-box;}
-html,body {
-    height:100%; width: 100%; font-family: 'Inter', sans-serif;
+body,
+h1,
+h2,
+h3,
+h4,
+div,
+img,
+p,
+aside,
+main,
+header,
+footer {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body > div {width: 100%; height: 100%;}
-main {width: 100%; height: 100%; display: block;}
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+}
 
+body>div {
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+:root {
+    --fc-event-bg-color: none;
+    --fc-event-bg-color: none;
+}
+
+/*** FULL CALENDAR OVERRIDES ***/
+.fc-daygrid-day {
+    border: 1px solid #CBD5E1 !important;
+    background: white;
+}
+.fc-daygrid-event {border: none !important; background: none !important;}
+.fc-daygrid-day-events {margin-bottom: 50px !important;}
+.fc-day-today {background: #FFF5EF !important;}
+.fc-h-even {
+    background-color: none !important;
+    border:none !important;
+} 
+
+.fc-daygrid-day-number {position: initial !important; padding: 0 !important;}
+.fc-daygrid-day-number {width: 100%; padding: 3px 16px; height: 100%; display: flex; justify-content: space-between;}

@@ -136,6 +136,8 @@ export const getFormattedEvents = (events) => {
       fullDateFormat,
       tagLogo,
       calenderLogo,
+      startDateValue,
+      endDateValue,
       locationLogo,
       externalLinkIcon: '/icons/pl-external-icon.svg'
     }
@@ -181,6 +183,9 @@ export const reducerFunction = (oldstate, action) => {
     case 'setEndDateRange':
       newState.filters.dateRange.end = action.value;
       return newState;
+    case 'setEventMenu':
+      newState.flags.eventMenu = action.value;
+      return newState;
 
   }
 }
@@ -221,7 +226,7 @@ export const getInitialState = (events) => {
   return {
     filteredItems: { year: `${new Date().getFullYear()}`, location: [], isPlnEventOnly: false, topics: [], eventHosts: [], eventType: '', dateRange: { start: new Date(`01/01/${new Date().getFullYear()}`), end: new Date(`12/31/${new Date().getFullYear()}`) } },
     filters: { year: `${new Date().getFullYear()}`, isPlnEventOnly: false, locations: [], topics: [], eventHosts: [], eventType: '', dateRange: { start: new Date(`01/01/${new Date().getFullYear()}`), end: new Date(`12/31/${new Date().getFullYear()}`) } },
-    flags: { isMobileFilterActive: false, isScrolledUp: false },
+    flags: { isMobileFilterActive: false, isScrolledUp: false, eventMenu: 'timeline' },
     events: [...events],
     filteredEvents: [...events]
   }

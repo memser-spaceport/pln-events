@@ -1,4 +1,5 @@
 function PlEventCard(props) {
+    const isPopup = props.isPopup ?? false
     const eventName = props?.eventName ?? '';
     const topics = props?.topics ?? [];
     const tag = props?.tag ?? ''
@@ -35,6 +36,7 @@ function PlEventCard(props) {
 
     return <>
         <div className={`pec ${isFeaturedEvent ? 'pec--feat': ''}`}>
+            {isPopup && <p className="pec__close"></p>}
             <div className="pec__info">
                <div className="pec__info__tag">
                    {(tag && tagLogo) && <img className="pec__info__tag__img" src={tagLogo} />}
@@ -49,9 +51,9 @@ function PlEventCard(props) {
             </div>
             {!website && <p className="pec__eventname">{eventName}</p>}
             {website && <p className="pec__eventname"><a onClick={() => onLinkClicked('event')} className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p>}
-            <div className={`pec__topics`}>
+            {isTopicsAvailable && <div className="pec__topics">
                 {trimmedTopics.map(v => <p className="pec__topics__item">{v}</p>)}
-            </div>
+            </div>}
             <div className="pec__contacts">
                     {preferredContacts.map(c => <a className="pec__contacts__link" href={c.link} target="_blank"><img title={c.name} className="pec__contacts__link__img" src={c.logo}/></a>)}
                 </div>
@@ -87,6 +89,7 @@ function PlEventCard(props) {
                 `
               
             .pec {width: 100%; border: 1px solid #CBD5E1; border-radius: 8px;  background: white; padding: 0 20px;}
+            .pec__close {margin-bottom: 48px;}
             .blue {text-decoration: none; color: #0F172A; }
             .title {display: inline-block; text-decoration: none;}
             .pec--feat { background: linear-gradient(white, white) padding-box,linear-gradient(to right, #427DFF, #44D5BB) border-box; border-radius: 8px; border: 2px solid transparent; border-radius: 8px;}
