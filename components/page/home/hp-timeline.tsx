@@ -106,7 +106,7 @@ function HpTimeline(props) {
             .hmt__cn__sec__event__databox--right { top: 0; left: -67px;}
             .hmt__cn__sec__event__databox__date {font-size: 16px; font-weight: 600; margin-bottom: 0px;}
             .hmt__cn__sec__event__databox__day {font-size: 12px; font-weight: 400; text-transform: uppercase;}
- 
+            
 
             .left {}
             .right {} 

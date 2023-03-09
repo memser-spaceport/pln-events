@@ -7,9 +7,7 @@ function  PlDateRange(props) {
     const callback = props?.callback;
     const startDate = dateRange?.start ?? new Date(`01/01/${new Date().getFullYear()}`)
     const endDate = dateRange?.end ?? new Date(`12/31/${new Date().getFullYear()}`)
-    const selectedYear = props.selectedYear
-
-
+    const selectedYear = props.selectedYear;
     const paneRef = useRef<HTMLInputElement>()
     const [monthViewData, setMonthViewData] = useState({ isActive: false, month: - 1, type: '' });
     const selectedDay = monthViewData.type === 'start' ? startDate.getDate() : endDate.getDate();
