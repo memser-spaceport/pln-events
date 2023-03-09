@@ -20,6 +20,9 @@ body {
     height: 100%;
     width: 100%;
     font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+  /* mobile viewport bug fix */
+  min-height: -webkit-fill-available;
 }
 
 body>div {
