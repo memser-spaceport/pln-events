@@ -123,8 +123,8 @@ function HpCalendar(props) {
         {isEventCardActive && <div className="eventCard">
             <div className="eventCard__item">
                 <PlEventCard {...selectedEvent}/>
-                <p className="eventCard__item__close">
-                    <img onClick={onCloseCard} src="/icons/pln-close-white.svg" className="eventCard__item__close__img"/>
+                <p onClick={onCloseCard} className="eventCard__item__close">
+                    <img src="/icons/pln-close-white.svg" className="eventCard__item__close__img"/>
                 </p>
                 
             </div>
