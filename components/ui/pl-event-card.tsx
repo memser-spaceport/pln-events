@@ -1,5 +1,4 @@
 function PlEventCard(props) {
-    const isPopup = props.isPopup ?? false
     const eventName = props?.eventName ?? '';
     const topics = props?.topics ?? [];
     const tag = props?.tag ?? ''
@@ -37,7 +36,6 @@ function PlEventCard(props) {
 
     return <>
         <div className={`pec ${isFeaturedEvent ? 'pec--feat': ''}`}>
-            {isPopup && <p className="pec__close"></p>}
             <div className="pec__info">
                <div className="pec__info__tag">
                    {(tag && tagLogo) && <img className="pec__info__tag__img" src={tagLogo} />}
@@ -89,8 +87,8 @@ function PlEventCard(props) {
             {
                 `
               
-            .pec {width: 100%; border: 1px solid #CBD5E1; border-radius: 8px;  background: white; padding: 0 20px;}
-            .pec__close {margin-bottom: 48px;}
+            .pec {width: 100%; position: relative; border: 1px solid #CBD5E1; border-radius: 8px;  background: white; padding: 0 20px;}
+            .pec__close {position: absolute; top: -13px; right: -13px; width: 26px; height: 26px; background: #475569; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.5);}
             .blue {text-decoration: none; color: #0F172A; }
             .title {display: inline-block; text-decoration: none;}
             .pec--feat { background: linear-gradient(white, white) padding-box,linear-gradient(to right, #427DFF, #44D5BB) border-box; border-radius: 8px; border: 2px solid transparent; border-radius: 8px;}
