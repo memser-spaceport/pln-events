@@ -65,6 +65,11 @@ function HpCalendar(props) {
             const calendarElement: any = calenderRef?.current
             const ca = calendarElement.getApi()
             ca.gotoDate(`${filters.year}-${selectedMonthData.index + 1 <= 9 ? `0${selectedMonthData.index + 1}` : selectedMonthData.index + 1}-01`)
+        } else {
+            setMonthIndex(currenMonthId);
+            const calendarElement: any = calenderRef?.current
+            const ca = calendarElement.getApi()
+            ca.gotoDate(`${filters.year}-${currenMonthId + 1 <= 9 ? `0${currenMonthId+ 1}` : currenMonthId + 1}-01`)
         }
     }, [filterdListCount])
 
@@ -117,8 +122,11 @@ function HpCalendar(props) {
 
         {isEventCardActive && <div className="eventCard">
             <div className="eventCard__item">
-                <PlEventCard isPopup={true} {...selectedEvent}/>
-                <img onClick={onCloseCard} src="/icons/pln-close.svg" className="eventCard__item__close"/>
+                <PlEventCard {...selectedEvent}/>
+                <p onClick={onCloseCard} className="eventCard__item__close">
+                    <img src="/icons/pln-close-white.svg" className="eventCard__item__close__img"/>
+                </p>
+                
             </div>
             </div>}
         <style jsx>
@@ -136,12 +144,12 @@ function HpCalendar(props) {
             .hpc__head__info__item__img {width: 16px; height: 16px;}
             .hpc__head__info__item__text {font-size: 11px;}
             
-            .hpc__calendar {height: calc(100svh - 160px); margin-top: -25px;}
+            .hpc__calendar {height: calc(100svh - 156px); margin-top: -25px;}
             
             .eventCard {display: flex; position: fixed; top:0; left:0; right:0; width: 100vw; align-items: center; justify-content: center; height: 100vh; background: rgb(0,0,0,0.8); z-index: 15;}
             .eventCard__item {width: 90vw; position: relative;}
-            .eventCard__item__close {position: absolute; top:16px; right: 16px; cursor: pointer;}
-
+            .eventCard__item__close {position: absolute; top:-13px; border-radius: 50%; display: flex; align-items: center; justify-content: center; right: -10px; width: 26px; height: 26px; background: #475569; border: 1px solid rgba(255, 255, 255, 0.5); cursor: pointer;}
+            .eventCard__item__close__img {width:16px; height: 16px; }
             @media(min-width: 1200px) {
                 .hpc__calendar { height: calc(100svh - 86px);}
                 .hpc__head { padding: 8px 0; align-items: center; height: fit-content;}
