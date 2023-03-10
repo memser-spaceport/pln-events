@@ -65,6 +65,11 @@ function HpCalendar(props) {
             const calendarElement: any = calenderRef?.current
             const ca = calendarElement.getApi()
             ca.gotoDate(`${filters.year}-${selectedMonthData.index + 1 <= 9 ? `0${selectedMonthData.index + 1}` : selectedMonthData.index + 1}-01`)
+        } else {
+            setMonthIndex(currenMonthId);
+            const calendarElement: any = calenderRef?.current
+            const ca = calendarElement.getApi()
+            ca.gotoDate(`${filters.year}-${currenMonthId + 1 <= 9 ? `0${currenMonthId+ 1}` : currenMonthId + 1}-01`)
         }
     }, [filterdListCount])
 
@@ -136,7 +141,7 @@ function HpCalendar(props) {
             .hpc__head__info__item__img {width: 16px; height: 16px;}
             .hpc__head__info__item__text {font-size: 11px;}
             
-            .hpc__calendar {height: calc(100svh - 160px); margin-top: -25px;}
+            .hpc__calendar {height: calc(100svh - 156px); margin-top: -25px;}
             
             .eventCard {display: flex; position: fixed; top:0; left:0; right:0; width: 100vw; align-items: center; justify-content: center; height: 100vh; background: rgb(0,0,0,0.8); z-index: 15;}
             .eventCard__item {width: 90vw; position: relative;}
