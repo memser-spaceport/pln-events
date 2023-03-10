@@ -5,6 +5,7 @@ function HpCalendarEvent(eventInfo) {
     const eventType = eventInfo?.event?.extendedProps?.eventType?.toLowerCase().trim() ?? 'social';
     const tileClass = isFeatured ? 'featured' : eventType;
     const eventHosts = eventInfo?.event?.extendedProps?.eventHosts ?? [];
+    const trimmedHosts = eventHosts.slice(0, 4)
     const isStart = eventInfo?.isStart ?? false
     const isEnd = eventInfo?.isEnd ?? false;
     const isSingleRow = isStart === true && isEnd === true;
@@ -16,7 +17,7 @@ function HpCalendarEvent(eventInfo) {
         <>
             <div className={`cn ${tileClass}`}>
                 {(isSingleRow && isSameDay) && <div className="cn__hostlogos">
-                    {eventHosts.map((h, hIndex) => <div className="cn__hostlogos__item">
+                    {trimmedHosts.map((h, hIndex) => <div className="cn__hostlogos__item">
                         <img className="cn__hostlogos__item__img" src={h.logo} />
                     </div>)}
                 </div>}

@@ -14,6 +14,7 @@ function PlEventCard(props) {
     const isFeaturedEvent = props?.isFeaturedEvent ?? false;
     const eventHosts = props.eventHosts ?? [];
     const preferredContacts = props.preferredContacts ?? [];
+    const isPreferredContactsAvailable = preferredContacts.length > 0;
     const fullAddress = [venueName.trim(), venueAddress.trim(), location.trim()];
     const dateTBD = props.dateTBD
     const onLinkItemClicked = props.onLinkItemClicked;
@@ -54,9 +55,9 @@ function PlEventCard(props) {
             {isTopicsAvailable && <div className="pec__topics">
                 {trimmedTopics.map(v => <p className="pec__topics__item">{v}</p>)}
             </div>}
-            <div className="pec__contacts">
+            {isPreferredContactsAvailable && <div className="pec__contacts">
                     {preferredContacts.map(c => <a className="pec__contacts__link" href={c.link} target="_blank"><img title={c.name} className="pec__contacts__link__img" src={c.logo}/></a>)}
-                </div>
+                </div>}
 
             {description && <p className="pec__desc">{description}</p>}
             <div className="pec__calender">
@@ -111,7 +112,7 @@ function PlEventCard(props) {
 
             .pec__location {display: flex; align-items: center; margin:16px 0; margin-bottom: 20px;}
             .pec__location__img {width: 12px; height: 12px; margin-right: 4px;}
-            .pec__location__text {color: #64748B; font-size: 12px; margin-right: 4px; display: flex; overflow: hidden; flex-wrap: wrap;}
+            .pec__location__text {color: #64748B; font-size: 12px; margin-right: 4px; display: flex; flex-wrap: wrap;  overflow: hidden;text-overflow: ellipsis;white-space: initial;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
             
             .pec__contacts {display: flex; flex-wrap: wrap; margin-bottom: 8px; align-items: center;}
             .pec__contacts__link {text-decoration: none;}

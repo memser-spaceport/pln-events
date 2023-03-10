@@ -54,6 +54,7 @@ export default function IndexPage(props) {
         {/*** EVENTS TIMELINE ***/}
         <div id="main-content" onScroll={onContentScroll} className="hp__maincontent">
            <HpFilterHead/>
+
           {/*** SCROLL UP TO VIEW PAST ***/}
           {(state.flags.isScrolledUp && state.flags.eventMenu === 'timeline') && <div className="hmt__scollup">
             <img className="hmt__scollup__img" src="/icons/scroll-up-icon.svg" />
@@ -79,7 +80,7 @@ export default function IndexPage(props) {
         `
       .hp {width: 100%; height: 100%; display: flex;}
       .hp__sidebar {display: none;}
-      .hp__maincontent {width: 100%; padding-top:0px; overflow-y: scroll; background: #f2f7fb; height: 100%;}
+      .hp__maincontent {width: 100%; padding-top:0px; overflow-y: ${state?.flags?.eventMenu === 'calendar'? 'hidden': 'scroll'}; background: #f2f7fb; height: 100%;}
       .hp__maincontent__tools {background: white; z-index:5; position: sticky; top: 58px; width: 100%; height: 48px; margin-top: 60px; box-shadow: 0px 1px 4px rgba(226, 232, 240, 0.25); padding: 0 24px; display: flex; align-items: center; justify-content: space-between;}
       .hp__maincontent__tools__filter {display: flex; align-items: center; justify-content: center; border: 1px solid #CBD5E1; border-radius: 4px; padding: 5px 12px; cursor: pointer; z-index: 3;}
       .hp__maincontent__tools__filter__icon {width:16px; height: 16px; margin-right: 8px;}
