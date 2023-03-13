@@ -23,6 +23,6 @@ preferredContacts:
   - whatsapp|https://twitter.com/TweetsSupportin?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
   - instagram|https://www.facebook.com/
 eventHosts:
-  - WinsHosts|image.png
-  - ManHosts|image.png
+  - BbbHosts|image.png
+  - AaaHosts|image.png
 ---

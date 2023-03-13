@@ -23,5 +23,5 @@ preferredContacts:
   - twitter|https://twitter.com/TweetsSupportin?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
   - facebook|https://www.facebook.com/
 eventHosts:
-  - WinsHosts|image.png
+  - DddHosts|image.png
 ---
