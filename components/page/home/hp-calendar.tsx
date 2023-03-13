@@ -58,7 +58,6 @@ function HpCalendar(props) {
             const calendarElement: any = calenderRef?.current
             const ca = calendarElement.getApi()
             ca.gotoDate(`${filters.year}-${selectedMonthData.index + 1 <= 9 ? `0${selectedMonthData.index + 1}` : selectedMonthData.index + 1}-01`)
-
         } else if (monthWiseEvents.length > 0) {
             const selectedMonthData = monthWiseEvents[0];
             setMonthIndex(selectedMonthData.index)
@@ -71,7 +70,7 @@ function HpCalendar(props) {
             const ca = calendarElement.getApi()
             ca.gotoDate(`${filters.year}-${currenMonthId + 1 <= 9 ? `0${currenMonthId+ 1}` : currenMonthId + 1}-01`)
         }
-    }, [filterdListCount])
+    }, [filterdListCount, currentYear])
 
     useEffect(() => {
         function changeCalendarHeight() {
