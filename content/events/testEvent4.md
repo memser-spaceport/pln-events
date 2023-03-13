@@ -3,12 +3,12 @@ eventName: Event 4
 eventDescription: "Short Description of my event Selecting an option on the filters with longer text-overlaps the down arrow (displayed on the combo box)"
 eventTopic: 
     - "BlockChain dfsf sfdsf sdf sfdtopic new"
-    - "Web3"
-    - "Hello"
-    - "Yes"
-    - "GM"
-    - "Labs"
-    - "Protocol"
+    - "A1"
+    - "B2"
+    - "C3"
+    - "D4"
+    - "E5"
+    - "F6"
 eventType: "Social"
 location: "Chicago, United States"
 venueName: Chicago Museum
