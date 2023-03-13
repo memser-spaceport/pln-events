@@ -1,0 +1,27 @@
+---
+eventName: Event 4
+eventDescription: "Short Description of my event Selecting an option on the filters with longer text-overlaps the down arrow (displayed on the combo box)"
+eventTopic: 
+    - "BlockChain dfsf sfdsf sdf sfdtopic new"
+    - "Web3"
+    - "Hello"
+    - "Yes"
+    - "GM"
+    - "Labs"
+    - "Protocol"
+eventType: "Social"
+location: "Chicago, United States"
+venueName: Chicago Museum
+venueAddress: Chicken road
+venueMapsLink: "https://goo.gl/maps/nc2XkXNU7e67iFa68"
+website: "https://www.koenigsegg.com/"
+startDate: 1/1/2023
+endDate: 1/3/2023
+tag: "Industry Event"
+dateTBD: false
+preferredContacts:
+  - twitter|https://twitter.com/TweetsSupportin?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
+  - facebook|https://www.facebook.com/
+eventHosts:
+  - WinsHosts|image.png
+---
