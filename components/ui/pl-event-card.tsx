@@ -13,12 +13,10 @@ function PlEventCard(props) {
     const isFeaturedEvent = props?.isFeaturedEvent ?? false;
     const eventHosts = props.eventHosts ?? [];
     const preferredContacts = props.preferredContacts ?? [];
-    const isPreferredContactsAvailable = preferredContacts.length > 0 ? true : false;
     const fullAddress = [venueName.trim(), venueAddress.trim(), location.trim()];
     const dateTBD = props.dateTBD
     const onLinkItemClicked = props.onLinkItemClicked;
     const trimmedTopics = topics.slice(0, 4);
-    const isTopicsAvailable = trimmedTopics.length > 0 ? true : false;
     const fullAddressValue = [...fullAddress].filter(v => v !== '').join(", ")
 
 
@@ -50,10 +48,10 @@ function PlEventCard(props) {
             </div>
             {!website && <p className="pec__eventname">{eventName}</p>}
             {website && <p className="pec__eventname"><a onClick={() => onLinkClicked('event')} className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p>}
-            {isTopicsAvailable ? <div className="pec__topics">
+            {trimmedTopics.length > 0 ? <div className="pec__topics">
                 {trimmedTopics.map(v => <p className="pec__topics__item">{v}</p>)}
             </div>: null}
-            {isPreferredContactsAvailable ? <div className="pec__contacts">
+            {preferredContacts.length > 0 ? <div className="pec__contacts">
                     {preferredContacts.map(c => <a className="pec__contacts__link" href={c.link} target="_blank"><img title={c.name} className="pec__contacts__link__img" src={c.logo}/></a>)}
                 </div>: null}
 
