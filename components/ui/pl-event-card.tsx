@@ -47,12 +47,12 @@ function PlEventCard(props) {
 
             </div>
             {website ? <p className="pec__eventname"><a onClick={() => onLinkClicked('event')} className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p> : <p className="pec__eventname">{eventName}</p>}
-            {trimmedTopics.length > 0 ? <div className="pec__topics">
+            <div className="pec__topics">
                 {trimmedTopics.map(v => <p className="pec__topics__item">{v}</p>)}
-            </div>: null}
-            {preferredContacts.length > 0 ? <div className="pec__contacts">
+            </div>
+            <div className="pec__contacts">
                     {preferredContacts.map(c => <a className="pec__contacts__link" href={c.link} target="_blank"><img title={c.name} className="pec__contacts__link__img" src={c.logo}/></a>)}
-                </div>: null}
+                </div>
 
             {description ? <p className="pec__desc">{description}</p> : null}
             <div className="pec__calender">
