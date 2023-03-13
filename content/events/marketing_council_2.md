@@ -34,7 +34,7 @@ dateTBD: false
 #Preferred social means of contacts-this is a placeholder for social handle like Twitter, Discord and so on and not to be mistaken for email contacts for eg.   - 'https://t.me/plnmarketingcouncil'
 
 preferredContacts:
-  - 'denice.zhu@protocol.ai'
+
 
 #Event host names and their respective logos-place the logo file on the path 'public/uploads' for eg.   - IPFS|ipfs-logo.png
 
