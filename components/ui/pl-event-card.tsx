@@ -96,7 +96,7 @@ function PlEventCard(props) {
             .pec__desc {color: #475569; font-size: 14px; margin: 18px 0; line-height: 16px;}
             .pec__eventname {font-weight: 600; font-size: 16px; line-height: 24px; color: #0F172A; margin: 16px 0;}
             .pec__eventname--link {cursor: pointer; color: #0F172A !important; text-decoration: none;}
-            .pec__calender {display: flex; align-items: center;}
+            .pec__calender {display: flex; align-items: center; margin-top: 4px;}
             .pec__calender__icon {width: 12px; height: 12px; margin-right: 4px;}
             .pec__calender__text {font-size: 12px;}
             .pec__location__link {display: flex; color: blue !important; text-decoration: none;}
@@ -105,9 +105,9 @@ function PlEventCard(props) {
             .pec__location__img {width: 12px; height: 12px; margin-right: 4px;}
             .pec__location__text {color: #64748B; font-size: 12px; margin-right: 4px; display: flex; flex-wrap: wrap;  overflow: hidden;text-overflow: ellipsis;white-space: initial;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
             
-            .pec__contacts {display: flex; flex-wrap: wrap; margin-bottom: 8px; align-items: center;}
-            .pec__contacts__link {text-decoration: none;}
-            .pec__contacts__link__img {width:26px; height: 26px; margin-right:4px;}
+            .pec__contacts {display: flex; flex-wrap: wrap; align-items: center;}
+            .pec__contacts__link {text-decoration: none; margin-right:4px; margin-top: 8px; display: flex; align-items: center; justify-content: center;}
+            .pec__contacts__link__img {width:26px; height: 26px; }
 
             .pec__hosts {display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px;}
             .pec__hosts__item {display: flex; align-items: center; position: relative;}
@@ -116,8 +116,8 @@ function PlEventCard(props) {
             .pec__hosts__item__primimg {position: absolute; top: -4px; right: -4px; width: 20px; height: 20px;}
 
             .pec__info__type {margin-left: 16px; display: flex; align-items: center; flex:1;}
-            .pec__topics {display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;}
-            .pec__topics__item {padding: 6px 16px; border: 1px solid #CBD5E1; border-radius: 20px; color: #0F172A; font-size: 12px;}
+            .pec__topics {display: flex; gap: 0 8px; flex-wrap: wrap;}
+            .pec__topics__item {padding: 6px 16px; margin-bottom: 8px; border: 1px solid #CBD5E1; border-radius: 20px; color: #0F172A; font-size: 12px;}
             .timeline {position: absolute; height: 100%; left: 50%; top: 0; width: 1px; background: #CBD5E1;}
             .location-blue {color: #156ff7;}
             .hide {display: none;}
