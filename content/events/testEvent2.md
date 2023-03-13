@@ -9,7 +9,7 @@ eventTopic:
     - "GM"
     - "Labs"
     - "Protocol"
-eventType: "Social"
+eventType: "Conference"
 location: "Denver, United States"
 venueName: Boston zoo
 venueAddress: Lockhead venue
