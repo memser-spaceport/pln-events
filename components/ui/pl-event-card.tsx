@@ -35,19 +35,18 @@ function PlEventCard(props) {
     return <>
         <div className={`pec ${isFeaturedEvent ? 'pec--feat': ''}`}>
             <div className="pec__info">
-               <div className="pec__info__tag">
-                   {(tag && tagLogo) && <img className="pec__info__tag__img" src={tagLogo} />}
-                   {tag && <p className="pec__info__tag__text">{tag}</p>}
-                </div>
+               {tag ? <div className="pec__info__tag">
+                   {tagLogo ? <img className="pec__info__tag__img" src={tagLogo} /> : null}
+                    <p className="pec__info__tag__text">{tag}</p>
+                </div>: null}
                <div className="pec__info__type">
-                    {eventType && <img className="pec__info__tag__img" src={`/icons/pln-event-${eventType.toLowerCase().trim()}.svg`} />}
-                    {eventType &&  <p className="pec__info__tag__text">{eventType}</p>}
+                    {eventType ? <img className="pec__info__tag__img" src={`/icons/pln-event-${eventType.toLowerCase().trim()}.svg`} />: null}
+                    {eventType ?  <p className="pec__info__tag__text">{eventType}</p>:null}
                 </div>
                {isFeaturedEvent ?  <div className="pec__info__feat">FEATURED</div> : null}
 
             </div>
-            {!website && <p className="pec__eventname">{eventName}</p>}
-            {website && <p className="pec__eventname"><a onClick={() => onLinkClicked('event')} className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p>}
+            {website ? <p className="pec__eventname"><a onClick={() => onLinkClicked('event')} className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p> : <p className="pec__eventname">{eventName}</p>}
             {trimmedTopics.length > 0 ? <div className="pec__topics">
                 {trimmedTopics.map(v => <p className="pec__topics__item">{v}</p>)}
             </div>: null}
@@ -67,12 +66,12 @@ function PlEventCard(props) {
                 {venueMapsLink ? <a onClick={() => onLinkClicked('location')} className="pec__location__link" href={venueMapsLink} target="_blank"><p className="pec__location__text location-blue">{fullAddressValue}</p></a> : <p className="pec__location__text">{fullAddressValue}</p>}
                 
             </div>
-            {(eventHosts.length > 0) ? <div className="pec__hosts">
+            {eventHosts.length > 0 ? <div className="pec__hosts">
                 {eventHosts.map((eh, ehIndex) => <div className="pec__hosts__item">
                     <img className="pec__hosts__item__img" title={eh.name} src={`${eh.logo}`}/>
-                    {(ehIndex === 0) && <img className="pec__hosts__item__primimg" src={eh.primaryIcon}/>}
+                    {ehIndex === 0 ? <img className="pec__hosts__item__primimg" src={eh.primaryIcon}/> : null}
                 </div>)}
-                {(eventHosts.length === 1) ? <p className="pec__hosts__item__text">{eventHosts[0].name}</p> : null}
+                {eventHosts.length === 1 ? <p className="pec__hosts__item__text">{eventHosts[0].name}</p> : null}
 
             </div>: null}
            
