@@ -13,12 +13,12 @@ function PlEventCard(props) {
     const isFeaturedEvent = props?.isFeaturedEvent ?? false;
     const eventHosts = props.eventHosts ?? [];
     const preferredContacts = props.preferredContacts ?? [];
-    const isPreferredContactsAvailable = preferredContacts.length > 0;
+    const isPreferredContactsAvailable = preferredContacts.length > 0 ? true : false;
     const fullAddress = [venueName.trim(), venueAddress.trim(), location.trim()];
     const dateTBD = props.dateTBD
     const onLinkItemClicked = props.onLinkItemClicked;
     const trimmedTopics = topics.slice(0, 4);
-    const isTopicsAvailable = trimmedTopics.length > 0;
+    const isTopicsAvailable = trimmedTopics.length > 0 ? true : false;
     const fullAddressValue = [...fullAddress].filter(v => v !== '').join(", ")
 
 
@@ -45,42 +45,38 @@ function PlEventCard(props) {
                     {eventType && <img className="pec__info__tag__img" src={`/icons/pln-event-${eventType.toLowerCase().trim()}.svg`} />}
                     {eventType &&  <p className="pec__info__tag__text">{eventType}</p>}
                 </div>
-               {isFeaturedEvent &&  <div className="pec__info__feat">FEATURED</div>}
+               {isFeaturedEvent ?  <div className="pec__info__feat">FEATURED</div> : null}
 
             </div>
             {!website && <p className="pec__eventname">{eventName}</p>}
             {website && <p className="pec__eventname"><a onClick={() => onLinkClicked('event')} className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p>}
-            {isTopicsAvailable && <div className="pec__topics">
+            {isTopicsAvailable ? <div className="pec__topics">
                 {trimmedTopics.map(v => <p className="pec__topics__item">{v}</p>)}
-            </div>}
-            {isPreferredContactsAvailable && <div className="pec__contacts">
+            </div>: null}
+            {isPreferredContactsAvailable ? <div className="pec__contacts">
                     {preferredContacts.map(c => <a className="pec__contacts__link" href={c.link} target="_blank"><img title={c.name} className="pec__contacts__link__img" src={c.logo}/></a>)}
-                </div>}
+                </div>: null}
 
-            {description && <p className="pec__desc">{description}</p>}
+            {description ? <p className="pec__desc">{description}</p> : null}
             <div className="pec__calender">
                 <img className="pec__calender__icon" src={calenderLogo}/>
-                {!dateTBD && <p className="pec__calender__text">{fullDateFormat}</p>}
-
-                {dateTBD && <p className="pec__calender__text">Date TBD</p>}
-                
+                {dateTBD ? <p className="pec__calender__text">Date TBD</p> : <p className="pec__calender__text">{fullDateFormat}</p>}
             </div>
            
            
             <div className="pec__location">
                 <img className="pec__location__img" src={locationLogo}/>
-                {!venueMapsLink && <p className="pec__location__text">{fullAddressValue}</p>}
-                {venueMapsLink && <a onClick={() => onLinkClicked('location')} className="pec__location__link" href={venueMapsLink} target="_blank"><p className="pec__location__text location-blue">{fullAddressValue}</p></a>}
+                {venueMapsLink ? <a onClick={() => onLinkClicked('location')} className="pec__location__link" href={venueMapsLink} target="_blank"><p className="pec__location__text location-blue">{fullAddressValue}</p></a> : <p className="pec__location__text">{fullAddressValue}</p>}
                 
             </div>
-            {(eventHosts.length > 0) && <div className="pec__hosts">
+            {(eventHosts.length > 0) ? <div className="pec__hosts">
                 {eventHosts.map((eh, ehIndex) => <div className="pec__hosts__item">
                     <img className="pec__hosts__item__img" title={eh.name} src={`${eh.logo}`}/>
                     {(ehIndex === 0) && <img className="pec__hosts__item__primimg" src={eh.primaryIcon}/>}
                 </div>)}
-                {(eventHosts.length === 1) && <p className="pec__hosts__item__text">{eventHosts[0].name}</p>}
+                {(eventHosts.length === 1) ? <p className="pec__hosts__item__text">{eventHosts[0].name}</p> : null}
 
-            </div>}
+            </div>: null}
            
         </div>
         <style jsx>
