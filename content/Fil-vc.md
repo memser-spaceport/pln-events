@@ -31,7 +31,7 @@ dateTBD: false
 #Preferred social means of contacts-this is a placeholder for social handle like Twitter, Discord and so on and not to be mistaken for email contacts for eg.   - 'twitter|https://twitter.com/IPFS/status/1629199396700098560?s=20'
 
 preferredContacts:
-  - '<contact_means>|<contact_url>'
+
 
 #Event host names and their respective logos-place the logo file on the path 'public/uploads' for eg.   - IPFS|ipfs-logo.png
 
