@@ -15,8 +15,8 @@ venueName: Boston arts museum
 venueAddress: Fernway street
 venueMapsLink: "https://goo.gl/maps/nc2XkXNU7e67iFa68"
 website: "https://www.koenigsegg.com/"
-startDate: 12/28/2023
-endDate: 1/3/2024
+startDate: 3/28/2023
+endDate: 3/28/2023
 tag: "PLN Event"
 dateTBD: false
 preferredContacts:
