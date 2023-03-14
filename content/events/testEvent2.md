@@ -15,8 +15,8 @@ venueName: Boston zoo
 venueAddress: Lockhead venue
 venueMapsLink: "https://goo.gl/maps/nc2XkXNU7e67iFa68"
 website: "https://www.koenigsegg.com/"
-startDate: 1/25/2022
-endDate: 1/2/2022
+startDate: 3/20/2023
+endDate: 3/22/2023
 tag: "Industry Event"
 dateTBD: false
 preferredContacts:
