@@ -24,4 +24,6 @@ preferredContacts:
   - facebook|https://www.facebook.com/
 eventHosts:
   - ManHosts|image.png
+  - VijHosts|image.png
+  - WinsHosts|image.png
 ---

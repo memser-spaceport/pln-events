@@ -23,5 +23,10 @@ preferredContacts:
   - twitter|https://twitter.com/TweetsSupportin?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor
   - facebook|https://www.facebook.com/
 eventHosts:
-  - DddHosts|image.png
+  - DddHosts|ipfs-logo.png
+  - VijHosts|image.png
+  - WinsHosts|protocol_labs.jpeg
+  - DddHosts|ipfs-logo.png
+  - VijHosts|image.png
+  - WinsHosts|protocol_labs.jpeg
 ---
