@@ -26,7 +26,11 @@ eventHosts:
   - DddHosts|ipfs-logo.png
   - VijHosts|image.png
   - WinsHosts|protocol_labs.jpeg
-  - DddHosts|ipfs-logo.png
-  - VijHosts|image.png
-  - WinsHosts|protocol_labs.jpeg
+  - Wwewe|ipfs-logo.png
+  - VijHosts5454|image.png
+  - WinsHosts3224|protocol_labs.jpeg
+  - dsfsfWinsHosts|protocol_labs.jpeg
+  - Wwewesfd345|ipfs-logo.png
+  - VijHos5345|image.png
+  - WinsHoewrwer|protocol_labs.jpeg
 ---
