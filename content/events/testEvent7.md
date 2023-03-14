@@ -17,6 +17,7 @@ venueMapsLink: "https://goo.gl/maps/nc2XkXNU7e67iFa68"
 website: "https://www.koenigsegg.com/"
 startDate: 3/11/2023
 endDate: 3/25/2023
+isFeaturedEvent: true
 tag: "Industry Event"
 dateTBD: false
 preferredContacts:
