@@ -23,9 +23,9 @@ venueMapsLink: "https://bit.ly/plnmarketingcouncil"
 
 website: "https://coda.io/d/PLN-Councils_d6eF5JClyXP/PLN-Marketing-Council_suZDh#_lu5R8"
 
-startDate: "01/14/2023"
+startDate: "03/14/2023"
 
-endDate: "01/21/2023"
+endDate: "03/14/2023"
 
 tag: "PLN Event"
 
