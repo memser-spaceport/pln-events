@@ -20,9 +20,9 @@ venueMapsLink: "https://airtable.com/shr1tmqYwTgxd5QXF"
 
 website: "https://www.fil.vc/" 
 
-startDate: "03/21/2023" # the start date of the event , date format is MM/DD/YYYY eg: if it is February 16th 2023 => 02/16/2023
+startDate: "03/14/2023" # the start date of the event , date format is MM/DD/YYYY eg: if it is February 16th 2023 => 02/16/2023
 
-endDate: "03/23/2023" #the end date of the event , date format is MM/DD/YYYY eg: if it is February 18th 2023 => 02/18/2023
+endDate: "03/14/2023" #the end date of the event , date format is MM/DD/YYYY eg: if it is February 18th 2023 => 02/18/2023
 
 tag: "PLN Event"
 

@@ -15,7 +15,7 @@ venueName: Chicago Museum
 venueAddress: Chicken road
 venueMapsLink: "https://goo.gl/maps/nc2XkXNU7e67iFa68"
 website: "https://www.koenigsegg.com/"
-startDate: 3/10/2023
+startDate: 3/14/2023
 endDate: 3/14/2023
 tag: "Industry Event"
 dateTBD: false
