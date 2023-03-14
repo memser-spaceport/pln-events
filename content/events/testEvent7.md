@@ -15,8 +15,8 @@ venueName: Wash rocks
 venueAddress: That venue
 venueMapsLink: "https://goo.gl/maps/nc2XkXNU7e67iFa68"
 website: "https://www.koenigsegg.com/"
-startDate: 3/11/2024
-endDate: 3/25/2024
+startDate: 11/11/2024
+endDate: 11/25/2024
 isFeaturedEvent: true
 tag: "Industry Event"
 dateTBD: false
