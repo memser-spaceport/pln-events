@@ -9,7 +9,7 @@ function HpTimeline(props) {
     const filterdListCount = props.filterdListCount ?? 0
     const totalEventsCount = monthWiseEvents.reduce((count, m) => { return count + m.events.length }, 0)
     const { state } = useContext(HpContext)
-    const { events } = state
+    const { events, filters } = state
 
 
     const onLinkItemClicked = (item) => {
@@ -21,21 +21,44 @@ function HpTimeline(props) {
     }
 
     const onScrollToCurrentMonth = () => {
-        const currentTimeStamp = new Date().getTime()
+        const currentYear = new Date().getFullYear();
+      
+        if(`${currentYear}` !== filters.year) {
+            const scrollContainer = document.getElementById("main-content");
+            scrollContainer.scrollTop = 0;
+            return;
+        }
+
         const currenMonthId = new Date().getMonth();
         const currentDay = new Date().getDate()
-        const filteredMonthData = monthWiseEvents.filter(m => m.index >= currenMonthId);
-        if(filteredMonthData.length > 0)  {
-           const selectedMonthData =  filteredMonthData[0];
-           const filteredEvents = selectedMonthData.events.filter(ev => ev.startDay >= currentDay);
-           if(filteredEvents.length > 0) {
-                const selectedEvent = filteredEvents[0];
-                const scrollItem = document.getElementById(`m-${selectedEvent.startMonthIndex}-${selectedEvent.startDay}`);
-                if (scrollItem) {
-                    scrollItem.scrollIntoView({ behavior: "smooth", block: "center" })
-                }
+        const currentMonthIndex = [...monthWiseEvents].findIndex(m => m.index === currenMonthId)
+        const filteredMonthData = [...monthWiseEvents].filter(m => m.index > currenMonthId);
+        let selectedEvent;
 
-           }
+
+        // if current Month has events in future
+        if (currentMonthIndex > -1 && monthWiseEvents[currentMonthIndex].events.length > 0) {
+            const filteredEvents = monthWiseEvents[currentMonthIndex].events.filter(ev => ev.startDay >= currentDay);
+            if (filteredEvents.length > 0) {
+                selectedEvent = filteredEvents[0];
+            }
+        }
+
+        // if any future Month has events
+        if (!selectedEvent && filteredMonthData.length > 0) {
+            const selectedMonthData = filteredMonthData[0];
+            selectedEvent = selectedMonthData.events[0];
+        }
+
+        // If event found scroll to event else scroll to end of list
+        if (selectedEvent) {
+            const scrollItem = document.getElementById(`m-${selectedEvent.startMonthIndex}-${selectedEvent.startDay}`);
+            if (scrollItem) {
+                scrollItem.scrollIntoView({ behavior: "smooth", block: "center" })
+            }
+        } else {
+            const scrollContainer = document.getElementById("main-content");
+            scrollContainer.scrollTop = scrollContainer.scrollHeight;
         }
     }
 
@@ -59,8 +82,8 @@ function HpTimeline(props) {
 
                 {monthWiseEvents.map(me => <div id={`m-${me.index}`} className="hmt__cn__sec">
                     {/*** MONTH DROPDOWN ***/}
-                    <div onClick={onMonthClicked} className="hmt__cn__sec__month"><HpMonthBox {...me} allData={[...monthWiseEvents]} currentIndex={me.index}/></div>
-                    
+                    <div onClick={onMonthClicked} className="hmt__cn__sec__month"><HpMonthBox {...me} allData={[...monthWiseEvents]} currentIndex={me.index} /></div>
+
                     {/*** TIMELINE UI ***/}
                     <div className="hmt__cn__sec__timeline"></div>
 

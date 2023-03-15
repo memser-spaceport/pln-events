@@ -33,7 +33,7 @@ function HpCalendarEvent(eventInfo) {
             <style jsx>
                 {
                     `
-                .cn {display: flex; flex-direction: column; min-height: 47px; cursor: pointer; padding: 8px;  border-radius: 4px 8px 8px 5px; justify-content: center; align-items: flex-start; width: 100%;}
+                .cn {display: flex; flex-direction: column; min-height: 47px; cursor: pointer; padding: 8px;  border-radius: 4px 6px 6px 5px; justify-content: center; align-items: flex-start; width: 100%;}
                 .cn__hostlogos {display: none;}
                 .cn__hostlogos__item__img {width: 24px; height: 24px; border-radius: 4px;}
                 .title {  display: inline-block; font-size: 12px; font-weight: 500; max-width:100%;overflow: hidden; text-overflow: ellipsis;   white-space: nowrap;}
@@ -43,8 +43,8 @@ function HpCalendarEvent(eventInfo) {
                 .featured {background: linear-gradient(90deg, #427DFF 0%, #44D5BB 100%); color: white; border-radius: 6px;}
                 .cn__eventtypes {display: none;}
                 @media(min-width: 1200px) {
-                    .cn__hostlogos {display: flex; gap: 8px; margin: 8px 0}
-                    .cn__eventtypes {margin: 8px 0; display: flex; width: 100%; justify-content: space-between;}
+                    .cn__hostlogos {display: flex; gap: 8px; margin-bottom: 8px;}
+                    .cn__eventtypes {margin-top: 8px; display: flex; width: 100%; justify-content: space-between;}
 
                 }
                 `

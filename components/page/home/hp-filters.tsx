@@ -32,6 +32,11 @@ function HpFilters(props) {
     const filterCount = getNoFiltersApplied(filters);
 
     const onMenuSelection = (value) => {
+        if(value === 'timeline') {
+            trackGoal('E98R34BE', 0)
+        } else {
+            trackGoal('BBAJPYJQ', 0)
+        }
         dispatch({type: 'setEventMenu', value: value})
     }
 
@@ -136,8 +141,8 @@ function HpFilters(props) {
              .hpf__pln {padding: 24px; border-bottom: 1px solid #CBD5E1; align-items: center; display: flex; justify-content: space-between;}
              .hpf__pln__title {color: #475569; font-size: 14px;}
 
-             .hpf__menu {display: flex; border-bottom: 1px solid #CBD5E1; padding: 16px 24px; height: 48px; justify-content: space-between;}
-             .hpf__menu__view {font-size: 14px; color: #64748B;}
+             .hpf__menu {display: none; border-bottom: 1px solid #CBD5E1; padding: 16px 24px; height: 48px; justify-content: space-between;}
+             .hpf__menu__view {font-size: 14px; color: #64748B; font-weight: 500;}
              .hpf__menu__icons {display: flex; gap: 0 16px;  }
              .hpf__menu__icons__item {cursor: pointer; width: 16px; height: 16px;}
              .hpf__filters {padding: 20px 24px 0 24px;}
@@ -155,6 +160,7 @@ function HpFilters(props) {
                 .hpf__head__clear {display: block; font-size: 13px; color: #156FF7; cursor: pointer;}
                 .hpf__head__close {display: none;}
                 .hpf__head__counttext {display: flex; position: absolute; bottom:16px; left:24px; color: #475569; font-size: 12px;}
+                .hpf__menu {display: flex;}
              }
             `
             }

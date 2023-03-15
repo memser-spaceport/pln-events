@@ -93,7 +93,7 @@ function PlEventCard(props) {
             .pec__info__tag {display: flex; align-items: center;}
             .pec__info__tag__img {width: 16px; height: 16px; margin-right: 4px;}
             .pec__info__tag__text {font-size: 12px; color: #475569}
-            .pec__desc {color: #475569; font-size: 14px; margin: 18px 0; line-height: 16px;}
+            .pec__desc {color: #475569; font-size: 14px; margin: 18px 0; line-height: 20px;}
             .pec__eventname {font-weight: 600; font-size: 16px; line-height: 24px; color: #0F172A; margin: 16px 0;}
             .pec__eventname--link {cursor: pointer; color: #0F172A !important; text-decoration: none;}
             .pec__calender {display: flex; align-items: center; margin-top: 4px;}
@@ -110,8 +110,8 @@ function PlEventCard(props) {
             .pec__contacts__link__img {width:26px; height: 26px; }
 
             .pec__hosts {display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px;}
-            .pec__hosts__item {display: flex; align-items: center; position: relative;}
-            .pec__hosts__item__img {width: 48px; height: 48px;}
+            .pec__hosts__item {display: flex; align-items: center; position: relative; border: 1px solid #E2E8F0; border-radius: 4px;}
+            .pec__hosts__item__img {width: 48px; height: 48px; border-radius: 4px;}
             .pec__hosts__item__text {font-size: 13px; font-weight: 600; color: #475569; text-transform: capitalize;}
             .pec__hosts__item__primimg {position: absolute; top: -4px; right: -4px; width: 20px; height: 20px;}
 

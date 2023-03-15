@@ -58,7 +58,6 @@ function HpCalendar(props) {
             const calendarElement: any = calenderRef?.current
             const ca = calendarElement.getApi()
             ca.gotoDate(`${filters.year}-${selectedMonthData.index + 1 <= 9 ? `0${selectedMonthData.index + 1}` : selectedMonthData.index + 1}-01`)
-
         } else if (monthWiseEvents.length > 0) {
             const selectedMonthData = monthWiseEvents[0];
             setMonthIndex(selectedMonthData.index)
@@ -71,7 +70,7 @@ function HpCalendar(props) {
             const ca = calendarElement.getApi()
             ca.gotoDate(`${filters.year}-${currenMonthId + 1 <= 9 ? `0${currenMonthId+ 1}` : currenMonthId + 1}-01`)
         }
-    }, [filterdListCount])
+    }, [filterdListCount, currentYear])
 
     useEffect(() => {
         function changeCalendarHeight() {
@@ -113,7 +112,6 @@ function HpCalendar(props) {
                 </div>
             </div>
             <div className="hpc__day">
-                {}
             </div>
             <div id="calendar-cn" className="hpc__calendar">
                 <FullCalendar eventClick={(v) => onEventClicked(v)} height={calendarheight} nextDayThreshold='00:00' ref={calenderRef} dayCellContent={(info) => HpCalendarDateCell(info)} visibleRange={{ start: '2023-01-01', end: '2023-12-01' }} plugins={[dayGridPlugin]} initialView='dayGridMonth' headerToolbar={{ center: '', end: '', left: '', right: '', start: '' }} events={eventItems} dayHeaders={false} showNonCurrentDates={true} eventContent={HpCalendarEvent} />
@@ -142,7 +140,7 @@ function HpCalendar(props) {
             .hpc__head__info {display: flex; gap: 0 16px; margin-right: 24px; position: absolute; top: 48px; left:auto; right: auto;}
             .hpc__head__info__item {display: flex; gap: 0 8px; align-items: center;}
             .hpc__head__info__item__img {width: 16px; height: 16px;}
-            .hpc__head__info__item__text {font-size: 11px;}
+            .hpc__head__info__item__text {font-size: 12px;}
             
             .hpc__calendar {height: calc(100svh - 156px); margin-top: -25px;}
             
@@ -150,6 +148,9 @@ function HpCalendar(props) {
             .eventCard__item {width: 90vw; position: relative;}
             .eventCard__item__close {position: absolute; top:-13px; border-radius: 50%; display: flex; align-items: center; justify-content: center; right: -10px; width: 26px; height: 26px; background: #475569; border: 1px solid rgba(255, 255, 255, 0.5); cursor: pointer;}
             .eventCard__item__close__img {width:16px; height: 16px; }
+            .social {color: #817cd2;}
+            .virtual {color:#67aed7; }
+            .conference {color: #63a93e;}
             @media(min-width: 1200px) {
                 .hpc__calendar { height: calc(100svh - 86px);}
                 .hpc__head { padding: 8px 0; align-items: center; height: fit-content;}
