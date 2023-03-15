@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { getNoFiltersApplied,HpContext } from './hp-helper'
+import { trackGoal } from "fathom-client";
 
 function HpFilterHead(props) {
     const {state, dispatch} = useContext(HpContext)
@@ -20,6 +21,11 @@ function HpFilterHead(props) {
       }
 
       const onMenuSelection = (value) => {
+        if(value === 'timeline') {
+            trackGoal('E98R34BE', 0)
+        } else {
+            trackGoal('BBAJPYJQ', 0)
+        }
         dispatch({type: 'setEventMenu', value: value})
     }
 
