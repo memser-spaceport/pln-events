@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import PlEventCard from "../../ui/pl-event-card";
 import { trackGoal } from "fathom-client";
 import { HpContext } from "./hp-helper";
@@ -9,7 +9,7 @@ function HpTimeline(props) {
     const filterdListCount = props.filterdListCount ?? 0
     const totalEventsCount = monthWiseEvents.reduce((count, m) => { return count + m.events.length }, 0)
     const { state } = useContext(HpContext)
-    const { events, filters } = state
+    const { filters } = state
 
 
     const onLinkItemClicked = (item) => {

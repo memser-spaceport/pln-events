@@ -1,17 +1,14 @@
-import { trackGoal } from "fathom-client";
-import { useState } from "react";
-import { useTina } from "tinacms/dist/react";
 import { client } from "../.tina/__generated__/client";
 import AppHeader from '../components/core/app-header'
 import { getFilteredEvents, getFormattedEvents, getInitialState, getMonthWiseEvents, HpContext, months, reducerFunction } from "../components/page/home/hp-helper";
 import HpTimeline from "../components/page/home/hp-timeline";
-import { useReducer, useEffect } from 'react'
+import { useReducer } from 'react'
 import HpFilters from "../components/page/home/hp-filters";
 import HpFilterHead from "../components/page/home/hp-filter-head";
 import HpCalendar from "../components/page/home/hp-calendar";
 
 export default function IndexPage(props) {
-  const { data } = useTina({ query: props.query, variables: props.variables, data: props.data, });
+  // const { data } = useTina({ query: props.query, variables: props.variables, data: props.data, });
   const eventsData = props.data.eventConnection.edges;
   const events = getFormattedEvents([...eventsData])
   const [state, dispatch] = useReducer(reducerFunction, getInitialState([...events]))
@@ -104,7 +101,7 @@ export default function IndexPage(props) {
   </>
 }
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async () => {
 
   const eventsListData = await client.queries.eventConnection({ last: -1 });
   return {

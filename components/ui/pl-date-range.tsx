@@ -16,8 +16,7 @@ function  PlDateRange(props) {
     const startDateText = `${startDate.getDate()} ${months[startDate.getMonth()].slice(0, 3)}`;
     const endDateText = `${endDate.getDate()} ${months[endDate.getMonth()].slice(0, 3)}`;
     const daysValues = getDaysInMonths(monthViewData, selectedYear);
-    const restrictedMonth = monthViewData.type === 'start' ? startDate.getMonth() : endDate.getMonth()
-   
+  
     const onDateBoxClicked = (type) => {
         if (monthViewData.isActive) {
             setMonthViewData({ isActive: false, month: - 1, type: '' });
@@ -99,12 +98,12 @@ function  PlDateRange(props) {
             </div>
             {monthViewData.isActive && <div ref={paneRef} className="pldr__mv">
                 <div className="pldr__month">
-                    {(monthViewData.month > 0) && <p className="pldr__month__left" onClick={e => onMonthNavigate('prev')}>
+                    {(monthViewData.month > 0) && <p className="pldr__month__left" onClick={() => onMonthNavigate('prev')}>
                         <img src="/icons/pl-left-icon.svg" className="pldr__month__left__img" />
                     </p>}
                     {(monthViewData.month === 0) && <div className="pldr__month__empty"></div>}
                     <p className="pldr__month__text">{months[monthViewData.month]}</p>
-                    {(monthViewData.month < 11 &&  <p className="pldr__month__right" onClick={e => onMonthNavigate('next')}>
+                    {(monthViewData.month < 11 &&  <p className="pldr__month__right" onClick={() => onMonthNavigate('next')}>
                         <img src="/icons/pl-right-icon.svg" className="pldr__month__left__img" />
                     </p>)}
                     {(monthViewData.month === 11) && <div className="pldr__month__empty"></div>}

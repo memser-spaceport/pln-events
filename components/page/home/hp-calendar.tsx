@@ -50,7 +50,6 @@ function HpCalendar(props) {
 
     useEffect(() => {
         const currenMonthId = new Date().getMonth();
-        const currentDay = new Date().getDate()
         const filteredMonthData = monthWiseEvents.filter(m => m.index >= currenMonthId);
         if (filteredMonthData.length > 0) {
             const selectedMonthData = filteredMonthData[0];
@@ -92,9 +91,9 @@ function HpCalendar(props) {
             <div className="hpc__head">
                 <div className="hpc__head__menu"></div>
                 <div className="hpc__head__months">
-                    {monthIndex !== 0 && <img onClick={e => onMonthNavigate('prev')} className="hpc__head__months__leftimg" src="/icons/pln-icon-left-blue.svg" />}
+                    {monthIndex !== 0 && <img onClick={() => onMonthNavigate('prev')} className="hpc__head__months__leftimg" src="/icons/pln-icon-left-blue.svg" />}
                     <p className="hpc__head__months__text">{monthNames[monthIndex]}</p>
-                    {monthIndex !== 11 && <img onClick={e => onMonthNavigate('next')} className="hpc__head__months__rightimg" src="/icons/pln-icon-right-blue.svg" />}
+                    {monthIndex !== 11 && <img onClick={() => onMonthNavigate('next')} className="hpc__head__months__rightimg" src="/icons/pln-icon-right-blue.svg" />}
                 </div>
                 <div className="hpc__head__info">
                     <div className="hpc__head__info__item">
@@ -155,7 +154,7 @@ function HpCalendar(props) {
                 .hpc__calendar { height: calc(100svh - 86px);}
                 .hpc__head { padding: 8px 0; align-items: center; height: fit-content;}
                 .hpc__head__info {top: 18px; right:0;}
-                .eventCard__item {width: 320px; position: relative;}
+                .eventCard__item {width: 360px; position: relative;}
             }
             `
             }

@@ -1,5 +1,3 @@
-import { useState } from "react";
-import PlSelect from "../../ui/pl-select";
 import PlTags from "../../ui/pl-tags";
 import PlToggle from "../../ui/pl-toggle";
 import { getNoFiltersApplied, getUniqueValuesFromEvents, HpContext } from "./hp-helper";
@@ -100,7 +98,7 @@ function HpFilters(props) {
             <div className="hpf__menu">
                 <h3 className="hpf__menu__view">VIEW</h3>
                 <div className="hpf__menu__icons">
-                    {menus.map(m => <img onClick={e => onMenuSelection(m.name)} title={m.title} className="hpf__menu__icons__item" src={eventMenu === m.name ? m.imgActive: m.img}/>)}
+                    {menus.map(m => <img onClick={() => onMenuSelection(m.name)} title={m.title} className="hpf__menu__icons__item" src={eventMenu === m.name ? m.imgActive: m.img}/>)}
                 </div>
             </div>
             <div className="hpf__head">
