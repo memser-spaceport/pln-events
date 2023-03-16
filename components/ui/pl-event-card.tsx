@@ -124,6 +124,7 @@ function PlEventCard(props) {
 
             @media(min-width: 360px) {
                 .pec__location__text {color: #64748B; font-size: 12px; max-width: 290px; margin-right: 4px; display: flex; flex-wrap: wrap;  overflow: hidden;text-overflow: ellipsis;white-space: initial;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
+                .location-blue {color: #156ff7;}
             }
             `
             }
