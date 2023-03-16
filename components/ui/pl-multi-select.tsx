@@ -7,7 +7,6 @@ function PlMultiSelect(props) {
     const rawItems = props.items ?? [];
     const items = [...rawItems].sort()
     const name = props.name ?? '';
-    const placeholder = props.placeholder ?? ''
     const callback = props.callback;
     const dropdownImgUrl = props.dropdownImgUrl ?? ''
     const iconUrl = props.iconUrl ?? '';
@@ -16,9 +15,7 @@ function PlMultiSelect(props) {
     // Variables
     const [isPaneActive, setPaneActiveStatus] = useState(false);
     const [filteredItems, setfilteredItems] = useState([...items])
-    const inputRef = useRef<HTMLInputElement>()
     const paneRef = useRef<HTMLDivElement>()
-    const infoRef = useRef<HTMLDivElement>()
 
     // Methods
     const onInputChange = (e) => {
@@ -96,7 +93,7 @@ function PlMultiSelect(props) {
                 </div>}
 
                 {(items.length > 0) && <div className="plms__pane__list">
-                    {filteredItems.map((item, index) => <div onClick={e => onItemSelected(item)} className="plms__pane__list__item">
+                    {filteredItems.map((item, index) => <div onClick={() => onItemSelected(item)} className="plms__pane__list__item">
                         {/*  <div className="plms__pane__list__item__logo"></div> */}
                         <p id={`${itemId}-ps-pane-${index}`} className={`plms__pane__list__item__text ${selectedItems.includes(item) ? 'ps__pane__item--active' : ''}`} >{item}</p>
                         {!selectedItems.includes(item) && <div className="plms__pane__list__item__check"></div>}

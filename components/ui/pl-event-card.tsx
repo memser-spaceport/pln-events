@@ -101,9 +101,9 @@ function PlEventCard(props) {
             .pec__calender__text {font-size: 12px;}
             .pec__location__link {display: flex; color: blue !important; text-decoration: none;}
 
-            .pec__location {display: flex; align-items: center; margin:16px 0; margin-bottom: 20px;}
-            .pec__location__img {width: 12px; height: 12px; margin-right: 4px;}
-            .pec__location__text {color: #64748B; font-size: 12px; margin-right: 4px; display: flex; flex-wrap: wrap;  overflow: hidden;text-overflow: ellipsis;white-space: initial;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
+            .pec__location {display: flex; align-items: flex-start; margin:16px 0; margin-bottom: 20px;}
+            .pec__location__img {width: 12px; height: 12px; margin-right: 4px; margin-top: 1px;}
+            .pec__location__text {color: #64748B; font-size: 12px; max-width: 245px; margin-right: 4px; display: flex; flex-wrap: wrap;  overflow: hidden;text-overflow: ellipsis;white-space: initial;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
             
             .pec__contacts {display: flex; flex-wrap: wrap; align-items: center;}
             .pec__contacts__link {text-decoration: none; margin-right:4px; margin-top: 8px; display: flex; align-items: center; justify-content: center;}
@@ -121,6 +121,10 @@ function PlEventCard(props) {
             .timeline {position: absolute; height: 100%; left: 50%; top: 0; width: 1px; background: #CBD5E1;}
             .location-blue {color: #156ff7;}
             .hide {display: none;}
+
+            @media(min-width: 360px) {
+                .pec__location__text {color: #64748B; font-size: 12px; max-width: 290px; margin-right: 4px; display: flex; flex-wrap: wrap;  overflow: hidden;text-overflow: ellipsis;white-space: initial;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
+            }
             `
             }
         </style>

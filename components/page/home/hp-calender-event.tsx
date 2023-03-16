@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 function HpCalendarEvent(eventInfo) {
     const isFeatured = eventInfo?.event?.extendedProps?.isFeaturedEvent ?? false;
@@ -11,13 +10,14 @@ function HpCalendarEvent(eventInfo) {
     const isSingleRow = isStart === true && isEnd === true;
     const isSameDay = eventInfo?.event?.extendedProps.startDateValue.getTime() === eventInfo?.event?.extendedProps.endDateValue.getTime()
     const tagLogo = eventInfo?.event?.extendedProps?.tagLogo;
+    const isHostsAvailable = trimmedHosts.length > 0 ? true : false
 
 
     return (
         <>
             <div className={`cn ${tileClass}`}>
-                {(isSingleRow && isSameDay) && <div className="cn__hostlogos">
-                    {trimmedHosts.map((h, hIndex) => <div className="cn__hostlogos__item">
+                {(isSingleRow && isSameDay && isHostsAvailable) && <div className="cn__hostlogos">
+                    {trimmedHosts.map((h) => <div className="cn__hostlogos__item">
                         <img className="cn__hostlogos__item__img" src={h.logo} />
                     </div>)}
                 </div>}
@@ -43,7 +43,8 @@ function HpCalendarEvent(eventInfo) {
                 .featured {background: linear-gradient(90deg, #427DFF 0%, #44D5BB 100%); color: white; border-radius: 6px;}
                 .cn__eventtypes {display: none;}
                 @media(min-width: 1200px) {
-                    .cn__hostlogos {display: flex; gap: 8px; margin-bottom: 8px;}
+                    .title {margin-bottom: 8px;}
+                    .cn__hostlogos {display: flex; gap: 8px; margin-bottom: 4px;}
                     .cn__eventtypes {margin-top: 8px; display: flex; width: 100%; justify-content: space-between;}
 
                 }
