@@ -1,16 +1,14 @@
-import { trackGoal } from "fathom-client";
-import { useState } from "react";
-import { useTina } from "tinacms/dist/react";
 import { client } from "../.tina/__generated__/client";
 import AppHeader from '../components/core/app-header'
 import { getFilteredEvents, getFormattedEvents, getInitialState, getMonthWiseEvents, HpContext, months, reducerFunction } from "../components/page/home/hp-helper";
 import HpTimeline from "../components/page/home/hp-timeline";
-import { useReducer, useEffect } from 'react'
+import { useReducer } from 'react'
 import HpFilters from "../components/page/home/hp-filters";
 import HpFilterHead from "../components/page/home/hp-filter-head";
+import HpCalendar from "../components/page/home/hp-calendar";
 
 export default function IndexPage(props) {
-  const { data } = useTina({ query: props.query, variables: props.variables, data: props.data, });
+  // const { data } = useTina({ query: props.query, variables: props.variables, data: props.data, });
   const eventsData = props.data.eventConnection.edges;
   const events = getFormattedEvents([...eventsData])
   const [state, dispatch] = useReducer(reducerFunction, getInitialState([...events]))
@@ -18,9 +16,16 @@ export default function IndexPage(props) {
   const filterdList = getFilteredEvents([...orderedEventsList], { ...state.filters })
   const monthWiseEvents = getMonthWiseEvents([...filterdList])
   const filterdListCount = filterdList.length;
-
-
- 
+  const finalEvents = [...filterdList].map(f => {
+    const endDateValue = new Date(f.endDateValue);
+    endDateValue.setSeconds(endDateValue.getSeconds() + 10);
+    return {
+        title: f.eventName,
+        start: f.startDateValue,
+        end: endDateValue,
+        ...f
+    }
+})
 
   const onContentScroll = () => {
     const container = document.getElementById('main-content');
@@ -46,12 +51,19 @@ export default function IndexPage(props) {
         {/*** EVENTS TIMELINE ***/}
         <div id="main-content" onScroll={onContentScroll} className="hp__maincontent">
            <HpFilterHead/>
+
           {/*** SCROLL UP TO VIEW PAST ***/}
-          {state.flags.isScrolledUp && <div className="hmt__scollup">
+          {(state.flags.isScrolledUp && state.flags.eventMenu === 'timeline') && <div className="hmt__scollup">
             <img className="hmt__scollup__img" src="/icons/scroll-up-icon.svg" />
             <p className="hmt__scollup__text">Scroll up to view past events</p>
           </div>}
-          <HpTimeline filterdListCount={filterdListCount} filters={state.filters} monthWiseEvents={monthWiseEvents} />
+          
+          {/**** TIMELINE VIEW ****/}
+          {(state?.flags?.eventMenu === 'timeline') &&  <HpTimeline filterdListCount={filterdListCount} filters={state.filters} monthWiseEvents={monthWiseEvents} />}
+
+
+          {/**** CALENDAR VIEW ****/}
+         {state?.flags?.eventMenu === 'calendar' &&  <HpCalendar eventItems={finalEvents} filters={state.filters} monthWiseEvents={monthWiseEvents} filterdListCount={filterdListCount}/>}
         </div>
       </div>
 
@@ -65,7 +77,7 @@ export default function IndexPage(props) {
         `
       .hp {width: 100%; height: 100%; display: flex;}
       .hp__sidebar {display: none;}
-      .hp__maincontent {width: 100%; padding-top:0px; overflow-y: scroll; background: #f2f7fb; height: 100%;}
+      .hp__maincontent {width: 100%; padding-top:0px; overflow-y: ${state?.flags?.eventMenu === 'calendar'? 'hidden': 'scroll'}; background: #f2f7fb; height: 100%;}
       .hp__maincontent__tools {background: white; z-index:5; position: sticky; top: 58px; width: 100%; height: 48px; margin-top: 60px; box-shadow: 0px 1px 4px rgba(226, 232, 240, 0.25); padding: 0 24px; display: flex; align-items: center; justify-content: space-between;}
       .hp__maincontent__tools__filter {display: flex; align-items: center; justify-content: center; border: 1px solid #CBD5E1; border-radius: 4px; padding: 5px 12px; cursor: pointer; z-index: 3;}
       .hp__maincontent__tools__filter__icon {width:16px; height: 16px; margin-right: 8px;}
@@ -89,7 +101,7 @@ export default function IndexPage(props) {
   </>
 }
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async () => {
 
   const eventsListData = await client.queries.eventConnection({ last: -1 });
   return {

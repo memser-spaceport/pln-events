@@ -5,12 +5,11 @@ function PlSingleSelect(props) {
     const itemId = props.identifierId;
     const type = props.type ?? '';
     const items = props.items ?? [];
-    const placeholder = props.placeholder ?? ''
     const callback = props.callback;
     const dropdownImgUrl = props.dropdownImgUrl ?? ''
     const iconUrl = props.iconUrl ?? '';
     const selectedItem = props.selectedItem?? '';
-    const onClearMultiSelect = props.onClearMultiSelect;
+
     // Variables
     const [isPaneActive, setPaneActiveStatus] = useState(false);
     const [filteredItems, setfilteredItems] = useState([...items])
@@ -77,7 +76,7 @@ function PlSingleSelect(props) {
                     <img className="plms__pane__head__searchicon" src="/icons/pln-search-icon.svg" />
                 </div>}
                 <div className="plms__pane__list">
-                    {filteredItems.map((item, index) => <div onClick={e => onItemSelected(item)} className="plms__pane__list__item">
+                    {filteredItems.map((item, index) => <div onClick={() => onItemSelected(item)} className="plms__pane__list__item">
                       
                         <p id={`${itemId}-ps-pane-${index}`} className={`plms__pane__list__item__text`} >{item}</p>
                         {(selectedItem !== item) && <div className="plms__pane__list__item__check"></div>}

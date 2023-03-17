@@ -1,5 +1,3 @@
-import { useState } from "react";
-import PlSelect from "../../ui/pl-select";
 import PlTags from "../../ui/pl-tags";
 import PlToggle from "../../ui/pl-toggle";
 import { getNoFiltersApplied, getUniqueValuesFromEvents, HpContext } from "./hp-helper";
@@ -10,11 +8,16 @@ import PlSingleSelect from "../../ui/pl-single-select";
 import PlDateRange from '../../ui/pl-date-range';
 
 function HpFilters(props) {
-    
     const events = props.events ?? [];
     const filteredCount = props?.filteredCount;
     const { state, dispatch } = useContext(HpContext);
     const { filters, flags } = state
+    const {eventMenu} = flags;
+    const menus = [
+        {name: 'timeline', img: '/icons/pln-timeline.svg', title: "Timeline View", imgActive: '/icons/pln-timeline-active.svg'},
+        {name: 'calendar', img: '/icons/pln-calendar.svg', title: "Calendar View", imgActive: '/icons/pln-calendar-active.svg'},
+       /*  {name: 'map', img: '/icons/pln-map-view.svg', title: "Map View", imgActive: '/icons/pln-map-view-active.svg'} */
+    ]
     const filterValues = [
         { name: "Year", type: 'single-select', items: getUniqueValuesFromEvents('startYear', [...events]), selectedItem: filters.year, placeholder: 'Filter by year', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'year', iconUrl: '/icons/pl-calender-icon.svg' },
         { name: "Locations", type: 'multi-select', items: getUniqueValuesFromEvents('location', [...events]), selectedItems: filters.locations, placeholder: 'Filter by location', dropdownImgUrl: '/icons/pln-arrow-down.svg', identifierId: 'locations', iconUrl: '/icons/pl-location-icon.svg' },
@@ -25,6 +28,15 @@ function HpFilters(props) {
 
     ]
     const filterCount = getNoFiltersApplied(filters);
+
+    const onMenuSelection = (value) => {
+        if(value === 'timeline') {
+            trackGoal('E98R34BE', 0)
+        } else {
+            trackGoal('BBAJPYJQ', 0)
+        }
+        dispatch({type: 'setEventMenu', value: value})
+    }
 
     const onFilterChange = (type, key, value) => {
         if (key === 'year') {
@@ -83,11 +95,18 @@ function HpFilters(props) {
 
     return <>
         <div className="hpf">
+            <div className="hpf__menu">
+                <h3 className="hpf__menu__view">VIEW</h3>
+                <div className="hpf__menu__icons">
+                    {menus.map(m => <img onClick={() => onMenuSelection(m.name)} title={m.title} className="hpf__menu__icons__item" src={eventMenu === m.name ? m.imgActive: m.img}/>)}
+                </div>
+            </div>
             <div className="hpf__head">
                 <h3 className="hpf__head__title">{`Filters`}</h3>
                 {(filterCount > 0) && <p className="hpf__head__count">{filterCount}</p>}
                 <p onClick={onClearFilters} className="hpf__head__clear">Clear All</p>
                 <img onClick={onClosePopup} src="/icons/pln-close-black.svg" className="hpf__head__close"/>
+                <p className="hpf__head__counttext">{`Showing ${filteredCount} event(s)`}</p>
             </div>
             <div className="hpf__pln">
                 <p className="hpf__pln__title">Show PLN Events only</p>
@@ -120,6 +139,10 @@ function HpFilters(props) {
              .hpf__pln {padding: 24px; border-bottom: 1px solid #CBD5E1; align-items: center; display: flex; justify-content: space-between;}
              .hpf__pln__title {color: #475569; font-size: 14px;}
 
+             .hpf__menu {display: none; border-bottom: 1px solid #CBD5E1; padding: 16px 24px; height: 48px; justify-content: space-between;}
+             .hpf__menu__view {font-size: 14px; color: #64748B; font-weight: 500;}
+             .hpf__menu__icons {display: flex; gap: 0 16px;  }
+             .hpf__menu__icons__item {cursor: pointer; width: 16px; height: 16px;}
              .hpf__filters {padding: 20px 24px 0 24px;}
              .hpf__filters__title {font-size: 14px; margin-bottom: 10px; font-weight: 600; }
 
@@ -128,10 +151,14 @@ function HpFilters(props) {
              .hpf__head__close {width: 16px; height: 16px; cursor: pointer;}
              .hpf__mtools__clear {border: 1px solid #CBD5E1; margin-right: 16px; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 100px;}
              .hpf__mtools__apply {background: #156FF7; color: white;  padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 100px;}
+             .hpf__head__counttext {display: none; }
              @media(min-width: 1200px) {
+                .hpf__head {height: 74px; align-items: flex-start;}
                 .hpf__mtools {display: none;}
                 .hpf__head__clear {display: block; font-size: 13px; color: #156FF7; cursor: pointer;}
                 .hpf__head__close {display: none;}
+                .hpf__head__counttext {display: flex; position: absolute; bottom:16px; left:24px; color: #475569; font-size: 12px;}
+                .hpf__menu {display: flex;}
              }
             `
             }
