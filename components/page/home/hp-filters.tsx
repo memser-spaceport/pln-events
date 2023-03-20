@@ -148,7 +148,7 @@ function HpFilters(props) {
              .hpf__pln {padding: 24px; border-bottom: 1px solid #CBD5E1; align-items: center; display: flex; justify-content: space-between;}
              .hpf__pln__title {color: #475569; font-size: 14px;}
 
-             .hpf__menu {display: none; border-bottom: 1px solid #CBD5E1; padding: 16px 24px; height: 48px; justify-content: space-between;}
+             .hpf__menu {display: none; border-bottom: 1px solid #CBD5E1; padding: 12px 24px; height: 48px; align-items: center; justify-content: space-between;}
              .hpf__menu__view {font-size: 14px; color: #64748B; font-weight: 500;}
              .hpf__menu__icons {display: flex; gap: 0 16px;  }
              .hpf__menu__icons__item {cursor: pointer; width: 20px; height: 24px;}
