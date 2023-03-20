@@ -56,7 +56,7 @@ function HpFilterHead(props) {
                 .hpf__menu {display: flex; padding: 16px 0px; height: 48px; justify-content: space-between;}
                 .hpf__menu__view {font-size: 14px; color: #64748B;}
                 .hpf__menu__icons {display: flex; gap: 0 16px;  }
-                .hpf__menu__icons__item {cursor: pointer; width: 16px; height: 16px;}
+                .hpf__menu__icons__item {cursor: pointer; width: 20px; height: 20px;}
 
                 @media(min-width: 1200px) {
                     .hp__maincontent__tools {display: none;}
