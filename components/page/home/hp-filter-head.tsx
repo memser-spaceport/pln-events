@@ -53,14 +53,14 @@ function HpFilterHead(props) {
                 .hp__maincontent__tools__clear {color: #156FF7; font-size: 13px; cursor: pointer;}
                 .hp__maincontent__tools__filter__count {background: #156FF7; color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; margin-left: 8px;}
 
-                .hpf__menu {display: flex; padding: 16px 0px; height: 48px; justify-content: space-between;}
+                .hpf__menu {display: flex; padding: 16px 0px; height: 48px; align-items: center; justify-content: space-between;}
                 .hpf__menu__view {font-size: 14px; color: #64748B;}
                 .hpf__menu__icons {display: flex; gap: 0 16px;  }
                 .hpf__menu__icons__item {cursor: pointer; width: 20px; height: 20px;}
 
                 @media(min-width: 1200px) {
                     .hp__maincontent__tools {display: none;}
-                    
+                    .hpf__menu {padding: 12px 0px;}
                 }
                 
                 `
