@@ -21,5 +21,5 @@ dateTBD: false
 preferredContacts:
   - "email|mailto:cel@protocol.ai"
   - "twitter|https://twitter.com/cryptoeconlab"
-  - "linkedIn|https://www.linkedin.com/company/cryptoeconlab/"
+  - "linkedin|https://www.linkedin.com/company/cryptoeconlab/"
 ---
