@@ -51,7 +51,7 @@ function PlEventCard(props) {
                 {trimmedTopics.map(v => <p className="pec__topics__item">{v}</p>)}
             </div>
             <div className="pec__contacts">
-                    {preferredContacts.map(c => <a className="pec__contacts__link" href={c.link} target="_blank"><img title={c.name} className="pec__contacts__link__img" src={c.logo}/></a>)}
+                    {preferredContacts.map(c => c.name.toLowerCase() === 'email' ?  <a className="pec__contacts__link" href={`mailto:${c.link}`} target="_blank"><img title={c.name} className="pec__contacts__link__img" src={c.logo}/></a> :  <a className="pec__contacts__link" href={c.link} target="_blank"><img title={c.name} className="pec__contacts__link__img" src={c.logo}/></a>)}
                 </div>
 
             {description ? <p className="pec__desc">{description}</p> : null}

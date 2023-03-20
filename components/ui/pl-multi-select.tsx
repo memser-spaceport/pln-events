@@ -12,6 +12,8 @@ function PlMultiSelect(props) {
     const iconUrl = props.iconUrl ?? '';
     const selectedItems = props.selectedItems ?? [];
     const onClearMultiSelect = props.onClearMultiSelect;
+    const onMultiSelectClicked = props.onMultiSelectClicked;
+
     // Variables
     const [isPaneActive, setPaneActiveStatus] = useState(false);
     const [filteredItems, setfilteredItems] = useState([...items])
@@ -42,6 +44,15 @@ function PlMultiSelect(props) {
         }
     }
 
+    const onMultiBoxClicked = () => {
+        if(onMultiSelectClicked && isPaneActive === false) {
+            setPaneActiveStatus(v => !v)
+            onMultiSelectClicked(name)
+            return;
+        }
+        setPaneActiveStatus(v => !v)
+    }
+
     useEffect(() => {
         const listener = (event) => {
             // Do nothing if clicking ref's element or descendent elements
@@ -69,7 +80,7 @@ function PlMultiSelect(props) {
 
     return <>
         <div ref={paneRef} className="plms">
-            <div title={selectedItems.length > 0 ? selectedItems.join('|') : ``} id="tesssst" onClick={() => setPaneActiveStatus(v => !v)} className="plms__info">
+            <div title={selectedItems.length > 0 ? selectedItems.join('|') : ``} id="tesssst" onClick={onMultiBoxClicked} className="plms__info">
                 <img src={iconUrl} className="plms__info__icon" />
                 {(selectedItems.length === 0) && <div className="plms__info__text">{`Select ${name}`}</div>}
                 {(selectedItems.length === 1) && <div className="plms__info__text">{selectedItems[0]}</div>}

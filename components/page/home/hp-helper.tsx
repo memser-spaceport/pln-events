@@ -81,7 +81,7 @@ export const getFormattedEvents = (events) => {
     // Preferred Contacts
     const preferredContacts = event?.node?.preferredContacts?.map(pc => {
       const splitted = pc.split('|');
-      const supportedLinks = ['twitter', 'discord', 'telegram', 'whatsapp', 'facebook', 'instagram']
+      const supportedLinks = ['twitter', 'discord', 'telegram', 'whatsapp', 'facebook', 'instagram', 'linkedin', 'email']
       return {
         name: splitted[0],
         logo: supportedLinks.includes(splitted[0].toLowerCase().trim()) ? `/icons/pln-contacts-${splitted[0]}.svg` : `/icons/pln-contacts-default.svg`,
