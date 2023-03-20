@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react"
-import { months } from "./hp-helper";
 
 function HpMonthBox(props) {
     const name = props.name ?? '';
@@ -11,7 +10,6 @@ function HpMonthBox(props) {
     const allData = props.allData || [];
     const monthsAvailable = [...allData];
     const monthIndexes = monthsAvailable.map(m => m.index);
-    const onlyMonthNames = monthsAvailable.map(m => m.name);
     const currenMonthId = new Date().getMonth();
     const isCurrentHasEvents = monthIndexes.includes(currenMonthId);
    

@@ -8,7 +8,6 @@ function PlSelect(props) {
     const callback = props.callback;
     const dropdownImgUrl = props.dropdownImgUrl ?? ''
     const iconUrl = props.iconUrl ?? '';
-    const selectedItem = props.selectedItem ?? '';
     const selectedItems = props.selectedItems ?? [];
     const setSelectedItem = props.onItemChange;
     const [isPaneActive, setPaneActiveStatus] = useState(false);
@@ -53,12 +52,12 @@ function PlSelect(props) {
  
     return <>
         <div id={`${itemId}-ps`} className="ps">
-            <input disabled={items.length <= 1 ? true : false} placeholder={placeholder} id={`${itemId}-ps-input`} onClick={e => setPaneActiveStatus(v => !v)} onChange={onInputChange} className="ps__input" ref={inputRef} type="text" />
+            <input disabled={items.length <= 1 ? true : false} placeholder={placeholder} id={`${itemId}-ps-input`} onClick={() => setPaneActiveStatus(v => !v)} onChange={onInputChange} className="ps__input" ref={inputRef} type="text" />
             {isPaneActive && <div   id={`${itemId}-ps-pane`} className="ps__pane">
-                {filteredItems.map((item, index) => <p id={`${itemId}-ps-pane-${index}`} className={`ps__pane__item ${selectedItems.includes(item) ? 'ps__pane__item--active': ''}`} onClick={e => onItemSelected(item, index)}>{item}</p>)}
+                {filteredItems.map((item, index) => <p id={`${itemId}-ps-pane-${index}`} className={`ps__pane__item ${selectedItems.includes(item) ? 'ps__pane__item--active': ''}`} onClick={() => onItemSelected(item, index)}>{item}</p>)}
             </div>}
             {iconUrl && <img className="ps__icon" src={iconUrl}/>}
-            {(dropdownImgUrl && items.length > 1) && <img className="ps__arrow" onClick={e => setPaneActiveStatus(v => !v)}  src={dropdownImgUrl} />}
+            {(dropdownImgUrl && items.length > 1) && <img className="ps__arrow" onClick={() => setPaneActiveStatus(v => !v)}  src={dropdownImgUrl} />}
         </div>
 
         <style jsx>
