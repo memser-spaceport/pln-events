@@ -91,9 +91,11 @@ function HpCalendar(props) {
             <div className="hpc__head">
                 <div className="hpc__head__menu"></div>
                 <div className="hpc__head__months">
+                    {monthIndex === 0 && <img className="hpc__head__months__leftimg disabled" src="/icons/pln-icon-left-disabled.svg" />}
                     {monthIndex !== 0 && <img onClick={() => onMonthNavigate('prev')} className="hpc__head__months__leftimg" src="/icons/pln-icon-left-blue.svg" />}
                     <p className="hpc__head__months__text">{monthNames[monthIndex]}</p>
                     {monthIndex !== 11 && <img onClick={() => onMonthNavigate('next')} className="hpc__head__months__rightimg" src="/icons/pln-icon-right-blue.svg" />}
+                    {monthIndex === 11 && <img className="hpc__head__months__rightimg disabled" src="/icons/pln-icon-right-disabled.svg" />}
                 </div>
                 <div className="hpc__head__info">
                     <div className="hpc__head__info__item">
@@ -132,11 +134,11 @@ function HpCalendar(props) {
                 
             .hpc {width: 100%; overflow-y: hidden;}
             .hpc__head {display: flex; height: 70px; position: relative; padding-top: 8px; border-bottom: 1px solid #CBD5E1; width: 100%; align-items: flex-start; justify-content: center;}
-            .hpc__head__months { display: flex; align-items: center; justify-content: space-between; padding:8px; width: 319px; border: 1px solid #CBD5E1; background: white; border-radius: 6px;}
-            .hpc__head__months__text {flex: 1; display: flex; font-size: 14px; justify-content: center;}
-            .hpc__head__months__leftimg {cursor: pointer; width: 16px; height: 16px;}
-            .hpc__head__months__rightimg {cursor: pointer; width: 16px; height: 16px;}
-            .hpc__head__info {display: flex; gap: 0 16px; margin-right: 24px; position: absolute; top: 48px; left:auto; right: auto;}
+            .hpc__head__months { display: flex; align-items: center; justify-content: space-between; padding:4px 8px; width: 319px; border: 1px solid #CBD5E1; background: white; border-radius: 6px;}
+            .hpc__head__months__text {flex: 1; font-weight: 500; display: flex; font-size: 14px; justify-content: center;}
+            .hpc__head__months__leftimg {cursor: pointer; width: 24px; height: 24px;}
+            .hpc__head__months__rightimg {cursor: pointer; width: 24px; height: 24px;}
+            .hpc__head__info {display: flex; gap: 0 16px; margin-right: 24px; position: absolute; top: 47px; left:auto; right: auto;}
             .hpc__head__info__item {display: flex; gap: 0 8px; align-items: center;}
             .hpc__head__info__item__img {width: 16px; height: 16px;}
             .hpc__head__info__item__text {font-size: 12px;}
@@ -150,6 +152,7 @@ function HpCalendar(props) {
             .social {color: #817cd2;}
             .virtual {color:#67aed7; }
             .conference {color: #63a93e;}
+            .disabled {cursor: default;}
             @media(min-width: 1200px) {
                 .hpc__calendar { height: calc(100svh - 86px);}
                 .hpc__head { padding: 8px 0; align-items: center; height: fit-content;}
