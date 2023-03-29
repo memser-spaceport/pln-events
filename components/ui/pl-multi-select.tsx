@@ -7,18 +7,17 @@ function PlMultiSelect(props) {
     const rawItems = props.items ?? [];
     const items = [...rawItems].sort()
     const name = props.name ?? '';
-    const placeholder = props.placeholder ?? ''
     const callback = props.callback;
     const dropdownImgUrl = props.dropdownImgUrl ?? ''
     const iconUrl = props.iconUrl ?? '';
     const selectedItems = props.selectedItems ?? [];
     const onClearMultiSelect = props.onClearMultiSelect;
+    const onMultiSelectClicked = props.onMultiSelectClicked;
+
     // Variables
     const [isPaneActive, setPaneActiveStatus] = useState(false);
     const [filteredItems, setfilteredItems] = useState([...items])
-    const inputRef = useRef<HTMLInputElement>()
     const paneRef = useRef<HTMLDivElement>()
-    const infoRef = useRef<HTMLDivElement>()
 
     // Methods
     const onInputChange = (e) => {
@@ -43,6 +42,15 @@ function PlMultiSelect(props) {
             setfilteredItems([...items])
 
         }
+    }
+
+    const onMultiBoxClicked = () => {
+        if(onMultiSelectClicked && isPaneActive === false) {
+            setPaneActiveStatus(v => !v)
+            onMultiSelectClicked(name)
+            return;
+        }
+        setPaneActiveStatus(v => !v)
     }
 
     useEffect(() => {
@@ -72,7 +80,7 @@ function PlMultiSelect(props) {
 
     return <>
         <div ref={paneRef} className="plms">
-            <div title={selectedItems.length > 0 ? selectedItems.join('|') : ``} id="tesssst" onClick={() => setPaneActiveStatus(v => !v)} className="plms__info">
+            <div title={selectedItems.length > 0 ? selectedItems.join('|') : ``} id="tesssst" onClick={onMultiBoxClicked} className="plms__info">
                 <img src={iconUrl} className="plms__info__icon" />
                 {(selectedItems.length === 0) && <div className="plms__info__text">{`Select ${name}`}</div>}
                 {(selectedItems.length === 1) && <div className="plms__info__text">{selectedItems[0]}</div>}
@@ -96,7 +104,7 @@ function PlMultiSelect(props) {
                 </div>}
 
                 {(items.length > 0) && <div className="plms__pane__list">
-                    {filteredItems.map((item, index) => <div onClick={e => onItemSelected(item)} className="plms__pane__list__item">
+                    {filteredItems.map((item, index) => <div onClick={() => onItemSelected(item)} className="plms__pane__list__item">
                         {/*  <div className="plms__pane__list__item__logo"></div> */}
                         <p id={`${itemId}-ps-pane-${index}`} className={`plms__pane__list__item__text ${selectedItems.includes(item) ? 'ps__pane__item--active' : ''}`} >{item}</p>
                         {!selectedItems.includes(item) && <div className="plms__pane__list__item__check"></div>}

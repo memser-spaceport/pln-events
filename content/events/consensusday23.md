@@ -16,4 +16,6 @@ startDate: "06/05/2023"
 endDate: "06/05/2023"
 tag: "PLN Event"
 dateTBD: false
+eventHosts:
+  - ConsensusLab|consensuslab.png
 ---
