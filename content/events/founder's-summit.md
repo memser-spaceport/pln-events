@@ -8,9 +8,6 @@ eventTopic:
 eventType: "Social"
 website: "https://lu.ma/9uz8u0qy"
 location: "Austin, USA"
-venueName: "Garage"
-venueAddress: "503 Colorado St, Austin, TX 78701, USA"
-venueMapsLink: "https://goo.gl/maps/VmtaECsHgAWhYPz38"
 startDate: 04/26/2023
 endDate: 04/26/2023
 dateTBD: false
