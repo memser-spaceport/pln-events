@@ -6,7 +6,7 @@ function PlToggle(props) {
     const itemId = props.itemId;
     const activeItem = props.activeItem;
 
-    const onSelectionChange = (e) => {
+    const onSelectionChange = () => {
         if(callback) {
             callback('single-select',itemId, checkRef.current.checked)
         }

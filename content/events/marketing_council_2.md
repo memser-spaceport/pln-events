@@ -21,7 +21,7 @@ venueAddress:
 
 venueMapsLink: "https://bit.ly/plnmarketingcouncil" 
 
-website: "https://coda.io/d/PLN-Councils_d6eF5JClyXP/PLN-Marketing-Council_suZDh#_lu5R8"
+website: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=NTRpb2VoN3ZzbjV1cTQ3ajAzcjBzbmsxZXEgY19pZGwxcGpjMjdycDRrZ25vbmdvdXZ0Ymt2OEBn&tmsrc=c_idl1pjc27rp4kgnongouvtbkv8%40group.calendar.google.com"
 
 startDate: "03/29/2023"
 
