@@ -1,5 +1,5 @@
 ---
-eventName: Websummit
+eventName: "Web Summit"
 location: 'Lisbon, Portugal'
 website: 'https://websummit.com/'
 startDate: '2023-11-13T08:00:00.000Z'
