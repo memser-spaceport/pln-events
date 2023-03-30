@@ -4,7 +4,7 @@ eventDescription: "FIL Hong Kong will take place from April 12 - 15 across two k
 eventType: "Conference"
 website: "https://fil-hk.io/"
 venueName: "The Center Space"
-venueAddress: "Level 76, The Center, 99 Queen's Road Central, Central, Hong Kong"
+venueAddress: "Level 76, The Center, 99 Queen's Road Central, Central"
 venueMapsLink: "https://goo.gl/maps/Sa9qDPsmSvsm7dA18"
 location: "Hong Kong"
 startDate: 04/12/2023
