@@ -2,11 +2,14 @@
 eventName: "FIL Hong Kong"
 eventDescription: "FIL Hong Kong will take place from April 12 - 15 across two key spaces, the Hong Kong Web3 Festival and the FIL Hong Kong Network Base. The week will feature lightning talks, workshops, and plenty of coworking space, for those deep in the Filecoin ecosystem and those looking to discover the world of FVM. Attend the Hong Kong Web3 Festival and check out the Filecoin x IPFS booth, or drop by the FIL Hong Kong Network Base to meet with fellow innovators and work on driving Web3 forward. And if you're a Filecoin Storage Provider or want to explore decentralized storage for your business, make sure to register for the private DeStor HK event. We're bringing together developers, storage providers, clients, and ecosystem partners in one of the world's emerging hubs for Web3 innovation. See you in HK!"
 eventType: "Conference"
+venueName: "The Center Space"
+venueAddress: "Level 76, The Center, 99 Queen's Road Central, Central, Hong Kong"
+venueMapsLink: "https://goo.gl/maps/Sa9qDPsmSvsm7dA18"
 location: "Hong Kong"
 startDate: 04/12/2023
 endDate: 04/15/2023
 tag: "PLN Event"
 dateTBD: false
 eventHosts:
-  - Filecoin|filecoin.png
+  - Filecoin Foundation|filecoin-foundation.webp
 ---
