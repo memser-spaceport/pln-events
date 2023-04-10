@@ -4,18 +4,16 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import HpCalendarEvent from "./hp-calender-event";
 import HpCalendarDateCell from "./hp-calendar-datecell";
-import PlEventCard from "../../ui/pl-event-card";
+import HpCalendarPopup from "./hp-calendar-popup";
 
 function HpCalendar(props) {
     const monthWiseEvents = props.monthWiseEvents ?? [];
     const filterdListCount = props.filterdListCount ?? 0
     const eventItems = props.eventItems ?? []
     const monthNames = [...months];
-    const [monthIndex, setMonthIndex] = useState(0);
     const calenderRef = useRef<any>()
+    const [monthIndex, setMonthIndex] = useState(0);
     const [calendarheight, setCalendarHeight] = useState(0);
-    const [isEventCardActive, setEventCardStatus] = useState(false);
-    const [selectedEvent, setSelectedEvent] = useState({})
     const { state } = useContext(HpContext)
     const {filters} = state;
     const currentYear = filters.year;
@@ -38,15 +36,10 @@ function HpCalendar(props) {
 
     const onEventClicked = (v) => {
         if(v) {
-            setEventCardStatus(true);
-            setSelectedEvent(v?.event?.extendedProps)
+            document.dispatchEvent(new CustomEvent('showCalenderPopup', {detail: v?.event?.extendedProps }))
         }
     }
 
-    const onCloseCard = () => {
-        setEventCardStatus(false);
-        setSelectedEvent({})
-    }
 
     useEffect(() => {
         const currenMonthId = new Date().getMonth();
@@ -119,19 +112,11 @@ function HpCalendar(props) {
             </div>
         </div>
 
-        {isEventCardActive && <div className="eventCard">
-            <div className="eventCard__item">
-                <PlEventCard {...selectedEvent}/>
-                <p onClick={onCloseCard} className="eventCard__item__close">
-                    <img src="/icons/pln-close-white.svg" className="eventCard__item__close__img"/>
-                </p>
-                
-            </div>
-            </div>}
+       <HpCalendarPopup/>
         <style jsx>
             {
                 `
-                
+
             .hpc {width: 100%; overflow-y: hidden;}
             .hpc__head {display: flex; height: 70px; position: relative; padding-top: 8px; border-bottom: 1px solid #CBD5E1; width: 100%; align-items: flex-start; justify-content: center;}
             .hpc__head__months { display: flex; align-items: center; justify-content: space-between; padding:4px 8px; width: 319px; border: 1px solid #CBD5E1; background: white; border-radius: 6px;}
@@ -142,13 +127,10 @@ function HpCalendar(props) {
             .hpc__head__info__item {display: flex; gap: 0 8px; align-items: center;}
             .hpc__head__info__item__img {width: 16px; height: 16px;}
             .hpc__head__info__item__text {font-size: 12px;}
-            
+
             .hpc__calendar {height: calc(100svh - 156px); margin-top: -25px;}
-            
-            .eventCard {display: flex; position: fixed; top:0; left:0; right:0; width: 100vw; align-items: center; justify-content: center; height: 100vh; background: rgb(0,0,0,0.8); z-index: 15;}
-            .eventCard__item {width: 90vw; position: relative;}
-            .eventCard__item__close {position: absolute; top:-13px; border-radius: 50%; display: flex; align-items: center; justify-content: center; right: -10px; width: 26px; height: 26px; background: #475569; border: 1px solid rgba(255, 255, 255, 0.5); cursor: pointer;}
-            .eventCard__item__close__img {width:16px; height: 16px; }
+
+
             .social {color: #817cd2;}
             .virtual {color:#67aed7; }
             .conference {color: #63a93e;}
