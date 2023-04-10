@@ -36,7 +36,7 @@ dateTBD: false or true #If you don't have concrete dates, add the approximate da
 preferredContacts:
   - '<contact_means>|<contact_url>'
 
-#Event host names and their respective logos-place the logo file on the path 'public/uploads' for eg.   - IPFS|ipfs-logo.png
+#Event host names and their respective logos(preferred size is 48px width, 48px height)-place the logo file on the path 'public/uploads' for eg.   - IPFS|ipfs-logo.png
 
 eventHosts:
   - <host_name>|<host_logo>

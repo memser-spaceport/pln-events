@@ -1,5 +1,5 @@
 ---
-eventName: Consensus
+eventName: "Consensus (FF Sponsored)"
 website: https://events.coindesk.com/consensus2022
 location: Austin, United States
 startDate: 04/26/2023
