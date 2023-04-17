@@ -6,7 +6,7 @@ website: "https://sbs.tech/"
 venueName: "The Tower: A Longwood Venue"
 venueAddress: "101 Arlington Street"
 venueMapsLink: "https://goo.gl/maps/gcqcQ6gWKUoxUvCL6"
-location: "Boston, MA 02116, United States"
+location: "Boston, MA, United States"
 isFeaturedEvent: true
 startDate: 4/13/2023
 endDate: 4/13/2023
