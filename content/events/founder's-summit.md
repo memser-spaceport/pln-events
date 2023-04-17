@@ -7,7 +7,7 @@ eventTopic:
 - 'Networking'
 eventType: "Social"
 website: "https://lu.ma/9uz8u0qy"
-location: "Austin, USA"
+location: "Austin, Texas, United States"
 startDate: 04/26/2023
 endDate: 04/26/2023
 dateTBD: false

@@ -5,7 +5,7 @@ eventTopic:
   - "Industry Event"
   - "Talks"
 eventType: "Conference"
-location: "New York, NY"
+location: "New York City, United States"
 venueName: "Times Square & Hudson Yards"
 website: "https://www.nft.nyc/"
 startDate: "04/12/2023"
