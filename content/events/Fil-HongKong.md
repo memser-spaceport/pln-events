@@ -6,7 +6,7 @@ website: "https://fil-hk.io/"
 venueName: "The Center Space"
 venueAddress: "Level 76, The Center, 99 Queen's Road Central, Central"
 venueMapsLink: "https://goo.gl/maps/Sa9qDPsmSvsm7dA18"
-location: "Hong Kong"
+location: "Hong Kong, China"
 startDate: 04/12/2023
 endDate: 04/15/2023
 tag: "PLN Event"

@@ -6,7 +6,7 @@ eventTopic:
   - Builders Showcase
   - Happy Hour
 eventType: Conference
-location: Denver, United States
+location: "Denver, United States"
 venueName: Upper Larimer
 venueAddress:
 venueMapsLink: https://www.google.com/maps/?q=39.7626229,-104.9796156

@@ -11,7 +11,7 @@ eventTopic:
 eventType: "Conference"
 venueName: "The Riley Building"
 venueAddress: "315 Lavaca Street"
-location: "Austin, Texas 78701, United States"
+location: "Austin, United States"
 venueMapsLink: "https://www.google.com/maps/search/?api=1&query=The%20Riley%20Building&query_place_id=ChIJlfDsWVu1RIYRpHF10H9T9XE"
 website: "https://lu.ma/cedaustin"
 startDate: "04/25/2023"
