@@ -1,6 +1,6 @@
 ---
 eventName: Launchpad Colo Week v8
-location: Virtual
+location: "Virtual"
 eventType: Virtual
 website: https://pl-launchpad.io/?utm_source=substack&utm_medium=email
 startDate: 1/28/2023

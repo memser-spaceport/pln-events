@@ -4,10 +4,10 @@ eventDescription: "Come join us to catch up with familiar faces and meet fellow 
 
 Note - this is an invite-only event"
 eventTopic:
-- 'Networking'
+  - 'Networking'
 eventType: "Social"
 website: "https://lu.ma/9uz8u0qy"
-location: "Austin, Texas, United States"
+location: "Austin, United States"
 startDate: 04/26/2023
 endDate: 04/26/2023
 dateTBD: false
