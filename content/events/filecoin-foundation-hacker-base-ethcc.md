@@ -1,5 +1,5 @@
 ---
-eventName: Filecoin Hacker Base @ ETHcc
+eventName: "Filecoin Hacker Base at EthCC"
 website: 
 location: "Paris, France"
 startDate: 7/21/2023
