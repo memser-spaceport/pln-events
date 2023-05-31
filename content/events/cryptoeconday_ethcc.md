@@ -29,11 +29,10 @@ tag: PLN Event
 
 dateTBD: false
 
-#Preferred means of contacts - email|mailto:cel@protocol.ai, 'twitter|[https://twitter.com/cryptoeconlab]
-
 preferredContacts:
-  - 'https://cryptoeconlab.io/#contact'
+  - email|mailto:cel@protocol.ai
+  - twitter|https://twitter.com/cryptoeconlab
 
 eventHosts:
-  - CryptoEconLab|cel_logo.svg
+  - CryptoEconLab|cel_logo_1.png
 ---
