@@ -5,7 +5,7 @@ eventTopic:
 eventType: "Conference"
 location: "Singapore"
 venueName: "Marine Bay Sands"
-venueAddress: "10 Bayfront Ave, 018956"
+venueAddress: "10 Bayfront Ave, Singapore 018956"
 venueMapsLink: 
 website: "https://www.token2049.com/"
 startDate: "9/13/2023"
