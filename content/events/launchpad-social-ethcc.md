@@ -3,14 +3,6 @@ eventName: "Launchpad Social" #the name of your track or event and its mandatory
 
 eventDescription: "The Launchpad Social is a unique opportunity to create meaningful connections within the Protocol Labs Network. Embark on a floating location to experience a live pitch showcasing products & people tied to our ecosystem, and engage with current & past Launchpad participants, network companies & thought leaders in web3." #short description of your track or event limiting to 100-150 characters
 
-#topics will show up as labels on the event card.Only a maximum of 4 tags will be displayed on the event card. Some referneces for topics - Blockchain, Web3, Cryptocurrency, Tech Taks,Workshop etc.
-
-eventTopic: 
-  - "<Topic_1>"
-  - "<Topic_2>"
-  - "<Topic_3>"
-  - "<Topic_4>" 
-
 eventType: "Social" #Type of the event: Please choose one among the below options or just leave it blank
 
 location: "Paris, France" or "Location TBD" #Specify the location of the event.If you aren't sure about the location then mention "Location TBD"
