@@ -1,6 +1,6 @@
 ---
 eventName: FTC at EthCC
-eventDescription: "Funding the Commons is focused on new models of sustainable public goods funding and value alignment in open source networks. We bridge the public goods community across Web2, Web3, research, philanthropy and industry. We do this by convening builders, academics, and funders in both traditional conference and "open space" formats."
+eventDescription: "Funding the Commons is focused on new models of sustainable public goods funding and value alignment in open source networks. We bridge the public goods community across Web2, Web3, research, philanthropy and industry. We do this by convening builders, academics, and funders in both traditional conference and \"open space\" formats."
 event type: "Conference"
 location: "Paris, France"
 venueName: "Sorbonne University"
@@ -12,7 +12,7 @@ endDate: 07/16/2023
 tag: PLN Event
 dateTBD: false
 preferredContacts:
-- 'Twitter|https://twitter.com/fundingcommons'
+  - 'twitter|https://twitter.com/fundingcommons'
 eventHosts:
   - Network Goods|ftc-logo.png
 ---
