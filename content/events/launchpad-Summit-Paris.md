@@ -1,5 +1,5 @@
 ---
-eventName: Launchpad Colo Week v12
+eventName: 'Launchpad Summit Paris'
 location: "Paris, France"
 website: https://pl-launchpad.io/?utm_source=substack&utm_medium=email
 startDate: 7/16/2023
