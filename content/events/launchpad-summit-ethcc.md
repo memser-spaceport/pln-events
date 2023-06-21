@@ -1,36 +1,30 @@
 ---
- eventName: "Launchpad Summit Paris" #the name of your track or event and its mandatory
+ eventName: "Launchpad Summit Paris" 
 
- eventDescription: "Launchpad is a blend of two key components:  a dynamic four-week virtual learning cohort, where residents actively participate in remote learning seminars, and an unforgettable one-week in-person \"colo\" Summit.  These summits comprise interactive presentations, technology deep dives, and unparalleled networking opportunities." #short description of your track or event limiting to 100-150 characters
-
- #topics will show up as labels on the event card.Only a maximum of 4 tags will be displayed on the event card. Some referneces for topics - Blockchain, Web3, Cryptocurrency, Tech Taks,Workshop etc.
+ eventDescription: "Launchpad is a blend of two key components:  a dynamic four-week virtual learning cohort, where residents actively participate in remote learning seminars, and an unforgettable one-week in-person \"colo\" Summit.  These summits comprise interactive presentations, technology deep dives, and unparalleled networking opportunities." 
 
  eventTopic: 
    - "Web3"
    - "Tech Talks"
 
- eventType: "Conference" #Type of the event: Please choose one among the below options or just leave it blank
+ eventType: "Conference" 
 
- location: "Paris, France" or "Location TBD" #Specify the location of the event.If you aren't sure about the location then mention "Location TBD"
+ location: "Paris, France" 
 
- venueName: "Montparnasse - Exact location revealed upon registration!" #the event venue name (will show up on the event card) or just leave it blank
+ venueName: "Montparnasse - Exact location revealed upon registration!" 
 
- website: "[your_website_url](https://protocol.ai/blog/launchpad-summit-paris-2023/)" #make sure to have all the relevant information: dates, venue, program, ticketing (if any), etc. or just leave it blank
+ website: "[your_website_url](https://protocol.ai/blog/launchpad-summit-paris-2023/)" 
 
- startDate: "07/16/2023" # the start date of the event , date format is MM/DD/YYYY eg: if it is February 16th 2023 => 02/16/2023
+ startDate: "07/16/2023" 
 
- endDate: "07/21/2023" #the end date of the event , date format is MM/DD/YYYY eg: if it is February 18th 2023 => 02/18/2023
+ endDate: "07/21/2023" 
 
- tag: "PLN Event" #Mention any one of the event types. Don't leave it blank.
+ tag: "PLN Event" 
 
- dateTBD: false #If you don't have concrete dates, add the approximate dates & set dateTBD: true.
-
- #Preferred means of contacts - this is a placeholder for email(for eg:  - email|mailto:<email_id>) and other social handles like Twitter, LinkedIn, Discord, etc. (for eg.   - 'twitter|https://twitter.com/IPFS/status/1629199396700098560?s=20')
+ dateTBD: false 
 
  preferredContacts:
-   - 'email|launchpad-events@protocol.ai>'
-
- #Event host names and their respective logos(preferred size is 48px width, 48px height)-place the logo file on the path 'public/uploads' for eg.   - IPFS|ipfs-logo.png
+   - 'email|launchpad-events@protocol.ai'
 
  eventHosts:
    - Launchpad|<host_logo>
