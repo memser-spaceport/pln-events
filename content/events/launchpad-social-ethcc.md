@@ -5,7 +5,7 @@ eventDescription: "The Launchpad Social is a unique opportunity to create meanin
 
 eventType: "Social" #Type of the event: Please choose one among the below options or just leave it blank
 
-location: "Paris, France" or "Location TBD" #Specify the location of the event.If you aren't sure about the location then mention "Location TBD"
+location: "Paris, France"
 
 venueName: "Le Son de la Terre at the Fil Paris Network Base" #the event venue name (will show up on the event card) or just leave it blank
 
