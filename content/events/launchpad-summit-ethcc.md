@@ -6,20 +6,14 @@
  #topics will show up as labels on the event card.Only a maximum of 4 tags will be displayed on the event card. Some referneces for topics - Blockchain, Web3, Cryptocurrency, Tech Taks,Workshop etc.
 
  eventTopic: 
-   - "<Topic_1>"
-   - "<Topic_2>"
-   - "<Topic_3>"
-   - "<Topic_4>" 
+   - "Web3"
+   - "Tech Talks"
 
  eventType: "Conference" #Type of the event: Please choose one among the below options or just leave it blank
 
  location: "Paris, France" or "Location TBD" #Specify the location of the event.If you aren't sure about the location then mention "Location TBD"
 
  venueName: "Montparnasse - Exact location revealed upon registration!" #the event venue name (will show up on the event card) or just leave it blank
-
- venueAddress: "<Your_Venue_Address>" #the event venue address (will show up on a map) or just leave it blank
-
- venueMapsLink: "<Google_Map_link_for_the_venue>" #the event venue Map link (will show up on a map) or just leave it blank
 
  website: "[your_website_url](https://protocol.ai/blog/launchpad-summit-paris-2023/)" #make sure to have all the relevant information: dates, venue, program, ticketing (if any), etc. or just leave it blank
 
