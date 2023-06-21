@@ -1,7 +1,7 @@
 ---
  eventName: "Launchpad Summit Paris" #the name of your track or event and its mandatory
 
- eventDescription: "Launchpad is a blend of two key components:  a dynamic four-week virtual learning cohort, where residents actively participate in remote learning seminars, and an unforgettable one-week in-person "\colo\" Summit.  These summits comprise interactive presentations, technology deep dives, and unparalleled networking opportunities." #short description of your track or event limiting to 100-150 characters
+ eventDescription: "Launchpad is a blend of two key components:  a dynamic four-week virtual learning cohort, where residents actively participate in remote learning seminars, and an unforgettable one-week in-person \"colo\" Summit.  These summits comprise interactive presentations, technology deep dives, and unparalleled networking opportunities." #short description of your track or event limiting to 100-150 characters
 
  #topics will show up as labels on the event card.Only a maximum of 4 tags will be displayed on the event card. Some referneces for topics - Blockchain, Web3, Cryptocurrency, Tech Taks,Workshop etc.
 
