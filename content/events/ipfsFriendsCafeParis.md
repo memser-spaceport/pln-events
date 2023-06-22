@@ -11,4 +11,6 @@ tag: "PLN Event"
 dateTBD: true
 preferredContacts:
   - "email|mailto:miwa@protocol.ai"
+eventHosts:
+  - 'IPFS|<host_logo>'
 ---
