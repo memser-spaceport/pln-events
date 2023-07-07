@@ -1,11 +1,13 @@
 import PlTags from "../../ui/pl-tags";
 import PlToggle from "../../ui/pl-toggle";
 import { getNoFiltersApplied, getUniqueValuesFromEvents, HpContext } from "./hp-helper";
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { trackGoal } from "fathom-client";
 import PlMultiSelect from "../../ui/pl-multi-select";
 import PlSingleSelect from "../../ui/pl-single-select";
 import PlDateRange from '../../ui/pl-date-range';
+import useAppAnalytics from "../../../hooks/use-app-analytics";
+import {APP_ANALYTICS_EVENTS} from "../../../helpers/constants"
 
 function HpFilters(props) {
     const events = props.events ?? [];
@@ -28,15 +30,48 @@ function HpFilters(props) {
 
     ]
     const filterCount = getNoFiltersApplied(filters);
+    const analytics = useAppAnalytics();
 
     const onMenuSelection = (value) => {
         if (value === 'timeline') {
+            analytics.captureEvent(APP_ANALYTICS_EVENTS.EVENT_VIEW, {
+                'name': 'listView'
+              });
             trackGoal('E98R34BE', 0)
         } else {
+            analytics.captureEvent(APP_ANALYTICS_EVENTS.EVENT_VIEW, {
+                'name': 'monthView'
+              });
             trackGoal('BBAJPYJQ', 0)
         }
         dispatch({ type: 'setEventMenu', value: value })
     }
+
+    const getKeysAndValues = () => {
+        const keys = [];
+        const values = [];
+      
+        for (const key in filters) {
+          const value = filters[key];
+          if (value !== null && value !== "" && value?.length > 0) {
+            keys.push(key);
+            values.push(Array.isArray(value) ? value?.toString() : value);
+          }
+        }
+        return {
+            appliedFilters: keys,
+            filtersValue: values
+        };
+      }
+
+    //   useEffect(()=>{
+    //     const keyAndValues = getKeysAndValues();
+    //     analytics.captureEvent(APP_ANALYTICS_EVENTS.FILTERS_APPLIED, {
+    //         'name': keyAndValues?.appliedFilters,
+    //         'value': keyAndValues.filtersValue
+    //       })
+    //     console.log("filters>>>>>>>>>>>>>", filters);
+    //   },[state])
 
     const onFilterChange = (type, key, value) => {
         if (key === 'year') {
@@ -54,6 +89,11 @@ function HpFilters(props) {
         } else if (type === 'date-range') {
             trackGoal('KP7PRKOU', 0)
         }
+        analytics.captureEvent(APP_ANALYTICS_EVENTS.FILTER_CHANGED, {
+            'name': key,
+            'value': (Array.isArray(value) ? value?.toString : value)
+          })
+
         if (type === 'multi-select') {
             if (filters[key].includes(value)) {
                 dispatch({ type: 'removeMultiItemFromFilter', key, value })
@@ -73,10 +113,7 @@ function HpFilters(props) {
     }
 
     const onMultiSelectClicked = (type) => {
-
-        console.log(type)
         if (type === 'Topics') {
-            console.log(type, 'inside')
             setTimeout(() => {
                 let filterContainer;
                 if(window.innerWidth < 1200) {
@@ -96,6 +133,7 @@ function HpFilters(props) {
 
     const onClearFilters = () => {
         trackGoal('H1OKCTIN', 0)
+        analytics.captureEvent(APP_ANALYTICS_EVENTS.CLEAR_ALL)
         dispatch({ type: 'clearAllFilters' })
     }
 

@@ -73,6 +73,8 @@ export default function IndexPage(props) {
 
           {/**** CALENDAR VIEW ****/}
           {state?.flags?.eventMenu === 'calendar' && <HpCalendar eventItems={finalEvents} filters={state.filters} monthWiseEvents={monthWiseEvents} filterdListCount={filterdListCount} />}
+        
+          <AppAnalytics/>
         </div>
       </div>
 

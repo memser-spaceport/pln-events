@@ -5,6 +5,8 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import HpCalendarEvent from "./hp-calender-event";
 import HpCalendarDateCell from "./hp-calendar-datecell";
 import HpCalendarPopup from "./hp-calendar-popup";
+import {APP_ANALYTICS_EVENTS} from "../../../helpers/constants"
+import  useAppAnalytics from "../../../hooks/use-app-analytics"
 
 function HpCalendar(props) {
     const monthWiseEvents = props.monthWiseEvents ?? [];
@@ -17,6 +19,7 @@ function HpCalendar(props) {
     const { state } = useContext(HpContext)
     const {filters} = state;
     const currentYear = filters.year;
+    const analytics = useAppAnalytics();
 
     const onMonthNavigate = (type) => {
         const calendarElement: any = calenderRef?.current
@@ -25,11 +28,19 @@ function HpCalendar(props) {
             if (monthIndex - 1 > -1) {
                 ca.prev()
                 setMonthIndex(v => v - 1)
+                analytics.captureEvent(APP_ANALYTICS_EVENTS.CALENDAR_VIEW_MONTH_NAV, {
+                    'name': 'arrow',
+                    'value': 'left'
+                  });
             }
         } else {
             if (monthIndex + 1 < monthNames.length) {
                 ca.next()
                 setMonthIndex(v => v + 1)
+                analytics.captureEvent(APP_ANALYTICS_EVENTS.CALENDAR_VIEW_MONTH_NAV, {
+                    'name': 'arrow',
+                    'value': 'right'
+                  });
             }
         }
     }
@@ -37,6 +48,9 @@ function HpCalendar(props) {
     const onEventClicked = (v) => {
         if(v) {
             document.dispatchEvent(new CustomEvent('showCalenderPopup', {detail: v?.event?.extendedProps }))
+            analytics.captureEvent(APP_ANALYTICS_EVENTS.CALENDAR_VIEW_EVENT_CARD_CLICK, {
+                'name': 'eventClick',
+              });
         }
     }
 

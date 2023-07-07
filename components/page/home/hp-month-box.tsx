@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react"
+import useAppAnalytics from "../../../hooks/use-app-analytics";
+import {APP_ANALYTICS_EVENTS} from "../../../helpers/constants"
 
 function HpMonthBox(props) {
     const name = props.name ?? '';
@@ -12,11 +14,15 @@ function HpMonthBox(props) {
     const monthIndexes = monthsAvailable.map(m => m.index);
     const currenMonthId = new Date().getMonth();
     const isCurrentHasEvents = monthIndexes.includes(currenMonthId);
+    const analytics = useAppAnalytics();
    
 
     const onMonthClicked = () => {
         if (allData.length > 0) {
             setPaneStatus(v => !v)
+            analytics.captureEvent(APP_ANALYTICS_EVENTS.LIST_VIEW_MDP, {
+                'name': 'monthClick'
+              });
         }
     }
 
@@ -26,6 +32,9 @@ function HpMonthBox(props) {
         }
 
         if (type === 'prev') {
+            analytics.captureEvent(APP_ANALYTICS_EVENTS.LIST_VIEW_MDP_OPTIONS, {
+                'name': 'previousMonth'
+              });
             if(currentIndex === 0 || !monthIndexes.includes(currentIndex - 1)) {
                 return;
             }
@@ -39,6 +48,9 @@ function HpMonthBox(props) {
             }
 
         } else if (type === 'next') {
+            analytics.captureEvent(APP_ANALYTICS_EVENTS.LIST_VIEW_MDP_OPTIONS, {
+                'name': 'nextMonth'
+              });
             if(currentIndex === 11 || !monthIndexes.includes(currentIndex + 1)) {
                 return;
             }
@@ -52,6 +64,9 @@ function HpMonthBox(props) {
             }
 
         } else if (type === 'current') {
+            analytics.captureEvent(APP_ANALYTICS_EVENTS.LIST_VIEW_MDP_OPTIONS, {
+                'name': 'currentMonth'
+              });
             const itemIndex = allData.findIndex(v => v.index === currenMonthId)
             if(itemIndex > -1) {
                 const scrollItem = document.getElementById(`m-${currenMonthId}`);
@@ -59,8 +74,14 @@ function HpMonthBox(props) {
                     scrollItem.scrollIntoView({ behavior: "smooth", block: "start" })
                 }
             }
+
             
         } else if (type === 'direct') {
+            console.log('allData>>>>>>>', allData);
+            analytics.captureEvent(APP_ANALYTICS_EVENTS.LIST_VIEW_MDP_OPTIONS, {
+                'name': 'actualMonth',
+                'value': allData[index]?.name
+              });
             const scrollItem = document.getElementById(`m-${index}`);
             if (scrollItem) {
                 scrollItem.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -96,6 +117,21 @@ function HpMonthBox(props) {
         };
     }, [])
 
+    const onSpecificMonthClicked = () => {
+        if(!isMonthsPaneActive){
+            analytics.captureEvent(APP_ANALYTICS_EVENTS.LIST_VIEW_MDP_OPTIONS, {
+                'name': 'specificMonthClick'
+              });
+        }
+        setMonthsPaneStatus(v => !v)
+    }
+    const onSpecificMonthHover = () => {
+            analytics.captureEvent(APP_ANALYTICS_EVENTS.LIST_VIEW_MDP_OPTIONS, {
+                'name': 'specificMonthHover'
+              });
+        setMonthsPaneStatus(true);
+    }
+
     useEffect(() => {
         if(!isPaneActive) {
             setMonthsPaneStatus(false)
@@ -114,7 +150,7 @@ function HpMonthBox(props) {
                 <div onClick={() => onNavigate('next', 0)} className={`hpmp__pane__item ${currentIndex === 11 || !monthIndexes.includes(currentIndex + 1) ? 'not-active': ''}`}>Next Month</div>
                 <p className="onlyMobile bordertop"></p>
                 {monthsAvailable.map(m => <div className="hpmp__pane__item onlyMobile" onClick={() => onNavigate('direct', m.index)}>{m.name}</div>)}
-                <div onClick={() => setMonthsPaneStatus(v => !v)} onMouseEnter={() => setMonthsPaneStatus(true)} className="hpmp__pane__item desktopOnly">
+                <div onClick={() => onSpecificMonthClicked()} onMouseEnter={() => onSpecificMonthHover()} className="hpmp__pane__item desktopOnly">
                     <p>Specific Month</p>
                     <img className="hpmp__pane__item__img" src="/icons/pln-right-arrow.svg" />
                 </div>

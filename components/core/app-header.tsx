@@ -1,7 +1,13 @@
 import { trackGoal } from "fathom-client";
+import useAppAnalytics from "../../hooks/use-app-analytics";
+import {APP_ANALYTICS_EVENTS} from "../../helpers/constants"
 
 function AppHeader() {
+    const analytics = useAppAnalytics();
     const onHostEventClicked = () => {
+        analytics.captureEvent(APP_ANALYTICS_EVENTS.SUBMIT_NEW_EVENT, {
+            'name': 'submitEventButton'
+          });
         trackGoal('CXB9QJA8', 0)
     }
     return <>

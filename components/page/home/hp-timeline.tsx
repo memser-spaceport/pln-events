@@ -3,20 +3,25 @@ import PlEventCard from "../../ui/pl-event-card";
 import { trackGoal } from "fathom-client";
 import { HpContext } from "./hp-helper";
 import HpMonthBox from "./hp-month-box";
+import useAppAnalytics from "../../../hooks/use-app-analytics";
+import {APP_ANALYTICS_EVENTS} from "../../../helpers/constants"
 
 function HpTimeline(props) {
     const monthWiseEvents = props.monthWiseEvents ?? [];
     const filterdListCount = props.filterdListCount ?? 0
     const totalEventsCount = monthWiseEvents.reduce((count, m) => { return count + m.events.length }, 0)
     const { state } = useContext(HpContext)
-    const { filters } = state
+    const { filters } = state;
+    const analytics = useAppAnalytics();
 
 
     const onLinkItemClicked = (item) => {
         if (item === 'event') {
             trackGoal('DULOJY8I', 0)
+            analytics.captureEvent(APP_ANALYTICS_EVENTS.EVENT_CARD_TITLE_LINK_CLICKED);
         } else if (item === 'location') {
             trackGoal('UKSYEJLH', 0)
+            analytics.captureEvent(APP_ANALYTICS_EVENTS.EVENT_CARD_LOCATION_LINK_CLICKED);
         }
     }
 
