@@ -2,10 +2,11 @@ import { client } from "../.tina/__generated__/client";
 import AppHeader from '../components/core/app-header'
 import { getFilteredEvents, getFormattedEvents, getInitialState, getMonthWiseEvents, HpContext, months, reducerFunction } from "../components/page/home/hp-helper";
 import HpTimeline from "../components/page/home/hp-timeline";
-import { useReducer } from 'react'
+import { useReducer, useState } from 'react';
 import HpFilters from "../components/page/home/hp-filters";
 import HpFilterHead from "../components/page/home/hp-filter-head";
 import HpCalendar from "../components/page/home/hp-calendar";
+import axios from 'axios';
 
 export default function IndexPage(props) {
   // const { data } = useTina({ query: props.query, variables: props.variables, data: props.data, });
@@ -16,6 +17,9 @@ export default function IndexPage(props) {
   const filterdList = getFilteredEvents([...orderedEventsList], { ...state.filters })
   const monthWiseEvents = getMonthWiseEvents([...filterdList])
   const filterdListCount = filterdList.length;
+
+  const [showBanner, setBannerState] = useState(true);
+
   const finalEvents = [...filterdList].map(f => {
     const endDateValue = new Date(f.endDateValue);
     endDateValue.setSeconds(endDateValue.getSeconds() + 10);
@@ -49,7 +53,7 @@ export default function IndexPage(props) {
 
 
   return <>
-    <AppHeader />
+    <AppHeader bannerContent={props?.bannerJSON} setBannerState={setBannerState} showBanner={showBanner}/>
     <HpContext.Provider value={{ state: { ...state }, dispatch }}>
       <div className="hp">
         {/*** EVENTS FILTERING ***/}
@@ -59,7 +63,7 @@ export default function IndexPage(props) {
 
         {/*** EVENTS TIMELINE ***/}
         <div id="main-content" onScroll={onContentScroll} className="hp__maincontent">
-          <HpFilterHead />
+          <HpFilterHead showBanner={showBanner}/>
 
           {/*** SCROLL UP TO VIEW PAST ***/}
           {(state.flags.isScrolledUp && state.flags.eventMenu === 'timeline') && <div className="hmt__scollup">
@@ -99,12 +103,12 @@ export default function IndexPage(props) {
 
       .hp__sidebar {display: none;}
       .hp__maincontent {width: 100%; padding-top:0px; overflow-y: ${state?.flags?.eventMenu === 'calendar' ? 'hidden' : 'scroll'}; background: #f2f7fb; height: 100%;}
-      .hp__maincontent__tools {background: white; z-index:5; position: sticky; top: 58px; width: 100%; height: 48px; margin-top: 60px; box-shadow: 0px 1px 4px rgba(226, 232, 240, 0.25); padding: 0 24px; display: flex; align-items: center; justify-content: space-between;}
+      .hp__maincontent__tools {background: white; z-index:5; position: sticky; top:${showBanner ? '220px' : '105px'};width: 100%; height: 48px; margin-top: 60px; box-shadow: 0px 1px 4px rgba(226, 232, 240, 0.25); padding: 0 24px; display: flex; align-items: center; justify-content: space-between;}
       .hp__maincontent__tools__filter {display: flex; align-items: center; justify-content: center; border: 1px solid #CBD5E1; border-radius: 4px; padding: 5px 12px; cursor: pointer; z-index: 3;}
       .hp__maincontent__tools__filter__icon {width:16px; height: 16px; margin-right: 8px;}
       .hp__maincontent__tools__filter__text {font-size: 13px; font-weight: 400;}
       .hp__maincontent__tools__clear {color: #156FF7; font-size: 13px; cursor: pointer;}
-      .hmt__scollup {width: 100%; display: flex; position: sticky; z-index: 5; top:105px; justify-content: center; align-items: center; padding: 13px 0; background: linear-gradient(180deg, #F1F5F9 0%, rgba(241, 245, 249, 0.92) 39.05%); color: #0F172A; font-size: 13px;}
+      .hmt__scollup {width: 100%; display: flex; position: sticky; z-index: 5; top:${showBanner ? '268px' : '105px'};justify-content: center; align-items: center; padding: 13px 0; background: linear-gradient(180deg, #F1F5F9 0%, rgba(241, 245, 249, 0.92) 39.05%); color: #0F172A; font-size: 13px;}
       .hmt__scollup__img {width: 8px; margin-right: 8px; height: 8px;}
       .hmt__scollup__text {font-size: 12px;}
       
@@ -114,11 +118,14 @@ export default function IndexPage(props) {
       .mfilter__bottom {height: 70px; background: red;}
       @media(min-width: 1200px) {
         .mfilter {display: none;}
-        .hmt__scollup {top: 0;}
+        .hmt__scollup {top: ${showBanner ? '43px' : '0'};}
         .hp__sidebar {width: 300px; border: 1px solid #CBD5E1; display: block; padding-top: 60px; box-sizing: content-box;}
         .hp__maincontent {width: calc(100% - 300px); padding-top: 60px; background: #f2f7fb; height: 100%;}
         .hp__maincontent__tools {display: none;}
       }
+      @media(max-width: 1200px) and (min-width: 639px) {
+        .hmt__scollup{top:${showBanner ? '150px' : '109px'};}
+    }
       `
       }
     </style>
@@ -128,11 +135,27 @@ export default function IndexPage(props) {
 export const getStaticProps = async () => {
 
   const eventsListData = await client.queries.eventConnection({ last: -1 });
+
+  let bannerJSON = null;
+  try {
+    const messageContent = await axios.get('https://sa9oeyy8t9.execute-api.us-west-1.amazonaws.com/dev', {
+      headers: {
+        'Authorization': 'e4c513bf57d49da23239262e053b24d54f7d71a1'
+      }
+    });
+    if (messageContent.status === 200 && messageContent.data) {
+      bannerJSON = messageContent.data;
+    }
+  } catch (err) {
+    bannerJSON = null;
+  }
+
   return {
     props: {
       data: eventsListData.data,
       query: eventsListData.query,
-      variables: eventsListData.variables
+      variables: eventsListData.variables,
+      bannerJSON
     },
   };
 };
