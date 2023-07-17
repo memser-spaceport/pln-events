@@ -55,3 +55,12 @@ main {
 
 .fc-daygrid-day-number {position: initial !important; padding: 0 !important;}
 .fc-daygrid-day-number {width: 100%; padding: 3px 16px; height: 100%; display: flex; justify-content: space-between;}
+
+
+.carousel .control-dots{
+    position: relative !important;
+  }
+  
+  .carousel .control-dots .dot{
+    margin: 0px 4px !important;
+  }
