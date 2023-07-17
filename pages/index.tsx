@@ -138,7 +138,7 @@ export const getStaticProps = async () => {
 
   let bannerJSON = null;
   try {
-    const messageContent = await axios.get('https://sa9oeyy8t9.execute-api.us-west-1.amazonaws.com/dev', {
+    const messageContent = await axios.get('https://sa9oeyy8t9.execute-api.us-west-1.amazonaws.com/dev?source=events', {
       headers: {
         'Authorization': 'e4c513bf57d49da23239262e053b24d54f7d71a1'
       }
