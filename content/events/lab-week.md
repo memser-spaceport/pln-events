@@ -10,5 +10,4 @@ tag: PLN Event
 eventType: "Conference"
 eventHosts:
   - Protocol Labs|protocol-labs-network-small-logo.svg
-  - Spaceport|Spaceport_logo1.png
 ---
