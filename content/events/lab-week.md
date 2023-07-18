@@ -8,6 +8,7 @@ endDate: 11/17/2023
 dateTBD: false
 tag: PLN Event
 eventType: "Conference"
+isFeaturedEvent: true
 eventHosts:
   - Protocol Labs|protocol-labs-network-small-logo.svg
 ---
