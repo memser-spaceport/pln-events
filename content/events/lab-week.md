@@ -1,7 +1,7 @@
 ---
 eventName: "LabWeek23"
 eventDescription: "LabWeek23 is Protocol Labs' annual decentralized global conference."
-eventType: "Conference"
+eventType: 'Conference'
 website: 
 location: "Istanbul, Turkey"
 startDate: 11/13/2023
