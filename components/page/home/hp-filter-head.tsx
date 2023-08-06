@@ -46,7 +46,7 @@ function HpFilterHead(props) {
             {
                 `
                 .hp__maincontent {width: 100%; display: block; padding-top:0px; overflow-y: scroll; background: #f2f7fb; height: 100%;}
-                .hp__maincontent__tools {background: white; z-index:5; position: sticky; top: 58px; width: 100%; height: 48px; margin-top: 60px; box-shadow: 0px 1px 4px rgba(226, 232, 240, 0.25); padding: 0 24px; display: flex; align-items: center; justify-content: space-between;}
+                .hp__maincontent__tools {background: white; z-index:5; position: sticky; top:${props.showBanner ? '220px' : '105px'}; width: 100%; height: 48px; margin-top: 60px; box-shadow: 0px 1px 4px rgba(226, 232, 240, 0.25); padding: 0 24px; display: flex; align-items: center; justify-content: space-between;}
                 .hp__maincontent__tools__filter {display: flex; align-items: center; justify-content: center; border: 1px solid #CBD5E1; border-radius: 4px; padding: 5px 12px; cursor: pointer; z-index: 3;}
                 .hp__maincontent__tools__filter__icon {width:16px; height: 16px; margin-right: 8px;}
                 .hp__maincontent__tools__filter__text {font-size: 13px; font-weight: 400;}
@@ -61,6 +61,10 @@ function HpFilterHead(props) {
                 @media(min-width: 1200px) {
                     .hp__maincontent__tools {display: none;}
                     .hpf__menu {padding: 12px 0px;}
+                }
+
+                @media(max-width: 1200px) and (min-width: 639px) {
+                    .hp__maincontent__tools{top:${props.showBanner ? '103px' : '61px'};}
                 }
                 
                 `
