@@ -18,7 +18,7 @@ export default function IndexPage(props) {
   const monthWiseEvents = getMonthWiseEvents([...filterdList])
   const filterdListCount = filterdList.length;
 
-  const [showBanner, setBannerState] = useState(true);
+  const [showBanner, setBannerState] = useState(props?.bannerJSON && props?.bannerJSON?.message && props?.bannerJSON.message.length > 0);
 
   const finalEvents = [...filterdList].map(f => {
     const endDateValue = new Date(f.endDateValue);
