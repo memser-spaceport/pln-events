@@ -138,7 +138,7 @@ export const getStaticProps = async () => {
 
   let bannerJSON = null;
   try {
-    const messageContent = await axios.get('https://sa9oeyy8t9.execute-api.us-west-1.amazonaws.com/dev?source=events', {
+    const messageContent = await axios.get(process.env.NEXT_PUBLIC_ANNOUNCEMENT_API_URL, {
       headers: {
         'Authorization': process.env.NEXT_PUBLIC_ANNOUNCEMENT_API_TOKEN
       }
@@ -147,6 +147,8 @@ export const getStaticProps = async () => {
       bannerJSON = messageContent.data;
     }
   } catch (err) {
+    console.log(err);
+    
     bannerJSON = null;
   }
 
