@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Router from 'next/router';
 import * as Fathom from 'fathom-client';
 import Head from 'next/head'
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const isBrowser = typeof window !== 'undefined';
 
