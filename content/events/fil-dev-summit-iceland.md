@@ -12,4 +12,6 @@ endDate: "09/27/2023"
 tag: "PLN Event"
 dateTBD: false
 isFeaturedEvent: true
+eventHosts:
+  - Miwa|miwa.png
 ---
