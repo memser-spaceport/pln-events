@@ -117,7 +117,7 @@ function HpCalendar(props) {
             {
                 `
 
-            .hpc {width: 100%; overflow-y: hidden;}
+            .hpc {width: 100%; overflow-y: hidden;position:relative;${props?.showBanner?'padding-top:42px !important;':'padding-top:0px !important;'}}
             .hpc__head {display: flex; height: 70px; position: relative; padding-top: 8px; border-bottom: 1px solid #CBD5E1; width: 100%; align-items: flex-start; justify-content: center;}
             .hpc__head__months { display: flex; align-items: center; justify-content: space-between; padding:4px 8px; width: 319px; border: 1px solid #CBD5E1; background: white; border-radius: 6px;}
             .hpc__head__months__text {flex: 1; font-weight: 500; display: flex; font-size: 14px; justify-content: center;}
@@ -128,7 +128,7 @@ function HpCalendar(props) {
             .hpc__head__info__item__img {width: 16px; height: 16px;}
             .hpc__head__info__item__text {font-size: 12px;}
 
-            .hpc__calendar {height: calc(100svh - 156px); margin-top: -25px;}
+            .hpc__calendar {height: calc(100svh - ${props?.showBanner?'195px':'156px'}); margin-top: -25px;}
 
 
             .social {color: #817cd2;}
@@ -140,6 +140,10 @@ function HpCalendar(props) {
                 .hpc__head { padding: 8px 0; align-items: center; height: fit-content;}
                 .hpc__head__info {top: 18px; right:0;}
                 .eventCard__item {width: 360px; position: relative;}
+            }
+            @media(max-width: 638px){
+                .hpc {padding-top:${props?.showBanner?'163px':'0px'} !important}
+                .hpc__calendar {height: calc(100svh - ${props?.showBanner?'332px':'156px'}); margin-top: -25px;}
             }
             `
             }
