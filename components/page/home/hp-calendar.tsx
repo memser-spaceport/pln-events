@@ -76,7 +76,7 @@ function HpCalendar(props) {
             window.removeEventListener("resize", changeCalendarHeight)
         }
 
-    }, [])
+    }, [props.showBanner])
 
 
     return <>
@@ -136,7 +136,7 @@ function HpCalendar(props) {
             .conference {color: #63a93e;}
             .disabled {cursor: default;}
             @media(min-width: 1200px) {
-                .hpc__calendar { height: calc(100svh - 86px);}
+                .hpc__calendar { height: calc(100svh - ${props.showBanner ? '133px': '86px'}); }
                 .hpc__head { padding: 8px 0; align-items: center; height: fit-content;}
                 .hpc__head__info {top: 18px; right:0;}
                 .eventCard__item {width: 360px; position: relative;}
