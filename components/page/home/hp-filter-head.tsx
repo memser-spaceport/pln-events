@@ -64,7 +64,11 @@ function HpFilterHead(props) {
                 }
 
                 @media(max-width: 1200px) and (min-width: 639px) {
-                    .hp__maincontent__tools{top:${props.showBanner ? '103px' : '61px'};}
+                    .hp__maincontent__tools{top:${props.showBanner ? '103px' : '60px'};}
+                }
+
+                @media(max-width: 638px) {
+                    .hp__maincontent__tools{top:${props.showBanner ? '220px' : '60px'}}
                 }
                 
                 `
