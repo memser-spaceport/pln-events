@@ -73,7 +73,7 @@ export default function AnnouncementBanner({ bannerJSON, setBannerState, showBan
                         )
                     }
                     <div className="w-c">
-                        <Carousel selectedItem={selectedItem} autoPlay={true} showArrows={false} infiniteLoop={true} showIndicators={isMobile}
+                        <Carousel selectedItem={selectedItem} autoPlay={true} showArrows={false} infiniteLoop={true} showIndicators={isMobile && bannerJSON?.message?.length > 1}
                             showStatus={false} showThumbs={false} swipeable={false} interval={4000}
                             onChange={updateCurrentSlide}
                         >
@@ -267,6 +267,13 @@ export default function AnnouncementBanner({ bannerJSON, setBannerState, showBan
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: normal
+            }
+
+            @media (max-width: 638px) {
+                .w-c{
+                    padding-top:${bannerJSON?.message?.length === 1 ? '35px !important':''};
+                }
+            
             }
             `
             }
