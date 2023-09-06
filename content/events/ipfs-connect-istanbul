@@ -1,0 +1,38 @@
+eventName: "IPFS Connect Istanbul" 
+
+eventDescription: "Join the IPFS Community for a full day of workshops, lightning talks, and demos showcasing technology, tools, and innovative projects in the IPFS ecosystem.
+
+Are you participating in ETHGlobal Hackathon? Prep for the event by learning about all the tools and SDKs in the IPFS + Filecoin universe that builders can use to add decentralized files and data to their dapps." 
+
+eventTopic: 
+  - "Workshop"
+  - "IPFS"
+  - "Web3"
+
+eventType: 
+
+location: "Istanbul, Turkey" 
+
+venueName: "Swissotel" #the event venue name (will show up on the event card) or just leave it blank
+
+venueAddress: "Vişnezade, Acısu Sokaği No:19, 34357 Beşiktaş/İstanbul, Türkiye" 
+
+venueMapsLink: "https://goo.gl/maps/JxHrq18VFQoLJkp67" 
+
+website: "https://istanbul2023.ipfsconnect.org/" 
+
+startDate: "11/16/2023"
+
+endDate: "11/16/2023" 
+
+tag: "PLN Event"
+
+#Preferred means of contacts - this is a placeholder for email(for eg:  - email|mailto:<email_id>) and other social handles like Twitter, LinkedIn, Discord, etc. (for eg.   - 'twitter|https://twitter.com/IPFS/status/1629199396700098560?s=20')
+
+preferredContacts:
+  - '<contact_means>|<contact_url>'
+
+#Event host names and their respective logos(preferred size is 48px width, 48px height)-place the logo file on the path 'public/uploads' for eg.   - IPFS|ipfs-logo.png
+
+eventHosts:
+  - <Fission>|<host_logo>
