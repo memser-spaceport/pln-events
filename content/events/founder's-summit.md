@@ -14,5 +14,5 @@ dateTBD: false
 tag: PLN Event
 isFeaturedEvent: true
 eventHosts:
-  - Spaceport|image.png
+  - Spaceport|spaceport.png
 ---
