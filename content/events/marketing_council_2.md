@@ -39,5 +39,5 @@ preferredContacts:
 #Event host names and their respective logos-place the logo file on the path 'public/uploads' for eg.   - IPFS|ipfs-logo.png
 
 eventHosts:
-  - Spaceport|image.png
+  - Spaceport|spaceport.png
 ---

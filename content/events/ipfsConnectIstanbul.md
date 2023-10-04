@@ -12,7 +12,7 @@ endDate: "11/16/2023"
 tag: "PLN Event"
 dateTBD: false
 preferredContacts:
-  - email|mailto:boris@fission.codes
+  - 'twitter|https://twitter.com/FISSIONcodes'
 eventHosts:
   - Fission|fission.webp
 ---
