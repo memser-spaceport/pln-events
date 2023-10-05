@@ -13,7 +13,7 @@ venueMapsLink: "https://maps.app.goo.gl/RV85fP4qJnBtvUXv5"
 website: "https://lu.ma/zama-meetup-labweek23"
 startDate: "10/25/2023"
 endDate: "10/25/2023"
-tag: "Side event"
+tag: "Industry Event"
 dateTBD: false
 preferredContacts:
   - 'twitter|https://twitter.com/zama_fhe'
