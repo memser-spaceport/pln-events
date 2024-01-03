@@ -5,6 +5,9 @@ export const getUniqueValuesFromEvents = (key, allEvents) => {
   const items = [];
   switch (key) {
     case 'startYear':
+      items.push('2024');
+      items.push('2023');
+      break;
     case 'location':
     case 'eventType':
       allEvents.forEach(event => {
@@ -214,7 +217,7 @@ export const getNoFiltersApplied = (filters) => {
     count++
   }
 
-  if (filters.dateRange.start.toLocaleDateString() !== new Date(`01/01/${new Date().getFullYear()}`).toLocaleDateString() || filters.dateRange.end.toLocaleDateString() !== new Date(`12/31/${new Date().getFullYear()}`).toLocaleDateString()) {
+  if (filters.dateRange.start.toLocaleDateString() !== new Date(`01/01/${filters.year}`).toLocaleDateString() || filters.dateRange.end.toLocaleDateString() !== new Date(`12/31/${filters.year}`).toLocaleDateString()) {
     count++
   }
 
