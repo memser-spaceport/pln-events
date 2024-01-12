@@ -1,0 +1,16 @@
+---
+eventName: "Money 20/20 Europe"
+eventDescription: "At Money20/20 Europe, we know the power of ideas, inspiration, and impactful conversations. We've witnessed speakers transform the industry from our stages and we want YOU to join them. The search has officially begun and we're on a mission to find the brightest, most diverse minds from across the money globe. Could you be one of them?"
+eventTopic: 
+eventType: "Conference"
+location: "Amsterdam, Netherlands"
+venueName: ""
+venueAddress: ""
+venueMapsLink: ""
+website: "https://europe.money2020.com/?_ga=2.205533139.1368167908.1698678359-1900235851.1695822530"
+startDate: "06/04/2024"
+endDate: "06/06/2024"
+tag: "Industry Event"
+dateTBD: false
+eventHosts:
+---
