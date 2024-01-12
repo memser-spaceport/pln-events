@@ -1,0 +1,16 @@
+---
+eventName: "NFT Paris"
+eventDescription: 
+eventTopic: 
+eventType: "Conference"
+location: "Paris, France"
+venueName: "Grand Palais Éphémère"
+venueAddress: "2 Pl. Joffre, 75007"
+venueMapsLink: "https://www.google.com/maps/place/Grand+Palais+%C3%89ph%C3%A9m%C3%A8re/@48.85291,2.3027546,15z/data=!4m6!3m5!1s0x47e671304bd75075:0x8726404b7d07fcb6!8m2!3d48.85291!4d2.3027546!16s%2Fg%2F11n60sz5kz?entry=ttu"
+website: "https://www.nftparis.xyz/"
+startDate: "02/23/2024"
+endDate: "02/24/2024"
+tag: "Industry Event"
+dateTBD: false
+eventHosts:
+---
