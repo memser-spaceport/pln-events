@@ -261,7 +261,7 @@ export const getFilteredEvents = (allEvents, filters) => {
     }
 
 
-    if (filters.isPlnEventOnly && (item?.tag?.toLowerCase().trim() !== 'pln event' || item?.tag?.toLowerCase().trim() !== 'pl event')) {
+    if (filters.isPlnEventOnly && item?.tag?.toLowerCase().trim() !== 'pln event' && item?.tag?.toLowerCase().trim() !== 'pl event') {
       return false
     }
 
