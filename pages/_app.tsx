@@ -30,9 +30,9 @@ const App = ({ Component, pageProps }) => {
     <Component {...pageProps} />
     <Head>
       <meta charSet="UTF-8" />
-      <title>PL Network Events</title>
+      <title>PL network events</title>
       <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1" />
-      <meta name="description" content="A listing of all PL Network events"></meta>
+      <meta name="description" content="A listing of all PL network events"></meta>
     </Head>
     <style jsx>
       {

@@ -12,10 +12,10 @@ blocks:
     background:
       fillStyles: from-accent3 to-accent4 bg-gradient-to-tl opacity-100
     label: ''
-    headline: 'PL Network Events '
+    headline: 'PL network events '
     subhead: '[ Beta Version ]'
     body: |
-      See below a list of events in the PL Network.
+      See below a list of events in the PL network.
     buttons:
       - label: Submit Event
         link: 'https://github.com/memser-spaceport/pln-events#submitting-events'
@@ -36,8 +36,8 @@ blocks:
     _template: eventTimeline
 backgroundColor: white
 meta:
-  title: PL Network Events
-  description: A listing of all PL Network events
+  title: PL network events
+  description: A listing of all PL network events
 ---
 
 
