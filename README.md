@@ -1,5 +1,5 @@
-# PL Network Events
-This website is a listing of events happening within the Protocol Labs Network.
+# PL network events
+This website is a listing of events happening within the Protocol Labs.
 
 ## Submitting Events
 We encourage you to submit your events to this site via a pull request on github, to do so...

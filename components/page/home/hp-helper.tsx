@@ -101,7 +101,8 @@ export const getFormattedEvents = (events) => {
     const calenderLogo = '/icons/calender-icon.svg'
     let tagLogo = ''
 
-    if (event?.node?.tag?.toLowerCase().trim() === 'pln event') {
+    if (event?.node?.tag?.toLowerCase().trim() === 'pln event'  || event?.node?.tag?.toLowerCase().trim() === 'pl event') {
+      event.node.tag = "PL Event"
       tagLogo = '/icons/pln-event-icon.svg'
     } else if (event?.node?.tag?.toLowerCase().trim() === 'industry event') {
       tagLogo = '/icons/pln-industry-icon.svg'
@@ -263,7 +264,7 @@ export const getFilteredEvents = (allEvents, filters) => {
     }
 
 
-    if (filters.isPlnEventOnly && item?.tag?.toLowerCase().trim() !== 'pln event') {
+    if (filters.isPlnEventOnly && item?.tag?.toLowerCase().trim() !== 'pln event' && item?.tag?.toLowerCase().trim() !== 'pl event') {
       return false
     }
 
