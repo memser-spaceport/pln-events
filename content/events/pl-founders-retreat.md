@@ -17,5 +17,5 @@ preferredContacts:
 #Event host names and their respective logos(preferred size is 48px width, 48px height)-place the logo file on the path 'public/uploads' for eg.   - IPFS|ipfs-logo.png
 
 eventHosts:
-  - <Protocol Labs>|<host_logo>
+  - <Protocol Labs>|<protocol-labs-network-small-logo.svg>
 ---
