@@ -120,7 +120,7 @@ function HpFilters(props) {
                 <p className="hpf__head__counttext">{`Showing ${filteredCount} event(s)`}</p>
             </div>
             <div className="hpf__pln">
-                <p className="hpf__pln__title">Show PLN Events only</p>
+                <p className="hpf__pln__title">Show PL Events only</p>
                 <PlToggle itemId="isPlnEventOnly" activeItem={filters.isPlnEventOnly} callback={onFilterChange} />
             </div>
             {filterValues.map(filter => <div className="hpf__filters">
