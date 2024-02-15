@@ -13,7 +13,7 @@ startDate: "02/29/2024"
 endDate: "02/29/2024" 
 tag: "PLN Event" 
 dateTBD: false
-preferredContacts: "Slack|#libp2p-community"
+preferredContacts: "email|contact@libp2p.io"
 #Event host names and their respective logos(preferred size is 48px width, 48px height)-place the logo file on the path 'public/uploads' for eg.   - IPFS|ipfs-logo.png
 
 eventHosts:
