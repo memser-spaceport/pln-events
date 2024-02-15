@@ -1,7 +1,7 @@
 ventName: "Decentralize AI Day"
 eventDescription: "DeAI Day at ETH Denver 2024." 
 eventTopic: 
-eventType: "Summit" 
+eventType: "Conference" 
 location: "Denver, United States"
 venueName: 
 venueAddress: "Register to See Address"
