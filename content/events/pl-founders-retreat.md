@@ -3,7 +3,7 @@ eventName: "PL Founders Retreat"
 eventDescription: "The PL Founders Retreat is a chance for PL network founders and leaders to recharge, build connections, and learn from each other in an informal, relaxed setting. Please note that this retreat is by invitation only." 
 
 eventTopic: 
-eventType: "Retreat" 
+eventType: "Conference" 
 location: "Colorado, United States"
 venueName: 
 venueAddress: 
