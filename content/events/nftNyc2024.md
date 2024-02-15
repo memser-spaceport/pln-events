@@ -1,6 +1,6 @@
 ---
 eventName: "NFT.NYC"
-eventDescription: "NFTNYC is a resource like no other. Collin Stevens. NFT.NYC is a fantastic event showcasing amazing artists and speakers in the space."
+eventDescription: "NFTNYC is a resource like no other. NFT.NYC is a fantastic event showcasing amazing artists and speakers in the space."
 eventTopic: 
 eventType: "Conference"
 location: "New York City, United States"
