@@ -1,11 +1,20 @@
 ---
-eventName: "FIL Dev Summit - ETHDenver"
-eventDescription: "FIL Dev Summit is a gathering of developers, builders, and engaged community members who want to contribute to the core protocol and network evolution of Filecoin (think IPFS Thing, but bigger!). This summit is more than just a meetup—it's a place for meaningful and impactful conversations that help push Filecoin forward."
+eventName: "FILDev Summit"
+eventDescription: "We are bringing together engineering teams, SPs, and clients to workshop protocol & tooling improvements to accelerate Filecoin utility and usage."
+eventTopic:
+  - "Workshop"
 website: "https://fildev.io/FDS-3"
 eventType: "Conference"
 location: 'Denver, United States'
+venueName: "The Slate Denver" 
+venueAddress: "1250 Welton St, 80204" 
+venueMapsLink: "https://maps.app.goo.gl/ERMAiT3QXLKC4z6K8" 
 startDate: "02/29/2024"
 endDate: "02/29/2024"
+preferredContacts:
+  - email|mailto:hello@fildev.io
 tag: "PLN Event"
 dateTBD: false
+eventHosts:
+  - Filecoin Dev Summit|filecoin-dev-summit-2024.png
 ---
