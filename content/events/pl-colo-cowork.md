@@ -15,7 +15,7 @@ venueAddress:
 
 venueMapsLink: 
 
-website: "https://docs.google.com/forms/d/e/1FAIpQLScgLrRm0MdbogxVFBZwxEJzHPpt_wHXYAE9ghQiQ3edEE8oKQ/viewform" 
+website: "https://docs.google.com/presentation/d/e/2PACX-1vQyiysbIOey7q00zfTVjWECLBBdsKIrdTxDSF8sISRlLocX4ImWtVxgGXhZkeRbB9lJmWutrB4wHyTU/pub?start=false&loop=false&delayms=3000&slide=id.g1f114ff82d3_0_45" 
 
 startDate: "03/04/2024"
 
@@ -26,7 +26,7 @@ tag: "PLN Event"
 dateTBD: false
 
 preferredContacts:
-  - 'form|https://docs.google.com/forms/d/e/1FAIpQLScgLrRm0MdbogxVFBZwxEJzHPpt_wHXYAE9ghQiQ3edEE8oKQ/viewform'
+  - 'email|brooke@cosmik.agency'
 
 #Event host names and their respective logos(preferred size is 48px width, 48px height)-place the logo file on the path 'public/uploads' for eg.   - IPFS|ipfs-logo.png
 
