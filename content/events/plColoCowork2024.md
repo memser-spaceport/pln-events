@@ -1,6 +1,6 @@
 ---
 eventName: "PL Colo(rado) Cowork"
-eventDescription: "A hub for connecting with fellow builders who, like you, are passionate about bringing ideas to life. PL is getting ready to unveil a pop-up co-working space, paired with discounted hotel rooms that you can self-book. For those keen on joining, explore the array of accommodation options available and complete the form linked below."
+eventDescription: "A hub for connecting with fellow builders who, like you, are passionate about bringing ideas to life. PL is getting ready to unveil a pop-up co-working space, paired with discounted hotel rooms that you can self-book. For those keen on joining, explore the array of accommodation options available and complete the form linked on the website."
 eventTopic:
   - "Co-working"
 eventType: "Conference"
