@@ -14,4 +14,5 @@ endDate: "03/03/2024"
 tag: "PLN Event"
 dateTBD: false
 eventHosts:
+  - ETH Denver|ethDenver2024.jpg
 ---
