@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react"
 import PlEventCard from "../../ui/pl-event-card";
+import useEventsAnalytics from "../../../analytics/events.analytics";
 
 function HpCalendarPopup(props) {
     const [selectedEvent, setSelectedEvent] = useState({});
     const [isEventCardActive, setEventCardStatus] = useState(false);
+    const { onCardLinkClicked } = useEventsAnalytics()
 
     const onCloseCard = () => {
         setEventCardStatus(false);
         setSelectedEvent({});
+    }
+
+    const onLinkItemClicked = (item, url) => {
+        onCardLinkClicked(item, url, 'calender')
     }
 
     useEffect(() => {
@@ -24,7 +30,7 @@ function HpCalendarPopup(props) {
     return <>
         {isEventCardActive && <div className="eventCard">
             <div className="eventCard__item">
-                <PlEventCard {...selectedEvent} />
+                <PlEventCard onLinkItemClicked={onLinkItemClicked} {...selectedEvent} />
                 <p onClick={onCloseCard} className="eventCard__item__close">
                     <img src="/icons/pln-close-white.svg" className="eventCard__item__close__img" />
                 </p>
