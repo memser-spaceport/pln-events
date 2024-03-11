@@ -2,10 +2,10 @@ import PlTags from "../../ui/pl-tags";
 import PlToggle from "../../ui/pl-toggle";
 import { getNoFiltersApplied, getUniqueValuesFromEvents, HpContext } from "./hp-helper";
 import { useContext } from 'react'
-import { trackGoal } from "fathom-client";
 import PlMultiSelect from "../../ui/pl-multi-select";
 import PlSingleSelect from "../../ui/pl-single-select";
 import PlDateRange from '../../ui/pl-date-range';
+import useFilterAnalytics from "../../../analytics/filter.analytics";
 
 function HpFilters(props) {
     const events = props.events ?? [];
@@ -13,6 +13,7 @@ function HpFilters(props) {
     const { state, dispatch } = useContext(HpContext);
     const { filters, flags } = state
     const { eventMenu } = flags;
+    const {  onFiltersApplied, onFilterMenuClicked, onClearFiltersClicked} = useFilterAnalytics()
     const menus = [
         { name: 'timeline', img: '/icons/pln-timeline.svg', title: "Timeline View", imgActive: '/icons/pln-timeline-active.svg' },
         { name: 'calendar', img: '/icons/pln-calendar.svg', title: "Calendar View", imgActive: '/icons/pln-calendar-active.svg' },
@@ -30,30 +31,12 @@ function HpFilters(props) {
     const filterCount = getNoFiltersApplied(filters);
 
     const onMenuSelection = (value) => {
-        if (value === 'timeline') {
-            trackGoal('E98R34BE', 0)
-        } else {
-            trackGoal('BBAJPYJQ', 0)
-        }
+        onFilterMenuClicked(value)
         dispatch({ type: 'setEventMenu', value: value })
     }
 
     const onFilterChange = (type, key, value) => {
-        if (key === 'year') {
-            trackGoal('EES2EVT9', 0)
-        } else if (key === 'locations') {
-            trackGoal('VCSUHFMW', 0)
-        } else if (key === 'isPlnEventOnly') {
-            trackGoal('JGCGLRN8', 0)
-        } else if (key === 'topics') {
-            trackGoal('YEM46DUS', 0)
-        } else if (key === 'eventType') {
-            trackGoal('A4CRP5C0', 0)
-        } else if (key === 'eventHosts') {
-            trackGoal('FVQKH5ME', 0)
-        } else if (type === 'date-range') {
-            trackGoal('KP7PRKOU', 0)
-        }
+        onFiltersApplied({...filters}, type, key, value)
         if (type === 'multi-select') {
             if (filters[key].includes(value)) {
                 dispatch({ type: 'removeMultiItemFromFilter', key, value })
@@ -73,10 +56,7 @@ function HpFilters(props) {
     }
 
     const onMultiSelectClicked = (type) => {
-
-        console.log(type)
         if (type === 'Topics') {
-            console.log(type, 'inside')
             setTimeout(() => {
                 let filterContainer;
                 if(window.innerWidth < 1200) {
@@ -95,7 +75,7 @@ function HpFilters(props) {
     }
 
     const onClearFilters = () => {
-        trackGoal('H1OKCTIN', 0)
+        onClearFiltersClicked()
         dispatch({ type: 'clearAllFilters' })
     }
 
@@ -103,7 +83,7 @@ function HpFilters(props) {
         dispatch({ type: 'toggleMobileFilter' });
     }
 
-   
+
     return <>
         <div id="filtercn" className="hpf">
             <div className="hpf__menu">
@@ -130,18 +110,18 @@ function HpFilters(props) {
                 {filter.type === 'multi-select' && <PlMultiSelect onMultiSelectClicked={onMultiSelectClicked} onClearMultiSelect={onClearMultiSelect} callback={onFilterChange} {...filter} />}
                 {filter.type === 'tags' && <PlTags callback={onFilterChange} {...filter} />}
             </div>)}
-           
+
         </div>
-     
+
         <style jsx>
             {
                 `
-                
+
              .hpf {width: 100%; height: 100svh; }
-           
+
              .hpf__year {padding: 16px 24px 0 24px;}
              .hpf__year__title {font-size: 13px;  margin-bottom: 8px;}
-             .hpf__head {padding: 16px 24px; border-bottom: 1px solid #CBD5E1; display: flex; position: relative; justify-content: space-between; align-items: center;} 
+             .hpf__head {padding: 16px 24px; border-bottom: 1px solid #CBD5E1; display: flex; position: relative; justify-content: space-between; align-items: center;}
              .hpf__head__count {background: #156FF7; color: white; position: absolute; top:16px; left: 80px; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px;}
              .hpf__head__title {font-size: 16px;}
              .hpf__head__clear {display: none;}

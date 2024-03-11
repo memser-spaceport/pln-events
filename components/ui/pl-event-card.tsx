@@ -26,9 +26,9 @@ function PlEventCard(props) {
     const locationLogo = props.locationLogo ?? ''
     const externalLinkIcon = props.externalLinkIcon;
 
-    const onLinkClicked = (item) => {
+    const onLinkClicked = (item, url) => {
          if(onLinkItemClicked) {
-            onLinkItemClicked(item)
+            onLinkItemClicked(item, url)
          }
     }
 
@@ -46,7 +46,7 @@ function PlEventCard(props) {
                {isFeaturedEvent ?  <div className="pec__info__feat">FEATURED</div> : null}
 
             </div>
-            {website ? <p className="pec__eventname"><a onClick={() => onLinkClicked('event')} className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p> : <p className="pec__eventname">{eventName}</p>}
+            {website ? <p className="pec__eventname"><a onClick={() => onLinkClicked('event', website)} className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p> : <p className="pec__eventname">{eventName}</p>}
             <div className="pec__topics">
                 {trimmedTopics.map(v => <p className="pec__topics__item">{v}</p>)}
             </div>
@@ -59,12 +59,12 @@ function PlEventCard(props) {
                 <img className="pec__calender__icon" src={calenderLogo}/>
                 {dateTBD ? <p className="pec__calender__text">Date TBD</p> : <p className="pec__calender__text">{fullDateFormat}</p>}
             </div>
-           
-           
+
+
             <div className="pec__location">
                 <img className="pec__location__img" src={locationLogo}/>
-                {venueMapsLink ? <a onClick={() => onLinkClicked('location')} className="pec__location__link" href={venueMapsLink} target="_blank"><p className="pec__location__text location-blue">{fullAddressValue}</p></a> : <p className="pec__location__text">{fullAddressValue}</p>}
-                
+                {venueMapsLink ? <a onClick={() => onLinkClicked('location', venueMapsLink)} className="pec__location__link" href={venueMapsLink} target="_blank"><p className="pec__location__text location-blue">{fullAddressValue}</p></a> : <p className="pec__location__text">{fullAddressValue}</p>}
+
             </div>
             {eventHosts.length > 0 ? <div className="pec__hosts">
                 {eventHosts.map((eh, ehIndex) => <div className="pec__hosts__item">
@@ -74,12 +74,12 @@ function PlEventCard(props) {
                 {eventHosts.length === 1 ? <p className="pec__hosts__item__text">{eventHosts[0].name}</p> : null}
 
             </div>: null}
-           
+
         </div>
         <style jsx>
             {
                 `
-              
+
             .pec {width: 100%; position: relative; border: 1px solid #CBD5E1; border-radius: 8px;  background: white; padding: 0 20px;}
             .pec__close {position: absolute; top: -13px; right: -13px; width: 26px; height: 26px; background: #475569; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.5);}
             .blue {text-decoration: none; color: #0F172A; }
@@ -104,7 +104,7 @@ function PlEventCard(props) {
             .pec__location {display: flex; align-items: flex-start; margin:16px 0; margin-bottom: 20px;}
             .pec__location__img {width: 12px; height: 12px; margin-right: 4px; margin-top: 1px;}
             .pec__location__text {color: #64748B; font-size: 12px; max-width: 245px; margin-right: 4px; display: flex; flex-wrap: wrap;  overflow: hidden;text-overflow: ellipsis;white-space: initial;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
-            
+
             .pec__contacts {display: flex; flex-wrap: wrap; align-items: center;}
             .pec__contacts__link {text-decoration: none; margin-right:4px; margin-top: 8px; display: flex; align-items: center; justify-content: center;}
             .pec__contacts__link__img {width:26px; height: 26px; }
