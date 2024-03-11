@@ -3,7 +3,7 @@ eventName: "<Your_Event_Name>" #the name of your track or event and its mandator
 
 eventDescription: "<Short_Description_of_your_event>" #short description of your track or event limiting to 100-150 characters
 
-#topics will show up as labels on the event card.Only a maximum of 4 tags will be displayed on the event card. Some referneces for topics - Blockchain, Web3, Cryptocurrency, Tech Taks,Workshop etc.
+#Topics will show up as labels on the event card.Only a maximum of 4 tags will be displayed on the event card. Some references for topics - Blockchain, Web3, Cryptocurrency, Tech Talks, Workshop, etc.
 
 eventTopic: 
   - "<Topic_1>"
