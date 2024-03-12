@@ -69,7 +69,7 @@ function HpMonthBox(props) {
         } else if (type === 'direct') {
             const scrollItem = document.getElementById(`m-${index}`);
             if (scrollItem) {
-                onMonthSelected("dynamic", monthsAvailable[index].name)
+                onMonthSelected("dynamic", monthsAvailable[index - 1].name)
                 scrollItem.scrollIntoView({ behavior: "smooth", block: "start" })
             }
         }
