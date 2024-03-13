@@ -18,7 +18,7 @@ function HpCalendar(props) {
     const { state } = useContext(HpContext)
     const {filters} = state;
     const currentYear = filters.year;
-    const {onCalendarCardClicked} = useEventsAnalytics()
+    const {onCalendarCardClicked, onCalendarMonthNav} = useEventsAnalytics()
 
     const onMonthNavigate = (type) => {
         const calendarElement: any = calenderRef?.current
@@ -27,11 +27,13 @@ function HpCalendar(props) {
             if (monthIndex - 1 > -1) {
                 ca.prev()
                 setMonthIndex(v => v - 1)
+                onCalendarMonthNav("previous")
             }
         } else {
             if (monthIndex + 1 < monthNames.length) {
                 ca.next()
                 setMonthIndex(v => v + 1)
+                onCalendarMonthNav("next")
             }
         }
     }

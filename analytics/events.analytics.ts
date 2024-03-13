@@ -5,8 +5,9 @@ export default function useEventsAnalytics() {
   const events = {
     EVENT_CARD_CLICKED: "EVENT_CARD_CLICKED",
     EVENT_CARD_LINK_CLICKED: "EVENT_CARD_LINK_CLICKED",
-    EVENT_CALENDAR_MONTH_MENU_CLICKED: "EVENT_CALENDAR_MONTH_MENU_CLICKED",
-    EVENT_CALENDAR_MONTH_MENUITEM_CLICKED: "EVENT_CALENDAR_MONTH_MENUITEM_CLICKED"
+    EVENT_TIMELINE_MONTH_MENU_CLICKED: "EVENT_TIMELINE_MONTH_MENU_CLICKED",
+    EVENT_TIMELINE_MONTH_MENUITEM_CLICKED: "EVENT_TIMELINE_MONTH_MENUITEM_CLICKED",
+    EVENT_CALENDAR_MONTH_NAV: "EVENT_CALENDAR_MONTH_NAV"
   };
 
   const captureEvent = (eventName: string, eventParams = {}) => {
@@ -29,14 +30,20 @@ export default function useEventsAnalytics() {
   }
 
   function onMonthSelected(type, value) {
-    captureEvent(events.EVENT_CALENDAR_MONTH_MENUITEM_CLICKED, {
+    captureEvent(events.EVENT_TIMELINE_MONTH_MENUITEM_CLICKED, {
         menuType: type,
         menuValue: value
     })
   }
 
   function onMonthMenuClicked() {
-    captureEvent(events.EVENT_CALENDAR_MONTH_MENU_CLICKED)
+    captureEvent(events.EVENT_TIMELINE_MONTH_MENU_CLICKED)
+  }
+
+  function onCalendarMonthNav(direction) {
+    captureEvent(events.EVENT_CALENDAR_MONTH_NAV, {
+      direction
+    })
   }
 
   function onCalendarCardClicked(eventInfo) {
@@ -50,6 +57,7 @@ export default function useEventsAnalytics() {
     onCardLinkClicked,
     onMonthSelected,
     onMonthMenuClicked,
-    onCalendarCardClicked
+    onCalendarCardClicked,
+    onCalendarMonthNav
   };
 }
