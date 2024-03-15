@@ -1,12 +1,13 @@
 import { useContext } from "react"
 import { getNoFiltersApplied,HpContext } from './hp-helper'
-import { trackGoal } from "fathom-client";
+import useFilterAnalytics from "../../../analytics/filter.analytics";
 
 function HpFilterHead(props) {
     const {state, dispatch} = useContext(HpContext)
     const {filters, flags} = state
     const {eventMenu} = flags;
     const filterCount = getNoFiltersApplied(filters);
+    const {onFilterMenuClicked}  = useFilterAnalytics()
     const menus = [
         {name: 'timeline', img: '/icons/pln-timeline.svg', title: "Timeline View", imgActive: '/icons/pln-timeline-active.svg'},
         {name: 'calendar', img: '/icons/pln-calendar.svg', title: "Calendar View", imgActive: '/icons/pln-calendar-active.svg'},
@@ -15,17 +16,13 @@ function HpFilterHead(props) {
     const toggleMobileFilter = () => {
         dispatch({ type: 'toggleMobileFilter' })
       }
-    
+
       const onClearFilters = () => {
         dispatch({ type: 'clearAllFilters' })
       }
 
       const onMenuSelection = (value) => {
-        if(value === 'timeline') {
-            trackGoal('E98R34BE', 0)
-        } else {
-            trackGoal('BBAJPYJQ', 0)
-        }
+        onFilterMenuClicked(value)
         dispatch({type: 'setEventMenu', value: value})
     }
 
@@ -70,7 +67,7 @@ function HpFilterHead(props) {
                 @media(max-width: 638px) {
                     .hp__maincontent__tools{top:${props.showBanner ? '220px' : '60px'}}
                 }
-                
+
                 `
             }
         </style>
