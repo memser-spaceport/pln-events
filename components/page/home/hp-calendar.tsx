@@ -5,6 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import HpCalendarEvent from "./hp-calender-event";
 import HpCalendarDateCell from "./hp-calendar-datecell";
 import HpCalendarPopup from "./hp-calendar-popup";
+import useEventsAnalytics from "../../../analytics/events.analytics";
 
 function HpCalendar(props) {
     const monthWiseEvents = props.monthWiseEvents ?? [];
@@ -17,6 +18,7 @@ function HpCalendar(props) {
     const { state } = useContext(HpContext)
     const {filters} = state;
     const currentYear = filters.year;
+    const {onCalendarCardClicked, onCalendarMonthNav} = useEventsAnalytics()
 
     const onMonthNavigate = (type) => {
         const calendarElement: any = calenderRef?.current
@@ -25,17 +27,20 @@ function HpCalendar(props) {
             if (monthIndex - 1 > -1) {
                 ca.prev()
                 setMonthIndex(v => v - 1)
+                onCalendarMonthNav("previous")
             }
         } else {
             if (monthIndex + 1 < monthNames.length) {
                 ca.next()
                 setMonthIndex(v => v + 1)
+                onCalendarMonthNav("next")
             }
         }
     }
 
     const onEventClicked = (v) => {
         if(v) {
+            onCalendarCardClicked(v?.event?.extendedProps ?? {})
             document.dispatchEvent(new CustomEvent('showCalenderPopup', {detail: v?.event?.extendedProps }))
         }
     }
