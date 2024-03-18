@@ -1,9 +1,10 @@
-import { trackGoal } from "fathom-client";
 import AnnouncementBanner from "./announcement-banner";
+import useHeaderAnalytics from "../../analytics/header.analytics";
 
 function AppHeader({ bannerContent, setBannerState, showBanner }) {
-    const onHostEventClicked = () => {
-        trackGoal('CXB9QJA8', 0)
+    const { onHostEventClicked} = useHeaderAnalytics()
+    const onSubmitClicked = () => {
+        onHostEventClicked()
     }
     return <>
         <div className="ah__contianer">
@@ -15,7 +16,7 @@ function AppHeader({ bannerContent, setBannerState, showBanner }) {
                         <h1 className="ah__logo__heading__text">Protocol Labs</h1>
                         <h1 className="ah__logo__heading__text">network events</h1>
                     </div></div>
-                <a className="ah__btn" onClick={onHostEventClicked} target="_blank" href="https://github.com/memser-spaceport/pln-events#submitting-events">Submit an event</a>
+                <a className="ah__btn" onClick={onSubmitClicked} target="_blank" href="https://github.com/memser-spaceport/pln-events#submitting-events">Submit an event</a>
                 {/* <img src="/icons/pln-menu-icon.svg" className="ah__menu"/> */}
             </header>
         </div>
@@ -32,7 +33,7 @@ function AppHeader({ bannerContent, setBannerState, showBanner }) {
             .ah__menu {display: inline; cursor: pointer;}
             @media(min-width: 1200px) {
                 .ah__menu {display: none;}
-                
+
                 .ah__logo__heading { margin:0; padding:0; line-height: 18px; font-size: 18px; font-weight: 700; display: block; margin-left: 8px;}
             }
 
