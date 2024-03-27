@@ -15,5 +15,5 @@ tag: "Industry Event"
 dateTBD: false
 isFeaturedEvent: false
 eventHosts:
-  - Stanford CodeX Blockchain Group|stanfordCodeX.jpeg
+  - Stanford CodeX Blockchain Group|stanfordCodeX.jpg
 ---

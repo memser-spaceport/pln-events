@@ -11,10 +11,10 @@ venueMapsLink: ""
 website: ""
 startDate: "04/11/2024"
 endDate: "04/11/2024"
-tag: "Industry Event"
+tag: "PL Event"
 dateTBD: false
 isFeaturedEvent: false
 eventHosts:
   - Protocol Labs|protocol_labs.jpeg
-  - OrangeDAO|orangeDAO.png
+  - OrangeDAO|orangeDAO.jpg
 ---
