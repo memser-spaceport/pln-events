@@ -12,7 +12,7 @@ venueMapsLink: "https://maps.app.goo.gl/rEaMTZGxNBBEZtPx6"
 website: "https://fundingthecommons.io/san-francisco-bay-area-2024"
 startDate: "04/13/2024"
 endDate: "04/14/2024"
-tag: "Industry Event"
+tag: "PL Event"
 dateTBD: false
 isFeaturedEvent: true
 eventHosts:
