@@ -15,5 +15,5 @@ tag: "Industry Event"
 dateTBD: false
 isFeaturedEvent: false
 eventHosts:
-  - Coordination.network|coordinationNetwork.png
+  - Coordination.network|coordinationNetwork.jpg
 ---
