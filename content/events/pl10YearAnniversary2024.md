@@ -11,7 +11,7 @@ venueMapsLink: "https://maps.app.goo.gl/LmwVDViavKrReYXY8"
 website: ""
 startDate: "04/16/2024"
 endDate: "04/16/2024"
-tag: "Industry Event"
+tag: "PL Event"
 dateTBD: false
 isFeaturedEvent: false
 eventHosts:
