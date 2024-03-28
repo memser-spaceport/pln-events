@@ -16,5 +16,5 @@ tag: "PL Event"
 dateTBD: false
 isFeaturedEvent: true
 eventHosts:
-  - Funding the Commons|ftc-logo.png
+  - Protocol Labs|protocol_labs.jpeg
 ---
