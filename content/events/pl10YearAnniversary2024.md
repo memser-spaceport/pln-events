@@ -4,10 +4,7 @@ eventDescription: "Celebrating Protocol Labs' 10th Anniversary - a decade of dri
 eventTopic:
   - Meetup
 eventType: "Conference"
-location: "San Francisco, United States"
-venueName: "Exploratorium"
-venueAddress: "Pier 15 Embarcadero at, Green St, CA 94111"
-venueMapsLink: "https://maps.app.goo.gl/LmwVDViavKrReYXY8"
+location: "TBD"
 website: ""
 startDate: "04/16/2024"
 endDate: "04/16/2024"
