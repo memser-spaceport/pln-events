@@ -1,5 +1,5 @@
 ---
-eventName: "Wiki AI Day"
+eventName: "Wiki x AI Hackathon"
 eventDescription: ""
 eventTopic:
   - AI
