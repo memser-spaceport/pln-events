@@ -7,9 +7,9 @@ eventDescription: "A decentralized conference hosted by Protocol Labs and Edge E
 
 eventTopic: 
   - "Neurotech, WBE, & BCI"
-  - "Human-AI cooperation"
+  - "Human-AI Cooperation"
   - "Biotech & Longevity"
-  - "Mixed Reality" 
+  - "XR (Extended Reality)" 
 
 eventType: "Conference" #Type of the event: Please choose one among the below options or just leave it blank
 
