@@ -18,5 +18,5 @@ tag: "PLN Event"
 dateTBD: false
 eventHosts:
   - Protocol Labs|protocolLabs.png
-  - Edge Esmeralda|edgeEsmeralda.png
+  - Edge Esmeralda|edgeEsmeralda.svg
 ---
