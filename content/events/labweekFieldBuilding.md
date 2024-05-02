@@ -11,12 +11,12 @@ location: "Healdsburg, United States"
 venueName: ""
 venueAddress: ""
 venueMapsLink: ""
-website: ""
+website: "https://bit.ly/LWFieldBuilding"
 startDate: "06/10/2024"
 endDate: "06/16/2024"
 tag: "PLN Event"
 dateTBD: false
 eventHosts:
-  - Protocol Labs|protocolLabs.png
-  - Edge Esmeralda|edgeEsmeralda.svg
+  - Protocol Labs|protocol_labs.jpeg
+  - Edge Esmeralda|edgeCity.jpeg
 ---
