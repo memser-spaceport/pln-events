@@ -9,4 +9,5 @@ endDate: "05/31/2024"
 tag: "PLN Event"
 dateTBD: false
 eventHosts:
+  - Filecoin Foundation|filecoin-foundation.webp
 ---

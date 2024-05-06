@@ -8,4 +8,6 @@ startDate: "05/28/2024"
 endDate: "05/28/2024"
 tag: "PLN Event"
 dateTBD: false
+eventHosts:
+  - Protocol Labs|protocol_labs.jpeg
 ---
