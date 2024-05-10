@@ -40,4 +40,7 @@ preferredContacts:
 
 eventHosts:
   - Impossible Cloud|<host_logo>
+  - Gnosis|<host_logo>
+  - Hats Finance|<host_logo>
+  - HV Capital|<host_logo>
 ---
