@@ -1,7 +1,7 @@
 ---
 eventName: "Berlin Blockchain Week - Crypto Infra Brunch" #the name of your track or event and its mandatory
 
-eventDescription: "This will be a buffet of ideas and innovations from the new kids + industry-legends in German web3. 🌐✨>" #short description of your track or event limiting to 100-150 characters
+eventDescription: "This will be a buffet of ideas and innovations from the new kids + industry-legends in German web3." #short description of your track or event limiting to 100-150 characters
 
 #Topics will show up as labels on the event card.Only a maximum of 4 tags will be displayed on the event card. Some references for topics - Blockchain, Web3, Cryptocurrency, Tech Talks, Workshop, etc.
 
