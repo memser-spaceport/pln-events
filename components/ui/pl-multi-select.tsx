@@ -1,26 +1,26 @@
-import { useEffect, useRef, useState } from "react";
+import { MouseEventHandler, SyntheticEvent, useEffect, useRef, useState } from "react";
 
-function PlMultiSelect(props) {
+function PlMultiSelect(props: any) {
     // Props
-    const itemId = props.identifierId;
-    const type = props.type ?? '';
-    const rawItems = props.items ?? [];
+    const itemId = props?.identifierId;
+    const type = props?.type ?? '';
+    const rawItems = [...props?.items] ?? [];
     const items = [...rawItems].sort()
-    const name = props.name ?? '';
-    const callback = props.callback;
-    const dropdownImgUrl = props.dropdownImgUrl ?? ''
-    const iconUrl = props.iconUrl ?? '';
-    const selectedItems = props.selectedItems ?? [];
+    const name = props?.name ?? '';
+    const callback = props?.callback;
+    const dropdownImgUrl = props?.dropdownImgUrl ?? ''
+    const iconUrl = props?.iconUrl ?? '';
+    const selectedItems = [...props?.selectedItems] ?? [];
     const onClearMultiSelect = props.onClearMultiSelect;
     const onMultiSelectClicked = props.onMultiSelectClicked;
 
     // Variables
     const [isPaneActive, setPaneActiveStatus] = useState(false);
     const [filteredItems, setfilteredItems] = useState([...items])
-    const paneRef = useRef<HTMLDivElement>()
+    const paneRef = useRef<HTMLDivElement>(null)
 
     // Methods
-    const onInputChange = (e) => {
+    const onInputChange = (e: { target: { value: string; }; }) => {
         setPaneActiveStatus(true)
         if (e.target.value.trim() === '') {
             setfilteredItems([...items])
@@ -31,11 +31,12 @@ function PlMultiSelect(props) {
 
     }
 
-    const onItemSelected = (item) => {
-        callback(type, itemId, item);
+    const onItemSelected = (item: string) => {
+        callback(itemId, item, type);
     }
 
-    const onClearSelection = () => {
+    const onClearSelection = (e: any) => {
+        e.stopPropagation();
         if (onClearMultiSelect) {
             setPaneActiveStatus(false)
             onClearMultiSelect(itemId);
@@ -54,7 +55,7 @@ function PlMultiSelect(props) {
     }
 
     useEffect(() => {
-        const listener = (event) => {
+        const listener = (event: any) => {
             // Do nothing if clicking ref's element or descendent elements
             if (!paneRef.current || paneRef?.current?.contains(event.target) || event.target.id === 'tesssst') {
                 return;
@@ -104,7 +105,7 @@ function PlMultiSelect(props) {
                 </div>}
 
                 {(items.length > 0) && <div className="plms__pane__list">
-                    {filteredItems.map((item, index) => <div onClick={() => onItemSelected(item)} className="plms__pane__list__item">
+                    {filteredItems.map((item, index) => <div key={`${item} + ${index}`} onClick={() => onItemSelected(item)} className="plms__pane__list__item">
                         {/*  <div className="plms__pane__list__item__logo"></div> */}
                         <p id={`${itemId}-ps-pane-${index}`} className={`plms__pane__list__item__text ${selectedItems.includes(item) ? 'ps__pane__item--active' : ''}`} >{item}</p>
                         {!selectedItems.includes(item) && <div className="plms__pane__list__item__check"></div>}
@@ -132,7 +133,7 @@ function PlMultiSelect(props) {
 
                 .plms__pane {position: absolute; background: white; z-index: 3; margin-bottom: 48px; top: 38px; left:0; max-height: 250px; box-shadow:0px 2px 6px rgba(15, 23, 42, 0.16); border-radius: 8px; position: absolute; border: 1px solid #E2E8F0; width: calc(100%);}
                 .plms__pane__head {width: 100%;border-bottom: 1px solid #CBD5E1; padding:16px; position: relative;}
-                .plms__pane__head__input {border: 1px solid #CBD5E1; padding: 0 12px 0 32px; height: 36px; width: calc(100% - 46px); outline: none; border-radius: 8px;}
+                .plms__pane__head__input {border: 1px solid #CBD5E1; padding: 0 12px 0 32px; height: 36px; width: 100%; outline: none; border-radius: 8px;}
                 .plms__pane__head__searchicon {position: absolute; top: 27px; left: 26px;}
                 .plms__pane__list {overflow-y: auto; max-height: 160px; padding: 8px 16px;}
                 .plms__pane__list__item {display: flex; justify-content: space-between; cursor: pointer; width: 100%; padding: 6px 0;}
