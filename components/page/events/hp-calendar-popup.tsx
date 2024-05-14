@@ -1,23 +1,32 @@
 import { useState, useEffect } from "react"
 import PlEventCard from "../../ui/pl-event-card";
-import useEventsAnalytics from "../../../analytics/events.analytics";
+import { useHash } from "@/hooks/use-hash";
+import { useRouter } from "next/navigation";
+import useEventsAnalytics from "@/analytics/events.analytics";
+import { IEvent } from "@/types/events.type";
 
-function HpCalendarPopup(props) {
+function HpCalendarPopup(props: any) {
+
+    const rawEvents = props?.rawEvents ?? [];
+    const monthName = props?.monthName;
     const [selectedEvent, setSelectedEvent] = useState({});
     const [isEventCardActive, setEventCardStatus] = useState(false);
+    const hash = useHash();
+    const router = useRouter();
     const { onCardLinkClicked } = useEventsAnalytics()
 
     const onCloseCard = () => {
+        router.push(`${window.location.pathname}${window.location.search}`, { scroll: false})
         setEventCardStatus(false);
         setSelectedEvent({});
     }
 
-    const onLinkItemClicked = (item, url) => {
+    const onLinkItemClicked = (item: string, url: string) => {
         onCardLinkClicked(item, url, 'calender')
     }
 
     useEffect(() => {
-        function handleEventPopup(e) {
+        function handleEventPopup(e: any) {
             setEventCardStatus(true);
             setSelectedEvent(e.detail)
         }
@@ -26,6 +35,19 @@ function HpCalendarPopup(props) {
             document.removeEventListener('showCalenderPopup', handleEventPopup)
         }
     },[])
+
+    useEffect(() => {
+        if(hash) {
+          const hashValue: string = hash;
+          const slug = hashValue.split('#')[1]
+
+           const foundEvent = rawEvents.findIndex((e: IEvent)=> e.slug === slug);
+          if(foundEvent >= 0 && slug) {
+            setSelectedEvent(rawEvents[foundEvent])
+            setEventCardStatus(true);
+          } 
+        }
+      }, [hash])
 
     return <>
         {isEventCardActive && <div className="eventCard">

@@ -1,4 +1,6 @@
-function PlEventCard(props) {
+import { IEventHost } from "@/types/shared.type";
+
+function PlEventCard(props: any) {
     const eventName = props?.eventName ?? '';
     const topics = props?.topics ?? [];
     const tag = props?.tag ?? ''
@@ -26,7 +28,7 @@ function PlEventCard(props) {
     const locationLogo = props.locationLogo ?? ''
     const externalLinkIcon = props.externalLinkIcon;
 
-    const onLinkClicked = (item, url) => {
+    const onLinkClicked = (item: string, url: string) => {
          if(onLinkItemClicked) {
             onLinkItemClicked(item, url)
          }
@@ -48,10 +50,10 @@ function PlEventCard(props) {
             </div>
             {website ? <p className="pec__eventname"><a onClick={() => onLinkClicked('event', website)} className="blue" href={website} target="_blank"><span className="title">{eventName}</span></a></p> : <p className="pec__eventname">{eventName}</p>}
             <div className="pec__topics">
-                {trimmedTopics.map(v => <p className="pec__topics__item">{v}</p>)}
+                {trimmedTopics.map((v: string, index: number) => <p key={`${v} + ${index}`} className="pec__topics__item">{v}</p>)}
             </div>
             <div className="pec__contacts">
-                    {preferredContacts.map(c => c.name.toLowerCase() === 'email' ?  <a className="pec__contacts__link" href={`mailto:${c.link}`} target="_blank"><img title={c.name} className="pec__contacts__link__img" src={c.logo}/></a> :  <a className="pec__contacts__link" href={c.link} target="_blank"><img title={c.name} className="pec__contacts__link__img" src={c.logo}/></a>)}
+                    {preferredContacts.map((c: {name: string, link: string, logo: string}, index: number) => c.name.toLowerCase() === 'email' ?  <a key={`${c} + ${c}`} className="pec__contacts__link" href={`mailto:${c.link}`} target="_blank"><img title={c.name} className="pec__contacts__link__img" src={c.logo}/></a> :  <a key={`${c} + ${index}`} className="pec__contacts__link" href={c.link} target="_blank"><img title={c.name} className="pec__contacts__link__img" src={c.logo}/></a>)}
                 </div>
 
             {description ? <p className="pec__desc">{description}</p> : null}
@@ -67,7 +69,7 @@ function PlEventCard(props) {
 
             </div>
             {eventHosts.length > 0 ? <div className="pec__hosts">
-                {eventHosts.map((eh, ehIndex) => <div className="pec__hosts__item">
+                {eventHosts.map((eh: IEventHost, ehIndex: number) => <div key={`${eh}  + ${ehIndex}`} className="pec__hosts__item">
                     <img className="pec__hosts__item__img" title={eh.name} src={`${eh.logo}`}/>
                     {ehIndex === 0 ? <img className="pec__hosts__item__primimg" src={eh.primaryIcon}/> : null}
                 </div>)}

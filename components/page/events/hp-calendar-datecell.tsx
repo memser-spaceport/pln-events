@@ -1,4 +1,10 @@
-function HpCalendarDateCell(dayInfo) {
+interface IHpCalendarDateCell {
+    isToday: boolean;
+    dow: number;
+    dayNumberText: string;
+}
+
+function HpCalendarDateCell(dayInfo: IHpCalendarDateCell) {
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     const isToday = dayInfo.isToday ?? false
     const dayOfWeek = dayInfo.dow;
