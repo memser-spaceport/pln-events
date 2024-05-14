@@ -1,5 +1,6 @@
+import { IEventHost } from "@/types/shared.type";
 
-function HpCalendarEvent(eventInfo) {
+function HpCalendarEvent(eventInfo: any) {
     const isFeatured = eventInfo?.event?.extendedProps?.isFeaturedEvent ?? false;
     const eventType = eventInfo?.event?.extendedProps?.eventType?.toLowerCase().trim() ?? 'social';
     const tileClass = isFeatured ? 'featured' : eventType;
@@ -18,7 +19,7 @@ function HpCalendarEvent(eventInfo) {
         <>
             <div className={`cn ${tileClass}`}>
                 {(isSingleRow && isSameDay && isHostsAvailable) && <div className="cn__hostlogos">
-                    {trimmedHosts.map((h) => <div className="cn__hostlogos__item">
+                    {trimmedHosts.map((h: IEventHost, index: number) => <div key={`${h} + ${index}`} className="cn__hostlogos__item">
                         <img className="cn__hostlogos__item__img" src={h.logo} />
                     </div>)}
                 </div>}

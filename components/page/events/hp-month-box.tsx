@@ -1,13 +1,14 @@
+import useEventsAnalytics from "@/analytics/events.analytics";
+import { IMonthwiseEvent } from "@/types/events.type";
 import { useState, useEffect, useRef } from "react"
-import useEventsAnalytics from "../../../analytics/events.analytics";
 
-function HpMonthBox(props) {
+function HpMonthBox(props: any) {
     const name = props.name ?? '';
     const currentIndex = props.currentIndex ?? 0;
     const [isPaneActive, setPaneStatus] = useState(false);
     const [isMonthsPaneActive, setMonthsPaneStatus] = useState(false);
-    const paneRef = useRef<HTMLDivElement>();
-    const monthsRef = useRef<HTMLDivElement>();
+    const paneRef = useRef<HTMLDivElement>(null);
+    const monthsRef = useRef<HTMLDivElement>(null);
     const allData = props.allData || [];
     const monthsAvailable = [...allData];
     const monthIndexes = monthsAvailable.map(m => m.index);
@@ -22,7 +23,7 @@ function HpMonthBox(props) {
         }
     }
 
-    const onNavigate = (type, index, e) => {
+    const onNavigate = (type: string, index: number, e: any) => {
         const selectedMonthInfo = monthsAvailable.find(v => v.index === index);
         e.stopPropagation()
         if(index === -1) {
@@ -34,7 +35,7 @@ function HpMonthBox(props) {
                 return;
             }
             onMonthSelected("static", "previous")
-            const itemIndex = allData.findIndex(v => v.index === currentIndex);
+            const itemIndex = allData.findIndex((v: IMonthwiseEvent) => v.index === currentIndex);
             if (itemIndex - 1 >= 0) {
                 const newItem = allData[itemIndex - 1]
                 const scrollItem = document.getElementById(`m-${newItem.index}`);
@@ -48,7 +49,7 @@ function HpMonthBox(props) {
                 return;
             }
             onMonthSelected("static", "next")
-            const itemIndex = allData.findIndex(v => v.index === currentIndex);
+            const itemIndex = allData.findIndex((v: IMonthwiseEvent) => v.index === currentIndex);
             if (itemIndex + 1 < allData.length) {
                 const newItem = allData[itemIndex + 1]
                 const scrollItem = document.getElementById(`m-${newItem.index}`);
@@ -58,7 +59,7 @@ function HpMonthBox(props) {
             }
 
         } else if (type === 'current') {
-            const itemIndex = allData.findIndex(v => v.index === currenMonthId)
+            const itemIndex = allData.findIndex((v: IMonthwiseEvent) => v.index === currenMonthId)
             if(itemIndex > -1) {
                 onMonthSelected("static", "current")
                 const scrollItem = document.getElementById(`m-${currenMonthId}`);
@@ -80,7 +81,7 @@ function HpMonthBox(props) {
     }
 
     useEffect(() => {
-        const listener = (event) => {
+        const listener = (event: any) => {
             // Do nothing if clicking ref's element or descendent elements
             if (!paneRef.current || paneRef?.current?.contains(event.target) || event.target.id === 'tesssst') {
                 return;
@@ -121,7 +122,7 @@ function HpMonthBox(props) {
                 <div onClick={(e) => onNavigate('current', 0, e)} className={`hpmp__pane__item ${!isCurrentHasEvents ? 'not-active': ''}`}>Current Month</div>
                 <div onClick={(e) => onNavigate('next', 0, e)} className={`hpmp__pane__item ${currentIndex === 11 || !monthIndexes.includes(currentIndex + 1) ? 'not-active': ''}`}>Next Month</div>
                 <p className="onlyMobile bordertop"></p>
-                {monthsAvailable.map(m => <div className="hpmp__pane__item onlyMobile" onClick={(e) => onNavigate('direct', m.index, e)}>{m.name}</div>)}
+                {monthsAvailable.map((m, index)=> <div key={`${m} + ${index}`} className="hpmp__pane__item onlyMobile" onClick={(e) => onNavigate('direct', m.index, e)}>{m.name}</div>)}
                 <div onClick={() => setMonthsPaneStatus(v => !v)} onMouseEnter={() => setMonthsPaneStatus(true)} className="hpmp__pane__item desktopOnly">
                     <p>Specific Month</p>
                     <img className="hpmp__pane__item__img" src="/icons/pln-right-arrow.svg" />
@@ -129,7 +130,7 @@ function HpMonthBox(props) {
             </div>}
 
             {isMonthsPaneActive && <div ref={monthsRef} className="hpmp__monthspane">
-                {monthsAvailable.map(m => <p onClick={(e) => onNavigate('direct', m.index, e)} className={`hpmp__monthspane__item`}>{m.name}</p>)}
+                {monthsAvailable.map((m, index) => <p key={`${m} + ${index}`} onClick={(e) => onNavigate('direct', m.index, e)} className={`hpmp__monthspane__item`}>{m.name}</p>)}
             </div>}
         </div>
         <style jsx>

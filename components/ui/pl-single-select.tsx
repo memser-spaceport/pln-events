@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { SyntheticEvent, useEffect, useRef, useState } from "react";
 
-function PlSingleSelect(props) {
+function PlSingleSelect(props: any) {
     // Props
     const itemId = props.identifierId;
     const type = props.type ?? '';
@@ -13,10 +13,10 @@ function PlSingleSelect(props) {
     // Variables
     const [isPaneActive, setPaneActiveStatus] = useState(false);
     const [filteredItems, setfilteredItems] = useState([...items])
-    const paneRef = useRef<HTMLDivElement>()
+    const paneRef = useRef<HTMLDivElement>(null);
 
     // Methods
-    const onInputChange = (e) => {
+    const onInputChange = (e: { target: { value: string; }; }) => {
         setPaneActiveStatus(true)
         if (e.target.value.trim() === '') {
             setfilteredItems([...items])
@@ -27,8 +27,8 @@ function PlSingleSelect(props) {
 
     }
 
-    const onItemSelected = (item) => {
-        callback(type, itemId, item);
+    const onItemSelected = (item: string) => {
+        callback(itemId, item, type);
     }
 
     const onSelectionBoxClicked = () => {
@@ -38,7 +38,7 @@ function PlSingleSelect(props) {
     }
 
     useEffect(() => {
-        const listener = (event) => {
+        const listener = (event: any) => {
             // Do nothing if clicking ref's element or descendent elements
             if (!paneRef.current || paneRef?.current?.contains(event.target) || event.target.id === 'tesssst') {
                 return;
@@ -76,7 +76,7 @@ function PlSingleSelect(props) {
                     <img className="plms__pane__head__searchicon" src="/icons/pln-search-icon.svg" />
                 </div>}
                 <div className="plms__pane__list">
-                    {filteredItems.map((item, index) => <div onClick={() => onItemSelected(item)} className="plms__pane__list__item">
+                    {filteredItems.map((item, index) => <div key={`${item} + ${index}`} onClick={() => onItemSelected(item)} className="plms__pane__list__item">
                       
                         <p id={`${itemId}-ps-pane-${index}`} className={`plms__pane__list__item__text`} >{item}</p>
                         {(selectedItem !== item) && <div className="plms__pane__list__item__check"></div>}
@@ -102,7 +102,7 @@ function PlSingleSelect(props) {
 
                 .plms__pane {position: absolute; background: white; z-index: 3; margin-bottom: 48px; top: 38px; left:0; max-height: 250px; box-shadow:0px 2px 6px rgba(15, 23, 42, 0.16); border-radius: 8px; position: absolute; border: 1px solid #E2E8F0; width: calc(100%);}
                 .plms__pane__head {width: 100%;border-bottom: 1px solid #CBD5E1; padding:16px; position: relative;}
-                .plms__pane__head__input {border: 1px solid #CBD5E1; padding: 0 12px 0 32px; height: 36px; width: calc(100% - 46px); outline: none; border-radius: 8px;}
+                .plms__pane__head__input {border: 1px solid #CBD5E1; padding: 0 12px 0 32px; height: 36px; width: 100%; outline: none; border-radius: 8px;}
                 .plms__pane__head__searchicon {position: absolute; top: 27px; left: 26px;}
                 .plms__pane__list {overflow-y: auto; max-height: 160px; padding: 8px 16px;}
                 .plms__pane__list__item {display: flex; justify-content: space-between; cursor: pointer; width: 100%; padding: 6px 0;}
