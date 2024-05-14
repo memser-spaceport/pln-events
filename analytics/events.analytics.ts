@@ -21,7 +21,7 @@ export default function useEventsAnalytics() {
     }
   };
 
-  function onCardLinkClicked(type, url, viewType){
+  function onCardLinkClicked(type: string, url: string, viewType: string){
     captureEvent(events.EVENT_CARD_LINK_CLICKED, {
         linkType: type,
         linkUrl: url,
@@ -29,7 +29,7 @@ export default function useEventsAnalytics() {
     })
   }
 
-  function onMonthSelected(type, value) {
+  function onMonthSelected(type: string, value: string) {
     captureEvent(events.EVENT_TIMELINE_MONTH_MENUITEM_CLICKED, {
         menuType: type,
         menuValue: value
@@ -40,13 +40,13 @@ export default function useEventsAnalytics() {
     captureEvent(events.EVENT_TIMELINE_MONTH_MENU_CLICKED)
   }
 
-  function onCalendarMonthNav(direction) {
+  function onCalendarMonthNav(direction: string) {
     captureEvent(events.EVENT_CALENDAR_MONTH_NAV, {
       direction
     })
   }
 
-  function onCalendarCardClicked(eventInfo) {
+  function onCalendarCardClicked(eventInfo: any) {
     captureEvent(events.EVENT_CARD_CLICKED, {
         type: 'calendar',
         ...eventInfo

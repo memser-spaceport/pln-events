@@ -7,7 +7,7 @@ module.exports = {
         ".tina/__generated__/frags.gql",
         ".tina/queries/queries.gql",
         ".tina/queries/frags.gql",
-        "pages/**/*.{graphql,js,ts,jsx,tsx}",
+        "app/**/*.{graphql,js,ts,jsx,tsx}",
       ],
     },
   },
