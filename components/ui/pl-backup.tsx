@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-function PlMultiSelect(props) {
+function PlMultiSelect(props: any) {
     // Props
     const itemId = props.identifierId;
     const type = props.type ?? '';
@@ -14,11 +14,11 @@ function PlMultiSelect(props) {
     // Variables
     const [isPaneActive, setPaneActiveStatus] = useState(false);
     const [filteredItems, setFilteredItems] = useState([...items])
-    const inputRef = useRef<HTMLInputElement>()
-    const paneRef = useRef<HTMLDivElement>()
+    const inputRef = useRef<HTMLInputElement>(null);
+    const paneRef = useRef<HTMLDivElement>(null);
 
     // Methods
-    const onInputChange = (e) => {
+    const onInputChange = (e: any) => {
         setPaneActiveStatus(true)
         if (e.target.value.trim() === '') {
             setFilteredItems([...items])
@@ -29,12 +29,12 @@ function PlMultiSelect(props) {
 
     }
 
-    const onItemSelected = (item) => {
+    const onItemSelected = (item: string) => {
         callback(type, itemId, item);
     }
 
     useEffect(() => {
-        const listener = (event) => {
+        const listener = (event: any) => {
             // Do nothing if clicking ref's element or descendent elements
             if (!paneRef.current || paneRef?.current?.contains(event.target)) {
                 return;
@@ -69,7 +69,7 @@ function PlMultiSelect(props) {
             {isPaneActive && <div ref={paneRef} id={`${itemId}-ps-pane`} className="ms__pane">
                 <div className="ps__pane__cn">
                    
-                    {filteredItems.map((item, index) => <p id={`${itemId}-ps-pane-${index}`} className={`ms__pane__item ${selectedItems.includes(item) ? 'ms__pane__item--active' : ''}`} onClick={e => onItemSelected(item)}>{item}</p>)}
+                    {filteredItems.map((item, index) => <p key={`${item}`} id={`${itemId}-ps-pane-${index}`} className={`ms__pane__item ${selectedItems.includes(item) ? 'ms__pane__item--active' : ''}`} onClick={e => onItemSelected(item)}>{item}</p>)}
                 </div>
             </div>}
 

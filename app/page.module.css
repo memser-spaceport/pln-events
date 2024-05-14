@@ -1,0 +1,19 @@
+
+
+.hp__content {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.hp__filter {
+  position: relative;
+}
+.hp__events {
+  width: -webkit-fill-available;
+}
+
+@media(min-width: 1200px) {
+
+}
+
