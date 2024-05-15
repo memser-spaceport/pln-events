@@ -187,7 +187,7 @@ export const getFormattedEvents = (events: IEventResponse[]) => {
         } else if (event?.node?.tag?.toLowerCase().trim() === 'industry event') {
             tagLogo = '/icons/pln-industry-icon.svg'
         }
-        const eventSlug = `${stringToSlug(event.node?.eventName)}-${event.node?.startDate}-${event.node?.startDate}`;
+        const eventSlug = `${stringToSlug(event.node?.eventName)}-${new Date(event.node?.startDate).getTime()}-${new Date(event.node?.endDate).getTime()}`;
         return {
             eventName: event.node?.eventName,
             website: event.node?.website,
