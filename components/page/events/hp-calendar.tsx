@@ -46,7 +46,7 @@ function HpCalendar(props: any) {
 
   const onEventClicked = (v: any) => {
     if (v) {
-      router.replace(
+      router.push(
         `${window.location.pathname}${window.location.search}#${v?.event?.extendedProps.slug}`,
         { scroll: false }
       );
@@ -60,7 +60,8 @@ function HpCalendar(props: any) {
   };
 
   useEffect(() => {
-    const currenMonthId = new Date().getMonth();
+    try {
+    const currenMonthId = filters?.monthIndex ? filters?.monthIndex :  new Date().getMonth();
     const filteredMonthData = monthWiseEvents.filter(
       (m: IMonthwiseEvent) => m.index >= currenMonthId
     );
@@ -98,6 +99,9 @@ function HpCalendar(props: any) {
         }-01`
       );
     }
+  } catch(error) {
+    console.error(error);
+  }
   }, [filterdListCount, currentYear]);
 
   useEffect(() => {

@@ -15,18 +15,18 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "PL network events",
-  description: "Meet virtually and IRL at LabDay and LabWeek , and much more",
-  openGraph: {
-    title: "PL network events",
-    description: "Meet virtually and IRL at LabDay and LabWeek , and much more",
-    images: [
-      {
-        url: "",
-        width: 1200,
-        height: 600,
-      },
-    ],
-  },
+  // description: "Meet virtually and IRL at LabDay and LabWeek , and much more",
+  // openGraph: {
+  //   title: "PL network events",
+  //   description: "Meet virtually and IRL at LabDay and LabWeek , and much more",
+  //   images: [
+  //     {
+  //       url: "",
+  //       width: 1200,
+  //       height: 600,
+  //     },
+  //   ],
+  // },
 };
 
 export default async function Home(params: any) {
