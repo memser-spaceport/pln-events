@@ -7,7 +7,7 @@ eventType: "Conference"
 location: "Austin, United States"
 venueName: "The Perch ATX"
 venueAddress: "74 Trinity St, TX 78701"
-venueMapsLink:
+venueMapsLink: "https://maps.app.goo.gl/74hSTrnR4oaKdzb39"
 website: "https://lu.ma/DePINAustin"
 startDate: "05/30/2024"
 endDate: "05/30/2024"
