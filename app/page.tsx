@@ -13,21 +13,21 @@ import { IEvent, IFilterValue, ISelectedItem } from "@/types/events.type";
 import styles from "./page.module.css";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "PL network events",
-  description: "Meet virtually and IRL at LabDay and LabWeek , and much more",
-  openGraph: {
-    title: "PL network events",
-    description: "Meet virtually and IRL at LabDay and LabWeek , and much more",
-    images: [
-      {
-        url: "",
-        width: 1200,
-        height: 600,
-      },
-    ],
-  },
-};
+// export const metadata: Metadata = {
+//   title: "PL network events",
+//   description: "Meet virtually and IRL at LabDay and LabWeek , and much more",
+//   openGraph: {
+//     title: "PL network events",
+//     description: "Meet virtually and IRL at LabDay and LabWeek , and much more",
+//     images: [
+//       {
+//         url: "",
+//         width: 1200,
+//         height: 600,
+//       },
+//     ],
+//   },
+// };
 
 export default async function Home(params: any) {
   const searchParams = params.searchParams;

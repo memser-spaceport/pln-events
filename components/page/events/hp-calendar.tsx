@@ -60,6 +60,8 @@ function HpCalendar(props: any) {
   };
 
   useEffect(() => {
+
+    try {
     const currenMonthId = new Date().getMonth();
     const filteredMonthData = monthWiseEvents.filter(
       (m: IMonthwiseEvent) => m.index >= currenMonthId
@@ -92,12 +94,15 @@ function HpCalendar(props: any) {
       setMonthIndex(currenMonthId);
       const calendarElement = calenderRef?.current;
       const ca = calendarElement.getApi();
-      ca.gotoDate(
+      ca?.gotoDate(
         `${filters.year}-${
           currenMonthId + 1 <= 9 ? `0${currenMonthId + 1}` : currenMonthId + 1
         }-01`
       );
     }
+  } catch (error) {
+    console.error(error);
+  }
   }, [filterdListCount, currentYear]);
 
   useEffect(() => {
