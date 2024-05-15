@@ -20,16 +20,16 @@ function HpFilterHead(props: IHpFilterHead) {
   const { onFilterMenuClicked } = useFilterAnalytics();
   const menus = [
     {
-      name: "calendar",
-      img: "/icons/pln-calendar.svg",
-      title: "Calendar View",
-      imgActive: "/icons/pln-calendar-active.svg",
-    },
-    {
       name: "timeline",
       img: "/icons/pln-timeline.svg",
       title: "Timeline View",
       imgActive: "/icons/pln-timeline-active.svg",
+    },
+    {
+      name: "calendar",
+      img: "/icons/pln-calendar.svg",
+      title: "Calendar View",
+      imgActive: "/icons/pln-calendar-active.svg",
     },
     /*  {name: 'map', img: '/icons/pln-map-view.svg', title: "Map View", imgActive: '/icons/pln-map-view-active.svg'} */
   ];
@@ -48,7 +48,7 @@ function HpFilterHead(props: IHpFilterHead) {
   const onMenuSelection = (key: string, value: string) => {
     if(viewType !== value) {
     onFilterMenuClicked(value);
-    if (value === "calendar") {
+    if (value === "timeline") {
       clearQuery(key);
       return;
     }
