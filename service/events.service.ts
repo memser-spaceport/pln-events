@@ -25,7 +25,7 @@ export const getEvents = async () => {
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/events`,
         {
             method: "GET",
-            next: { tags: ["pln-events"] },
+            next: { tags: ["pln-events-tina-service"] },
         }
     )
     if (!response.ok) {
