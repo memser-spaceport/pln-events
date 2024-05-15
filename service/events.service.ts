@@ -1,4 +1,4 @@
-import { IEvent, IEventResponse, IFilterValue, ISelectedItem } from "@/types/events.type";
+import { IEvent, IEventResponse, ISelectedItem } from "@/types/events.type";
 import { IEventHost } from "@/types/shared.type";
 import { CURRENT_YEAR, EVENT_TYPES, EVENT_YEARS, MONTHS, URL_QUERY_VALUE_SEPARATOR } from "@/utils/constants";
 import { stringToSlug } from "@/utils/helper";
@@ -86,7 +86,7 @@ export const getUniqueValuesFromEvents = (allEvents: IEvent[]) => {
 
 export const getInitialSelectedItems = () => {
     return {
-        viewType: "calendar",
+        viewType: "timeline",
         year: CURRENT_YEAR,
         locations: [],
         startDate: `01/01/${CURRENT_YEAR}`,
@@ -101,7 +101,7 @@ export const getInitialSelectedItems = () => {
 export const getSelectedItems = (searchParams: any) => {
     const year = searchParams.year ?? CURRENT_YEAR;
     return {
-        viewType: searchParams?.viewType ?? "calendar",
+        viewType: searchParams?.viewType ?? "timeline",
         year,
         locations: getValuesFromQuery(searchParams.locations),
         startDate: searchParams.start ?? `01/01/${year}`,
@@ -187,7 +187,7 @@ export const getFormattedEvents = (events: IEventResponse[]) => {
         } else if (event?.node?.tag?.toLowerCase().trim() === 'industry event') {
             tagLogo = '/icons/pln-industry-icon.svg'
         }
-
+        const eventSlug = `${stringToSlug(event.node?.eventName)}-${event.node?.startDate}-${event.node?.startDate}`;
         return {
             eventName: event.node?.eventName,
             website: event.node?.website,
@@ -223,7 +223,7 @@ export const getFormattedEvents = (events: IEventResponse[]) => {
             startDateValue,
             endDateValue,
             locationLogo,
-            slug: stringToSlug(event.node?.eventName),
+            slug: eventSlug,
             externalLinkIcon: '/icons/pl-external-icon.svg'
         }
     })
