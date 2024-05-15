@@ -18,7 +18,7 @@ function HpCalendarPopup(props: any) {
     const onCloseCard = () => {
         setEventCardStatus(false);
         setSelectedEvent({});
-        router.replace(`${window.location.pathname}${window.location.search}`, { scroll: true})
+        router.replace(`${window.location.pathname}${window.location.search}`, { scroll: false})
     }
 
     const onLinkItemClicked = (item: string, url: string) => {
