@@ -1,13 +1,18 @@
 ---
-eventName: "Consensus Filecoin Orbit Meetup Event"
-eventDescription: ""
-eventType: "Conference"
+eventName: "Filecoin Orbit Web3 Fusion BBQ"
+eventDescription: "Join Filecoin Orbit Austin and the Filecoin Foundation for talks, drinks, BBQ, and networking during Consensus 2024!"
+eventType: "Social"
 location: "Austin, United States"
-website: "https://fil.org/events/"
-startDate: "05/29/2024"
-endDate: "05/31/2024"
+venueName: "Wiggle Room"
+venueAddress: "612 Neuces St, TX"
+venueMapsLink: "https://maps.app.goo.gl/Y76EPi9rm4nV3htR7"
+website: "https://blocklive.io/event/consensus2024"
+startDate: "05/30/2024"
+endDate: "05/30/2024"
 tag: "PLN Event"
 dateTBD: false
 eventHosts:
-  - Filecoin Foundation|filecoin-foundation.webp
+  - Filecoin Orbit|filecoin.png
+  - Leto|leto.jpg
+  - Cloud Forest|cloudForest.jpg
 ---
