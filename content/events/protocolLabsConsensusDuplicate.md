@@ -4,8 +4,8 @@ eventDescription: "DUPLICATE Join the network wide meetup to catch up with famil
 website: 'https://lu.ma/8jalfeq9'
 eventType: "Social"
 location: "Austin, United States"
-startDate: "05/28/2024"
-endDate: "05/28/2024"
+startDate: "10/28/2024"
+endDate: "10/28/2024"
 tag: "PLN Event"
 dateTBD: false
 eventHosts:
