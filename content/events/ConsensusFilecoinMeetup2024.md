@@ -14,5 +14,5 @@ dateTBD: false
 eventHosts:
   - Filecoin Orbit|filecoin.png
   - Leto|leto.jpg
-  - Cloud Forest|cloudForest.jpg
+  - Cloud Forest|cloudForest.png
 ---
