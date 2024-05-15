@@ -20,3 +20,5 @@ export const MONTHS = ["January", "February", "March", "April", "May", "June", "
 export const CUSTOM_EVENTS = {
     FILTEROPEN: "filter open"
 }
+
+export const BEARER_REGEX = /Bearer\s+(.+)/;
