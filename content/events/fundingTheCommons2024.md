@@ -1,6 +1,6 @@
 ---
 eventName: "Funding the Commons"
-eventDescription: "Consensus is the world's largest, longest-running and most influential gathering that brings together all sides of the cryptocurrency, blockchain and Web3 community."
+eventDescription: "This 2-day event focuses on the rapid innovation underpinning fundamental infrastructure for navigating the digital-physical commons: AI and the Open Web. Join us if you are a builder, researcher, academic, student, funder, philanthropist or public official deeply immersed in (or curious about!) the future of public goods funding."
 eventTopic:
   - AI
   - PGF
