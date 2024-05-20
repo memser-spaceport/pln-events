@@ -6,9 +6,7 @@ eventTopic:
   - "Ethereum"
   - "Blockchain"
 eventType: "Conference"
-
-location: "Bangkok, Thailand"
-venueName: "Tokyo, Japan"
+location: "Tokyo, Japan"
 website: "[<your_website_url>](https://www.edcon.io)" 
 startDate: "07/24/2024"
 endDate: "07/30/2024"
