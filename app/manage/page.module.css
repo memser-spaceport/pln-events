@@ -1,0 +1,22 @@
+
+
+.managepg{
+    background-color: #F1F5F9;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+}
+
+.managepg__content {
+    width: 100%;
+}
+
+@media(min-width: 1200px) {
+    .managepg {
+    padding: 40px 0px 40px 0px; 
+
+    }
+    .managepg__content {
+        width: 640px;
+    }   
+}
