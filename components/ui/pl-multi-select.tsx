@@ -121,9 +121,9 @@ function PlMultiSelect(props: any) {
         <style jsx>
             {
                 `
-                .plms {position: relative; width: 100%; height: 36px;}
+                .plms {position: relative; width: 100%; height: 40px;}
                 .plms__pane__empty {padding: 8px 16px; text-align:center; display: flex; justify-content: center; align-items: center; color: lightgrey; font-size: 13px;}
-                .plms__info {position: relative; height: 38px; align-items: center; width: 100%; font-size: 14px; border: 1px solid #CBD5E1; border-radius: 8px; padding: 8px 12px; display: flex; cursor: pointer;}
+                .plms__info {position: relative; height: 40px; align-items: center; width: 100%; font-size: 14px; border: 1px solid #CBD5E1; border-radius: 8px; padding: 8px 12px; display: flex; cursor: pointer;}
                 .plms__info__icon {width: 16px; height: 16px; margin-right: 8px;}
                 .plms__info__text {color: #475569; overflow: hidden;white-space: nowrap; text-overflow: ellipsis; text-transform: capitalize; flex: 1; font-weight: 500; font-size: 14px;}
                 .plms__info__close {background: #64748B;width: 20px; display: flex; align-items: center; justify-content: center; height: 20px; border-radius: 0 100px 100px 0;}
@@ -131,7 +131,7 @@ function PlMultiSelect(props: any) {
                 .plms__info__count {background: #64748B;width: 20px; display: flex; align-items: center; justify-content: center; height: 20px; border-radius: 100px 0 0 100px; margin-right: 1px;}
                 .plms__info__count__text {color: white; font-weight: 500; font-size: 11px;}
 
-                .plms__pane {position: absolute; background: white; z-index: 3; margin-bottom: 48px; top: 38px; left:0; max-height: 250px; box-shadow:0px 2px 6px rgba(15, 23, 42, 0.16); border-radius: 8px; position: absolute; border: 1px solid #E2E8F0; width: calc(100%);}
+                .plms__pane {position: absolute; background: white; z-index: 3; margin-bottom: 48px; top: 40px; left:0; max-height: 250px; box-shadow:0px 2px 6px rgba(15, 23, 42, 0.16); border-radius: 8px; position: absolute; border: 1px solid #E2E8F0; width: calc(100%);}
                 .plms__pane__head {width: 100%;border-bottom: 1px solid #CBD5E1; padding:16px; position: relative;}
                 .plms__pane__head__input {border: 1px solid #CBD5E1; padding: 0 12px 0 32px; height: 36px; width: 100%; outline: none; border-radius: 8px;}
                 .plms__pane__head__searchicon {position: absolute; top: 27px; left: 26px;}

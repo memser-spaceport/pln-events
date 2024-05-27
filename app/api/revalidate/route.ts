@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
   const authToken = request.headers.get("Authorization");
   const matcheResult = authToken?.match(BEARER_REGEX);
   const token = matcheResult ? matcheResult[1] : null;
-  if (process.env.NEXT_PUBLIC_REVALIDATE_TOKEN !== token) {
+  if (process.env.REVALIDATE_TOKEN !== token) {
     return Response.json({ message: "UnAuthorized" }, { status: 401 });
   }
   if (!Array.isArray(body.tags)) {

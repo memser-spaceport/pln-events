@@ -217,7 +217,7 @@ const Filter = (props: IFilter) => {
               />
             )}
             {filter?.type === "single-select" && (
-              <PlSingleSelect callback={onFilterChange} {...filter} />
+              <PlSingleSelect showSearch={true} callback={onFilterChange} {...filter} />
             )}
             {filter?.type === "multi-select" && (
               <PlMultiSelect

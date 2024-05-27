@@ -13,3 +13,9 @@ export interface IEventHost {
     logo: string;
     primaryIcon: string;
 }
+
+export interface ICookieUserInfo {
+    name: string;
+    email: string;
+    roles: string[];
+}

@@ -1,16 +1,10 @@
-module.exports = {
-  trailingSlash: true,
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: ["@svgr/webpack"],
-    });
-
-    return config;
+const nextConfig = {
+  env: {
+    REVALIDATE_TOKEN: process.env.REVALIDATE_TOKEN,
+    AUTH_API_BASE_RU: process.env.AUTH_API_BASE_URL,
   },
-  async rewrites() {
-    return [
+  async redirects() {
+    return[
       {
         source: "/",
         destination: "/index",
@@ -19,6 +13,7 @@ module.exports = {
         source: "/admin",
         destination: "/admin/index.html",
       },
-    ];
-  },
+    ]
+
+  }
 };

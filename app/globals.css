@@ -1,7 +1,18 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+body,
+h1,
+h2,
+h3,
+h4,
+div,
+img,
+p,
+aside,
+main,
+header,
+footer {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .applayout__main {
@@ -16,12 +27,6 @@
     right: 0;
   }
 
-
- * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 html,
 body {
