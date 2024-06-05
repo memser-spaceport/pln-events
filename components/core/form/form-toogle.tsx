@@ -1,37 +1,31 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
-interface IPlToggle {
-  callback: (itemId: string, value: string | boolean, type: string) => void;
-  itemId: string;
-  activeItem: boolean;
-  name?: string;
-}
-
-function PlToggle(props: IPlToggle) {
-  const checkRef = useRef<HTMLInputElement>(null);
+function FormToogle(props: any) {
   const callback = props.callback;
-  const itemId = props.itemId;
-  const activeItem = props.activeItem;
-  const name = props?.name ?? ''
+  const [activeItem, setIsActiveItem] = useState(props.activeItem);
+  const name = props?.name ?? "";
 
   const onSelectionChange = () => {
     if (callback) {
-      if (checkRef.current) {
-        callback(itemId, checkRef.current.checked, "single-select");
-      }
+      setIsActiveItem(!activeItem);
+      callback(!activeItem);
     }
   };
   return (
     <>
-    <label className="switch">
-        <input name={name} id={`${itemId}-pl-toggle`} checked={activeItem} onChange={onSelectionChange} ref={checkRef} type="checkbox"/>
+      <label className="switch">
+        <input
+          name={name}
+          checked={activeItem}
+          onChange={onSelectionChange}
+          type="checkbox"
+        />
         <span className="slider round"></span>
-    </label>
+      </label>
 
-    <style jsx>
-        {
-        `
-        .switch {
+      <style jsx>
+        {`
+          .switch {
             position: relative;
             display: inline-block;
             width: 38px;
@@ -39,13 +33,13 @@ function PlToggle(props: IPlToggle) {
             border-radius: 25px;
             border: 0.4px solid rgba(203, 213, 225, 0.4);
           }
-          
-          .switch input { 
+
+          .switch input {
             opacity: 0;
             width: 0;
             height: 0;
           }
-          
+
           .slider {
             position: absolute;
             cursor: pointer;
@@ -53,12 +47,11 @@ function PlToggle(props: IPlToggle) {
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #F1F5F9;
-            -webkit-transition: .4s;
-            transition: .4s;
-      
+            background-color: #f1f5f9;
+            -webkit-transition: 0.4s;
+            transition: 0.4s;
           }
-          
+
           .slider:before {
             position: absolute;
             content: "";
@@ -67,40 +60,36 @@ function PlToggle(props: IPlToggle) {
             left: 2px;
             bottom: 2px;
             background-color: white;
-            box-shadow:  0px 0px 2px rgba(15, 23, 42, 0.16);
-            -webkit-transition: .4s;
-            transition: .4s;
+            box-shadow: 0px 0px 2px rgba(15, 23, 42, 0.16);
+            -webkit-transition: 0.4s;
+            transition: 0.4s;
           }
-          
+
           input:checked + .slider {
             background-color: #156ff7;
           }
-          
+
           input:focus + .slider {
-           
           }
-          
+
           input:checked + .slider:before {
             -webkit-transform: translateX(16px);
             -ms-transform: translateX(16px);
             transform: translateX(16px);
           }
-          
+
           /* Rounded sliders */
           .slider.round {
             border-radius: 20px;
           }
-          
+
           .slider.round:before {
             border-radius: 50%;
           }
-        
-        
-        `
-        }
-    </style>
+        `}
+      </style>
     </>
   );
 }
 
-export default PlToggle;
+export default FormToogle;
