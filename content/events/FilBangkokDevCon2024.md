@@ -1,5 +1,5 @@
 ---
-eventName: "FIL Bangkok alongside DevCon"
+eventName: "FIL Bangkok alongside Devcon"
 eventDescription: ""
 eventType: "Conference"
 location: "Bangkok, Thailand"
