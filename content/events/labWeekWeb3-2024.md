@@ -1,6 +1,6 @@
 ---
 eventName: "LabWeek Web3"
-eventDescription: "A Decentralized conference designed to engage in deep conversations and make connections to drive real progress."
+eventDescription: "A decentralized conference designed to engage in deep conversations and make connections to drive real progress."
 eventTopic:
   - Web3
 eventType: "Conference"
