@@ -1,6 +1,6 @@
 ---
 eventName: "The CoFHE Shop"
-eventDescription: "The CoFHE Shop is an initiative by Zama to create a dynamic space for the Fully Homomorphic Encryption (FHE) community during EthCC week. It offers opportunities to network, hack, enjoy good coffee, and learn about FHE"
+eventDescription: "The CoFHE Shop is an initiative by Zama to create a dynamic space for the Fully Homomorphic Encryption (FHE) community during EthCC week. It offers opportunities to network, hack, enjoy good coffee, and learn about FHE."
 eventTopic:
   - "Web3"
 eventType: "Conference"
