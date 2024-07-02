@@ -1,6 +1,6 @@
 ---
-eventName: "Orange DAO: New crypto founders at ETHCC"
-eventDescription: "Core members and Orange founders from Orange DAO will be at ETHCC. We are hosting an afternoon mixer to meet other Orange family IRL. ​​​Orange DAO is the largest founder community of 1300+ founders of YC-backed companies building and investing in the future of crypto. We seek to build, accelerate, and mentor the leading repeat founders in the web3 ecosystem."
+eventName: "Orange DAO: New crypto founders at EthCC"
+eventDescription: "Core members and Orange founders from Orange DAO will be at EthCC. We are hosting an afternoon mixer to meet other Orange family IRL. ​​​Orange DAO is the largest founder community of 1300+ founders of YC-backed companies building and investing in the future of crypto. We seek to build, accelerate, and mentor the leading repeat founders in the web3 ecosystem."
 eventTopic:
   - "Web3"
 eventType: "Social"

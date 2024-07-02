@@ -1,6 +1,6 @@
 ---
 eventName: "Zama Afterwork Party @The CoFHE Shop"
-eventDescription: "Join Zama and the FHE community in a dedicated space for all things Fully Homomorphic Encryption (FHE) during Ethcc. Network, hack, drink good coffee."
+eventDescription: "Join Zama and the FHE community in a dedicated space for all things Fully Homomorphic Encryption (FHE) during EthCC. Network, hack, drink good coffee."
 eventTopic:
   - "Web3"
 eventType: "Social"
