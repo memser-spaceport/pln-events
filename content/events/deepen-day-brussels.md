@@ -2,7 +2,7 @@
 eventName: "DePIN Day" #the name of your track or event and its mandatory
 eventDescription: "Get ready to dive into the latest topics and research in DePIN and decentralized compute including multi-party computation, decentralized RPC, capacity rewards and proof systems." 
 eventTopic: 
-  - "PGF"
+  - "Web3"
 eventType: "Conference"
 location: "Brussels, Belgium"
 venueName: "Radisson Collection Hotel, Grand Place Brussels"
