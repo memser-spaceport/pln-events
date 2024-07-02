@@ -16,5 +16,5 @@ dateTBD: false
 isFeaturedEvent: false
 eventHosts:
   - Protocol Labs|protocol_labs.jpeg
-  - OrangeDAO|orangeDAO.jpg
+  - Orange DAO|orangeDAO.jpg
 ---
