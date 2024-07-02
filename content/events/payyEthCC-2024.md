@@ -1,5 +1,5 @@
 ---
-eventName: "Payy presents: zk wine tasting @ ethcc"
+eventName: "Payy presents: zk wine tasting @ EthCC"
 eventDescription: "Come join us for some wine and zero knowledge discussions at a low-key venue. There will be a variety of friends: zk cryptographers, defi builders, L1/2/3/4 maxis and more. But what we all have in common: a love for zero knowledge (and wine)."
 eventTopic:
   - "Web3"
