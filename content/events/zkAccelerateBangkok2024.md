@@ -1,5 +1,5 @@
 ---
-eventName: "ZK_Accelerate_Bangkok_2024"
+eventName: "ZK Accelerate Bangkok 2024"
 eventDescription: "Join us in Bangkok for ZK Accelerate. Free to attend. Celebrate ZK engineering with talks, panels, and demos. Network, enjoy lunch, and join the community pushing ZK middleware innovation boundaries."
 eventTopic:
   - "Zero Knowledge"
