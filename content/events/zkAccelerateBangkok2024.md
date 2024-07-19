@@ -12,8 +12,8 @@ venueName: "Carlton Hotel Bangkok Sukhumvit"
 venueAddress: "491 Sukhumvit Road, Sukhumvit soi 27, Klongtoey Nua, Wattana, 10110"
 venueMapsLink: "https://maps.app.goo.gl/Q3joDXdvNU7ZZPpn6"
 website: "https://lu.ma/zkathailand"
-startDate: "11/12/2024"
-endDate: "11/12/2024"
+startDate: "11/11/2024"
+endDate: "11/11/2024"
 tag: "PL Event"
 dateTBD: false
 eventHosts:
