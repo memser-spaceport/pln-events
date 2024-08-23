@@ -27,7 +27,7 @@ startDate: "<MM/DD/YYYY>" # the start date of the event , date format is MM/DD/Y
 
 endDate: "<MM/DD/YYYY>" #the end date of the event , date format is MM/DD/YYYY eg: if it is February 18th 2023 => 02/18/2023
 
-tag: "PLN Event" or "Industry Event" #Mention any one of the event types. Don't leave it blank.
+tag: "PL Event" or "Industry Event" #Mention any one of the event types. Don't leave it blank.
 
 dateTBD: false or true #If you don't have concrete dates, add the approximate dates & set dateTBD: true.
 
