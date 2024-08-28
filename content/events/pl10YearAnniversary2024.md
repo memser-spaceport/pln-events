@@ -4,7 +4,7 @@ eventDescription: "Celebrating Protocol Labs' 10th Anniversary - a decade of dri
 eventTopic:
   - Meetup
 eventType: "Conference"
-location: "TBD"
+location: "Location TBD"
 website: ""
 startDate: "04/16/2024"
 endDate: "04/16/2024"

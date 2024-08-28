@@ -4,7 +4,7 @@ eventDescription: "Join us for a gathering of OrangeDAO and Protocol Labs builde
 eventTopic:
   - Meetup
 eventType: "Conference"
-location: "TBD"
+location: "Location TBD"
 venueName: ""
 venueAddress: ""
 venueMapsLink: ""
