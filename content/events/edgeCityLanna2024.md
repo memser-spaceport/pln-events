@@ -7,7 +7,7 @@ eventTopic:
   - "Biotech"
   - "Neurotech"
 eventType: "Conference"
-location: "TBD"
+location: "Location TBD"
 venueName: ""
 venueAddress: ""
 venueMapsLink: ""
