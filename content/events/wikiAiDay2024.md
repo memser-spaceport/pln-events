@@ -5,7 +5,7 @@ eventTopic:
   - AI
   - DeSci
 eventType: "Conference"
-location: "TBD"
+location: "Location TBD"
 venueName: ""
 venueAddress: ""
 venueMapsLink: ""

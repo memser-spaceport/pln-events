@@ -4,7 +4,7 @@ eventDescription: "Join us to discuss the past, present, and future of DeSci. We
 eventTopic:
   - DeSci
 eventType: "Conference"
-location: "TBD"
+location: "Location TBD"
 venueName: "Embassy"
 venueAddress: ""
 venueMapsLink: "https://maps.app.goo.gl/aLG4kMaLDqM6wRGCA"
