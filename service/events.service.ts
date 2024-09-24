@@ -22,12 +22,13 @@ export const getBannerData = async () => {
 
 export const getEvents = async () => {
     const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/events`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/eventjson`,
         {
             method: "GET",
-            next: { tags: ["pln-events-tina-service"] },
+            // next: { tags: ["pln-events-tina-service"] },
         }
     )
+    // console.log("response?>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", await response.json());
     if (!response.ok) {
         return { isError: true, message: "Something went wrong!" }
     }
