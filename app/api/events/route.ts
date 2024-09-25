@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
-export function readJsonFiles() {
+function readJsonFiles() {
   const folderPath = path.join(process.cwd(), "events"); // Get the absolute path to the folder
   const fileNames = fs.readdirSync(folderPath); // Read all file names in the folder
 
