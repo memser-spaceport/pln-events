@@ -1,0 +1,20 @@
+{
+  "eventName": "LabWeek23",
+  "eventDescription": "A Decentralized Conference by Protocol Labs Network.",
+  "website": "https://labweek.plnetwork.io/",
+  "location": "Istanbul, Turkey",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "startDate": "11/13/2023",
+  "endDate": "11/17/2023",
+  "dateTBD": false,
+  "eventTopic": null,
+  "eventHosts": [
+    "Protocol Labs|LWcube.svg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": true,
+  "eventType": "Conference",
+  "tag": "PLN Event"
+}

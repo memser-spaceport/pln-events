@@ -1,0 +1,23 @@
+{
+  "eventName": "PL x OrangeDAO",
+  "eventDescription": "Join us for a gathering of OrangeDAO and Protocol Labs builders! Come meet Juan Benet – YC alum and founder of Protocol Labs, IPFS, and Filecoin – and hear his perspectives on trends in web3, AI, and technology.",
+  "website": "",
+  "location": "Location TBD",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "startDate": "04/11/2024",
+  "endDate": "04/11/2024",
+  "dateTBD": false,
+  "eventTopic": [
+    "Meetup"
+  ],
+  "eventHosts": [
+    "Protocol Labs|protocol_labs.jpeg",
+    "Orange DAO|orangeDAO.jpg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": false,
+  "eventType": "Conference",
+  "tag": "PL Event"
+}

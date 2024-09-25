@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "tinacms dev -c \"next dev\"",
-    "build": "tinacms build && next build",
-    "start": "tinacms build && next start",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "export": "yarn build && next export",
     "lint": "eslint . --ext .ts,.tsx"
   },
@@ -17,11 +17,9 @@
     "posthog-js": "^1.131.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-responsive-carousel": "^3.2.23",
-    "tinacms": "^1.6.3"
+    "react-responsive-carousel": "^3.2.23"
   },
   "devDependencies": {
-    "@tinacms/cli": "^1.5.45",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

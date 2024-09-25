@@ -9,6 +9,6 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
-    allow:
-      - dependency-name: "tinacms"
-      - dependency-name: "@tinacms*"
+    # allow:
+    #   - dependency-name: "tinacms"
+    #   - dependency-name: "@tinacms*"

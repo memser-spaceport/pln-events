@@ -1,0 +1,22 @@
+{
+  "eventName": "Countdown to FVM",
+  "eventDescription": "Countdown to FVM is a one-day event leading up to the launch of Filecoin’s Virtual Machine on mainnet in March 2023.",
+  "website": "https://events.fil.org/fvm-hackerbase/page/2570587/countdown-to-fvm-",
+  "location": "Denver, United States",
+  "venueName": "Upper Larimer",
+  "venueMapsLink": "https://www.google.com/maps/?q=39.7626229,-104.9796156",
+  "venueAddress": null,
+  "startDate": "03/01/2023",
+  "endDate": "03/01/2023",
+  "dateTBD": false,
+  "eventTopic": [
+    "Keynote",
+    "Builders Showcase",
+    "Happy Hour"
+  ],
+  "eventHosts": null,
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event"
+}

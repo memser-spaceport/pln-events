@@ -1,0 +1,27 @@
+{
+  "eventName": "DePIN Day Singapore",
+  "eventDescription": "An all-day event full of vital conversations around Decentralized Physical Infrastructure Networks. Connect with leading founders, researchers, developers and enthusiasts. Talks, workshops, panel discussions and useful networking are waiting for you!",
+  "website": "https://lu.ma/depin-singapore",
+  "location": "Singapore",
+  "venueName": "Register to See Address",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "startDate": "09/20/2024",
+  "endDate": "09/20/2024",
+  "dateTBD": false,
+  "eventTopic": [
+    "DePIN"
+  ],
+  "eventHosts": [
+    "Fluence|fluence.jpeg",
+    "Parasail Network|parasailNetwork.jpeg",
+    "Kwil|kwil.jpeg",
+    "Ceramic|ceramic.webp"
+  ],
+  "preferredContacts": [
+    "email|mailto:events@fluence.one"
+  ],
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PL Event"
+}

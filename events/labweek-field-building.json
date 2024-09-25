@@ -1,0 +1,26 @@
+{
+  "eventName": "LabWeek Field Building",
+  "eventDescription": "A decentralized conference hosted by Protocol Labs and Edge Esmeralda.",
+  "website": "https://labweek.io/24-fb",
+  "location": "Healdsburg, United States",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "startDate": "06/10/2024",
+  "endDate": "06/16/2024",
+  "dateTBD": false,
+  "eventTopic": [
+    "Neurotech, WBE, & BCI",
+    "Human-AI Cooperation",
+    "Biotech & Longevity",
+    "XR (Extended Reality)"
+  ],
+  "eventHosts": [
+    "Protocol Labs|protocol_labs.jpeg",
+    "Edge Esmeralda|edgeCity.jpeg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event"
+}
