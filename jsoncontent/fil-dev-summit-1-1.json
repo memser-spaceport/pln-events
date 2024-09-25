@@ -1,0 +1,28 @@
+{
+  "eventName": "FIL Dev Summit",
+  "eventDescription": "FIL Dev Summit is a gathering of developers, builders, and engaged community members who want to contribute to the core protocol and network evolution of Filecoin.",
+  "website": "https://www.fildev.io/FDS-4",
+  "location": "Brussels, Belgium",
+  "venueName": "Radisson Collection Hotel, Grand Place",
+  "venueMapsLink": "https://maps.app.goo.gl/crPW29eUPtVjQHt77",
+  "venueAddress": "Rue du Fossé aux Loups 47, 1000 Bruxelles",
+  "startDate": "07/09/2024",
+  "endDate": "07/11/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Web3",
+    "Filecoin"
+  ],
+  "eventHosts": [
+    "Protocol Labs|protocol_labs.jpeg",
+    "Filecoin Foundation|filecoinFoundationNew.png"
+  ],
+  "preferredContacts": [
+    "email|mailto:hello@fildev.io"
+  ],
+  "isFeaturedEvent": false,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
+}

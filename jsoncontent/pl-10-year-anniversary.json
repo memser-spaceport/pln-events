@@ -1,0 +1,24 @@
+{
+  "eventName": "PL 10 Year Anniversary",
+  "eventDescription": "Celebrating Protocol Labs' 10th Anniversary - a decade of driving breakthroughs in computing to push humanity forward.",
+  "website": "",
+  "location": "Location TBD",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "startDate": "04/16/2024",
+  "endDate": "04/16/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Meetup"
+  ],
+  "eventHosts": [
+    "Protocol Labs|protocol_labs.jpeg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": false,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
+}

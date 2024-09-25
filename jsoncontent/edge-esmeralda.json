@@ -1,0 +1,28 @@
+{
+  "eventName": "Edge Esmeralda",
+  "eventDescription": "A month-long gathering for people building the future. Join us for a popup village to live in a healthy and productive community focused on incubating novel technologies and ways of living.",
+  "website": "https://www.edgeesmeralda.com",
+  "location": "Healdsburg, United States",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "startDate": "06/02/2024",
+  "endDate": "06/30/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Human Organization",
+    "AI",
+    "Hard Tech",
+    "Longevity"
+  ],
+  "eventHosts": [
+    "Edge City|edgeCity.jpeg",
+    "Esmeralda Land Company|esmeraldaLandCompany.jpeg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
+}

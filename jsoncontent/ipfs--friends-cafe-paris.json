@@ -1,0 +1,24 @@
+{
+  "eventName": "IPFS + Friends Cafe: Paris",
+  "eventDescription": "Cafes emerged in Europe in the 17th century as a place to foster community and promote the exchange of ideas and philosophy. We’d like to invite you to join us in Paris during EthCC at the IPFS & Friends Cafe!",
+  "website": "http://lu.ma/ipfsnfriends-paris23",
+  "location": "Paris, France",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "startDate": "07/18/2023",
+  "endDate": "07/20/2023",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": null,
+  "eventHosts": [
+    "IPFS|ipfs-friends.png"
+  ],
+  "preferredContacts": [
+    "email|mailto:miwa@protocol.ai"
+  ],
+  "isFeaturedEvent": null,
+  "eventType": null,
+  "tag": "PLN Event",
+  "juanSpeaking": null
+}

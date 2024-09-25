@@ -1,0 +1,24 @@
+{
+  "eventName": "ETHDenver Community Events",
+  "eventDescription": "A list of events happening alongside ETHDenver that members may be interesting in attending. If you are planning to do also feel free to sign up on the sheet we have linked so more people can find you.",
+  "website": "https://docs.google.com/spreadsheets/d/1a87RAxg8RgNP9Q9ZqXXKErLGT0hipRALaL_NvzT2Tj8/edit#gid=0",
+  "location": "Denver, United States",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "startDate": "02/23/2024",
+  "endDate": "03/03/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Community Events"
+  ],
+  "eventHosts": [
+    "ETHDenver|ethDenver2024.jpg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
+}

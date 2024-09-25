@@ -1,0 +1,26 @@
+{
+  "eventName": "FIL Dev Summit 5",
+  "eventDescription": "FIL Dev Summit is a gathering of developers, builders, Storage Providers, and engaged community members who want to contribute to the evolution of Filecoin.",
+  "website": "https://lu.ma/vcdjb8pl",
+  "location": "Bangkok, Thailand",
+  "venueName": "Gaysorn Urban Resort",
+  "venueMapsLink": "https://maps.app.goo.gl/vMJVeZwZkbTsim7m7",
+  "venueAddress": "127 Gaysorn Tower, 19th-20th Floor, Ratchaprasong Road, Lumphini, Pathum Wan",
+  "startDate": "11/06/2024",
+  "endDate": "11/06/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Filecoin"
+  ],
+  "eventHosts": [
+    "Filecoin Foundation|filecoin-foundation.webp"
+  ],
+  "preferredContacts": [
+    "twitter|https://twitter.com/FILDevSummit"
+  ],
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
+}

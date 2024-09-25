@@ -1,0 +1,27 @@
+{
+  "eventName": "Consensus - Austin DePIN",
+  "eventDescription": "The most DePINtastic Consensus side event of them all, where Web3 and real world come together in an alchemical marriage.",
+  "website": "https://lu.ma/DePINAustin",
+  "location": "Austin, United States",
+  "venueName": "The Perch ATX",
+  "venueMapsLink": "https://maps.app.goo.gl/Y76EPi9rm4nV3htR7",
+  "venueAddress": "74 Trinity St, TX 78701",
+  "startDate": "05/30/2024",
+  "endDate": "05/30/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "DePIN"
+  ],
+  "eventHosts": [
+    "Impossible Cloud|impossibleCloud.jpeg",
+    "Outlier Ventures|outlierVentures.jpg",
+    "peaq|peaq.jpg",
+    "Borderless Capital|borderlessCapital.jpg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "Industry Event",
+  "juanSpeaking": null
+}

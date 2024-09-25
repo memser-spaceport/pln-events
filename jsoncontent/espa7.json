@@ -1,0 +1,29 @@
+{
+  "eventName": "ESPA-7",
+  "eventDescription": "3-day deep dive accelerator for launching your Filecoin Storage Provider business or related endeavor. High-impact networking, education & resources.",
+  "website": "https://www.web3espa.io/",
+  "location": "Las Vegas, United States",
+  "venueName": "ParkMGM",
+  "venueMapsLink": "",
+  "venueAddress": "3770 S Las Vegas Blvd, NV 89109",
+  "startDate": "07/18/2023",
+  "endDate": "07/20/2023",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Training",
+    "Networking",
+    "Accelerator",
+    "Incubator"
+  ],
+  "eventHosts": [
+    "ESPA|espa.png"
+  ],
+  "preferredContacts": [
+    "email|mailto:apply@web3espa.io"
+  ],
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "Industry Event",
+  "juanSpeaking": null
+}

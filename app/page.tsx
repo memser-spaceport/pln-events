@@ -1,6 +1,6 @@
 import Events from "@/components/page/events/events";
 import FilterWrapper from "@/components/page/events/filter-wrapper";
-var fs = require('fs');
+var fs = require("fs");
 import {
   getBannerData,
   getEvents,
@@ -46,7 +46,7 @@ export default async function Home(params: any) {
   const showBanner = false;
 
   if (isError) {
-    return <div></div>
+    return <div></div>;
   }
 
   return (
@@ -54,7 +54,7 @@ export default async function Home(params: any) {
       <div className={styles.hp__content}>
         <aside className={styles.hp__filter}>
           <FilterWrapper
-            showBanner = {showBanner}
+            showBanner={showBanner}
             filterValues={filterValues}
             selectedItems={selectedItems}
             events={events}
@@ -62,7 +62,7 @@ export default async function Home(params: any) {
         </aside>
         <div className={styles.hp__events}>
           <Events
-           showBanner={showBanner}
+            showBanner={showBanner}
             rawEvents={rawEvents}
             viewType={viewType}
             events={events}
@@ -96,33 +96,49 @@ const getPageData = async (params: any) => {
         rawEvents,
         filterValues,
         bannerData,
-        selectedItems
+        selectedItems,
       };
     }
+
+    // fs.writeFileSync('./jsoncontent/'+'check'+'.json', JSON.stringify({'name':'nivz'}, null, 2) , 'utf-8');
+    eventsResponse?.data?.map((event: any) => {
+      console.log(event);
+      let eventData = {
+        eventName: event?.node?.eventName,
+        eventDescription: event?.node?.eventDescription,
+        website: event?.node?.website,
+        location: event?.node?.location,
+        venueName: event?.node?.venueName,
+        venueMapsLink: event?.node?.venueMapsLink,
+        venueAddress: event?.node?.venueAddress,
+        startDate: event?.node?.startDate,
+        endDate: event?.node?.endDate,  
+        dateTBD: event?.node?.dateTBD,
+        dri: event?.node?.dri,
+        eventTopic: event?.node?.eventTopic,
+        eventHosts: event?.node?.eventHosts,
+        preferredContacts: event?.node?.preferredContacts,
+        isFeaturedEvent: event?.node?.isFeaturedEvent,
+        eventType: event?.node?.eventType,
+        tag: event?.node?.tag,
+        juanSpeaking: event?.node?.juanSpeaking
+      };
+      let filename = event.node?.eventName.replaceAll(/[^a-zA-Z0-9 ]/g, "").split(' ').join('-').toLowerCase();
+      // console.log(filename);
+      while (fs.existsSync("jsoncontent/"+filename+".json")) {
+        filename = filename + '-1';
+      }
+      try{
+        fs.writeFileSync('jsoncontent/'+filename+'.json', JSON.stringify(eventData, null, 2) , 'utf-8');
+      }catch(e){
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',filename);
+        console.log(e);
+      }
+    });
 
     bannerData = bannerResponse?.data ?? null;
     events = getFormattedEvents(eventsResponse?.data) ?? [];
     rawEvents = events;
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',rawEvents.length);
-    // fs.writeFileSync('./jsoncontent/'+'check'+'.json', JSON.stringify({'name':'nivz'}, null, 2) , 'utf-8');
-    rawEvents.map((event) => {
-      // const stream = fs.createWriteStream('./jsoncontent/'+event.eventName+'.json');
-      let filename = event.eventName.replaceAll(/[^a-zA-Z0-9 ]/g, "").split(' ').join('-').toLowerCase();
-      console.log(filename);
-      while (fs.existsSync("jsoncontent/"+filename+".json")) {
-        filename = filename + '-1';
-        console.log("Found file");
-      }
-      try{
-        fs.writeFileSync('jsoncontent/'+filename+'.json', JSON.stringify(event, null, 2) , 'utf-8');  
-      }catch(e){
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',filename);
-        
-        console.log(e);
-      }
-      // fs.writeFileSync('jsoncontent/'+filename+'.json', JSON.stringify(event, null, 2) , 'utf-8');
-      // stream.write(event);
-    });
 
     filterValues = getFilterValues(events, selectedItems);
     events = getFilteredEvents(events, selectedItems).sort(

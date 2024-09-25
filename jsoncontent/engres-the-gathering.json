@@ -1,0 +1,28 @@
+{
+  "eventName": "EngRes the Gathering",
+  "eventDescription": "A monthly event bringing together engineers, researchers, & community members across PL community and projects to share the latest breakthroughs and updates happening across our space.",
+  "website": "https://lu.ma/Engres-The-Gathering-02-15-24",
+  "location": "Location TBD",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "startDate": "02/15/2024",
+  "endDate": "02/15/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "PL Community",
+    "Project Updates",
+    "Deep Dives + Demos"
+  ],
+  "eventHosts": [
+    "EngRes|protocol_labs.jpeg"
+  ],
+  "preferredContacts": [
+    "email|mailto:engres-admin@protocol.ai"
+  ],
+  "isFeaturedEvent": null,
+  "eventType": "Virtual",
+  "tag": "PLN Event",
+  "juanSpeaking": null
+}

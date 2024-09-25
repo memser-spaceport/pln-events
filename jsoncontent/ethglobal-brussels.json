@@ -1,0 +1,24 @@
+{
+  "eventName": "ETHGlobal Brussels",
+  "eventDescription": "Brussels is embracing Web3 innovation with ETHGlobal Brussels this July. This hackathon weekend will bring together developers, designers, and thinkers for workshops, feedback from top teams, and amazing prizes from partners like Arbitrum, Polygon, and the Uniswap Foundation.",
+  "website": "https://ethglobal.com/events/brussels",
+  "location": "Brussels, Belgium",
+  "venueName": "The EGG",
+  "venueMapsLink": "https://maps.app.goo.gl/BdpfTHGSTLZFRsiR9",
+  "venueAddress": "Rue Bara 175, 1070 Bruxelles, Belgium",
+  "startDate": "07/12/2024",
+  "endDate": "07/14/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": null,
+  "eventHosts": [
+    "Protocol Labs|protocol-labs-network-small-logo.svg"
+  ],
+  "preferredContacts": [
+    "email|mailto:hackathons@protocol.ai"
+  ],
+  "isFeaturedEvent": false,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
+}

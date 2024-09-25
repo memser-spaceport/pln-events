@@ -1,0 +1,30 @@
+{
+  "eventName": "DePIN Day",
+  "eventDescription": "Get ready to dive into the latest topics and research in DePIN and decentralized compute including multi-party computation, decentralized RPC, capacity rewards and proof systems.",
+  "website": "https://depinday.xyz/brussels",
+  "location": "Brussels, Belgium",
+  "venueName": "Radisson Collection Hotel, Grand Place Brussels",
+  "venueMapsLink": "https://www.google.com/maps/search/?api=1&query=Radisson%20Collection%20Hotel%2C%20Grand%20Place%20Brussels&query_place_id=ChIJHY1BW4DDw0cRetncbg43F0w",
+  "venueAddress": "Rue du Fossé aux Loups 47, 1000 Bruxelles",
+  "startDate": "07/10/2024",
+  "endDate": "07/10/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Web3"
+  ],
+  "eventHosts": [
+    "Fluence|fluence.jpeg",
+    "Ramo|ramo.jpeg",
+    "Exabits|exabits.jpeg",
+    "Kwil|kwil.jpeg",
+    "Witness Chain|witnessChain.jpeg"
+  ],
+  "preferredContacts": [
+    "email|mailto:events@fluence.one"
+  ],
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
+}

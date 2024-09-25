@@ -1,0 +1,24 @@
+{
+  "eventName": "The CoFHE Shop",
+  "eventDescription": "The CoFHE Shop is an initiative by Zama to create a dynamic space for the Fully Homomorphic Encryption (FHE) community during EthCC week. It offers opportunities to network, hack, enjoy good coffee, and learn about FHE.",
+  "website": "https://www.zama.ai/the-cofhe-shop",
+  "location": "Brussels, Belgium",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "startDate": "07/08/2024",
+  "endDate": "07/10/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Web3"
+  ],
+  "eventHosts": [
+    "Zama|zama-logo.png"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
+}

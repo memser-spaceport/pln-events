@@ -1,0 +1,26 @@
+{
+  "eventName": "Filecoin Orbit Ecosystem Showcase & Happy Hour",
+  "eventDescription": "Taking place around ETH Denver, the Filecoin Orbit community event provides an opportunity to immerse yourself in the Filecoin ecosystem, learn from the brightest minds in the industry, and connect with like-minded community members. Join us at The Shop in CSU Spur Denver!",
+  "website": "https://filecoindenver.io/event/filecoindenver-io",
+  "location": "Denver, United States",
+  "venueName": "CSU Spur Denver - The Shop",
+  "venueMapsLink": "https://maps.app.goo.gl/RFiXKZLEpRCk1vu79",
+  "venueAddress": "4777 National Western Dr, CO 80216",
+  "startDate": "03/01/2024",
+  "endDate": "03/01/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Filecoin"
+  ],
+  "eventHosts": [
+    "Filecoin|filecoin.png"
+  ],
+  "preferredContacts": [
+    "email|mailto:support@blocklive.io"
+  ],
+  "isFeaturedEvent": null,
+  "eventType": "Social",
+  "tag": "PLN Event",
+  "juanSpeaking": null
+}

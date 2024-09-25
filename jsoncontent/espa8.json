@@ -1,0 +1,29 @@
+{
+  "eventName": "ESPA-8",
+  "eventDescription": "3-day deep dive accelerator for launching your Filecoin Storage Provider business or related endeavor. High-impact networking, education & resources. ESPA will be colocated with Global Storage Provider Summit this year!",
+  "website": "https://www.web3espa.io/",
+  "location": "Las Vegas, United States",
+  "venueName": "ParkMGM",
+  "venueMapsLink": null,
+  "venueAddress": "3770 S Las Vegas Blvd, NV 89109",
+  "startDate": "10/02/2023",
+  "endDate": "10/05/2023",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Training",
+    "Networking",
+    "Accelerator",
+    "Incubator"
+  ],
+  "eventHosts": [
+    "ESPA|espa.png"
+  ],
+  "preferredContacts": [
+    "email|mailto:apply@web3espa.io"
+  ],
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
+}

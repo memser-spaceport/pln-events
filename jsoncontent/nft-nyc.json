@@ -1,0 +1,23 @@
+{
+  "eventName": "NFT NYC",
+  "eventDescription": null,
+  "website": "https://www.nft.nyc/",
+  "location": "New York City, United States",
+  "venueName": "Times Square & Hudson Yards",
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "startDate": "04/12/2023",
+  "endDate": "04/14/2023",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Industry Event",
+    "Talks"
+  ],
+  "eventHosts": null,
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "Industry Event",
+  "juanSpeaking": null
+}

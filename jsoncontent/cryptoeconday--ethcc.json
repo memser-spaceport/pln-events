@@ -1,0 +1,30 @@
+{
+  "eventName": "CryptoEconDay @ EthCC",
+  "eventDescription": "CryptoEconDay is a gathering of Web3 researchers and practitioners sharing findings, lessons learned, and answering some of our most challenging questions around the topic of cryptoeconomics.",
+  "website": "https://lu.ma/cedparis",
+  "location": "Paris, France",
+  "venueName": null,
+  "venueMapsLink": "https://www.google.com/maps/search/?api=1&query=Son%20de%20la%20Terre&query_place_id=ChIJSYqUIpRx5kcRRav_z3ZSZyM",
+  "venueAddress": null,
+  "startDate": "07/19/2023",
+  "endDate": "07/19/2023",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Tokenomics",
+    "Liquidity Mining",
+    "Token Engineering",
+    "Incentive Design"
+  ],
+  "eventHosts": [
+    "CryptoEconLab|cel_logo_1.png"
+  ],
+  "preferredContacts": [
+    "email|mailto:cel@protocol.ai",
+    "twitter|https://twitter.com/cryptoeconlab"
+  ],
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
+}

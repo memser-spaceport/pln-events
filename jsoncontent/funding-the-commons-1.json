@@ -1,0 +1,25 @@
+{
+  "eventName": "Funding the Commons",
+  "eventDescription": "This 2-day event focuses on the rapid innovation underpinning fundamental infrastructure for navigating the digital-physical commons: AI and the Open Web. Join us if you are a builder, researcher, academic, student, funder, philanthropist or public official deeply immersed in (or curious about!) the future of public goods funding.",
+  "website": "https://fundingthecommons.io/san-francisco-bay-area-2024",
+  "location": "San Francisco, United States",
+  "venueName": "The David Brower Center",
+  "venueMapsLink": "https://maps.app.goo.gl/rEaMTZGxNBBEZtPx6",
+  "venueAddress": "2150 Allston Way, Berkeley, CA 94704",
+  "startDate": "04/13/2024",
+  "endDate": "04/14/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "AI",
+    "PGF"
+  ],
+  "eventHosts": [
+    "Funding the Commons|ftc-logo.png"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": true,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
+}

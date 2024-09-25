@@ -1,0 +1,28 @@
+{
+  "eventName": "EDCON",
+  "eventDescription": "A global non-profit conference committed to serving the #Ethereum ecosystem & enhancing Ethereum community interaction worldwide.",
+  "website": "https://www.edcon.io",
+  "location": "Tokyo, Japan",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "startDate": "07/24/2024",
+  "endDate": "07/30/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Web3",
+    "Ethereum",
+    "Blockchain"
+  ],
+  "eventHosts": [
+    "EDCON|edcon.jpg"
+  ],
+  "preferredContacts": [
+    "email|mailto:contact@edcon.io"
+  ],
+  "isFeaturedEvent": false,
+  "eventType": "Conference",
+  "tag": "Industry Event",
+  "juanSpeaking": null
+}

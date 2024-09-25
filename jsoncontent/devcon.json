@@ -1,0 +1,20 @@
+{
+  "eventName": "Devcon",
+  "eventDescription": "Discover Ethereum and its community at Devcon, the conference for developers, thinkers, and makers and a place for learning, knowledge sharing, and fun.",
+  "website": "https://devcon.org/en/",
+  "location": "Bangkok, Thailand",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "startDate": "11/12/2024",
+  "endDate": "11/15/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": null,
+  "eventHosts": null,
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "Industry Event",
+  "juanSpeaking": null
+}

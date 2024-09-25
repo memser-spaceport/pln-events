@@ -1,0 +1,25 @@
+{
+  "eventName": "DeSci & bio/acc Summit",
+  "eventDescription": "Join us at the National Gallery Singapore for the DeSci & Bio/Acc Summit – where decentralized science meets Web3 innovation.",
+  "website": "https://lu.ma/descisummit",
+  "location": "Singapore",
+  "venueName": "National Gallery Singapore",
+  "venueMapsLink": "https://maps.app.goo.gl/WMSrhbfLumYoTJzz7",
+  "venueAddress": "Singapore 178957",
+  "startDate": "09/16/2024",
+  "endDate": "09/16/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "DeSci",
+    "Biotech"
+  ],
+  "eventHosts": [
+    "VitaDAO|vitaDAO.jpeg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
+}

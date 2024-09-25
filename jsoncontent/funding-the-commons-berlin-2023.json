@@ -1,0 +1,25 @@
+{
+  "eventName": "Funding the Commons Berlin 2023",
+  "eventDescription": "The Berlin edition of Funding the Commons will feature a unique emphasis on builders and interactive programming.",
+  "website": "https://fundingthecommons.io/berlin-2023",
+  "location": "Berlin, Germany",
+  "venueName": "Factory Berlin",
+  "venueMapsLink": null,
+  "venueAddress": "Lohmühlenstraße 65, 12435",
+  "startDate": "09/08/2023",
+  "endDate": "09/09/2023",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": null,
+  "eventHosts": [
+    "Funding the Commons|ftc-logo.png"
+  ],
+  "preferredContacts": [
+    "email|mailto:commons@protocol.ai",
+    "twitter|https://twitter.com/FundingCommons"
+  ],
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
+}

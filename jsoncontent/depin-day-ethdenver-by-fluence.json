@@ -1,0 +1,22 @@
+{
+  "eventName": "DE:PIN DAY @ETHDenver by Fluence",
+  "eventDescription": "Join us for an insightful exploration of the latest research and technological advancements on a diverse spread of topics, including multi-party computation, decentralized RPC, distributed systems and other best practices and tools of decentralized physical infrastructure.",
+  "website": "https://lu.ma/de-pin",
+  "location": "Denver, United States",
+  "venueName": "Green Spaces: Co-working and Marketplace",
+  "venueMapsLink": "https://maps.app.goo.gl/hyDqJsDee2QjbTYT6",
+  "venueAddress": "2590 Walnut St, CO 80205",
+  "startDate": "02/27/2024",
+  "endDate": "02/27/2024",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": null,
+  "eventHosts": [
+    "Fluence|fluence.png"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
+}

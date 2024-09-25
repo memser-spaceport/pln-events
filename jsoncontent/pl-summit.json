@@ -1,0 +1,25 @@
+{
+  "eventName": "PL Summit",
+  "eventDescription": "The Protocol Labs Network is getting together for our second decentralized conference! Join us as we drive breakthroughs in computing to push humanity forward.",
+  "website": null,
+  "location": "Istanbul, Turkey",
+  "venueName": null,
+  "venueMapsLink": "https://maps.app.goo.gl/JXnJXD5w6MpAtLNT9",
+  "venueAddress": "​Swissôtel The Bosphorus Istanbul",
+  "startDate": "11/13/2023",
+  "endDate": "11/15/2023",
+  "dateTBD": false,
+  "dri": null,
+  "eventTopic": [
+    "Talks & Presentation"
+  ],
+  "eventHosts": [
+    "Protocol Labs|protocol_labs.jpeg",
+    "Spaceport|spaceport.png"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": true,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
+}
