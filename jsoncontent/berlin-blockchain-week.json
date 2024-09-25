@@ -9,12 +9,10 @@
   "startDate": "09/12/2023",
   "endDate": "09/17/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": null,
   "eventHosts": null,
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "Industry Event",
-  "juanSpeaking": null
+  "tag": "Industry Event"
 }

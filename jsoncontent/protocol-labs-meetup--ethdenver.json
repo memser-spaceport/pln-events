@@ -9,12 +9,10 @@
   "startDate": "03/02/2024",
   "endDate": "03/02/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": null,
   "eventHosts": null,
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": "Social",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

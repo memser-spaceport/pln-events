@@ -9,7 +9,6 @@
   "startDate": "03/30/2023",
   "endDate": "03/30/2023",
   "dateTBD": null,
-  "dri": null,
   "eventTopic": null,
   "eventHosts": [
     "drand|drand-logo.png"
@@ -20,6 +19,5 @@
   ],
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

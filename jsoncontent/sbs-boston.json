@@ -9,7 +9,6 @@
   "startDate": "4/13/2023",
   "endDate": "4/13/2023",
   "dateTBD": null,
-  "dri": null,
   "eventTopic": null,
   "eventHosts": [
     "Filecoin Green|filecoin-green.webp"
@@ -17,6 +16,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": true,
   "eventType": "Conference",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

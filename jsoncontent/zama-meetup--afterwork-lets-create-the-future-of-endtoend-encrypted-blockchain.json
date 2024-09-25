@@ -9,7 +9,6 @@
   "startDate": "10/25/2023",
   "endDate": "10/25/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Blockchain",
     "Web3",
@@ -24,6 +23,5 @@
   ],
   "isFeaturedEvent": null,
   "eventType": "Social",
-  "tag": "Industry Event",
-  "juanSpeaking": null
+  "tag": "Industry Event"
 }

@@ -9,7 +9,6 @@
   "startDate": "07/18/2023",
   "endDate": "07/20/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Training",
     "Networking",
@@ -24,6 +23,5 @@
   ],
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "Industry Event",
-  "juanSpeaking": null
+  "tag": "Industry Event"
 }

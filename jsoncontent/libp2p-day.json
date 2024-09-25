@@ -9,7 +9,6 @@
   "startDate": "02/29/2024",
   "endDate": "02/29/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "libp2p"
   ],
@@ -21,6 +20,5 @@
   ],
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

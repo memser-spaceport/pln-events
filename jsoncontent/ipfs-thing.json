@@ -9,7 +9,6 @@
   "startDate": "04/15/2023",
   "endDate": "04/19/2023",
   "dateTBD": null,
-  "dri": null,
   "eventTopic": null,
   "eventHosts": [
     "IPFS|ipfs-logo.png"
@@ -19,6 +18,5 @@
   ],
   "isFeaturedEvent": true,
   "eventType": null,
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

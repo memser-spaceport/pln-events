@@ -9,7 +9,6 @@
   "startDate": "04/13/2024",
   "endDate": "04/14/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Sustainability",
     "PGF"
@@ -20,6 +19,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": true,
   "eventType": "Conference",
-  "tag": "Industry Event",
-  "juanSpeaking": null
+  "tag": "Industry Event"
 }

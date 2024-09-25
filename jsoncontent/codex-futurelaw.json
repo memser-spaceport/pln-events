@@ -9,12 +9,10 @@
   "startDate": "04/11/2024",
   "endDate": "04/11/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": null,
   "eventHosts": null,
   "preferredContacts": null,
   "isFeaturedEvent": false,
   "eventType": "Conference",
-  "tag": "Industry Event",
-  "juanSpeaking": null
+  "tag": "Industry Event"
 }

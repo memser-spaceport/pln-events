@@ -9,7 +9,6 @@
   "startDate": "03/21/2023",
   "endDate": "03/23/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Fundraising"
   ],
@@ -19,6 +18,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": "Virtual",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

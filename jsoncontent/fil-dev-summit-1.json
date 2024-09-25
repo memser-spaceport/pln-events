@@ -9,7 +9,6 @@
   "startDate": "09/25/2023",
   "endDate": "09/27/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": null,
   "eventHosts": [
     "Miwa|miwa.png"
@@ -17,6 +16,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": true,
   "eventType": "Conference",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

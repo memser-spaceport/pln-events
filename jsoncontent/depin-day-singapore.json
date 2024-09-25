@@ -9,7 +9,6 @@
   "startDate": "09/20/2024",
   "endDate": "09/20/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "DePIN"
   ],
@@ -24,6 +23,5 @@
   ],
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "PL Event",
-  "juanSpeaking": null
+  "tag": "PL Event"
 }

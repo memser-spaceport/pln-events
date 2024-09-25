@@ -9,7 +9,6 @@
   "startDate": "07/24/2024",
   "endDate": "07/25/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Web3",
     "PGF"
@@ -20,6 +19,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": false,
   "eventType": "Conference",
-  "tag": "PL Event",
-  "juanSpeaking": null
+  "tag": "PL Event"
 }

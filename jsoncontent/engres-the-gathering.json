@@ -9,7 +9,6 @@
   "startDate": "02/15/2024",
   "endDate": "02/15/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "PL Community",
     "Project Updates",
@@ -23,6 +22,5 @@
   ],
   "isFeaturedEvent": null,
   "eventType": "Virtual",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

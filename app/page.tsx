@@ -114,14 +114,14 @@ const getPageData = async (params: any) => {
         startDate: event?.node?.startDate,
         endDate: event?.node?.endDate,  
         dateTBD: event?.node?.dateTBD,
-        dri: event?.node?.dri,
+        // dri: event?.node?.dri,
         eventTopic: event?.node?.eventTopic,
         eventHosts: event?.node?.eventHosts,
         preferredContacts: event?.node?.preferredContacts,
         isFeaturedEvent: event?.node?.isFeaturedEvent,
         eventType: event?.node?.eventType,
         tag: event?.node?.tag,
-        juanSpeaking: event?.node?.juanSpeaking
+        // juanSpeaking: event?.node?.juanSpeaking
       };
       let filename = event.node?.eventName.replaceAll(/[^a-zA-Z0-9 ]/g, "").split(' ').join('-').toLowerCase();
       // console.log(filename);

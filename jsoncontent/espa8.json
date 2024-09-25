@@ -9,7 +9,6 @@
   "startDate": "10/02/2023",
   "endDate": "10/05/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Training",
     "Networking",
@@ -24,6 +23,5 @@
   ],
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

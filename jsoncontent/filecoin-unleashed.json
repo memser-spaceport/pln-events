@@ -9,12 +9,10 @@
   "startDate": "7/18/2023",
   "endDate": "7/18/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": null,
   "eventHosts": null,
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

@@ -9,7 +9,6 @@
   "startDate": "07/19/2023",
   "endDate": "07/19/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Tokenomics",
     "Liquidity Mining",
@@ -25,6 +24,5 @@
   ],
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

@@ -9,7 +9,6 @@
   "startDate": "09/08/2023",
   "endDate": "09/09/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": null,
   "eventHosts": [
     "Funding the Commons|ftc-logo.png"
@@ -20,6 +19,5 @@
   ],
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }
