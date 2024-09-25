@@ -1,5 +1,6 @@
 import Events from "@/components/page/events/events";
 import FilterWrapper from "@/components/page/events/filter-wrapper";
+var fs = require('fs');
 import {
   getBannerData,
   getEvents,
@@ -102,6 +103,27 @@ const getPageData = async (params: any) => {
     bannerData = bannerResponse?.data ?? null;
     events = getFormattedEvents(eventsResponse?.data) ?? [];
     rawEvents = events;
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',rawEvents.length);
+    // fs.writeFileSync('./jsoncontent/'+'check'+'.json', JSON.stringify({'name':'nivz'}, null, 2) , 'utf-8');
+    rawEvents.map((event) => {
+      // const stream = fs.createWriteStream('./jsoncontent/'+event.eventName+'.json');
+      let filename = event.eventName.replaceAll(/[^a-zA-Z0-9 ]/g, "").split(' ').join('-').toLowerCase();
+      console.log(filename);
+      while (fs.existsSync("jsoncontent/"+filename+".json")) {
+        filename = filename + '-1';
+        console.log("Found file");
+      }
+      try{
+        fs.writeFileSync('jsoncontent/'+filename+'.json', JSON.stringify(event, null, 2) , 'utf-8');  
+      }catch(e){
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',filename);
+        
+        console.log(e);
+      }
+      // fs.writeFileSync('jsoncontent/'+filename+'.json', JSON.stringify(event, null, 2) , 'utf-8');
+      // stream.write(event);
+    });
+
     filterValues = getFilterValues(events, selectedItems);
     events = getFilteredEvents(events, selectedItems).sort(
       (firstEvent, secondEvent) =>

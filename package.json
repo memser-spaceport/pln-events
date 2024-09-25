@@ -13,6 +13,7 @@
     "@fullcalendar/core": "^6.1.11",
     "@fullcalendar/daygrid": "^6.1.11",
     "@fullcalendar/react": "^6.1.11",
+    "fs": "^0.0.1-security",
     "next": "14.1.0",
     "posthog-js": "^1.131.3",
     "react": "^18",
