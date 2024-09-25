@@ -1,0 +1,44 @@
+{
+  "eventName": "The CoFHE Shop",
+  "website": "https://www.zama.ai/the-cofhe-shop",
+  "location": "Brussels, Belgium",
+  "startDate": "07/08/2024",
+  "endDate": "07/10/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "The CoFHE Shop is an initiative by Zama to create a dynamic space for the Fully Homomorphic Encryption (FHE) community during EthCC week. It offers opportunities to network, hack, enjoy good coffee, and learn about FHE.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "isFeaturedEvent": false,
+  "topics": [
+    "Web3"
+  ],
+  "eventHosts": [
+    {
+      "name": "Zama",
+      "logo": "/uploads/zama-logo.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1720377000000,
+  "startMonthIndex": 6,
+  "startDay": 8,
+  "startDayString": "Mon",
+  "startYear": "2024",
+  "endDateTimeStamp": 1720549800000,
+  "endMonthIndex": 6,
+  "endDay": 10,
+  "fullDateFormat": "July 8 - 10, 2024 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-07-07T18:30:00.000Z",
+  "endDateValue": "2024-07-09T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "the-cofhe-shop-1720377000000-1720549800000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

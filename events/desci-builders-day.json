@@ -1,0 +1,54 @@
+{
+  "eventName": "DeSci Builder's Day",
+  "website": "https://lu.ma/ajiaip60",
+  "location": "Location TBD",
+  "startDate": "04/16/2024",
+  "endDate": "04/16/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "Industry Event",
+  "description": "Join us to discuss the past, present, and future of DeSci. We'll discuss tooling, collaboration and requirements for the future within decentralised Science.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "Embassy",
+  "venueMapsLink": "https://maps.app.goo.gl/aLG4kMaLDqM6wRGCA",
+  "venueAddress": "",
+  "isFeaturedEvent": false,
+  "topics": [
+    "DeSci"
+  ],
+  "eventHosts": [
+    {
+      "name": "Coophive",
+      "logo": "/uploads/coophive.jpg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "Foresight Institute",
+      "logo": "/uploads/foresight.jpg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "DeSci World",
+      "logo": "/uploads/desciWorld.jpg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1713205800000,
+  "startMonthIndex": 3,
+  "startDay": 16,
+  "startDayString": "Tue",
+  "startYear": "2024",
+  "endDateTimeStamp": 1713205800000,
+  "endMonthIndex": 3,
+  "endDay": 16,
+  "fullDateFormat": "April 16, 2024 ",
+  "tagLogo": "/icons/pln-industry-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-04-15T18:30:00.000Z",
+  "endDateValue": "2024-04-15T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "desci-builders-day-1713205800000-1713205800000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

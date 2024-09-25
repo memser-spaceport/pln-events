@@ -1,0 +1,47 @@
+{
+  "eventName": "Proof of Data Summit",
+  "website": "https://lu.ma/proofofdata",
+  "location": "Denver, United States",
+  "startDate": "03/01/2024",
+  "endDate": "03/01/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "Join us at the Proof of Data Summit for a groundbreaking collaboration between Ceramic and Tableland, as we redefine the data management landscape in the decentralized era. This summit is a gathering of visionaries, innovators, and leaders at the forefront of DePIN, decentralized AI, and compute over data, as well as reputation and identity.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "Register for address",
+  "isFeaturedEvent": false,
+  "topics": [],
+  "eventHosts": [
+    {
+      "name": "Ceramic",
+      "logo": "/uploads/ceramic.webp",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "Tableland",
+      "logo": "/uploads/tableland.webp",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1709231400000,
+  "startMonthIndex": 2,
+  "startDay": 1,
+  "startDayString": "Fri",
+  "startYear": "2024",
+  "endDateTimeStamp": 1709231400000,
+  "endMonthIndex": 2,
+  "endDay": 1,
+  "fullDateFormat": "March 1, 2024 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-02-29T18:30:00.000Z",
+  "endDateValue": "2024-02-29T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "proof-of-data-summit-1709231400000-1709231400000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

@@ -1,0 +1,59 @@
+{
+  "eventName": "Consensus - Austin DePIN",
+  "website": "https://lu.ma/DePINAustin",
+  "location": "Austin, United States",
+  "startDate": "05/30/2024",
+  "endDate": "05/30/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "Industry Event",
+  "description": "The most DePINtastic Consensus side event of them all, where Web3 and real world come together in an alchemical marriage.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "The Perch ATX",
+  "venueMapsLink": "https://maps.app.goo.gl/Y76EPi9rm4nV3htR7",
+  "venueAddress": "74 Trinity St, TX 78701",
+  "isFeaturedEvent": false,
+  "topics": [
+    "DePIN"
+  ],
+  "eventHosts": [
+    {
+      "name": "Impossible Cloud",
+      "logo": "/uploads/impossibleCloud.jpeg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "Outlier Ventures",
+      "logo": "/uploads/outlierVentures.jpg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "peaq",
+      "logo": "/uploads/peaq.jpg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "Borderless Capital",
+      "logo": "/uploads/borderlessCapital.jpg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1717007400000,
+  "startMonthIndex": 4,
+  "startDay": 30,
+  "startDayString": "Thu",
+  "startYear": "2024",
+  "endDateTimeStamp": 1717007400000,
+  "endMonthIndex": 4,
+  "endDay": 30,
+  "fullDateFormat": "May 30, 2024 ",
+  "tagLogo": "/icons/pln-industry-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-05-29T18:30:00.000Z",
+  "endDateValue": "2024-05-29T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "consensus-austin-depin-1717007400000-1717007400000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

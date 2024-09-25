@@ -1,0 +1,49 @@
+{
+  "eventName": "R3al World Summit 2024 - DePIN's Annual Event",
+  "website": "https://lu.ma/r3al-world-depin-summit-token2049",
+  "location": "Singapore",
+  "startDate": "09/16/2024",
+  "endDate": "09/17/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "R3al World is the first and largest community event for DePIN (Decentralized Physical Infrastructure Networks) and real world applications. Powered by IoTeX, DePIN’s modular platform, R3al World celebrates its biggest year yet, spanning ten cities, featuring over 100 projects and 10,000 attendees. ​Now we are thrilled to bring you the first-ever R3al World Summit, our culminating event of 2024.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "Amara Singapore",
+  "venueMapsLink": "https://maps.app.goo.gl/CvXcnWi5dX3mkrgV6",
+  "venueAddress": "165 Tg Pagar Rd, 088539",
+  "isFeaturedEvent": false,
+  "topics": [
+    "DePIN"
+  ],
+  "eventHosts": [
+    {
+      "name": "IoTex",
+      "logo": "/uploads/ioTex.jpg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "Messari",
+      "logo": "/uploads/messari.jpg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1726425000000,
+  "startMonthIndex": 8,
+  "startDay": 16,
+  "startDayString": "Mon",
+  "startYear": "2024",
+  "endDateTimeStamp": 1726511400000,
+  "endMonthIndex": 8,
+  "endDay": 17,
+  "fullDateFormat": "September 16 - 17, 2024 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-09-15T18:30:00.000Z",
+  "endDateValue": "2024-09-16T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "r3al-world-summit-2024-depins-annual-event-1726425000000-1726511400000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

@@ -1,0 +1,44 @@
+{
+  "eventName": "Artizen Summit Detroit",
+  "website": "https://app.console.xyz/e/artizen-summit-detroit#map",
+  "location": "Detroit, United States",
+  "startDate": "09/26/2024",
+  "endDate": "09/28/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "You're invited to the Artizen Summit, an in-person gathering to celebrate the creators in Season 4. Join us for intimate performances, talks, family meals, and creative fun!",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "isFeaturedEvent": false,
+  "topics": [
+    "Web3"
+  ],
+  "eventHosts": [
+    {
+      "name": "Artizen",
+      "logo": "/uploads/artizen.jpg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1727289000000,
+  "startMonthIndex": 8,
+  "startDay": 26,
+  "startDayString": "Thu",
+  "startYear": "2024",
+  "endDateTimeStamp": 1727461800000,
+  "endMonthIndex": 8,
+  "endDay": 28,
+  "fullDateFormat": "September 26 - 28, 2024 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-09-25T18:30:00.000Z",
+  "endDateValue": "2024-09-27T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "artizen-summit-detroit-1727289000000-1727461800000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

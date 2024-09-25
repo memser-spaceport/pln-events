@@ -1,0 +1,60 @@
+{
+  "eventName": "Berlin Blockchain Week - Crypto Infra Brunch",
+  "website": "https://lu.ma/infrabrunch",
+  "location": "Berlin, Germany",
+  "startDate": "05/22/2024",
+  "endDate": "05/22/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "Industry Event",
+  "description": "This will be a buffet of ideas and innovations from the new kids + industry-legends in German web3.",
+  "juanSpeaking": null,
+  "eventType": "Social",
+  "venueName": "Full Node",
+  "venueMapsLink": "https://maps.app.goo.gl/X6iCacnRReLaD6hb6",
+  "venueAddress": "Glogauer Str. 6, 10999",
+  "isFeaturedEvent": false,
+  "topics": [
+    "DePIN",
+    "Web3 Infra"
+  ],
+  "eventHosts": [
+    {
+      "name": "Impossible Cloud",
+      "logo": "/uploads/impossibleCloud.jpeg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "Gnosis",
+      "logo": "/uploads/gnosis.jpg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "Hats Finance",
+      "logo": "/uploads/hatsFinance.jpg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "HV Capital",
+      "logo": "/uploads/hvCapital.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1716316200000,
+  "startMonthIndex": 4,
+  "startDay": 22,
+  "startDayString": "Wed",
+  "startYear": "2024",
+  "endDateTimeStamp": 1716316200000,
+  "endMonthIndex": 4,
+  "endDay": 22,
+  "fullDateFormat": "May 22, 2024 ",
+  "tagLogo": "/icons/pln-industry-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-05-21T18:30:00.000Z",
+  "endDateValue": "2024-05-21T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "berlin-blockchain-week-crypto-infra-brunch-1716316200000-1716316200000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

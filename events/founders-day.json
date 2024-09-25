@@ -1,0 +1,44 @@
+{
+  "eventName": "Founders Day",
+  "website": "https://lu.ma/9uz8u0qy",
+  "location": "Austin, United States",
+  "startDate": "04/26/2023",
+  "endDate": "04/26/2023",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "Come join us to catch up with familiar faces and meet fellow Founders in the Protocol Labs Network! This is a great opportunity to connect before Consensus to talk all things Web3 over food and drinks.\nNote - this is an invite-only event",
+  "juanSpeaking": null,
+  "eventType": "Social",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "isFeaturedEvent": true,
+  "topics": [
+    "Networking"
+  ],
+  "eventHosts": [
+    {
+      "name": "Spaceport",
+      "logo": "/uploads/spaceport.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1682447400000,
+  "startMonthIndex": 3,
+  "startDay": 26,
+  "startDayString": "Wed",
+  "startYear": "2023",
+  "endDateTimeStamp": 1682447400000,
+  "endMonthIndex": 3,
+  "endDay": 26,
+  "fullDateFormat": "April 26, 2023 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2023-04-25T18:30:00.000Z",
+  "endDateValue": "2023-04-25T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "founders-day-1682447400000-1682447400000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

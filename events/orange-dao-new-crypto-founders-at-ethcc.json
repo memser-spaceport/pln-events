@@ -1,0 +1,44 @@
+{
+  "eventName": "Orange DAO: New crypto founders at EthCC",
+  "website": "https://lu.ma/6vel48vw",
+  "location": "Brussels, Belgium",
+  "startDate": "07/08/2024",
+  "endDate": "07/08/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "Core members and Orange founders from Orange DAO will be at EthCC. We are hosting an afternoon mixer to meet other Orange family IRL. ​​​Orange DAO is the largest founder community of 1300+ founders of YC-backed companies building and investing in the future of crypto. We seek to build, accelerate, and mentor the leading repeat founders in the web3 ecosystem.",
+  "juanSpeaking": null,
+  "eventType": "Social",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "isFeaturedEvent": false,
+  "topics": [
+    "Web3"
+  ],
+  "eventHosts": [
+    {
+      "name": "Orange DAO",
+      "logo": "/uploads/orangeDAO.jpg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1720377000000,
+  "startMonthIndex": 6,
+  "startDay": 8,
+  "startDayString": "Mon",
+  "startYear": "2024",
+  "endDateTimeStamp": 1720377000000,
+  "endMonthIndex": 6,
+  "endDay": 8,
+  "fullDateFormat": "July 8, 2024 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-07-07T18:30:00.000Z",
+  "endDateValue": "2024-07-07T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "orange-dao-new-crypto-founders-at-ethcc-1720377000000-1720377000000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

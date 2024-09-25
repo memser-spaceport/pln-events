@@ -1,0 +1,44 @@
+{
+  "eventName": "DePIN Mass Adoption",
+  "website": "https://lu.ma/0vcwqb7w",
+  "location": "Singapore",
+  "startDate": "09/17/2024",
+  "endDate": "09/17/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "Industry Event",
+  "description": "This event is dedicated to advancing the adoption and understanding of decentralized physical infrastructure networks. DePIN Mass Adoption presents a distinctive platform for exploring the transformative capabilities of DePIN and offers a preview of the most exciting forthcoming projects in this space.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "Singapore EXPO Hall 3",
+  "venueMapsLink": "https://maps.app.goo.gl/vABerfTg9nBeBzN37",
+  "venueAddress": "1 Expo Dr, 486150",
+  "isFeaturedEvent": false,
+  "topics": [
+    "DePIN"
+  ],
+  "eventHosts": [
+    {
+      "name": "Parasail Network",
+      "logo": "/uploads/parasailNetwork.jpeg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1726511400000,
+  "startMonthIndex": 8,
+  "startDay": 17,
+  "startDayString": "Tue",
+  "startYear": "2024",
+  "endDateTimeStamp": 1726511400000,
+  "endMonthIndex": 8,
+  "endDay": 17,
+  "fullDateFormat": "September 17, 2024 ",
+  "tagLogo": "/icons/pln-industry-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-09-16T18:30:00.000Z",
+  "endDateValue": "2024-09-16T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "depin-mass-adoption-1726511400000-1726511400000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

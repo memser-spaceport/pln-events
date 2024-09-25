@@ -1,0 +1,50 @@
+{
+  "eventName": "Proof of Space Days",
+  "website": null,
+  "location": "Paris, France",
+  "startDate": "07/20/2023",
+  "endDate": "07/21/2023",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "Proof of Space days is a gathering of cryptographers and Web3 researchers to share knowledge on Proof of Space topics. We'll have talks and workshops to collaborate, share ideas and onboard new researchers into this field.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "isFeaturedEvent": false,
+  "topics": [
+    "Cryptography",
+    "Web3 Research"
+  ],
+  "eventHosts": [
+    {
+      "name": "CryptoNet",
+      "logo": "/uploads/cryptonet.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "Protocol Labs",
+      "logo": "/uploads/protocol_labs.jpeg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1689791400000,
+  "startMonthIndex": 6,
+  "startDay": 20,
+  "startDayString": "Thu",
+  "startYear": "2023",
+  "endDateTimeStamp": 1689877800000,
+  "endMonthIndex": 6,
+  "endDay": 21,
+  "fullDateFormat": "July 20 - 21, 2023 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2023-07-19T18:30:00.000Z",
+  "endDateValue": "2023-07-20T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "proof-of-space-days-1689791400000-1689877800000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

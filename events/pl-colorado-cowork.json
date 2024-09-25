@@ -1,0 +1,50 @@
+{
+  "eventName": "PL Colo(rado) Cowork",
+  "website": "https://docs.google.com/presentation/d/e/2PACX-1vQyiysbIOey7q00zfTVjWECLBBdsKIrdTxDSF8sISRlLocX4ImWtVxgGXhZkeRbB9lJmWutrB4wHyTU/pub?start=false&loop=false&delayms=3000&slide=id.g1f114ff82d3_0_45",
+  "location": "Breckenridge, United States",
+  "startDate": "03/04/2024",
+  "endDate": "03/08/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "A hub for connecting with fellow builders who, like you, are passionate about bringing ideas to life. PL is getting ready to unveil a pop-up co-working space, paired with discounted hotel rooms that you can self-book. For those keen on joining, explore the array of accommodation options available and complete the form linked on the website.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "isFeaturedEvent": false,
+  "topics": [
+    "Co-working"
+  ],
+  "eventHosts": [
+    {
+      "name": "Protocol Labs",
+      "logo": "/uploads/protocol-labs-network-small-logo.svg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [
+    {
+      "name": "email",
+      "logo": "/icons/pln-contacts-email.svg",
+      "link": "mailto:brooke@cosmik.agency"
+    }
+  ],
+  "startDateTimeStamp": 1709490600000,
+  "startMonthIndex": 2,
+  "startDay": 4,
+  "startDayString": "Mon",
+  "startYear": "2024",
+  "endDateTimeStamp": 1709836200000,
+  "endMonthIndex": 2,
+  "endDay": 8,
+  "fullDateFormat": "March 4 - 8, 2024 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-03-03T18:30:00.000Z",
+  "endDateValue": "2024-03-07T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "pl-colorado-cowork-1709490600000-1709836200000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

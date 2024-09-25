@@ -1,0 +1,55 @@
+{
+  "eventName": "Berlin Blockchain Week - DePIN Day",
+  "website": "https://lu.ma/depin-berlin",
+  "location": "Berlin, Germany",
+  "startDate": "05/22/2024",
+  "endDate": "05/22/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "Industry Event",
+  "description": "Dive into the latest topics and research in DePin and decentralized compute including multi-party computation, decentralized RPC, capacity rewards and proof systems.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "Register to see address",
+  "isFeaturedEvent": false,
+  "topics": [
+    "DePIN",
+    "Compute"
+  ],
+  "eventHosts": [
+    {
+      "name": "Impossible Cloud",
+      "logo": "/uploads/impossibleCloud.jpeg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "Fluence",
+      "logo": "/uploads/fluence.jpeg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "1k(x)",
+      "logo": "/uploads/1Kx.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1716316200000,
+  "startMonthIndex": 4,
+  "startDay": 22,
+  "startDayString": "Wed",
+  "startYear": "2024",
+  "endDateTimeStamp": 1716316200000,
+  "endMonthIndex": 4,
+  "endDay": 22,
+  "fullDateFormat": "May 22, 2024 ",
+  "tagLogo": "/icons/pln-industry-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-05-21T18:30:00.000Z",
+  "endDateValue": "2024-05-21T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "berlin-blockchain-week-depin-day-1716316200000-1716316200000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

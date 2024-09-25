@@ -1,0 +1,42 @@
+{
+  "eventName": "Filecoin Network Base at EthCC",
+  "website": "https://fil-paris.io/register/",
+  "location": "Paris, France",
+  "startDate": "7/18/2023",
+  "endDate": "7/20/2023",
+  "dateTBD": null,
+  "dri": null,
+  "tag": "PL Event",
+  "description": null,
+  "juanSpeaking": null,
+  "eventType": null,
+  "venueName": "Le Son de la Terre",
+  "venueMapsLink": "https://goo.gl/maps/yDWJoXe65VK1pWr27",
+  "venueAddress": "2 Port Montebello",
+  "isFeaturedEvent": false,
+  "topics": [],
+  "eventHosts": [
+    {
+      "name": "Filecoin Foundation",
+      "logo": "/uploads/filecoin-foundation.webp",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1689618600000,
+  "startMonthIndex": 6,
+  "startDay": 18,
+  "startDayString": "Tue",
+  "startYear": "2023",
+  "endDateTimeStamp": 1689791400000,
+  "endMonthIndex": 6,
+  "endDay": 20,
+  "fullDateFormat": "July 18 - 20, 2023 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2023-07-17T18:30:00.000Z",
+  "endDateValue": "2023-07-19T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "filecoin-network-base-at-ethcc-1689618600000-1689791400000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

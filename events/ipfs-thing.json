@@ -1,0 +1,48 @@
+{
+  "eventName": "IPFS Thing",
+  "website": "https://2023.ipfs-thing.io",
+  "location": "Brussels, Belgium",
+  "startDate": "04/15/2023",
+  "endDate": "04/19/2023",
+  "dateTBD": null,
+  "dri": null,
+  "tag": "PL Event",
+  "description": null,
+  "juanSpeaking": null,
+  "eventType": null,
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "isFeaturedEvent": true,
+  "topics": [],
+  "eventHosts": [
+    {
+      "name": "IPFS",
+      "logo": "/uploads/ipfs-logo.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [
+    {
+      "name": "twitter",
+      "logo": "/icons/pln-contacts-twitter.svg",
+      "link": "https://twitter.com/IPFS/status/1629199396700098560?s=20"
+    }
+  ],
+  "startDateTimeStamp": 1681497000000,
+  "startMonthIndex": 3,
+  "startDay": 15,
+  "startDayString": "Sat",
+  "startYear": "2023",
+  "endDateTimeStamp": 1681842600000,
+  "endMonthIndex": 3,
+  "endDay": 19,
+  "fullDateFormat": "April 15 - 19, 2023 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2023-04-14T18:30:00.000Z",
+  "endDateValue": "2023-04-18T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "ipfs-thing-1681497000000-1681842600000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

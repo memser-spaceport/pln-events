@@ -1,0 +1,48 @@
+{
+  "eventName": "Launchpad Social",
+  "website": "https://lu.ma/x54iexbq",
+  "location": "Paris, France",
+  "startDate": "07/18/2023",
+  "endDate": "07/18/2023",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "The Launchpad Social is a unique opportunity to create meaningful connections within the Protocol Labs Network. Embark on a floating location to experience a live pitch showcasing products & people tied to our ecosystem, and engage with current & past Launchpad participants, network companies & thought leaders in web3.",
+  "juanSpeaking": null,
+  "eventType": "Social",
+  "venueName": "Le Son de la Terre at the Fil Paris Network Base",
+  "venueMapsLink": "https://goo.gl/maps/yDWJoXe65VK1pWr27",
+  "venueAddress": "2 Port Montebello",
+  "isFeaturedEvent": false,
+  "topics": [],
+  "eventHosts": [
+    {
+      "name": "Launchpad",
+      "logo": "/uploads/launchpad.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [
+    {
+      "name": "email",
+      "logo": "/icons/pln-contacts-email.svg",
+      "link": "mailto:launchpad-events@protocol.ai"
+    }
+  ],
+  "startDateTimeStamp": 1689618600000,
+  "startMonthIndex": 6,
+  "startDay": 18,
+  "startDayString": "Tue",
+  "startYear": "2023",
+  "endDateTimeStamp": 1689618600000,
+  "endMonthIndex": 6,
+  "endDay": 18,
+  "fullDateFormat": "July 18, 2023 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2023-07-17T18:30:00.000Z",
+  "endDateValue": "2023-07-17T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "launchpad-social-1689618600000-1689618600000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

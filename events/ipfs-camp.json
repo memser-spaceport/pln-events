@@ -1,0 +1,55 @@
+{
+  "eventName": "IPFS Camp",
+  "website": "https://2024.ipfs.camp/",
+  "location": "Brussels, Belgium",
+  "startDate": "07/11/2024",
+  "endDate": "07/13/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "IPFS Camp is for those who want to bend the arc of the Internet to be more open, efficient, and secure.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "isFeaturedEvent": false,
+  "topics": [
+    "Web3"
+  ],
+  "eventHosts": [
+    {
+      "name": "Protocol Labs",
+      "logo": "/uploads/protocol_labs.jpeg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "IPFS",
+      "logo": "/uploads/ipfs-logo.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [
+    {
+      "name": "email",
+      "logo": "/icons/pln-contacts-email.svg",
+      "link": "mailto:camp@ipfs.io"
+    }
+  ],
+  "startDateTimeStamp": 1720636200000,
+  "startMonthIndex": 6,
+  "startDay": 11,
+  "startDayString": "Thu",
+  "startYear": "2024",
+  "endDateTimeStamp": 1720809000000,
+  "endMonthIndex": 6,
+  "endDay": 13,
+  "fullDateFormat": "July 11 - 13, 2024 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-07-10T18:30:00.000Z",
+  "endDateValue": "2024-07-12T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "ipfs-camp-1720636200000-1720809000000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

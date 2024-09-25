@@ -1,0 +1,42 @@
+{
+  "eventName": "FIL Vegas",
+  "website": "https://fil-vegas.io/",
+  "location": "Las Vegas, United States",
+  "startDate": "10/3/2023",
+  "endDate": "10/5/2023",
+  "dateTBD": null,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "Join us in Las Vegas for the first major Filecoin community event in North America in 2023. As we return to the US for FIL Vegas, we're shining the spotlight on storage providers, the backbone of the Filecoin community.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "Park MGM",
+  "venueMapsLink": "https://www.google.com/maps/place/Park+MGM+Las+Vegas/@36.1044089,-115.1792495,17z/data=!4m20!1m10!3m9!1s0x80c8c432700e369d:0xe2dda86cde111bc8!2sPark+MGM+Las+Vegas!5m2!4m1!1i2!8m2!3d36.1044046!4d-115.1766692!16zL20vMDM0OHJm!3m8!1s0x80c8c432700e369d:0xe2dda86cde111bc8!5m2!4m1!1i2!8m2!3d36.1044046!4d-115.1766692!16zL20vMDM0OHJm?entry=ttu",
+  "venueAddress": "3770 S Las Vegas Blvd, 89109",
+  "isFeaturedEvent": false,
+  "topics": [],
+  "eventHosts": [
+    {
+      "name": "Filecoin Foundation",
+      "logo": "/uploads/filecoin-foundation.webp",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1696271400000,
+  "startMonthIndex": 9,
+  "startDay": 3,
+  "startDayString": "Tue",
+  "startYear": "2023",
+  "endDateTimeStamp": 1696444200000,
+  "endMonthIndex": 9,
+  "endDay": 5,
+  "fullDateFormat": "October 3 - 5, 2023 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2023-10-02T18:30:00.000Z",
+  "endDateValue": "2023-10-04T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "fil-vegas-1696271400000-1696444200000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

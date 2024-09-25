@@ -1,0 +1,42 @@
+{
+  "eventName": "Filecoin Booth at Consensus",
+  "website": "https://hub.fil.org/consensus-24",
+  "location": "Austin, United States",
+  "startDate": "05/29/2024",
+  "endDate": "05/31/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "Filecoin Foundation is hosting a booth at Consensus 2024 in Austin May 29-31! We encourage anyone in the ecosystem to drop by booth 1254 and chat with Consensus attendees. Sponsorship opportunities are available for ecosystem companies looking for more visibility at Consensus.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "Austin Convention Center",
+  "venueMapsLink": "https://maps.app.goo.gl/H8FZ1xawBqibhn2t7",
+  "venueAddress": "500 E Cesar Chavez St, TX 78701",
+  "isFeaturedEvent": false,
+  "topics": [],
+  "eventHosts": [
+    {
+      "name": "Filecoin Foundation",
+      "logo": "/uploads/filecoinFoundationNew.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1716921000000,
+  "startMonthIndex": 4,
+  "startDay": 29,
+  "startDayString": "Wed",
+  "startYear": "2024",
+  "endDateTimeStamp": 1717093800000,
+  "endMonthIndex": 4,
+  "endDay": 31,
+  "fullDateFormat": "May 29 - 31, 2024 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-05-28T18:30:00.000Z",
+  "endDateValue": "2024-05-30T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "filecoin-booth-at-consensus-1716921000000-1717093800000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

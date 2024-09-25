@@ -1,0 +1,44 @@
+{
+  "eventName": "Fleek Hacker House",
+  "website": "https://lu.ma/Fleek-Hacker-House-EthCC",
+  "location": "Brussels, Belgium",
+  "startDate": "07/03/2024",
+  "endDate": "07/08/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "5-Day Hacker House for developers to learn, build, and ship on Fleek. It’s going to be an awesome week full of building, networking opportunities, and good vibes!",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "isFeaturedEvent": false,
+  "topics": [
+    "Web3"
+  ],
+  "eventHosts": [
+    {
+      "name": "Fleek",
+      "logo": "/uploads/fleek.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1719945000000,
+  "startMonthIndex": 6,
+  "startDay": 3,
+  "startDayString": "Wed",
+  "startYear": "2024",
+  "endDateTimeStamp": 1720377000000,
+  "endMonthIndex": 6,
+  "endDay": 8,
+  "fullDateFormat": "July 3 - 8, 2024 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-07-02T18:30:00.000Z",
+  "endDateValue": "2024-07-07T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "fleek-hacker-house-1719945000000-1720377000000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

@@ -1,0 +1,42 @@
+{
+  "eventName": "PLN Lab Day",
+  "website": "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MHY5ZG5jZml0OW1pZmZ0azR0ZDYxNGVvZ3FfMjAyMzAzMTVUMTYwMDAwWiBjX2lkbDFwamMyN3JwNGtnbm9uZ291dnRia3Y4QGc&tmsrc=c_idl1pjc27rp4kgnongouvtbkv8%40group.calendar.google.com",
+  "location": "Virtual",
+  "startDate": "03/15/2023",
+  "endDate": "03/15/2023",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "A monthly meetup of PLN members to get updates on network infrastructure and learn about different projects in the ecosystem.",
+  "juanSpeaking": null,
+  "eventType": "Virtual",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "isFeaturedEvent": true,
+  "topics": [],
+  "eventHosts": [
+    {
+      "name": "Spaceport",
+      "logo": "/uploads/spaceport.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1678818600000,
+  "startMonthIndex": 2,
+  "startDay": 15,
+  "startDayString": "Wed",
+  "startYear": "2023",
+  "endDateTimeStamp": 1678818600000,
+  "endMonthIndex": 2,
+  "endDay": 15,
+  "fullDateFormat": "March 15, 2023 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2023-03-14T18:30:00.000Z",
+  "endDateValue": "2023-03-14T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "pln-lab-day-1678818600000-1678818600000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

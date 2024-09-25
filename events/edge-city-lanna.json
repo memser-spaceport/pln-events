@@ -1,0 +1,53 @@
+{
+  "eventName": "Edge City Lanna",
+  "website": "https://www.edgecity.live/lanna",
+  "location": "Location TBD",
+  "startDate": "10/10/2024",
+  "endDate": "11/10/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "A popup village to incubate a flourishing future. Edge City is an IRL experimentation lab for new ideas, tech, culture, and organizations, all dedicated to accelerating human flourishing",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "isFeaturedEvent": false,
+  "topics": [
+    "AI",
+    "Crypto",
+    "Biotech",
+    "Neurotech"
+  ],
+  "eventHosts": [
+    {
+      "name": "Edge City",
+      "logo": "/uploads/edgeCity.jpeg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [
+    {
+      "name": "twitter",
+      "logo": "/icons/pln-contacts-twitter.svg",
+      "link": "https://twitter.com/JoinEdgeCity"
+    }
+  ],
+  "startDateTimeStamp": 1728498600000,
+  "startMonthIndex": 9,
+  "startDay": 10,
+  "startDayString": "Thu",
+  "startYear": "2024",
+  "endDateTimeStamp": 1731177000000,
+  "endMonthIndex": 10,
+  "endDay": 10,
+  "fullDateFormat": "October 10 - November 10, 2024",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-10-09T18:30:00.000Z",
+  "endDateValue": "2024-11-09T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "edge-city-lanna-1728498600000-1731177000000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

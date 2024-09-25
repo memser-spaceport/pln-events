@@ -1,0 +1,44 @@
+{
+  "eventName": "Expanso Side Bar at LF Energy Summit",
+  "website": "",
+  "location": "Brussels",
+  "startDate": "09/05/2024",
+  "endDate": "09/05/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "We love to spend time meeting people, and sharing ideas - so join us on the 5th of September, 2024 for some good beer, great chats, and a fantastically fun time!",
+  "juanSpeaking": null,
+  "eventType": "Social",
+  "venueName": "Available upon Registration",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "isFeaturedEvent": false,
+  "topics": [
+    "Distributed Computing"
+  ],
+  "eventHosts": [
+    {
+      "name": "Expanso",
+      "logo": "/uploads/expanso.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1725474600000,
+  "startMonthIndex": 8,
+  "startDay": 5,
+  "startDayString": "Thu",
+  "startYear": "2024",
+  "endDateTimeStamp": 1725474600000,
+  "endMonthIndex": 8,
+  "endDay": 5,
+  "fullDateFormat": "September 5, 2024 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-09-04T18:30:00.000Z",
+  "endDateValue": "2024-09-04T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "expanso-side-bar-at-lf-energy-summit-1725474600000-1725474600000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

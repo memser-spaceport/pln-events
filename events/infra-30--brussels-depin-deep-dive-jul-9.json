@@ -1,0 +1,55 @@
+{
+  "eventName": "Infra 3.0 - Brussels DePIN Deep Dive JUL 9",
+  "website": "https://lu.ma/cgi2nejb",
+  "location": "Brussels, Belgium",
+  "startDate": "07/09/2024",
+  "endDate": "07/09/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "Join us and dive deep into the latest topics and research in the realm of DePIN: cloud services, multi-party computation, decentralized RPC and others. ​Enjoy keynotes and panel discussions, connect with DePIN leaders, researchers, developers, and enthusiasts during EthCC in Brussels.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": "Maison Grand-Place",
+  "venueMapsLink": "https://www.google.com/maps/place/Grote+Markt+Huis/@50.8464357,4.3532306,17z/data=!3m1!4b1!4m6!3m5!1s0x47c3c47f38d8a66d:0xd3236931131288b3!8m2!3d50.8464357!4d4.3532306!16s%2Fg%2F1222z5lb?entry=ttu",
+  "venueAddress": "Grand Place 19, 1000 Bruxelles",
+  "isFeaturedEvent": false,
+  "topics": [
+    "Web3",
+    "DePIN"
+  ],
+  "eventHosts": [
+    {
+      "name": "Impossible Cloud Network",
+      "logo": "/uploads/impossibleCloudNetwork.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "Filecoin Foundation",
+      "logo": "/uploads/filecoinFoundationNew.png",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    },
+    {
+      "name": "POKT Network",
+      "logo": "/uploads/poktNetwork.jpg",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1720463400000,
+  "startMonthIndex": 6,
+  "startDay": 9,
+  "startDayString": "Tue",
+  "startYear": "2024",
+  "endDateTimeStamp": 1720463400000,
+  "endMonthIndex": 6,
+  "endDay": 9,
+  "fullDateFormat": "July 9, 2024 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-07-08T18:30:00.000Z",
+  "endDateValue": "2024-07-08T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "infra-30-brussels-depin-deep-dive-jul-9-1720463400000-1720463400000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}

@@ -1,0 +1,42 @@
+{
+  "eventName": "FIL Bangkok Main Stage: DePIN Meets AI",
+  "website": "https://lu.ma/aqyqwupe",
+  "location": "Bangkok, Thailand",
+  "startDate": "11/11/2024",
+  "endDate": "11/11/2024",
+  "dateTBD": false,
+  "dri": null,
+  "tag": "PL Event",
+  "description": "​Join us to learn more about key network upgrades, new L2 solutions built on Filecoin, and Filecoin’s future trajectory. Seize this opportunity to help shape the future of Filecoin and contribute to the next chapter of a better internet.",
+  "juanSpeaking": null,
+  "eventType": "Conference",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "isFeaturedEvent": false,
+  "topics": [],
+  "eventHosts": [
+    {
+      "name": "Filecoin Foundation",
+      "logo": "/uploads/filecoin-foundation.webp",
+      "primaryIcon": "/icons/pln-primary-host.svg"
+    }
+  ],
+  "preferredContacts": [],
+  "startDateTimeStamp": 1731263400000,
+  "startMonthIndex": 10,
+  "startDay": 11,
+  "startDayString": "Mon",
+  "startYear": "2024",
+  "endDateTimeStamp": 1731263400000,
+  "endMonthIndex": 10,
+  "endDay": 11,
+  "fullDateFormat": "November 11, 2024 ",
+  "tagLogo": "/icons/pln-event-icon.svg",
+  "calenderLogo": "/icons/calender-icon.svg",
+  "startDateValue": "2024-11-10T18:30:00.000Z",
+  "endDateValue": "2024-11-10T18:30:00.000Z",
+  "locationLogo": "/icons/pln-location-icon.svg",
+  "slug": "fil-bangkok-main-stage-depin-meets-ai-1731263400000-1731263400000",
+  "externalLinkIcon": "/icons/pl-external-icon.svg"
+}
