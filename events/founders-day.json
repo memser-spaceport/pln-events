@@ -9,7 +9,6 @@
   "startDate": "04/26/2023",
   "endDate": "04/26/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Networking"
   ],
@@ -19,6 +18,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": true,
   "eventType": "Social",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

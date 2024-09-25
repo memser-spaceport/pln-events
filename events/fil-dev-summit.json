@@ -9,7 +9,6 @@
   "startDate": "09/12/2023",
   "endDate": "09/14/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": null,
   "eventHosts": [
     "Filecoin Foundation|filecoin-foundation.webp"
@@ -17,6 +16,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": true,
   "eventType": "Conference",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

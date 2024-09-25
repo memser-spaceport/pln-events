@@ -9,7 +9,6 @@
   "startDate": "04/12/2023",
   "endDate": "04/12/2023",
   "dateTBD": true,
-  "dri": null,
   "eventTopic": [
     "Web3"
   ],
@@ -17,6 +16,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": null,
-  "tag": "Industry Event",
-  "juanSpeaking": null
+  "tag": "Industry Event"
 }

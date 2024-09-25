@@ -9,7 +9,6 @@
   "startDate": "09/18/2024",
   "endDate": "09/19/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Web3",
     "Crypto"
@@ -22,6 +21,5 @@
   ],
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "Industry Event",
-  "juanSpeaking": null
+  "tag": "Industry Event"
 }

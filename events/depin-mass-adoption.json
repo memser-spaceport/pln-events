@@ -9,7 +9,6 @@
   "startDate": "09/17/2024",
   "endDate": "09/17/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "DePIN"
   ],
@@ -19,6 +18,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "Industry Event",
-  "juanSpeaking": null
+  "tag": "Industry Event"
 }

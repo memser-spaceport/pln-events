@@ -9,7 +9,6 @@
   "startDate": "11/16/2023",
   "endDate": "11/16/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Talks & Presentation",
     "Workshop"
@@ -22,6 +21,5 @@
   ],
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

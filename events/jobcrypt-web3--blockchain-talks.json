@@ -9,7 +9,6 @@
   "startDate": "01/25/2023",
   "endDate": "01/25/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Web3",
     "Blockchain"
@@ -18,6 +17,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": null,
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

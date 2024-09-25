@@ -9,7 +9,6 @@
   "startDate": "09/22/2024",
   "endDate": "09/22/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Startup Societies",
     "Network State"
@@ -20,6 +19,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "Industry Event",
-  "juanSpeaking": null
+  "tag": "Industry Event"
 }

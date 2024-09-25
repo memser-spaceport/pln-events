@@ -9,7 +9,6 @@
   "startDate": "08/07/2024",
   "endDate": "08/09/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Blockchain"
   ],
@@ -21,6 +20,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "Industry Event",
-  "juanSpeaking": null
+  "tag": "Industry Event"
 }

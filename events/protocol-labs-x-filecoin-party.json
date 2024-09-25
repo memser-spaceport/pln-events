@@ -9,7 +9,6 @@
   "startDate": "09/21/2024",
   "endDate": "09/21/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": null,
   "eventHosts": [
     "Protocol Labs|favicon-jpg.jpg",
@@ -18,6 +17,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": "Social",
-  "tag": "PL Event",
-  "juanSpeaking": null
+  "tag": "PL Event"
 }

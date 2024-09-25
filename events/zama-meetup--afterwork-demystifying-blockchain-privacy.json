@@ -9,7 +9,6 @@
   "startDate": "11/16/2023",
   "endDate": "11/16/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Blockchain",
     "Web3",
@@ -24,6 +23,5 @@
   ],
   "isFeaturedEvent": null,
   "eventType": "Social",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

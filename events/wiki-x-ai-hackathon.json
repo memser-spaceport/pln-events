@@ -9,7 +9,6 @@
   "startDate": "04/15/2024",
   "endDate": "04/15/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "AI",
     "DeSci"
@@ -18,6 +17,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": false,
   "eventType": "Conference",
-  "tag": "Industry Event",
-  "juanSpeaking": null
+  "tag": "Industry Event"
 }

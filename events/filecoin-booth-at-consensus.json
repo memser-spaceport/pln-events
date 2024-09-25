@@ -9,7 +9,6 @@
   "startDate": "05/29/2024",
   "endDate": "05/31/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": null,
   "eventHosts": [
     "Filecoin Foundation|filecoinFoundationNew.png"
@@ -17,6 +16,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": false,
   "eventType": "Conference",
-  "tag": "PL Event",
-  "juanSpeaking": null
+  "tag": "PL Event"
 }

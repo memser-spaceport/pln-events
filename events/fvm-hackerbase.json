@@ -9,7 +9,6 @@
   "startDate": "02/28/2023",
   "endDate": "03/01/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Hackathon",
     "Keynote",
@@ -20,6 +19,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

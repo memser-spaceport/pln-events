@@ -9,7 +9,6 @@
   "startDate": "03/29/2023",
   "endDate": "03/29/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Marketing",
     "Community Management",
@@ -21,6 +20,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": "Virtual",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

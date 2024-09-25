@@ -9,7 +9,6 @@
   "startDate": "03/01/2023",
   "endDate": "03/01/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Keynote",
     "Builders Showcase",
@@ -19,6 +18,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

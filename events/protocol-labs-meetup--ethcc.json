@@ -9,7 +9,6 @@
   "startDate": "07/08/2024",
   "endDate": "07/08/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "Web3"
   ],
@@ -19,6 +18,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": false,
   "eventType": "Social",
-  "tag": "PL Event",
-  "juanSpeaking": null
+  "tag": "PL Event"
 }

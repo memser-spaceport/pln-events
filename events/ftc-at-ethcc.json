@@ -9,7 +9,6 @@
   "startDate": "07/15/2023",
   "endDate": "07/16/2023",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": null,
   "eventHosts": [
     "Network Goods|ftc-logo.png"
@@ -19,6 +18,5 @@
   ],
   "isFeaturedEvent": null,
   "eventType": null,
-  "tag": "PLN Event",
-  "juanSpeaking": null
+  "tag": "PLN Event"
 }

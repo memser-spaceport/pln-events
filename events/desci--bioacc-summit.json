@@ -9,7 +9,6 @@
   "startDate": "09/16/2024",
   "endDate": "09/16/2024",
   "dateTBD": false,
-  "dri": null,
   "eventTopic": [
     "DeSci",
     "Biotech"
@@ -20,6 +19,5 @@
   "preferredContacts": null,
   "isFeaturedEvent": null,
   "eventType": "Conference",
-  "tag": "PL Event",
-  "juanSpeaking": null
+  "tag": "PL Event"
 }
