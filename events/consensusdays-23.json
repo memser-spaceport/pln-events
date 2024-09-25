@@ -1,47 +1,27 @@
 {
   "eventName": "ConsensusDays 23",
+  "eventDescription": "ConsensusDays 23 aims to provide a forum for the discussion of early-stage but high-impact research with scientific interest and real-world applications.",
   "website": "https://research.protocol.ai/sites/consensusday23/",
   "location": "Virtual",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
   "startDate": "06/05/2023",
   "endDate": "06/06/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "ConsensusDays 23 aims to provide a forum for the discussion of early-stage but high-impact research with scientific interest and real-world applications.",
-  "juanSpeaking": null,
-  "eventType": "Virtual",
-  "venueName": null,
-  "venueMapsLink": null,
-  "venueAddress": null,
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Consensus",
     "Interoperability",
     "L2",
     "Scaling"
   ],
   "eventHosts": [
-    {
-      "name": "ConsensusLab",
-      "logo": "/uploads/consensuslab.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "ConsensusLab|consensuslab.png"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1685903400000,
-  "startMonthIndex": 5,
-  "startDay": 5,
-  "startDayString": "Mon",
-  "startYear": "2023",
-  "endDateTimeStamp": 1685989800000,
-  "endMonthIndex": 5,
-  "endDay": 6,
-  "fullDateFormat": "June 5 - 6, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-06-04T18:30:00.000Z",
-  "endDateValue": "2023-06-05T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "consensusdays-23-1685903400000-1685989800000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Virtual",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

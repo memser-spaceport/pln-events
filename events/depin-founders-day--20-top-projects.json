@@ -1,44 +1,24 @@
 {
   "eventName": "DePIN Founders Day | 20+ Top Projects",
+  "eventDescription": "Just passionate founders / builders from 20+ top DePIN projects taking the stage one by one, and sharing what they're building.",
   "website": "https://lu.ma/qx7l81vd",
   "location": "Singapore",
+  "venueName": "Concorde Hotel Singapore",
+  "venueMapsLink": "https://maps.app.goo.gl/2f8BEUiTq8bTV73aA",
+  "venueAddress": "100 Orchard Rd, 238840",
   "startDate": "09/17/2024",
   "endDate": "09/17/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Just passionate founders / builders from 20+ top DePIN projects taking the stage one by one, and sharing what they're building.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "Concorde Hotel Singapore",
-  "venueMapsLink": "https://maps.app.goo.gl/2f8BEUiTq8bTV73aA",
-  "venueAddress": "100 Orchard Rd, 238840",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "DePIN"
   ],
   "eventHosts": [
-    {
-      "name": "FrodoBots",
-      "logo": "/uploads/frodoBots.jpg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "FrodoBots|frodoBots.jpg"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1726511400000,
-  "startMonthIndex": 8,
-  "startDay": 17,
-  "startDayString": "Tue",
-  "startYear": "2024",
-  "endDateTimeStamp": 1726511400000,
-  "endMonthIndex": 8,
-  "endDay": 17,
-  "fullDateFormat": "September 17, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-09-16T18:30:00.000Z",
-  "endDateValue": "2024-09-16T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "depin-founders-day-20-top-projects-1726511400000-1726511400000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
 }

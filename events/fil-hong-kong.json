@@ -1,42 +1,22 @@
 {
   "eventName": "Fil Hong Kong",
+  "eventDescription": "FIL Hong Kong, hosted by NDLabs, alongside Hong Kong web3 Festival",
   "website": "https://fil-hk.io/",
   "location": "Hong Kong, China",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
   "startDate": "04/05/2024",
   "endDate": "04/08/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "FIL Hong Kong, hosted by NDLabs, alongside Hong Kong web3 Festival",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "",
-  "venueMapsLink": "",
-  "venueAddress": "",
-  "isFeaturedEvent": false,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "Filecoin Foundation",
-      "logo": "/uploads/filhk24.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Filecoin Foundation|filhk24.png"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1712255400000,
-  "startMonthIndex": 3,
-  "startDay": 5,
-  "startDayString": "Fri",
-  "startYear": "2024",
-  "endDateTimeStamp": 1712514600000,
-  "endMonthIndex": 3,
-  "endDay": 8,
-  "fullDateFormat": "April 5 - 8, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-04-04T18:30:00.000Z",
-  "endDateValue": "2024-04-07T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "fil-hong-kong-1712255400000-1712514600000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

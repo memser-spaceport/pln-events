@@ -1,42 +1,22 @@
 {
   "eventName": "LabWeek23",
+  "eventDescription": "A Decentralized Conference by Protocol Labs Network.",
   "website": "https://labweek.plnetwork.io/",
   "location": "Istanbul, Turkey",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
   "startDate": "11/13/2023",
   "endDate": "11/17/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "A Decentralized Conference by Protocol Labs Network.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": null,
-  "venueMapsLink": null,
-  "venueAddress": null,
-  "isFeaturedEvent": true,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "Protocol Labs",
-      "logo": "/uploads/LWcube.svg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Protocol Labs|LWcube.svg"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1699813800000,
-  "startMonthIndex": 10,
-  "startDay": 13,
-  "startDayString": "Mon",
-  "startYear": "2023",
-  "endDateTimeStamp": 1700159400000,
-  "endMonthIndex": 10,
-  "endDay": 17,
-  "fullDateFormat": "November 13 - 17, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-11-12T18:30:00.000Z",
-  "endDateValue": "2023-11-16T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "labweek23-1699813800000-1700159400000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": true,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

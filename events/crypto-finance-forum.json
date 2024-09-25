@@ -1,44 +1,24 @@
 {
   "eventName": "Crypto Finance Forum",
+  "eventDescription": "An exclusive gathering of Crypto CFOs, auditors, controllers and accountants – setting the standard for regulated crypto enterprises",
   "website": "https://cryptofinanceforum.nyc",
   "location": "New York City, United States",
+  "venueName": "Register for Venue Details",
+  "venueMapsLink": "",
+  "venueAddress": "",
   "startDate": "10/02/2024",
   "endDate": "10/02/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "An exclusive gathering of Crypto CFOs, auditors, controllers and accountants – setting the standard for regulated crypto enterprises",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "Register for Venue Details",
-  "venueMapsLink": "",
-  "venueAddress": "",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Crypto"
   ],
   "eventHosts": [
-    {
-      "name": "Cryptio",
-      "logo": "/uploads/cryptio.jpeg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Cryptio|cryptio.jpeg"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1727807400000,
-  "startMonthIndex": 9,
-  "startDay": 2,
-  "startDayString": "Wed",
-  "startYear": "2024",
-  "endDateTimeStamp": 1727807400000,
-  "endMonthIndex": 9,
-  "endDay": 2,
-  "fullDateFormat": "October 2, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-10-01T18:30:00.000Z",
-  "endDateValue": "2024-10-01T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "crypto-finance-forum-1727807400000-1727807400000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
 }

@@ -1,48 +1,24 @@
 {
   "eventName": "IPFS + Friends Cafe: Paris",
+  "eventDescription": "Cafes emerged in Europe in the 17th century as a place to foster community and promote the exchange of ideas and philosophy. We’d like to invite you to join us in Paris during EthCC at the IPFS & Friends Cafe!",
   "website": "http://lu.ma/ipfsnfriends-paris23",
   "location": "Paris, France",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
   "startDate": "07/18/2023",
   "endDate": "07/20/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Cafes emerged in Europe in the 17th century as a place to foster community and promote the exchange of ideas and philosophy. We’d like to invite you to join us in Paris during EthCC at the IPFS & Friends Cafe!",
-  "juanSpeaking": null,
-  "eventType": null,
-  "venueName": null,
-  "venueMapsLink": null,
-  "venueAddress": null,
-  "isFeaturedEvent": false,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "IPFS",
-      "logo": "/uploads/ipfs-friends.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "IPFS|ipfs-friends.png"
   ],
   "preferredContacts": [
-    {
-      "name": "email",
-      "logo": "/icons/pln-contacts-email.svg",
-      "link": "mailto:miwa@protocol.ai"
-    }
+    "email|mailto:miwa@protocol.ai"
   ],
-  "startDateTimeStamp": 1689618600000,
-  "startMonthIndex": 6,
-  "startDay": 18,
-  "startDayString": "Tue",
-  "startYear": "2023",
-  "endDateTimeStamp": 1689791400000,
-  "endMonthIndex": 6,
-  "endDay": 20,
-  "fullDateFormat": "July 18 - 20, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-07-17T18:30:00.000Z",
-  "endDateValue": "2023-07-19T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "ipfs-friends-cafe-paris-1689618600000-1689791400000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": null,
+  "eventType": null,
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

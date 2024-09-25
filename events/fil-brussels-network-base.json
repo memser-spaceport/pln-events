@@ -1,42 +1,22 @@
 {
   "eventName": "FIL Brussels Network Base",
+  "eventDescription": "",
   "website": "https://fil-brussels.io",
   "location": "Brussels, Belgium",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
   "startDate": "07/08/2024",
   "endDate": "07/11/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": null,
-  "venueMapsLink": null,
-  "venueAddress": null,
-  "isFeaturedEvent": false,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "Foundation",
-      "logo": "/uploads/filecoin-foundation.webp",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Foundation|filecoin-foundation.webp"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1720377000000,
-  "startMonthIndex": 6,
-  "startDay": 8,
-  "startDayString": "Mon",
-  "startYear": "2024",
-  "endDateTimeStamp": 1720636200000,
-  "endMonthIndex": 6,
-  "endDay": 11,
-  "fullDateFormat": "July 8 - 11, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-07-07T18:30:00.000Z",
-  "endDateValue": "2024-07-10T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "fil-brussels-network-base-1720377000000-1720636200000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

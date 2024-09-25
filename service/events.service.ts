@@ -28,7 +28,6 @@ export const getEvents = async () => {
             // next: { tags: ["pln-events-tina-service"] },
         }
     )
-    // console.log("response?>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", await response.json());
     if (!response.ok) {
         return { isError: true, message: "Something went wrong!" }
     }
@@ -129,7 +128,7 @@ export const getFormattedEvents = (events: IEventResponse[]) => {
     const allEvents = events ?? [];
     const formattedEvents = allEvents?.map((event: any) => {
         // Start Date
-        const startDateValue = new Date(event?.node?.startDate);
+        const startDateValue = new Date(event?.startDate);
         const startDateTimeStamp = startDateValue.getTime()
         const startMonthIndex = startDateValue.getMonth();
         const startDay = startDateValue.getDate();
@@ -137,7 +136,7 @@ export const getFormattedEvents = (events: IEventResponse[]) => {
         const startYear = startDateValue.getFullYear()
 
         // End Date
-        const endDateValue = new Date(event.node?.endDate);
+        const endDateValue = new Date(event.endDate);
         const endDateTimeStamp = endDateValue.getTime();
         const endMonthIndex = endDateValue.getMonth();
         const endDay = endDateValue.getDate();
@@ -149,7 +148,7 @@ export const getFormattedEvents = (events: IEventResponse[]) => {
         // Host names
         const tempEventNames: string[] = []
         const eventHosts: IEventHost[] = []
-        event?.node?.eventHosts?.forEach((hs: string) => {
+        event?.eventHosts?.forEach((hs: string) => {
             const splitted = hs.split('|');
             if (splitted.length === 1) {
                 splitted.push('pln-default-host-logo.svg')
@@ -163,7 +162,7 @@ export const getFormattedEvents = (events: IEventResponse[]) => {
         })
 
         // Preferred Contacts
-        const preferredContacts = event?.node?.preferredContacts?.map((pc: string) => {
+        const preferredContacts = event?.preferredContacts?.map((pc: string) => {
             const splitted = pc.split('|');
             const supportedLinks = ['twitter', 'discord', 'telegram', 'whatsapp', 'facebook', 'instagram', 'linkedin', 'email']
             return {
@@ -174,7 +173,7 @@ export const getFormattedEvents = (events: IEventResponse[]) => {
         }) ?? []
 
         //trimming topics
-        const allTopics = event.node?.eventTopic ?? []
+        const allTopics = event.eventTopic ?? []
         const trimmedTopics = allTopics.slice(0, 4);
 
         // Logos/images
@@ -182,31 +181,31 @@ export const getFormattedEvents = (events: IEventResponse[]) => {
         const calenderLogo = '/icons/calender-icon.svg'
         let tagLogo = ''
 
-        if (event?.node?.tag?.toLowerCase().trim() === 'pln event' || event?.node?.tag?.toLowerCase().trim() === 'pl event') {
-            event.node.tag = "PL Event"
+        if (event?.tag?.toLowerCase().trim() === 'pln event' || event?.tag?.toLowerCase().trim() === 'pl event') {
+            event.tag = "PL Event"
             tagLogo = '/icons/pln-event-icon.svg'
-        } else if (event?.node?.tag?.toLowerCase().trim() === 'industry event') {
+        } else if (event?.tag?.toLowerCase().trim() === 'industry event') {
             tagLogo = '/icons/pln-industry-icon.svg'
         }
-        const eventSlug = `${stringToSlug(event.node?.eventName)}-${new Date(event.node?.startDate).getTime()}-${new Date(event.node?.endDate).getTime()}`;
+        const eventSlug = `${stringToSlug(event.eventName)}-${new Date(event.startDate).getTime()}-${new Date(event.endDate).getTime()}`;
         return {
-            eventName: event.node?.eventName,
-            website: event.node?.website,
-            location: event.node?.location,
-            startDate: event.node?.startDate,
-            endDate: event.node?.endDate,
-            dateTBD: event.node?.dateTBD,
-            dri: event.node?.dri,
-            tag: event.node?.tag,
-            description: event?.node?.eventDescription,
-            juanSpeaking: event.node?.juanSpeaking,
-            eventOrg: event?.node?.eventOrg,
-            eventLogo: event?.node?.eventLogo,
-            eventType: event?.node?.eventType,
-            venueName: event?.node?.venueName,
-            venueMapsLink: event?.node?.venueMapsLink,
-            venueAddress: event?.node?.venueAddress,
-            isFeaturedEvent: event?.node?.isFeaturedEvent ?? false,
+            eventName: event.eventName,
+            website: event.website,
+            location: event.location,
+            startDate: event.startDate,
+            endDate: event.endDate,
+            dateTBD: event.dateTBD,
+            dri: event.dri,
+            tag: event.tag,
+            description: event?.eventDescription,
+            juanSpeaking: event.juanSpeaking,
+            eventOrg: event?.eventOrg,
+            eventLogo: event?.eventLogo,
+            eventType: event?.eventType,
+            venueName: event?.venueName,
+            venueMapsLink: event?.venueMapsLink,
+            venueAddress: event?.venueAddress,
+            isFeaturedEvent: event?.isFeaturedEvent ?? false,
             topics: [...trimmedTopics],
             eventHosts: eventHosts ?? [],
             preferredContacts,

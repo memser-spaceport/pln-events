@@ -1,53 +1,25 @@
 {
   "eventName": "Randomness Summit 2023",
+  "eventDescription": "Come and meet the drand team to learn more about randomness, timelock, VDFs and more!",
   "website": "https://lu.ma/randomness-summit-tokyo",
   "location": "Tokyo, Japan",
+  "venueName": "Plaza Heisei",
+  "venueMapsLink": null,
+  "venueAddress": null,
   "startDate": "03/30/2023",
   "endDate": "03/30/2023",
   "dateTBD": null,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Come and meet the drand team to learn more about randomness, timelock, VDFs and more!",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "Plaza Heisei",
-  "venueMapsLink": null,
-  "venueAddress": null,
-  "isFeaturedEvent": false,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "drand",
-      "logo": "/uploads/drand-logo.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "drand|drand-logo.png"
   ],
   "preferredContacts": [
-    {
-      "name": "twitter",
-      "logo": "/icons/pln-contacts-twitter.svg",
-      "link": "https://twitter.com/drand_loe"
-    },
-    {
-      "name": "email",
-      "logo": "/icons/pln-contacts-email.svg",
-      "link": "mailto:drand@protocol.ai"
-    }
+    "twitter|https://twitter.com/drand_loe",
+    "email|mailto:drand@protocol.ai"
   ],
-  "startDateTimeStamp": 1680114600000,
-  "startMonthIndex": 2,
-  "startDay": 30,
-  "startDayString": "Thu",
-  "startYear": "2023",
-  "endDateTimeStamp": 1680114600000,
-  "endMonthIndex": 2,
-  "endDay": 30,
-  "fullDateFormat": "March 30, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-03-29T18:30:00.000Z",
-  "endDateValue": "2023-03-29T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "randomness-summit-2023-1680114600000-1680114600000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

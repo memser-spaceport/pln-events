@@ -1,51 +1,27 @@
 {
   "eventName": "IPFS Connect Istanbul",
+  "eventDescription": "Join us for a full day of workshops, lightning talks, and demos showcasing technology and tools in the IPFS ecosystem. Prep for the ETHGlobal Hackathon by learning about all the tools and SDKs in the IPFS + Filecoin universe that builders can use to add decentralized files and data to their dapps. Schedule and location details will be revealed soon. This event is organized by Fission and sponsored by Protocol Labs.",
   "website": "https://istanbul2023.ipfsconnect.org/",
   "location": "Istanbul, Turkey",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
   "startDate": "11/16/2023",
   "endDate": "11/16/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Join us for a full day of workshops, lightning talks, and demos showcasing technology and tools in the IPFS ecosystem. Prep for the ETHGlobal Hackathon by learning about all the tools and SDKs in the IPFS + Filecoin universe that builders can use to add decentralized files and data to their dapps. Schedule and location details will be revealed soon. This event is organized by Fission and sponsored by Protocol Labs.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": null,
-  "venueMapsLink": null,
-  "venueAddress": null,
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Talks & Presentation",
     "Workshop"
   ],
   "eventHosts": [
-    {
-      "name": "Fission",
-      "logo": "/uploads/fission.webp",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Fission|fission.webp"
   ],
   "preferredContacts": [
-    {
-      "name": "twitter",
-      "logo": "/icons/pln-contacts-twitter.svg",
-      "link": "https://twitter.com/FISSIONcodes"
-    }
+    "twitter|https://twitter.com/FISSIONcodes"
   ],
-  "startDateTimeStamp": 1700073000000,
-  "startMonthIndex": 10,
-  "startDay": 16,
-  "startDayString": "Thu",
-  "startYear": "2023",
-  "endDateTimeStamp": 1700073000000,
-  "endMonthIndex": 10,
-  "endDay": 16,
-  "fullDateFormat": "November 16, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-11-15T18:30:00.000Z",
-  "endDateValue": "2023-11-15T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "ipfs-connect-istanbul-1700073000000-1700073000000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

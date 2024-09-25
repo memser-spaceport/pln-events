@@ -1,47 +1,23 @@
 {
   "eventName": "Protocol Labs x Filecoin Party",
+  "eventDescription": "Join Protocol Labs, Filecoin and friends to close off a great week. We’ll have drinks, light bites, and good conversations.",
   "website": "https://lu.ma/5np9lype",
   "location": "Singapore",
+  "venueName": "Register to see address",
+  "venueMapsLink": "",
+  "venueAddress": "",
   "startDate": "09/21/2024",
   "endDate": "09/21/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Join Protocol Labs, Filecoin and friends to close off a great week. We’ll have drinks, light bites, and good conversations.",
-  "juanSpeaking": null,
-  "eventType": "Social",
-  "venueName": "Register to see address",
-  "venueMapsLink": "",
-  "venueAddress": "",
-  "isFeaturedEvent": false,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "Protocol Labs",
-      "logo": "/uploads/favicon-jpg.jpg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    },
-    {
-      "name": "Filecoin Foundation",
-      "logo": "/uploads/filecoin-foundation.webp",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Protocol Labs|favicon-jpg.jpg",
+    "Filecoin Foundation|filecoin-foundation.webp"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1726857000000,
-  "startMonthIndex": 8,
-  "startDay": 21,
-  "startDayString": "Sat",
-  "startYear": "2024",
-  "endDateTimeStamp": 1726857000000,
-  "endMonthIndex": 8,
-  "endDay": 21,
-  "fullDateFormat": "September 21, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-09-20T18:30:00.000Z",
-  "endDateValue": "2024-09-20T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "protocol-labs-x-filecoin-party-1726857000000-1726857000000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Social",
+  "tag": "PL Event",
+  "juanSpeaking": null
 }

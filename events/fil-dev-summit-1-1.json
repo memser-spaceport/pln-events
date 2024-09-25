@@ -1,56 +1,28 @@
 {
   "eventName": "FIL Dev Summit",
+  "eventDescription": "FIL Dev Summit is a gathering of developers, builders, and engaged community members who want to contribute to the core protocol and network evolution of Filecoin.",
   "website": "https://www.fildev.io/FDS-4",
   "location": "Brussels, Belgium",
+  "venueName": "Radisson Collection Hotel, Grand Place",
+  "venueMapsLink": "https://maps.app.goo.gl/crPW29eUPtVjQHt77",
+  "venueAddress": "Rue du Fossé aux Loups 47, 1000 Bruxelles",
   "startDate": "07/09/2024",
   "endDate": "07/11/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "FIL Dev Summit is a gathering of developers, builders, and engaged community members who want to contribute to the core protocol and network evolution of Filecoin.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "Radisson Collection Hotel, Grand Place",
-  "venueMapsLink": "https://maps.app.goo.gl/crPW29eUPtVjQHt77",
-  "venueAddress": "Rue du Fossé aux Loups 47, 1000 Bruxelles",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Web3",
     "Filecoin"
   ],
   "eventHosts": [
-    {
-      "name": "Protocol Labs",
-      "logo": "/uploads/protocol_labs.jpeg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    },
-    {
-      "name": "Filecoin Foundation",
-      "logo": "/uploads/filecoinFoundationNew.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Protocol Labs|protocol_labs.jpeg",
+    "Filecoin Foundation|filecoinFoundationNew.png"
   ],
   "preferredContacts": [
-    {
-      "name": "email",
-      "logo": "/icons/pln-contacts-email.svg",
-      "link": "mailto:hello@fildev.io"
-    }
+    "email|mailto:hello@fildev.io"
   ],
-  "startDateTimeStamp": 1720463400000,
-  "startMonthIndex": 6,
-  "startDay": 9,
-  "startDayString": "Tue",
-  "startYear": "2024",
-  "endDateTimeStamp": 1720636200000,
-  "endMonthIndex": 6,
-  "endDay": 11,
-  "fullDateFormat": "July 9 - 11, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-07-08T18:30:00.000Z",
-  "endDateValue": "2024-07-10T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "fil-dev-summit-1720463400000-1720636200000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": false,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
 }

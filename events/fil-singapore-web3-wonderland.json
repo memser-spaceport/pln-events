@@ -1,61 +1,29 @@
 {
   "eventName": "FIL Singapore: Web3 Wonderland",
+  "eventDescription": "FILSG: Web3 Wonderland is a one-of-a-kind convergence of Web3, AI, and the most innovative minds in the industry, hosted by MetaPals and proudly supported by the Filecoin Foundation. Enjoy the breathtaking views of Singapore's skyline and F1 from the highest food forest in the world, 1-Arden.",
   "website": "https://lu.ma/escdw9dx?tk=LRE4fg",
   "location": "Singapore",
+  "venueName": "1-Arden",
+  "venueMapsLink": "https://maps.app.goo.gl/MxxvinLxDA8makEF8",
+  "venueAddress": "88 Market St, CapitaSpring, Singapore 048948",
   "startDate": "09/20/2024",
   "endDate": "09/20/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "FILSG: Web3 Wonderland is a one-of-a-kind convergence of Web3, AI, and the most innovative minds in the industry, hosted by MetaPals and proudly supported by the Filecoin Foundation. Enjoy the breathtaking views of Singapore's skyline and F1 from the highest food forest in the world, 1-Arden.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "1-Arden",
-  "venueMapsLink": "https://maps.app.goo.gl/MxxvinLxDA8makEF8",
-  "venueAddress": "88 Market St, CapitaSpring, Singapore 048948",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Web3",
     "AI"
   ],
   "eventHosts": [
-    {
-      "name": "MetaPals",
-      "logo": "/uploads/metapals.jpeg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    },
-    {
-      "name": "Filecoin Foundation",
-      "logo": "/uploads/filecoin-foundation.webp",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "MetaPals|metapals.jpeg",
+    "Filecoin Foundation|filecoin-foundation.webp"
   ],
   "preferredContacts": [
-    {
-      "name": "twitter",
-      "logo": "/icons/pln-contacts-twitter.svg",
-      "link": "https://twitter.com/drand_loe"
-    },
-    {
-      "name": "email",
-      "logo": "/icons/pln-contacts-email.svg",
-      "link": "mailto:drand@protocol.ai"
-    }
+    "twitter|https://twitter.com/drand_loe",
+    "email|mailto:drand@protocol.ai"
   ],
-  "startDateTimeStamp": 1726770600000,
-  "startMonthIndex": 8,
-  "startDay": 20,
-  "startDayString": "Fri",
-  "startYear": "2024",
-  "endDateTimeStamp": 1726770600000,
-  "endMonthIndex": 8,
-  "endDay": 20,
-  "fullDateFormat": "September 20, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-09-19T18:30:00.000Z",
-  "endDateValue": "2024-09-19T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "fil-singapore-web3-wonderland-1726770600000-1726770600000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
 }

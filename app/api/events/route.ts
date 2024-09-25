@@ -1,7 +1,6 @@
 import { NextRequest } from "next/server";
 import fs from "fs";
 import path from "path";
-import { client } from "../../../.tina/__generated__/client";
 
 export async function GET(request: NextRequest) {
   try {

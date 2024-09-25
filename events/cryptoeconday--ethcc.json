@@ -1,58 +1,30 @@
 {
   "eventName": "CryptoEconDay @ EthCC",
+  "eventDescription": "CryptoEconDay is a gathering of Web3 researchers and practitioners sharing findings, lessons learned, and answering some of our most challenging questions around the topic of cryptoeconomics.",
   "website": "https://lu.ma/cedparis",
   "location": "Paris, France",
+  "venueName": null,
+  "venueMapsLink": "https://www.google.com/maps/search/?api=1&query=Son%20de%20la%20Terre&query_place_id=ChIJSYqUIpRx5kcRRav_z3ZSZyM",
+  "venueAddress": null,
   "startDate": "07/19/2023",
   "endDate": "07/19/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "CryptoEconDay is a gathering of Web3 researchers and practitioners sharing findings, lessons learned, and answering some of our most challenging questions around the topic of cryptoeconomics.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": null,
-  "venueMapsLink": "https://www.google.com/maps/search/?api=1&query=Son%20de%20la%20Terre&query_place_id=ChIJSYqUIpRx5kcRRav_z3ZSZyM",
-  "venueAddress": null,
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Tokenomics",
     "Liquidity Mining",
     "Token Engineering",
     "Incentive Design"
   ],
   "eventHosts": [
-    {
-      "name": "CryptoEconLab",
-      "logo": "/uploads/cel_logo_1.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "CryptoEconLab|cel_logo_1.png"
   ],
   "preferredContacts": [
-    {
-      "name": "email",
-      "logo": "/icons/pln-contacts-email.svg",
-      "link": "mailto:cel@protocol.ai"
-    },
-    {
-      "name": "twitter",
-      "logo": "/icons/pln-contacts-twitter.svg",
-      "link": "https://twitter.com/cryptoeconlab"
-    }
+    "email|mailto:cel@protocol.ai",
+    "twitter|https://twitter.com/cryptoeconlab"
   ],
-  "startDateTimeStamp": 1689705000000,
-  "startMonthIndex": 6,
-  "startDay": 19,
-  "startDayString": "Wed",
-  "startYear": "2023",
-  "endDateTimeStamp": 1689705000000,
-  "endMonthIndex": 6,
-  "endDay": 19,
-  "fullDateFormat": "July 19, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-07-18T18:30:00.000Z",
-  "endDateValue": "2023-07-18T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "cryptoeconday-ethcc-1689705000000-1689705000000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

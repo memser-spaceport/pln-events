@@ -1,44 +1,24 @@
 {
   "eventName": "bio/acc & DeSci x Brussels @EthCC Week",
+  "eventDescription": "Discover how Decentralised Science (DeSci) uses blockchain to revolutionize scientific progress through transparency and openness. Learn about current issues with centralized science, how DeSci can fix them, and explore exciting DeSci projects.",
   "website": "https://lu.ma/ha5iwigb",
   "location": "Brussels, Belgium",
+  "venueName": "WeWork - Espace de bureau et coworking",
+  "venueMapsLink": "",
+  "venueAddress": "Rue du Commerce 31, 1000 Bruxelles",
   "startDate": "07/07/2024",
   "endDate": "07/07/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Discover how Decentralised Science (DeSci) uses blockchain to revolutionize scientific progress through transparency and openness. Learn about current issues with centralized science, how DeSci can fix them, and explore exciting DeSci projects.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "WeWork - Espace de bureau et coworking",
-  "venueMapsLink": "",
-  "venueAddress": "Rue du Commerce 31, 1000 Bruxelles",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Web3"
   ],
   "eventHosts": [
-    {
-      "name": "VitaDAO",
-      "logo": "/uploads/vitaDAO.jpeg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "VitaDAO|vitaDAO.jpeg"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1720290600000,
-  "startMonthIndex": 6,
-  "startDay": 7,
-  "startDayString": "Sun",
-  "startYear": "2024",
-  "endDateTimeStamp": 1720290600000,
-  "endMonthIndex": 6,
-  "endDay": 7,
-  "fullDateFormat": "July 7, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-07-06T18:30:00.000Z",
-  "endDateValue": "2024-07-06T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "bio-acc-desci-x-brussels-ethcc-week-1720290600000-1720290600000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
 }

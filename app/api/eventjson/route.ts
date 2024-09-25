@@ -1,14 +1,12 @@
 import { NextRequest } from "next/server";
 import fs from "fs";
 import path from "path";
-import { client } from "../../../.tina/__generated__/client";
 
 export async function GET(request: NextRequest) {
   try {
     // const eventsListData = await client.queries.eventConnection({ last: -1 });
     // const events = eventsListData?.data?.eventConnection?.edges ?? [];
     // return Response.json({ data: events }, { status: 200 });
-    console.log("api called>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     const jsonData = readJsonFiles(); // Call the utility function with your folder path
     return Response.json({ data: jsonData }, { status: 200 });
   } catch (error) {
@@ -29,8 +27,6 @@ export function readJsonFiles() {
       const fileContent = fs.readFileSync(filePath, "utf8"); // Read the file contents
       return JSON.parse(fileContent); // Parse JSON and return the data
     });
-
-  console.log("jsonData>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", jsonData);
 
   return jsonData;
 }

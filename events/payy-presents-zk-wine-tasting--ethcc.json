@@ -1,44 +1,24 @@
 {
   "eventName": "Payy presents: zk wine tasting @ EthCC",
+  "eventDescription": "Come join us for some wine and zero knowledge discussions at a low-key venue. There will be a variety of friends: zk cryptographers, defi builders, L1/2/3/4 maxis and more. But what we all have in common: a love for zero knowledge (and wine).",
   "website": "https://lu.ma/zkwineethcc",
   "location": "Brussels, Belgium",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
   "startDate": "07/10/2024",
   "endDate": "07/10/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Come join us for some wine and zero knowledge discussions at a low-key venue. There will be a variety of friends: zk cryptographers, defi builders, L1/2/3/4 maxis and more. But what we all have in common: a love for zero knowledge (and wine).",
-  "juanSpeaking": null,
-  "eventType": "Social",
-  "venueName": "",
-  "venueMapsLink": "",
-  "venueAddress": "",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Web3"
   ],
   "eventHosts": [
-    {
-      "name": "Payy",
-      "logo": "/uploads/payy.jpg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Payy|payy.jpg"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1720549800000,
-  "startMonthIndex": 6,
-  "startDay": 10,
-  "startDayString": "Wed",
-  "startYear": "2024",
-  "endDateTimeStamp": 1720549800000,
-  "endMonthIndex": 6,
-  "endDay": 10,
-  "fullDateFormat": "July 10, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-07-09T18:30:00.000Z",
-  "endDateValue": "2024-07-09T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "payy-presents-zk-wine-tasting-ethcc-1720549800000-1720549800000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Social",
+  "tag": "PL Event",
+  "juanSpeaking": null
 }

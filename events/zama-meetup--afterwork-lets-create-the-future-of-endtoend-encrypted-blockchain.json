@@ -1,53 +1,29 @@
 {
   "eventName": "Zama Meetup & Afterwork: Let's Create the Future of End-to-end Encrypted Blockchain",
+  "eventDescription": "This meetup is organized by the team at Zama, as a side event to the European Blockchain Convention.",
   "website": "https://lu.ma/zama-meetup-barcelona-blockchain-convention",
   "location": "Barcelona, Spain",
+  "venueName": null,
+  "venueMapsLink": "https://maps.app.goo.gl/RV85fP4qJnBtvUXv5",
+  "venueAddress": "​Palau Dalmases",
   "startDate": "10/25/2023",
   "endDate": "10/25/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "Industry Event",
-  "description": "This meetup is organized by the team at Zama, as a side event to the European Blockchain Convention.",
-  "juanSpeaking": null,
-  "eventType": "Social",
-  "venueName": null,
-  "venueMapsLink": "https://maps.app.goo.gl/RV85fP4qJnBtvUXv5",
-  "venueAddress": "​Palau Dalmases",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Blockchain",
     "Web3",
     "FHE",
     "Privacy"
   ],
   "eventHosts": [
-    {
-      "name": "Zama",
-      "logo": "/uploads/zama-logo.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Zama|zama-logo.png"
   ],
   "preferredContacts": [
-    {
-      "name": "twitter",
-      "logo": "/icons/pln-contacts-twitter.svg",
-      "link": "https://twitter.com/zama_fhe"
-    }
+    "twitter|https://twitter.com/zama_fhe"
   ],
-  "startDateTimeStamp": 1698172200000,
-  "startMonthIndex": 9,
-  "startDay": 25,
-  "startDayString": "Wed",
-  "startYear": "2023",
-  "endDateTimeStamp": 1698172200000,
-  "endMonthIndex": 9,
-  "endDay": 25,
-  "fullDateFormat": "October 25, 2023 ",
-  "tagLogo": "/icons/pln-industry-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-10-24T18:30:00.000Z",
-  "endDateValue": "2023-10-24T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "zama-meetup-afterwork-lets-create-the-future-of-end-to-end-encrypted-blockchain-1698172200000-1698172200000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": null,
+  "eventType": "Social",
+  "tag": "Industry Event",
+  "juanSpeaking": null
 }

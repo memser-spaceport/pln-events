@@ -1,50 +1,26 @@
 {
   "eventName": "Web3 Summit 2024",
+  "eventDescription": "Web3 Summit is an open and collaborative space where the community can create their own programming. Web3 Foundation invites a full line up of high quality speakers, while individuals, teams and projects use the rest of the space for workshops, presentations, AMA sessions – both intimate and large-scale, chilling, and most importantly, hacking. There will always be a large room dedicated to a hackerspace, where you can host a meetup or hackathon, whiteboard some ideas, present to other teams, and get real work done.",
   "website": "https://web3summit.com/",
   "location": "Berlin, Germany",
+  "venueName": "Funkhaus Berlin",
+  "venueMapsLink": "https://maps.app.goo.gl/P7de2qqSt8Ny3pNG7",
+  "venueAddress": "Nalepastr. 18, 12459",
   "startDate": "08/19/2024",
   "endDate": "08/21/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "Industry Event",
-  "description": "Web3 Summit is an open and collaborative space where the community can create their own programming. Web3 Foundation invites a full line up of high quality speakers, while individuals, teams and projects use the rest of the space for workshops, presentations, AMA sessions – both intimate and large-scale, chilling, and most importantly, hacking. There will always be a large room dedicated to a hackerspace, where you can host a meetup or hackathon, whiteboard some ideas, present to other teams, and get real work done.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "Funkhaus Berlin",
-  "venueMapsLink": "https://maps.app.goo.gl/P7de2qqSt8Ny3pNG7",
-  "venueAddress": "Nalepastr. 18, 12459",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Web3"
   ],
   "eventHosts": [
-    {
-      "name": "Web3 Foundation",
-      "logo": "/uploads/web3Foundation.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Web3 Foundation|web3Foundation.png"
   ],
   "preferredContacts": [
-    {
-      "name": "email",
-      "logo": "/icons/pln-contacts-email.svg",
-      "link": "mailto:contact@web3summit.com"
-    }
+    "email|mailto:contact@web3summit.com"
   ],
-  "startDateTimeStamp": 1724005800000,
-  "startMonthIndex": 7,
-  "startDay": 19,
-  "startDayString": "Mon",
-  "startYear": "2024",
-  "endDateTimeStamp": 1724178600000,
-  "endMonthIndex": 7,
-  "endDay": 21,
-  "fullDateFormat": "August 19 - 21, 2024 ",
-  "tagLogo": "/icons/pln-industry-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-08-18T18:30:00.000Z",
-  "endDateValue": "2024-08-20T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "web3-summit-2024-1724005800000-1724178600000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "Industry Event",
+  "juanSpeaking": null
 }

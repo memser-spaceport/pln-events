@@ -1,44 +1,24 @@
 {
   "eventName": "Institutional Ecologies",
+  "eventDescription": "Institutional Ecologies bridges the development of modern technologies wtih holistic, complex systems, towards nature-based solutions.",
   "website": "https://docs.google.com/presentation/d/e/2PACX-1vR6ezXX7AGc7cs3i4AviloUaq5iAbYUN-osoIP0c7TM1noZGwHwhijCn1dJcdYCfaZ2rHMFndZJUP9c/pub?start=true&loop=true&delayms=10000&slide=id.g11fafbb43b7_0_0",
   "location": "Palo Alto, United States",
+  "venueName": "Stanford Law School",
+  "venueMapsLink": "https://maps.app.goo.gl/SX6EqL9Le5qMtuTw9",
+  "venueAddress": "559 Nathan Abbott Way, Stanford, CA 94305",
   "startDate": "04/10/2024",
   "endDate": "04/10/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "Industry Event",
-  "description": "Institutional Ecologies bridges the development of modern technologies wtih holistic, complex systems, towards nature-based solutions.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "Stanford Law School",
-  "venueMapsLink": "https://maps.app.goo.gl/SX6EqL9Le5qMtuTw9",
-  "venueAddress": "559 Nathan Abbott Way, Stanford, CA 94305",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Sustainability"
   ],
   "eventHosts": [
-    {
-      "name": "Stanford CodeX Blockchain Group",
-      "logo": "/uploads/stanfordCodeX.jpg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Stanford CodeX Blockchain Group|stanfordCodeX.jpg"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1712687400000,
-  "startMonthIndex": 3,
-  "startDay": 10,
-  "startDayString": "Wed",
-  "startYear": "2024",
-  "endDateTimeStamp": 1712687400000,
-  "endMonthIndex": 3,
-  "endDay": 10,
-  "fullDateFormat": "April 10, 2024 ",
-  "tagLogo": "/icons/pln-industry-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-04-09T18:30:00.000Z",
-  "endDateValue": "2024-04-09T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "institutional-ecologies-1712687400000-1712687400000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": false,
+  "eventType": "Conference",
+  "tag": "Industry Event",
+  "juanSpeaking": null
 }

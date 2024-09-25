@@ -1,47 +1,27 @@
 {
   "eventName": "Aleph Ciudad de Crecimiento",
+  "eventDescription": "Aleph is convening the world’s brightest minds in Buenos Aires this August to pioneer the first crypto nation. Join thousands of Argentine, Latin American, and global innovators to ignite the future of crypto and startup innovation.",
   "website": "https://www.aleph.crecimiento.build/",
   "location": "Buenos Aires, Argentina",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
   "startDate": "08/05/2024",
   "endDate": "09/01/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Aleph is convening the world’s brightest minds in Buenos Aires this August to pioneer the first crypto nation. Join thousands of Argentine, Latin American, and global innovators to ignite the future of crypto and startup innovation.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "",
-  "venueMapsLink": "",
-  "venueAddress": "",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Crypto",
     "Startups",
     "Wellness",
     "Culture"
   ],
   "eventHosts": [
-    {
-      "name": "Crecimiento",
-      "logo": "/uploads/crecimiento.jpg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Crecimiento|crecimiento.jpg"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1722796200000,
-  "startMonthIndex": 7,
-  "startDay": 5,
-  "startDayString": "Mon",
-  "startYear": "2024",
-  "endDateTimeStamp": 1725129000000,
-  "endMonthIndex": 8,
-  "endDay": 1,
-  "fullDateFormat": "August 5 - September 1, 2024",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-08-04T18:30:00.000Z",
-  "endDateValue": "2024-08-31T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "aleph-ciudad-de-crecimiento-1722796200000-1725129000000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
 }

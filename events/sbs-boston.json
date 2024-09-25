@@ -1,42 +1,22 @@
 {
   "eventName": "SBS Boston",
+  "eventDescription": "Join us at the 4th international Sustainable Blockchain Summit (SBS) in Boston where we'll bring together experts and curious minds from ReFi, Energy Systems, Carbon Markets, and Cryptoeconomics to discuss and collaborate on projects that align the global economy with the natural world.",
   "website": "https://sbs.tech/",
   "location": "Boston, United States",
+  "venueName": "The Tower: A Longwood Venue",
+  "venueMapsLink": "https://goo.gl/maps/gcqcQ6gWKUoxUvCL6",
+  "venueAddress": "101 Arlington Street",
   "startDate": "4/13/2023",
   "endDate": "4/13/2023",
   "dateTBD": null,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Join us at the 4th international Sustainable Blockchain Summit (SBS) in Boston where we'll bring together experts and curious minds from ReFi, Energy Systems, Carbon Markets, and Cryptoeconomics to discuss and collaborate on projects that align the global economy with the natural world.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "The Tower: A Longwood Venue",
-  "venueMapsLink": "https://goo.gl/maps/gcqcQ6gWKUoxUvCL6",
-  "venueAddress": "101 Arlington Street",
-  "isFeaturedEvent": true,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "Filecoin Green",
-      "logo": "/uploads/filecoin-green.webp",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Filecoin Green|filecoin-green.webp"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1681324200000,
-  "startMonthIndex": 3,
-  "startDay": 13,
-  "startDayString": "Thu",
-  "startYear": "2023",
-  "endDateTimeStamp": 1681324200000,
-  "endMonthIndex": 3,
-  "endDay": 13,
-  "fullDateFormat": "April 13, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-04-12T18:30:00.000Z",
-  "endDateValue": "2023-04-12T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "sbs-boston-1681324200000-1681324200000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": true,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

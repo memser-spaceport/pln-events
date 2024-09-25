@@ -1,45 +1,25 @@
 {
   "eventName": "DeSci & bio/acc Summit",
+  "eventDescription": "Join us at the National Gallery Singapore for the DeSci & Bio/Acc Summit – where decentralized science meets Web3 innovation.",
   "website": "https://lu.ma/descisummit",
   "location": "Singapore",
+  "venueName": "National Gallery Singapore",
+  "venueMapsLink": "https://maps.app.goo.gl/WMSrhbfLumYoTJzz7",
+  "venueAddress": "Singapore 178957",
   "startDate": "09/16/2024",
   "endDate": "09/16/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Join us at the National Gallery Singapore for the DeSci & Bio/Acc Summit – where decentralized science meets Web3 innovation.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "National Gallery Singapore",
-  "venueMapsLink": "https://maps.app.goo.gl/WMSrhbfLumYoTJzz7",
-  "venueAddress": "Singapore 178957",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "DeSci",
     "Biotech"
   ],
   "eventHosts": [
-    {
-      "name": "VitaDAO",
-      "logo": "/uploads/vitaDAO.jpeg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "VitaDAO|vitaDAO.jpeg"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1726425000000,
-  "startMonthIndex": 8,
-  "startDay": 16,
-  "startDayString": "Mon",
-  "startYear": "2024",
-  "endDateTimeStamp": 1726425000000,
-  "endMonthIndex": 8,
-  "endDay": 16,
-  "fullDateFormat": "September 16, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-09-15T18:30:00.000Z",
-  "endDateValue": "2024-09-15T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "desci-bio-acc-summit-1726425000000-1726425000000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
 }

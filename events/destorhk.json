@@ -1,42 +1,22 @@
 {
   "eventName": "DeStorHK",
+  "eventDescription": null,
   "website": "https://fil-hk.io/destor-en/",
   "location": "Location TBD",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
   "startDate": "04/15/2023",
   "endDate": "04/15/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": null,
-  "juanSpeaking": null,
-  "eventType": null,
-  "venueName": null,
-  "venueMapsLink": null,
-  "venueAddress": null,
-  "isFeaturedEvent": false,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "Filecoin Foundation",
-      "logo": "/uploads/filecoin-foundation.webp",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Filecoin Foundation|filecoin-foundation.webp"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1681497000000,
-  "startMonthIndex": 3,
-  "startDay": 15,
-  "startDayString": "Sat",
-  "startYear": "2023",
-  "endDateTimeStamp": 1681497000000,
-  "endMonthIndex": 3,
-  "endDay": 15,
-  "fullDateFormat": "April 15, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-04-14T18:30:00.000Z",
-  "endDateValue": "2023-04-14T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "destorhk-1681497000000-1681497000000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": null,
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

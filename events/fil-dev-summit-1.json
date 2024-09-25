@@ -1,42 +1,22 @@
 {
   "eventName": "FIL Dev Summit",
+  "eventDescription": "FIL Dev Summit is a gathering of developers, builders, and engaged community members who want to contribute to the core protocol and network evolution of Filecoin (think IPFS Thing, but bigger!).",
   "website": "https://fildev.io/",
   "location": "Reykjavík, Iceland",
+  "venueName": "Harpa",
+  "venueMapsLink": "https://www.google.com/maps/place/Harpa+Concert+Hall+and+Conference+Centre/@64.15,-21.94,17z/data=!4m12!1m5!3m4!2zNjTCsDA5JzAwLjAiTiAyMcKwNTYnMjQuMCJX!8m2!3d64.15!4d-21.94!3m5!1s0x48d675a9d316864b:0xc1f29c378b85e65b!8m2!3d64.1502464!4d-21.9322804!16s%2Fg%2F12q4tv44j?entry=ttu",
+  "venueAddress": "Austurbakki 2, 101",
   "startDate": "09/25/2023",
   "endDate": "09/27/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "FIL Dev Summit is a gathering of developers, builders, and engaged community members who want to contribute to the core protocol and network evolution of Filecoin (think IPFS Thing, but bigger!).",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "Harpa",
-  "venueMapsLink": "https://www.google.com/maps/place/Harpa+Concert+Hall+and+Conference+Centre/@64.15,-21.94,17z/data=!4m12!1m5!3m4!2zNjTCsDA5JzAwLjAiTiAyMcKwNTYnMjQuMCJX!8m2!3d64.15!4d-21.94!3m5!1s0x48d675a9d316864b:0xc1f29c378b85e65b!8m2!3d64.1502464!4d-21.9322804!16s%2Fg%2F12q4tv44j?entry=ttu",
-  "venueAddress": "Austurbakki 2, 101",
-  "isFeaturedEvent": true,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "Miwa",
-      "logo": "/uploads/miwa.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Miwa|miwa.png"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1695580200000,
-  "startMonthIndex": 8,
-  "startDay": 25,
-  "startDayString": "Mon",
-  "startYear": "2023",
-  "endDateTimeStamp": 1695753000000,
-  "endMonthIndex": 8,
-  "endDay": 27,
-  "fullDateFormat": "September 25 - 27, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-09-24T18:30:00.000Z",
-  "endDateValue": "2023-09-26T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "fil-dev-summit-1695580200000-1695753000000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": true,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

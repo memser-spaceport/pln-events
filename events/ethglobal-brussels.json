@@ -1,48 +1,24 @@
 {
   "eventName": "ETHGlobal Brussels",
+  "eventDescription": "Brussels is embracing Web3 innovation with ETHGlobal Brussels this July. This hackathon weekend will bring together developers, designers, and thinkers for workshops, feedback from top teams, and amazing prizes from partners like Arbitrum, Polygon, and the Uniswap Foundation.",
   "website": "https://ethglobal.com/events/brussels",
   "location": "Brussels, Belgium",
+  "venueName": "The EGG",
+  "venueMapsLink": "https://maps.app.goo.gl/BdpfTHGSTLZFRsiR9",
+  "venueAddress": "Rue Bara 175, 1070 Bruxelles, Belgium",
   "startDate": "07/12/2024",
   "endDate": "07/14/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Brussels is embracing Web3 innovation with ETHGlobal Brussels this July. This hackathon weekend will bring together developers, designers, and thinkers for workshops, feedback from top teams, and amazing prizes from partners like Arbitrum, Polygon, and the Uniswap Foundation.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "The EGG",
-  "venueMapsLink": "https://maps.app.goo.gl/BdpfTHGSTLZFRsiR9",
-  "venueAddress": "Rue Bara 175, 1070 Bruxelles, Belgium",
-  "isFeaturedEvent": false,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "Protocol Labs",
-      "logo": "/uploads/protocol-labs-network-small-logo.svg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Protocol Labs|protocol-labs-network-small-logo.svg"
   ],
   "preferredContacts": [
-    {
-      "name": "email",
-      "logo": "/icons/pln-contacts-email.svg",
-      "link": "mailto:hackathons@protocol.ai"
-    }
+    "email|mailto:hackathons@protocol.ai"
   ],
-  "startDateTimeStamp": 1720722600000,
-  "startMonthIndex": 6,
-  "startDay": 12,
-  "startDayString": "Fri",
-  "startYear": "2024",
-  "endDateTimeStamp": 1720895400000,
-  "endMonthIndex": 6,
-  "endDay": 14,
-  "fullDateFormat": "July 12 - 14, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-07-11T18:30:00.000Z",
-  "endDateValue": "2024-07-13T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "ethglobal-brussels-1720722600000-1720895400000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": false,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
 }

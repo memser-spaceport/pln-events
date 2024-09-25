@@ -1,52 +1,28 @@
 {
   "eventName": "EDCON",
+  "eventDescription": "A global non-profit conference committed to serving the #Ethereum ecosystem & enhancing Ethereum community interaction worldwide.",
   "website": "https://www.edcon.io",
   "location": "Tokyo, Japan",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
   "startDate": "07/24/2024",
   "endDate": "07/30/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "Industry Event",
-  "description": "A global non-profit conference committed to serving the #Ethereum ecosystem & enhancing Ethereum community interaction worldwide.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "",
-  "venueMapsLink": "",
-  "venueAddress": "",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Web3",
     "Ethereum",
     "Blockchain"
   ],
   "eventHosts": [
-    {
-      "name": "EDCON",
-      "logo": "/uploads/edcon.jpg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "EDCON|edcon.jpg"
   ],
   "preferredContacts": [
-    {
-      "name": "email",
-      "logo": "/icons/pln-contacts-email.svg",
-      "link": "mailto:contact@edcon.io"
-    }
+    "email|mailto:contact@edcon.io"
   ],
-  "startDateTimeStamp": 1721759400000,
-  "startMonthIndex": 6,
-  "startDay": 24,
-  "startDayString": "Wed",
-  "startYear": "2024",
-  "endDateTimeStamp": 1722277800000,
-  "endMonthIndex": 6,
-  "endDay": 30,
-  "fullDateFormat": "July 24 - 30, 2024 ",
-  "tagLogo": "/icons/pln-industry-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-07-23T18:30:00.000Z",
-  "endDateValue": "2024-07-29T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "edcon-1721759400000-1722277800000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": false,
+  "eventType": "Conference",
+  "tag": "Industry Event",
+  "juanSpeaking": null
 }

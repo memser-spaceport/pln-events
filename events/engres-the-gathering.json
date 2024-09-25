@@ -1,52 +1,28 @@
 {
   "eventName": "EngRes the Gathering",
+  "eventDescription": "A monthly event bringing together engineers, researchers, & community members across PL community and projects to share the latest breakthroughs and updates happening across our space.",
   "website": "https://lu.ma/Engres-The-Gathering-02-15-24",
   "location": "Location TBD",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
   "startDate": "02/15/2024",
   "endDate": "02/15/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "A monthly event bringing together engineers, researchers, & community members across PL community and projects to share the latest breakthroughs and updates happening across our space.",
-  "juanSpeaking": null,
-  "eventType": "Virtual",
-  "venueName": null,
-  "venueMapsLink": null,
-  "venueAddress": null,
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "PL Community",
     "Project Updates",
     "Deep Dives + Demos"
   ],
   "eventHosts": [
-    {
-      "name": "EngRes",
-      "logo": "/uploads/protocol_labs.jpeg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "EngRes|protocol_labs.jpeg"
   ],
   "preferredContacts": [
-    {
-      "name": "email",
-      "logo": "/icons/pln-contacts-email.svg",
-      "link": "mailto:engres-admin@protocol.ai"
-    }
+    "email|mailto:engres-admin@protocol.ai"
   ],
-  "startDateTimeStamp": 1707935400000,
-  "startMonthIndex": 1,
-  "startDay": 15,
-  "startDayString": "Thu",
-  "startYear": "2024",
-  "endDateTimeStamp": 1707935400000,
-  "endMonthIndex": 1,
-  "endDay": 15,
-  "fullDateFormat": "February 15, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-02-14T18:30:00.000Z",
-  "endDateValue": "2024-02-14T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "engres-the-gathering-1707935400000-1707935400000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": null,
+  "eventType": "Virtual",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

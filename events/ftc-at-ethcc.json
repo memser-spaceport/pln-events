@@ -1,48 +1,24 @@
 {
   "eventName": "FTC at EthCC",
+  "eventDescription": "Funding the Commons is focused on new models of sustainable public goods funding and value alignment in open source networks. We bridge the public goods community across Web2, Web3, research, philanthropy and industry. We do this by convening builders, academics, and funders in both traditional conference and \"open space\" formats.",
   "website": "https://fundingthecommons.io/paris-2023",
   "location": "Paris, France",
+  "venueName": "Sorbonne University",
+  "venueMapsLink": "https://goo.gl/maps/d2fYuBMNrYmi7sQo7",
+  "venueAddress": "15-21 Rue de l'École de Médecine",
   "startDate": "07/15/2023",
   "endDate": "07/16/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Funding the Commons is focused on new models of sustainable public goods funding and value alignment in open source networks. We bridge the public goods community across Web2, Web3, research, philanthropy and industry. We do this by convening builders, academics, and funders in both traditional conference and \"open space\" formats.",
-  "juanSpeaking": null,
-  "eventType": null,
-  "venueName": "Sorbonne University",
-  "venueMapsLink": "https://goo.gl/maps/d2fYuBMNrYmi7sQo7",
-  "venueAddress": "15-21 Rue de l'École de Médecine",
-  "isFeaturedEvent": false,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "Network Goods",
-      "logo": "/uploads/ftc-logo.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Network Goods|ftc-logo.png"
   ],
   "preferredContacts": [
-    {
-      "name": "twitter",
-      "logo": "/icons/pln-contacts-twitter.svg",
-      "link": "https://twitter.com/fundingcommons"
-    }
+    "twitter|https://twitter.com/fundingcommons"
   ],
-  "startDateTimeStamp": 1689359400000,
-  "startMonthIndex": 6,
-  "startDay": 15,
-  "startDayString": "Sat",
-  "startYear": "2023",
-  "endDateTimeStamp": 1689445800000,
-  "endMonthIndex": 6,
-  "endDay": 16,
-  "fullDateFormat": "July 15 - 16, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-07-14T18:30:00.000Z",
-  "endDateValue": "2023-07-15T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "ftc-at-ethcc-1689359400000-1689445800000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": null,
+  "eventType": null,
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

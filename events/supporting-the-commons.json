@@ -1,49 +1,25 @@
 {
   "eventName": "Supporting the Commons",
+  "eventDescription": "Boosting Public Goods through Collaborative Efforts and DAOs",
   "website": "https://lu.ma/l531apqf",
   "location": "Tokyo, Japan",
+  "venueName": "ROJU NAKAMEGURO",
+  "venueMapsLink": "https://maps.app.goo.gl/46EjidvwWTV4NDDu7",
+  "venueAddress": "1 Chome-9-3 Nakameguro, Meguro City, 153-0061",
   "startDate": "07/26/2024",
   "endDate": "07/26/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Boosting Public Goods through Collaborative Efforts and DAOs",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "ROJU NAKAMEGURO",
-  "venueMapsLink": "https://maps.app.goo.gl/46EjidvwWTV4NDDu7",
-  "venueAddress": "1 Chome-9-3 Nakameguro, Meguro City, 153-0061",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Public Goods"
   ],
   "eventHosts": [
-    {
-      "name": "Mask Network",
-      "logo": "/uploads/maskNetwork.jpg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    },
-    {
-      "name": "LXDAO",
-      "logo": "/uploads/lxdao.jpg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Mask Network|maskNetwork.jpg",
+    "LXDAO|lxdao.jpg"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1721932200000,
-  "startMonthIndex": 6,
-  "startDay": 26,
-  "startDayString": "Fri",
-  "startYear": "2024",
-  "endDateTimeStamp": 1721932200000,
-  "endMonthIndex": 6,
-  "endDay": 26,
-  "fullDateFormat": "July 26, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-07-25T18:30:00.000Z",
-  "endDateValue": "2024-07-25T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "supporting-the-commons-1721932200000-1721932200000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
 }

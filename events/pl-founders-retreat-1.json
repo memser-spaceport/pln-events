@@ -1,44 +1,24 @@
 {
   "eventName": "PL Founders Retreat",
+  "eventDescription": "The PL Founders Retreat is a chance for PL network founders and leaders to recharge, build connections, and learn from each other in an informal, relaxed setting. Please note that this retreat is by invitation only.",
   "website": "",
   "location": "Location TBD",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
   "startDate": "07/05/2024",
   "endDate": "07/07/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "The PL Founders Retreat is a chance for PL network founders and leaders to recharge, build connections, and learn from each other in an informal, relaxed setting. Please note that this retreat is by invitation only.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "",
-  "venueMapsLink": "",
-  "venueAddress": "",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Web3"
   ],
   "eventHosts": [
-    {
-      "name": "Protocol Labs",
-      "logo": "/uploads/protocol_labs.jpeg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Protocol Labs|protocol_labs.jpeg"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1720117800000,
-  "startMonthIndex": 6,
-  "startDay": 5,
-  "startDayString": "Fri",
-  "startYear": "2024",
-  "endDateTimeStamp": 1720290600000,
-  "endMonthIndex": 6,
-  "endDay": 7,
-  "fullDateFormat": "July 5 - 7, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-07-04T18:30:00.000Z",
-  "endDateValue": "2024-07-06T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "pl-founders-retreat-1720117800000-1720290600000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": false,
+  "eventType": "Conference",
+  "tag": "PL Event",
+  "juanSpeaking": null
 }

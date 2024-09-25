@@ -1,44 +1,24 @@
 {
   "eventName": "Zama Afterwork Party @The CoFHE Shop",
+  "eventDescription": "Join Zama and the FHE community in a dedicated space for all things Fully Homomorphic Encryption (FHE) during EthCC. Network, hack, drink good coffee.",
   "website": "https://lu.ma/zama-afterwork-party-ethcc7-at-the-cofhe-shop",
   "location": "Brussels, Belgium",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
   "startDate": "07/09/2024",
   "endDate": "07/09/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Join Zama and the FHE community in a dedicated space for all things Fully Homomorphic Encryption (FHE) during EthCC. Network, hack, drink good coffee.",
-  "juanSpeaking": null,
-  "eventType": "Social",
-  "venueName": "",
-  "venueMapsLink": "",
-  "venueAddress": "",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Web3"
   ],
   "eventHosts": [
-    {
-      "name": "Zama",
-      "logo": "/uploads/zama-logo.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Zama|zama-logo.png"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1720463400000,
-  "startMonthIndex": 6,
-  "startDay": 9,
-  "startDayString": "Tue",
-  "startYear": "2024",
-  "endDateTimeStamp": 1720463400000,
-  "endMonthIndex": 6,
-  "endDay": 9,
-  "fullDateFormat": "July 9, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-07-08T18:30:00.000Z",
-  "endDateValue": "2024-07-08T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "zama-afterwork-party-the-cofhe-shop-1720463400000-1720463400000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Social",
+  "tag": "PL Event",
+  "juanSpeaking": null
 }

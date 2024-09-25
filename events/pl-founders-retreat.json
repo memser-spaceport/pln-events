@@ -1,42 +1,22 @@
 {
   "eventName": "PL Founders Retreat",
+  "eventDescription": "The PL Founders Retreat is a chance for PL network founders and leaders to recharge, build connections, and learn from each other in an informal, relaxed setting. Please note that this retreat is by invitation only.",
   "website": null,
   "location": "Colorado, United States",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
   "startDate": "03/03/2024",
   "endDate": "03/04/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "The PL Founders Retreat is a chance for PL network founders and leaders to recharge, build connections, and learn from each other in an informal, relaxed setting. Please note that this retreat is by invitation only.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": null,
-  "venueMapsLink": null,
-  "venueAddress": null,
-  "isFeaturedEvent": false,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "Protocol Labs",
-      "logo": "/uploads/protocol-labs-network-small-logo.svg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Protocol Labs|protocol-labs-network-small-logo.svg"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1709404200000,
-  "startMonthIndex": 2,
-  "startDay": 3,
-  "startDayString": "Sun",
-  "startYear": "2024",
-  "endDateTimeStamp": 1709490600000,
-  "endMonthIndex": 2,
-  "endDay": 4,
-  "fullDateFormat": "March 3 - 4, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-03-02T18:30:00.000Z",
-  "endDateValue": "2024-03-03T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "pl-founders-retreat-1709404200000-1709490600000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

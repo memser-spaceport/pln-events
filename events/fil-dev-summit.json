@@ -1,42 +1,22 @@
 {
   "eventName": "FIL Dev Summit",
+  "eventDescription": "FIL Dev Summit is a gathering of developers, builders, and engaged community members who want to contribute to the core protocol and network evolution of Filecoin (think IPFS Thing, but bigger!).",
   "website": "https://fildev.io/",
   "location": "Singapore",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
   "startDate": "09/12/2023",
   "endDate": "09/14/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "FIL Dev Summit is a gathering of developers, builders, and engaged community members who want to contribute to the core protocol and network evolution of Filecoin (think IPFS Thing, but bigger!).",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": null,
-  "venueMapsLink": null,
-  "venueAddress": null,
-  "isFeaturedEvent": true,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "Filecoin Foundation",
-      "logo": "/uploads/filecoin-foundation.webp",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Filecoin Foundation|filecoin-foundation.webp"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1694457000000,
-  "startMonthIndex": 8,
-  "startDay": 12,
-  "startDayString": "Tue",
-  "startYear": "2023",
-  "endDateTimeStamp": 1694629800000,
-  "endMonthIndex": 8,
-  "endDay": 14,
-  "fullDateFormat": "September 12 - 14, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-09-11T18:30:00.000Z",
-  "endDateValue": "2023-09-13T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "fil-dev-summit-1694457000000-1694629800000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": true,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

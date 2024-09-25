@@ -1,44 +1,24 @@
 {
   "eventName": "ETHDenver Community Events",
+  "eventDescription": "A list of events happening alongside ETHDenver that members may be interesting in attending. If you are planning to do also feel free to sign up on the sheet we have linked so more people can find you.",
   "website": "https://docs.google.com/spreadsheets/d/1a87RAxg8RgNP9Q9ZqXXKErLGT0hipRALaL_NvzT2Tj8/edit#gid=0",
   "location": "Denver, United States",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
   "startDate": "02/23/2024",
   "endDate": "03/03/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "A list of events happening alongside ETHDenver that members may be interesting in attending. If you are planning to do also feel free to sign up on the sheet we have linked so more people can find you.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": null,
-  "venueMapsLink": null,
-  "venueAddress": null,
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Community Events"
   ],
   "eventHosts": [
-    {
-      "name": "ETHDenver",
-      "logo": "/uploads/ethDenver2024.jpg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "ETHDenver|ethDenver2024.jpg"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1708626600000,
-  "startMonthIndex": 1,
-  "startDay": 23,
-  "startDayString": "Fri",
-  "startYear": "2024",
-  "endDateTimeStamp": 1709404200000,
-  "endMonthIndex": 2,
-  "endDay": 3,
-  "fullDateFormat": "February 23 - March 3, 2024",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-02-22T18:30:00.000Z",
-  "endDateValue": "2024-03-02T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "ethdenver-community-events-1708626600000-1709404200000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

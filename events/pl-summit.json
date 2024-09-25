@@ -1,49 +1,25 @@
 {
   "eventName": "PL Summit",
+  "eventDescription": "The Protocol Labs Network is getting together for our second decentralized conference! Join us as we drive breakthroughs in computing to push humanity forward.",
   "website": null,
   "location": "Istanbul, Turkey",
+  "venueName": null,
+  "venueMapsLink": "https://maps.app.goo.gl/JXnJXD5w6MpAtLNT9",
+  "venueAddress": "​Swissôtel The Bosphorus Istanbul",
   "startDate": "11/13/2023",
   "endDate": "11/15/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "The Protocol Labs Network is getting together for our second decentralized conference! Join us as we drive breakthroughs in computing to push humanity forward.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": null,
-  "venueMapsLink": "https://maps.app.goo.gl/JXnJXD5w6MpAtLNT9",
-  "venueAddress": "​Swissôtel The Bosphorus Istanbul",
-  "isFeaturedEvent": true,
-  "topics": [
+  "eventTopic": [
     "Talks & Presentation"
   ],
   "eventHosts": [
-    {
-      "name": "Protocol Labs",
-      "logo": "/uploads/protocol_labs.jpeg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    },
-    {
-      "name": "Spaceport",
-      "logo": "/uploads/spaceport.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Protocol Labs|protocol_labs.jpeg",
+    "Spaceport|spaceport.png"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1699813800000,
-  "startMonthIndex": 10,
-  "startDay": 13,
-  "startDayString": "Mon",
-  "startYear": "2023",
-  "endDateTimeStamp": 1699986600000,
-  "endMonthIndex": 10,
-  "endDay": 15,
-  "fullDateFormat": "November 13 - 15, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-11-12T18:30:00.000Z",
-  "endDateValue": "2023-11-14T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "pl-summit-1699813800000-1699986600000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": true,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

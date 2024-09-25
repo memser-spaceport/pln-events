@@ -1,53 +1,29 @@
 {
   "eventName": "ESPA-7",
+  "eventDescription": "3-day deep dive accelerator for launching your Filecoin Storage Provider business or related endeavor. High-impact networking, education & resources.",
   "website": "https://www.web3espa.io/",
   "location": "Las Vegas, United States",
+  "venueName": "ParkMGM",
+  "venueMapsLink": "",
+  "venueAddress": "3770 S Las Vegas Blvd, NV 89109",
   "startDate": "07/18/2023",
   "endDate": "07/20/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "Industry Event",
-  "description": "3-day deep dive accelerator for launching your Filecoin Storage Provider business or related endeavor. High-impact networking, education & resources.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "ParkMGM",
-  "venueMapsLink": "",
-  "venueAddress": "3770 S Las Vegas Blvd, NV 89109",
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Training",
     "Networking",
     "Accelerator",
     "Incubator"
   ],
   "eventHosts": [
-    {
-      "name": "ESPA",
-      "logo": "/uploads/espa.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "ESPA|espa.png"
   ],
   "preferredContacts": [
-    {
-      "name": "email",
-      "logo": "/icons/pln-contacts-email.svg",
-      "link": "mailto:apply@web3espa.io"
-    }
+    "email|mailto:apply@web3espa.io"
   ],
-  "startDateTimeStamp": 1689618600000,
-  "startMonthIndex": 6,
-  "startDay": 18,
-  "startDayString": "Tue",
-  "startYear": "2023",
-  "endDateTimeStamp": 1689791400000,
-  "endMonthIndex": 6,
-  "endDay": 20,
-  "fullDateFormat": "July 18 - 20, 2023 ",
-  "tagLogo": "/icons/pln-industry-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-07-17T18:30:00.000Z",
-  "endDateValue": "2023-07-19T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "espa-7-1689618600000-1689791400000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "Industry Event",
+  "juanSpeaking": null
 }

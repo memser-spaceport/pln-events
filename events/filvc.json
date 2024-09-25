@@ -1,44 +1,24 @@
 {
   "eventName": "Fil.VC",
+  "eventDescription": "This exclusive, invite-only event offers a unique opportunity for investors to hear from and connect with some of the most promising and innovative startups in Web3 in a concentrated Demo Day. For questions reach out to filvc@protocol.ai.",
   "website": "https://www.fil.vc/",
   "location": "Virtual",
+  "venueName": "Apply to attend",
+  "venueMapsLink": "https://airtable.com/shr1tmqYwTgxd5QXF",
+  "venueAddress": null,
   "startDate": "03/21/2023",
   "endDate": "03/23/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "This exclusive, invite-only event offers a unique opportunity for investors to hear from and connect with some of the most promising and innovative startups in Web3 in a concentrated Demo Day. For questions reach out to filvc@protocol.ai.",
-  "juanSpeaking": null,
-  "eventType": "Virtual",
-  "venueName": "Apply to attend",
-  "venueMapsLink": "https://airtable.com/shr1tmqYwTgxd5QXF",
-  "venueAddress": null,
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Fundraising"
   ],
   "eventHosts": [
-    {
-      "name": "Protocol Labs",
-      "logo": "/uploads/protocol_labs.jpeg",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Protocol Labs|protocol_labs.jpeg"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1679337000000,
-  "startMonthIndex": 2,
-  "startDay": 21,
-  "startDayString": "Tue",
-  "startYear": "2023",
-  "endDateTimeStamp": 1679509800000,
-  "endMonthIndex": 2,
-  "endDay": 23,
-  "fullDateFormat": "March 21 - 23, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-03-20T18:30:00.000Z",
-  "endDateValue": "2023-03-22T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "filvc-1679337000000-1679509800000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Virtual",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

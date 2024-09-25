@@ -1,42 +1,22 @@
 {
   "eventName": "Filecoin Network Base",
+  "eventDescription": "The Filecoin Network Base is your home base in Austin ahead of Consensus 2023. Visit our co-working space to catch a lightning talk, participate in workshops with developers, and learn about the latest on the Filecoin Virtual Machine.",
   "website": "https://events.fil.org/austin-filecoin-network-base",
   "location": "Austin, United States",
+  "venueName": "The Riley Building",
+  "venueMapsLink": "https://www.google.com/maps/search/?api=1&query=The%20Riley%20Building&query_place_id=ChIJlfDsWVu1RIYRpHF10H9T9XE",
+  "venueAddress": "315 Lavaca St",
   "startDate": "04/24/2023",
   "endDate": "04/26/2023",
   "dateTBD": null,
   "dri": null,
-  "tag": "PL Event",
-  "description": "The Filecoin Network Base is your home base in Austin ahead of Consensus 2023. Visit our co-working space to catch a lightning talk, participate in workshops with developers, and learn about the latest on the Filecoin Virtual Machine.",
-  "juanSpeaking": null,
-  "eventType": null,
-  "venueName": "The Riley Building",
-  "venueMapsLink": "https://www.google.com/maps/search/?api=1&query=The%20Riley%20Building&query_place_id=ChIJlfDsWVu1RIYRpHF10H9T9XE",
-  "venueAddress": "315 Lavaca St",
-  "isFeaturedEvent": false,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "Filecoin Foundation",
-      "logo": "/uploads/filecoin-foundation.webp",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Filecoin Foundation|filecoin-foundation.webp"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1682274600000,
-  "startMonthIndex": 3,
-  "startDay": 24,
-  "startDayString": "Mon",
-  "startYear": "2023",
-  "endDateTimeStamp": 1682447400000,
-  "endMonthIndex": 3,
-  "endDay": 26,
-  "fullDateFormat": "April 24 - 26, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-04-23T18:30:00.000Z",
-  "endDateValue": "2023-04-25T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "filecoin-network-base-1682274600000-1682447400000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": null,
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

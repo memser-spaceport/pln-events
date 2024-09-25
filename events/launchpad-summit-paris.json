@@ -1,51 +1,27 @@
 {
   "eventName": "Launchpad Summit Paris",
+  "eventDescription": "Launchpad is a blend of two key components:  a dynamic four-week virtual learning cohort, where residents actively participate in remote learning seminars, and an unforgettable one-week in-person \"colo\" Summit.  These summits comprise interactive presentations, technology deep dives, and unparalleled networking opportunities.",
   "website": "https://protocol.ai/blog/launchpad-summit-paris-2023/",
   "location": "Paris, France",
+  "venueName": "Montparnasse (exact location revealed upon registration!)",
+  "venueMapsLink": null,
+  "venueAddress": null,
   "startDate": "07/16/2023",
   "endDate": "07/21/2023",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Launchpad is a blend of two key components:  a dynamic four-week virtual learning cohort, where residents actively participate in remote learning seminars, and an unforgettable one-week in-person \"colo\" Summit.  These summits comprise interactive presentations, technology deep dives, and unparalleled networking opportunities.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "Montparnasse (exact location revealed upon registration!)",
-  "venueMapsLink": null,
-  "venueAddress": null,
-  "isFeaturedEvent": false,
-  "topics": [
+  "eventTopic": [
     "Web3",
     "Tech Talks"
   ],
   "eventHosts": [
-    {
-      "name": "Launchpad",
-      "logo": "/uploads/launchpad.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Launchpad|launchpad.png"
   ],
   "preferredContacts": [
-    {
-      "name": "email",
-      "logo": "/icons/pln-contacts-email.svg",
-      "link": "mailto:launchpad-events@protocol.ai"
-    }
+    "email|mailto:launchpad-events@protocol.ai"
   ],
-  "startDateTimeStamp": 1689445800000,
-  "startMonthIndex": 6,
-  "startDay": 16,
-  "startDayString": "Sun",
-  "startYear": "2023",
-  "endDateTimeStamp": 1689877800000,
-  "endMonthIndex": 6,
-  "endDay": 21,
-  "fullDateFormat": "July 16 - 21, 2023 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2023-07-15T18:30:00.000Z",
-  "endDateValue": "2023-07-20T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "launchpad-summit-paris-1689445800000-1689877800000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }

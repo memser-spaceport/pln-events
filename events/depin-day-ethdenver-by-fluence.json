@@ -1,42 +1,22 @@
 {
   "eventName": "DE:PIN DAY @ETHDenver by Fluence",
+  "eventDescription": "Join us for an insightful exploration of the latest research and technological advancements on a diverse spread of topics, including multi-party computation, decentralized RPC, distributed systems and other best practices and tools of decentralized physical infrastructure.",
   "website": "https://lu.ma/de-pin",
   "location": "Denver, United States",
+  "venueName": "Green Spaces: Co-working and Marketplace",
+  "venueMapsLink": "https://maps.app.goo.gl/hyDqJsDee2QjbTYT6",
+  "venueAddress": "2590 Walnut St, CO 80205",
   "startDate": "02/27/2024",
   "endDate": "02/27/2024",
   "dateTBD": false,
   "dri": null,
-  "tag": "PL Event",
-  "description": "Join us for an insightful exploration of the latest research and technological advancements on a diverse spread of topics, including multi-party computation, decentralized RPC, distributed systems and other best practices and tools of decentralized physical infrastructure.",
-  "juanSpeaking": null,
-  "eventType": "Conference",
-  "venueName": "Green Spaces: Co-working and Marketplace",
-  "venueMapsLink": "https://maps.app.goo.gl/hyDqJsDee2QjbTYT6",
-  "venueAddress": "2590 Walnut St, CO 80205",
-  "isFeaturedEvent": false,
-  "topics": [],
+  "eventTopic": null,
   "eventHosts": [
-    {
-      "name": "Fluence",
-      "logo": "/uploads/fluence.png",
-      "primaryIcon": "/icons/pln-primary-host.svg"
-    }
+    "Fluence|fluence.png"
   ],
-  "preferredContacts": [],
-  "startDateTimeStamp": 1708972200000,
-  "startMonthIndex": 1,
-  "startDay": 27,
-  "startDayString": "Tue",
-  "startYear": "2024",
-  "endDateTimeStamp": 1708972200000,
-  "endMonthIndex": 1,
-  "endDay": 27,
-  "fullDateFormat": "February 27, 2024 ",
-  "tagLogo": "/icons/pln-event-icon.svg",
-  "calenderLogo": "/icons/calender-icon.svg",
-  "startDateValue": "2024-02-26T18:30:00.000Z",
-  "endDateValue": "2024-02-26T18:30:00.000Z",
-  "locationLogo": "/icons/pln-location-icon.svg",
-  "slug": "de-pin-day-ethdenver-by-fluence-1708972200000-1708972200000",
-  "externalLinkIcon": "/icons/pl-external-icon.svg"
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event",
+  "juanSpeaking": null
 }
