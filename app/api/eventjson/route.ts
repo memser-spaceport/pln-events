@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 
 function readJsonFiles() {
-  const folderPath = path.join(process.cwd(), "events"); // Get the absolute path to the folder
+  const folderPath = path.join(process.cwd(), "content/events"); // Get the absolute path to the folder
   const fileNames = fs.readdirSync(folderPath); // Read all file names in the folder
 
   // Filter JSON files and read their contents
