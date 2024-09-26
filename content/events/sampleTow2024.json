@@ -1,14 +1,14 @@
 {
-  "eventName": "Sampel Tow",
+  "eventName": "Sampel Tow TIME UPDATED",
   "eventDescription": "This is a sample description for the event 'Sampel Tow'",
   "website": "https://lu.ma/Afterlab",
   "location": "New York City, United States",
   "venueName": "Pier 36",
   "venueMapsLink": "https://www.google.com/maps/dir//Pier+36+new+york/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x89c25a2c82517d99:0xb4126708a3bf79f0?sa=X&ved=2ahUKEwiDh6_hvNaDAxUSjokEHQhIDFUQ9Rd6BAhREAA",
   "venueAddress": "299 South St, New York, 10002",
-  "startDate": "2024-09-27T00:00:00.000Z",
-  "endDate": "2024-09-29T06:00:00.000Z",
-  "dateTBD": true,
+  "startDate": "2024-09-27T09:00:00.000Z",
+  "endDate": "2024-09-29T11:30:00.000Z",
+  "dateTBD": false,
   "eventTopic": [
     "cars",
     "lorries"
