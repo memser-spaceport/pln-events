@@ -21,7 +21,7 @@
       "twitter|https://twitter.com/drand_loe",
       "email|mailto:drand@protocol.ai"
   ],
-  "isFeaturedEvent": true,
-  "eventType": "Social",
-  "tag": "PL Event"
+  "isFeaturedEvent": false,
+  "eventType": "Virtual",
+  "tag": "Industry Event"
 }
