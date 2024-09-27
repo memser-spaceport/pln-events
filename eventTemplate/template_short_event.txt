@@ -1,43 +1,50 @@
----
-eventName: "<Your_Event_Name>" #the name of your track or event and its mandatory
+{
+  "eventName": "<Your_Event_Name>", # The name of your track or event and its mandatory
 
-eventDescription: "<Short_Description_of_your_event>" #short description of your track or event limiting to 100-150 characters
+  "eventDescription": "<Short_Description_of_your_event>", # Short description of your track or event limiting to 100-150 characters
 
-#Topics will show up as labels on the event card.Only a maximum of 4 tags will be displayed on the event card. Some references for topics - Blockchain, Web3, Cryptocurrency, Tech Talks, Workshop, etc.
+  # Topics will show up as labels on the event card.Only a maximum of 4 topics will be displayed on the event card. Some references for topics are Blockchain, Web3, Cryptocurrency, Tech Talks, Workshop.
+  
+  "eventTopic": [
+    "<Topic_1>",
+    "<Topic_2>",
+    "<Topic_3>"
+  ],
+  
+  "eventType": "Conference" (or) "eventType": "Virtual" (or) "eventType": "Social", # Type of the event: Please choose one among the below options or just leave it blank
 
-eventTopic: 
-  - "<Topic_1>"
-  - "<Topic_2>"
-  - "<Topic_3>"
-  - "<Topic_4>" 
+  "location": "City, Country" (or) "location": "Location TBD", # Specify the location of the event. If you aren't sure about the location then mention "Location TBD"
 
-eventType: "Conference" or "Virtual" or "Social" #Type of the event: Please choose one among the below options or just leave it blank
+  "venueName": "<Your_Venue_Name>", # The event venue name (will show up on the event card) or just leave it blank
 
-location: "City, Country" or "Location TBD" #Specify the location of the event.If you aren't sure about the location then mention "Location TBD"
+  "venueAddress": "<Your_Venue_Address>", # The event venue address (will show up on a map) or just leave it blank
 
-venueName: "<Your_Venue_Name>" #the event venue name (will show up on the event card) or just leave it blank
+  "venueMapsLink": "<Google_Map_link_for_the_venue>", # The event venue Map link (will show up on a map) or just leave it blank
 
-venueAddress: "<Your_Venue_Address>" #the event venue address (will show up on a map) or just leave it blank
+  "website": "<your_website_url>", # Make sure to have all the relevant information: dates, venue, program, ticketing (if any), etc. or just leave it blank
 
-venueMapsLink: "<Google_Map_link_for_the_venue>" #the event venue Map link (will show up on a map) or just leave it blank
+  "startDate": "<YYYY-MM-DDTHH:MM:SSZ>", # The start date of the event , for eg: if it is Sep 16th 2024 and 09 30 AM => 2024-09-16T09:30:00.000Z,
 
-website: "<your_website_url>" #make sure to have all the relevant information: dates, venue, program, ticketing (if any), etc. or just leave it blank
+  "endDate": "<YYYY-MM-DDTHH:MM:SSZ>", # The end date of the event , for eg: if it is Sep 18th 2024 and 06 00 PM => 2024-09-18T18:00:00.000Z,
 
-startDate: "<MM/DD/YYYY>" # the start date of the event , date format is MM/DD/YYYY eg: if it is February 16th 2023 => 02/16/2023
+  "tag": "PL Event", (or) "tag": "Industry Event", # Mandatory to mention any one of the event types. Don't leave it blank
 
-endDate: "<MM/DD/YYYY>" #the end date of the event , date format is MM/DD/YYYY eg: if it is February 18th 2023 => 02/18/2023
+  "dateTBD": false, (or) "dateTBD": true, # If you have concrete dates set "dateTBD": false, else add approximate dates & set "dateTBD": true
 
-tag: "PL Event" or "Industry Event" #Mention any one of the event types. Don't leave it blank.
+  # Preferred means of contacts - this is a placeholder for email (for eg:  "email|mailto:<email_id>") and other Social handles like Twitter, LinkedIn, Discord, etc. (for eg. "twitter|https://twitter.com/IPFS/status/1629199396700098560?s=20")
 
-dateTBD: false or true #If you don't have concrete dates, add the approximate dates & set dateTBD: true.
+  "preferredContacts": [
+   "<contact_means1>|<contact_url1>",
+	 "<contact_means2>|<contact_url2>",
+  ],
 
-#Preferred means of contacts - this is a placeholder for email(for eg:  - email|mailto:<email_id>) and other social handles like Twitter, LinkedIn, Discord, etc. (for eg.   - 'twitter|https://twitter.com/IPFS/status/1629199396700098560?s=20')
+  # Event host names and their respective logos (preferred size is 48px width, 48px height and allowed formats are png, jpeg, jpg, svg, and webp). Place the logo file on the path 'public/uploads' for eg. "IPFS|ipfs-logo.png"
 
-preferredContacts:
-  - '<contact_means>|<contact_url>'
+  "eventHosts": [
+    "<host_name1>|<host_logo1>",
+    "<host_name2>|<host_logo2>"
+  ],
 
-#Event host names and their respective logos(preferred size is 48px width, 48px height)-place the logo file on the path 'public/uploads' for eg.   - IPFS|ipfs-logo.png
-
-eventHosts:
-  - <host_name>|<host_logo>
----
+  # Specify if this event is a featured event or not, if yes specify as "isFeaturedEvent": true else as "isFeaturedEvent": false
+  "isFeaturedEvent": false
+}
