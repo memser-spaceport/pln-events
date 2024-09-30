@@ -1,0 +1,20 @@
+{
+  "eventName": "SBS Boston",
+  "eventDescription": "Join us at the 4th international Sustainable Blockchain Summit (SBS) in Boston where we'll bring together experts and curious minds from ReFi, Energy Systems, Carbon Markets, and Cryptoeconomics to discuss and collaborate on projects that align the global economy with the natural world.",
+  "website": "https://sbs.tech/",
+  "location": "Boston, United States",
+  "venueName": "The Tower: A Longwood Venue",
+  "venueMapsLink": "https://goo.gl/maps/gcqcQ6gWKUoxUvCL6",
+  "venueAddress": "101 Arlington Street",
+  "startDate": "4/13/2023",
+  "endDate": "4/13/2023",
+  "dateTBD": null,
+  "eventTopic": null,
+  "eventHosts": [
+    "Filecoin Green|filecoin-green.webp"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": true,
+  "eventType": "Conference",
+  "tag": "PLN Event"
+}

@@ -1,0 +1,18 @@
+{
+  "eventName": "DevConnect",
+  "eventDescription": "Devconnect is a week-long gathering that features independent Ethereum events, each with a unique focus. Unlike a usual conference, the goal is faciliate the deep discussions and conversations that are needed to continue to improve Ethereum.",
+  "website": "https://devconnect.org/",
+  "location": "Istanbul, Turkey",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "startDate": "11/13/2023",
+  "endDate": "11/19/2023",
+  "dateTBD": false,
+  "eventTopic": null,
+  "eventHosts": null,
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "Industry Event"
+}

@@ -1,0 +1,20 @@
+{
+  "eventName": "FIL Brussels Network Base",
+  "eventDescription": "",
+  "website": "https://fil-brussels.io",
+  "location": "Brussels, Belgium",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "startDate": "07/08/2024",
+  "endDate": "07/11/2024",
+  "dateTBD": false,
+  "eventTopic": null,
+  "eventHosts": [
+    "Foundation|filecoin-foundation.webp"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event"
+}

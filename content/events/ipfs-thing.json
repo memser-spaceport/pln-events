@@ -1,0 +1,22 @@
+{
+  "eventName": "IPFS Thing",
+  "eventDescription": null,
+  "website": "https://2023.ipfs-thing.io",
+  "location": "Brussels, Belgium",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "startDate": "04/15/2023",
+  "endDate": "04/19/2023",
+  "dateTBD": null,
+  "eventTopic": null,
+  "eventHosts": [
+    "IPFS|ipfs-logo.png"
+  ],
+  "preferredContacts": [
+    "twitter|https://twitter.com/IPFS/status/1629199396700098560?s=20"
+  ],
+  "isFeaturedEvent": true,
+  "eventType": null,
+  "tag": "PLN Event"
+}

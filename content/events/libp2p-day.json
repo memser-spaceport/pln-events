@@ -1,0 +1,24 @@
+{
+  "eventName": "libp2p Day",
+  "eventDescription": "libp2p Day is a gathering of developers, researchers, and engaged community members focused on pushing the boundaries of decentralized peer-to-peer networks. This event is more than just another meetup at ETHDenver. This is where we will dig into turning nuts and bolts solutions and cutting edge research into a usable and robust peer-to-peer networking library for our mobile and ad hoc internet of today.",
+  "website": "https://lu.ma/libp2pday-denver",
+  "location": "Denver, United States",
+  "venueName": "The Slate Denver",
+  "venueMapsLink": "https://maps.app.goo.gl/WtDBcsachBhb6z2s5",
+  "venueAddress": "1250 Welton St, CO 80204",
+  "startDate": "02/29/2024",
+  "endDate": "02/29/2024",
+  "dateTBD": false,
+  "eventTopic": [
+    "libp2p"
+  ],
+  "eventHosts": [
+    "libp2p|libp2p.jpg"
+  ],
+  "preferredContacts": [
+    "email|mailto:contact@libp2p.io"
+  ],
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event"
+}

@@ -1,0 +1,23 @@
+{
+  "eventName": "Network State Conference",
+  "eventDescription": "The Network State Conference is for people interested in founding, funding, and finding new communities. This year's speakers include Naval Ravikant, Brian Armstrong, Vitalik Buterin, Raj Gokal, and Bryan Johnson.",
+  "website": "https://lu.ma/ns2024",
+  "location": "Singapore",
+  "venueName": "Suntec Singapore Convention & Exhibition Centre",
+  "venueMapsLink": "https://maps.app.goo.gl/RvZt6GMUY9vqDghUA",
+  "venueAddress": "1 Raffles Blvd, 039593",
+  "startDate": "09/22/2024",
+  "endDate": "09/22/2024",
+  "dateTBD": false,
+  "eventTopic": [
+    "Startup Societies",
+    "Network State"
+  ],
+  "eventHosts": [
+    "The Network State|theNetwork State.jpg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "Industry Event"
+}

@@ -1,0 +1,20 @@
+{
+  "eventName": "FIL Dev Summit",
+  "eventDescription": "FIL Dev Summit is a gathering of developers, builders, and engaged community members who want to contribute to the core protocol and network evolution of Filecoin (think IPFS Thing, but bigger!).",
+  "website": "https://fildev.io/",
+  "location": "Singapore",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "startDate": "09/12/2023",
+  "endDate": "09/14/2023",
+  "dateTBD": false,
+  "eventTopic": null,
+  "eventHosts": [
+    "Filecoin Foundation|filecoin-foundation.webp"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": true,
+  "eventType": "Conference",
+  "tag": "PLN Event"
+}

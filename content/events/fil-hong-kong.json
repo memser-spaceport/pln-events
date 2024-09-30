@@ -1,0 +1,20 @@
+{
+  "eventName": "Fil Hong Kong",
+  "eventDescription": "FIL Hong Kong, hosted by NDLabs, alongside Hong Kong web3 Festival",
+  "website": "https://fil-hk.io/",
+  "location": "Hong Kong, China",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "startDate": "04/05/2024",
+  "endDate": "04/08/2024",
+  "dateTBD": false,
+  "eventTopic": null,
+  "eventHosts": [
+    "Filecoin Foundation|filhk24.png"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event"
+}
