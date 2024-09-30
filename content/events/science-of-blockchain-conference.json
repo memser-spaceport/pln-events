@@ -1,0 +1,24 @@
+{
+  "eventName": "Science of Blockchain Conference",
+  "eventDescription": "The conference focuses on technical innovations in the blockchain ecosystem, and brings together researchers and practioners working in the space. We are interested in the application of cryptography, decentralized protocols, formal methods, and empirical analysis, to improving the security and scalability of blockchain deployments. We aim to foster collaboration among practitioners and researchers working on blockchain protocol development, cryptography, distributed systems, secure computing, crypto-economics, and economic risk analysis.",
+  "website": "https://www.sbc-conference.com/",
+  "location": "New York City, United States",
+  "venueName": "Alfred Lerner Hall, Columbia University",
+  "venueMapsLink": "https://maps.app.goo.gl/yyXo7uwTwkewnovi6",
+  "venueAddress": "2920 Broadway, NY 10027",
+  "startDate": "08/07/2024",
+  "endDate": "08/09/2024",
+  "dateTBD": false,
+  "eventTopic": [
+    "Blockchain"
+  ],
+  "eventHosts": [
+    "UC Berkeley RDI|ucBerkeleyRDI.jpg",
+    "IC3|ic3.jpeg",
+    "Stanford Center for Blockchain Research|stanfordCenterForBlockchainResearch.jpeg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "Industry Event"
+}

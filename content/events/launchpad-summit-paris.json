@@ -1,0 +1,25 @@
+{
+  "eventName": "Launchpad Summit Paris",
+  "eventDescription": "Launchpad is a blend of two key components:  a dynamic four-week virtual learning cohort, where residents actively participate in remote learning seminars, and an unforgettable one-week in-person \"colo\" Summit.  These summits comprise interactive presentations, technology deep dives, and unparalleled networking opportunities.",
+  "website": "https://protocol.ai/blog/launchpad-summit-paris-2023/",
+  "location": "Paris, France",
+  "venueName": "Montparnasse (exact location revealed upon registration!)",
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "startDate": "07/16/2023",
+  "endDate": "07/21/2023",
+  "dateTBD": false,
+  "eventTopic": [
+    "Web3",
+    "Tech Talks"
+  ],
+  "eventHosts": [
+    "Launchpad|launchpad.png"
+  ],
+  "preferredContacts": [
+    "email|mailto:launchpad-events@protocol.ai"
+  ],
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event"
+}

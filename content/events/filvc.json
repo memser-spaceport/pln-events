@@ -1,0 +1,22 @@
+{
+  "eventName": "Fil.VC",
+  "eventDescription": "This exclusive, invite-only event offers a unique opportunity for investors to hear from and connect with some of the most promising and innovative startups in Web3 in a concentrated Demo Day. For questions reach out to filvc@protocol.ai.",
+  "website": "https://www.fil.vc/",
+  "location": "Virtual",
+  "venueName": "Apply to attend",
+  "venueMapsLink": "https://airtable.com/shr1tmqYwTgxd5QXF",
+  "venueAddress": null,
+  "startDate": "03/21/2023",
+  "endDate": "03/23/2023",
+  "dateTBD": false,
+  "eventTopic": [
+    "Fundraising"
+  ],
+  "eventHosts": [
+    "Protocol Labs|protocol_labs.jpeg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Virtual",
+  "tag": "PLN Event"
+}

@@ -1,0 +1,22 @@
+{
+  "eventName": "Protocol Labs Meetup @ EthCC",
+  "eventDescription": "Join the network wide meetup to catch up with familiar faces and meet fellow members!",
+  "website": "",
+  "location": "Brussels, Belgium",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "startDate": "07/08/2024",
+  "endDate": "07/08/2024",
+  "dateTBD": false,
+  "eventTopic": [
+    "Web3"
+  ],
+  "eventHosts": [
+    "Protocol Labs|protocol_labs.jpeg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": false,
+  "eventType": "Social",
+  "tag": "PL Event"
+}

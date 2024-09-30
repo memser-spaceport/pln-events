@@ -1,0 +1,23 @@
+{
+  "eventName": "LabWeek Public Goods",
+  "eventDescription": "A Decentralized conference designed to engage in deep conversations and make connections to drive real progress",
+  "website": "https://fundingthecommons.io/san-francisco-bay-area-2024",
+  "location": "San Francisco Bay Area, United States",
+  "venueName": "The David Brower Center",
+  "venueMapsLink": "https://maps.app.goo.gl/rEaMTZGxNBBEZtPx6",
+  "venueAddress": "2150 Allston Way, Berkeley, CA 94704",
+  "startDate": "04/11/2024",
+  "endDate": "04/16/2024",
+  "dateTBD": false,
+  "eventTopic": [
+    "AI",
+    "PGF"
+  ],
+  "eventHosts": [
+    "Protocol Labs|protocol_labs.jpeg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": true,
+  "eventType": "Conference",
+  "tag": "PL Event"
+}

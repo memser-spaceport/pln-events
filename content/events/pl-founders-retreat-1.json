@@ -1,0 +1,22 @@
+{
+  "eventName": "PL Founders Retreat",
+  "eventDescription": "The PL Founders Retreat is a chance for PL network founders and leaders to recharge, build connections, and learn from each other in an informal, relaxed setting. Please note that this retreat is by invitation only.",
+  "website": "",
+  "location": "Location TBD",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "startDate": "07/05/2024",
+  "endDate": "07/07/2024",
+  "dateTBD": false,
+  "eventTopic": [
+    "Web3"
+  ],
+  "eventHosts": [
+    "Protocol Labs|protocol_labs.jpeg"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": false,
+  "eventType": "Conference",
+  "tag": "PL Event"
+}

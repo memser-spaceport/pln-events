@@ -1,0 +1,24 @@
+{
+  "eventName": "FILDev Summit",
+  "eventDescription": "We are bringing together engineering teams, SPs, and clients to workshop protocol & tooling improvements to accelerate Filecoin utility and usage.",
+  "website": "https://fildev.io/FDS-3",
+  "location": "Denver, United States",
+  "venueName": "The Slate Denver",
+  "venueMapsLink": "https://maps.app.goo.gl/ERMAiT3QXLKC4z6K8",
+  "venueAddress": "1250 Welton St, 80204",
+  "startDate": "02/29/2024",
+  "endDate": "02/29/2024",
+  "dateTBD": false,
+  "eventTopic": [
+    "Workshop"
+  ],
+  "eventHosts": [
+    "Filecoin Dev Summit|filecoin-dev-summit-2024.png"
+  ],
+  "preferredContacts": [
+    "email|mailto:hello@fildev.io"
+  ],
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "PLN Event"
+}

@@ -1,0 +1,18 @@
+{
+  "eventName": "EthCC",
+  "eventDescription": "The Ethereum Community Conference (EthCC) is the largest annual European Ethereum event focused on technology and community. Four intense days of conferences, networking and learning.",
+  "website": "https://www.ethcc.io/",
+  "location": "Brussels, Belgium",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "",
+  "startDate": "07/08/2024",
+  "endDate": "07/11/2024",
+  "dateTBD": false,
+  "eventTopic": null,
+  "eventHosts": null,
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "Industry Event"
+}

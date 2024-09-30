@@ -1,0 +1,25 @@
+{
+  "eventName": "Berlin Blockchain Week - DePIN Day",
+  "eventDescription": "Dive into the latest topics and research in DePin and decentralized compute including multi-party computation, decentralized RPC, capacity rewards and proof systems.",
+  "website": "https://lu.ma/depin-berlin",
+  "location": "Berlin, Germany",
+  "venueName": "",
+  "venueMapsLink": "",
+  "venueAddress": "Register to see address",
+  "startDate": "05/22/2024",
+  "endDate": "05/22/2024",
+  "dateTBD": false,
+  "eventTopic": [
+    "DePIN",
+    "Compute"
+  ],
+  "eventHosts": [
+    "Impossible Cloud|impossibleCloud.jpeg",
+    "Fluence|fluence.jpeg",
+    "1k(x)|1Kx.png"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Conference",
+  "tag": "Industry Event"
+}

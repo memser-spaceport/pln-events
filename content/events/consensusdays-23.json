@@ -1,0 +1,25 @@
+{
+  "eventName": "ConsensusDays 23",
+  "eventDescription": "ConsensusDays 23 aims to provide a forum for the discussion of early-stage but high-impact research with scientific interest and real-world applications.",
+  "website": "https://research.protocol.ai/sites/consensusday23/",
+  "location": "Virtual",
+  "venueName": null,
+  "venueMapsLink": null,
+  "venueAddress": null,
+  "startDate": "06/05/2023",
+  "endDate": "06/06/2023",
+  "dateTBD": false,
+  "eventTopic": [
+    "Consensus",
+    "Interoperability",
+    "L2",
+    "Scaling"
+  ],
+  "eventHosts": [
+    "ConsensusLab|consensuslab.png"
+  ],
+  "preferredContacts": null,
+  "isFeaturedEvent": null,
+  "eventType": "Virtual",
+  "tag": "PLN Event"
+}
