@@ -1,0 +1,21 @@
+fragment EventParts on Event {
+  __typename
+  eventName
+  eventDescription
+  website
+  location
+  venueName
+  venueMapsLink
+  venueAddress
+  startDate
+  endDate
+  dateTBD
+  dri
+  eventTopic
+  eventHosts
+  preferredContacts
+  isFeaturedEvent
+  eventType
+  tag
+  juanSpeaking
+}
