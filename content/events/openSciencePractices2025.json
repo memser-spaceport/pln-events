@@ -1,0 +1,26 @@
+{
+    "eventName": "The Institute of Open Science Practices",
+    "eventDescription": "A living conference powered by novel infrastructure",
+    "eventTopic": [
+      "DeSci"
+    ],
+    "eventType": "Conference",
+    "location": "Denver, United States",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://iosp.io/schedule",
+    "startDate": "2025-02-22T00:00:00.000Z",
+    "endDate": "2025-02-23T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "twitter|https://twitter.com/IPFS/status/1629199396700098560?s=20",
+      "email|mailto:info@scios.tech"
+    ],
+    "eventHosts": [
+      "SciOS|sciOS.jpg",
+      "OpSci|opSci.jpg"
+    ],
+    "isFeaturedEvent": false
+}
