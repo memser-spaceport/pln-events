@@ -11,7 +11,7 @@ export const EVENTS_VIEW_TYPES = {
     }
 }
 
-export const EVENT_YEARS = ["2024", "2023"];
+export const EVENT_YEARS = ["2025", "2024", "2023"];
 export const EVENT_TYPES =  ['Virtual', 'Conference', 'Social'];
 
 export const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
