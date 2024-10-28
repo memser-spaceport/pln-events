@@ -6,8 +6,8 @@
   "venueName": "Gaysorn Urban Resort",
   "venueMapsLink": "https://maps.app.goo.gl/vMJVeZwZkbTsim7m7",
   "venueAddress": "127 Gaysorn Tower, 19th-20th Floor, Ratchaprasong Road, Lumphini, Pathum Wan",
-  "startDate": "11/06/2024",
-  "endDate": "11/08/2024",
+  "startDate": "2024-11-06T00:00:00.000Z",
+  "endDate": "2024-11-08T18:00:00.000Z",
   "dateTBD": false,
   "eventTopic": [
     "Filecoin"
