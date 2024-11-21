@@ -1,0 +1,45 @@
+{
+  "eventName": "India Blockchain Week", # The name of your track or event and its mandatory
+
+  "eventDescription": "India Blockchain Week India Blockchain Week (IBW) is India's flagship series of blockchain and web3 events.", # Short description of your track or event limiting to 100-150 characters
+
+  # Topics will show up as labels on the event card.Only a maximum of 4 topics will be displayed on the event card. Some references for topics are Blockchain, Web3, Cryptocurrency, Tech Talks, Workshop.
+  
+  "eventTopic": [
+    "Blockchain",
+    "Web3",
+    "<Topic_3>"
+  ],
+  
+  "eventType": "Conference"
+  "location": "Bangalore, India" 
+  "venueName": "Sheraton Grand"
+  "venueAddress": "26/1 Dr. Rajkumar Road Malleswaram, Rajajinagar, Bengaluru, Karnataka 560055, India", # The event venue address (will show up on a map) or just leave it blank
+
+  "venueMapsLink": "https://maps.app.goo.gl/xX7tsVuaZUjMyyxv9", # The event venue Map link (will show up on a map) or just leave it blank
+
+  "website": "https://indiablockchainweek.com/", # Make sure to have all the relevant information: dates, venue, program, ticketing (if any), etc. or just leave it blank
+
+  "startDate": "2024-12-02", # The start date of the event , for eg: if it is Sep 16th 2024 and 09 30 AM => 2024-09-16T09:30:00.000Z,
+
+  "endDate": "2024-12-08", # The end date of the event , for eg: if it is Sep 18th 2024 and 06 00 PM => 2024-09-18T18:00:00.000Z,
+
+  "tag": "Industry Event"
+
+  "dateTBD": false
+
+  # Preferred means of contacts - this is a placeholder for email (for eg:  "email|mailto:<email_id>") and other Social handles like Twitter, LinkedIn, Discord, etc. (for eg. "twitter|https://twitter.com/IPFS/status/1629199396700098560?s=20")
+
+  "preferredContacts": [
+   "Email|gm@indiablockchainweek.com",
+	 "Telegram|https://t.me/ibw_official",
+  ],
+
+  # Event host names and their respective logos (preferred size is 48px width, 48px height and allowed formats are png, jpeg, jpg, svg, and webp). Place the logo file on the path 'public/uploads' for eg. "IPFS|ipfs-logo.png"
+
+  "eventHosts": [
+    "India Blockchain Week|<host_logo1>"
+  ],
+
+  # Specify if this event is a featured event or not, if yes specify as "isFeaturedEvent": true
+}
