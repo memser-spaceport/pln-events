@@ -1,0 +1,45 @@
+{
+  "eventName": "Taipei Blockchain Week", # The name of your track or event and its mandatory
+
+  "eventDescription": "Taipei Blockchain Week 2024 brings together industry experts from all over the world in the blockchain space to educate and empower the Taiwanese community to become a growing hub for web3 innovation.", # Short description of your track or event limiting to 100-150 characters
+
+  # Topics will show up as labels on the event card.Only a maximum of 4 topics will be displayed on the event card. Some references for topics are Blockchain, Web3, Cryptocurrency, Tech Talks, Workshop.
+  
+  "eventTopic": [
+    "Blockchain",
+    "Web3",
+    "<Topic_3>"
+  ],
+  
+  "eventType": "Conference" 
+  "location": "Taipei, Taiwan" 
+  "venueName": "Songshan Cultural & Creative Park", # The event venue name (will show up on the event card) or just leave it blank
+
+  "venueAddress": "No. 133, Guangfu S Rd, Xinyi District, Taipei City, Taiwan", # The event venue address (will show up on a map) or just leave it blank
+
+  "venueMapsLink": "https://maps.app.goo.gl/G2X3LYSC8R4u8Qau7", # The event venue Map link (will show up on a map) or just leave it blank
+
+  "website": "https://www.taipeiblockchainweek.com/", # Make sure to have all the relevant information: dates, venue, program, ticketing (if any), etc. or just leave it blank
+
+  "startDate": "2024-12-12", # The start date of the event , for eg: if it is Sep 16th 2024 and 09 30 AM => 2024-09-16T09:30:00.000Z,
+
+  "endDate": "2024-12-14", # The end date of the event , for eg: if it is Sep 18th 2024 and 06 00 PM => 2024-09-18T18:00:00.000Z,
+
+  "tag": "Industry Event"
+
+  "dateTBD": false
+  # Preferred means of contacts - this is a placeholder for email (for eg:  "email|mailto:<email_id>") and other Social handles like Twitter, LinkedIn, Discord, etc. (for eg. "twitter|https://twitter.com/IPFS/status/1629199396700098560?s=20")
+
+  "preferredContacts": [
+   "Telegram|https://t.me/taipeiblockchainweekofficial/1"
+  ],
+
+  # Event host names and their respective logos (preferred size is 48px width, 48px height and allowed formats are png, jpeg, jpg, svg, and webp). Place the logo file on the path 'public/uploads' for eg. "IPFS|ipfs-logo.png"
+
+  "eventHosts": [
+    "Taiwan Blockchain Week|<host_logo1>"
+  ],
+
+  # Specify if this event is a featured event or not,else as "isFeaturedEvent": false
+  "isFeaturedEvent": false
+}
