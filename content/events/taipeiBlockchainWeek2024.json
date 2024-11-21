@@ -1,0 +1,25 @@
+{
+    "eventName": "Taipei Blockchain Week",
+    "eventDescription": "Taipei Blockchain Week 2024 brings together industry experts from all over the world in the blockchain space to educate and empower the Taiwanese community to become a growing hub for web3 innovation.",
+    "eventTopic": [
+      "Blockchain",
+      "Web3"
+    ],
+    "eventType": "Conference",
+    "location": "Taipei, Taiwan",
+    "venueName": "Songshan Cultural & Creative Park",
+    "venueAddress": "No. 133, Guangfu S Rd, Xinyi District, Taipei City, Taiwan",
+    "venueMapsLink": "https://maps.app.goo.gl/G2X3LYSC8R4u8Qau7",
+    "website": "https://www.taipeiblockchainweek.com/",
+    "startDate": "2024-12-12T00:00:00.000Z",
+    "endDate": "2024-12-14T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+     "telegram|https://t.me/taipeiblockchainweekofficial/1"
+    ],
+    "eventHosts": [
+      "Taiwan Blockchain Week|taipeiBlockchainWeek2024.png"
+    ],
+    "isFeaturedEvent": false
+  }
