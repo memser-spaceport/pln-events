@@ -1,0 +1,26 @@
+{
+    "eventName": "India Blockchain Week",
+    "eventDescription": "India Blockchain Week India Blockchain Week (IBW) is India's flagship series of blockchain and web3 events.",
+    "eventTopic": [
+      "Blockchain",
+      "Web3"
+    ],
+    "eventType": "Conference",
+    "location": "Bangalore, India",
+    "venueName": "Sheraton Grand",
+    "venueAddress": "26/1 Dr. Rajkumar Road Malleswaram, Rajajinagar, Bengaluru, Karnataka 560055, India",
+    "venueMapsLink": "https://maps.app.goo.gl/xX7tsVuaZUjMyyxv9",
+    "website": "https://indiablockchainweek.com/",
+    "startDate": "2024-12-02T00:00:00.000Z",
+    "endDate": "2024-12-08T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+     "email|mailto:gm@indiablockchainweek.com",
+     "telegram|https://t.me/ibw_official"
+    ],
+    "eventHosts": [
+      "India Blockchain Week|indiaBlockchainWeek2024.png"
+    ],
+    "isFeaturedEvent": false
+  }
