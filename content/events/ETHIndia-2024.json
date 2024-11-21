@@ -1,0 +1,45 @@
+{
+  "eventName": "ETHIndia", # The name of your track or event and its mandatory
+
+  "eventDescription": "
+Celebrating Our Love For Building
+Transcend hierarchies, embrace self-sovereignty and collectively nurture Ethereum's ever-evolving ecosystem at the ETHIndia 2024 hackathon.", # Short description of your track or event limiting to 100-150 characters
+
+  # Topics will show up as labels on the event card.Only a maximum of 4 topics will be displayed on the event card. Some references for topics are Blockchain, Web3, Cryptocurrency, Tech Talks, Workshop.
+  
+  "eventTopic": [
+    "Web3",
+    "Hackathon",
+    "<Topic_3>"
+  ],
+  
+  "eventType": "Conference"
+  "location": "Bengaluru, India"
+  "venueName": "KARNATAKA TRADE PROMOTION ORGANISATION"
+  "venueAddress": "Export Promotion Industrial Park Plot NO.121, Road no Ⅴ, EPIP 2nd phase, Industrial Area, Whitefield, Bengaluru, Karnataka 560066, India", # The event venue address (will show up on a map) or just leave it blank
+
+  "venueMapsLink": "https://maps.app.goo.gl/1JoYBXKBDQ7hQD2WA", # The event venue Map link (will show up on a map) or just leave it blank
+
+  "website": "https://ethindia2024.devfolio.co/", # Make sure to have all the relevant information: dates, venue, program, ticketing (if any), etc. or just leave it blank
+
+  "startDate": "2024-12-06", # The start date of the event , for eg: if it is Sep 16th 2024 and 09 30 AM => 2024-09-16T09:30:00.000Z,
+
+  "endDate": "2024-12-08", # The end date of the event , for eg: if it is Sep 18th 2024 and 06 00 PM => 2024-09-18T18:00:00.000Z,
+
+  "tag": "Industry Event"
+
+  "dateTBD": false
+  # Preferred means of contacts - this is a placeholder for email (for eg:  "email|mailto:<email_id>") and other Social handles like Twitter, LinkedIn, Discord, etc. (for eg. "twitter|https://twitter.com/IPFS/status/1629199396700098560?s=20")
+
+  "preferredContacts": [
+   "email|hello@devfolio.co"]
+
+  # Event host names and their respective logos (preferred size is 48px width, 48px height and allowed formats are png, jpeg, jpg, svg, and webp). Place the logo file on the path 'public/uploads' for eg. "IPFS|ipfs-logo.png"
+
+  "eventHosts": [
+    "Devfolio|<host_logo1>"
+  ],
+
+  # Specify if this event is a featured event or not, if yes specify as "isFeaturedEvent":false
+  "isFeaturedEvent": false
+}
