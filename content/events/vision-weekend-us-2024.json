@@ -1,0 +1,52 @@
+{
+  "eventName": "Vision Weekend US 2024", # The name of your track or event and its mandatory
+
+  "eventDescription": "This year’s main conference track is dedicated to “Paths to Progress”; meaning you will hear 10+ invited presentations from Foresight’s core community highlighting paths to progress in the following areas:
+Long-term History & Flourishing Futures
+Longevity, Rejuvenation, Cryonics
+Molecular Machines, Computing, APM
+Neurotech, BCIs & WBEs
+Cryptography, Security & AI
+Energy, Space, Expansion
+Funding, Innovation, Progress"
+
+  # Topics will show up as labels on the event card.Only a maximum of 4 topics will be displayed on the event card. Some references for topics are Blockchain, Web3, Cryptocurrency, Tech Talks, Workshop.
+  
+  "eventTopic": [
+    "Longevity",
+    "Neurotech",
+    "Cryptography"
+  ],
+  
+  "eventType": "Conference" 
+  "location": "Bay Area, United States" (or) "location": "Location TBD", # Specify the location of the event. If you aren't sure about the location then mention "Location TBD"
+
+  "venueName": "<Your_Venue_Name>", # The event venue name (will show up on the event card) or just leave it blank
+
+  "venueAddress": "<Your_Venue_Address>", # The event venue address (will show up on a map) or just leave it blank
+
+  "venueMapsLink": "<Google_Map_link_for_the_venue>", # The event venue Map link (will show up on a map) or just leave it blank
+
+  "website": "https://foresight.org/vw2024us/", # Make sure to have all the relevant information: dates, venue, program, ticketing (if any), etc. or just leave it blank
+
+  "startDate": "2024-12-06", # The start date of the event , for eg: if it is Sep 16th 2024 and 09 30 AM => 2024-09-16T09:30:00.000Z,
+
+  "endDate": "2024-12-08", # The end date of the event , for eg: if it is Sep 18th 2024 and 06 00 PM => 2024-09-18T18:00:00.000Z,
+
+  "tag": "PL Event"
+  "dateTBD": false
+  # Preferred means of contacts - this is a placeholder for email (for eg:  "email|mailto:<email_id>") and other Social handles like Twitter, LinkedIn, Discord, etc. (for eg. "twitter|https://twitter.com/IPFS/status/1629199396700098560?s=20")
+
+  "preferredContacts": [
+   "Email|foresight@foresight.org"
+  ],
+
+  # Event host names and their respective logos (preferred size is 48px width, 48px height and allowed formats are png, jpeg, jpg, svg, and webp). Place the logo file on the path 'public/uploads' for eg. "IPFS|ipfs-logo.png"
+
+  "eventHosts": [
+    "Foresight Institute|<host_logo1>",
+    "<host_name2>|<host_logo2>"
+  ],
+
+  # Specify if this event is a featured event or not, if yes specify as "isFeaturedEvent": true 
+}
