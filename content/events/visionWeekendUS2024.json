@@ -1,0 +1,26 @@
+{
+    "eventName": "Vision Weekend US 2024",
+    "eventDescription": "This year’s main conference track is dedicated to 'Paths to Progress' meaning you will hear 10+ invited presentations from Foresight’s core community highlighting paths to progress in the following areas: Long-term History & Flourishing Futures, Longevity, Rejuvenation, Cryonics, Molecular Machines, Computing, APM, Neurotech, BCIs & WBEs, Cryptography, Security & AI, Energy, Space, Expansion, Funding, Innovation, Progress",
+    "eventTopic": [
+      "Longevity",
+      "Neurotech",
+      "Cryptography"
+    ],
+    "eventType": "Conference",
+    "location": "Bay Area, United States",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://foresight.org/vw2024us/",
+    "startDate": "2024-12-06T00:00:00.000Z",
+    "endDate": "2024-12-08T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+     "email|mailto:foresight@foresight.org"
+    ],
+    "eventHosts": [
+      "Foresight Institute|foresight.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
