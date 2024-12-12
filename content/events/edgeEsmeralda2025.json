@@ -1,0 +1,25 @@
+{
+    "eventName": "Edge Esmeralda",
+    "eventDescription": "A month-long gathering for people building a brighter future",
+    "eventTopic": [
+      "Neurotech",
+      "AI",
+      "Longevity",
+      "Space"
+    ],
+    "eventType": "Conference",
+    "location": "Healdsburg, United States",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://www.edgeesmeralda.com/",
+    "startDate": "2025-05-24T00:00:00.000Z",
+    "endDate": "2025-06-21T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [],
+    "eventHosts": [
+      "Edge City|edgeCity.jpeg"
+    ],
+    "isFeaturedEvent": false
+}

@@ -1,0 +1,23 @@
+{
+    "eventName": "ETHGlobal Cannes",
+    "eventDescription": "ETHGlobal hackathons enable you to experiment with cutting edge web3 technologies and develop an idea you're passionate about. This is your opportunity to learn about crypto, expand your network, meet industry professionals, and find like-minded people who are collectively creating a new kind of web.",
+    "eventTopic": [
+      "Hackathon",
+      "Web3"
+    ],
+    "eventType": "Conference",
+    "location": "Cannes, France",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://ethglobal.com/events/cannes",
+    "startDate": "2025-07-04T00:00:00.000Z",
+    "endDate": "2025-07-06T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [],
+    "eventHosts": [
+      "ETHGlobal|ethGlobal.jpg"
+    ],
+    "isFeaturedEvent": false
+}

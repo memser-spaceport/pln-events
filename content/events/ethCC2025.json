@@ -1,0 +1,25 @@
+{
+    "eventName": "EthCC",
+    "eventDescription": "The largest annual European Ethereum event",
+    "eventTopic": [
+      "Crypto",
+      "Web3"
+    ],
+    "eventType": "Conference",
+    "location": "Cannes, France",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://ethcc.io/",
+    "startDate": "2025-06-30T00:00:00.000Z",
+    "endDate": "2025-07-03T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+    "email|mailto:contact@ethereum-france.com"
+    ],
+    "eventHosts": [
+      "Ethereum France|ethereumFrance.png"
+    ],
+    "isFeaturedEvent": false
+}
