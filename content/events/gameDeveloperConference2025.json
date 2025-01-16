@@ -1,0 +1,24 @@
+{
+    "eventName": "Game Developer Conference",
+    "eventDescription": "The Game Developers Conference (GDC) is the world’s premier event for developers who make the games we love. GDC is the destination for creativity, innovation, and excellence. It’s no wonder some of the biggest names in gaming got their start at GDC!",
+    "eventTopic": [
+      "Gaming"
+    ],
+    "eventType": "Conference",
+    "location": "San Francisco, United States",
+    "venueName": "Moscone Center",
+    "venueAddress": "747 Howard St., CA",
+    "venueMapsLink": "https://maps.app.goo.gl/X3x51sPA3rzkAyjE7",
+    "website": "https://gdconf.com",
+    "startDate": "2025-17-03T00:00:00.000Z",
+    "endDate": "2025-21-03T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+     "email|mailto:gdcregistration@informa.com"
+    ],
+    "eventHosts": [
+      "Informa TechTarget|informaTechtarget.png"
+    ],
+    "isFeaturedEvent": false
+  }

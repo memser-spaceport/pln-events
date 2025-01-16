@@ -1,0 +1,25 @@
+{
+    "eventName": "Protocol Berg",
+    "eventDescription": "The decentralized protocol and infrastructure conference.",
+    "eventTopic": [
+      "Infrastructure",
+      "Web3"
+    ],
+    "eventType": "Conference",
+    "location": "Berlin, Germany",
+    "venueName": "The Colosseum",
+    "venueAddress": "Gleimstraße 30, 10437",
+    "venueMapsLink": "https://maps.app.goo.gl/LwjiNWaxg2oLcmie9",
+    "website": "https://protocol.berlin/",
+    "startDate": "2025-12-06T00:00:00.000Z",
+    "endDate": "2025-13-06T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:hello@protocol.berlin"
+    ],
+    "eventHosts": [
+      "Department of Decentralization|
+    ],
+    "isFeaturedEvent": false
+  }
