@@ -1,0 +1,25 @@
+{
+    "eventName": "Your_Event_Name",
+    "eventDescription": "Short_Description_of_your_event",
+    "eventTopic": [
+      "Topic_1"
+    ],
+    "eventType": "Conference" (or) "eventType": "Virtual" (or) "eventType": "Social",
+    "location": "City, Country" (or) "location": "Location TBD",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "",
+    "startDate": "2025-12-02T00:00:00.000Z",
+    "endDate": "2025-12-02T00:00:00.000Z",
+    "tag": "PL Event", (or) "tag": "Industry Event",
+    "dateTBD": false, (or) "dateTBD": true,
+    "preferredContacts": [
+      "email|mailto:<>",
+     "contact_means2|contact_url2"
+    ],
+    "eventHosts": [
+      "host_name1|host_logo1"
+    ],
+    "isFeaturedEvent": false
+  }

@@ -1,0 +1,25 @@
+{
+    "eventName": "ETHGlobal Taipei",
+    "eventDescription": "ETHGlobal hackathon in Taipei, Taiwan.",
+    "eventTopic": [
+      "Web3",
+      "Crypto"
+    ],
+    "eventType": "Conference",
+    "location": "Taipei, Taiwan",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://ethglobal.com/events/taipei",
+    "startDate": "2025-04-04T00:00:00.000Z",
+    "endDate": "2025-06-04T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:hello@ethglobal.com"
+    ],
+    "eventHosts": [
+      "ETHGlobal|ethGlobal.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
