@@ -1,7 +1,7 @@
 
 
 export const URL_QUERY_VALUE_SEPARATOR = '|';
-export const CURRENT_YEAR  = '2024'
+export const CURRENT_YEAR  = '2025'
 export const EVENTS_VIEW_TYPES = {
     treeView: {
             label: "Tree view",
