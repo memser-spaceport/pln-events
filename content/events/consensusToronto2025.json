@@ -1,0 +1,26 @@
+{
+    "eventName": "Consensus Toronto",
+    "eventDescription": "Built on CoinDesk's foundation of independent, unbiased journalism, Consensus Toronto will weave together breakthrough technologies, from digital assets to artificial intelligence, fostering the collaborations that define what's next.",
+    "eventTopic": [
+      "Crypto",
+      "AI",
+      "Collaboration"
+    ],
+    "eventType": "Conference",
+    "location": "Toronto, Canada",
+    "venueName": "Metro Toronto Convention Centre",
+    "venueAddress": "222 Bremner Blvd, Toronto, ON M5V 2T6",
+    "venueMapsLink": "https://maps.app.goo.gl/7eYY7k7yBaCzDJqY7",
+    "website": "https://consensus2025.coindesk.com",
+    "startDate": "2025-05-14T00:00:00.000Z",
+    "endDate": "2025-05-16T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+        "telegram|https://t.me/consensusbycoindesk"
+    ],
+    "eventHosts": [
+      "CoinDesk|coindesk.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
