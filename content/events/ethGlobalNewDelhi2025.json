@@ -1,0 +1,25 @@
+{
+    "eventName": "ETHGlobal New Delhi",
+    "eventDescription": "ETHGlobal hackathon in New Delhi, India",
+    "eventTopic": [
+      "Web3",
+      "Crypto"
+    ],
+    "eventType": "Conference",
+    "location": "New Delhi, India",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://ethglobal.com/events/newdelhi",
+    "startDate": "2025-09-26T00:00:00.000Z",
+    "endDate": "2025-09-28T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:hello@ethglobal.com"
+    ],
+    "eventHosts": [
+      "ETHGlobal|ethGlobal.jpg"
+    ],
+    "isFeaturedEvent": false
+  }

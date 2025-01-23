@@ -1,0 +1,25 @@
+{
+    "eventName": "ETHGlobal NY",
+    "eventDescription": "ETHGlobal hackathon in New York City",
+    "eventTopic": [
+      "Web3",
+      "Crypto"
+    ],
+    "eventType": "Conference",
+    "location": "New York City, United States",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://ethglobal.com/events/newyork2025",
+    "startDate": "2025-08-15T00:00:00.000Z",
+    "endDate": "2025-08-17T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:hello@ethglobal.com"
+    ],
+    "eventHosts": [
+      "ETHGlobal|ethGlobal.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
