@@ -12,15 +12,15 @@
     "venueAddress": "222 Bremner Blvd, Toronto, ON M5V 2T6",
     "venueMapsLink": "https://maps.app.goo.gl/7eYY7k7yBaCzDJqY7",
     "website": "https://consensus2025.coindesk.com",
-    "startDate": "2025-14-05T00:00:00.000Z",
-    "endDate": "2025-16-05T00:00:00.000Z",
+    "startDate": "2025-05-14T00:00:00.000Z",
+    "endDate": "2025-05-16T00:00:00.000Z",
     "tag": "Industry Event",
     "dateTBD": false,
     "preferredContacts": [
         "telegram|https://t.me/consensusbycoindesk"
     ],
     "eventHosts": [
-      "CoinDesk|
+      "CoinDesk|coindesk.jpg"
     ],
     "isFeaturedEvent": false
   }

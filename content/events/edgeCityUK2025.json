@@ -1,0 +1,27 @@
+{
+    "eventName": "Edge City UK",
+    "eventDescription": "Edge City convenes people working at the frontiers of tech, science, and society in popup villages across the globe.",
+    "eventTopic": [
+      "Longevity",
+      "Neurotech",
+      "Cryptography",
+      "AI"
+    ],
+    "eventType": "Conference",
+    "location": "United Kingdom",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://www.edgecity.live",
+    "startDate": "2025-08-02T00:00:00.000Z",
+    "endDate": "2025-09-06T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+    "linkedin|https://www.linkedin.com/company/edge-city-live/"
+    ],
+    "eventHosts": [
+      "Edge City|edgeCity.jpeg"
+    ],
+    "isFeaturedEvent": false
+  }

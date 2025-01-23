@@ -1,0 +1,27 @@
+{
+    "eventName": "Foresight Vision Weekend ",
+    "eventDescription": "Held in Puerto Rico, over the weekend, you are invited to burst your tech silos, and plan for flourishing long-term futures. Join for the conference, unconference, mentorship hours, satellite gatherings, cyberfuture dinners, prize awards, tea services, sci-fi costume closets, dance parties, or surprise experiences.",
+    "eventTopic": [
+      "Longevity",
+      "Neurotech",
+      "Cryptography",
+      "AI"
+    ],
+    "eventType": "Conference",
+    "location": "Puerto Rico",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://foresight.org/vw2025pr/",
+    "startDate": "2025-02-21T00:00:00.000Z",
+    "endDate": "2025-02-23T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": true,
+    "preferredContacts": [
+      "email|mailto:foresight@foresight.org"
+    ],
+    "eventHosts": [
+      "Foresight Institute|foresight.jpg"
+    ],
+    "isFeaturedEvent": false
+  }

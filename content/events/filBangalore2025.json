@@ -1,0 +1,25 @@
+{
+    "eventName": "FIL Bangalore",
+    "eventDescription": "Learn unique perspectives on web3 and much more from thought leaders, and speakers from across the globe at FILBangalore 2025.",
+    "eventTopic": [
+      "Filecoin",
+      "Web3"
+    ],
+    "eventType": "Conference",
+    "location": "Bangalore, India",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://fil-bangalore.io",
+    "startDate": "2025-12-01T00:00:00.000Z",
+    "endDate": "2025-12-10T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": true,
+    "preferredContacts": [
+        "telegram|https://t.me/+0F8g03d7lm9hNjM1"
+    ],
+    "eventHosts": [
+      "Huddle01|huddle01.jpeg"
+    ],
+    "isFeaturedEvent": false
+  }
