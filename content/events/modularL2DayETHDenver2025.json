@@ -1,0 +1,25 @@
+{
+    "eventName": "Modular & L2 Day | ETHDenver 2025",
+    "eventDescription": "Modular & L2 Day in Denver is a full-day event for web3 developers, tech founders, and enthusiasts seeking in-depth knowledge about Modular Stack and Layer 2 Scaling Solutions.",
+    "eventTopic": [
+      "Modularity",
+      "Chain Abstraction"
+    ],
+    "eventType": "Conference",
+    "location": "Denver, United States",
+    "venueName": "Hilton Garden Inn, Union Station",
+    "venueAddress": "1999 Chestnut Place, Colorado",
+    "venueMapsLink": "https://maps.app.goo.gl/uVHwJmynYJUNqjGfA",
+    "website": "https://lu.ma/L2DayDenver",
+    "startDate": "2025-02-26T00:00:00.000Z",
+    "endDate": "2025-02-26T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "telegram|https://t.me/epicweb3"
+    ],
+    "eventHosts": [
+      "Epic Web3|epicweb3.png"
+    ],
+    "isFeaturedEvent": false
+  }

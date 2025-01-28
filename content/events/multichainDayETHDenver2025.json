@@ -1,0 +1,23 @@
+{
+    "eventName": "Multichain Day | ETHDenver 2025",
+    "eventDescription": "Join us at ETHDenver 2025 for Multichain Day as we explore cross-chain expansion and interoperability, with a full day of keynotes, panels, co-working, networking and a happy hour.",
+    "eventTopic": [
+      "Cross-Chain Expansion",
+      "Interoperability"
+    ],
+    "eventType": "Conference",
+    "location": "Denver, United States",
+    "venueName": "The Curtis Denver",
+    "venueAddress": "1405 Curtis Street, Colorado",
+    "venueMapsLink": "https://maps.app.goo.gl/wwVTtQFNPqaVWCCw8",
+    "website": "https://lu.ma/multichaindayethdenver",
+    "startDate": "2025-02-26T00:00:00.000Z",
+    "endDate": "2025-02-26T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [],
+    "eventHosts": [
+      "Wrapped|wrappedxyz.jpeg"
+    ],
+    "isFeaturedEvent": false
+  }

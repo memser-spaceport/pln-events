@@ -1,0 +1,24 @@
+{
+    "eventName": "Encode Denver Modular DeFi Hackathon",
+    "eventDescription": " Join us in Denver for a hackathon designed to empower top builders in our community. Over two days, you’ll have the chance to collaborate with like-minded developers, turn innovative ideas into impactful projects, and be at the forefront of decentralised finance innovation.",
+    "eventTopic": [
+      "DeFi"
+    ],
+    "eventType": "Conference",
+    "location": "Denver, United States",
+    "venueName": "2109 Larimer",
+    "venueAddress": "2109 Larimer, Colorado",
+    "venueMapsLink": "https://maps.app.goo.gl/SEgtdGEDAYhdmui29",
+    "website": "https://lu.ma/Denver-Hack-2025",
+    "startDate": "2025-02-24T00:00:00.000Z",
+    "endDate": "2025-02-25T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:info@encode.club"
+    ],
+    "eventHosts": [
+      "Encode Club|encodeClubColor.png"
+    ],
+    "isFeaturedEvent": false
+  }
