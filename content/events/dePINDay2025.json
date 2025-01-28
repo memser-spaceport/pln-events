@@ -1,0 +1,24 @@
+{
+    "eventName": "DePIN Day",
+    "eventDescription": "Join us for the all-day event full of vital conversations around Decentralized Physical Infrastructure Networks. Connect with DePIN founders, researchers, developers and enthusiasts. Talks, panel discussions and useful networking are waiting for you during ETHDenver Week!​",
+    "eventTopic": [
+      "DePIN"
+    ],
+    "eventType": "Conference",
+    "location": "Denver, United States",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://lu.ma/depin-denver",
+    "startDate": "2025-02-26T00:00:00.000Z",
+    "endDate": "2025-02-26T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:depin@cloudless.dev"
+    ],
+    "eventHosts": [
+      "Fluence|fluence.jpeg"
+    ],
+    "isFeaturedEvent": false
+  }

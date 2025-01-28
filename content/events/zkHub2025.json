@@ -1,0 +1,24 @@
+{
+    "eventName": "ZK Hub",
+    "eventDescription": "ZK Hub by House of ZK is the premier gathering for Zero-Knowledge projects, where innovators come together to educate, share progress, network, and immerse in the ZK community vibes.",
+    "eventTopic": [
+      "ZK"
+    ],
+    "eventType": "Conference",
+    "location": "Denver, United States",
+    "venueName": "National Westrern Conference",
+    "venueAddress": "4655 Humboldt Street, Colorado",
+    "venueMapsLink": "https://maps.app.goo.gl/RjewXxdZ1cTeVN976",
+    "website": "https://www.zk-hub.io/",
+    "startDate": "2025-02-28T00:00:00.000Z",
+    "endDate": "2025-03-01T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "telegram|https://t.me/+Qy8s-CnF2BY1Yzhh"
+    ],
+    "eventHosts": [
+      "House of ZK|houseofZK.jpg"
+    ],
+    "isFeaturedEvent": false
+  }

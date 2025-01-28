@@ -1,0 +1,26 @@
+{
+    "eventName": "Restaking & DeFAI Day | EthDenver",
+    "eventDescription": "The ultimate dev-focused ETHDenver side event. Expect a day packed with keynotes, workshops, and panels diving deep into the latest in the restaking space.",
+    "eventTopic": [
+      "Security",
+      "Restaking",
+      "DeFAI"
+    ],
+    "eventType": "Conference",
+    "location": "Denver, United States",
+    "venueName": "Hilton Garden Inn, Union Station",
+    "venueAddress": "1999 Chestnut Place, Colorado",
+    "venueMapsLink": "https://maps.app.goo.gl/uVHwJmynYJUNqjGfA",
+    "website": "https://lu.ma/restakingdenver25",
+    "startDate": "2025-02-25T00:00:00.000Z",
+    "endDate": "2025-02-25T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "telegram|https://t.me/epicweb3"
+    ],
+    "eventHosts": [
+      "Epic Web3|epicweb3.png"
+    ],
+    "isFeaturedEvent": false
+  }
