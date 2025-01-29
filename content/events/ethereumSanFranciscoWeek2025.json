@@ -1,0 +1,27 @@
+{
+    "eventName": "Ethereum San Francisco Week",
+    "eventDescription": "Nestled in between ETHDenver and 2 major industry conferences, Nvidia’s GTC and the GDC, we’re hosting a week-long event throughout the Bay Area. This means no large conference venues and instead more intimate summits through a curated calendar of events!",
+    "eventTopic": [
+      "Web3",
+      "Crypto",
+      "Blockchain",
+      "AI"
+    ],
+    "eventType": "Conference",
+    "location": "San Francisco, United States",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://ethereumsf.org/",
+    "startDate": "2025-03-10T00:00:00.000Z",
+    "endDate": "2025-03-16T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:info@ethereumsf.org"
+    ],
+    "eventHosts": [
+      "ETHSF|ethsf.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
