@@ -1,0 +1,23 @@
+{
+    "eventName": "FIL Dev Summit 6",
+    "eventDescription": "Two days in Toronto where the future of Filecoin takes shape",
+    "eventTopic": [
+      "Filecoin"
+    ],
+    "eventType": "Conference",
+    "location": "Toronto, Canada",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://www.fildev.io/FDS-6",
+    "startDate": "2025-05-12T00:00:00.000Z",
+    "endDate": "2025-05-13T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [],
+    "eventHosts": [
+      "Protocol Labs|protocol-labs-network-small-logo.svg",
+      "Filecoin Foundation|filecoinFoundation-2025.jpg"
+    ],
+    "isFeaturedEvent": false
+  }

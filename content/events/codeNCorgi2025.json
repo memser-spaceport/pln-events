@@ -1,0 +1,27 @@
+{
+    "eventName": "Code n’ Corgi: Discovering AI Pawsibilities",
+    "eventDescription": "GM Builders, introducing Code n’ Corgi: Discovering AI Pawsibilities, a two-week intensive program designed to explore the intersection of AI agents and decentralized storage with Filecoin and learn building AI agents",
+    "eventTopic": [
+      "AI Agents",
+      "Decentralized Storage",
+      "Filecoin"
+    ],
+    "eventType": "Virtual",
+    "location": "Location TBD",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://lu.ma/7v3rwtv4",
+    "startDate": "2025-02-01T00:00:00.000Z",
+    "endDate": "2025-02-14T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:contact@fil.builders",
+      "discord|https://discord.com/invite/filecoin"
+    ],
+    "eventHosts": [
+      "FIL-Builders|filBuilders.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
