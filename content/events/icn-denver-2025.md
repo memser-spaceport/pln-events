@@ -43,9 +43,9 @@
   # Event host names and their respective logos (preferred size is 48px width, 48px height and allowed formats are png, jpeg, jpg, svg, and webp). Place the logo file on the path 'public/uploads' for eg. "IPFS|ipfs-logo.png"
 
   "eventHosts": [
-    "Impossible Cloud Network|<host_logo1>",
-    "Protocol Labs|<host_logo2>",
-    "BlueYard|<host_logo2>"
+    "Impossible Cloud Network|public/uploads/icn2.jpg,
+    "Protocol Labs|public/uploads/protocol-labs-network-small-logo.svg,
+    "BlueYard|public/uploads/BlueYard.jpeg"
   ],
 
   # Specify if this event is a featured event or not, if yes specify as "isFeaturedEvent": true else as "isFeaturedEvent": false
