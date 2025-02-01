@@ -40,7 +40,7 @@
   # Event host names and their respective logos (preferred size is 48px width, 48px height and allowed formats are png, jpeg, jpg, svg, and webp). Place the logo file on the path 'public/uploads' for eg. "IPFS|ipfs-logo.png"
 
   "eventHosts": [
-    "QuickNode|<host_logo1>",
+    "QuickNode|public/uploads/quicknode.svg.png",
     "<host_name2>|<host_logo2>"
   ],
 
