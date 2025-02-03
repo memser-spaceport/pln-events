@@ -1,0 +1,26 @@
+
+{
+  "eventName": "GLIF Pool Party",
+  "eventDescription": "​We're inviting all lending & staking pool founders, developers, and investors to join us at GLIF's Pool Party!",
+  "eventTopic": [
+    "Staking",
+    "Lending"
+  ],
+  "eventType": "Social",
+  "location": "Denver, United States"
+  "venueName": "Tarantula Billiards Bar & Grill",
+  "venueAddress": "1520 Stout St, CO 80202",
+  "venueMapsLink": "https://maps.app.goo.gl/rNpZAQGGAJqdUGK1A",
+  "website": "https://lu.ma/444wnmwb",
+  "startDate": "2025-02-27T17:00:00.000Z",
+  "endDate": "2025-02-27T20:00:00.000Z",
+  "tag": "PL Event",
+  "dateTBD": false,
+  "preferredContacts": [
+    "telegram|https://t.me/+iFJuXAMp-Xg5NGIx"
+  ],
+  "eventHosts": [
+    "GLIF|https://github.com/memser-spaceport/pln-events/blob/fa6185dcd45cdc1b75eff5cfdff64c4064841513/public/uploads/GLIF.jpg"
+  ],
+  "isFeaturedEvent": false
+}
