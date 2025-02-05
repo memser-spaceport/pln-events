@@ -1,0 +1,27 @@
+{
+    "eventName": "DePIN Breakfast – ICN Foundation Meet Up",
+    "eventDescription": "Join ICN Foundation, BlueYard, and Protocol Labs for an exclusive breakfast meetup to open the ETHDenver side event season. This gathering is designed for DePIN founders, investors, and industry leaders looking to connect, collaborate, and set the tone for the week ahead",
+    "eventTopic": [
+      "DePIN"
+    ],
+    "eventType": "Social",
+    "location": "Denver, United States",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://lu.ma/enlmvhfp",
+    "startDate": "2025-02-25T09:00:00.000Z",
+    "endDate": "2025-02-25T11:30:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "twitter|https://x.com/ICN_Protocol",
+      "telegram|https://t.me/ICN_Protocol"
+    ],
+    "eventHosts": [
+      "Impossible Cloud Network|icn2.jpg",
+      "Protocol Labs|protocol-labs-network-small-logo.svg",
+      "BlueYard|blueyard.jpeg"
+    ],
+    "isFeaturedEvent": false
+  }

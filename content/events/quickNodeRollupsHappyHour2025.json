@@ -1,0 +1,25 @@
+{
+    "eventName": "QuickNode's Rollups Happy Hour",
+    "eventDescription": "Whether you're building a rollup, exploring scalability solutions, or interested in the future of blockchain infrastructure, this is your chance to connect with teams driving real-world rollup adoption. See how projects are building and scaling with rollups today, dive into technical implementations, and network with key builders in the space.",
+    "eventTopic": [
+      "Blockchain infrastructure",
+      "Rollups"
+    ],
+    "eventType": "Social",
+    "location": "Denver, United States",
+    "venueName": "Bierstadt Lagerhaus",
+    "venueAddress": "2875 Blake St, CO 80205",
+    "venueMapsLink": "https://maps.app.goo.gl/fz2hC3b4Zxg2aB319",
+    "website": "https://lu.ma/quicknode-ethdenver25?tk=Xiyf3t",
+    "startDate": "2025-02-27T17:00:00.000Z",
+    "endDate": "2025-02-27T20:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "discord|https://discord.com/invite/quicknode"
+    ],
+    "eventHosts": [
+      "QuickNode|quicknode.svg"
+    ],
+    "isFeaturedEvent": false
+  }
