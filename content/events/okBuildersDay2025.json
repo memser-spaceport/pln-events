@@ -1,0 +1,27 @@
+{
+    "eventName": "{ok} builders day",
+    "eventDescription": "Heading to EthDenver? Swing by to grab a coffee and chat at the OKcontract meetup! We will discuss: Cross-chain liquidity: Hurdle on the frontend, Handling multiple user wallets: EVM & non-EVM, AI agents & transaction safety, Default frontends for DeFi and more...",
+    "eventTopic": [
+      "AI Agents",
+      "DeFi",
+      "Wallets"
+    ],
+    "eventType": "Conference",
+    "location": "Denver, United States",
+    "venueName": "",
+    "venueAddress": "2121 Larimer St., CO",
+    "venueMapsLink": "https://maps.app.goo.gl/PJFAb7HWCPdDBWJ26",
+    "website": "https://maps.app.goo.gl/PJFAb7HWCPdDBWJ26",
+    "startDate": "2025-02-26T09:00:00.000Z",
+    "endDate": "2025-02-26T12:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "telegram|https://t.me/okcontractofficial",
+      "twitter|https://twitter.com/okcontract"
+    ],
+    "eventHosts": [
+      "OKContract|okContract.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
