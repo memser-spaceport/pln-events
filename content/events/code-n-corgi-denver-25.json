@@ -1,0 +1,27 @@
+{
+  "eventName": "Filecoin Code n' Corgi",
+  "eventDescription": "​A community gathering for Filecoin builders and friends! Come for the Filecoin corgis (limited edition plushies for Denver), stay for Filecoin friends",
+  "eventTopic": [
+    "Filecoin"
+  ],
+  "eventType": "Conference",
+  "location": "Denver, United States",
+  "venueName": "",
+  "venueAddress": "2127 Larimer Street, Colorado",
+  "venueMapsLink": "https://maps.app.goo.gl/uHnM95KVCzSn8krL8",
+  "website": "https://lu.ma/gd767xu5",
+  "startDate": "2025-02-28T16:00:00.000Z",
+  "endDate": "2025-02-28T20:00:00.000Z",
+  "tag": "PL Event",
+  "dateTBD": false,
+  "preferredContacts": [
+    "email|mailto:sponsorships@fil.org"
+  ],
+  "eventHosts": [
+    "FIL-B|https://github.com/memser-spaceport/pln-events/blob/0556270668d19de5cd791f21addeeffdd0ef23d2/public/uploads/filBuilders.jpg",
+    "Filecoin Foundation| https://github.com/memser-spaceport/pln-events/blob/0556270668d19de5cd791f21addeeffdd0ef23d2/public/uploads/filecoinFoundation-2025.jpg",
+    "Filecoin Orbit | https://github.com/memser-spaceport/pln-events/blob/adc94efb5b5c6a281532ea1d483b72f3a8102232/public/uploads/Filecoin_orbit.jpg",
+    "Polaris Labs | https://github.com/memser-spaceport/pln-events/blob/adc94efb5b5c6a281532ea1d483b72f3a8102232/public/uploads/Polaris.jpg"
+  ],
+  "isFeaturedEvent": false
+}
