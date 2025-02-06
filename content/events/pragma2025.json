@@ -1,0 +1,24 @@
+{
+    "eventName": "Pragma",
+    "eventDescription": "Pragma is designed to be a different kind of event. We bring together a small group of founders and builders to discuss the future of web3 and reflect on the past.",
+    "eventTopic": [
+      "Web3"
+    ],
+    "eventType": "Conference",
+    "location": "Denver, United States",
+    "venueName": "ReelWorks Denver",
+    "venueAddress": "1399 35th St, Colorado",
+    "venueMapsLink": "https://maps.app.goo.gl/ngCNkrWP3rmZGcb68",
+    "website": "https://ethglobal.com/events/pragma-denver2025",
+    "startDate": "2025-02-25T00:00:00.000Z",
+    "endDate": "2025-02-25T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:hello@ethglobal.com"
+    ],
+    "eventHosts": [
+      "ETHGlobal|ethGlobal.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
