@@ -1,0 +1,27 @@
+{
+    "eventName": "Funding the Commons",
+    "eventDescription": "As the rapid evolution of AI reshapes industries and societies, we aim to foster dialogue on how these technologies can be developed and governed for the benefit of all. Our themes address critical questions of governance, alignment, privacy, ethics, and sustainable funding models, with an emphasis on actionable insights and collaborative solutions.",
+    "eventTopic": [
+      "Decentralized AI",
+      "Governance",
+      "Privacy",
+      "Funding Mechanisms"
+    ],
+    "eventType": "Conference",
+    "location": "San Francisco, United States",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://www.fundingthecommons.io",
+    "startDate": "2025-03-15T00:00:00.000Z",
+    "endDate": "2025-03-16T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": true,
+    "preferredContacts": [
+      "telegram|https://t.me/+CP3biAqSPSo0NDI5"
+    ],
+    "eventHosts": [
+      "Funding the Commons|fundingTheCommons.png"
+    ],
+    "isFeaturedEvent": false
+  }
