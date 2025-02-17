@@ -1,0 +1,26 @@
+{
+    "eventName": "d/acc day @ UC Berkeley",
+    "eventDescription": "Led by Vitalik Buterin, d/acc is his vision for a more thoughtful approach to technological acceleration—one that prioritizes decentralization, defense, and democracy. In recent years, he has emphasized the need to advance technology without concentrating power, pushing back against models that rely on centralized control. ​d/acc is co-hosted by Berkeley RDI, a leading academic voice on safe, responsible and decentralized AI & blockchains since Fall 2021.",
+    "eventTopic": [
+      "d/acc"
+    ],
+    "eventType": "Conference",
+    "location": "Berkeley, United States",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://lu.ma/o99rcou9",
+    "startDate": "2025-02-13T10:00:00.000Z",
+    "endDate": "2025-02-13T17:30:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:info@ethereumsf.org",
+      "telegram|https://t.me/+F5I7mpYd76xhY2Rh"
+    ],
+    "eventHosts": [
+      "ETHSF|ethsf.jpg",
+      "Berkeley RDI|ucBerkeleyRDI.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
