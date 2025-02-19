@@ -1,0 +1,26 @@
+{
+    "eventName": "Edge City Austin",
+    "eventDescription": "A weeklong unconference focused on frontier tech for human flourishing, featuring lightning talks, collaborative workshops, a hackathon, and daily workouts.",
+    "eventTopic": [
+      "Frontier Tech",
+      "AI",
+      "Biotech"
+    ],
+    "eventType": "Conference",
+    "location": "Austin, United States",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://www.edgecity.live/austin",
+    "startDate": "2025-03-02T00:00:00.000Z",
+    "endDate": "2025-03-07T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:info@edgecity.live"
+    ],
+    "eventHosts": [
+      "Edge City|edgeCity.jpeg"
+    ],
+    "isFeaturedEvent": false
+  }
