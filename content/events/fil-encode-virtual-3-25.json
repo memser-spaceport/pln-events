@@ -1,0 +1,28 @@
+{
+  "eventName": "Filecoin AI Encode Hackathon",
+  "eventDescription": "A 4 week virtual hackathon - Hack the data layer for AI",
+  "eventTopic": [
+    "AI",
+    "Filecoin"
+  ],
+  "eventType": "Virtual",
+  "location": "",
+  "venueName": "",
+  "venueAddress": "",
+  "venueMapsLink": "",
+  "website": "",
+  "startDate": "2025-03-14T00:00:00.000Z",
+  "endDate": "2025-04-14T00:00:00.000Z",
+  "tag": "PL Event",
+  "dateTBD": false, 
+  "preferredContacts": [
+    "email|mailto:<>",
+   "contact_means2|contact_url2"
+  ],
+  "eventHosts": [
+    "Filecoin Foundation|public/uploads/filecoinFoundationNew.png",
+    "Fil-B|public/uploads/filBuilders.jpg",
+    "Encode Club|public/uploads/encode.jpg"
+  ],
+  "isFeaturedEvent": false
+}
