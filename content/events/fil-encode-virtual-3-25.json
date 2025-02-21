@@ -16,8 +16,7 @@
   "tag": "PL Event",
   "dateTBD": false, 
   "preferredContacts": [
-    "email|mailto:<>",
-   "contact_means2|contact_url2"
+    "email|network-programs@plrs.xyz"
   ],
   "eventHosts": [
     "Filecoin Foundation|public/uploads/filecoinFoundationNew.png",
