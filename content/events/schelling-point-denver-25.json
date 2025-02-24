@@ -1,0 +1,24 @@
+{
+  "eventName": "Schelling Point: Denver",
+  "eventDescription": "Gitcoin's flagship event that brings visionaries, builders, and changemakers together to shape the future of public goods and innovation!",
+  "eventTopic": [
+    "Public Goods"
+  ],
+  "eventType": "Conference",
+  "location": "Denver, United States" (or) "location": "Location TBD",
+  "venueName": "Number Thirty Eight",
+  "venueAddress": "3560 Chestnut Pl, CO 80216",
+  "venueMapsLink": "https://maps.app.goo.gl/dNMQCFo9qwryKiDG7",
+  "website": "https://lu.ma/qr9mbaqz",
+  "startDate": "2025-02-27T10:00:00.000Z",
+  "endDate": "2025-02-27T18:30:00.000Z",
+  "tag": "PL Event",
+  "dateTBD": false,
+  "preferredContacts": [
+    "X|https://x.com/gitcoin"
+  ],
+  "eventHosts": [
+    "Gitcoin|public/uploads/Gitcoin_logo.jpg"
+  ],
+  "isFeaturedEvent": false
+}
