@@ -1,0 +1,22 @@
+{
+    "eventName": "Pragma Taipei",
+    "eventDescription": "Pragma is designed to be a different kind of event. We bring together a small group of founders and builders to discuss the future of web3 and reflect on the past.",
+    "eventTopic": [],
+    "eventType": "Conference",
+    "location": "Taipei, Taiwan",
+    "venueName": "POPOP Taipei",
+    "venueAddress": "No. 13號, Section 2, Nangang Rd, Nangang District, 115",
+    "venueMapsLink": "https://maps.app.goo.gl/EVKoULDjRPs7oxM1A",
+    "website": "https://ethglobal.com/events/pragma-taipei",
+    "startDate": "2025-04-03T09:00:00.000Z",
+    "endDate": "2025-04-03T18:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "twitter|https://x.com/ETHGlobal"
+    ],
+    "eventHosts": [
+      "ETHGlobal|ethGlobal.jpg"
+    ],
+    "isFeaturedEvent": false
+  }

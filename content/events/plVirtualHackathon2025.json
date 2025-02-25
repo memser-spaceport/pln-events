@@ -1,0 +1,25 @@
+{
+    "eventName": "PL Virtual Hackathon",
+    "eventDescription": "More information coming soon!",
+    "eventTopic": [
+      "Hackathon"
+    ],
+    "eventType": "Virtual",
+    "location": "Location TBD",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "",
+    "startDate": "2025-05-15T00:00:00.000Z",
+    "endDate": "2025-06-15T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:network-programs@plrs.xyz"
+    ],
+    "eventHosts": [
+      "Protocol Labs|protocol-labs-network-small-logo.svg",
+      "Polaris Labs|Polaris.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
