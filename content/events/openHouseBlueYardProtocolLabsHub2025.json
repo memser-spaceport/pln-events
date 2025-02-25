@@ -1,0 +1,26 @@
+{
+    "eventName": "Open House & Drinks at BlueYard × Protocol Labs Network Hub",
+    "eventDescription": "​Join us at the BlueYard × Protocol Labs Network Hub from 4-6pm on Tuesday February 25 for an Open House (including drinks & light appetizers). We look forward to seeing new and familiar faces as we kick off a week of collaboration and learning with the BlueYard & Protocol Labs networks during ETHDenver 2025.",
+    "eventTopic": [
+      "Web3",
+      "Happy Hour"
+    ],
+    "eventType": "Social",
+    "location": "Denver, United States",
+    "venueName": "",
+    "venueAddress": "2127 Larimer St, Colorado, 80205",
+    "venueMapsLink": "https://maps.app.goo.gl/ibgCj4uy3TX7QQzH8",
+    "website": "https://lu.ma/ds6x2v3x",
+    "startDate": "2025-02-25T16:00:00.000Z",
+    "endDate": "2025-02-25T18:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "twitter|https://x.com/blueyard"
+    ],
+    "eventHosts": [
+      "BlueYard|BlueYard.jpeg",
+      "Protocol Labs|protocol-labs-network-small-logo.svg"
+    ],
+    "isFeaturedEvent": false
+  }

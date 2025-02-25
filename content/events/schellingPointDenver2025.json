@@ -1,6 +1,6 @@
 {
-    "eventName": "Schelling Point Denver",
-    "eventDescription": "Join us on February 27th, 2025 at Number 38 in Denver for Schelling Point 2025—Gitcoin's flagship event that brings visionaries, builders, and changemakers together to shape the future of public goods and innovation!",
+    "eventName": "Schelling Point: Denver",
+    "eventDescription": "Gitcoin's flagship event that brings visionaries, builders, and changemakers together to shape the future of public goods and innovation!",
     "eventTopic": [
       "Public Goods"
     ],
@@ -8,15 +8,14 @@
     "location": "Denver, United States",
     "venueName": "Number Thirty Eight",
     "venueAddress": "3560 Chestnut Pl, Colorado",
-    "venueMapsLink": "https://maps.app.goo.gl/t8vuXhjJErZgTwYg9",
+    "venueMapsLink": "https://maps.app.goo.gl/dNMQCFo9qwryKiDG7",
     "website": "https://lu.ma/qr9mbaqz",
     "startDate": "2025-02-27T00:00:00.000Z",
     "endDate": "2025-02-27T00:00:00.000Z",
     "tag": "PL Event",
     "dateTBD": false,
     "preferredContacts": [
-      "twitter|https://x.com/gitcoin",
-      "discord|https://discord.com/invite/gitcoin"
+      "twitter|https://x.com/gitcoin"
     ],
     "eventHosts": [
       "Gitcoin|gitcoin.jpg"

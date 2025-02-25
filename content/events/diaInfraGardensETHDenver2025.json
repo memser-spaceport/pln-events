@@ -1,0 +1,31 @@
+{
+    "eventName": "DIA Infra Gardens V6 ETHDenver 25",
+    "eventDescription": "​Back for its 6th edition, Infra Gardens is where the brightest minds in Web3 infra come together for deep discussions, meaningful connections, and a break from the ETHDenver chaos.",
+    "eventTopic": [
+      "AI",
+      "Blockchain Security",
+      "Infrastructure"
+    ],
+    "eventType": "Conference",
+    "location": "Denver, United States",
+    "venueName": "Varone Market Venue",
+    "venueAddress": "1800 W 33rd Ave, CO 80211",
+    "venueMapsLink": "https://maps.app.goo.gl/Vnqh7jKh6fyC6NE39",
+    "website": "https://lu.ma/InfraGardens-Denver2025?tk=hixJ0Q",
+    "startDate": "2025-01-01T14:00:00.000Z",
+    "endDate": "2025-03-01T18:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "twitter|https://x.com/DIAdata_org"
+    ],
+    "eventHosts": [
+      "DIA|dia.png",
+      "Protocol Labs|protocol-labs-network-small-logo.svg",
+      "Kwil|kwil.jpeg",
+      "Ripple|ripple.png",
+      "LI.FI|liFi.png",
+      "Randamu|randamu.png"
+    ],
+    "isFeaturedEvent": false
+  }
