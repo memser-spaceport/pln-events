@@ -1,0 +1,25 @@
+{
+  "eventName": "Filecoin Uncharted 2",
+  "eventDescription": "",
+  "eventTopic": [
+    "Filecoin"
+  ],
+  "eventType": "Conference",
+  "location": "Dubai, UAE",
+  "venueName": "",
+  "venueAddress": "",
+  "venueMapsLink": "",
+  "website": "",
+  "startDate": "2025-04-23T00:00:00.000Z",
+  "endDate": "2025-04-24T00:00:00.000Z",
+  "tag": "PL Event",
+ "dateTBD": true,
+  "preferredContacts": [
+    "email|mailto:<>",
+   "contact_means2|contact_url2"
+  ],
+  "eventHosts": [
+    "Filecoin Foundation|host_logo1"
+  ],
+  "isFeaturedEvent": false
+}
