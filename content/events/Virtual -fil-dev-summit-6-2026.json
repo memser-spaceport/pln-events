@@ -1,0 +1,25 @@
+{
+  "eventName": "Virtual FIL Dev Summit 6",
+  "eventDescription": "Short_Description_of_your_event",
+  "eventTopic": [
+    "Topic_1"
+  ],
+  "eventType": "Virtual",
+  "location": "",
+  "venueName": "",
+  "venueAddress": "",
+  "venueMapsLink": "",
+  "website": "",
+  "startDate": "2025-04-23T00:00:00.000Z",
+  "endDate": "2025-04-26T00:00:00.000Z",
+  "tag": "PL Event",
+  "dateTBD": false,
+  "preferredContacts": [
+    "email|mailto:<>",
+   "contact_means2|contact_url2"
+  ],
+  "eventHosts": [
+    "Filecoin Foundation|host_logo1"
+  ],
+  "isFeaturedEvent": false
+}
