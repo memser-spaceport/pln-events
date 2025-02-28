@@ -1,0 +1,24 @@
+{
+  "eventName": "FIL Toronto",
+  "eventDescription": "",
+  "eventTopic": [
+    "Filecoin"
+  ],
+  "eventType": "Conference",
+  "location": "Toronto, Canada" (or) "location": "Location TBD",
+  "venueName": "",
+  "venueAddress": "",
+  "venueMapsLink": "",
+  "website": "",
+  "startDate": "2025-05-12T00:00:00.000Z",
+  "endDate": "2025-05-16T00:00:00.000Z",
+  "tag": "PL Event",
+  "dateTBD": false,
+  "preferredContacts": [
+    "",
+  ],
+  "eventHosts": [
+    "Filecoin Foundation|"
+  ],
+  "isFeaturedEvent": false
+}
