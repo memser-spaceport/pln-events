@@ -14,11 +14,7 @@
   "endDate": "2025-05-16T00:00:00.000Z",
   "tag": "PL Event",
   "dateTBD": false,
-  "preferredContacts": [
-    "",
-  ],
-  "eventHosts": [
-    ""
-  ],
+  "preferredContacts": [],
+  "eventHosts": [],
   "isFeaturedEvent": false
 }
