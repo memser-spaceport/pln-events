@@ -1,0 +1,22 @@
+{
+    "eventName": "Filecoin Toronto",
+    "eventDescription": "",
+    "eventTopic": [
+      "Filecoin"
+    ],
+    "eventType": "Conference",
+    "location": "Toronto, Canada",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "",
+    "startDate": "2025-05-14T00:00:00.000Z",
+    "endDate": "2025-05-16T00:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [],
+    "eventHosts": [
+      "Filecoin Foundation|filecoinFoundation2025.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
