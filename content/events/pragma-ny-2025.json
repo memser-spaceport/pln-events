@@ -1,0 +1,24 @@
+{
+    "eventName": "Pragma NY",
+    "eventDescription": "Pragma is designed to be a different kind of event. We bring together a small group of founders and builders to discuss the future of web3 and reflect on the past.",
+    "eventTopic": [
+      "Web3"
+    ],
+    "eventType": "Conference",
+    "location": "New York, United States",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://ethglobal.com/events/pragma-newyork2025",
+    "startDate": "2025-08-14T09:00:00.000Z",
+    "endDate": "2025-08-14T18:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "twitter|"
+    ],
+    "eventHosts": [
+      "ETHGlobal|ethGlobal.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
