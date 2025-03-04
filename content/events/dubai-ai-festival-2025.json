@@ -1,0 +1,28 @@
+{
+    "eventName": "Dubai AI Festival",
+    "eventDescription": "At the Dubai AI Festival, attendees will experience the convergence of artificial intelligence, blockchain, XR,  decentralized systems, driving the progression of digital economies and technological innovation.
+
+This dynamic platform is designed to foster collaboration, innovation, and knowledge-sharing among industry leaders, entrepreneurs, and tech enthusiasts from around the world. Join us to engage with the future of technology at the Dubai AI Festival.",
+    "eventTopic": [
+      "AI",
+      "Blockchain",
+      "XR"
+    ],
+    "eventType": "Conference",
+    "location": "Dubai",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://dubaiaifestival.com/",
+    "startDate": "2025-04-23T00:00:00.000Z",
+    "endDate": "2025-04-24T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+     "email|DubaiAICampus@difc.ae"
+    ],
+    "eventHosts": [
+    "Dubai AI Campus|"
+    ],
+    "isFeaturedEvent": false
+}
