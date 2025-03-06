@@ -1,0 +1,29 @@
+{
+  "eventName": "d/acc day @ UC Berkeley",
+  "eventDescription": "​Following DevconSEA, this first d/acc gathering of the year focuses on expanding the movement and forging alliances, shaping a future where technology strengthens autonomy rather than erodes it.",
+  "eventTopic": [
+    "AI",
+    "Blockchain"
+  ],
+  "eventType": "Conference",
+  "location": "Berkeley, California",
+  "venueName": "",
+  "venueAddress": "",
+  "venueMapsLink": "",
+  "website": "https://lu.ma/o99rcou9",
+  "startDate": "2025-03-13T10:00:00.000Z",
+  "endDate": "2025-03-13T17:30:00.000Z",
+  "tag": "Industry Event",
+  "dateTBD": false,
+  "preferredContacts": [
+    "email|info@ethereumsf.org",
+   "Telegram|https://t.me/+F5I7mpYd76xhY2Rh"
+  ],
+  "eventHosts": [
+    "Blockchain Builders Fund|host_logo1",
+    "​Ethereum Ecosystem Fund|host_logo2",
+    "Devfolio|host_logo3"
+    "Berkeley RDI|host_logo4"
+  ],
+  "isFeaturedEvent": false
+}
