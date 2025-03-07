@@ -1,0 +1,27 @@
+{
+    "eventName": "Neuro AI Evening",
+    "eventDescription": "This event will connect leading researchers, entrepreneurs, and funders spearheading progress at the frontiers of AI and neuroscience/technology on shared goals for the fields",
+    "eventTopic": [
+      "AI",
+      "Neuro"
+    ],
+    "eventType": "Conference",
+    "location": "San Francisco, United States",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "",
+    "startDate": "2025-03-19T18:00:00.000Z",
+    "endDate": "2025-03-19T21:00:00.000Z",
+    "tag": "PL Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:neuro-ai-evening@protocol.ai"
+    ],
+    "eventHosts": [
+      "BrainMap|brainmap.jpg",
+      "Foresight Institute|foresight.jpg",
+      "Protocol Labs|protocol-labs-network-small-logo.svg"
+    ],
+    "isFeaturedEvent": false
+  }

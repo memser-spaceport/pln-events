@@ -9,14 +9,14 @@
     ],
     "eventType": "Conference",
     "location": "San Francisco, United States",
-    "venueName": "",
-    "venueAddress": "",
-    "venueMapsLink": "",
+    "venueName": "Internet Archive",
+    "venueAddress": "300 Funston Ave, California",
+    "venueMapsLink": "https://maps.app.goo.gl/2z4dgNuxrkV1XFfQ9",
     "website": "https://www.fundingthecommons.io",
     "startDate": "2025-03-15T00:00:00.000Z",
     "endDate": "2025-03-16T00:00:00.000Z",
     "tag": "PL Event",
-    "dateTBD": true,
+    "dateTBD": false,
     "preferredContacts": [
       "telegram|https://t.me/+CP3biAqSPSo0NDI5"
     ],
