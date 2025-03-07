@@ -1,0 +1,27 @@
+{
+  "eventName": "AI x Bio Workshop 2025",
+  "eventDescription": "A 2-day cross-disciplinary workshop.  Gathering minds from artificial intelligence and biology to accelerate the future of medicine.",
+  "eventTopic": [
+    "AI",
+    "Biology"
+  ],
+  "eventType": "Conference",
+  "location": "Berkeley, United States",
+  "venueName": "Lighthaven Campus",
+  "venueAddress": "2740 Telegraph Avenue, California",
+  "venueMapsLink": "https://maps.app.goo.gl/3FjWB9ufN3xmcqG46",
+  "website": "https://www.vitalistbay.com/ai-x-biology-workshop",
+  "startDate": "2025-05-09T00:00:00.000Z",
+  "endDate": "2025-05-10T00:00:00.000Z",
+  "tag": "PL Event",
+  "dateTBD": false,
+  "preferredContacts": [
+    "email|ops@vitalism.io"
+  ],
+  "eventHosts": [
+    "Foresight Institute|host_logo1",
+    "Longevity Biotech Fellowship|host_logo2",
+    "Vitalism|host_logo3"
+  ],
+  "isFeaturedEvent": false
+}
