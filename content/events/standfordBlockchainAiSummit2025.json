@@ -1,0 +1,27 @@
+{
+    "eventName": "Standford Blockchain AI Summit",
+    "eventDescription": "An event bringing together the best of the industry and academia, we’ll explore the intersection of cutting-edge AI research and the Ethereum ecosystem, connecting academia, startups, big techs and innovators shaping the future",
+    "eventTopic": [
+      "AI",
+      "Blockchain"
+    ],
+    "eventType": "Conference",
+    "location": "Stanford, California",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://lu.ma/s21qt3bn",
+    "startDate": "2025-03-12T10:00:00.000Z",
+    "endDate": "2025-03-12T18:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:info@ethereumsf.org"
+    ],
+    "eventHosts": [
+        "Blockchain Builders Fund|blockchainBuilders.png",
+        "​Ethereum Ecosystem Fund|ethereumEcosystemFund.png",
+        "Devfolio|devfolio.jpeg"
+    ],
+    "isFeaturedEvent": false
+  }
