@@ -1,0 +1,25 @@
+{
+    "eventName": "Pragma New Delhi",
+    "eventDescription": "Pragma is designed to be a different kind of event. We bring together a small group of founders and builders to discuss the future of web3 and reflect on the past.",
+    "eventTopic": [
+      "Web3",
+      ""
+    ],
+    "eventType": "Conference",
+    "location": "New Delhi, India",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://ethglobal.com/events/pragma-newdelhi",
+    "startDate": "2025-09-25T00:00:00.000Z",
+    "endDate": "2025-09-25T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:hello@ethglobal.com"
+    ],
+    "eventHosts": [
+      "ETHGlobal|ethGlobal.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
