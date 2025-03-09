@@ -1,0 +1,25 @@
+{
+    "eventName": "ETHOnline 2025",
+    "eventDescription": "Annual async hackathon.",
+    "eventTopic": [
+      "Web3",
+      "Crypto"
+    ],
+    "eventType": "Hackathon",
+    "location": "virtual",
+    "venueName": "",
+    "venueAddress": "",
+    "venueMapsLink": "",
+    "website": "https://ethglobal.com/events/ethonline2025",
+    "startDate": "2025-10-03T00:00:00.000Z",
+    "endDate": "2025-10-31T00:00:00.000Z",
+    "tag": "Industry Event",
+    "dateTBD": false,
+    "preferredContacts": [
+      "email|mailto:hello@ethglobal.com"
+    ],
+    "eventHosts": [
+      "ETHGlobal|ethGlobal.jpg"
+    ],
+    "isFeaturedEvent": false
+  }
