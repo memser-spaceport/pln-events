@@ -13,11 +13,18 @@
     "@fullcalendar/core": "^6.1.11",
     "@fullcalendar/daygrid": "^6.1.11",
     "@fullcalendar/react": "^6.1.11",
-    "next": "14.1.0",
+    "@schedule-x/calendar-controls": "^2.21.0",
+    "@schedule-x/events-service": "^2.21.0",
+    "@schedule-x/react": "^2.21.0",
+    "@schedule-x/scroll-controller": "^2.21.0",
+    "@schedule-x/theme-default": "^2.21.0",
+    "moment-timezone": "^0.5.47",
+    "next": "^14.2.24",
     "posthog-js": "^1.131.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-responsive-carousel": "^3.2.23"
+    "react-responsive-carousel": "^3.2.23",
+    "react-toastify": "^11.0.5"
   },
   "devDependencies": {
     "@types/node": "^20",
