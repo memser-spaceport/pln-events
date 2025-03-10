@@ -120,9 +120,9 @@ export const getFilterCount = (selectedFilterValues: any) => {
   if (selectedFilterValues?.modes?.length > 0 && selectedFilterValues?.modes[0] !== "All") {
     count++;
   }
-  if (selectedFilterValues?.year) {
-    count++;
-  }
+  // if (selectedFilterValues?.year) {
+  //   count++;
+  // }
   if (selectedFilterValues?.location?.length > 0) {
     count++;
   }
@@ -154,7 +154,7 @@ const generateUniqueObjects = (events: any) => {
   };
   const filterValues: any = {
     isFeatured: false,
-    years: EVENT_YEARS,
+    // years: EVENT_YEARS,
     dayFilter: "all",
     location: [],
     allHost: [],
@@ -269,9 +269,9 @@ const filterUniqueObjects = (initialValues: any, rawValues: any, queryParams: an
     filteredObjects.dayFilter = queryParams.dayFilter;
   }
 
-  if (queryParams.year) {
-    filteredObjects.year = queryParams.year;
-  }
+  // if (queryParams.year) {
+  //   filteredObjects.year = queryParams.year;
+  // }
   
   filteredObjects.location = filteredObjects.location.map((item: any) => item.name);
   filteredObjects.allHost = filteredObjects.allHost.map((item: any) => item.name);
@@ -445,3 +445,11 @@ export const getHoverColor = (tags: any) => {
     return defaultTags[tags[0]] ? defaultTags[tags[0]][0] : COLOR_PAIRS[stringToUniqueInteger(tags[0])][0];
   }
 };
+
+export const getUTCOffset = (timezone: string) => {
+  const offsetMinutes = moment.tz(timezone).utcOffset();
+  const hours = Math.floor(Math.abs(offsetMinutes) / 60);
+  const minutes = Math.abs(offsetMinutes) % 60;
+  const sign = offsetMinutes >= 0 ? "+" : "-";
+  return `UTC ${sign}${hours}:${minutes.toString().padStart(2, "0")}`;
+}

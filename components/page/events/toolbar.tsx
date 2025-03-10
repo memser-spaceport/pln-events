@@ -10,7 +10,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Tab from "@/components/core/tab";
-// import { useSchedulePageAnalytics } from "@/analytics/24-pg/schedule-page-anaytics";
+import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 
 const Toolbar = (props: any) => {
   const selectedFilterValues = props.selectedFilterValues;
@@ -21,7 +21,6 @@ const Toolbar = (props: any) => {
   const dayFilter = selectedFilterValues.dayFilter;
   const filterCount = getFilterCount(selectedFilterValues);
   const events = props?.events ?? [];
-  const eventTimezone = props?.eventTimezone;
 
   const [filteredTabItems, setFilteredTabItems] = useState<any[]>([]);
 
@@ -61,19 +60,19 @@ const Toolbar = (props: any) => {
     },
   ];
 
-//   const {
-//     onFilterMenuClicked,
-//     onFilterClearAllBtnClicked,
-//     onLegendInfoClicked,
-//     onSchduleViewClicked,
-//     onScheduleFilterClicked,
-//   } = useSchedulePageAnalytics();
+  const {
+    onFilterMenuClicked,
+    onFilterClearAllBtnClicked,
+    onLegendInfoClicked,
+    onSchduleViewClicked,
+    onScheduleFilterClicked,
+  } = useSchedulePageAnalytics();    
 
   const sortedEvents = sortEventsByStartDate(events);
   const groupedEvents = groupByStartDate(sortedEvents);
 
   const onItemClicked = (key: string, value: string) => {
-    // onScheduleFilterClicked(key, value, type, from);
+    onScheduleFilterClicked(key, value, type);
     searchParams[key] = value;
     if (initialFilters[key] === searchParams[key]) {
       delete searchParams[key];
@@ -85,16 +84,16 @@ const Toolbar = (props: any) => {
 
   const onTabClicked = (item: string) => {
     if (item === "list") {
-      // onSchduleViewClicked("list", from);
+      onSchduleViewClicked("list");
       router.push(`/list`);
     } else if (item === "program") {
-      // onSchduleViewClicked("program", from);
+      onSchduleViewClicked("program");
       router.push(`/program`);
     }
   };
 
   const onLegendModalOpen = () => {
-    // onLegendInfoClicked(type, from);    
+    onLegendInfoClicked(type);    
     document.dispatchEvent(
       new CustomEvent(CUSTOM_EVENTS.SHOW_LEGEND_MODAL, {
         detail: { isOpen: true },
@@ -121,7 +120,7 @@ const Toolbar = (props: any) => {
   };
 
   const onOpenFilterMenu = () => {
-    // onFilterMenuClicked(type, from);
+    onFilterMenuClicked(type);
     document.dispatchEvent(
       new CustomEvent(CUSTOM_EVENTS.SHOW_FILTER_MENU, {
         detail: { isOpen: true },
@@ -131,7 +130,7 @@ const Toolbar = (props: any) => {
 
   const onClearAllFilter = (e: any) => {
     e.stopPropagation();
-    // onFilterClearAllBtnClicked(from);
+    onFilterClearAllBtnClicked();
     const pathname = window.location.pathname;
     router.push(`${pathname}`);
   };

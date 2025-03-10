@@ -49,10 +49,9 @@ const SideBar = (props: any) => {
 
   useEffect(() => {
     const handler = (e: any) => {
-      const date = e.detail.date;
+      const date = e.detail.month;
       onItemClicked(date);
     };
-
     document.addEventListener(CUSTOM_EVENTS.UPDATE_EVENTS_OBSERVER, handler);
 
     return () => {

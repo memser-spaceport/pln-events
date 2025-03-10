@@ -1,5 +1,6 @@
 "use client";
-// import { useSchedulePageAnalytics } from "@/analytics/24-pg/schedule-page-anaytics";
+
+import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 import useClickedOutside from "@/hooks/use-clicked-outside";
 import MultiSelect from "@/components/ui/multi-select";
 import OpenMultiSelect from "@/components/ui/open-multi-select";
@@ -30,8 +31,8 @@ function FilterItem(props: any) {
   const params = useParams();
   const view = params?.type as string;
 
-  // const { onScheduleFilterClicked, onFilterClearAllBtnClicked } =
-  //   useSchedulePageAnalytics();
+  const { onScheduleFilterClicked, onFilterClearAllBtnClicked } =
+    useSchedulePageAnalytics();
 
   useClickedOutside({
     ref: paneRef,
@@ -54,7 +55,7 @@ function FilterItem(props: any) {
   const onClearSelection = (e: any, key: any) => {
     e.preventDefault();
     e.stopPropagation();
-    // onFilterClearAllBtnClicked(from);
+    onFilterClearAllBtnClicked();
     setPaneStatus(false);
     if (key === "accessType") {
       delete searchParams["accessOption"];
@@ -77,7 +78,7 @@ function FilterItem(props: any) {
   };
 
   const onItemClicked = (key: any, value: any) => {
-    // onScheduleFilterClicked(key, value, view, from);
+    onScheduleFilterClicked(key, value, view);
     // Featured
     if (key === "isFeatured") {
       searchParams[key] = value;
