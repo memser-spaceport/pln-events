@@ -25,7 +25,7 @@ function AppHeader() {
             className="ah__btn"
             onClick={onSubmitClicked}
             target="_blank"
-            href="https://github.com/memser-spaceport/pln-events#submitting-events"
+            href={process.env.SUBMIT_EVENT_URL}
           >
             Submit an event
           </a>

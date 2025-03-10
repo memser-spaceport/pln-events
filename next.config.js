@@ -13,6 +13,7 @@ module.exports = {
     WEB_API_BASE_URL: process.env.WEB_API_BASE_URL,
     WEB_API_TOKEN: process.env.WEB_API_TOKEN,
     EVENT_CLIENT_SECRET: process.env.EVENT_CLIENT_SECRET,
+    SUBMIT_EVENT_URL: process.env.SUBMIT_EVENT_URL,
   },
   async rewrites() {
     return [
