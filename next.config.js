@@ -9,6 +9,11 @@ module.exports = {
 
     return config;
   },
+  env: {
+    WEB_API_BASE_URL: process.env.WEB_API_BASE_URL,
+    WEB_API_TOKEN: process.env.WEB_API_TOKEN,
+    EVENT_CLIENT_SECRET: process.env.EVENT_CLIENT_SECRET,
+  },
   async rewrites() {
     return [
       {
@@ -19,6 +24,15 @@ module.exports = {
         source: "/admin",
         destination: "/admin/index.html",
       },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/program",
+        permanent: false,
+      }
     ];
   },
 };
