@@ -5,7 +5,7 @@ import Tags from "./tags";
 import Agenda from "./agenda";
 import SocialLinks from "./social-links";
 import EventHosts from "./event-hosts";
-// import { useEventDetailAnalytics } from "@/analytics/24-pg/event-detail-analytics";
+import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { getRefreshStatus } from "@/utils/helper";
@@ -23,10 +23,10 @@ const DetailsDesktopView = (props: any) => {
   const params = useParams();
   const view = params.type as string;
 
-//   const { onEventUrlClicked } = useEventDetailAnalytics();
+  const { onEventUrlClicked } = useSchedulePageAnalytics();
 
   const onNavigateToWebsite = (websiteLink: string) => {
-    // onEventUrlClicked(view, eventId, eventTitle, "website", websiteLink, from, {});
+    onEventUrlClicked(view, eventId, eventTitle, "website", websiteLink, {});
   };
 
   const timing = event?.timing;

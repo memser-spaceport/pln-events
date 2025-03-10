@@ -6,7 +6,7 @@ import DescriptionTemplate from "./description-template";
 import ScheduleTemplate from "./schedule-template";
 import EventHeader from "./event-header";
 import EventHosts from "./event-hosts";
-// import { useEventDetailAnalytics } from "@/analytics/24-pg/event-detail-analytics";
+import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { getRefreshStatus } from "@/utils/helper";
@@ -38,10 +38,10 @@ const DetailsMobileView = (props: any) => {
     setActiveTab(tabName);
   };
 
-//   const { onEventUrlClicked } = useEventDetailAnalytics();
+  const { onEventUrlClicked } = useSchedulePageAnalytics();
 
   const onNavigateToWebsite = (websiteLink: string) => {
-    // onEventUrlClicked(view, eventId, eventTitle, "website", websiteLink, from, {});
+    onEventUrlClicked(view, eventId, eventTitle, "website", websiteLink, {});
   };
 
   return (
