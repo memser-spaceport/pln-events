@@ -1,31 +1,41 @@
-
-
-export const URL_QUERY_VALUE_SEPARATOR = '|';
+export const URL_QUERY_VALUE_SEPARATOR = "|";
 export const AGENDA_COMING_SOON = "Agenda coming soon";
-export const CURRENT_YEAR  = '2025'
+export const CURRENT_YEAR = "2025";
 export const EVENTS_VIEW_TYPES = {
-    treeView: {
-            label: "Tree view",
-    },
-    calendarView: {
-        label: "Calendar view",
-    }
-}
+  treeView: {
+    label: "Tree view",
+  },
+  calendarView: {
+    label: "Calendar view",
+  },
+};
 
 export const EVENT_YEARS = ["2025", "2024", "2023"];
-export const EVENT_TYPES =  ['Virtual', 'Conference', 'Social'];
+export const EVENT_TYPES = ["Virtual", "Conference", "Social"];
 
-export const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
+export const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 export const CUSTOM_EVENTS = {
-    FILTEROPEN: "filter open",
-    SHOW_EVENT_DETAIL_MODAL: "showEventDetailModal",
-    SHOW_LEGEND_MODAL: "showLegendModal",
-    UPDATE_EVENTS_OBSERVER: "updateEventsObserver",
-    UPDATE_SELECTED_DATE: "updateSelectedDate",
-    SHOW_FILTER_MENU:'showFilterMenu',
-}
+  FILTEROPEN: "filter open",
+  SHOW_EVENT_DETAIL_MODAL: "showEventDetailModal",
+  SHOW_LEGEND_MODAL: "showLegendModal",
+  UPDATE_EVENTS_OBSERVER: "updateEventsObserver",
+  UPDATE_SELECTED_DATE: "updateSelectedDate",
+  SHOW_FILTER_MENU: "showFilterMenu",
+};
 
 export const BEARER_REGEX = /Bearer\s+(.+)/;
 
@@ -361,8 +371,8 @@ export const TYPE_CONSTANTS = {
 };
 
 export const DEFAULT_TAGS: any = {
-  Hackathon: ["#FFA500", "#FFF4E0", "#FFFAF5"],
-  "Talks & Presentation": ["#DAA828", "#FEFCD6", "#DAA8280A"],
+  "Industry Event": ["#FF7A00", "#FFEDD5", "#FFFAF5"],
+  "PL Event": ["#FFB800", "#FEF3C7", "#FFFCF5"],
   Workshop: ["#FF1493", "#FFD9EB", "#FEF6FA"],
   "Art Exhibition": ["#00FF00", "#CCFFCC", "#F7FCF8"],
   "Social Event": ["#87CEEB", "#D0E6FF", "#F5FDFF"],
@@ -386,7 +396,6 @@ export const COLOR_PAIRS = [
   ["#F50057", "#FDDCDC", "#FFF5F8"],
   ["#FF4081", "#FF40811F", "#FEF6F8"],
 ];
-
 
 export const ABBREVIATED_MONTH_NAMES = [
   "Jan",
