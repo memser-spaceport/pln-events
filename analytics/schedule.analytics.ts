@@ -11,7 +11,9 @@ export const useSchedulePageAnalytics = () => {
     SCHEDULE_HEADER_EVENTSVIEW_CLICKED: "SCHEDULE_HEADER_EVENTSVIEW_CLICKED",
     SCHEDULE_FILTER_APPLIED: "SCHEDULE_FILTER_APPLIED",
     PROGRAM_VIEW_EVENT_CLICK: "PROGRAM_VIEW_EVENT_CLICK",
-    PROGRAM_VIEW_CHANGE_CLICK: "PROGRAM_VIEW_CHANGE_CLICK"
+    PROGRAM_VIEW_CHANGE_CLICK: "PROGRAM_VIEW_CHANGE_CLICK",
+    EVENT_URL_CLICKED: "EVENT_URL_CLICKED",
+    SCHEDULE_REFRESH_CLICKED: "SCHEDULE_REFRESH_CLICKED"
   };
 
   const captureEvent = (eventName: string, eventParams = {}) => {
@@ -96,6 +98,37 @@ export const useSchedulePageAnalytics = () => {
     captureEvent(events.PROGRAM_VIEW_CHANGE_CLICK, params);
   }
 
+
+  const onEventUrlClicked = (
+    from: string,
+    eventId: string,
+    eventName: string,
+    urlType: string,
+    url: string,
+    others: any
+  ) => {
+    const params = {
+      from,
+      eventId,
+      eventName,
+      url,
+      urlType,
+      ...others,
+    };
+
+    captureEvent(events.EVENT_URL_CLICKED, params);
+  };
+
+  const onScheduleRefreshClick = (eventId: string, eventName: string, action: string) => {
+    const params = {
+      eventId,
+      eventName,
+      action
+    };
+    captureEvent(events.SCHEDULE_REFRESH_CLICKED, params);
+  }
+
+
   return {
     onEventClicked,
     onFilterMenuClicked,
@@ -104,6 +137,8 @@ export const useSchedulePageAnalytics = () => {
     onSchduleViewClicked,
     onScheduleFilterClicked,
     captureEventCardClick,
-    captureViewChangeClick
+    captureViewChangeClick,
+    onEventUrlClicked,
+    onScheduleRefreshClick
   };
 };

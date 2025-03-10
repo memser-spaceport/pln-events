@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { getRefreshedAgenda } from "@/service/events.service";
 // import { useEventDetailAnalytics } from "@/analytics/24-pg/event-detail-analytics";
+import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 import { toast } from "react-toastify";
 
 const DetailView = (props: any) => {
@@ -21,16 +22,16 @@ const DetailView = (props: any) => {
   const events = [...props.events];
   const hash = useHash();
   const router = useRouter();
-//   const { onScheduleRefreshClick } = useEventDetailAnalytics();
+  const { onScheduleRefreshClick } = useSchedulePageAnalytics();
 
   const handleRefreshClick = async () => {
     try {
-    //   onScheduleRefreshClick(event?.id!, event?.name!, 'clicked');
+      onScheduleRefreshClick(event?.id!, event?.name!, 'clicked');
     if (event?.id) {
       setIsRefreshing(true);
       const result = await getRefreshedAgenda(event.id);
       if (result?.agenda) {
-        // onScheduleRefreshClick(event?.id!, event?.name!, 'success');
+        onScheduleRefreshClick(event?.id!, event?.name!, 'success');
         const updatedAgenda = result?.agenda?.map((session: any) => {
           return {
             ...session,
@@ -47,7 +48,7 @@ const DetailView = (props: any) => {
     }
   } catch (error) {
     setIsRefreshing(false);
-    // onScheduleRefreshClick(event?.id!, event?.name!, 'error');
+    onScheduleRefreshClick(event?.id!, event?.name!, 'error');
     toast.error("Session refresh failed");
     return { error };
   }
