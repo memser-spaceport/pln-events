@@ -4,13 +4,13 @@ function PlMultiSelect(props: any) {
     // Props
     const itemId = props?.identifierId;
     const type = props?.type ?? '';
-    const rawItems = [...props?.items] ?? [];
+    const rawItems = [...props?.items];
     const items = [...rawItems].sort()
     const name = props?.name ?? '';
     const callback = props?.callback;
     const dropdownImgUrl = props?.dropdownImgUrl ?? ''
     const iconUrl = props?.iconUrl ?? '';
-    const selectedItems = [...props?.selectedItems] ?? [];
+    const selectedItems = [...props?.selectedItems];
     const onClearMultiSelect = props.onClearMultiSelect;
     const onMultiSelectClicked = props.onMultiSelectClicked;
 
