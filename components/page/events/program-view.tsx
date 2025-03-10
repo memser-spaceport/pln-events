@@ -15,7 +15,6 @@ import "@schedule-x/theme-default/dist/index.css";
 import { formatDateTime } from "@/utils/helper";
 import { PROGRAM_VIEW_EVENT_COLORS, CUSTOM_EVENTS } from "@/utils/constants";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getAgendaView } from "@/service/events.service";
 // import { useWeb3MonthViewAnalytics } from "@/analytics/24-web3/month-view-analytics";
 // import { useWeb3MonthViewGoogleAnalytics } from "@/analytics/24-web3/month-view-google-analytics";
 import { createScrollControllerPlugin } from "@schedule-x/scroll-controller";
