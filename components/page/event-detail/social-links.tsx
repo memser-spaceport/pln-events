@@ -13,6 +13,8 @@ const SocialLinks = (props: any) => {
   const twitter = contactInfos?.twitter;
   const discord = contactInfos?.discord;
   const telegram = contactInfos?.telegram;
+  const whatsapp = contactInfos?.whatsapp;
+  const instagram = contactInfos?.instagram;
   const eventName = event?.name ?? "";
   const eventId = event?.id ?? "";
   const params = useParams();
@@ -37,13 +39,7 @@ const SocialLinks = (props: any) => {
             onClick={() => onClickSocialLink("LinkedIn", linkedIn[0])}
             title="LinkedIn"
           >
-            <img
-              src={"/icons/linkedin.svg"}
-              width={26}
-              height={26}
-              alt="linkedIn"
-              loading="lazy"
-            />
+            <img src={"/icons/linkedin.svg"} width={26} height={26} alt="linkedIn" loading="lazy" />
           </a>
         )}
         {twitter && (
@@ -54,13 +50,7 @@ const SocialLinks = (props: any) => {
             onClick={() => onClickSocialLink("X", twitter[0])}
             title="X"
           >
-            <img
-              src={"/icons/x.svg"}
-              width={26}
-              height={26}
-              alt="twitter"
-              loading="lazy"
-            />
+            <img src={"/icons/x.svg"} width={26} height={26} alt="twitter" loading="lazy" />
           </a>
         )}
         {discord && (
@@ -71,13 +61,7 @@ const SocialLinks = (props: any) => {
             onClick={() => onClickSocialLink("Discord", discord[0])}
             title="Discord"
           >
-            <img
-              src={"/icons/discord.svg"}
-              width={26}
-              height={26}
-              alt="discord"
-              loading="lazy"
-            />
+            <img src={"/icons/discord.svg"} width={26} height={26} alt="discord" loading="lazy" />
           </a>
         )}
         {telegram && (
@@ -88,13 +72,29 @@ const SocialLinks = (props: any) => {
             onClick={() => onClickSocialLink("Telegram", telegram[0])}
             title="Telegram"
           >
-            <img
-              src={"/icons/telegram.svg"}
-              width={26}
-              height={26}
-              alt="telegram"
-              loading="lazy"
-            />
+            <img src={"/icons/telegram.svg"} width={26} height={26} alt="telegram" loading="lazy" />
+          </a>
+        )}
+        {whatsapp && (
+          <a
+            className="social__link"
+            href={getFirstUrl(whatsapp)}
+            target="_blank"
+            onClick={() => onClickSocialLink("Whatsapp", whatsapp[0])}
+            title="Whatsapp"
+          >
+            <img src={"/icons/whatsapp.svg"} width={26} height={26} alt="whatsapp" loading="lazy" />
+          </a>
+        )}
+        {instagram && (
+          <a
+            className="social__link"
+            href={getFirstUrl(instagram)}
+            target="_blank"
+            onClick={() => onClickSocialLink("Whatsapp", whatsapp[0])}
+            title="Whatsapp"
+          >
+            <img src={"/icons/instagram.svg"} width={26} height={26} alt="whatsapp" loading="lazy" />
           </a>
         )}
       </div>
