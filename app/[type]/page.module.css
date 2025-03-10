@@ -7,9 +7,10 @@
   .schedule__tbar {
     height: 48px;
     position: sticky;
-    top: 70px;
+    top: 60px;
     z-index: 4;
     padding: 0 10px;
+    background-color: #fff;
   }
   
   .schedule__content {
@@ -46,6 +47,7 @@
   
     .schedule__tbar {
       padding :unset;
+      padding-top: 10px;
     }
   }
   

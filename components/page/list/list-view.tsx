@@ -3,7 +3,7 @@
 import EventCard from "./event-card";
 import SideBar from "./side-bar";
 import EventsNoResults from "@/components/ui/events-no-results";
-// import { useSchedulePageAnalytics } from "@/analytics/24-pg/schedule-page-anaytics";
+import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 import { groupByStartDate, sortEventsByStartDate } from "@/utils/helper";
 import { useRouter } from "next/navigation";
 import { CUSTOM_EVENTS } from "@/utils/constants"; 
@@ -15,13 +15,13 @@ const ListView = (props: any) => {
   const dateTo = props?.dateTo;
   const eventTimezone = props?.eventTimezone;
   const router = useRouter();
-//   const { onEventClicked } = useSchedulePageAnalytics();
+  const { onEventClicked } = useSchedulePageAnalytics();
 
   const sortedEvents = sortEventsByStartDate(events);
   const groupedEvents = groupByStartDate(sortedEvents);
 
   const onOpenDetailPopup = (event: any) => {
-    // onEventClicked(viewType, event?.id, event?.name, from);
+    onEventClicked(viewType, event?.id, event?.name);
 
     if (event.slug) {
       document.dispatchEvent(

@@ -59,7 +59,7 @@ const DetailsDesktopView = (props: any) => {
             <img alt="time" src="/icons/clock.svg" className="event__time__icon" height={13} width={13} />
             <span className="event__time__text">
               {/* {calculateTime(event?.startDate, event?.endDate)} */}
-              {`${event?.startTime} - ${event?.endTime}`}
+              {`${event?.startTime} - ${event?.endTime} (${event?.utcOffset})`}
             </span>
           </div>
 

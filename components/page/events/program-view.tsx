@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ScheduleXCalendar, useNextCalendarApp } from "@schedule-x/react";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   createViewDay,
   createViewMonthAgenda,
@@ -14,11 +15,8 @@ import { createEventsServicePlugin } from "@schedule-x/events-service";
 import "@schedule-x/theme-default/dist/index.css";
 import { formatDateTime } from "@/utils/helper";
 import { PROGRAM_VIEW_EVENT_COLORS, CUSTOM_EVENTS } from "@/utils/constants";
-import { useRouter, useSearchParams } from "next/navigation";
-// import { useWeb3MonthViewAnalytics } from "@/analytics/24-web3/month-view-analytics";
-// import { useWeb3MonthViewGoogleAnalytics } from "@/analytics/24-web3/month-view-google-analytics";
+import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics"
 import { createScrollControllerPlugin } from "@schedule-x/scroll-controller";
-import useFilterHook from "@/hooks/use-filter-hook";
 
 interface IProgramView{
   events: any;
@@ -32,8 +30,24 @@ const isMobile = () => {
   return false;
 };
 
+export const updateQueryParams = (router: any, paramsToUpdate: { [key: string]: string | null | undefined }) => {
+  const params = new URLSearchParams(window.location.search);
+
+  // Loop through each key-value pair and update the query parameters
+  Object.keys(paramsToUpdate).forEach((key) => {
+    const value = paramsToUpdate[key];
+    if (value === undefined || value === null || value === "") {
+      params.delete(key); // Remove the query param if the value is undefined, null, or empty
+    } else {
+      params.set(key, value); // Set the new value for the query param
+    }
+  });
+
+  router?.push(`${window.location.pathname}?${params.toString()}`, undefined, { scroll: false });
+};
+
 const ProgramView = (props: IProgramView) => {
-  const {searchParams, setQuery} = useFilterHook();
+  const searchParams = useSearchParams();
   const currentDate = new Date().toISOString().split('T')[0];
 
   let initialView = searchParams.get("view") || "month-grid";
@@ -61,14 +75,14 @@ const ProgramView = (props: IProgramView) => {
   const scrollController = createScrollControllerPlugin({
     initialScroll: "07:55",
   });
-//   const analytics = useWeb3MonthViewAnalytics();
-//   const googleAnalytics = useWeb3MonthViewGoogleAnalytics();
+  const analytics = useSchedulePageAnalytics();
   const router = useRouter();
   const [viewType, setViewType] = useState(initialView || "month-grid");
 
   const calendarApp = useNextCalendarApp({
     views: [createViewMonthAgenda(), createViewMonthGrid()],
     selectedDate: initialDate,
+    minDate: "2025-01-01",
     defaultView: viewType ? viewType : viewMonthGrid.name,
     monthGridOptions: {
       nEventsPerDay: 20,
@@ -84,8 +98,7 @@ const ProgramView = (props: IProgramView) => {
         if (view !== "month-grid") {
           viewEvent = props.events.find((event: any) => event.id === calEvent.id);
         }
-        // analytics.captureEventCardClick(viewEvent?.id, viewEvent?.name, "24-web3");
-        // googleAnalytics.captureEventCardClick(viewEvent?.id, viewEvent?.name, "24-web3");
+        analytics.captureEventCardClick(viewEvent?.id, viewEvent?.name);
         if (viewEvent.slug) {
           document.dispatchEvent(
             new CustomEvent(CUSTOM_EVENTS.SHOW_EVENT_DETAIL_MODAL, {
@@ -101,10 +114,9 @@ const ProgramView = (props: IProgramView) => {
       onRangeUpdate(_cal: any) {
         let view = calendarControls.getView();
         const viewType = view === "month-grid" || view === "month-agenda" ? "month" : view;
-        // analytics.captureViewChangeClick(view, "24-web3");
-        // googleAnalytics.captureViewChangeClick(view, "24-web3");
+        analytics.captureViewChangeClick(view);
         setViewType(view);
-        setQuery({ view: viewType, date: calendarControls.getDate() });
+        updateQueryParams(router, { view: viewType, date: calendarControls.getDate() });
       },
     },
   });

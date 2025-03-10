@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import FilterItem from "../page/filter/filter-item";
 import FilterStrip from "../page/filter/filter-strip";
 import { CUSTOM_EVENTS, VIEW_TYPE } from "@/utils/constants";
-// import { useSchedulePageAnalytics } from "@/analytics/24-pg/schedule-page-anaytics";
+import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 
 const FilterBox = (props: any) => {
   const rawFilters = { ...props.rawFilters };
@@ -22,16 +22,16 @@ const FilterBox = (props: any) => {
 
   const [isExpand, setIsExpand] = useState(false);
 
-  // const { onFilterClearAllBtnClicked, onFilterMenuClicked } =
-  //   useSchedulePageAnalytics();
+  const { onFilterClearAllBtnClicked, onFilterMenuClicked } =
+    useSchedulePageAnalytics();
 
   const toggleSidebar = () => {
-    // onFilterMenuClicked(viewType, from);
+    onFilterMenuClicked(viewType);
     setIsExpand(!isExpand);
   };
 
   const onClearAllFilter = () => {
-    // onFilterClearAllBtnClicked(from);
+    onFilterClearAllBtnClicked();
     const pathname = window.location.pathname;
     router.push(`${pathname}`);
   };
@@ -43,7 +43,6 @@ const FilterBox = (props: any) => {
   };
 
   const filterCount = getFilterCount(selectedFilterValues);
-  console.log(selectedFilterValues, "selectedFilterValues>>>>>>>>>>>>>>>>>>>>>>>>");
 
   const filterValues = [
     {
@@ -53,16 +52,16 @@ const FilterBox = (props: any) => {
       identifierId: "isFeatured",
       items: [],
     },
-    {
-      name: "Year",
-      type: "single-select",
-      items: rawFilters.years,
-      selectedItem: selectedFilterValues.year ?? new Date().getFullYear()?.toString(),
-      placeholder: "Filter by year",
-      dropdownImgUrl: "/icons/pln-arrow-down.svg",
-      identifierId: "year",
-      iconUrl: "/icons/pl-calender-icon.svg",
-    },
+    // {
+    //   name: "Year",
+    //   type: "single-select",
+    //   items: rawFilters.years,
+    //   selectedItem: selectedFilterValues.year ?? new Date().getFullYear()?.toString(),
+    //   placeholder: "Filter by year",
+    //   dropdownImgUrl: "/icons/pln-arrow-down.svg",
+    //   identifierId: "year",
+    //   iconUrl: "/icons/pl-calender-icon.svg",
+    // },
     {
       name: "Modes",
       type: "tag",

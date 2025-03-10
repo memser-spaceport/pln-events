@@ -1,7 +1,7 @@
 import { IEvent, IEventResponse, ISelectedItem } from "@/types/events.type";
 import { IEventHost } from "@/types/shared.type";
 import { CURRENT_YEAR, EVENT_TYPES, EVENT_YEARS, MONTH_VIEW_COLORS_LENGTH, MONTHS, URL_QUERY_VALUE_SEPARATOR } from "@/utils/constants";
-import { differenceInDays, formatDateForSchedule, formatDateTime, getTime, replaceWhitespaceAndRemoveSpecialCharacters, stringToSlug } from "@/utils/helper";
+import { differenceInDays, formatDateForSchedule, formatDateTime, getTime, getUTCOffset, replaceWhitespaceAndRemoveSpecialCharacters, stringToSlug } from "@/utils/helper";
 import { chownSync } from "fs";
 
 export const getBannerData = async () => {
@@ -420,6 +420,7 @@ export const getAllEvents = async () => {
         slug: stringToSlug(event.event_name),
         endTime: getTime(event.end_date, event.timezone),
         timezone: event.timezone,
+        utcOffset: getUTCOffset(event.timezone),
         sessions: event.agenda?.sessions?.map((session: any, index: number) => {
           return {
             id: replaceWhitespaceAndRemoveSpecialCharacters(session?.name) + index,
