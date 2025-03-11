@@ -67,12 +67,16 @@ const SideBar = (props: any) => {
       <div className="sidebar">
         <div className="sidebar__dates">
           {ABBREVIATED_MONTH_NAMES.map((val, i) => {
+            const hasDate = Object.keys(events).includes(val);
             return (
               <div
+              style={{
+                opacity: hasDate ? "" : "0.5",
+              }}
                 id={`agenda-${val}`}
                 key={`agenda-${val}`}
                 className="sidebar__dates__date"
-                onClick={() => onItemClicked(val)}
+                onClick={hasDate ? () => onItemClicked(val) : () => {}}
               >
                 <div className="sidebar__dates__date__imgWrpr">
                   <img
@@ -99,7 +103,8 @@ const SideBar = (props: any) => {
                     clickedMenuId === val ? "active" : ""
                   } `}
                 >
-                  {val}
+                  {`${val}-2025`}  
+                  {/* hardcoded year for now need to change once year filter is implemented */}
                 </span>
               </div>
             );

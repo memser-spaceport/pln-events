@@ -1,12 +1,7 @@
 "use client";
 
 import { CUSTOM_EVENTS } from "@/utils/constants";
-import {
-  getFilterCount,
-  getQueryParams,
-  groupByStartDate,
-  sortEventsByStartDate,
-} from "@/utils/helper";
+import { getFilterCount, getQueryParams, groupByStartDate, sortEventsByStartDate } from "@/utils/helper";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Tab from "@/components/core/tab";
@@ -24,20 +19,7 @@ const Toolbar = (props: any) => {
 
   const [filteredTabItems, setFilteredTabItems] = useState<any[]>([]);
 
-  const abbreviatedMonthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
+  const abbreviatedMonthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   const dayOptions = [
     { name: "All Events", value: "all" },
@@ -66,7 +48,7 @@ const Toolbar = (props: any) => {
     onLegendInfoClicked,
     onSchduleViewClicked,
     onScheduleFilterClicked,
-  } = useSchedulePageAnalytics();    
+  } = useSchedulePageAnalytics();
 
   const sortedEvents = sortEventsByStartDate(events);
   const groupedEvents = groupByStartDate(sortedEvents);
@@ -93,7 +75,7 @@ const Toolbar = (props: any) => {
   };
 
   const onLegendModalOpen = () => {
-    onLegendInfoClicked(type);    
+    onLegendInfoClicked(type);
     document.dispatchEvent(
       new CustomEvent(CUSTOM_EVENTS.SHOW_LEGEND_MODAL, {
         detail: { isOpen: true },
@@ -102,21 +84,21 @@ const Toolbar = (props: any) => {
   };
 
   const [isDropDownPaneActive, setDropDownStatus] = useState(false);
-  const [clickedMenuId, setClickedMenuId] = useState(
-    Object.keys(groupedEvents)[0]
-  );
+  const [clickedMenuId, setClickedMenuId] = useState(Object.keys(groupedEvents)[0]);
 
   const onToggleDropDown = () => {
     setDropDownStatus(!isDropDownPaneActive);
   };
 
-  const onSelectDate = (month: any) => {
+  const onSelectDate = (month: any, hasDate: boolean) => {
+    if (hasDate) {
       document.dispatchEvent(
         new CustomEvent(CUSTOM_EVENTS.UPDATE_EVENTS_OBSERVER, {
           detail: { month },
         })
       );
       onToggleDropDown();
+    }
   };
 
   const onOpenFilterMenu = () => {
@@ -177,9 +159,7 @@ const Toolbar = (props: any) => {
             {dayOptions.map((item) => (
               <span
                 className={`toolbar__dayFilter__item
-            ${
-              dayFilter === item.value ? "toolbar__dayFilter__item--active" : ""
-            }
+            ${dayFilter === item.value ? "toolbar__dayFilter__item--active" : ""}
           `}
                 onClick={() => onItemClicked("dayFilter", item?.value)}
                 key={item.value}
@@ -190,12 +170,7 @@ const Toolbar = (props: any) => {
           </div>
 
           <div onClick={onOpenFilterMenu} className="toolbar__fb">
-            <img
-              width={20}
-              height={20}
-              src="/icons/filter-white.svg"
-              alt="filter"
-            />
+            <img width={20} height={20} src="/icons/filter-white.svg" alt="filter" />
             {filterCount > 0 && (
               <div className="toolbar__fb__count">
                 <p>{filterCount}</p>
@@ -203,33 +178,31 @@ const Toolbar = (props: any) => {
             )}
             {filterCount > 0 && (
               <button className="toolbar__fb__close" onClick={onClearAllFilter}>
-                <img
-                  width={16}
-                  height={16}
-                  src="/icons/close-white-filter.svg"
-                  alt="close"
-                />
+                <img width={16} height={16} src="/icons/close-white-filter.svg" alt="close" />
               </button>
-            )}            
+            )}
           </div>
 
           {type === "list" && (
             <div className="toolbarDate__wrpr">
               <button className="toolbarDate" onClick={onToggleDropDown}>
-                <span>{clickedMenuId}</span>
+                <span>{`${clickedMenuId}-2025`}</span>  
+                {/* hardcoded year for now need to change once year filter is implemented */}
                 <img src="/icons/down_arrow_filled.svg" alt="down arrow" />
               </button>
               {isDropDownPaneActive && (
                 <div className="toolbarDate__dropdown">
                   {abbreviatedMonthNames.map((val, i) => {
+                    const hasDate = Object.keys(groupedEvents).includes(val);
 
                     return (
                       <div
-                        onClick={() => onSelectDate(val)}
+                        onClick={() => onSelectDate(val, hasDate)}
                         key={`month-list-${i}`}
-                        className={`toolbarDate__dropdown__item`}
+                        className={` toolbarDate__dropdown__item ${hasDate ? "" : "disabled"}`}
                       >
-                        {val}
+                        {`${val}-2025`}
+                        {/* hardcoded year for now need to change once year filter is implemented */}
                       </div>
                     );
                   })}
@@ -240,11 +213,7 @@ const Toolbar = (props: any) => {
         </div>
 
         <div className="toolbar__pageView">
-          <button
-            onClick={onLegendModalOpen}
-            title="Legends"
-            className="toolbar__pageView__legends"
-          >
+          <button onClick={onLegendModalOpen} title="Legends" className="toolbar__pageView__legends">
             <img src="/icons/info-blue.svg" alt="legend" />
           </button>
           <div className="toolbar__pageView__tabs">
@@ -307,7 +276,7 @@ const Toolbar = (props: any) => {
           .toolbar__middle__navigation {
             display: none;
             border-radius: 8px;
-            border:1px #36CF79 solid;
+            border: 1px #36cf79 solid;
           }
 
           .toolbar__middle__navigation__previous {
@@ -457,11 +426,11 @@ const Toolbar = (props: any) => {
               padding: 6px 10px;
               background: #fff;
             }
-            .toolbar__middle__text{
+            .toolbar__middle__text {
               font-weight: 600;
               font-size: 13px;
               line-height: 24.3px;
-              color: #16161F;
+              color: #16161f;
             }
             .toolbar__dayFilter {
               display: flex;
