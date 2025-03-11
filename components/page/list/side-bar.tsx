@@ -72,6 +72,7 @@ const SideBar = (props: any) => {
               <div
               style={{
                 opacity: hasDate ? "" : "0.5",
+                cursor: hasDate ? "pointer" : "not-allowed",
               }}
                 id={`agenda-${val}`}
                 key={`agenda-${val}`}
