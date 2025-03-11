@@ -331,7 +331,6 @@ export const PROGRAM_VIEW_EVENT_COLORS = {
 };
 
 export const CALENDAR_LEGENDS = [
-  { name: "CROSS-WEEK", img: "/icons/across-week.svg" },
   { name: "FEATURED", img: "/icons/featured.svg" },
   { name: "INVITE ONLY", img: "/icons/invite-only.svg" },
   { name: "PAID", img: "/icons/paid.svg" },
