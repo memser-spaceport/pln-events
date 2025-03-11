@@ -38,6 +38,17 @@ body>div {
     height: 100%;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  border: unset;
+  cursor: pointer;
+  background-color: unset;
+}
+
 main {
     width: 100%;
     height: 100%;
@@ -71,4 +82,120 @@ main {
   
   .carousel .control-dots .dot{
     margin: 0px 4px !important;
+  }
+
+  .sx-react-calendar-wrapper {
+    height: 100vh;
+    max-height: 100vh;
+  }
+  
+  .sx__calendar {
+    border-radius: 0px !important;
+  
+    @media (min-width: 1024px) {
+      border-top: 0 !important;
+    }
+  }
+  
+  .sx__today-button {
+    display: none;
+  }
+  
+  .sx__view-selection-selected-item {
+    border: 1px solid #156ff7 !important;
+    color: #156ff7 !important;
+    display: none;
+  }
+  
+  .sx__date-input-wrapper{
+    width: 130px;
+  }
+  
+  .sx__date-input {
+    border: 1px solid #156ff7 !important;
+    color: #156ff7 !important;
+    border-radius: 50px !important;
+  }
+  
+  .sx__chevron--previous,
+  .sx__chevron--next {
+    border-color: #156ff7 !important;
+  }
+  
+  .sx__date-input-label {
+    display: none;
+  }
+  
+  .sx__chevron-wrapper:hover {
+    background-color: #DBEAFE !important;
+  }
+  
+  .sx__chevron-wrapper:active {
+    background-color: white !important;
+  }
+  
+  .sx__date-input-chevron-wrapper:focus {
+    border: 0 !important;
+  }
+  
+  .sx__chevron-wrapper {
+      border: 1px solid #156ff7 !important;
+      min-height: 47px !important;
+      min-width: 47px !important;
+  }
+  
+  .sx__chevron {
+    width: 0.5rem !important;
+    height: 0.5rem !important;
+    border-width: 0.15rem 0.15rem 0 0 !important;
+  }
+  
+  .sx__forward-backward-navigation {
+    @media (min-width: 1024px) {
+    display: flex !important;
+    gap: 8px !important;
+    }
+  }
+  
+  .sx__date-input-chevron {
+    filter: invert(29%) sepia(97%) saturate(7483%) hue-rotate(191deg) brightness(101%) contrast(102%);
+  }
+  
+  .sx__month-grid-event {
+    cursor: pointer;
+  }
+  
+  .sx__time-grid-event {
+    cursor: pointer;
+    min-height: 20px !important;
+  }
+  
+  .sx__date-grid-event {
+    cursor: pointer;
+  }
+  
+  .sx__is-today {
+    background-color: #4de890 !important;
+    color: #000 !important;
+  }
+  
+  .sx__view-selection-selected-item {
+    position: relative;
+    padding-right: 30px !important; /* Adjust padding for arrow space */
+    border-radius: 50px !important;
+  }
+  
+  .sx__view-selection-selected-item::after {
+    content: '';
+    display: inline-block;
+    width: 16px; /* Width of the arrow */
+    height: 16px; /* Height of the arrow */
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url("data:image/svg+xml,%3csvg width='800px' height='800px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M6 9L12 15L18 9' stroke='%23DED8E1' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: invert(29%) sepia(97%) saturate(7483%) hue-rotate(191deg) brightness(101%) contrast(102%);
   }

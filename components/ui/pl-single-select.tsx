@@ -24,7 +24,6 @@ function PlSingleSelect(props: any) {
             const filteredValues = [...items].filter(v => v.toLowerCase().includes(e.target.value.toLowerCase()))
             setfilteredItems([...filteredValues])
         }
-
     }
 
     const onItemSelected = (item: string) => {
