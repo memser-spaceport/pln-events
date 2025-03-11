@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       "Explore and connect with the teams across the ecosystem",
     images: [
       {
-        url: "https://plabs-assets.s3.us-west-1.amazonaws.com/EdgeCity-Thumbnail.jpg",
+        url: "https://plabs-assets.s3.us-west-1.amazonaws.com/plevents-socialThumbnail.jpg",
         width: 1200,
         height: 600,
       },
