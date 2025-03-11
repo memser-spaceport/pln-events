@@ -7,7 +7,6 @@ export async function GET(request: NextRequest) {
     // const eventsListData = await client.queries.eventConnection({ last: -1 });
     // const events = eventsListData?.data?.eventConnection?.edges ?? [];
     // return Response.json({ data: events }, { status: 200 });
-    console.log("api called>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     const jsonData = readJsonFiles(); // Call the utility function with your folder path
     return Response.json({ data: jsonData }, { status: 200 });
   } catch (error) {
@@ -29,7 +28,6 @@ function readJsonFiles() {
       return JSON.parse(fileContent); // Parse JSON and return the data
     });
 
-  console.log("jsonData>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", jsonData);
 
   return jsonData;
 }

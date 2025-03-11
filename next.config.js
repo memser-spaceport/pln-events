@@ -9,6 +9,15 @@ module.exports = {
 
     return config;
   },
+  env: {
+    WEB_API_BASE_URL: process.env.WEB_API_BASE_URL,
+    WEB_API_TOKEN: process.env.WEB_API_TOKEN,
+    EVENT_CLIENT_SECRET: process.env.EVENT_CLIENT_SECRET,
+    SUBMIT_EVENT_URL: process.env.SUBMIT_EVENT_URL,
+    REFRESH_DISABLED_EVENTS: process.env.REFRESH_DISABLED_EVENTS,
+    REFRESH_ENABLED_EVENTS: process.env.REFRESH_ENABLED_EVENTS,
+    EVENT_AGENDA_REFRESH_URL: process.env.EVENT_AGENDA_REFRESH_URL,
+  },
   async rewrites() {
     return [
       {
@@ -19,6 +28,15 @@ module.exports = {
         source: "/admin",
         destination: "/admin/index.html",
       },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/program",
+        permanent: false,
+      }
     ];
   },
 };
