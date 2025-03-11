@@ -15,6 +15,7 @@ const SocialLinks = (props: any) => {
   const telegram = contactInfos?.telegram;
   const whatsapp = contactInfos?.whatsapp;
   const instagram = contactInfos?.instagram;
+  const email = contactInfos?.email;
   const eventName = event?.name ?? "";
   const eventId = event?.id ?? "";
   const params = useParams();
@@ -31,6 +32,17 @@ const SocialLinks = (props: any) => {
   return (
     <>
       <div className="social__links">
+      {email && (
+          <a
+            className="social__link"
+            href={`mailto:${getFirstUrl(email)}`}
+            target="_blank"
+            onClick={() => onClickSocialLink("Email", email[0])}
+            title="Email"
+          >
+            <img src={"/icons/email.svg"} width={26} height={26} alt="email" loading="lazy" />
+          </a>
+        )}
         {linkedIn && (
           <a
             className="social__link"
@@ -92,9 +104,9 @@ const SocialLinks = (props: any) => {
             href={getFirstUrl(instagram)}
             target="_blank"
             onClick={() => onClickSocialLink("Whatsapp", whatsapp[0])}
-            title="Whatsapp"
+            title="Instagram"
           >
-            <img src={"/icons/instagram.svg"} width={26} height={26} alt="whatsapp" loading="lazy" />
+            <img src={"/icons/instagram.svg"} width={26} height={26} alt="instagram" loading="lazy" />
           </a>
         )}
       </div>
