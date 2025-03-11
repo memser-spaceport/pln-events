@@ -4,7 +4,7 @@ import EventCard from "./event-card";
 import SideBar from "./side-bar";
 import EventsNoResults from "@/components/ui/events-no-results";
 import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
-import { groupByStartDate, sortEventsByStartDate } from "@/utils/helper";
+import { formatDateTime, groupByStartDate, sortEventsByStartDate } from "@/utils/helper";
 import { useRouter } from "next/navigation";
 import { CUSTOM_EVENTS } from "@/utils/constants"; 
 
@@ -18,7 +18,10 @@ const ListView = (props: any) => {
   const { onEventClicked } = useSchedulePageAnalytics();
 
   const sortedEvents = sortEventsByStartDate(events);
+  console.log(sortedEvents,"sortedEvents>>>>>>>>>>>>>>>>>>>>>>>>>>");
   const groupedEvents = groupByStartDate(sortedEvents);
+  const year = formatDateTime(sortedEvents[0]?.startDate, sortedEvents[0]?.timezone, "YYYY")
+  console.log(groupedEvents,"groupedEvents>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
   const onOpenDetailPopup = (event: any) => {
     onEventClicked(viewType, event?.id, event?.name);
@@ -45,7 +48,7 @@ const ListView = (props: any) => {
                   return (
                     <div id={key} key={key} className="listView__events__wrpr">
                       <div className="listView__agenda__header">
-                        <h6 className="listView__agenda__header__text">{key}</h6>
+                        <h6 className="listView__agenda__header__text">{key}{`-${year}`}</h6>
                       </div>
                       <div className="listView__events">
                         {value?.map((event: any, index: number) => {
