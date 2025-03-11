@@ -192,7 +192,7 @@ const FilterBox = (props: any) => {
           .fb {
             display: ${isExpand ? "block" : "none"};
             position: fixed;
-            top: 0;
+            top: 60px;
             z-index: 5;
             height: 100svh;
             overflow: auto;
