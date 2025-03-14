@@ -17,8 +17,7 @@ function AppHeader() {
               src="/logos/protocol-labs-network-small-logo.svg"
             />
             <div className="ah__logo__heading">
-              <h1 className="ah__logo__heading__text">Protocol Labs</h1>
-              <h1 className="ah__logo__heading__text">network events</h1>
+              <h1 className="ah__logo__heading__text">Protocol Labs Events</h1>
             </div>
           </div>
           <a
