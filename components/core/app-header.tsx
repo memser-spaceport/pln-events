@@ -20,6 +20,7 @@ function AppHeader() {
               <h1 className="ah__logo__heading__text">Protocol Labs Events</h1>
             </div>
           </div>
+          <button id="pl-events-feedback" className="ah__feedback">Feedback</button>
           <a
             className="ah__btn"
             onClick={onSubmitClicked}
@@ -77,6 +78,23 @@ function AppHeader() {
             font-size: 15px;
             font-weight: 600;
           }
+
+          .ah__feedback {
+            cursor: pointer;
+            display: block;
+            text-decoration: none;
+            box-shadow: 0px 1px 1px rgba(7, 8, 8, 0.16),
+              inset 0px 1px 0px rgba(255, 255, 255, 0.16);
+            padding: 8px 24px;
+            background: linear-gradient(90deg, #427dff 0%, #44d5bb 100%);
+            border-radius: 20px;
+            color: white;
+            outline: none;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+          }
+
           .ah__menu {
             display: inline;
             cursor: pointer;
@@ -84,6 +102,13 @@ function AppHeader() {
           @media (min-width: 1200px) {
             .ah__menu {
               display: none;
+            }
+
+            .ah__feedback{
+              position: absolute;
+              right: 195px;
+              font-weight: 600;
+              font-size: 15px;
             }
 
             .ah__logo__heading {
