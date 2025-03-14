@@ -22,7 +22,7 @@
     "@schedule-x/theme-default": "^2.21.0",
     "moment-timezone": "^0.5.47",
     "next": "^14.2.24",
-    "posthog-js": "^1.230.3",
+    "posthog-js": "^1.231.0",
     "react": "^18",
     "react-dom": "^18",
     "react-responsive-carousel": "^3.2.23",
