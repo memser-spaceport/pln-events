@@ -20,7 +20,7 @@ const FilterBox = (props: any) => {
   const router = useRouter();
   const filteredEventsCount = filteredEvents?.length;
 
-  const [isExpand, setIsExpand] = useState(false);
+  const [isExpand, setIsExpand] = useState(window.innerWidth > 768);
 
   const { onFilterClearAllBtnClicked, onFilterMenuClicked } =
     useSchedulePageAnalytics();
