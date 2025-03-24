@@ -30,7 +30,7 @@ function FilterStrip(props: any) {
           }
           .fs__cn {
             position: sticky;
-            top: 120px;
+            top: 70px;
             display: flex;
             margin: 5px 0;
             cursor: pointer;

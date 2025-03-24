@@ -1,0 +1,53 @@
+.schedule {
+    min-height: calc(100vh - 66px);
+    position: relative;
+    margin-top: -60px;
+  }
+  
+  .schedule__tbar {
+    height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    padding: 0 10px;
+    background-color: #fff;
+  }
+  
+  .schedule__content {
+    display: flex;
+    flex: 1;
+  }
+  
+  .schedule__content__right {
+    flex: 1;
+  }
+  
+  .schedule__content__right__cal {
+    flex: 1;
+    overflow-x: auto;
+    position: relative;
+  }
+  
+  .schedule__content__left {
+    display: block;
+  }
+  
+  .error {
+    height: calc(100svh - 112px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @media(min-width: 1024px) {
+    .schedule {
+      margin: 0 10px;
+      margin-top: -60px;
+    }
+  
+    .schedule__tbar {
+      padding :unset;
+      padding-top: 10px;
+    }
+  }
+  
