@@ -20,7 +20,7 @@ const FilterBox = (props: any) => {
   const router = useRouter();
   const filteredEventsCount = filteredEvents?.length;
 
-  const [isExpand, setIsExpand] = useState(window.innerWidth > 768);
+  const [isExpand, setIsExpand] = useState(typeof window !== 'undefined' ? window.innerWidth >= 1024 : true);
 
   const { onFilterClearAllBtnClicked, onFilterMenuClicked } =
     useSchedulePageAnalytics();
@@ -309,18 +309,18 @@ const FilterBox = (props: any) => {
 
             .cp__cn__filterstrip {
               display: block;
-              height: calc(100svh - 112px);
+              height: calc(100svh - 59px);
               position: sticky;
-              top: 113px;
+              top: 60px;
             }
 
             .fb {
               display: ${viewType === VIEW_TYPE.list.name || isExpand ? "block" : "none"};
-              height: calc(100svh - 112px);
+              height: calc(100svh - 60px);
               transition: width 0.3s ease;
               position: sticky;
               width: 260px;
-              top: 113px;
+              top: 60px;
               border: 1px solid #cbd5e1;
               z-index: 1;
             }

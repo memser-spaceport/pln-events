@@ -141,15 +141,28 @@ main {
   }
   
   .sx__chevron-wrapper:hover {
-    background-color: #DBEAFE !important;
+    background-color: unset !important;
+  }
+
+  .sx__chevron-wrapper:focus {
+    background-color: unset !important;
   }
   
   .sx__chevron-wrapper:active {
-    background-color: white !important;
+    background-color: unset !important;
   }
   
   .sx__date-input-chevron-wrapper:focus {
     border: 0 !important;
+  }
+
+  .sx__ripple::before {
+    background-color: unset !important;
+  }
+
+  .sx__ripple:not(:active)::before {
+    background-color: unset !important;
+    animation: unset !important;
   }
   
   .sx__chevron-wrapper {
@@ -212,4 +225,41 @@ main {
     background-size: contain;
     background-repeat: no-repeat;
     filter: invert(29%) sepia(97%) saturate(7483%) hue-rotate(191deg) brightness(101%) contrast(102%);
+  }
+
+  .sx__chevron-wrapper {
+    border: unset !important;
+  }
+
+  @media (min-width: 1024px) {
+
+    .sx__calendar-header-content:has(.sx__forward-backward-navigation) {
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      width: 310px;
+      height: 36px;
+    }
+
+    .sx__chevron-wrapper.sx__ripple:has(.sx__chevron--previous) {
+      position: absolute;
+      left: 12px;
+    }
+  
+    .sx__chevron-wrapper.sx__ripple:has(.sx__chevron--next) {
+      position: absolute;
+      left: 282px;
+    }
+
+    .sx__range-heading{
+      padding-left: 4px;
+      width: 270px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .sx__calendar-header-content{
+      padding: unset !important;
+    }
+
   }
