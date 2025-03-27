@@ -240,12 +240,12 @@ main {
       height: 36px;
     }
 
-    .sx__chevron-wrapper.sx__ripple:has(.sx__chevron--previous) {
+    .sx__forward-backward-navigation .sx__chevron-wrapper.sx__ripple:has(.sx__chevron--previous) {
       position: absolute;
       left: 12px;
     }
   
-    .sx__chevron-wrapper.sx__ripple:has(.sx__chevron--next) {
+    .sx__forward-backward-navigation .sx__chevron-wrapper.sx__ripple:has(.sx__chevron--next) {
       position: absolute;
       left: 282px;
     }
