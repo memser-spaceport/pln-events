@@ -7,6 +7,7 @@ import "./globals.css";
 import StyledJsxRegistry from "./registry";
 import AnnouncementBanner from "@/components/core/announcement-banner";
 import { getBannerData } from "@/service/events.service";
+import { headers } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +16,7 @@ export const metadata: Metadata = {
   description: "Explore and connect with the teams across the ecosystem",
   openGraph: {
     title: "PL Events",
-    description:
-      "Explore and connect with the teams across the ecosystem",
+    description: "Explore and connect with the teams across the ecosystem",
     images: [
       {
         url: "https://plabs-assets.s3.us-west-1.amazonaws.com/plevents-socialThumbnail.jpg",
@@ -33,6 +33,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const bannerData = await getBannerData();
+  const headersList = headers();
+  const shouldHideHeader = headersList.get("x-hide-header") === "true";
   return (
     <html lang="en">
       <body className={`${inter.className} applayout`}>
@@ -40,7 +42,7 @@ export default async function RootLayout({
           <StyledJsxRegistry>
             <header className="applayout__header">
               {/* <AnnouncementBanner bannerData={bannerData?.data} /> */}
-              <AppHeader />
+              {!shouldHideHeader && <AppHeader />}
             </header>
             <main className="applayout__main">{children}</main>
           </StyledJsxRegistry>
