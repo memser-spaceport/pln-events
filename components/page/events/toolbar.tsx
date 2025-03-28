@@ -11,6 +11,7 @@ const Toolbar = (props: any) => {
   const selectedFilterValues = props.selectedFilterValues;
   const initialFilters = props.initialFilters;
   const searchParams = props.searchParams;
+  const isEmbed = props.isEmbed ?? false;
   const type = props.type;
   const router = useRouter();
   const dayFilter = selectedFilterValues.dayFilter;
@@ -65,13 +66,9 @@ const Toolbar = (props: any) => {
   };
 
   const onTabClicked = (item: string) => {
-    if (item === "list") {
-      onSchduleViewClicked("list");
-      router.push(`/list`);
-    } else if (item === "program") {
-      onSchduleViewClicked("program");
-      router.push(`/program`);
-    }
+    const basePath = isEmbed ? '/embed' : '';
+    onSchduleViewClicked(item);
+    router.push(`${basePath}/${item}`);
   };
 
   const onLegendModalOpen = () => {
