@@ -3,10 +3,14 @@
 import useHeaderAnalytics from "@/analytics/header.analytics";
 
 function AppHeader() {
-  const { onHostEventClicked } = useHeaderAnalytics();
+  const { onHostEventClicked, onDirectoryIrlClicked } = useHeaderAnalytics();
   const onSubmitClicked = () => {
     onHostEventClicked();
   };
+
+  const onViewDirectoryIrlClick = () => {
+    onDirectoryIrlClicked();
+  }
   return (
     <>
       <div className="ah__contianer">
@@ -20,15 +24,33 @@ function AppHeader() {
               <h1 className="ah__logo__heading__text">Protocol Labs Events</h1>
             </div>
           </div>
-          <button id="pl-events-feedback" className="ah__feedback">Feedback</button>
-          <a
-            className="ah__btn"
-            onClick={onSubmitClicked}
-            target="_blank"
-            href={process.env.SUBMIT_EVENT_URL}
-          >
-            Submit an event
-          </a>
+          <div className="ah__actions">
+            <button id="pl-events-feedback">
+              <img
+                src="/icons/feedback.svg"
+                alt="Feedback"
+                className="feedback__img"
+              />
+            </button>
+            <a className="attendees-button" href={process.env.NEXT_PUBLIC_IRL_URL} target="_blank" rel="noopener noreferrer">
+              <img
+                src="/icons/avatar-group.svg"
+                alt="Attendees"
+                className="attendees__img"
+                onClick={onViewDirectoryIrlClick}
+              />
+              <span className="attendees-text">View Attendees</span>
+            </a>
+            <a
+              className="ah__btn"
+              onClick={onSubmitClicked}
+              target="_blank"
+              href={process.env.SUBMIT_EVENT_URL}
+            >
+              <span className="submit__text-web">Submit an event</span>
+              <span className="submit__text-mobile">Submit</span>
+            </a>
+          </div>
           {/* <img src="/icons/pln-menu-icon.svg" className="ah__menu"/> */}
         </header>
       </div>
@@ -79,6 +101,38 @@ function AppHeader() {
             font-weight: 600;
           }
 
+          .submit__text-web {
+            display: inline; 
+          }
+
+          .submit__text-mobile {
+            display: none; 
+          }
+
+          @media (max-width: 600px) { 
+            .submit__text-web {
+              display: none; 
+            }
+            .submit__text-mobile {
+              display: inline; 
+            }
+          }
+
+          .attendees-button {
+            display: flex;
+            align-items: center;
+            color: #156ff7;
+            border: 1px solid #156ff7;
+            border-radius: 100px;
+            border: 1px solid;
+            padding: 8px 11px;
+            gap: 8px;
+            height: 35px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+          }
+            
           .ah__feedback {
             cursor: pointer;
             display: block;
@@ -119,6 +173,40 @@ function AppHeader() {
               font-weight: 700;
               display: block;
               margin-left: 8px;
+            }
+          }
+
+          .feedback__img,
+          .attendees__img {
+            width: 40px;
+            height: 40px;
+          }
+
+          .ah__actions {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            gap: 9px;
+          }
+
+          @media (max-width: 768px) { 
+            .ah {
+              padding: 0px 10px;
+            }
+              
+            .ah__btn {
+              padding: 8px 11px;
+              font-size: 13px;
+            } 
+
+            .attendees-button {
+              padding: 8px 11px;
+              font-size: 13px;
+              height: auto; 
+            }
+
+            .attendees__img {
+              display: none; /* Hide the image on smaller screens */
             }
           }
         `}
