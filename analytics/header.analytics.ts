@@ -4,6 +4,7 @@ export default function useHeaderAnalytics() {
   const posthog = usePostHog();
   const events = {
     HEADER_HOSTEVENT_CLICKED: "HEADER_HOSTEVENT_CLICKED",
+    VIEW_DIRECTORY_CLICKED: 'VIEW_DIRECTORY_CLICKED',
   };
 
   const captureEvent = (eventName: string, eventParams = {}) => {
@@ -21,7 +22,12 @@ export default function useHeaderAnalytics() {
     captureEvent(events.HEADER_HOSTEVENT_CLICKED)
   }
 
+  function onDirectoryIrlClicked(){
+    captureEvent(events.VIEW_DIRECTORY_CLICKED)
+  }
+
   return {
     onHostEventClicked,
+    onDirectoryIrlClicked
   };
 }
