@@ -430,6 +430,7 @@ export const getAllEvents = async () => {
             description: session?.description ?? "",
           };
         }),
+        irlLink: event.additionalInfo?.irlLink ?? "",
       };
     });
     formattedEvents = assignColorsToEvents(formattedEvents);
