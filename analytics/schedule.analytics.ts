@@ -13,7 +13,8 @@ export const useSchedulePageAnalytics = () => {
     PROGRAM_VIEW_EVENT_CLICK: "PROGRAM_VIEW_EVENT_CLICK",
     PROGRAM_VIEW_CHANGE_CLICK: "PROGRAM_VIEW_CHANGE_CLICK",
     EVENT_URL_CLICKED: "EVENT_URL_CLICKED",
-    SCHEDULE_REFRESH_CLICKED: "SCHEDULE_REFRESH_CLICKED"
+    SCHEDULE_REFRESH_CLICKED: "SCHEDULE_REFRESH_CLICKED",
+    VIEW_ATTENDEES_URL_CLICKED: "VIEW_ATTENDEES_URL_CLICKED",
   };
 
   const captureEvent = (eventName: string, eventParams = {}) => {
@@ -119,6 +120,26 @@ export const useSchedulePageAnalytics = () => {
     captureEvent(events.EVENT_URL_CLICKED, params);
   };
 
+  const onViewAttendeesUrlClicked = (
+    from: string,
+    eventId: string,
+    eventName: string,
+    urlType: string,
+    url: string,
+    others: any
+  ) => {
+    const params = {
+      from,
+      eventId,
+      eventName,
+      url,
+      urlType,
+      ...others,
+    };
+
+    captureEvent(events.VIEW_ATTENDEES_URL_CLICKED, params);
+  };
+
   const onScheduleRefreshClick = (eventId: string, eventName: string, action: string) => {
     const params = {
       eventId,
@@ -139,6 +160,7 @@ export const useSchedulePageAnalytics = () => {
     captureEventCardClick,
     captureViewChangeClick,
     onEventUrlClicked,
-    onScheduleRefreshClick
+    onScheduleRefreshClick,
+    onViewAttendeesUrlClicked
   };
 };

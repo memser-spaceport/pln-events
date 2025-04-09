@@ -28,6 +28,8 @@ const DetailsMobileView = (props: any) => {
   const view = params.type as string;
   const isRefreshRestricted = getRefreshStatus(eventId);
 
+  const irlLink = event?.irlLink;
+
   const tabs = [
     { name: "description", label: "Description" },
     { name: "schedule", label: "Schedule" },
@@ -38,10 +40,14 @@ const DetailsMobileView = (props: any) => {
     setActiveTab(tabName);
   };
 
-  const { onEventUrlClicked } = useSchedulePageAnalytics();
+  const { onEventUrlClicked, onViewAttendeesUrlClicked } = useSchedulePageAnalytics();
 
   const onNavigateToWebsite = (websiteLink: string) => {
     onEventUrlClicked(view, eventId, eventTitle, "website", websiteLink, {});
+  };
+
+  const onNavigateToViewAttendees = (irlLink: string) => {
+    onViewAttendeesUrlClicked(view, eventId, eventTitle, "view attendees", irlLink, {});
   };
 
   return (
@@ -146,6 +152,27 @@ const DetailsMobileView = (props: any) => {
               <span className="event__footer__refresh__text">{`${isRefreshing ? "Refreshing" : "Schedule"}`}</span>
             </button>
           )}
+
+          <a className={`event__footer__attendees__button ${irlLink ? "" : "disabled"} `} 
+            href={irlLink || ""} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            onClick={(event) => {
+              if (!irlLink) {
+                event.preventDefault(); // Prevent navigation if irlLink is empty
+              } else {
+                onNavigateToViewAttendees(irlLink);
+              }
+            }}
+          >
+            <img
+              src="/icons/avatar-group.svg"
+              alt="Attendees"
+              className="event__footer__attendees__img"
+            />
+            View Attendees
+          </a>
+
           <a
             href={websiteLink || ""}
             target="_blank"
@@ -346,6 +373,26 @@ const DetailsMobileView = (props: any) => {
           gap: 3px;
         }
 
+        .event__footer__attendees__button {
+          display: flex;
+          align-items: center;
+          color: #156ff7;
+          border: 1px solid #156ff7;
+          border-radius: 100px;
+          border: 1px solid;
+          padding: 8px 11px;
+          gap: 8px;
+          height: 40px;
+          font-weight: 600;
+          font-size: 15px;
+          cursor: pointer;
+        }
+            
+        .event__footer__attendees__img {
+          width: 40px;
+          height: 40px;
+        }
+
         .event__footer__webBtn {
           background: rgba(21, 111, 247, 1);
           padding: 8px 24px;
@@ -379,6 +426,12 @@ const DetailsMobileView = (props: any) => {
 
           .event__summary__panel {
             height: 300px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .event__footer {
+            padding: 12px 8px;
           }
         }
       `}</style>
