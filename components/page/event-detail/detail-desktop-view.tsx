@@ -23,11 +23,17 @@ const DetailsDesktopView = (props: any) => {
   const params = useParams();
   const view = params.type as string;
 
-  const { onEventUrlClicked } = useSchedulePageAnalytics();
+  const irlLink = event?.irlLink;
+    
+  const { onEventUrlClicked, onViewAttendeesUrlClicked } = useSchedulePageAnalytics();
 
   const onNavigateToWebsite = (websiteLink: string) => {
     onEventUrlClicked(view, eventId, eventTitle, "website", websiteLink, {});
   };
+
+  const onNavigateToViewAttendees = (irlLink: string) => {
+    onViewAttendeesUrlClicked(view, eventId, eventTitle, "view attendees", irlLink, {});
+  }; 
 
   const timing = event?.timing;
   const isRefreshRestricted = getRefreshStatus(eventId)
@@ -124,6 +130,27 @@ const DetailsDesktopView = (props: any) => {
                 <span className="event__schedule__cn__right__text">Refreshing...</span>
               )}
             </button>}
+
+            <a className={`event__footer__ctrls__attendees__button ${irlLink ? "" : "disabled"} `}     
+              href={irlLink || ""} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={(event) => {
+                if (!irlLink) {
+                  event.preventDefault(); // Prevent navigation if irlLink is empty
+                } else {
+                  onNavigateToViewAttendees(irlLink);
+                }
+              }}
+            >
+              <img
+                src="/icons/avatar-group.svg"
+                alt="Attendees"
+                className="event__footer__ctrls__attendees__img"
+              />
+              View Attendees
+            </a>
+            
             <a
               href={websiteLink || ""}
               target="_blank"
@@ -306,6 +333,26 @@ const DetailsDesktopView = (props: any) => {
           display: flex;
           gap: 8px;
           align-items: center;
+        }
+
+        .event__footer__ctrls__attendees__button {
+            display: flex;
+            align-items: center;
+            color: #156ff7;
+            border: 1px solid #156ff7;
+            border-radius: 100px;
+            border: 1px solid;
+            padding: 8px 11px;
+            gap: 8px;
+            height: 35px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+        }
+            
+        .event__footer__ctrls__attendees__img {
+            width: 40px;
+            height: 40px;
         }
 
         .event__footer__ctrls__website {
