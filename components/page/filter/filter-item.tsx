@@ -47,7 +47,9 @@ function FilterItem(props: any) {
     if (value.trim() === "") {
       setFilteredItems([...items]);
     } else {
-      const filteredValues = [...items].filter((v) => v.label.toLowerCase().includes(value.toLowerCase()));
+      const filteredValues = [...items].filter((v) =>
+        v.label.toLowerCase().includes(value.toLowerCase())
+      );
       setFilteredItems([...filteredValues]);
     }
   };
@@ -59,7 +61,7 @@ function FilterItem(props: any) {
     setPaneStatus(false);
     if (key === "accessType") {
       delete searchParams["accessOption"];
-    } else if (key === "venue") {
+    } else if (key === "locations") {
       delete searchParams["location"];
     } else if (key === "host") {
       delete searchParams["host"];
@@ -79,6 +81,45 @@ function FilterItem(props: any) {
 
   const onItemClicked = (key: any, value: any) => {
     onScheduleFilterClicked(key, value, view);
+
+    // Handle the "Select All" case *only* for locations
+    if (
+      value &&
+      typeof value === "object" &&
+      value.isSelectAll &&
+      key === "locations"
+    ) {
+      const items = value.items;
+      const shouldSelect = value.select;
+      let selectedLocation = [...selectedFilterValues.location];
+
+      if (shouldSelect) {
+        items.forEach((item: any) => {
+          if (!selectedLocation.includes(item)) {
+            selectedLocation.push(item);
+          }
+        });
+      } else {
+        selectedLocation = selectedLocation.filter(
+          (option) => !items.includes(option)
+        );
+      }
+
+      // Update search params only if the key is 'locations'
+      if (selectedLocation.length > 0) {
+        searchParams["location"] = selectedLocation.join(
+          URL_QUERY_VALUE_SEPARATOR
+        );
+      } else {
+        delete searchParams["location"];
+      }
+
+      const query = getQueryParams(searchParams);
+      const pathname = window.location.pathname;
+      router.push(`${pathname}?${query}`);
+      return;
+    }
+
     // Featured
     if (key === "isFeatured") {
       searchParams[key] = value;
@@ -104,29 +145,47 @@ function FilterItem(props: any) {
       }
     }
 
-    // Access type
+    // Access type (individual selection)
     else if (key === "accessType") {
       let selectedAccessOptions = [...selectedFilterValues.accessOption];
       if (selectedAccessOptions.includes(value)) {
-        selectedAccessOptions = selectedAccessOptions.filter((option: any) => option !== value);
+        selectedAccessOptions = selectedAccessOptions.filter(
+          (option: any) => option !== value
+        );
       } else {
         selectedAccessOptions.push(value);
       }
-      searchParams["accessOption"] = selectedAccessOptions.join(URL_QUERY_VALUE_SEPARATOR);
+      // Update search params, removing if empty
+      if (selectedAccessOptions.length > 0) {
+        searchParams["accessOption"] = selectedAccessOptions.join(
+          URL_QUERY_VALUE_SEPARATOR
+        );
+      } else {
+        delete searchParams["accessOption"];
+      }
     }
 
-    // Venue
-    else if (key === "venue") {
+    // Venue (individual selection)
+    else if (key === "locations") {
       let selectedLocation = [...selectedFilterValues.location];
       if (selectedLocation.includes(value)) {
-        selectedLocation = selectedLocation.filter((option: any) => option !== value);
+        selectedLocation = selectedLocation.filter(
+          (option: any) => option !== value
+        );
       } else {
         selectedLocation.push(value);
       }
-      searchParams["location"] = selectedLocation.join(URL_QUERY_VALUE_SEPARATOR);
+      // Update search params, removing if empty
+      if (selectedLocation.length > 0) {
+        searchParams["location"] = selectedLocation.join(
+          URL_QUERY_VALUE_SEPARATOR
+        );
+      } else {
+        delete searchParams["location"];
+      }
     }
 
-    // Host
+    // Host (individual selection)
     else if (key === "host") {
       let selectedHosts = [...selectedFilterValues.allHost];
       if (selectedHosts.includes(value)) {
@@ -134,10 +193,15 @@ function FilterItem(props: any) {
       } else {
         selectedHosts.push(value);
       }
-      searchParams[key] = selectedHosts.join(URL_QUERY_VALUE_SEPARATOR);
+      // Update search params, removing if empty
+      if (selectedHosts.length > 0) {
+        searchParams[key] = selectedHosts.join(URL_QUERY_VALUE_SEPARATOR);
+      } else {
+        delete searchParams[key];
+      }
     }
 
-    // Tags
+    // Tags (individual selection)
     else if (key === "tags") {
       let selectedTags = [...selectedFilterValues.tags];
       if (selectedTags.includes(value)) {
@@ -145,7 +209,12 @@ function FilterItem(props: any) {
       } else {
         selectedTags.push(value);
       }
-      searchParams[key] = selectedTags.join(URL_QUERY_VALUE_SEPARATOR);
+      // Update search params, removing if empty
+      if (selectedTags.length > 0) {
+        searchParams[key] = selectedTags.join(URL_QUERY_VALUE_SEPARATOR);
+      } else {
+        delete searchParams[key];
+      }
     }
 
     // Year
@@ -153,6 +222,7 @@ function FilterItem(props: any) {
       searchParams[key] = value;
     }
 
+    // Push updates for individual selections
     const query = getQueryParams(searchParams);
     const pathname = window.location.pathname;
     router.push(`${pathname}?${query}`);
@@ -162,7 +232,14 @@ function FilterItem(props: any) {
     <>
       <div className={`fi fi--${aligmentClass} fi--${type}`}>
         <h2 className={`fi__title fi__title--${type}`}>{name}</h2>
-        {type === "toggle" && <PlToggle callback={onItemClicked} itemId={props.identifierId} activeItem={props.isChecked} {...props} />}
+        {type === "toggle" && (
+          <PlToggle
+            callback={onItemClicked}
+            itemId={props.identifierId}
+            activeItem={props.isChecked}
+            {...props}
+          />
+        )}
         {type === "multi-select" && (
           <div ref={paneRef}>
             <MultiSelect
@@ -185,7 +262,9 @@ function FilterItem(props: any) {
             />
           </div>
         )}
-        {type === "single-select" && <PlSingleSelect callback={onItemClicked} {...props} />}
+        {type === "single-select" && (
+          <PlSingleSelect callback={onItemClicked} {...props} />
+        )}
         {type === "tag" && (
           <div className="tags">
             {items.map((item, itemIndex) => (
