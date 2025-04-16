@@ -38,12 +38,16 @@ function FilterItem(props: any) {
     ref: paneRef,
     callback: () => {
       setFilteredItems([...items]);
-      setPaneStatus(false);
+      if (isPaneActive) {
+        setPaneStatus(false);
+      }
     },
   });
 
   const onInputChange = (value: any) => {
-    setPaneStatus(true);
+    if (!isPaneActive) {
+      setPaneStatus(true);
+   }
     if (value.trim() === "") {
       setFilteredItems([...items]);
     } else {
@@ -59,20 +63,28 @@ function FilterItem(props: any) {
     e.stopPropagation();
     onFilterClearAllBtnClicked();
     setPaneStatus(false);
+    setFilteredItems([...items]);
+    const newSearchParams = { ...searchParams };
     if (key === "accessType") {
-      delete searchParams["accessOption"];
+      delete newSearchParams["accessOption"];
     } else if (key === "locations") {
-      delete searchParams["location"];
+      delete newSearchParams["location"];
     } else if (key === "host") {
-      delete searchParams["host"];
+      delete newSearchParams["host"];
+    } else if (key === "tags") {
+      delete newSearchParams["tags"];
     }
     const pathname = window.location.pathname;
-    const query = getQueryParams(searchParams);
-    router.push(`${pathname}?${query}`);
+    const query = getQueryParams(newSearchParams);
+    router.push(query ? `${pathname}?${query}`: pathname);
   };
 
   const onMultiBoxClicked = () => {
-    setPaneStatus((v) => !v);
+    const opening = !isPaneActive;
+    setPaneStatus(opening);
+    if (opening) {
+      setFilteredItems([...items]);
+    }
   };
 
   const onMultiTagSelected = (item: any) => {
@@ -82,6 +94,9 @@ function FilterItem(props: any) {
   const onItemClicked = (key: any, value: any) => {
     onScheduleFilterClicked(key, value, view);
 
+    // --- Start: Logic to update searchParams ---
+    let newSearchParams = { ...searchParams };
+
     // Handle the "Select All" case *only* for locations
     if (
       value &&
@@ -89,51 +104,43 @@ function FilterItem(props: any) {
       value.isSelectAll &&
       key === "locations"
     ) {
-      const items = value.items;
+      const selectAllItems = value.items;
       const shouldSelect = value.select;
       let selectedLocation = [...selectedFilterValues.location];
 
       if (shouldSelect) {
-        items.forEach((item: any) => {
+        selectAllItems.forEach((item: any) => {
           if (!selectedLocation.includes(item)) {
             selectedLocation.push(item);
           }
         });
       } else {
         selectedLocation = selectedLocation.filter(
-          (option) => !items.includes(option)
+          (option) => !selectAllItems.includes(option)
         );
       }
 
-      // Update search params only if the key is 'locations'
       if (selectedLocation.length > 0) {
-        searchParams["location"] = selectedLocation.join(
+        newSearchParams["location"] = selectedLocation.join(
           URL_QUERY_VALUE_SEPARATOR
         );
       } else {
-        delete searchParams["location"];
+        delete newSearchParams["location"];
       }
-
-      const query = getQueryParams(searchParams);
-      const pathname = window.location.pathname;
-      router.push(`${pathname}?${query}`);
-      return;
     }
-
     // Featured
-    if (key === "isFeatured") {
-      searchParams[key] = value;
-      if (initialFilters[key] === searchParams[key]) {
-        delete searchParams[key];
+    else if (key === "isFeatured") {
+      newSearchParams[key] = value;
+      if (initialFilters[key] === newSearchParams[key]) {
+        delete newSearchParams[key];
       }
     }
-
     // Modes
     else if (key === "modes") {
       let selectedModes = [...selectedFilterValues.modes];
       if (value === "All") {
         selectedModes = [];
-        delete searchParams[key];
+        delete newSearchParams[key];
       } else {
         selectedModes = selectedModes.filter((mode: any) => mode !== "All");
         if (selectedModes.includes(value)) {
@@ -141,10 +148,14 @@ function FilterItem(props: any) {
         } else {
           selectedModes.push(value);
         }
-        searchParams[key] = selectedModes.join(URL_QUERY_VALUE_SEPARATOR);
+
+        if (selectedModes.length > 0) {
+           newSearchParams[key] = selectedModes.join(URL_QUERY_VALUE_SEPARATOR);
+        } else {
+           delete newSearchParams[key];
+        }
       }
     }
-
     // Access type (individual selection)
     else if (key === "accessType") {
       let selectedAccessOptions = [...selectedFilterValues.accessOption];
@@ -155,17 +166,15 @@ function FilterItem(props: any) {
       } else {
         selectedAccessOptions.push(value);
       }
-      // Update search params, removing if empty
       if (selectedAccessOptions.length > 0) {
-        searchParams["accessOption"] = selectedAccessOptions.join(
+        newSearchParams["accessOption"] = selectedAccessOptions.join(
           URL_QUERY_VALUE_SEPARATOR
         );
       } else {
-        delete searchParams["accessOption"];
+        delete newSearchParams["accessOption"];
       }
     }
-
-    // Venue (individual selection)
+    // Location (individual selection)
     else if (key === "locations") {
       let selectedLocation = [...selectedFilterValues.location];
       if (selectedLocation.includes(value)) {
@@ -175,16 +184,14 @@ function FilterItem(props: any) {
       } else {
         selectedLocation.push(value);
       }
-      // Update search params, removing if empty
       if (selectedLocation.length > 0) {
-        searchParams["location"] = selectedLocation.join(
+        newSearchParams["location"] = selectedLocation.join(
           URL_QUERY_VALUE_SEPARATOR
         );
       } else {
-        delete searchParams["location"];
+        delete newSearchParams["location"];
       }
     }
-
     // Host (individual selection)
     else if (key === "host") {
       let selectedHosts = [...selectedFilterValues.allHost];
@@ -193,14 +200,12 @@ function FilterItem(props: any) {
       } else {
         selectedHosts.push(value);
       }
-      // Update search params, removing if empty
       if (selectedHosts.length > 0) {
-        searchParams[key] = selectedHosts.join(URL_QUERY_VALUE_SEPARATOR);
+        newSearchParams[key] = selectedHosts.join(URL_QUERY_VALUE_SEPARATOR);
       } else {
-        delete searchParams[key];
+        delete newSearchParams[key];
       }
     }
-
     // Tags (individual selection)
     else if (key === "tags") {
       let selectedTags = [...selectedFilterValues.tags];
@@ -209,24 +214,27 @@ function FilterItem(props: any) {
       } else {
         selectedTags.push(value);
       }
-      // Update search params, removing if empty
       if (selectedTags.length > 0) {
-        searchParams[key] = selectedTags.join(URL_QUERY_VALUE_SEPARATOR);
+        newSearchParams[key] = selectedTags.join(URL_QUERY_VALUE_SEPARATOR);
       } else {
-        delete searchParams[key];
+        delete newSearchParams[key];
       }
     }
-
     // Year
     else if (key === "year") {
-      searchParams[key] = value;
+      newSearchParams[key] = value;
     }
 
-    // Push updates for individual selections
-    const query = getQueryParams(searchParams);
+    const query = getQueryParams(newSearchParams);
     const pathname = window.location.pathname;
-    router.push(`${pathname}?${query}`);
+    const currentQuery = getQueryParams(searchParams);
+
+    if (query !== currentQuery) {
+       router.push(query ? `${pathname}?${query}` : pathname);
+    }
+
   };
+
 
   return (
     <>
