@@ -82,6 +82,47 @@ function MultiSelect(props: any) {
               </div>
             )}
 
+            {filteredItems.length > 0 && props.identifierId === "locations" && (
+              <div className="ms__pane__select-all">
+                <div
+                  onClick={() => {
+                    // Check if all items are already selected
+                    const allSelected = filteredItems.every((item) =>
+                      selectedItems.includes(item.name)
+                    );
+
+                    // Get all item names in a single array
+                    const itemNames = filteredItems.map((item) => item.name);
+
+                    // Call onItemSelected with a special payload that indicates "select all"
+                    onItemSelected(props?.identifierId, {
+                      isSelectAll: true,
+                      items: itemNames,
+                      select: !allSelected,
+                    });
+                  }}
+                  className="ms__pane__select-all__item"
+                >
+                  <p className="ms__pane__select-all__item__text">Select All</p>
+                  <div
+                    className={`${
+                      filteredItems.every((item) =>
+                        selectedItems.includes(item.name)
+                      )
+                        ? "ms__pane__list__item__check--active"
+                        : "ms__pane__list__item__check"
+                    }`}
+                  >
+                    <img
+                      className="ms__pane__list__item__check__icon"
+                      src={tickImg}
+                    />
+                  </div>
+                </div>
+                <div className="ms__pane__list__divider"></div>
+              </div>
+            )}
+
             {filteredItems.length === 0 && (
               <p className="ms__pane__empty">No options available</p>
             )}
@@ -255,7 +296,7 @@ function MultiSelect(props: any) {
           }
           .ms__pane__list {
             overflow-y: auto;
-            max-height: 160px;
+            max-height: 120px;
             padding: 8px 16px;
           }
           .ms__pane__list__item {
@@ -309,6 +350,32 @@ function MultiSelect(props: any) {
           .ms__pane__list__item__check__icon {
             width: 12px;
             height: 12px;
+          }
+
+          .ms__pane__select-all {
+            padding: 8px 20px 0 20px;
+          }
+
+          .ms__pane__select-all__item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            width: 100%;
+            padding: 6px 0;
+          }
+
+          .ms__pane__select-all__item__text {
+            color: #0f172a;
+            font-size: 14px;
+            font-weight: 500;
+            flex: 1;
+            text-align: left;
+          }
+          .ms__pane__list__divider {
+            width: 100%;
+            height: 1px;
+            margin-top: 5px;
+            border-top: 1px solid #cbd5e1;
           }
         `}
       </style>

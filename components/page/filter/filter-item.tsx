@@ -38,16 +38,22 @@ function FilterItem(props: any) {
     ref: paneRef,
     callback: () => {
       setFilteredItems([...items]);
-      setPaneStatus(false);
+      if (isPaneActive) {
+        setPaneStatus(false);
+      }
     },
   });
 
   const onInputChange = (value: any) => {
-    setPaneStatus(true);
+    if (!isPaneActive) {
+      setPaneStatus(true);
+   }
     if (value.trim() === "") {
       setFilteredItems([...items]);
     } else {
-      const filteredValues = [...items].filter((v) => v.label.toLowerCase().includes(value.toLowerCase()));
+      const filteredValues = [...items].filter((v) =>
+        v.label.toLowerCase().includes(value.toLowerCase())
+      );
       setFilteredItems([...filteredValues]);
     }
   };
@@ -57,20 +63,28 @@ function FilterItem(props: any) {
     e.stopPropagation();
     onFilterClearAllBtnClicked();
     setPaneStatus(false);
+    setFilteredItems([...items]);
+    const newSearchParams = { ...searchParams };
     if (key === "accessType") {
-      delete searchParams["accessOption"];
-    } else if (key === "venue") {
-      delete searchParams["location"];
+      delete newSearchParams["accessOption"];
+    } else if (key === "locations") {
+      delete newSearchParams["location"];
     } else if (key === "host") {
-      delete searchParams["host"];
+      delete newSearchParams["host"];
+    } else if (key === "tags") {
+      delete newSearchParams["tags"];
     }
     const pathname = window.location.pathname;
-    const query = getQueryParams(searchParams);
-    router.push(`${pathname}?${query}`);
+    const query = getQueryParams(newSearchParams);
+    router.push(query ? `${pathname}?${query}`: pathname);
   };
 
   const onMultiBoxClicked = () => {
-    setPaneStatus((v) => !v);
+    const opening = !isPaneActive;
+    setPaneStatus(opening);
+    if (opening) {
+      setFilteredItems([...items]);
+    }
   };
 
   const onMultiTagSelected = (item: any) => {
@@ -79,20 +93,54 @@ function FilterItem(props: any) {
 
   const onItemClicked = (key: any, value: any) => {
     onScheduleFilterClicked(key, value, view);
-    // Featured
-    if (key === "isFeatured") {
-      searchParams[key] = value;
-      if (initialFilters[key] === searchParams[key]) {
-        delete searchParams[key];
+
+    // --- Start: Logic to update searchParams ---
+    let newSearchParams = { ...searchParams };
+
+    // Handle the "Select All" case *only* for locations
+    if (
+      value &&
+      typeof value === "object" &&
+      value.isSelectAll &&
+      key === "locations"
+    ) {
+      const selectAllItems = value.items;
+      const shouldSelect = value.select;
+      let selectedLocation = [...selectedFilterValues.location];
+
+      if (shouldSelect) {
+        selectAllItems.forEach((item: any) => {
+          if (!selectedLocation.includes(item)) {
+            selectedLocation.push(item);
+          }
+        });
+      } else {
+        selectedLocation = selectedLocation.filter(
+          (option) => !selectAllItems.includes(option)
+        );
+      }
+
+      if (selectedLocation.length > 0) {
+        newSearchParams["location"] = selectedLocation.join(
+          URL_QUERY_VALUE_SEPARATOR
+        );
+      } else {
+        delete newSearchParams["location"];
       }
     }
-
+    // Featured
+    else if (key === "isFeatured") {
+      newSearchParams[key] = value;
+      if (initialFilters[key] === newSearchParams[key]) {
+        delete newSearchParams[key];
+      }
+    }
     // Modes
     else if (key === "modes") {
       let selectedModes = [...selectedFilterValues.modes];
       if (value === "All") {
         selectedModes = [];
-        delete searchParams[key];
+        delete newSearchParams[key];
       } else {
         selectedModes = selectedModes.filter((mode: any) => mode !== "All");
         if (selectedModes.includes(value)) {
@@ -100,33 +148,51 @@ function FilterItem(props: any) {
         } else {
           selectedModes.push(value);
         }
-        searchParams[key] = selectedModes.join(URL_QUERY_VALUE_SEPARATOR);
+
+        if (selectedModes.length > 0) {
+           newSearchParams[key] = selectedModes.join(URL_QUERY_VALUE_SEPARATOR);
+        } else {
+           delete newSearchParams[key];
+        }
       }
     }
-
-    // Access type
+    // Access type (individual selection)
     else if (key === "accessType") {
       let selectedAccessOptions = [...selectedFilterValues.accessOption];
       if (selectedAccessOptions.includes(value)) {
-        selectedAccessOptions = selectedAccessOptions.filter((option: any) => option !== value);
+        selectedAccessOptions = selectedAccessOptions.filter(
+          (option: any) => option !== value
+        );
       } else {
         selectedAccessOptions.push(value);
       }
-      searchParams["accessOption"] = selectedAccessOptions.join(URL_QUERY_VALUE_SEPARATOR);
+      if (selectedAccessOptions.length > 0) {
+        newSearchParams["accessOption"] = selectedAccessOptions.join(
+          URL_QUERY_VALUE_SEPARATOR
+        );
+      } else {
+        delete newSearchParams["accessOption"];
+      }
     }
-
-    // Venue
-    else if (key === "venue") {
+    // Location (individual selection)
+    else if (key === "locations") {
       let selectedLocation = [...selectedFilterValues.location];
       if (selectedLocation.includes(value)) {
-        selectedLocation = selectedLocation.filter((option: any) => option !== value);
+        selectedLocation = selectedLocation.filter(
+          (option: any) => option !== value
+        );
       } else {
         selectedLocation.push(value);
       }
-      searchParams["location"] = selectedLocation.join(URL_QUERY_VALUE_SEPARATOR);
+      if (selectedLocation.length > 0) {
+        newSearchParams["location"] = selectedLocation.join(
+          URL_QUERY_VALUE_SEPARATOR
+        );
+      } else {
+        delete newSearchParams["location"];
+      }
     }
-
-    // Host
+    // Host (individual selection)
     else if (key === "host") {
       let selectedHosts = [...selectedFilterValues.allHost];
       if (selectedHosts.includes(value)) {
@@ -134,10 +200,13 @@ function FilterItem(props: any) {
       } else {
         selectedHosts.push(value);
       }
-      searchParams[key] = selectedHosts.join(URL_QUERY_VALUE_SEPARATOR);
+      if (selectedHosts.length > 0) {
+        newSearchParams[key] = selectedHosts.join(URL_QUERY_VALUE_SEPARATOR);
+      } else {
+        delete newSearchParams[key];
+      }
     }
-
-    // Tags
+    // Tags (individual selection)
     else if (key === "tags") {
       let selectedTags = [...selectedFilterValues.tags];
       if (selectedTags.includes(value)) {
@@ -145,24 +214,40 @@ function FilterItem(props: any) {
       } else {
         selectedTags.push(value);
       }
-      searchParams[key] = selectedTags.join(URL_QUERY_VALUE_SEPARATOR);
+      if (selectedTags.length > 0) {
+        newSearchParams[key] = selectedTags.join(URL_QUERY_VALUE_SEPARATOR);
+      } else {
+        delete newSearchParams[key];
+      }
     }
-
     // Year
     else if (key === "year") {
-      searchParams[key] = value;
+      newSearchParams[key] = value;
     }
 
-    const query = getQueryParams(searchParams);
+    const query = getQueryParams(newSearchParams);
     const pathname = window.location.pathname;
-    router.push(`${pathname}?${query}`);
+    const currentQuery = getQueryParams(searchParams);
+
+    if (query !== currentQuery) {
+       router.push(query ? `${pathname}?${query}` : pathname);
+    }
+
   };
+
 
   return (
     <>
       <div className={`fi fi--${aligmentClass} fi--${type}`}>
         <h2 className={`fi__title fi__title--${type}`}>{name}</h2>
-        {type === "toggle" && <PlToggle callback={onItemClicked} itemId={props.identifierId} activeItem={props.isChecked} {...props} />}
+        {type === "toggle" && (
+          <PlToggle
+            callback={onItemClicked}
+            itemId={props.identifierId}
+            activeItem={props.isChecked}
+            {...props}
+          />
+        )}
         {type === "multi-select" && (
           <div ref={paneRef}>
             <MultiSelect
@@ -185,7 +270,9 @@ function FilterItem(props: any) {
             />
           </div>
         )}
-        {type === "single-select" && <PlSingleSelect callback={onItemClicked} {...props} />}
+        {type === "single-select" && (
+          <PlSingleSelect callback={onItemClicked} {...props} />
+        )}
         {type === "tag" && (
           <div className="tags">
             {items.map((item, itemIndex) => (

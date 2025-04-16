@@ -19,7 +19,6 @@ const FilterBox = (props: any) => {
   const selectedFilterValues = { ...props.selectedFilterValues };
   const router = useRouter();
   const filteredEventsCount = filteredEvents?.length;
-
   const [isExpand, setIsExpand] = useState(typeof window !== 'undefined' ? window.innerWidth >= 1024 : true);
 
   const { onFilterClearAllBtnClicked, onFilterMenuClicked } =
@@ -84,14 +83,14 @@ const FilterBox = (props: any) => {
       iconUrl: "/icons/accesstype.svg",
     },
     {
-      name: "Venues",
+      name: "Locations",
       type: "multi-select",
       items: rawFilters.location,
       selectedItems: selectedFilterValues.location,
       placeholder: "Filter by location",
       dropdownImgUrl: "/icons/down_arrow_filled.svg",
       searchIcon: "/icons/search.svg",
-      identifierId: "venue",
+      identifierId: "locations",
       iconUrl: "/icons/location_icon.svg",
     },
 
