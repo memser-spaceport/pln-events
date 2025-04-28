@@ -186,14 +186,16 @@ const generateUniqueObjects = (events: any) => {
       },
     ],
   };
-
+  
+  const configLocations = events.configLocations;
   events.forEach(({ location, hostName, hostLogo, accessOption, tags, coHosts }: any) => {
-    if (!uniqueNames.location.has(location)) {
-      if (location.trim().length > 0) {
-        uniqueNames.location.add(location);
-        filterValues.location.push({ name: location, label: location });
-      }
-    }
+    //TODO
+    // if (!uniqueNames.location.has(location)) {
+    //   if (location.trim().length > 0) {
+    //     uniqueNames.location.add(location);
+    //     filterValues.location.push({ name: location, label: location });
+    //   }
+    // }
     if (!uniqueNames.allHost.has(hostName)) {
       if (hostName.trim().length > 0) {
         uniqueNames.allHost.add(hostName);
@@ -224,6 +226,13 @@ const generateUniqueObjects = (events: any) => {
         filterValues.tags.push({ name: tag, label: tag });
       }
     });
+  });
+
+  if (!Array.isArray(filterValues.configLocations)) {
+    filterValues.configLocations = [];
+  }
+  configLocations?.forEach((configLocation: any) => {
+    filterValues.location.push({ name: configLocation?.name, label: configLocation?.title });
   });
 
   return filterValues;

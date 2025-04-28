@@ -84,9 +84,9 @@ const FilterBox = (props: any) => {
     },
     {
       name: "Locations",
-      type: "multi-select",
+      type: "single-select",
       items: rawFilters.location,
-      selectedItems: selectedFilterValues.location,
+      selectedItem: selectedFilterValues.location,
       placeholder: "Filter by location",
       dropdownImgUrl: "/icons/down_arrow_filled.svg",
       searchIcon: "/icons/search.svg",
