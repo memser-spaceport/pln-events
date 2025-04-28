@@ -29,48 +29,49 @@ export const metadata: Metadata = {
   // },
 };
 
-export default async function Home(params: any) {
-  const searchParams = params.searchParams;
-  const {
-    isError,
-    events,
-    filterValues,
-    selectedItems,
-    bannerData,
-    rawEvents,
-  } = await getPageData(params);
+export default async function Home() {
+    return <div></div>;
+  // const searchParams = params.searchParams;
+  // const {
+  //   isError,
+  //   events,
+  //   filterValues,
+  //   selectedItems,
+  //   bannerData,
+  //   rawEvents,
+  // } = await getPageData(params);
 
-  const viewType = searchParams?.viewType;
-  // const showBanner = (bannerData && bannerData?.message?.length > 0) && (searchParams?.showBanner !== "false")
-  const showBanner = false;
+  // const viewType = searchParams?.viewType;
+  // // const showBanner = (bannerData && bannerData?.message?.length > 0) && (searchParams?.showBanner !== "false")
+  // const showBanner = false;
 
-  if (isError) {
-    return <div></div>
-  }
+  // if (isError) {
+  //   return <div></div>
+  // }
 
-  return (
-    <main className={styles.hp}>
-      <div className={styles.hp__content}>
-        <aside className={styles.hp__filter}>
-          <FilterWrapper
-            showBanner = {showBanner}
-            filterValues={filterValues}
-            selectedItems={selectedItems}
-            events={events}
-          />
-        </aside>
-        <div className={styles.hp__events}>
-          <Events
-           showBanner={showBanner}
-            rawEvents={rawEvents}
-            viewType={viewType}
-            events={events}
-            selectedItems={selectedItems}
-          />
-        </div>
-      </div>
-    </main>
-  );
+  // return (
+  //   <main className={styles.hp}>
+  //     <div className={styles.hp__content}>
+  //       <aside className={styles.hp__filter}>
+  //         <FilterWrapper
+  //           showBanner = {showBanner}
+  //           filterValues={filterValues}
+  //           selectedItems={selectedItems}
+  //           events={events}
+  //         />
+  //       </aside>
+  //       <div className={styles.hp__events}>
+  //         <Events
+  //          showBanner={showBanner}
+  //           rawEvents={rawEvents}
+  //           viewType={viewType}
+  //           events={events}
+  //           selectedItems={selectedItems}
+  //         />
+  //       </div>
+  //     </div>
+  //   </main>
+  // );
 }
 
 const getPageData = async (params: any) => {
