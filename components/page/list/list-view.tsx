@@ -18,10 +18,8 @@ const ListView = (props: any) => {
   const { onEventClicked } = useSchedulePageAnalytics();
 
   const sortedEvents = sortEventsByStartDate(events);
-  console.log(sortedEvents,"sortedEvents>>>>>>>>>>>>>>>>>>>>>>>>>>");
   const groupedEvents = groupByStartDate(sortedEvents);
   const year = formatDateTime(sortedEvents[0]?.startDate, sortedEvents[0]?.timezone, "YYYY")
-  console.log(groupedEvents,"groupedEvents>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
   const onOpenDetailPopup = (event: any) => {
     onEventClicked(viewType, event?.id, event?.name);

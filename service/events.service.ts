@@ -482,17 +482,17 @@ function assignColorsToEvents(events: any[]) {
   return events;
 }
 
-export const getAllEvents = async () => {
+export const getAllEvents = async (config: any) => {
   const result = await fetch(
-    `${process.env.WEB_API_BASE_URL}/events?conference=pl-events&status=APPROVED&sortByPriority=true&type=EventAndSession`,
+    `${process.env.WEB_API_BASE_URL}/events?status=APPROVED&sortByPriority=true&type=EventAndSession${config?.conference ? `&conference=${config?.conference}` : ""}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.WEB_API_TOKEN}`,
         "x-client-secret": process.env.EVENT_CLIENT_SECRET ?? "",
-        "x-conference": "pl-events",
+        ...(config?.conference && config?.conference !== "" ? { "x-conference": "labweek-web3-events", "x-conference-id": config?.conference } : {}),
       },
       method: "GET",
-      next: { tags: ["pl-events"] },
+      next: { tags: ["labweek-web3-events"] },
     }
   );
 
@@ -501,11 +501,12 @@ export const getAllEvents = async () => {
   }
 
   const allEvents = await result.json();
+
   let formattedEvents = allEvents?.map((event: any, index: number) => {
     let dayDifference = differenceInDays(
       event.start_date,
       event.end_date,
-      event.timezone
+      event.timezone || config?.timezone 
     );
 
     return {
@@ -525,7 +526,7 @@ export const getAllEvents = async () => {
       dateRange: formatDateForSchedule(
         event.start_date,
         event.end_date,
-        event.timezone
+        event.timezone || config?.timezone
       ),
       endDate: event.end_date,
       multiday: dayDifference > 0,
@@ -533,7 +534,7 @@ export const getAllEvents = async () => {
       accessOption: event.access_option,
       status: event.status,
       format: event.format,
-      location: event.location ?? "",
+      location: (event.location || config?.name) ?? "",
       locationUrl: event.location_url ?? "",
       sponsors: event.sponsors ?? [],
       seatCount: event.seat_count ?? "",
@@ -547,12 +548,12 @@ export const getAllEvents = async () => {
       contactInfos: event.contact_infos,
       eventLogo: event.event_logo,
       isHidden: event.is_hidden ?? false,
-      startTime: getTime(event.start_date, event.timezone),
+      startTime: getTime(event.start_date, event.timezone || config?.timezone),
       agenda: event.agenda,
       slug: stringToSlug(event.event_name),
-      endTime: getTime(event.end_date, event.timezone),
-      timezone: event.timezone,
-      utcOffset: getUTCOffset(event.timezone),
+      endTime: getTime(event.end_date, event.timezone || config?.timezone),
+      timezone: event.timezone || config?.timezone,
+      utcOffset: getUTCOffset(event.timezone || config?.timezone),
       sessions: event.agenda?.sessions?.map((session: any, index: number) => {
         return {
           id:

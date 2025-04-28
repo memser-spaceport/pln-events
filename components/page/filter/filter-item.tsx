@@ -121,9 +121,7 @@ function FilterItem(props: any) {
       }
 
       if (selectedLocation.length > 0) {
-        newSearchParams["location"] = selectedLocation.join(
-          URL_QUERY_VALUE_SEPARATOR
-        );
+        newSearchParams["location"] = selectedLocation[0];
       } else {
         delete newSearchParams["location"];
       }
@@ -174,20 +172,15 @@ function FilterItem(props: any) {
         delete newSearchParams["accessOption"];
       }
     }
-    // Location (individual selection)
     else if (key === "locations") {
       let selectedLocation = [...selectedFilterValues.location];
-      if (selectedLocation.includes(value)) {
-        selectedLocation = selectedLocation.filter(
-          (option: any) => option !== value
-        );
+      if (selectedLocation.length === 1 && selectedLocation[0] === value) {
+        selectedLocation = [];
       } else {
-        selectedLocation.push(value);
+        selectedLocation = [value];
       }
       if (selectedLocation.length > 0) {
-        newSearchParams["location"] = selectedLocation.join(
-          URL_QUERY_VALUE_SEPARATOR
-        );
+        newSearchParams["location"] = selectedLocation[0];
       } else {
         delete newSearchParams["location"];
       }
