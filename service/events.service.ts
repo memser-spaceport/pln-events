@@ -492,7 +492,8 @@ export const getAllEvents = async (config: any) => {
         ...(config?.conference && config?.conference !== "" ? { "x-conference": "labweek-web3-events", "x-conference-id": config?.conference } : {}),
       },
       method: "GET",
-      next: { tags: ["labweek-web3-events"] },
+      next: { tags: ["pl-events"] },
+      // next: { tags: ["labweek-web3-events"] },
     }
   );
 
