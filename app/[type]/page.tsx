@@ -7,24 +7,26 @@ import { getFilterValuesFromEvents, getFilteredEvents } from "@/utils/helper";
 import LegendsModal from "@/components/page/event-detail/legends-modal";
 import ProgramView from "@/components/page/events/program-view";
 import { getAllEvents } from "@/service/events.service";
-import { PL_EVENT_CONFIGURATION } from "@/utils/constants";
+import { getLocations } from "@/service/events.service";
 
 async function getPageData(searchParams: any, type: string) {
   try {
+    const locations = await getLocations();
     const location = searchParams?.location ?? "";
-    const config = PL_EVENT_CONFIGURATION[location];
+    const config = locations[location];
     const eventsResponse = await getAllEvents(config);
 
     if (eventsResponse.isError) {
       return { isError: true, filteredEvents: [] };
     }
-    const configLocations = Object.values(PL_EVENT_CONFIGURATION).map((item) => {
+    const configLocations = Object.values(locations).map((item: any) => {
       return {
-        name: item.name,
-        title: item.title,
-        conference: item.conference,
+        name: item.title,
+        title: item.title,  
+        timezone: item.timezone,
       }
     });
+
     eventsResponse.data.configLocations = configLocations;
     const { rawFilterValues, selectedFilterValues, initialFilters } =
       getFilterValuesFromEvents(eventsResponse.data, searchParams);
