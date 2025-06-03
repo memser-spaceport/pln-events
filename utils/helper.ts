@@ -186,14 +186,16 @@ const generateUniqueObjects = (events: any) => {
       },
     ],
   };
-
+  
+  const configLocations = events.configLocations;
   events.forEach(({ location, hostName, hostLogo, accessOption, tags, coHosts }: any) => {
-    if (!uniqueNames.location.has(location)) {
-      if (location.trim().length > 0) {
-        uniqueNames.location.add(location);
-        filterValues.location.push({ name: location, label: location });
-      }
-    }
+    //TODO
+    // if (!uniqueNames.location.has(location)) {
+    //   if (location.trim().length > 0) {
+    //     uniqueNames.location.add(location);
+    //     filterValues.location.push({ name: location, label: location });
+    //   }
+    // }
     if (!uniqueNames.allHost.has(hostName)) {
       if (hostName.trim().length > 0) {
         uniqueNames.allHost.add(hostName);
@@ -224,6 +226,13 @@ const generateUniqueObjects = (events: any) => {
         filterValues.tags.push({ name: tag, label: tag });
       }
     });
+  });
+
+  if (!Array.isArray(filterValues.configLocations)) {
+    filterValues.configLocations = [];
+  }
+  configLocations?.forEach((configLocation: any) => {
+    filterValues.location.push({ name: configLocation?.name, label: configLocation?.title });
   });
 
   return filterValues;
@@ -325,8 +334,12 @@ export const getFilteredEvents = (events: any, queryParams: any, type?: string) 
     }
 
     if (queryParams.location) {
-      const locationValues = queryParams.location.split(URL_QUERY_VALUE_SEPARATOR);
-      if (!locationValues.includes(event.location)) {
+      const locationValues = queryParams.location.split(URL_QUERY_VALUE_SEPARATOR).map((value: any) => value.toLowerCase());
+      const hasMatchingLocation = locationValues.some((locationValue: string) => 
+        event.location.toLowerCase().includes(locationValue)
+      );
+      
+      if (!hasMatchingLocation) {
         return false;
       }
     }

@@ -21,13 +21,16 @@ function PlSingleSelect(props: any) {
         if (e.target.value.trim() === '') {
             setfilteredItems([...items])
         } else {
-            const filteredValues = [...items].filter(v => v.toLowerCase().includes(e.target.value.toLowerCase()))
+            const filteredValues = [...items].filter(v => 
+                v.label.toLowerCase().includes(e.target.value.toLowerCase()) ||
+                v.name.toLowerCase().includes(e.target.value.toLowerCase())
+            )
             setfilteredItems([...filteredValues])
         }
     }
 
-    const onItemSelected = (item: string) => {
-        callback(itemId, item, type);
+    const onItemSelected = (item: any) => {
+        callback(itemId, item.name);
     }
 
     const onSelectionBoxClicked = () => {
@@ -60,30 +63,38 @@ function PlSingleSelect(props: any) {
         }
     }, [isPaneActive])
 
+    const selectedItemObjs = items.filter((item: any) => selectedItem.includes(item.name));
     return <>
         <div ref={paneRef} className="plms">
             <div onClick={onSelectionBoxClicked} className="plms__info">
                 <img src={iconUrl} className="plms__info__icon"/>
-                {!selectedItem && <div className="plms__info__text">{`Select ${itemId}`}</div>}
-                {selectedItem && <div className="plms__info__text">{selectedItem}</div>}
+                {selectedItem.length === 0 && <div className="plms__info__text">{`Select Location`}</div>}
+                {selectedItem.length > 0 && <div className="plms__info__text">{selectedItemObjs.map((item: any) => item.label).join(', ')}</div>}
                 {(items.length > 1) && <img className="plms__info__arrow" src={dropdownImgUrl}/>}
             </div>
 
-            {isPaneActive && <div  className="plms__pane">
+            {isPaneActive && <div className="plms__pane">
                 {(items.length > 1) && <div className="plms__pane__head">
                     <input onChange={onInputChange} placeholder="Search" className="plms__pane__head__input" />
                     <img className="plms__pane__head__searchicon" src="/icons/pln-search-icon.svg" />
                 </div>}
                 <div className="plms__pane__list">
-                    {filteredItems.map((item, index) => <div key={`${item} + ${index}`} onClick={() => onItemSelected(item)} className="plms__pane__list__item">
-                      
-                        <p id={`${itemId}-ps-pane-${index}`} className={`plms__pane__list__item__text`} >{item}</p>
-                        {(selectedItem !== item) && <div className="plms__pane__list__item__check"></div>}
-                        {(selectedItem === item) && <div className="plms__pane__list__item__check--active">
-                            <img className="plms__pane__list__item__check__icon" src="/icons/pln-white-tick.svg"/>
-                            </div>}
-                        
-                    </div>)}
+                    {filteredItems.length === 0 && (
+                        <p className="plms__pane__empty">No options available</p>
+                    )}
+                    {filteredItems.map((item, index) => (
+                        <div key={`${item.name}-${index}`} onClick={() => onItemSelected(item)} className="plms__pane__list__item">
+                            <p id={`${itemId}-ps-pane-${index}`} className={`plms__pane__list__item__text`}>{item.label}</p>
+                            {/* {(selectedItem !== item.name) && <div className="plms__pane__list__item__check"></div>} */}
+                            {selectedItemObjs.some((selectedItemObj: any) => selectedItemObj.name === item.name) ? (
+                                <div className="plms__pane__list__item__check--active">
+                                    <img className="plms__pane__list__item__check__icon" src="/icons/pln-white-tick.svg"/>
+                                </div>
+                            ) : (
+                                <div className="plms__pane__list__item__check"></div>
+                            )}
+                        </div>
+                    ))}
                 </div>
             </div>}
         </div>
@@ -93,7 +104,7 @@ function PlSingleSelect(props: any) {
                 .plms {position: relative; width: 100%; height: 36px;}
                 .plms__info {position: relative; height: 38px; align-items: center; width: 100%; font-size: 14px; border: 1px solid #CBD5E1; border-radius: 8px; padding: 8px 12px; display: flex; cursor: pointer;}
                 .plms__info__icon {width: 16px; height: 16px; margin-right: 8px;}
-                .plms__info__text {color: #475569; flex: 1; font-weight: 500; font-size: 14px;}
+                .plms__info__text {color: #475569; flex: 1; font-weight: 500; font-size: 14px; text-transform: capitalize;}
                 .plms__info__close {background: #64748B;width: 20px; display: flex; align-items: center; justify-content: center; height: 20px; border-radius: 0 100px 100px 0;}
                 .plms__info__close__img {width: 16px; height: 16px;}
                 .plms__info__count {background: #64748B;width: 20px; display: flex; align-items: center; justify-content: center; height: 20px; border-radius: 100px 0 0 100px; margin-right: 1px;}
@@ -105,12 +116,12 @@ function PlSingleSelect(props: any) {
                 .plms__pane__head__searchicon {position: absolute; top: 27px; left: 26px;}
                 .plms__pane__list {overflow-y: auto; max-height: 160px; padding: 8px 16px;}
                 .plms__pane__list__item {display: flex; justify-content: space-between; cursor: pointer; width: 100%; padding: 6px 0;}
-                .plms__pane__list__item__text {color: #0F172A; font-size: 14px; font-weight: 400; flex: 1; text-align:left;}
+                .plms__pane__list__item__text {color: #0F172A; font-size: 14px; font-weight: 400; flex: 1; text-align:left; text-transform: capitalize;}
                 .plms__pane__list__item__logo {width: 20px; height: 20px; border: 1px solid grey; background: grey; border-radius: 50%; margin-right: 8px;}
                 .plms__pane__list__item__check {width: 20px; height: 20px; border: 1px solid #CBD5E1; border-radius: 4px; margin-left: 8px;}
                 .plms__pane__list__item__check--active {background: #156FF7; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 4px; margin-left: 8px;}
                 .plms__pane__list__item__check__icon {width: 16px; height: 16px;}
-                
+                .plms__pane__empty {padding: 8px 16px; text-align: center; display: flex; justify-content: center; align-items: center; color: lightgrey; font-size: 13px;}
                 `
             }
         </style>
