@@ -482,18 +482,16 @@ function assignColorsToEvents(events: any[]) {
   return events;
 }
 
-export const getAllEvents = async (config: any) => {
+export const getAllEvents = async (location: any) => {
   const result = await fetch(
-    `${process.env.WEB_API_BASE_URL}/events?status=APPROVED&sortByPriority=true&type=EventAndSession${config?.conference ? `&conference=${config?.conference}` : ""}`,
+    `${process.env.WEB_API_BASE_URL}/events?status=APPROVED&sortByPriority=true&type=EventAndSession${location ? `&location=${location?.title}` : ""}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.WEB_API_TOKEN}`,
         "x-client-secret": process.env.EVENT_CLIENT_SECRET ?? "",
-        ...(config?.conference && config?.conference !== "" ? { "x-conference": "labweek-web3-events", "x-conference-id": config?.conference } : {}),
       },
       method: "GET",
-      next: { tags: ["pl-events"] },
-      // next: { tags: ["labweek-web3-events"] },
+      next: { tags: ["labweek-web3-events"] },
     }
   );
 
@@ -507,7 +505,7 @@ export const getAllEvents = async (config: any) => {
     let dayDifference = differenceInDays(
       event.start_date,
       event.end_date,
-      event.timezone || config?.timezone 
+      event.timezone || location?.timezone 
     );
 
     return {
@@ -527,7 +525,7 @@ export const getAllEvents = async (config: any) => {
       dateRange: formatDateForSchedule(
         event.start_date,
         event.end_date,
-        event.timezone || config?.timezone
+        event.timezone || location?.timezone
       ),
       endDate: event.end_date,
       multiday: dayDifference > 0,
@@ -535,7 +533,7 @@ export const getAllEvents = async (config: any) => {
       accessOption: event.access_option,
       status: event.status,
       format: event.format,
-      location: (event.location || config?.name) ?? "",
+      location: (event.location || location?.name) ?? "",
       locationUrl: event.location_url ?? "",
       sponsors: event.sponsors ?? [],
       seatCount: event.seat_count ?? "",
@@ -549,12 +547,12 @@ export const getAllEvents = async (config: any) => {
       contactInfos: event.contact_infos,
       eventLogo: event.event_logo,
       isHidden: event.is_hidden ?? false,
-      startTime: getTime(event.start_date, event.timezone || config?.timezone),
+      startTime: getTime(event.start_date, event.timezone || location?.timezone),
       agenda: event.agenda,
       slug: stringToSlug(event.event_name),
-      endTime: getTime(event.end_date, event.timezone || config?.timezone),
-      timezone: event.timezone || config?.timezone,
-      utcOffset: getUTCOffset(event.timezone || config?.timezone),
+      endTime: getTime(event.end_date, event.timezone || location?.timezone),
+      timezone: event.timezone || location?.timezone,
+      utcOffset: getUTCOffset(event.timezone || location?.timezone),
       sessions: event.agenda?.sessions?.map((session: any, index: number) => {
         return {
           id:
@@ -707,4 +705,33 @@ export const getRefreshedAgenda = async (eventId: string) => {
   }
   const jsonResponse = await result.json();
   return jsonResponse;
+};
+
+
+/**
+ * Fetch locations data from the directory API
+ * @returns Object with location keys and LocationData values
+ */
+export const getLocations = async () => {
+  try {
+    const response = await fetch(`${process.env.DIRECTORY_API_URL}/v1/irl/locations?pagination=false`);
+    // Transform array response to Record<string, LocationData> format
+    const locationsRecord = (await response.json()).reduce((acc: any, item: any) => {
+      const locationKey = (item.location || item.name || item.city || '').toLowerCase();
+      
+      if (locationKey) {
+        acc[locationKey] = {
+          title: item.location || item.name || item.city || '',
+          flagURL: item.flag_url || item.flag || '',
+          timezone: item.timezone || item.tz || '' 
+        };
+      }
+      
+      return acc;
+    }, {});
+    return locationsRecord;
+  } catch (error) {
+    console.error('Error fetching locations:', error);
+    return {};
+  }
 };

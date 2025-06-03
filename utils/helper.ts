@@ -334,8 +334,12 @@ export const getFilteredEvents = (events: any, queryParams: any, type?: string) 
     }
 
     if (queryParams.location) {
-      const locationValues = queryParams.location.split(URL_QUERY_VALUE_SEPARATOR);
-      if (!locationValues.includes(event.location)) {
+      const locationValues = queryParams.location.split(URL_QUERY_VALUE_SEPARATOR).map((value: any) => value.toLowerCase());
+      const hasMatchingLocation = locationValues.some((locationValue: string) => 
+        event.location.toLowerCase().includes(locationValue)
+      );
+      
+      if (!hasMatchingLocation) {
         return false;
       }
     }
@@ -386,6 +390,7 @@ export const getFilteredEvents = (events: any, queryParams: any, type?: string) 
 
     return true;
   });
+  console.log("filteredEventsxx", filteredEvents.length);
   return filteredEvents;
 };
 
