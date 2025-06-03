@@ -390,7 +390,6 @@ export const getFilteredEvents = (events: any, queryParams: any, type?: string) 
 
     return true;
   });
-  console.log("filteredEventsxx", filteredEvents.length);
   return filteredEvents;
 };
 
