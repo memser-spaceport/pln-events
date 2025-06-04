@@ -531,7 +531,7 @@ export const getAllEvents = async (location: any) => {
       detailDateRange: formatDateForDetail(
         event.start_date,
         event.end_date,
-        event.timezone || config?.timezone
+        event.timezone || location?.timezone
       ),
       endDate: event.end_date,
       multiday: dayDifference > 0,
