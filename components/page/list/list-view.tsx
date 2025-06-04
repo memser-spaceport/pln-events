@@ -6,7 +6,9 @@ import EventsNoResults from "@/components/ui/events-no-results";
 import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 import { formatDateTime, groupByStartDate, sortEventsByStartDate } from "@/utils/helper";
 import { useRouter } from "next/navigation";
-import { CUSTOM_EVENTS } from "@/utils/constants"; 
+import { CUSTOM_EVENTS } from "@/utils/constants";
+import { useEffect } from "react";
+import { ABBREVIATED_MONTH_NAMES } from "@/utils/constants";
 
 const ListView = (props: any) => {
   const events = props.events ?? [];
@@ -20,6 +22,39 @@ const ListView = (props: any) => {
   const sortedEvents = sortEventsByStartDate(events);
   const groupedEvents = groupByStartDate(sortedEvents);
   const year = formatDateTime(sortedEvents[0]?.startDate, sortedEvents[0]?.timezone, "YYYY")
+
+  useEffect(() => {
+    if (!groupedEvents || Object.keys(groupedEvents).length === 0) return;
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    let targetedMonth = null;
+    for (let i = 0; i < ABBREVIATED_MONTH_NAMES.length; i++) {
+      const idx = (currentMonth + i) % 12;
+      const key = ABBREVIATED_MONTH_NAMES[idx];
+      if (key in groupedEvents) {
+        targetedMonth = key;
+        break;
+      }
+    }
+    if (targetedMonth) {
+      const el = document.getElementById(targetedMonth);
+      if (el) {
+        const headerOffset = 120;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+        // Dispatch event to update sidebar highlight
+        document.dispatchEvent(
+          new CustomEvent(CUSTOM_EVENTS.UPDATE_EVENTS_OBSERVER, {
+            detail: { month: targetedMonth },
+          })
+        );
+      }
+    }
+  }, [groupedEvents]);
 
   const onOpenDetailPopup = (event: any) => {
     onEventClicked(viewType, event?.id, event?.name);
@@ -43,28 +78,28 @@ const ListView = (props: any) => {
             {Object.entries(groupedEvents)?.length > 0 && (
               <>
                 {Object.entries(groupedEvents)?.map(([key, value]: [string, any]) => {
-                  return (
+                    return (
                     <div id={key} key={key} className="listView__events__wrpr">
-                      <div className="listView__agenda__header">
+                        <div className="listView__agenda__header">
                         <h6 className="listView__agenda__header__text">{key}{`-${year}`}</h6>
+                        </div>
+                        <div className="listView__events">
+                          {value?.map((event: any, index: number) => {
+                            return (
+                              !event.isHidden && (
+                                <div
+                                  className="listView__events__event"
+                                  onClick={() => onOpenDetailPopup(event)}
+                                  key={`list-view-event-${index}`}
+                                >
+                                  <EventCard event={event} />
+                                </div>
+                              )
+                            );
+                          })}
+                        </div>
                       </div>
-                      <div className="listView__events">
-                        {value?.map((event: any, index: number) => {
-                          return (
-                            !event.isHidden && (
-                              <div
-                                className="listView__events__event"
-                                onClick={() => onOpenDetailPopup(event)}
-                                key={`list-view-event-${index}`}
-                              >
-                                <EventCard event={event} />
-                              </div>
-                            )
-                          );
-                        })}
-                      </div>
-                    </div>
-                  );
+                    );
                 })}
                 <div className="listView__es"></div>
               </>
