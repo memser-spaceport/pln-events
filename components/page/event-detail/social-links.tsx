@@ -16,6 +16,8 @@ const SocialLinks = (props: any) => {
   const whatsapp = contactInfos?.whatsapp;
   const instagram = contactInfos?.instagram;
   const email = contactInfos?.email;
+  const mastodon = contactInfos?.mastodon;
+  const blueSky = contactInfos?.bluesky;
   const params = useParams();
   const view = params.type as string;
 
@@ -105,6 +107,28 @@ const SocialLinks = (props: any) => {
             title="Instagram"
           >
             <img src={"/icons/instagram.svg"} width={35} height={35} alt="instagram" loading="lazy" />
+          </a>
+        )}
+        {mastodon && (
+          <a
+            className="social__link"
+            href={getFirstUrl(mastodon)}
+            target="_blank"
+            onClick={() => onClickSocialLink("Mastodon", mastodon[0])}
+            title="Mastodon"
+          >
+            <img src={"/icons/mastadon.svg"} width={35} height={35} alt="mastodon" loading="lazy" />
+          </a>
+        )}
+        {blueSky && (
+          <a
+            className="social__link"
+            href={getFirstUrl(blueSky)}
+            target="_blank"
+            onClick={() => onClickSocialLink("BlueSky", blueSky[0])}
+            title="BlueSky"
+          > 
+            <img src={"/icons/bluesky.svg"} width={35} height={35} alt="bluesky" loading="lazy" />
           </a>
         )}
       </div>

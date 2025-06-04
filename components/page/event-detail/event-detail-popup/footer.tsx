@@ -148,7 +148,13 @@ export default function Footer({ event, setEvent }: any) {
           justify-content: space-between;
           padding-right: 24px;
           padding-top: 4px;
+          padding-bottom: 18px;
           align-items: center;
+          position: sticky;
+          bottom: 0;
+          background: #fff;
+          z-index: 1;
+          box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
         }
 
         .event__schedule__cn__right {
