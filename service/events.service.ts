@@ -10,6 +10,7 @@ import {
 } from "@/utils/constants";
 import {
   differenceInDays,
+  formatDateForDetail,
   formatDateForSchedule,
   formatDateTime,
   getTime,
@@ -523,6 +524,11 @@ export const getAllEvents = async (location: any) => {
       startDate: event.start_date,
       // timing: formatTimeRange(event.agenda?.sessions ?? [], event.start_date, event.end_date, weekStart, weekEnd),
       dateRange: formatDateForSchedule(
+        event.start_date,
+        event.end_date,
+        event.timezone || location?.timezone
+      ),
+      detailDateRange: formatDateForDetail(
         event.start_date,
         event.end_date,
         event.timezone || location?.timezone

@@ -7,7 +7,7 @@ const SessionCard = (props: any) => {
   const className = props?.className;
   const eventTimezone = props?.eventTimezone;
   const sessionName = session?.name ?? "";
-  const sessionDescription = session?.description ?? "";
+  const sessionDescription = session?.description ? session?.description : "";
 
   const formatTimeRange = (startDateTime: string, endDateTime: string) => {
     const formattedStartTime = formatDateTime(startDateTime, eventTimezone, "h:mm A");
@@ -21,35 +21,24 @@ const SessionCard = (props: any) => {
   return (
     <>
       <div className={`session ${className}`}>
-        <span className="session__time">{timing}</span>
-        <p className="session__title">{sessionName}</p>
-        <div className="session__desc">
-          <CollapsibleContent content={sessionDescription} />
-        </div>
+          <span className="session__time">{timing} • {sessionName}</span>
+        {sessionDescription && (
+          <div className="session__desc">
+            <CollapsibleContent content={sessionDescription} />
+          </div>
+        )}
       </div>
       <style jsx>{`
         .session {
-          padding: 8px;
-        }
-
-        .background {
-          background: #f8fafc;
-        }
-
-        .border-bottom {
-          border-bottom: 1px solid #cbd5e1;
-        }
-
-        .bottom-radius {
-          border-bottom-left-radius: 8px;
-          border-bottom-right-radius: 8px;
+          display: flex;
+          flex-direction: column;
         }
 
         .session__time {
-          font-size: 10px;
-          font-weight: 700;
+          font-size: 13px;
+          font-weight: 500;
           line-height: 20px;
-          color: #0f172a;
+          color: #4F4F4F;
         }
         .session__title {
           font-size: 14px;
@@ -59,7 +48,12 @@ const SessionCard = (props: any) => {
         }
 
         .session__desc {
-          padding-top: 8px;
+font-weight: 400;
+font-size: 13px;
+line-height: 20px;
+letter-spacing: 0px;
+text-transform: capitalize;
+color: #4F4F4F;
         }
       `}</style>
     </>
