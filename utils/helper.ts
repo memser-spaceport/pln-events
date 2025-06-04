@@ -75,6 +75,31 @@ export const formatDateForSchedule = (startDateString: string, endDateString: st
   }
 };
 
+export const formatDateForDetail = (startDateString: string, endDateString: string, timeZone: string): string => {
+  const startDay = parseInt(formatDateTime(startDateString, timeZone, "D"), 10);
+  const endDay = parseInt(formatDateTime(endDateString, timeZone, "D"), 10);
+
+  const startYear = formatDateTime(startDateString, timeZone, "YYYY");
+  const endYear = formatDateTime(endDateString, timeZone, "YYYY");
+
+  const startMonth = formatDateTime(startDateString, timeZone, "MMM");
+  const endMonth = formatDateTime(endDateString, timeZone, "MMM");
+
+  const startDaySuffix = getDaySuffix(startDay);
+  const endDaySuffix = getDaySuffix(endDay);
+
+  const formattedStartDate = `${startDay}${startDaySuffix}`;
+  const formattedEndDate = `${endDay}${endDaySuffix}`;
+
+  if (startDay === endDay && startMonth === endMonth && startYear === endYear) {
+    return `${formattedStartDate} ${startMonth} ${startYear}, ${getTime(startDateString, timeZone)} - ${getTime(endDateString, timeZone)} (${getUTCOffset(timeZone)})`;
+  } else if (startMonth !== endMonth) {
+    return `${formattedStartDate} ${startMonth} ${startYear}, ${getTime(startDateString, timeZone)} - ${formattedEndDate} ${endMonth} ${endYear}, ${getTime(endDateString, timeZone)} (${getUTCOffset(timeZone)})`;
+  } else {
+    return `${formattedStartDate} ${startMonth} ${startYear}, ${getTime(startDateString, timeZone)} - ${formattedEndDate} ${endMonth} ${endYear}, ${getTime(endDateString, timeZone)} (${getUTCOffset(timeZone)})`;
+  }
+};
+
 
 /**
  * Formats a given UTC date-time string to 24-hour format based on the provided timezone.

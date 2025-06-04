@@ -2,14 +2,15 @@ import { ReactNode } from "react";
 
 interface IModal {
   children: ReactNode;
+  className?: string;
 }
 
 const Modal = (props: IModal) => {
-  const { children } = props;
+  const { children, className } = props;
 
   return (
     <>
-      <div className="modal">{children}</div>
+      <div className={`modal ${className || ''}`}>{children}</div>
       <style jsx>
         {`
           .modal {
@@ -23,6 +24,15 @@ const Modal = (props: IModal) => {
             justify-content: center;
             align-items: center;
             background-color: rgba(0, 0, 0, 0.6);
+          }
+          .detail-view-modal {
+            justify-content: center;
+          }
+
+          @media (min-width: 1024px) {
+            .detail-view-modal {
+              justify-content: flex-end;
+            }
           }
         `}
       </style>

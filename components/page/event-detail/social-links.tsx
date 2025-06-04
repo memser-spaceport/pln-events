@@ -16,8 +16,6 @@ const SocialLinks = (props: any) => {
   const whatsapp = contactInfos?.whatsapp;
   const instagram = contactInfos?.instagram;
   const email = contactInfos?.email;
-  const eventName = event?.name ?? "";
-  const eventId = event?.id ?? "";
   const params = useParams();
   const view = params.type as string;
 
@@ -40,7 +38,7 @@ const SocialLinks = (props: any) => {
             onClick={() => onClickSocialLink("Email", email[0])}
             title="Email"
           >
-            <img src={"/icons/email.svg"} width={26} height={26} alt="email" loading="lazy" />
+            <img src={"/icons/email.svg"} width={35} height={35} alt="email" loading="lazy" />
           </a>
         )}
         {linkedIn && (
@@ -51,7 +49,7 @@ const SocialLinks = (props: any) => {
             onClick={() => onClickSocialLink("LinkedIn", linkedIn[0])}
             title="LinkedIn"
           >
-            <img src={"/icons/linkedin.svg"} width={26} height={26} alt="linkedIn" loading="lazy" />
+            <img src={"/icons/linkedin.svg"} width={35} height={35} alt="linkedIn" loading="lazy" />
           </a>
         )}
         {twitter && (
@@ -62,7 +60,7 @@ const SocialLinks = (props: any) => {
             onClick={() => onClickSocialLink("X", twitter[0])}
             title="X"
           >
-            <img src={"/icons/x.svg"} width={26} height={26} alt="twitter" loading="lazy" />
+            <img src={"/icons/x.svg"} width={35} height={35} alt="twitter" loading="lazy" />
           </a>
         )}
         {discord && (
@@ -73,7 +71,7 @@ const SocialLinks = (props: any) => {
             onClick={() => onClickSocialLink("Discord", discord[0])}
             title="Discord"
           >
-            <img src={"/icons/discord.svg"} width={26} height={26} alt="discord" loading="lazy" />
+            <img src={"/icons/discord.svg"} width={35} height={35} alt="discord" loading="lazy" />
           </a>
         )}
         {telegram && (
@@ -84,7 +82,7 @@ const SocialLinks = (props: any) => {
             onClick={() => onClickSocialLink("Telegram", telegram[0])}
             title="Telegram"
           >
-            <img src={"/icons/telegram.svg"} width={26} height={26} alt="telegram" loading="lazy" />
+            <img src={"/icons/telegram.svg"} width={35} height={35} alt="telegram" loading="lazy" />
           </a>
         )}
         {whatsapp && (
@@ -95,7 +93,7 @@ const SocialLinks = (props: any) => {
             onClick={() => onClickSocialLink("Whatsapp", whatsapp[0])}
             title="Whatsapp"
           >
-            <img src={"/icons/whatsapp.svg"} width={26} height={26} alt="whatsapp" loading="lazy" />
+            <img src={"/icons/whatsapp.svg"} width={35} height={35} alt="whatsapp" loading="lazy" />
           </a>
         )}
         {instagram && (
@@ -106,7 +104,7 @@ const SocialLinks = (props: any) => {
             onClick={() => onClickSocialLink("Whatsapp", whatsapp[0])}
             title="Instagram"
           >
-            <img src={"/icons/instagram.svg"} width={26} height={26} alt="instagram" loading="lazy" />
+            <img src={"/icons/instagram.svg"} width={35} height={35} alt="instagram" loading="lazy" />
           </a>
         )}
       </div>
@@ -120,7 +118,7 @@ const SocialLinks = (props: any) => {
           }
 
           .social__link {
-            height: 26px;
+            height: 35px;
             box-shadow: 0px 0px 4px 0px #0000002b;
             border-radius: 50%;
           }
