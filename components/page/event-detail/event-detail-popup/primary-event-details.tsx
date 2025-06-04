@@ -1,9 +1,9 @@
-import { TYPE_CONSTANTS } from "@/utils/constants";
 import Image from "next/image";
 import Tags from "../tags";
 import Agenda from "../agenda";
 import EventType from "./event-type";
 import EventAccessOption from "./event-access-option";
+import LocationAndDate from "./location-and-date";
 
 export default function PrimaryEventDetails({ event }: { event: any }) {
   console.log(event);
@@ -12,150 +12,9 @@ export default function PrimaryEventDetails({ event }: { event: any }) {
     ? event?.eventLogo
     : event?.hostLogo || "/icons/default-event-logo.svg";
 
-  const eventLocation = event?.location || "Location TBD";
-  const eventLocationUrl = event?.locationUrl || "";
-  const meetingPlatform = event?.meetingPlatform || "TBD";
-  const meetingLink = event?.meetingLink || "";
+  
   const eventTags = event?.tags ?? [];
   const sessions = event?.sessions ?? [];
-
-  const LocationAndDate = () => (
-    <>
-      <section className="primary-event-details-content-location-and-date">
-        <div className="primary-event-details-content-date">
-          <Image
-            alt="day"
-            src="/icons/calendar-black.svg"
-            height={15}
-            width={15}
-            style={{
-              minHeight: "15px",
-              minWidth: "15px",
-            }}
-          />
-          <span className="primary-event-details-content-date-text">
-            {event?.detailDateRange}
-          </span>
-        </div>
-        <div className="primary-event-details-content-location">
-          <Image
-            alt="location"
-            src="/icons/location-black.svg"
-            height={15}
-            width={15}
-            style={{
-              minHeight: "15px",
-              minWidth: "15px",
-            }}
-          />
-          <span
-            className={`primary-event-details-content-location-text ${
-              !eventLocationUrl ? "no-link" : ""
-            }`}
-          >
-            {eventLocationUrl ? (
-              <a
-                href={eventLocationUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {eventLocation}
-              </a>
-            ) : (
-              eventLocation
-            )}
-            <Image
-              alt="link"
-              src="/icons/link.svg"
-              height={15}
-              width={15}
-              style={{
-                minHeight: "15px",
-                top: "4px",
-                position: "relative",
-                minWidth: "15px",
-              }}
-            />
-          </span>
-        </div>
-        {meetingLink && (
-          <div className="primary-event-details-content-location-and-date-meeting-platform">
-            <Image
-              alt="meeting-platform"
-              src="/icons/virtual.svg"
-              height={15}
-              width={15}
-              style={{
-                minHeight: "15px",
-                minWidth: "15px",
-              }}
-            />
-
-            <span className="primary-event-details-content-location-and-date-meeting-platform-text">
-              <a href={meetingLink} target="_blank" rel="noopener noreferrer">
-                {meetingLink}
-              </a>
-              <Image
-                alt="link"
-                src="/icons/link.svg"
-                height={15}
-                width={15}
-                style={{
-                  minHeight: "15px",
-                  top: "4px",
-                  position: "relative",
-                  minWidth: "15px",
-                }}
-              />
-            </span>
-          </div>
-        )}
-      </section>
-      <style jsx>{`
-        .primary-event-details-content-location-and-date {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-        .primary-event-details-content-date {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-        .primary-event-details-content-date-text {
-          font-weight: 700;
-          font-size: 13px;
-          color: #3f4555;
-        }
-        .primary-event-details-content-location {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .no-link {
-          color: #0f172a85;
-          opacity: 0.52;
-          font-weight: 400;
-          font-size: 13px;
-        }
-        .primary-event-details-content-location-text {
-          font-weight: 700;
-          font-size: 13px;
-          color: #3f4555;
-        }
-
-        .primary-event-details-content-location-and-date-meeting-platform {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-weight: 700;
-          font-size: 13px;
-          color: #3f4555;
-        }
-      `}</style>
-    </>
-  );
 
   return (
     <>
@@ -182,7 +41,7 @@ export default function PrimaryEventDetails({ event }: { event: any }) {
                 {event?.name}
               </h2>
             </div>
-            <LocationAndDate />
+            <LocationAndDate event={event} />
           </div>
         </div>
         <div className="primary-event-details-mobile">
@@ -211,7 +70,7 @@ export default function PrimaryEventDetails({ event }: { event: any }) {
             <EventAccessOption event={event} />
           </div>
           <div>
-            <LocationAndDate />
+            <LocationAndDate event={event} />
           </div>
         </div>
         <div className="primary-event-details-content-tags">

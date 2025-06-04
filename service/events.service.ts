@@ -519,6 +519,7 @@ export const getAllEvents = async (location: any) => {
       registrationLink: event.registration_link ?? "",
       websiteLink: event.website_link ?? "",
       updatedAt: event.updatedAt,
+      addressInfo: event.address_info ?? "",
       description: event.description ?? "",
       tags: event.tags ?? [],
       startDate: event.start_date,
