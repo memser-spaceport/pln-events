@@ -76,24 +76,24 @@ const DetailView = (props: any) => {
       {isOpen && (
         <Modal className="detail-view-modal">
           <div className="detail__view">
-            <div>
-              <div className="detail-content">
-                <div className="detail-content__back-button">
-                  <div
-                    className="detail-content__back-button__wrapper"
-                    onClick={onClose}
-                  >
-                    <div className="detail-content__back-button__wrapper__icon">
-                      <Image
-                        src="/icons/arrow-right.svg"
-                        alt="back"
-                        width={14}
-                        height={14}
-                      />
-                    </div>
-                    <span>Back</span>
+            <div className="detail-content">
+              <div className="detail-content__back-button">
+                <div
+                  className="detail-content__back-button__wrapper"
+                  onClick={onClose}
+                >
+                  <div className="detail-content__back-button__wrapper__icon">
+                    <Image
+                      src="/icons/arrow-right.svg"
+                      alt="back"
+                      width={14}
+                      height={14}
+                    />
                   </div>
+                  <span>Back</span>
                 </div>
+              </div>
+              <div className="detail-content-cn">
                 {/* Header */}
                 <div className="detail-content__header">
                   <div className="detail-content__header__left">
@@ -108,9 +108,9 @@ const DetailView = (props: any) => {
                 </div>
                 {/* Primary Event Details */}
                 <PrimaryEventDetails event={event} />
-                {/* Footer */}
-                <Footer event={event} setEvent={setEvent} />
               </div>
+              {/* Footer */}
+              <Footer event={event} setEvent={setEvent} />
             </div>
           </div>
         </Modal>
@@ -120,9 +120,10 @@ const DetailView = (props: any) => {
           position: relative;
           background-color: #fff;
           width: 778px;
-          //height: 100%;
           border-left: 1px solid #cbd5e1;
           padding: 18px 12px;
+          padding-bottom: 0;
+          padding-top: 0;
           height: auto;
           overflow-y: auto;
           box-sizing: border-box;
@@ -131,6 +132,8 @@ const DetailView = (props: any) => {
           margin-left: 12px;
           margin-right: 12px;
           max-height: 90vh;
+          display: flex;
+          flex-direction: column;
         }
 
         @media (min-width: 1024px) {
@@ -141,6 +144,8 @@ const DetailView = (props: any) => {
             border-radius: 0;
             animation: slideIn 0.3s ease-out;
             padding: 18px 30px;
+            padding-bottom: 0;
+            padding-top: 0;
           }
         }
 
@@ -158,6 +163,13 @@ const DetailView = (props: any) => {
           to {
             transform: translateX(0);
           }
+        }
+
+        .detail-content-cn{
+          display: flex;
+          flex-direction: column;
+          gap:10px;
+          flex: 1;
         }
 
         .detail__view__close__btn {
@@ -182,12 +194,20 @@ const DetailView = (props: any) => {
           flex-direction: column;
           width: 100%;
           height: 100%;
+          flex: 1;
+          min-height: 0;
           gap: 20px;
+          justify-content: space-between;
         }
         .detail-content__back-button {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          position: sticky;
+          top: 0;
+          background: #fff;
+          z-index: 2;
+          padding-top: 12px;
         }
         .detail-content__back-button__wrapper {
           display: flex;
