@@ -29,7 +29,7 @@ const Agenda = (props: any) => {
     const groupedEvents = {} as any;
 
     sessions.forEach((session: any) => {
-      const startDate = formatDateTime(session?.startDate, eventTimezone, "Do MMM");
+      const startDate = formatDateTime(session?.startDate, eventTimezone, "Do MMM ddd");
 
       if (!groupedEvents[startDate]) {
         groupedEvents[startDate] = [];
@@ -62,17 +62,22 @@ const Agenda = (props: any) => {
             value?.map((session: any, index: number) => (
               <div
                 id={session?.id}
+                style={{
+                  display : "flex",
+                  flexDirection : "column",
+                  gap : "10px",
+                }}
                 key={`${session.name}_${index}`}
                 ref={(el) => {
                   sessionRefs.current[session.id] = el;
                 }}
               >
                 <SessionCard
-                  className={`${index % 2 === 1 ? "background" : ""} ${
-                    index !== value.length - 1 ? "border-bottom" : ""
-                  } ${index === value.length - 1 ? "bottom-radius" : ""} ${
-                    blinkSession === session.id ? "blink-border" : ""
-                  }`}
+                  // className={`${index % 2 === 1 ? "background" : ""} ${
+                  //   index !== value.length - 1 ? "border-bottom" : ""
+                  // } ${index === value.length - 1 ? "bottom-radius" : ""} ${
+                  //   blinkSession === session.id ? "blink-border" : ""
+                  // }`}
                   detail={session}
                   eventTimezone={eventTimezone}
                 />
@@ -105,7 +110,16 @@ const Agenda = (props: any) => {
           {agendaList?.map((item: any, index: number) => {
             return (
               <div key={`agenda-${index}`}>
-                <Accordion agenda={item} />
+                <div className="agenda__list__item">
+                  <div className="agenda__list__item__title">
+                    <span className="agenda__list__item__title__text">
+                      Day {index + 1} - {item?.title}
+                    </span>
+                  </div>
+                  <div className="agenda__list__item__content">
+                    {item?.content}
+                  </div>
+                </div>
               </div>
             );
           })}
@@ -116,6 +130,27 @@ const Agenda = (props: any) => {
           display: flex;
           flex-direction: column;
           gap: 8px;
+        }
+
+        .agenda__list__item {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .agenda__list__item__title__text {
+          font-weight: 700;
+          font-size: 12px;
+          text-transform: capitalize;
+        }
+
+        .agenda__list__item__content {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          background-color: white;
+          border-radius: 4px;
+          padding: 7px 10px;
         }
       `}</style>
     </>
