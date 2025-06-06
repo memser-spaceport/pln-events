@@ -2,7 +2,7 @@ import FilterBox from "@/components/core/filter-box";
 import ListView from "@/components/page/list/list-view";
 import Toolbar from "@/components/page/events/toolbar";
 import styles from "./page.module.css";
-import DetailView from "@/components/page/event-detail/detail-view";
+import DetailView from "@/components/page/event-detail/event-detail-popup/detail-view";
 import { getFilterValuesFromEvents, getFilteredEvents } from "@/utils/helper";
 import LegendsModal from "@/components/page/event-detail/legends-modal";
 import ProgramView from "@/components/page/events/program-view";

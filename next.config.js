@@ -1,4 +1,10 @@
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    domains: [
+      'pl-directory-images-dev.s3.us-west-1.amazonaws.com'
+    ],
+  },
   trailingSlash: true,
   webpack(config) {
     config.module.rules.push({
@@ -40,3 +46,5 @@ module.exports = {
     ];
   },
 };
+
+module.exports = nextConfig;
