@@ -1,3 +1,11 @@
+:root {
+  --primary-color: #0070f3; /* Fallback */
+  --secondary-color: #000; /* Fallback */
+  --font-family: 'Inter', sans-serif; /* Fallback */
+  --button-border-radius: 10px; /* Fallback */
+  --fc-event-bg-color: none;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -41,7 +49,7 @@ html,
 body {
     height: 100%;
     width: 100%;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-family);
     min-height: 100vh;
   /* mobile viewport bug fix */
   min-height: -webkit-fill-available;
@@ -67,10 +75,6 @@ main {
     width: 100%;
     height: 100%;
     display: block;
-}
-:root {
-    --fc-event-bg-color: none;
-    --fc-event-bg-color: none;
 }
 
 /*** FULL CALENDAR OVERRIDES ***/

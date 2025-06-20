@@ -58,7 +58,7 @@ function AppHeader() {
         {`
           .ah {
             padding: 0px 24px;
-            background: white;
+            background: var(--primary-color);;
             justify-content: space-between;
             border-bottom: 1px solid lightgrey;
             align-items: center;
@@ -93,7 +93,7 @@ function AppHeader() {
               inset 0px 1px 0px rgba(255, 255, 255, 0.16);
             padding: 8px 24px;
             background: linear-gradient(90deg, #427dff 0%, #44d5bb 100%);
-            border-radius: 20px;
+            border-radius: var(--button-border-radius);
             color: white;
             outline: none;
             border: none;

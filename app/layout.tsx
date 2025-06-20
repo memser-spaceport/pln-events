@@ -11,6 +11,9 @@ import { headers } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// TODO: Replace with your actual S3 bucket URL
+const S3_THEME_URL = 'https://plabs-assets.s3.us-west-1.amazonaws.com/theme.css'
+
 export const metadata: Metadata = {
   title: "PL Events",
   description: "Explore and connect with the teams across the ecosystem",
@@ -37,6 +40,9 @@ export default async function RootLayout({
   const shouldHideHeader = headersList.get("x-hide-header") === "true";
   return (
     <html lang="en">
+      <head>
+        <link rel="stylesheet" href={S3_THEME_URL} />
+      </head>
       <body className={`${inter.className} applayout`}>
         <PHProvider>
           <StyledJsxRegistry>
