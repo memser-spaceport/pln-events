@@ -1,10 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      'pl-directory-images-dev.s3.us-west-1.amazonaws.com',
-      'pl-events-service-prod.s3.us-west-1.amazonaws.com'
-    ],
+    domains: process.env.ALLOWED_IMAGE_DOMAINS
+      && process.env.ALLOWED_IMAGE_DOMAINS.split(',')
   },
   trailingSlash: true,
   webpack(config) {
