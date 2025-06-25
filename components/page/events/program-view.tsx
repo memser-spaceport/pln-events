@@ -61,15 +61,20 @@ const ProgramView = (props: IProgramView) => {
   }
   let initialDate = searchParams.get("date") || currentDate;
 
-  const events = props?.events.map((event: any) => {
-    return {
-      title: event.title ?? "",
-      id: event.id,
-      start: formatDateTime(event.startDate, event.timezone, "YYYY-MM-DD HH:mm"),
-      end: formatDateTime(event.endDate, event.timezone, "YYYY-MM-DD HH:mm"),
-      ...event,
-    };
-  });
+  const events = props?.events
+    ?.map((event: any) => {
+      const startTime = formatDateTime(event.startDate, event.timezone, "YYYY-MM-DD HH:mm");
+      const endTime = formatDateTime(event.endDate, event.timezone, "YYYY-MM-DD HH:mm");
+      
+      return {
+        title: event.title ?? "",
+        id: event.id,
+        start: startTime,
+        end: endTime,
+        ...event,
+      };
+    })
+    .filter((event: any) => event.start && event.end) || [];
   const calendarControls = createCalendarControlsPlugin();
   const eventsServicePlugin = createEventsServicePlugin();
   const scrollController = createScrollControllerPlugin({
@@ -124,15 +129,20 @@ const ProgramView = (props: IProgramView) => {
   useEffect(() => {
     let events = [];
     // if (viewType === "month-grid" && !isMobile()) {
-      events = props?.events.map((event: any) => {
-        return {
-          title: event.title ?? "",
-          id: event.id,
-          start: formatDateTime(event.startDate, event.timezone, "YYYY-MM-DD HH:mm"),
-          end: formatDateTime(event.endDate, event.timezone, "YYYY-MM-DD HH:mm"),           
-          ...event,
-        };
-      });
+      events = props?.events
+        ?.map((event: any) => {
+          const startTime = formatDateTime(event.startDate, event.timezone, "YYYY-MM-DD HH:mm");
+          const endTime = formatDateTime(event.endDate, event.timezone, "YYYY-MM-DD HH:mm");
+          
+          return {
+            title: event.title ?? "",
+            id: event.id,
+            start: startTime,
+            end: endTime,           
+            ...event,
+          };
+        })
+        .filter((event: any) => event.start && event.end) || [];
     // } else {
     //   events = getAgendaView(props.events);
     // }
