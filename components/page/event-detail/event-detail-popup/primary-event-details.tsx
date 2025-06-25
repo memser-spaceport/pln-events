@@ -6,8 +6,6 @@ import EventAccessOption from "./event-access-option";
 import LocationAndDate from "./location-and-date";
 
 export default function PrimaryEventDetails({ event }: { event: any }) {
-  console.log(event);
-
   const eventLogo = event?.eventLogo
     ? event?.eventLogo
     : event?.hostLogo || "/icons/default-event-logo.svg";
