@@ -65,7 +65,7 @@ const ListView = (props: any) => {
           detail: { isOpen: true, event },
         })
       );
-      router.push(`${window.location.pathname}${window.location.search}#${event.slug}`, { scroll: false });
+      router.replace(`${window.location.pathname}${window.location.search}#${event.slug}`, { scroll: false });
       // window.location.href = `${window.location.pathname}${window.location.search}#${event.slug}`
     }
   };

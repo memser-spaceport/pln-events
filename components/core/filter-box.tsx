@@ -32,7 +32,7 @@ const FilterBox = (props: any) => {
   const onClearAllFilter = () => {
     onFilterClearAllBtnClicked();
     const pathname = window.location.pathname;
-    router.push(`${pathname}`);
+    router.replace(`${pathname}`, { scroll: false });
   };
 
   const onCloseMobileFilter = () => {

@@ -24,7 +24,7 @@ const DetailView = (props: any) => {
     if (searchParams.has("session")) {
       searchParams.delete("session");
     }
-    router.push(`${window.location.pathname}?${searchParams.toString()}`, {
+    router.replace(`${window.location.pathname}?${searchParams.toString()}`, {
       scroll: false,
     });
     setIsOpen(false);
@@ -65,7 +65,7 @@ const DetailView = (props: any) => {
     if (searchParams.has("session")) {
       searchParams.delete("session");
     }
-    router.push(`${window.location.pathname}?${searchParams.toString()}`, {
+    router.replace(`${window.location.pathname}?${searchParams.toString()}`, {
       scroll: false,
     });
     setIsOpen(false);

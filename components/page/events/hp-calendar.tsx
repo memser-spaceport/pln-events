@@ -46,7 +46,7 @@ function HpCalendar(props: any) {
 
   const onEventClicked = (v: any) => {
     if (v) {
-      router.push(
+      router.replace(
         `${window.location.pathname}${window.location.search}#${v?.event?.extendedProps.slug}`,
         { scroll: false }
       );

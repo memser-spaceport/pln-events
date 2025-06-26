@@ -17,7 +17,7 @@ async function getPageData(searchParams: any, type: string) {
     const eventsResponse = await getAllEvents(config);
 
     if (eventsResponse.isError) {
-      return { isError: true, filteredEvents: [] };
+      return { isError: true, allEvents: [] };
     }
     const configLocations = Object.values(locations).map((item: any) => {
       return {
@@ -28,33 +28,32 @@ async function getPageData(searchParams: any, type: string) {
     });
 
     eventsResponse.data.configLocations = configLocations;
-    const { rawFilterValues, selectedFilterValues, initialFilters } =
-      getFilterValuesFromEvents(eventsResponse.data, searchParams);
+    
+    // Get filter structure but don't filter events on server
+    const { rawFilterValues, initialFilters } = getFilterValuesFromEvents(eventsResponse.data, {});
       
-    const filteredEvents = getFilteredEvents(eventsResponse.data, searchParams,type) ?? [];
     return {
-      events: eventsResponse.data,
+      allEvents: eventsResponse.data, // Return ALL events
       rawFilterValues,
-      selectedFilterValues,
-      filteredEvents,
-      initialFilters
+      initialFilters,
+      isError: false
     };
   } catch (e) {
     console.error("error response", e);
-    return { isError: true, filteredEvents: [] };
+    return { isError: true, allEvents: [] };
   }
 }
 
 export default async function Page({ searchParams, params }: any) {
   const type = params["type"];
-
+  
+  // Only fetch data once on initial load, ignore searchParams for server rendering
   const {
     rawFilterValues,
-    selectedFilterValues,
-    filteredEvents,
     initialFilters,
+    allEvents,
     isError
-  } = await getPageData(searchParams,type);
+  } = await getPageData({}, type); // ← Pass empty object to prevent server re-filtering
 
   if (isError) {
     return (
@@ -63,6 +62,10 @@ export default async function Page({ searchParams, params }: any) {
       </div>
     );
   }
+
+  // Do filtering on client side
+  const { selectedFilterValues } = getFilterValuesFromEvents(allEvents, searchParams);
+  const filteredEvents = getFilteredEvents(allEvents, searchParams, type) ?? [];
 
   return (
     <>
@@ -89,15 +92,15 @@ export default async function Page({ searchParams, params }: any) {
               filteredEvents={filteredEvents}
             />
           </div>
-            <div className={styles.schedule__content__right}>
-              {type === "list" && (
-                <ListView
-                  events={filteredEvents}
-                  viewType={type}
-                />
-              )}
-              {type === "program" && <ProgramView events={filteredEvents} viewType={type} />}
-            </div>
+          <div className={styles.schedule__content__right}>
+            {type === "list" && (
+              <ListView
+                events={filteredEvents}
+                viewType={type}
+              />
+            )}
+            {type === "program" && <ProgramView events={filteredEvents} viewType={type} />}
+          </div>
         </div>
       </div>
       <DetailView events={filteredEvents} />

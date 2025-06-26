@@ -165,10 +165,12 @@ export const getFilterCount = (selectedFilterValues: any) => {
 };
 
 export const getQueryParams = (searchParams: any) => {
-  const queryString = Object.keys(searchParams)
-    .map((paramKey) => encodeURIComponent(paramKey) + "=" + encodeURIComponent(searchParams[paramKey]))
+  // Filter out empty values for better performance
+  const validParams = Object.entries(searchParams)
+    .filter(([_, value]) => value !== undefined && value !== null && value !== "")
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
     .join("&");
-  return queryString;
+  return validParams;
 };
 
 const generateUniqueObjects = (events: any) => {

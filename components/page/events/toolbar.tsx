@@ -55,6 +55,9 @@ const Toolbar = (props: any) => {
   const groupedEvents = groupByStartDate(sortedEvents);
 
   const onItemClicked = (key: string, value: string) => {
+    // Skip if same value is already selected
+    if (searchParams[key] === value) return;
+    
     onScheduleFilterClicked(key, value, type);
     searchParams[key] = value;
     if (initialFilters[key] === searchParams[key]) {
@@ -62,7 +65,7 @@ const Toolbar = (props: any) => {
     }
     const query = getQueryParams(searchParams);
     const pathname = window.location.pathname;
-    router.push(`${pathname}?${query}`);
+    router.replace(`${pathname}?${query}`, { scroll: false });
   };
 
   const onTabClicked = (item: string) => {
@@ -111,7 +114,7 @@ const Toolbar = (props: any) => {
     e.stopPropagation();
     onFilterClearAllBtnClicked();
     const pathname = window.location.pathname;
-    router.push(`${pathname}`);
+    router.replace(`${pathname}`, { scroll: false });
   };
 
   useEffect(() => {

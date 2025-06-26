@@ -43,7 +43,7 @@ export const updateQueryParams = (router: any, paramsToUpdate: { [key: string]: 
     }
   });
 
-  router?.push(`${window.location.pathname}?${params.toString()}`, undefined, { scroll: false });
+  router?.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
 };
 
 const ProgramView = (props: IProgramView) => {
@@ -111,7 +111,7 @@ const ProgramView = (props: IProgramView) => {
             })
           );
           const sessionParam = sessionId ? `${window.location.search ? "&" : "?"}session=${sessionId}` : "";
-          router.push(`${window.location.pathname}${window.location.search}${sessionParam}#${viewEvent.slug}`, {
+          router.replace(`${window.location.pathname}${window.location.search}${sessionParam}#${viewEvent.slug}`, {
             scroll: false,
           });
         }

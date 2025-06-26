@@ -76,7 +76,7 @@ function FilterItem(props: any) {
     }
     const pathname = window.location.pathname;
     const query = getQueryParams(newSearchParams);
-    router.push(query ? `${pathname}?${query}`: pathname);
+    router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
   };
 
   const onMultiBoxClicked = () => {
@@ -223,7 +223,7 @@ function FilterItem(props: any) {
     const currentQuery = getQueryParams(searchParams);
 
     if (query !== currentQuery) {
-       router.push(query ? `${pathname}?${query}` : pathname);
+       router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
     }
 
   };
