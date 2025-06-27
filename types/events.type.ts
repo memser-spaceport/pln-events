@@ -114,3 +114,12 @@ export interface IEvent {
         slug: string;
         externalLinkIcon: string;
 }
+
+export interface IEventsData {
+  events: IEvent[];
+  configLocations: {
+    name: string;
+    title: string;
+    timezone: string;
+  }[];
+}

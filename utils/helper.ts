@@ -1,5 +1,29 @@
 import moment, { Moment } from "moment-timezone";
 import { COLOR_PAIRS, DEFAULT_TAGS, EVENT_YEARS, URL_QUERY_VALUE_SEPARATOR } from "./constants";
+import { IEventsData } from "@/types/events.type";
+
+// Cache for timezone operations
+const timezoneDateCache = new Map<string, Map<string, string>>();
+const timezoneOffsetCache = new Map<string, string>();
+
+/**
+ * Gets cached formatted date-time string
+ */
+function getCachedDateTime(date: string, timezone: string, format: string): string {
+    if (!timezoneDateCache.has(timezone)) {
+        timezoneDateCache.set(timezone, new Map());
+    }
+    
+    const tzCache = timezoneDateCache.get(timezone)!;
+    const cacheKey = `${date}|${format}`;
+    
+    if (!tzCache.has(cacheKey)) {
+        const formatted = moment.utc(date).tz(timezone).format(format);
+        tzCache.set(cacheKey, formatted);
+    }
+    
+    return tzCache.get(cacheKey)!;
+}
 
 export function stringToSlug(str: string) {
     str = str.replace(/^\s+|\s+$/g, ''); 
@@ -29,19 +53,16 @@ export function stringToSlug(str: string) {
 export function formatDateTime(utcDate: string, timeZone: string): Moment;
 export function formatDateTime(utcDate: string, timeZone: string, format: string): string;
 export function formatDateTime(utcDate: string, timeZone: string, format?: string): string | Moment {
-  if (!utcDate || !timeZone) {
-    console.error("Invalid date or time zone provided:", { utcDate, timeZone });
-    return format ? "" : moment.invalid();
-  }
+    if (!utcDate || !timeZone) {
+        console.error("Invalid date or time zone provided:", { utcDate, timeZone });
+        return format ? "" : moment.invalid();
+    }
 
-  const momentDate = moment.utc(utcDate);
-  if (!momentDate.isValid()) {
-    console.error("Invalid date format:", utcDate);
-    return format ? "" : moment.invalid();
-  }
+    if (format) {
+        return getCachedDateTime(utcDate, timeZone, format);
+    }
 
-  const formattedDate = momentDate.tz(timeZone);
-  return format ? formattedDate.format(format) : formattedDate;
+    return moment.utc(utcDate).tz(timeZone);
 }
 
 
@@ -109,7 +130,7 @@ export const formatDateForDetail = (startDateString: string, endDateString: stri
  * @returns The formatted time in "HH:mm" format.
  */
 export const getTime = (date: string, timeZone: string): string => {
-  return formatDateTime(date, timeZone, "HH:mm");
+    return getCachedDateTime(date, timeZone, DATE_FORMAT_CACHE.TIME);
 };
 
 /**
@@ -124,14 +145,14 @@ const getDaySuffix = (day: number): string => {
 };
 
 export const differenceInDays = (startDate: string, endDate: string, timeZone: string): number => {
-  const start = formatDateTime(startDate, timeZone, "YYYY-MM-DD");
-  const end = formatDateTime(endDate, timeZone, "YYYY-MM-DD");
+    const start = getCachedDateTime(startDate, timeZone, DATE_FORMAT_CACHE.DATE);
+    const end = getCachedDateTime(endDate, timeZone, DATE_FORMAT_CACHE.DATE);
 
-  const startDateObj = new Date(start);
-  const endDateObj = new Date(end);
+    const startDateObj = new Date(start);
+    const endDateObj = new Date(end);
 
-  const timeDiff = Math.abs(endDateObj.getTime() - startDateObj.getTime());
-  return Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    const timeDiff = Math.abs(endDateObj.getTime() - startDateObj.getTime());
+    return Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 };
 
 export const replaceWhitespaceAndRemoveSpecialCharacters = (text: string) => 
@@ -315,7 +336,8 @@ const filterUniqueObjects = (initialValues: any, rawValues: any, queryParams: an
   return filteredObjects;
 };
 
-export const getFilterValuesFromEvents = (events: any, queryParams = {}) => {
+export const getFilterValuesFromEvents = (eventsData: IEventsData, queryParams = {}) => {
+  const events = eventsData.events || [];
   const rawFilterValues = generateUniqueObjects(events);
 
   const filterValues = {
@@ -484,10 +506,26 @@ export const getHoverColor = (tags: any) => {
   }
 };
 
-export const getUTCOffset = (timezone: string) => {
-  const offsetMinutes = moment.tz(timezone).utcOffset();
-  const hours = Math.floor(Math.abs(offsetMinutes) / 60);
-  const minutes = Math.abs(offsetMinutes) % 60;
-  const sign = offsetMinutes >= 0 ? "+" : "-";
-  return `UTC ${sign}${hours}:${minutes.toString().padStart(2, "0")}`;
+export const getUTCOffset = (timezone: string): string => {
+    if (timezoneOffsetCache.has(timezone)) {
+        return timezoneOffsetCache.get(timezone)!;
+    }
+
+    const offsetMinutes = moment.tz(timezone).utcOffset();
+    const hours = Math.floor(Math.abs(offsetMinutes) / 60);
+    const minutes = Math.abs(offsetMinutes) % 60;
+    const sign = offsetMinutes >= 0 ? "+" : "-";
+    const offset = `UTC ${sign}${hours}:${minutes.toString().padStart(2, "0")}`;
+    
+    timezoneOffsetCache.set(timezone, offset);
+    return offset;
 }
+
+// Pre-calculate common date formats
+const DATE_FORMAT_CACHE = {
+    TIME: "HH:mm",
+    DATE: "YYYY-MM-DD",
+    MONTH_DAY: "MMM D",
+    FULL_DATE: "MMM D, YYYY",
+    TIME_12H: "h:mm A"
+};

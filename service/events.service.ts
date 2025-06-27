@@ -19,6 +19,8 @@ import {
   stringToSlug,
 } from "@/utils/helper";
 import { chownSync } from "fs";
+const processedEventsCache = new Map<string, {data: any[], timestamp: number}>();
+const CACHE_DURATION = 3600000; // 1 hour in milliseconds
 
 export const getBannerData = async () => {
   if (
@@ -484,97 +486,175 @@ function assignColorsToEvents(events: any[]) {
 }
 
 export const getAllEvents = async (location: any) => {
-  const result = await fetch(
-    `${process.env.WEB_API_BASE_URL}/events?status=APPROVED&sortByPriority=true&type=EventAndSession${location ? `&location=${location?.title}` : ""}`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.WEB_API_TOKEN}`,
-        "x-client-secret": process.env.EVENT_CLIENT_SECRET ?? "",
-      },
-      method: "GET",
-      next: { tags: ["labweek-web3-events"] },
+  const start = performance.now();
+  const cacheKey = `events-${location?.title || 'all'}`;
+  
+  try {
+    // Check cache first
+    const cached = processedEventsCache.get(cacheKey);
+    if (cached && (Date.now() - cached.timestamp) < CACHE_DURATION) {
+      console.log({
+        operation: 'getAllEvents',
+        status: 'cache_hit',
+        metrics: {
+          totalDuration: '0ms',
+          eventCount: cached.data.length,
+          fromCache: true
+        }
+      });
+      return { data: cached.data };
     }
-  );
 
-  if (!result.ok) {
-    return { isError: true };
-  }
-
-  const allEvents = await result.json();
-
-  let formattedEvents = allEvents?.map((event: any, index: number) => {
-    let dayDifference = differenceInDays(
-      event.start_date,
-      event.end_date,
-      event.timezone || location?.timezone 
+    const result = await fetch(
+      `${process.env.WEB_API_BASE_URL}/events?status=APPROVED&sortByPriority=true&type=EventAndSession${location ? `&location=${location?.title}` : ""}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.WEB_API_TOKEN}`,
+          "x-client-secret": process.env.EVENT_CLIENT_SECRET ?? "",
+          'Accept': 'application/json',
+          'Accept-Encoding': 'gzip,deflate'
+        },
+        method: "GET",
+        cache: 'force-cache',
+        next: { 
+          tags: ["labweek-web3-events"],
+          revalidate: 3600 // Cache for 1 hour
+        }
+      }
     );
 
-    return {
-      name: event.event_name ?? "",
-      title: event.event_name ?? "",
-      id: event.event_id,
-      isFeatured: event.is_featured ?? false,
-      conference: event.conference ?? "",
-      meetingPlatform: event.meeting_platform ?? "",
-      registrationLink: event.registration_link ?? "",
-      websiteLink: event.website_link ?? "",
-      updatedAt: event.updatedAt,
-      addressInfo: event.address_info ?? "",
-      description: event.description ?? "",
-      tags: event.tags ?? [],
-      startDate: event.start_date,
-      // timing: formatTimeRange(event.agenda?.sessions ?? [], event.start_date, event.end_date, weekStart, weekEnd),
-      dateRange: formatDateForSchedule(
-        event.start_date,
-        event.end_date,
-        event.timezone || location?.timezone
-      ),
-      detailDateRange: formatDateForDetail(
-        event.start_date,
-        event.end_date,
-        event.timezone || location?.timezone
-      ),
-      endDate: event.end_date,
-      multiday: dayDifference > 0,
-      accessType: event.access_type,
-      accessOption: event.access_option,
-      status: event.status,
-      format: event.format,
-      location: (event.location || location?.name) ?? "",
-      locationUrl: event.location_url ?? "",
-      sponsors: event.sponsors ?? [],
-      seatCount: event.seat_count ?? "",
-      hostName: event.host ?? "",
-      hostLogo: event.host_logo ?? "",
-      coHosts: event.co_hosts ?? [],
-      secondaryContacts: event.secondary_contacts ?? [],
-      meetingLink: event.meeting_link ?? "",
-      contactName: event.event_contact_name ?? "",
-      contactEmail: event.event_contact_email ?? "",
-      contactInfos: event.contact_infos,
-      eventLogo: event.event_logo,
-      isHidden: event.is_hidden ?? false,
-      startTime: getTime(event.start_date, event.timezone || location?.timezone),
-      agenda: event.agenda,
-      slug: stringToSlug(event.event_name),
-      endTime: getTime(event.end_date, event.timezone || location?.timezone),
-      timezone: event.timezone || location?.timezone,
-      utcOffset: getUTCOffset(event.timezone || location?.timezone),
-      sessions: event.agenda?.sessions?.map((session: any, index: number) => {
+    if (!result.ok) {
+      return { isError: true };
+    }
+
+    // Process events in batches for better memory usage
+    const BATCH_SIZE = 50;
+    const processStart = performance.now();
+    
+    const events = await result.json();
+    const totalEvents = events?.length || 0;
+    const processedEvents = [];
+    
+    // Pre-calculate timezone
+    const defaultTimezone = location?.timezone || 'UTC';
+    
+    // Process events in batches
+    for (let i = 0; i < totalEvents; i += BATCH_SIZE) {
+      const batch = events.slice(i, i + BATCH_SIZE);
+      const processedBatch = batch.map((event: any) => {
+        const timezone = event.timezone || defaultTimezone;
+        
+        // Process all date-related calculations once
+        const startDate = new Date(event.start_date);
+        const endDate = new Date(event.end_date);
+        
+        // Pre-calculate common values
+        const startDateTimeStamp = startDate.getTime();
+        const endDateTimeStamp = endDate.getTime();
+        const dayDifference = differenceInDays(event.start_date, event.end_date, timezone);
+
+        // Process hosts with Set for uniqueness
+        const hostSet = new Set();
+        const eventHosts = event?.eventHosts?.reduce((hosts: any[], hs: string) => {
+          const [name, logo = "pln-default-host-logo.svg"] = hs.split("|");
+          if (!hostSet.has(name)) {
+            hostSet.add(name);
+            hosts.push({
+              name,
+              logo: `/uploads/${logo}`,
+              primaryIcon: `/icons/pln-primary-host.svg`
+            });
+          }
+          return hosts;
+        }, []) || [];
+
+        // Return formatted event with all required fields
         return {
-          id:
-            replaceWhitespaceAndRemoveSpecialCharacters(session?.name) + index,
-          startDate: session.start_date,
-          endDate: session.end_date,
-          name: session.name ?? "",
-          description: session?.description ?? "",
+          name: event.event_name ?? "",
+          title: event.event_name ?? "",
+          id: event.event_id,
+          isFeatured: event.is_featured ?? false,
+          conference: event.conference ?? "",
+          meetingPlatform: event.meeting_platform ?? "",
+          registrationLink: event.registration_link ?? "",
+          websiteLink: event.website_link ?? "",
+          updatedAt: event.updatedAt,
+          addressInfo: event.address_info ?? "",
+          description: event.description ?? "",
+          tags: event.tags ?? [],
+          startDate: event.start_date,
+          endDate: event.end_date,
+          dateRange: formatDateForSchedule(event.start_date, event.end_date, timezone),
+          detailDateRange: formatDateForDetail(event.start_date, event.end_date, timezone),
+          multiday: dayDifference > 0,
+          accessType: event.access_type,
+          accessOption: event.access_option,
+          status: event.status,
+          format: event.format,
+          location: (event.location || location?.name) ?? "",
+          locationUrl: event.location_url ?? "",
+          sponsors: event.sponsors ?? [],
+          seatCount: event.seat_count ?? "",
+          hostName: event.host ?? "",
+          hostLogo: event.host_logo ?? "",
+          coHosts: event.co_hosts ?? [],
+          secondaryContacts: event.secondary_contacts ?? [],
+          meetingLink: event.meeting_link ?? "",
+          contactName: event.event_contact_name ?? "",
+          contactEmail: event.event_contact_email ?? "",
+          contactInfos: event.contact_infos,
+          eventLogo: event.event_logo,
+          isHidden: event.is_hidden ?? false,
+          startTime: getTime(event.start_date, timezone),
+          agenda: event.agenda,
+          slug: stringToSlug(event.event_name),
+          endTime: getTime(event.end_date, timezone),
+          timezone,
+          utcOffset: getUTCOffset(timezone),
+          sessions: event.agenda?.sessions?.map((session: any, index: number) => ({
+            id: replaceWhitespaceAndRemoveSpecialCharacters(session?.name) + index,
+            startDate: session.start_date,
+            endDate: session.end_date,
+            name: session.name ?? "",
+            description: session?.description ?? ""
+          })),
+          irlLink: event.additionalInfo?.irlLink ?? "",
+          startDateTimeStamp,
+          endDateTimeStamp,
+          eventHosts
         };
-      }),
-      irlLink: event.additionalInfo?.irlLink ?? "",
-    };
-  });
-  formattedEvents = assignColorsToEvents(formattedEvents);
-  return { data: formattedEvents };
+      });
+      
+      processedEvents.push(...processedBatch);
+    }
+
+    // Apply colors to events
+    const coloredEvents = assignColorsToEvents(processedEvents);
+
+    // Cache the processed results
+    processedEventsCache.set(cacheKey, {
+      data: coloredEvents,
+      timestamp: Date.now()
+    });
+
+    const processEnd = performance.now();
+    console.log({
+      operation: 'getAllEvents',
+      status: 'success',
+      metrics: {
+        totalDuration: `${(processEnd - start).toFixed(2)}ms`,
+        processingTime: `${(processEnd - processStart).toFixed(2)}ms`,
+        eventCount: totalEvents,
+        batchCount: Math.ceil(totalEvents / BATCH_SIZE),
+        fromCache: false
+      }
+    });
+
+    return { data: coloredEvents };
+  } catch (error) {
+    console.error('getAllEvents Error:', error);
+    return { isError: true };
+  }
 };
 
 // export const getAgendaView = (events: any) => {

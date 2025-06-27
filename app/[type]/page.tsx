@@ -8,6 +8,7 @@ import LegendsModal from "@/components/page/event-detail/legends-modal";
 import ProgramView from "@/components/page/events/program-view";
 import { getAllEvents } from "@/service/events.service";
 import { getLocations } from "@/service/events.service";
+import { IEventsData } from "@/types/events.type";
 
 async function getPageData(searchParams: any, type: string) {
   try {
@@ -16,24 +17,28 @@ async function getPageData(searchParams: any, type: string) {
     const config = locations[location];
     const eventsResponse = await getAllEvents(config);
 
-    if (eventsResponse.isError) {
+    if (eventsResponse.isError || !eventsResponse.data) {
       return { isError: true, filteredEvents: [] };
     }
-    const configLocations = Object.values(locations).map((item: any) => {
-      return {
-        name: item.title,
-        title: item.title,  
-        timezone: item.timezone,
-      }
-    });
 
-    eventsResponse.data.configLocations = configLocations;
+    const configLocations = Object.values(locations).map((item: any) => ({
+      name: item.title,
+      title: item.title,  
+      timezone: item.timezone,
+    }));
+
+    // Ensure we have a consistent data structure
+    const eventsData: IEventsData = {
+      events: Array.isArray(eventsResponse.data) ? eventsResponse.data : (eventsResponse.data as any)?.events || [],
+      configLocations
+    };
+
     const { rawFilterValues, selectedFilterValues, initialFilters } =
-      getFilterValuesFromEvents(eventsResponse.data, searchParams);
+      getFilterValuesFromEvents(eventsData, searchParams);
       
-    const filteredEvents = getFilteredEvents(eventsResponse.data, searchParams,type) ?? [];
+    const filteredEvents = getFilteredEvents(eventsData.events, searchParams, type) ?? [];
     return {
-      events: eventsResponse.data,
+      events: eventsData,
       rawFilterValues,
       selectedFilterValues,
       filteredEvents,
