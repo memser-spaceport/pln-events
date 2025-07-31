@@ -22,6 +22,7 @@ const nextConfig = {
     REFRESH_DISABLED_EVENTS: process.env.REFRESH_DISABLED_EVENTS,
     REFRESH_ENABLED_EVENTS: process.env.REFRESH_ENABLED_EVENTS,
     EVENT_AGENDA_REFRESH_URL: process.env.EVENT_AGENDA_REFRESH_URL,
+    ORIGIN_DOMAIN: process.env.ORIGIN_DOMAIN,
   },
   async rewrites() {
     return [
