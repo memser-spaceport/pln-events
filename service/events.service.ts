@@ -489,7 +489,7 @@ export const getAllEvents = async (location: any) => {
     {
       headers: {
         Authorization: `Bearer ${process.env.WEB_API_TOKEN}`,
-        "x-client-secret": process.env.EVENT_CLIENT_SECRET ?? "",
+        origin: `${process.env.ORIGIN_DOMAIN}`,
       },
       method: "GET",
       next: { tags: ["labweek-web3-events"] },
