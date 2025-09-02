@@ -7,7 +7,7 @@ import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 import { formatDateTime, groupByStartDate, sortEventsByStartDate } from "@/utils/helper";
 import { useRouter } from "next/navigation";
 import { CUSTOM_EVENTS } from "@/utils/constants";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ABBREVIATED_MONTH_NAMES } from "@/utils/constants";
 
 const ListView = (props: any) => {
@@ -18,12 +18,21 @@ const ListView = (props: any) => {
   const eventTimezone = props?.eventTimezone;
   const router = useRouter();
   const { onEventClicked } = useSchedulePageAnalytics();
+  const [showCurrentMonthButton, setShowCurrentMonthButton] = useState(false);
+  const [hasInitialScrolled, setHasInitialScrolled] = useState(false);
 
   const sortedEvents = sortEventsByStartDate(events);
   const groupedEvents = groupByStartDate(sortedEvents);
   const year = formatDateTime(sortedEvents[0]?.startDate, sortedEvents[0]?.timezone, "YYYY")
 
-  useEffect(() => {
+  // Get current month key for today
+  const getCurrentMonthKey = () => {
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    return ABBREVIATED_MONTH_NAMES[currentMonth];
+  };
+
+  const onNavigateToCurrentMonth = () => {
     if (!groupedEvents || Object.keys(groupedEvents).length === 0) return;
     const now = new Date();
     const currentMonth = now.getMonth();
@@ -52,9 +61,43 @@ const ListView = (props: any) => {
             detail: { month: targetedMonth },
           })
         );
+  
+        setShowCurrentMonthButton(false);
       }
     }
-  }, [groupedEvents]);
+  };
+  
+useEffect(() => {
+  if (groupedEvents && Object.keys(groupedEvents).length > 0) {
+    // Initial auto-scroll
+    if (!hasInitialScrolled) {
+      onNavigateToCurrentMonth();
+      setHasInitialScrolled(true);
+    }
+
+    if (hasInitialScrolled) {
+      const handleScroll = () => {
+        const currentMonthKey = getCurrentMonthKey();
+        const currentMonthElement = document.getElementById(currentMonthKey);
+
+        if (currentMonthElement) {
+          const rect = currentMonthElement.getBoundingClientRect();
+          const headerOffset = 120;
+          const isVisible = rect.top <= window.innerHeight - headerOffset && rect.bottom >= headerOffset;
+          setShowCurrentMonthButton(!isVisible);
+        }
+      };
+      const timeoutId = setTimeout(() => {
+        handleScroll();
+      }, 1000);
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+        clearTimeout(timeoutId);
+      };
+    }
+  }
+}, [groupedEvents, hasInitialScrolled]);
 
   const onOpenDetailPopup = (event: any) => {
     onEventClicked(viewType, event?.id, event?.name);
@@ -107,6 +150,17 @@ const ListView = (props: any) => {
             {Object.entries(groupedEvents)?.length === 0 && <EventsNoResults />}
           </div>
         </div>
+                {/* Back to Current Month Button - appears when not on current month events */}
+                {showCurrentMonthButton && (
+                  <div className="listview__btn">
+                    <button 
+                      onClick={onNavigateToCurrentMonth}
+                      className="listview__btn__name"
+                    >
+                      Back to Current Month
+                    </button>
+                  </div>
+                )}
         <div className="listView__sidebar">
           <SideBar events={groupedEvents} dateFrom={dateFrom} dateTo={dateTo} eventTimezone={eventTimezone} />
         </div>
@@ -147,6 +201,32 @@ const ListView = (props: any) => {
           flex-direction: column;
           gap: 8px;
           padding-top: 24px;
+        }
+        
+        .listview__btn {
+          position: fixed;
+          bottom: 20px;
+          right: 190px;
+          z-index: 1000;
+        }
+        
+        .listview__btn__name {
+          width: 180px;
+          height: 40px;
+          background: #FFFFFF;
+          color: #156FF7;
+          border: 1px solid #156FF7;
+          border-radius: 100px;
+          padding: 8px 11px;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          box-shadow: 0px 1px 1px 0px #07080829, 0px 1px 0px 0px #FFFFFF29 inset;
+          transition: all 0.2s ease;
         }
 
         .listView__events {
