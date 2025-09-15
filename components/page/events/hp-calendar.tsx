@@ -28,7 +28,11 @@ function HpCalendar(props: any) {
 
   const onMonthNavigate = (type: string) => {
     const calendarElement = calenderRef?.current;
+    if (!calendarElement) return;
+    
     const ca = calendarElement.getApi();
+    if (!ca) return;
+    
     if (type === "prev") {
       if (monthIndex - 1 > -1) {
         ca.prev();

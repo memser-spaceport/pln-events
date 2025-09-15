@@ -1,8 +1,8 @@
 function OpenMultiSelect(props: any) {
   // Props
-  const items = [...props.items].sort();
-  const selectedItems = [...props.selectedItems];
-  const filteredItems = [...props.filteredItems].sort((a, b) =>(a.name.toLowerCase() > b.name.toLowerCase()) ? 1: -1);
+  const items = [...(props.items || [])].sort();
+  const selectedItems = [...(props.selectedItems || [])];
+  const filteredItems = [...(props.filteredItems || [])].sort((a, b) =>(a.name.toLowerCase() > b.name.toLowerCase()) ? 1: -1);
   const onInputChange = props.onInputChange;
   const onItemSelected = props.onItemSelected;
   const searchIcon = props.searchIcon;
