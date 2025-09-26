@@ -12,6 +12,7 @@ export default function Footer({ event, setEvent }: any) {
   const { onScheduleRefreshClick } = useSchedulePageAnalytics();
   const irlLink = event?.irlLink;
   const websiteLink = event?.websiteLink;
+  const registrationLink = event?.registrationLink;
   const { onEventUrlClicked, onViewAttendeesUrlClicked } =
     useSchedulePageAnalytics();
   const params = useParams();
@@ -94,7 +95,7 @@ export default function Footer({ event, setEvent }: any) {
             </button>
           )}
 
-          <a
+          {/* <a
             className={`event__footer__ctrls__attendees__button ${
               irlLink ? "" : "disabled"
             } `}
@@ -115,9 +116,9 @@ export default function Footer({ event, setEvent }: any) {
               className="event__footer__ctrls__attendees__img"
             />
             View Attendees
-          </a>
+          </a> */}
 
-          <a
+          {websiteLink && <a
             href={websiteLink || ""}
             target="_blank"
             className={`${
@@ -132,7 +133,25 @@ export default function Footer({ event, setEvent }: any) {
             }}
           >
             Website
-          </a>
+          </a>}
+
+          {registrationLink && <a
+            href={registrationLink || ""}
+            target="_blank"
+            className={`${
+              registrationLink ? "" : "disabled"
+            } event__footer__ctrls__website`}
+            onClick={(event) => {
+              if (!registrationLink) {
+                event.preventDefault(); // Prevent navigation if websiteLink is empty
+              } else {
+                onNavigateToWebsite(websiteLink);
+              }
+            }}
+          >
+            Register
+          </a>}
+
           {/* <a
               href={registrationLink}
               target="_blank"

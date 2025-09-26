@@ -1,0 +1,43 @@
+name: Trigger UAT Deployment on new release branch creation
+
+on:
+  create:
+    # Note: Branch filtering doesn't work here for create events
+    # We'll filter in the job condition instead
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    # CRITICAL: this condition makes sure that it only run on release- branches
+    if: startsWith(github.ref_name, 'release/')
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Update package.json and Create Commit
+        run: |
+          # Set commit author to the user who created the branch
+          USER_NAME="${{ github.event.sender.login }}"
+          USER_EMAIL="${{ github.event.sender.login }}@users.noreply.github.com"
+          git config user.name "$USER_NAME"
+          git config user.email "$USER_EMAIL"
+          
+          # Extract version from branch name (e.g., release-1.2.3 -> 1.2.3)
+          VERSION=$(echo "${{ github.ref_name }}" | sed 's/^release\///')
+          
+          # Validate package.json exists
+          if [ ! -f package.json ]; then
+            echo "Error: package.json not found"
+            exit 1
+          fi
+          
+          # Update package.json version
+          jq --arg version "$VERSION" '.version = $version' package.json > package.json.tmp
+          mv package.json.tmp package.json
+          
+          # Create a commit to trigger Vercel deployment
+          git add package.json
+          git commit -m "Trigger UAT deployment for branch ${{ github.ref_name }} with version $VERSION"
+          git push origin ${{ github.ref_name }}
