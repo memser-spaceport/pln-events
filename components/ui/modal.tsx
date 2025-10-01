@@ -1,16 +1,17 @@
-import { ReactNode } from "react";
+import { ReactNode, RefObject } from "react";
 
 interface IModal {
   children: ReactNode;
   className?: string;
+  modalRef?: RefObject<HTMLDivElement>;
 }
 
 const Modal = (props: IModal) => {
-  const { children, className } = props;
+  const { children, className, modalRef } = props;
 
   return (
     <>
-      <div className={`modal ${className || ''}`}>{children}</div>
+      <div className={`modal ${className || ''}`} ref={modalRef}>{children}</div>
       <style jsx>
         {`
           .modal {

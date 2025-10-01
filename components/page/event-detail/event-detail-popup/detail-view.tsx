@@ -6,18 +6,20 @@ import { CUSTOM_EVENTS } from "@/utils/constants";
 import { useHash } from "@/hooks/use-hash";
 import useEscapeClicked from "@/hooks/use-escape-clicked";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useRef } from "react";
 import EventType from "./event-type";
 import Image from "next/image";
 import EventAccessOption from "./event-access-option";
 import PrimaryEventDetails from "./primary-event-details";
 import Footer from "./footer";
+import useClickedOutside from "@/hooks/use-clicked-outside";
 const DetailView = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [event, setEvent] = useState<any>({});
   const events = [...props.events];
   const hash = useHash();
   const router = useRouter();
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEscapeClicked(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -71,10 +73,15 @@ const DetailView = (props: any) => {
     setIsOpen(false);
   };
 
+  useClickedOutside({
+    callback: onClose,
+    ref: modalRef,
+  })
+
   return (
     <>
       {isOpen && (
-        <Modal className="detail-view-modal">
+        <Modal modalRef={modalRef} className="detail-view-modal">
           <div className="detail__view">
             <div className="detail-content">
               <div className="detail-content__back-button">
