@@ -1,28 +1,29 @@
-"use client";
-import { RefObject, useEffect } from "react";
+'use client';
+import { RefObject, useEffect } from 'react';
 
-interface ClickedOutsideProps {
+interface useOutsideClickProps {
   callback: () => void;
-  ref: RefObject<HTMLElement>;
+  ref: RefObject<HTMLElement | null>;
 }
 
-const useClickedOutside = (props: ClickedOutsideProps) => {
-  const ref = props.ref;
-  const callback = props.callback;
-
-  const handleClick = (e: MouseEvent) => {
-    if (ref.current && !ref.current.contains(e.target as Node)) {
-      callback();
-    }
-  };
+const useOutsideClick = (props: useOutsideClickProps) => {
+  const { ref, callback } = props;
 
   useEffect(() => {
-    document.addEventListener("click", handleClick);
+    const handleClick = (e: MouseEvent) => {
+      const clickedOutside = ref.current && !ref.current.contains(e.target as Node);
+
+      if (clickedOutside) {
+        callback();
+      }
+    };
+
+    document.addEventListener('click', handleClick);
 
     return () => {
-      document.removeEventListener("click", handleClick);
+      document.removeEventListener('click', handleClick);
     };
-  });
+  }, [ref, callback]);
 };
 
-export default useClickedOutside;
+export default useOutsideClick;
