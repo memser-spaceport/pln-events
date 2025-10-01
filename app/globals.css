@@ -39,7 +39,6 @@
 
 html,
 body {
-    height: 100%;
     width: 100%;
     font-family: 'Inter', sans-serif;
     min-height: 100vh;
@@ -89,6 +88,10 @@ main {
 .fc-daygrid-day-number {position: initial !important; padding: 0 !important;}
 .fc-daygrid-day-number {width: 100%; padding: 3px 16px; height: 100%; display: flex; justify-content: space-between;}
 
+.sx__event:focus,
+.sx__event:focus-visible {
+  outline: unset !important;
+}
 
 .carousel .control-dots{
     position: relative !important;
