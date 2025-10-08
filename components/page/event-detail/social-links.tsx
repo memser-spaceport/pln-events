@@ -103,7 +103,7 @@ const SocialLinks = (props: any) => {
             className="social__link"
             href={getFirstUrl(instagram)}
             target="_blank"
-            onClick={() => onClickSocialLink("Whatsapp", whatsapp[0])}
+            onClick={() => onClickSocialLink("Instagram", instagram[0])}
             title="Instagram"
           >
             <img src={"/icons/instagram.svg"} width={35} height={35} alt="instagram" loading="lazy" />
