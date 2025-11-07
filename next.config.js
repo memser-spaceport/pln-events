@@ -40,7 +40,7 @@ const nextConfig = {
     return [
       {
         source: "/",
-        destination: "/program",
+        destination: "/list",
         permanent: false,
       }
     ];
