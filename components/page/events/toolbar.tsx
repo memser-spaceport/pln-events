@@ -502,6 +502,10 @@ const Toolbar = (props: any) => {
               display: block;
               height: 36px;
             }
+
+            .toolbar__notch {
+              left: calc(50% + 50px);
+            }
           }
         `}
       </style>

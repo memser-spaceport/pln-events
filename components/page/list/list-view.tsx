@@ -39,7 +39,7 @@ const ListView = (props: any) => {
     if (targetedMonth) {
       const el = document.getElementById(targetedMonth);
       if (el) {
-        const headerOffset = 120;
+        const headerOffset = 140;
         const elementPosition = el.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.scrollY - headerOffset;
         window.scrollTo({
@@ -199,6 +199,7 @@ const ListView = (props: any) => {
           }
           .listView {
             width: 60%;
+            padding: 30px 10px 30px 10px;
           }
 
           .listView__es {

@@ -15,7 +15,7 @@ const SideBar = (props: any) => {
     setClickedMenuId(item);
     const element = document.getElementById(item);
     if (element) {
-      const headerOffset = 120;
+      const headerOffset = 140;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
       window.scrollTo({
