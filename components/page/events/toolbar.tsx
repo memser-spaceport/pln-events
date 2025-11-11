@@ -53,6 +53,7 @@ const Toolbar = (props: any) => {
 
   const sortedEvents = sortEventsByStartDate(events);
   const groupedEvents = groupByStartDate(sortedEvents);
+  const totalEventCount = sortedEvents.filter((event: any) => !event.isHidden).length;
 
   const onItemClicked = (key: string, value: string) => {
     onScheduleFilterClicked(key, value, type);
@@ -150,83 +151,98 @@ const Toolbar = (props: any) => {
 
   return (
     <>
-      <div className="toolbar">
-        <div className="toolbar__left">
-          <div className="toolbar__dayFilter">
-            {dayOptions.map((item) => (
-              <span
-                className={`toolbar__dayFilter__item
-            ${dayFilter === item.value ? "toolbar__dayFilter__item--active" : ""}
-          `}
-                onClick={() => onItemClicked("dayFilter", item?.value)}
-                key={item.value}
-              >
-                {item.name}
-              </span>
-            ))}
+      <div className="toolbar__wrapper">
+        {type === "list" && (
+          <div className="toolbar__notch">
+            <img src="/icons/notch.svg" alt="" className="toolbar__notch__bg" />
+            <p className="toolbar__notch__text">
+              {totalEventCount} {totalEventCount === 1 ? 'Event' : 'Events'}
+            </p>
           </div>
+        )}
+        <div className="toolbar">
+          <div className="toolbar__left">
+            <div className="toolbar__dayFilter">
+              {dayOptions.map((item) => (
+                <span
+                  className={`toolbar__dayFilter__item
+              ${dayFilter === item.value ? "toolbar__dayFilter__item--active" : ""}
+            `}
+                  onClick={() => onItemClicked("dayFilter", item?.value)}
+                  key={item.value}
+                >
+                  {item.name}
+                </span>
+              ))}
+            </div>
 
-          <div onClick={onOpenFilterMenu} className="toolbar__fb">
-            <img width={20} height={20} src="/icons/filter-white.svg" alt="filter" />
-            {filterCount > 0 && (
-              <div className="toolbar__fb__count">
-                <p>{filterCount}</p>
-              </div>
-            )}
-            {filterCount > 0 && (
-              <button className="toolbar__fb__close" onClick={onClearAllFilter}>
-                <img width={16} height={16} src="/icons/close-white-filter.svg" alt="close" />
-              </button>
-            )}
-          </div>
-
-          {type === "list" && (
-            <div className="toolbarDate__wrpr">
-              <button className="toolbarDate" onClick={onToggleDropDown}>
-                <span>{`${clickedMenuId}-2025`}</span>  
-                {/* hardcoded year for now need to change once year filter is implemented */}
-                <img src="/icons/down_arrow_filled.svg" alt="down arrow" />
-              </button>
-              {isDropDownPaneActive && (
-                <div className="toolbarDate__dropdown">
-                  {abbreviatedMonthNames.map((val, i) => {
-                    const hasDate = Object.keys(groupedEvents).includes(val);
-
-                    return (
-                      <div
-                        onClick={() => onSelectDate(val, hasDate)}
-                        key={`month-list-${i}`}
-                        className={` toolbarDate__dropdown__item ${hasDate ? "" : "disabled"}`}
-                      >
-                        {`${val}-2025`}
-                        {/* hardcoded year for now need to change once year filter is implemented */}
-                      </div>
-                    );
-                  })}
+            <div onClick={onOpenFilterMenu} className="toolbar__fb">
+              <img width={20} height={20} src="/icons/filter-white.svg" alt="filter" />
+              {filterCount > 0 && (
+                <div className="toolbar__fb__count">
+                  <p>{filterCount}</p>
                 </div>
               )}
+              {filterCount > 0 && (
+                <button className="toolbar__fb__close" onClick={onClearAllFilter}>
+                  <img width={16} height={16} src="/icons/close-white-filter.svg" alt="close" />
+                </button>
+              )}
             </div>
-          )}
-        </div>
 
-        <div className="toolbar__pageView">
-          <button onClick={onLegendModalOpen} title="Legends" className="toolbar__pageView__legends">
-            <img src="/icons/info-blue.svg" alt="legend" />
-          </button>
-          <div className="toolbar__pageView__tabs">
-            <Tab
-              callback={onTabClicked}
-              selectedItemId={type}
-              sectionId={`schedule-header-tab`}
-              items={filteredTabItems}
-              arrowImg="/icons/arrow-down-blue.svg"
-            />
+            {type === "list" && (
+              <div className="toolbarDate__wrpr">
+                <button className="toolbarDate" onClick={onToggleDropDown}>
+                  <span>{`${clickedMenuId}-2025`}</span>
+                  {/* hardcoded year for now need to change once year filter is implemented */}
+                  <img src="/icons/down_arrow_filled.svg" alt="down arrow" />
+                </button>
+                {isDropDownPaneActive && (
+                  <div className="toolbarDate__dropdown">
+                    {abbreviatedMonthNames.map((val, i) => {
+                      const hasDate = Object.keys(groupedEvents).includes(val);
+
+                      return (
+                        <div
+                          onClick={() => onSelectDate(val, hasDate)}
+                          key={`month-list-${i}`}
+                          className={` toolbarDate__dropdown__item ${hasDate ? "" : "disabled"}`}
+                        >
+                          {`${val}-2025`}
+                          {/* hardcoded year for now need to change once year filter is implemented */}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="toolbar__pageView">
+            <button onClick={onLegendModalOpen} title="Legends" className="toolbar__pageView__legends">
+              <img src="/icons/info-blue.svg" alt="legend" />
+            </button>
+            <div className="toolbar__pageView__tabs">
+              <Tab
+                callback={onTabClicked}
+                selectedItemId={type}
+                sectionId={`schedule-header-tab`}
+                items={filteredTabItems}
+                arrowImg="/icons/arrow-down-blue.svg"
+              />
+            </div>
           </div>
         </div>
       </div>
       <style jsx>
         {`
+          .toolbar__wrapper {
+            position: relative;
+          }
+
           .toolbar {
+            position: relative;
             display: flex;
             justify-content: space-between;
             z-index: 3;
@@ -234,6 +250,39 @@ const Toolbar = (props: any) => {
             padding: 6px;
             border-top-left-radius: 12px;
             border-top-right-radius: 12px;
+          }
+
+          .toolbar__notch {
+            position: absolute;
+            bottom: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 161px;
+            height: 36px;
+          }
+
+          .toolbar__notch__bg {
+            position: absolute;
+            width: 161px;
+            height: 36px;
+            filter: drop-shadow(0px 2px 4px rgba(21, 111, 247, 0.15));
+          }
+
+          .toolbar__notch__text {
+            position: relative;
+            z-index: 1;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 24px;
+            color: #156ff7;
+            white-space: nowrap;
+            margin: 0;
+            padding-top: 2px;
           }
 
           .toolbar__dayFilter {
