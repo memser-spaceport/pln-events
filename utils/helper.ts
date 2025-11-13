@@ -29,8 +29,8 @@ export function stringToSlug(str: string) {
 export function formatDateTime(utcDate: string, timeZone: string): Moment;
 export function formatDateTime(utcDate: string, timeZone: string, format: string): string;
 export function formatDateTime(utcDate: string, timeZone: string, format?: string): string | Moment {
-  if (!utcDate || !timeZone) {
-    console.error("Invalid date or time zone provided:", { utcDate, timeZone });
+  if (!utcDate) {
+    console.error("Invalid date provided:", { utcDate, timeZone });
     return format ? "" : moment.invalid();
   }
 
@@ -40,7 +40,7 @@ export function formatDateTime(utcDate: string, timeZone: string, format?: strin
     return format ? "" : moment.invalid();
   }
 
-  const formattedDate = momentDate.tz(timeZone);
+  const formattedDate = momentDate.tz(timeZone || "UTC");
   return format ? formattedDate.format(format) : formattedDate;
 }
 
@@ -221,8 +221,8 @@ const generateUniqueObjects = (events: any) => {
     //     filterValues.location.push({ name: location, label: location });
     //   }
     // }
-    if (!uniqueNames.allHost.has(hostName)) {
-      if (hostName.trim().length > 0) {
+    if (hostName && typeof hostName === 'string' && hostName.trim().length > 0) {
+      if (!uniqueNames.allHost.has(hostName)) {
         uniqueNames.allHost.add(hostName);
         filterValues.allHost.push({
           name: hostName,
@@ -232,32 +232,42 @@ const generateUniqueObjects = (events: any) => {
       }
     }
 
-    coHosts.map((host: any) => {
-      if (!uniqueNames.allHost.has(host.name)) {
-        uniqueNames.allHost.add(host.name);
-        if (host?.name.trim().length > 0) {
-          filterValues.allHost.push({
-            name: host.name,
-            label: host.name,
-            img: host.logo,
-          });
+    if (Array.isArray(coHosts)) {
+      coHosts.forEach((host: any) => {
+        if (host?.name && typeof host.name === 'string' && host.name.trim().length > 0) {
+          if (!uniqueNames.allHost.has(host.name)) {
+            uniqueNames.allHost.add(host.name);
+            filterValues.allHost.push({
+              name: host.name,
+              label: host.name,
+              img: host.logo,
+            });
+          }
         }
-      }
-    });
+      });
+    }
 
-    tags.forEach((tag: any) => {
-      if (!uniqueNames.tags.has(tag)) {
-        uniqueNames.tags.add(tag);
-        filterValues.tags.push({ name: tag, label: tag });
-      }
-    });
+    if (Array.isArray(tags)) {
+      tags.forEach((tag: any) => {
+        if (tag && typeof tag === 'string' && tag.trim().length > 0) {
+          if (!uniqueNames.tags.has(tag)) {
+            uniqueNames.tags.add(tag);
+            filterValues.tags.push({ name: tag, label: tag });
+          }
+        }
+      });
+    }
   });
 
   if (!Array.isArray(filterValues.configLocations)) {
     filterValues.configLocations = [];
   }
   configLocations?.forEach((configLocation: any) => {
-    filterValues.location.push({ name: configLocation?.name, label: configLocation?.title });
+    const name = configLocation?.name;
+    const title = configLocation?.title;
+    if (name && typeof name === 'string' && name.trim().length > 0) {
+      filterValues.location.push({ name: name, label: title || name });
+    }
   });
 
   return filterValues;
@@ -446,7 +456,7 @@ export const stringToUniqueInteger = (str: string) => {
 
 export function groupByStartDate(objects: any) {
   return objects.reduce((acc: any, obj: any) => {
-    const startDate = formatDateTime(obj?.startDate, obj.timezone, "MMM");
+    const startDate = formatDateTime(obj?.startDate, obj.timezone || "UTC", "MMM");
 
     if (!acc[startDate]) {
       acc[startDate] = [];
@@ -458,8 +468,8 @@ export function groupByStartDate(objects: any) {
 
 export function sortEventsByStartDate(events: any) {
   return [...events].sort((a, b) => {
-    const startTimeA = formatDateTime(a.startDate, a.timezone) as Moment;
-    const startTimeB = formatDateTime(b.startDate, b.timezone) as Moment;
+    const startTimeA = formatDateTime(a.startDate, a.timezone || "UTC") as Moment;
+    const startTimeB = formatDateTime(b.startDate, b.timezone || "UTC") as Moment;
 
     if (!startTimeA.isValid() || !startTimeB.isValid()) {
       console.error("Invalid event start date:", { startTimeA, startTimeB });

@@ -21,7 +21,7 @@ const ListView = (props: any) => {
 
   const sortedEvents = sortEventsByStartDate(events);
   const groupedEvents = groupByStartDate(sortedEvents);
-  const year = formatDateTime(sortedEvents[0]?.startDate, sortedEvents[0]?.timezone, "YYYY")
+  const year = formatDateTime(sortedEvents[0]?.startDate, sortedEvents[0]?.timezone || "UTC", "YYYY")
 
   useEffect(() => {
     if (!groupedEvents || Object.keys(groupedEvents).length === 0) return;
