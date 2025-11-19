@@ -47,6 +47,7 @@ export default async function Page({ searchParams, params }: any) {
   const type = params["type"];
 
   const {
+    events,
     rawFilterValues,
     selectedFilterValues,
     filteredEvents,
@@ -92,6 +93,7 @@ export default async function Page({ searchParams, params }: any) {
               {type === "list" && (
                 <ListView
                   events={filteredEvents}
+                  allEvents={events}
                   viewType={type}
                 />
               )}
