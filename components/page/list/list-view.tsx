@@ -5,37 +5,81 @@ import SideBar from "./side-bar";
 import EventsNoResults from "@/components/ui/events-no-results";
 import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 import { formatDateTime, groupByStartDate, sortEventsByStartDate } from "@/utils/helper";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { CUSTOM_EVENTS } from "@/utils/constants";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { ABBREVIATED_MONTH_NAMES } from "@/utils/constants";
 
 const ListView = (props: any) => {
-  const events = props.events ?? [];
+  const allEvents = props.allEvents ?? [];
   const viewType = props?.viewType;
   const dateFrom = props?.dateFrom;
   const dateTo = props?.dateTo;
   const eventTimezone = props?.eventTimezone;
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { onEventClicked } = useSchedulePageAnalytics();
 
-  const sortedEvents = sortEventsByStartDate(events);
-  const groupedEvents = groupByStartDate(sortedEvents);
+  // Get current year from URL or default to current year
+  const currentYear = useMemo(() => {
+    const yearParam = searchParams.get("year");
+    if (yearParam) {
+      return parseInt(yearParam, 10);
+    }
+    return new Date().getFullYear();
+  }, [searchParams]);
+
+  // Filter events client-side by year for instant updates
+  const filteredEvents = useMemo(() => {
+    if (!allEvents || allEvents.length === 0) return [];
+    
+    return allEvents.filter((event: any) => {
+      // Filter out hidden events for list view
+      if (event.isHidden) {
+        return false;
+      }
+      
+      // Filter by year
+      if (event.startDate) {
+        const eventYear = new Date(event.startDate).getFullYear();
+        return eventYear === currentYear;
+      }
+      return false;
+    });
+  }, [allEvents, currentYear]);
+
+  const sortedEvents = useMemo(() => sortEventsByStartDate(filteredEvents), [filteredEvents]);
+  const groupedEvents = useMemo(() => groupByStartDate(sortedEvents), [sortedEvents]);
   const year = formatDateTime(sortedEvents[0]?.startDate, sortedEvents[0]?.timezone, "YYYY")
 
   useEffect(() => {
     if (!groupedEvents || Object.keys(groupedEvents).length === 0) return;
+    
     const now = new Date();
-    const currentMonth = now.getMonth();
+    const currentYearInCalendar = now.getFullYear();
     let targetedMonth = null;
-    for (let i = 0; i < ABBREVIATED_MONTH_NAMES.length; i++) {
-      const idx = (currentMonth + i) % 12;
-      const key = ABBREVIATED_MONTH_NAMES[idx];
-      if (key in groupedEvents) {
-        targetedMonth = key;
-        break;
+    
+    // If viewing current year, scroll to today's month (or next available)
+    if (currentYear === currentYearInCalendar) {
+      const currentMonth = now.getMonth();
+      for (let i = 0; i < ABBREVIATED_MONTH_NAMES.length; i++) {
+        const idx = (currentMonth + i) % 12;
+        const key = ABBREVIATED_MONTH_NAMES[idx];
+        if (key in groupedEvents) {
+          targetedMonth = key;
+          break;
+        }
       }
+    } else {
+      // If viewing a different year, scroll to the first event (first month)
+      const sortedMonths = Object.keys(groupedEvents).sort((a, b) => {
+        const indexA = ABBREVIATED_MONTH_NAMES.indexOf(a);
+        const indexB = ABBREVIATED_MONTH_NAMES.indexOf(b);
+        return indexA - indexB;
+      });
+      targetedMonth = sortedMonths.length > 0 ? sortedMonths[0] : null;
     }
+    
     if (targetedMonth) {
       const el = document.getElementById(targetedMonth);
       if (el) {
@@ -54,7 +98,7 @@ const ListView = (props: any) => {
         );
       }
     }
-  }, [groupedEvents]);
+  }, [groupedEvents, currentYear]);
 
   const onOpenDetailPopup = (event: any) => {
     onEventClicked(viewType, event?.id, event?.name);
@@ -108,7 +152,13 @@ const ListView = (props: any) => {
           </div>
         </div>
         <div className="listView__sidebar">
-          <SideBar events={groupedEvents} dateFrom={dateFrom} dateTo={dateTo} eventTimezone={eventTimezone} />
+          <SideBar 
+            events={groupedEvents} 
+            allEvents={allEvents}
+            dateFrom={dateFrom} 
+            dateTo={dateTo} 
+            eventTimezone={eventTimezone} 
+          />
         </div>
       </div>
       <style jsx>{`

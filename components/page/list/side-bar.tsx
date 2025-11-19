@@ -1,15 +1,81 @@
+"use client";
+
 import useEventsScrollObserver from "@/hooks/use-events-scroll-observer";
 import { CUSTOM_EVENTS } from "@/utils/constants";
 import { ABBREVIATED_MONTH_NAMES } from "@/utils/constants";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo, startTransition } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 const SideBar = (props: any) => {
   const events = props?.events;
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const [clickedMenuId, setClickedMenuId] = useState("");
+  const [isNavigating, setIsNavigating] = useState(false);
   const activeEventId = useEventsScrollObserver(Object.keys(events), events, clickedMenuId);
 
-  
+  // Memoize allEvents to avoid unnecessary recalculations
+  const allEvents = useMemo(() => props?.allEvents ?? [], [props?.allEvents]);
+
+  // Get current year from URL params or default to current year
+  const currentYear = useMemo(() => {
+    const yearParam = searchParams.get("year");
+    if (yearParam) {
+      return parseInt(yearParam, 10);
+    }
+    // Fallback: get year from first event if available
+    if (allEvents.length > 0) {
+      return new Date(allEvents[0].startDate).getFullYear();
+    }
+    return new Date().getFullYear();
+  }, [searchParams, allEvents]);
+
+  // Extract available years from all events
+  const availableYears = useMemo(() => {
+    const yearsSet = new Set<number>();
+    allEvents.forEach((event: any) => {
+      if (event.startDate && !event.isHidden) {
+        const year = new Date(event.startDate).getFullYear();
+        yearsSet.add(year);
+      }
+    });
+    return Array.from(yearsSet).sort((a, b) => b - a); // Sort descending (newest first)
+  }, [allEvents]);
+
+  // Check if previous/next year has events
+  const hasPreviousYear = useMemo(() => {
+    const previousYear = currentYear - 1;
+    return availableYears.includes(previousYear);
+  }, [currentYear, availableYears]);
+
+  const hasNextYear = useMemo(() => {
+    const nextYear = currentYear + 1;
+    return availableYears.includes(nextYear);
+  }, [currentYear, availableYears]);
+
+  // Handle year navigation
+  const handleYearChange = (direction: "prev" | "next") => {
+    const targetYear = direction === "prev" ? currentYear - 1 : currentYear + 1;
+    
+    if (!availableYears.includes(targetYear) || isNavigating) {
+      return; // Don't navigate if no events exist for that year or already navigating
+    }
+
+    setIsNavigating(true);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("year", targetYear.toString());
+    
+    // Use startTransition for smooth navigation
+    startTransition(() => {
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+      // Reset loading state after a short delay to allow navigation to complete
+      setTimeout(() => {
+        setIsNavigating(false);
+      }, 100);
+    });
+  };
 
   const onItemClicked = (item: any) => {
     setClickedMenuId(item);
@@ -47,6 +113,21 @@ const SideBar = (props: any) => {
     }
   }, [activeEventId]);
 
+  // Initialize year in URL if not present
+  useEffect(() => {
+    const yearParam = searchParams.get("year");
+    if (!yearParam) {
+      const currentYear = new Date().getFullYear();
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("year", currentYear.toString());
+      
+      // Only update URL if year is not set
+      startTransition(() => {
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+      });
+    }
+  }, [searchParams, pathname, router]);
+
   useEffect(() => {
     const handler = (e: any) => {
       const date = e.detail.month;
@@ -65,6 +146,33 @@ const SideBar = (props: any) => {
   return (
     <>
       <div className="sidebar">
+        <div className="sidebar__year-filter">
+          <span
+            className={`sidebar__year-filter__control ${
+              !hasPreviousYear ? "disabled" : ""
+            }`}
+            onClick={() => hasPreviousYear && handleYearChange("prev")}
+            aria-label="Previous year"
+            role="button"
+            tabIndex={hasPreviousYear ? 0 : -1}
+          >
+            <img src="/icons/lesser-than.svg" alt="Previous year" />
+          </span>
+          <span className={`sidebar__year-filter__year ${isNavigating ? "loading" : ""}`}>
+            {currentYear}
+          </span>
+          <span
+            className={`sidebar__year-filter__control ${
+              !hasNextYear ? "disabled" : ""
+            }`}
+            onClick={() => hasNextYear && handleYearChange("next")}
+            aria-label="Next year"
+            role="button"
+            tabIndex={hasNextYear ? 0 : -1}
+          >
+            <img src="/icons/greater-than.svg" alt="Next year" />
+          </span>
+        </div>
         <div className="sidebar__dates">
           {ABBREVIATED_MONTH_NAMES.map((val, i) => {
             const hasDate = Object.keys(events).includes(val);
@@ -104,8 +212,7 @@ const SideBar = (props: any) => {
                     clickedMenuId === val ? "active" : ""
                   } `}
                 >
-                  {`${val}-2025`}  
-                  {/* hardcoded year for now need to change once year filter is implemented */}
+                  {`${val}-${currentYear}`}
                 </span>
               </div>
             );
@@ -118,11 +225,67 @@ const SideBar = (props: any) => {
           top: 112px;
         }
 
+        .sidebar__year-filter {
+          position: sticky;
+          top: 0;
+          width: 138px;
+          height: 70px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px;
+          opacity: 1;
+          font-size: 14px;
+          line-height: 16px;
+          z-index: 10;
+          margin-top: 10px;
+          margin-bottom: 0px;
+          background: transparent;
+        }
+
+        .sidebar__year-filter__control {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 24px;
+          height: 24px;
+          background-color: transparent;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: opacity 0.2s ease;
+        }
+
+        .sidebar__year-filter__control:hover:not(.disabled) {
+          opacity: 0.7;
+        }
+
+        .sidebar__year-filter__control.disabled {
+          opacity: 0.3;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
+
+        .sidebar__year-filter__control img {
+          width: 16px;
+          height: 16px;
+        }
+
+        .sidebar__year-filter__year {
+          font-weight: 700;
+          color: #0f172a;
+          font-size: 14px;
+          transition: opacity 0.2s ease;
+        }
+
+        .sidebar__year-filter__year.loading {
+          opacity: 0.5;
+        }
+
         .sidebar__dates {
           position: relative;
           width: 100%;
-          padding-top: 10px;
-          max-height: calc(100vh - 112px);
+          padding-top: 0px;
+          max-height: calc(100vh - 112px - 80px);
           overflow-y: auto;
         }
 
