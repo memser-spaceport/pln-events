@@ -3,7 +3,7 @@
 import useEventsScrollObserver from "@/hooks/use-events-scroll-observer";
 import { CUSTOM_EVENTS } from "@/utils/constants";
 import { ABBREVIATED_MONTH_NAMES } from "@/utils/constants";
-import React, { useEffect, useState, useMemo, startTransition } from "react";
+import { useEffect, useState, useMemo, startTransition } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 const SideBar = (props: any) => {
@@ -70,10 +70,7 @@ const SideBar = (props: any) => {
     // Use startTransition for smooth navigation
     startTransition(() => {
       router.push(`${pathname}?${params.toString()}`, { scroll: false });
-      // Reset loading state after a short delay to allow navigation to complete
-      setTimeout(() => {
-        setIsNavigating(false);
-      }, 100);
+      setIsNavigating(false);
     });
   };
 
