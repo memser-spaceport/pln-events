@@ -4,7 +4,7 @@ const nextConfig = {
     domains: process.env.ALLOWED_IMAGE_DOMAINS
       && process.env.ALLOWED_IMAGE_DOMAINS.split(',')
   },
-  trailingSlash: true,
+  trailingSlash: false,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,

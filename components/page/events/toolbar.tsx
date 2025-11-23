@@ -1,7 +1,7 @@
 "use client";
 
 import { CUSTOM_EVENTS } from "@/utils/constants";
-import { getFilterCount, getQueryParams, groupByStartDate, sortEventsByStartDate } from "@/utils/helper";
+import { getFilterCount, getQueryParams, groupByStartDate } from "@/utils/helper";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Tab from "@/components/core/tab";
@@ -51,9 +51,9 @@ const Toolbar = (props: any) => {
     onScheduleFilterClicked,
   } = useSchedulePageAnalytics();
 
-  const sortedEvents = sortEventsByStartDate(events);
-  const groupedEvents = groupByStartDate(sortedEvents);
-  const totalEventCount = sortedEvents.filter((event: any) => !event.isHidden).length;
+  // Events are already sorted server-side (consistent with filtering pattern)
+  const groupedEvents = groupByStartDate(events);
+  const totalEventCount = events.filter((event: any) => !event.isHidden).length;
 
   const onItemClicked = (key: string, value: string) => {
     onScheduleFilterClicked(key, value, type);

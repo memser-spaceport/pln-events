@@ -407,8 +407,11 @@ export const getFilteredEvents = (events: any, queryParams: any, type?: string) 
       }
     }
 
-        // ✅ Filter by year of startDate
-        const eventYear = new Date(event.startDate).getFullYear();
+        const eventMoment = formatDateTime(event.startDate, event.timezone);
+        if (!eventMoment.isValid()) {
+          return false;
+        }
+        const eventYear = eventMoment.year();
         if (eventYear !== yearFilter) {
           return false;
         }
