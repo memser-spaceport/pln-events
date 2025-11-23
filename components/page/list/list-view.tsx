@@ -4,18 +4,19 @@ import EventCard from "./event-card";
 import SideBar from "./side-bar";
 import EventsNoResults from "@/components/ui/events-no-results";
 import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
-import { groupByStartDate, sortEventsByStartDate } from "@/utils/helper";
+import { groupByStartDate } from "@/utils/helper";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CUSTOM_EVENTS } from "@/utils/constants";
 import { useEffect, useMemo, useState } from "react";
 import { ABBREVIATED_MONTH_NAMES } from "@/utils/constants";
 
 const ListView = (props: any) => {
+  const events = props.events ?? [];
   const allEvents = props.allEvents ?? [];
   const viewType = props?.viewType;
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { onEventClicked } = useSchedulePageAnalytics();
+  const { onEventClicked, onBackToThisMonthClicked } = useSchedulePageAnalytics();
 
   // Get current year from URL or default to current year
   const currentYear = useMemo(() => {
@@ -26,27 +27,8 @@ const ListView = (props: any) => {
     return new Date().getFullYear();
   }, [searchParams]);
 
-  // Filter events client-side by year for instant updates
-  const filteredEvents = useMemo(() => {
-    if (!allEvents || allEvents.length === 0) return [];
-    
-    return allEvents.filter((event: any) => {
-      // Filter out hidden events for list view
-      if (event.isHidden) {
-        return false;
-      }
-      
-      // Filter by year
-      if (event.startDate) {
-        const eventYear = new Date(event.startDate).getFullYear();
-        return eventYear === currentYear;
-      }
-      return false;
-    });
-  }, [allEvents, currentYear]);
-
-  const sortedEvents = useMemo(() => sortEventsByStartDate(filteredEvents), [filteredEvents]);
-  const groupedEvents = useMemo(() => groupByStartDate(sortedEvents), [sortedEvents]);
+  // Events are already sorted server-side (consistent with filtering pattern)
+  const groupedEvents = useMemo(() => groupByStartDate(events), [events]);
 
   useEffect(() => {
     if (!groupedEvents || Object.keys(groupedEvents).length === 0) return;
@@ -141,6 +123,8 @@ const ListView = (props: any) => {
     }
 
     if (targetMonth) {
+      onBackToThisMonthClicked(viewType, currentYear, currentMonthKey, targetMonth);
+
       const el = document.getElementById(targetMonth);
       if (el) {
         const headerOffset = 140;

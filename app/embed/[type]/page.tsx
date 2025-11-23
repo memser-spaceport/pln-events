@@ -3,7 +3,7 @@ import ListView from "@/components/page/list/list-view";
 import Toolbar from "@/components/page/events/toolbar";
 import styles from "./page.module.css";
 import DetailView from "@/components/page/event-detail/event-detail-popup/detail-view";
-import { getFilterValuesFromEvents, getFilteredEvents } from "@/utils/helper";
+import { getFilterValuesFromEvents, getFilteredEvents, sortEventsByStartDate } from "@/utils/helper";
 import LegendsModal from "@/components/page/event-detail/legends-modal";
 import ProgramView from "@/components/page/events/program-view";
 import { getAllEvents, getLocations } from "@/service/events.service";
@@ -30,11 +30,12 @@ async function getPageData(searchParams: any, type: string) {
       getFilterValuesFromEvents(eventsResponse.data, searchParams);
       
     const filteredEvents = getFilteredEvents(eventsResponse.data, searchParams,type) ?? [];
+    const sortedAndFilteredEvents = sortEventsByStartDate(filteredEvents);
     return {
       events: eventsResponse.data,
       rawFilterValues,
       selectedFilterValues,
-      filteredEvents,
+      filteredEvents: sortedAndFilteredEvents,
       initialFilters
     };
   } catch (e) {

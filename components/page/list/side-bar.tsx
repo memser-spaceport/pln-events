@@ -3,6 +3,7 @@
 import useEventsScrollObserver from "@/hooks/use-events-scroll-observer";
 import { CUSTOM_EVENTS } from "@/utils/constants";
 import { ABBREVIATED_MONTH_NAMES } from "@/utils/constants";
+import { formatDateTime } from "@/utils/helper";
 import { useEffect, useState, useMemo, startTransition } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
@@ -25,20 +26,29 @@ const SideBar = (props: any) => {
     if (yearParam) {
       return parseInt(yearParam, 10);
     }
-    // Fallback: get year from first event if available
+    // Fallback: get year from first event if available (timezone-aware)
     if (allEvents.length > 0) {
-      return new Date(allEvents[0].startDate).getFullYear();
+      const firstEvent = allEvents[0];
+      if (firstEvent.startDate && firstEvent.timezone) {
+        const eventMoment = formatDateTime(firstEvent.startDate, firstEvent.timezone);
+        if (eventMoment.isValid()) {
+          return eventMoment.year();
+        }
+      }
     }
     return new Date().getFullYear();
   }, [searchParams, allEvents]);
 
-  // Extract available years from all events
+  // Extract available years from all events (timezone-aware, consistent with filtering)
   const availableYears = useMemo(() => {
     const yearsSet = new Set<number>();
     allEvents.forEach((event: any) => {
-      if (event.startDate && !event.isHidden) {
-        const year = new Date(event.startDate).getFullYear();
-        yearsSet.add(year);
+      if (event.startDate && !event.isHidden && event.timezone) {
+        const eventMoment = formatDateTime(event.startDate, event.timezone);
+        if (eventMoment.isValid()) {
+          const year = eventMoment.year();
+          yearsSet.add(year);
+        }
       }
     });
     return Array.from(yearsSet).sort((a, b) => b - a); // Sort descending (newest first)

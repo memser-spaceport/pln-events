@@ -15,6 +15,7 @@ export const useSchedulePageAnalytics = () => {
     EVENT_URL_CLICKED: "EVENT_URL_CLICKED",
     SCHEDULE_REFRESH_CLICKED: "SCHEDULE_REFRESH_CLICKED",
     VIEW_ATTENDEES_URL_CLICKED: "VIEW_ATTENDEES_URL_CLICKED",
+    BACK_TO_THIS_MONTH_CLICKED: "BACK_TO_THIS_MONTH_CLICKED",
   };
 
   const captureEvent = (eventName: string, eventParams = {}) => {
@@ -149,6 +150,21 @@ export const useSchedulePageAnalytics = () => {
     captureEvent(events.SCHEDULE_REFRESH_CLICKED, params);
   }
 
+  const onBackToThisMonthClicked = (
+    viewType: string,
+    currentYear: number,
+    currentMonth: string,
+    targetMonth: string
+  ) => {
+    const params = {
+      viewType,
+      currentYear,
+      currentMonth,
+      targetMonth,
+      isCurrentMonth: currentMonth === targetMonth,
+    };
+    captureEvent(events.BACK_TO_THIS_MONTH_CLICKED, params);
+  }
 
   return {
     onEventClicked,
@@ -161,6 +177,7 @@ export const useSchedulePageAnalytics = () => {
     captureViewChangeClick,
     onEventUrlClicked,
     onScheduleRefreshClick,
-    onViewAttendeesUrlClicked
+    onViewAttendeesUrlClicked,
+    onBackToThisMonthClicked
   };
 };
