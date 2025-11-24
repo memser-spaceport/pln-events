@@ -78,6 +78,8 @@ const DetailView = (props: any) => {
     ref: modalRef,
   })
 
+  if (!isOpen) return null;
+
   return (
     <>
       {isOpen && (

@@ -2,7 +2,6 @@ import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 import { getRefreshStatus } from "@/utils/helper";
 import { useState } from "react";
 import { useParams } from "next/navigation";
-import { toast } from "react-toastify";
 import Image from "next/image";
 import SocialLinks from "../social-links";
 import { getRefreshedAgenda } from "@/service/events.service";
@@ -20,6 +19,7 @@ export default function Footer({ event, setEvent }: any) {
 
   const isRefreshRestricted = getRefreshStatus(event?.id ?? "");
   const handleRefreshClick = async () => {
+    const { toast } = await import("react-toastify");
     try {
       onScheduleRefreshClick(event?.id!, event?.name!, "clicked");
       if (event?.id) {

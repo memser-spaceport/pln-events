@@ -501,12 +501,11 @@ export const getAllEvents = async (location: any) => {
   }
 
   const allEvents = await result.json();
-
   let formattedEvents = allEvents?.map((event: any, index: number) => {
     let dayDifference = differenceInDays(
       event.start_date,
       event.end_date,
-      event.timezone || location?.timezone 
+      event.timezone || location?.timezone || "UTC"
     );
 
     return {
@@ -527,12 +526,12 @@ export const getAllEvents = async (location: any) => {
       dateRange: formatDateForSchedule(
         event.start_date,
         event.end_date,
-        event.timezone || location?.timezone
+        event.timezone || location?.timezone || "UTC"
       ),
       detailDateRange: formatDateForDetail(
         event.start_date,
         event.end_date,
-        event.timezone || location?.timezone
+        event.timezone || location?.timezone || "UTC"
       ),
       endDate: event.end_date,
       multiday: dayDifference > 0,
@@ -554,12 +553,12 @@ export const getAllEvents = async (location: any) => {
       contactInfos: event.contact_infos,
       eventLogo: event.event_logo,
       isHidden: event.is_hidden ?? false,
-      startTime: getTime(event.start_date, event.timezone || location?.timezone),
+      startTime: getTime(event.start_date, event.timezone || location?.timezone || "UTC"),
       agenda: event.agenda,
       slug: stringToSlug(event.event_name),
-      endTime: getTime(event.end_date, event.timezone || location?.timezone),
-      timezone: event.timezone || location?.timezone,
-      utcOffset: getUTCOffset(event.timezone || location?.timezone),
+      endTime: getTime(event.end_date, event.timezone || location?.timezone || "UTC"),
+      timezone: event.timezone || location?.timezone || "UTC",
+      utcOffset: getUTCOffset(event.timezone || location?.timezone || "UTC"),
       sessions: event.agenda?.sessions?.map((session: any, index: number) => {
         return {
           id:
