@@ -7,7 +7,7 @@ import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 import { groupByStartDate } from "@/utils/helper";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CUSTOM_EVENTS } from "@/utils/constants";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback, useRef } from "react";
 import { ABBREVIATED_MONTH_NAMES } from "@/utils/constants";
 
 const ListView = (props: any) => {
@@ -39,15 +39,15 @@ const ListView = (props: any) => {
     
     // If viewing current year, scroll to today's month (or next available)
     if (currentYear === currentYearInCalendar) {
-    const currentMonth = now.getMonth();
-    for (let i = 0; i < ABBREVIATED_MONTH_NAMES.length; i++) {
-      const idx = (currentMonth + i) % 12;
-      const key = ABBREVIATED_MONTH_NAMES[idx];
-      if (key in groupedEvents) {
-        targetedMonth = key;
-        break;
+      const currentMonth = now.getMonth();
+      for (let i = 0; i < ABBREVIATED_MONTH_NAMES.length; i++) {
+        const idx = (currentMonth + i) % 12;
+        const key = ABBREVIATED_MONTH_NAMES[idx];
+        if (key in groupedEvents) {
+          targetedMonth = key;
+          break;
+        }
       }
-    }
     } else {
       // If viewing a different year, scroll to the first event (first month)
       const sortedMonths = Object.keys(groupedEvents).sort((a, b) => {
@@ -144,48 +144,80 @@ const ListView = (props: any) => {
     }
   };
 
+  // Ref to track scheduled animation frame (prevents multiple RAF calls)
+  const scrollRafIdRef = useRef<number | null>(null);
+  // Ref to track previous button visibility state to avoid unnecessary updates
+  const prevButtonVisibilityRef = useRef<boolean | null>(null);
+
+  // Memoized function to check button visibility and update state only when needed
+  const checkButtonVisibility = useCallback(() => {
+    const now = new Date();
+    const currentYearInCalendar = now.getFullYear();
+    const currentMonth = now.getMonth();
+    const currentMonthKey = ABBREVIATED_MONTH_NAMES[currentMonth];
+
+    // Only show button if viewing current year and events exist
+    if (currentYear !== currentYearInCalendar || Object.keys(groupedEvents).length === 0) {
+      // Hide button when not viewing current year or no events
+      if (prevButtonVisibilityRef.current !== false) {
+        setShowBackToThisMonthButton(false);
+        prevButtonVisibilityRef.current = false;
+      }
+      return;
+    }
+
+    // Check if current month section exists in DOM
+    const currentMonthEl = document.getElementById(currentMonthKey);
+    if (!currentMonthEl) {
+      // Current month has no events, show button to navigate to current month (or nearest upcoming)
+      if (prevButtonVisibilityRef.current !== true) {
+        setShowBackToThisMonthButton(true);
+        prevButtonVisibilityRef.current = true;
+      }
+      return;
+    }
+
+    // Calculate viewport and element positions
+    const headerOffset = 140;
+    const elementRect = currentMonthEl.getBoundingClientRect();
+    const elementTop = elementRect.top + window.scrollY;
+    const elementBottom = elementTop + elementRect.height;
+    const viewportTop = window.scrollY + headerOffset;
+    const viewportBottom = window.scrollY + window.innerHeight;
+
+    // Check if current month section is visible in viewport (with tolerance for header)
+    // Element is visible if any part of it is within the viewport (accounting for header offset)
+    const tolerance = 100; // pixels of tolerance
+    const isCurrentMonthVisible = 
+      (elementTop <= viewportBottom + tolerance && elementBottom >= viewportTop - tolerance);
+
+    // Show button if user has scrolled away from current month
+    // Only update state if value actually changed to prevent unnecessary re-renders
+    const shouldShowButton = !isCurrentMonthVisible;
+    if (prevButtonVisibilityRef.current !== shouldShowButton) {
+      setShowBackToThisMonthButton(shouldShowButton);
+      prevButtonVisibilityRef.current = shouldShowButton;
+    }
+  }, [currentYear, groupedEvents]);
+
+  // Optimized scroll handler using requestAnimationFrame to batch scroll events
+  const handleScroll = useCallback(() => {
+    // Cancel any pending animation frame
+    if (scrollRafIdRef.current !== null) {
+      cancelAnimationFrame(scrollRafIdRef.current);
+    }
+    
+    // Schedule check for next animation frame (batches scroll events)
+    scrollRafIdRef.current = requestAnimationFrame(() => {
+      scrollRafIdRef.current = null;
+      checkButtonVisibility();
+    });
+  }, [checkButtonVisibility]);
+
   // Hide/show button based on whether user is at current month
   useEffect(() => {
-    const checkButtonVisibility = () => {
-      const now = new Date();
-      const currentYearInCalendar = now.getFullYear();
-      const currentMonth = now.getMonth();
-      const currentMonthKey = ABBREVIATED_MONTH_NAMES[currentMonth];
-
-      // Only show button if viewing current year
-      if (currentYear !== currentYearInCalendar || Object.keys(groupedEvents).length === 0) {
-        setShowBackToThisMonthButton(false);
-        return;
-      }
-
-      // Check if current month section exists
-      const currentMonthEl = document.getElementById(currentMonthKey);
-      if (!currentMonthEl) {
-        // Current month has no events, show button to go to current month (or nearest upcoming)
-        setShowBackToThisMonthButton(true);
-        return;
-      }
-
-      // Check if user is currently viewing the current month section
-      const headerOffset = 140;
-      const currentMonthTop = currentMonthEl.getBoundingClientRect().top + window.scrollY;
-      const currentMonthBottom = currentMonthTop + currentMonthEl.offsetHeight;
-      const viewportTop = window.scrollY + headerOffset;
-      const viewportBottom = window.scrollY + window.innerHeight;
-
-      // Check if current month is visible in viewport (with some tolerance)
-      const isCurrentMonthVisible = 
-        (viewportTop >= currentMonthTop - 100 && viewportTop <= currentMonthBottom + 100) ||
-        (viewportBottom >= currentMonthTop - 100 && viewportBottom <= currentMonthBottom + 100) ||
-        (viewportTop <= currentMonthTop && viewportBottom >= currentMonthBottom);
-
-      // Show button if user has scrolled away from current month
-      setShowBackToThisMonthButton(!isCurrentMonthVisible);
-    };
-
-    const handleScroll = () => {
-      checkButtonVisibility();
-    };
+    // Reset previous state when dependencies change
+    prevButtonVisibilityRef.current = null;
 
     // Check immediately when year or events change
     checkButtonVisibility();
@@ -194,9 +226,14 @@ const ListView = (props: any) => {
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
+      // Clean up animation frame if pending
+      if (scrollRafIdRef.current !== null) {
+        cancelAnimationFrame(scrollRafIdRef.current);
+        scrollRafIdRef.current = null;
+      }
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [groupedEvents, currentYear]);
+  }, [groupedEvents, currentYear, checkButtonVisibility, handleScroll]);
 
   return (
     <>
