@@ -79,6 +79,7 @@ const ListView = (props: any) => {
   }, [groupedEvents, currentYear]);
 
   const [showBackToThisMonthButton, setShowBackToThisMonthButton] = useState(false);
+  const [isBelowCurrentMonth, setIsBelowCurrentMonth] = useState(false);
 
   const onOpenDetailPopup = (event: any) => {
     onEventClicked(viewType, event?.id, event?.name);
@@ -163,6 +164,7 @@ const ListView = (props: any) => {
         setShowBackToThisMonthButton(false);
         prevButtonVisibilityRef.current = false;
       }
+      setIsBelowCurrentMonth(false);
       return;
     }
 
@@ -170,10 +172,12 @@ const ListView = (props: any) => {
     const currentMonthEl = document.getElementById(currentMonthKey);
     if (!currentMonthEl) {
       // Current month has no events, show button to navigate to current month (or nearest upcoming)
+      // Default to showing normal arrow (user is likely above, scrolling down to find events)
       if (prevButtonVisibilityRef.current !== true) {
         setShowBackToThisMonthButton(true);
         prevButtonVisibilityRef.current = true;
       }
+      setIsBelowCurrentMonth(false);
       return;
     }
 
@@ -191,6 +195,10 @@ const ListView = (props: any) => {
     const isCurrentMonthVisible = 
       (elementTop <= viewportBottom + tolerance && elementBottom >= viewportTop - tolerance);
 
+    // Determine if user is below or above current month
+    // User is below if viewport top is below the current month element
+    const isBelow = viewportTop > elementBottom;
+
     // Show button if user has scrolled away from current month
     // Only update state if value actually changed to prevent unnecessary re-renders
     const shouldShowButton = !isCurrentMonthVisible;
@@ -198,6 +206,9 @@ const ListView = (props: any) => {
       setShowBackToThisMonthButton(shouldShowButton);
       prevButtonVisibilityRef.current = shouldShowButton;
     }
+    
+    // Update scroll direction state
+    setIsBelowCurrentMonth(isBelow);
   }, [currentYear, groupedEvents]);
 
   // Optimized scroll handler using requestAnimationFrame to batch scroll events
@@ -278,7 +289,11 @@ const ListView = (props: any) => {
             onClick={handleBackToCurrentMonth}
             aria-label="Back to this month"
           >
-            <img src="/icons/back-to-icon.svg" alt="Current month" />
+            <img 
+              src="/icons/back-to-icon.svg" 
+              alt="Current month" 
+              style={{ transform: isBelowCurrentMonth ? 'rotate(180deg)' : 'none' }}
+            />
             <span className="listView__back-to-this-month__text">Back to This Month</span>
           </button>
         )}
