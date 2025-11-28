@@ -2,10 +2,8 @@ import AppHeader from "@/components/core/app-header";
 import { PHProvider } from "@/components/core/posthog-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./globals.css";
 import StyledJsxRegistry from "./registry";
-import AnnouncementBanner from "@/components/core/announcement-banner";
 import { getBannerData } from "@/service/events.service";
 import { headers } from "next/headers";
 
@@ -32,7 +30,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const bannerData = await getBannerData();
   const headersList = headers();
   const shouldHideHeader = headersList.get("x-hide-header") === "true";
   return (

@@ -25,6 +25,8 @@ const LegendsModal = () => {
     setIsOpen(false);
   };
 
+  if (!isOpen) return null;
+
   return (
     <>
       {isOpen && (

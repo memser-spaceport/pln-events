@@ -3,7 +3,13 @@ import ListView from "@/components/page/list/list-view";
 import Toolbar from "@/components/page/events/toolbar";
 import styles from "./page.module.css";
 import DetailView from "@/components/page/event-detail/event-detail-popup/detail-view";
-import { getFilterValuesFromEvents, getFilteredEvents, sortEventsByStartDate } from "@/utils/helper";
+import {
+  getFilterValuesFromEvents,
+  getFilteredEvents,
+  groupByStartDate,
+  sortEventsByStartDate,
+  formatDateTime,
+} from "@/utils/helper";
 import LegendsModal from "@/components/page/event-detail/legends-modal";
 import ProgramView from "@/components/page/events/program-view";
 import { getAllEvents } from "@/service/events.service";
@@ -20,7 +26,7 @@ async function getPageData(searchParams: any, type: string) {
     const currentYear = new Date().getFullYear();
     const yearFilter = searchParams?.year ? parseInt(searchParams.year, 10) : currentYear;
 
-    const eventsResponse = await getAllEvents(config, yearFilter);
+    const eventsResponse = await getAllEvents(config, yearFilter, type);
 
     if (eventsResponse.isError) {
       return { isError: true, filteredEvents: [] };
@@ -39,15 +45,25 @@ async function getPageData(searchParams: any, type: string) {
     
     const { rawFilterValues, selectedFilterValues, initialFilters } =
       getFilterValuesFromEvents(eventsResponse.data, searchParams);
-    const filteredEvents = getFilteredEvents(eventsResponse.data, searchParams, type) ?? [];
-    const sortedAndFilteredEvents = sortEventsByStartDate(filteredEvents);
-    
+      
+    const filteredEvents = getFilteredEvents(eventsResponse.data, searchParams,type) ?? [];
+    const sortedEvents = sortEventsByStartDate(filteredEvents);
+    const groupedEvents = groupByStartDate(sortedEvents);
+    const totalEventCount = sortedEvents.filter((event: any) => !event.isHidden).length;
+    const listViewYear =
+      sortedEvents.length > 0
+        ? formatDateTime(sortedEvents[0].startDate, sortedEvents[0].timezone, "YYYY")
+        : undefined;
     return {
       events: eventsResponse.data, 
       rawFilterValues,
       selectedFilterValues,
-      filteredEvents: sortedAndFilteredEvents,
-      initialFilters
+      filteredEvents,
+      initialFilters,
+      sortedEvents,
+      groupedEvents,
+      totalEventCount,
+      listViewYear
     };
   } catch (e) {
     console.error("error response", e);
@@ -64,6 +80,10 @@ export default async function Page({ searchParams, params }: any) {
     selectedFilterValues,
     filteredEvents,
     initialFilters,
+    sortedEvents,
+    groupedEvents,
+    totalEventCount,
+    listViewYear,
     isError
   } = await getPageData(searchParams,type);
 
@@ -75,6 +95,12 @@ export default async function Page({ searchParams, params }: any) {
     );
   }
 
+  // Create ID-slug map for DetailView
+  const eventIdSlugMap = filteredEvents.map((event: any) => ({
+    id: event.id,
+    slug: event.slug,
+  }));
+
   return (
     <>
       <div className={styles.schedule}>
@@ -84,7 +110,9 @@ export default async function Page({ searchParams, params }: any) {
             initialFilters={initialFilters}
             searchParams={searchParams}
             type={type}
-            events={filteredEvents}
+            sortedEvents={sortedEvents}
+            groupedEvents={groupedEvents}
+            totalEventCount={totalEventCount}
           />
         </div>
         <LegendsModal />
@@ -103,8 +131,9 @@ export default async function Page({ searchParams, params }: any) {
             <div className={styles.schedule__content__right}>
               {type === "list" && (
                 <ListView
-                  events={filteredEvents}
-                  allEvents={events}
+                  sortedEvents={sortedEvents}
+                  groupedEvents={groupedEvents}
+                  year={listViewYear}
                   viewType={type}
                 />
               )}
@@ -112,7 +141,7 @@ export default async function Page({ searchParams, params }: any) {
             </div>
         </div>
       </div>
-      <DetailView events={filteredEvents} />
+      <DetailView eventIdSlugMap={eventIdSlugMap} />
     </>
   );
 }

@@ -4,21 +4,20 @@ import EventCard from "./event-card";
 import SideBar from "./side-bar";
 import EventsNoResults from "@/components/ui/events-no-results";
 import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
-import { groupByStartDate } from "@/utils/helper";
+import { formatDateTime, groupByStartDate, sortEventsByStartDate } from "@/utils/helper";
 import { useRouter, useSearchParams } from "next/navigation";
-import { CUSTOM_EVENTS } from "@/utils/constants";
+import { CUSTOM_EVENTS, ABBREVIATED_MONTH_NAMES} from "@/utils/constants";
 import { useEffect, useMemo, useState, useCallback, useRef } from "react";
-import { ABBREVIATED_MONTH_NAMES } from "@/utils/constants";
+
 
 const ListView = (props: any) => {
-  const events = props.events ?? [];
+  const events = props.sortedEvents ?? [];
   const allEvents = props.allEvents ?? [];
   const viewType = props?.viewType;
   const router = useRouter();
   const searchParams = useSearchParams();
   const { onEventClicked, onBackToThisMonthClicked } = useSchedulePageAnalytics();
 
-  // Get current year from URL or default to current year
   const currentYear = useMemo(() => {
     const yearParam = searchParams.get("year");
     if (yearParam) {
@@ -27,7 +26,6 @@ const ListView = (props: any) => {
     return new Date().getFullYear();
   }, [searchParams]);
 
-  // Events are already sorted server-side (consistent with filtering pattern)
   const groupedEvents = useMemo(() => groupByStartDate(events), [events]);
 
   useEffect(() => {
@@ -84,10 +82,10 @@ const ListView = (props: any) => {
   const onOpenDetailPopup = (event: any) => {
     onEventClicked(viewType, event?.id, event?.name);
 
-    if (event.slug) {
+    if (event.id && event.slug) {
       document.dispatchEvent(
         new CustomEvent(CUSTOM_EVENTS.SHOW_EVENT_DETAIL_MODAL, {
-          detail: { isOpen: true, event },
+          detail: { eventId: event.id },
         })
       );
       router.push(`${window.location.pathname}${window.location.search}#${event.slug}`, { scroll: false });

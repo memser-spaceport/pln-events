@@ -30,19 +30,12 @@ function FilterItem(props: any) {
   const aligmentClass = type === "toggle" ? "row" : "col";
   const params = useParams();
   const view = params?.type as string;
+  const onItemClicked = props.onItemClicked;
 
-  const { onScheduleFilterClicked, onFilterClearAllBtnClicked } =
+  const { onFilterClearAllBtnClicked } =
     useSchedulePageAnalytics();
 
-  useClickedOutside({
-    ref: paneRef,
-    callback: () => {
-      setFilteredItems([...items]);
-      if (isPaneActive) {
-        setPaneStatus(false);
-      }
-    },
-  });
+
 
   const onInputChange = (value: any) => {
     if (!isPaneActive) {
@@ -87,146 +80,15 @@ function FilterItem(props: any) {
     }
   };
 
-  const onMultiTagSelected = (item: any) => {
-    // dispatch({ type: "setMultiTag", payload: { key: props.identifierId, value: item } });
-  };
-
-  const onItemClicked = (key: any, value: any) => {
-    onScheduleFilterClicked(key, value, view);
-
-    // --- Start: Logic to update searchParams ---
-    let newSearchParams = { ...searchParams };
-
-    // Handle the "Select All" case *only* for locations
-    if (
-      value &&
-      typeof value === "object" &&
-      value.isSelectAll &&
-      key === "locations"
-    ) {
-      const selectAllItems = value.items;
-      const shouldSelect = value.select;
-      let selectedLocation = [...selectedFilterValues.location];
-
-      if (shouldSelect) {
-        selectAllItems.forEach((item: any) => {
-          if (!selectedLocation.includes(item)) {
-            selectedLocation.push(item);
-          }
-        });
-      } else {
-        selectedLocation = selectedLocation.filter(
-          (option) => !selectAllItems.includes(option)
-        );
+  useClickedOutside({
+    ref: paneRef,
+    callback: () => {
+      setFilteredItems([...items]);
+      if (isPaneActive) {
+        setPaneStatus(false);
       }
-
-      if (selectedLocation.length > 0) {
-        newSearchParams["location"] = selectedLocation[0];
-      } else {
-        delete newSearchParams["location"];
-      }
-    }
-    // Featured
-    else if (key === "isFeatured") {
-      newSearchParams[key] = value;
-      if (initialFilters[key] === newSearchParams[key]) {
-        delete newSearchParams[key];
-      }
-    }
-    // Modes
-    else if (key === "modes") {
-      let selectedModes = [...selectedFilterValues.modes];
-      if (value === "All") {
-        selectedModes = [];
-        delete newSearchParams[key];
-      } else {
-        selectedModes = selectedModes.filter((mode: any) => mode !== "All");
-        if (selectedModes.includes(value)) {
-          selectedModes = selectedModes.filter((mode: any) => mode !== value);
-        } else {
-          selectedModes.push(value);
-        }
-
-        if (selectedModes.length > 0) {
-           newSearchParams[key] = selectedModes.join(URL_QUERY_VALUE_SEPARATOR);
-        } else {
-           delete newSearchParams[key];
-        }
-      }
-    }
-    // Access type (individual selection)
-    else if (key === "accessType") {
-      let selectedAccessOptions = [...selectedFilterValues.accessOption];
-      if (selectedAccessOptions.includes(value)) {
-        selectedAccessOptions = selectedAccessOptions.filter(
-          (option: any) => option !== value
-        );
-      } else {
-        selectedAccessOptions.push(value);
-      }
-      if (selectedAccessOptions.length > 0) {
-        newSearchParams["accessOption"] = selectedAccessOptions.join(
-          URL_QUERY_VALUE_SEPARATOR
-        );
-      } else {
-        delete newSearchParams["accessOption"];
-      }
-    }
-    else if (key === "locations") {
-      let selectedLocation = [...selectedFilterValues.location];
-      if (selectedLocation.length === 1 && selectedLocation[0] === value) {
-        selectedLocation = [];
-      } else {
-        selectedLocation = [value];
-      }
-      if (selectedLocation.length > 0) {
-        newSearchParams["location"] = selectedLocation[0];
-      } else {
-        delete newSearchParams["location"];
-      }
-    }
-    // Host (individual selection)
-    else if (key === "host") {
-      let selectedHosts = [...selectedFilterValues.allHost];
-      if (selectedHosts.includes(value)) {
-        selectedHosts = selectedHosts.filter((option: any) => option !== value);
-      } else {
-        selectedHosts.push(value);
-      }
-      if (selectedHosts.length > 0) {
-        newSearchParams[key] = selectedHosts.join(URL_QUERY_VALUE_SEPARATOR);
-      } else {
-        delete newSearchParams[key];
-      }
-    }
-    // Tags (individual selection)
-    else if (key === "tags") {
-      let selectedTags = [...selectedFilterValues.tags];
-      if (selectedTags.includes(value)) {
-        selectedTags = selectedTags.filter((option: any) => option !== value);
-      } else {
-        selectedTags.push(value);
-      }
-      if (selectedTags.length > 0) {
-        newSearchParams[key] = selectedTags.join(URL_QUERY_VALUE_SEPARATOR);
-      } else {
-        delete newSearchParams[key];
-      }
-    }
-    // Year
-    else if (key === "year") {
-      newSearchParams[key] = value;
-    }
-
-    const query = getQueryParams(newSearchParams);
-    const pathname = window.location.pathname;
-    const currentQuery = getQueryParams(searchParams);
-
-    if (query !== currentQuery) {
-       router.push(query ? `${pathname}?${query}` : pathname);
-    }
-
-  };
+    },
+  });
 
 
   return (

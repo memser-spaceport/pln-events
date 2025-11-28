@@ -20,6 +20,40 @@ import {
 } from "@/utils/helper";
 import { chownSync } from "fs";
 
+export const EVENT_FIELDS = {
+  list: [
+    "event_id",
+    "event_name",
+    "slug",
+    "is_hidden",
+    "access_option",
+    "format",
+    "tags",
+    "is_featured",
+    "start_date",
+    "end_date",
+    "timezone",
+    "host",
+    "host_logo",
+    "co_hosts",
+    "location",
+  ].join(","),
+  program: [
+    "event_id",
+    "event_name",
+    "format",
+    "start_date",
+    "end_date",
+    "timezone",
+    "slug",
+    "tags",
+    "is_featured",
+    "host",
+    "host_logo",
+    "co_hosts",
+  ].join(","),
+} as const;
+
 export const getBannerData = async () => {
   if (
     process.env.NEXT_PUBLIC_ANNOUNCEMENT_API_URL &&
@@ -483,7 +517,11 @@ function assignColorsToEvents(events: any[]) {
   return events;
 }
 
-export const getAllEvents = async (location: any, year?: number) => {
+
+export const getAllEvents = async (location: any, year?: number, viewType: string= "list") => {
+  const normalizedViewType = viewType === "program" ? "program" : "list";
+  const fields = EVENT_FIELDS[normalizedViewType] ?? EVENT_FIELDS.list;
+
   const params = new URLSearchParams({
     status: "APPROVED",
     sortByPriority: "true",
@@ -496,10 +534,11 @@ export const getAllEvents = async (location: any, year?: number) => {
   
   if (year) {
     params.append("year", year.toString());
-  }
+  } 
+
   
   const result = await fetch(
-    `${process.env.WEB_API_BASE_URL}/events?${params.toString()}`,
+    `${process.env.WEB_API_BASE_URL}/events?${params.toString()}&fields=${fields}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.WEB_API_TOKEN}`,
@@ -517,6 +556,103 @@ export const getAllEvents = async (location: any, year?: number) => {
   const allEvents = await result.json();
 
   let formattedEvents = allEvents?.map((event: any, index: number) => {
+    let dayDifference = differenceInDays(
+      event.start_date,
+      event.end_date,
+      event.timezone || location?.timezone || "UTC"
+    );
+
+    return {
+      name: event.event_name ?? "",
+      title: event.event_name ?? "",
+      id: event.event_id,
+      isFeatured: event.is_featured ?? false,
+      conference: event.conference ?? "",
+      meetingPlatform: event.meeting_platform ?? "",
+      registrationLink: event.registration_link ?? "",
+      websiteLink: event.website_link ?? "",
+      updatedAt: event.updatedAt,
+      addressInfo: event.address_info ?? "",
+      description: event.description ?? "",
+      tags: event.tags ?? [],
+      startDate: event.start_date,
+      // timing: formatTimeRange(event.agenda?.sessions ?? [], event.start_date, event.end_date, weekStart, weekEnd),
+      dateRange: formatDateForSchedule(
+        event.start_date,
+        event.end_date,
+        event.timezone || location?.timezone
+      ),
+      detailDateRange: formatDateForDetail(
+        event.start_date,
+        event.end_date,
+        event.timezone || location?.timezone
+      ),
+      endDate: event.end_date,
+      multiday: dayDifference > 0,
+      accessType: event.access_type,
+      accessOption: event.access_option,
+      status: event.status,
+      format: event.format,
+      location: (event.location || location?.name) ?? "",
+      locationUrl: event.location_url ?? "",
+      sponsors: event.sponsors ?? [],
+      seatCount: event.seat_count ?? "",
+      hostName: event.host ?? "",
+      hostLogo: event.host_logo ?? "",
+      coHosts: event.co_hosts ?? [],
+      secondaryContacts: event.secondary_contacts ?? [],
+      meetingLink: event.meeting_link ?? "",
+      contactName: event.event_contact_name ?? "",
+      contactEmail: event.event_contact_email ?? "",
+      contactInfos: event.contact_infos,
+      eventLogo: event.event_logo,
+      isHidden: event.is_hidden ?? false,
+      startTime: getTime(event.start_date, event.timezone || location?.timezone),
+      agenda: event.agenda,
+      slug: stringToSlug(event.event_name),
+      endTime: getTime(event.end_date, event.timezone || location?.timezone),
+      timezone: event.timezone || location?.timezone,
+      utcOffset: getUTCOffset(event.timezone || location?.timezone),
+      sessions: event.agenda?.sessions?.map((session: any, index: number) => {
+        return {
+          id:
+            replaceWhitespaceAndRemoveSpecialCharacters(session?.name) + index,
+          startDate: session.start_date,
+          endDate: session.end_date,
+          name: session.name ?? "",
+          description: session?.description ?? "",
+        };
+      }),
+      irlLink: event.additionalInfo?.irlLink ?? "",
+    };
+  });
+  formattedEvents = assignColorsToEvents(formattedEvents);
+  return { data: formattedEvents };
+};
+
+export const getEventById  = async (id: any, location?: any) => {
+  const result = await fetch(
+    `${process.env.WEB_API_BASE_URL}/events/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.WEB_API_TOKEN}`, 
+        origin: `${process.env.ORIGIN_DOMAIN}`,
+      },
+      method: "GET",
+      next: { tags: ["labweek-web3-events"] },
+    }
+  );
+
+  if (!result.ok) {
+    return { isError: true };
+  }
+
+  const eventData = await result.json();
+  
+  // Handling both array and single object responses
+  const event = Array.isArray(eventData) ? eventData : [eventData];
+
+  let formattedEvents = event?.map((event: any, index: number) => {
     let dayDifference = differenceInDays(
       event.start_date,
       event.end_date,

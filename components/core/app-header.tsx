@@ -33,12 +33,12 @@ function AppHeader() {
               />
             </button>
             <a className="attendees-button" href={process.env.NEXT_PUBLIC_IRL_URL} target="_blank" rel="noopener noreferrer">
-              <img
+              {/* <img
                 src="/icons/avatar-group.svg"
                 alt="Attendees"
                 className="attendees__img"
                 onClick={onViewDirectoryIrlClick}
-              />
+              /> */}
               <span className="attendees-text">View Attendees</span>
             </a>
             <a

@@ -13,13 +13,43 @@ import EventAccessOption from "./event-access-option";
 import PrimaryEventDetails from "./primary-event-details";
 import Footer from "./footer";
 import useClickedOutside from "@/hooks/use-clicked-outside";
-const DetailView = (props: any) => {
+
+interface DetailViewProps {
+  eventIdSlugMap: Array<{ id: string; slug: string }>;
+}
+
+const DetailView = (props: DetailViewProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [event, setEvent] = useState<any>({});
-  const events = [...props.events];
+  const [isLoading, setIsLoading] = useState(false);
+  const eventIdSlugMap = props.eventIdSlugMap || [];
   const hash = useHash();
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
+
+  // Fetch event data by ID
+  const fetchEventById = async (eventId: string) => {
+    try {
+      setIsLoading(true);
+      setIsOpen(true);
+      const response = await fetch(`/api/events/${eventId}`);
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch event");
+      }
+      
+      const result = await response.json();
+      
+      if (result.data && result.data.length > 0) {
+        setEvent(result.data[0]);
+      }
+    } catch (error) {
+      console.error("Error fetching event:", error);
+      setIsOpen(false);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEscapeClicked(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -36,20 +66,21 @@ const DetailView = (props: any) => {
     if (hash) {
       const hashValue: string = hash;
       const slug = hashValue.split("#")[1];
-      const foundEvent = [...events].findIndex((e) => e.slug === slug);
-      if (foundEvent >= 0 && slug) {
-        setEvent(events[foundEvent]);
-        setIsOpen(true);
+      const foundEventMap = eventIdSlugMap.find((e) => e.slug === slug);
+      if (foundEventMap && slug) {
+        fetchEventById(foundEventMap.id);
       }
     }
-  }, [hash]);
+  }, [hash, eventIdSlugMap]);
 
+  // Handle event clicks from list/program views
   useEffect(() => {
     const handler = (e: any) => {
-      const isOpen = e.detail.isOpen;
-      const selectedEvent = e.detail.event;
-      setEvent(selectedEvent);
-      setIsOpen(isOpen);
+      const eventId = e.detail.eventId;
+      
+      if (eventId) {
+        fetchEventById(eventId);
+      }
     };
 
     document.addEventListener(CUSTOM_EVENTS.SHOW_EVENT_DETAIL_MODAL, handler);
@@ -78,6 +109,8 @@ const DetailView = (props: any) => {
     ref: modalRef,
   })
 
+  if (!isOpen) return null;
+
   return (
     <>
       {isOpen && (
@@ -101,23 +134,32 @@ const DetailView = (props: any) => {
                 </div>
               </div>
               <div className="detail-content-cn">
-                {/* Header */}
-                <div className="detail-content__header">
-                  <div className="detail-content__header__left">
-                    <div className="detail-content__header__left__title">
-                      EVENT DETAILS
+                {isLoading ? (
+                  <div className="detail-content__loading">
+                    <div className="spinner"></div>
+                    <p>Loading event details...</p>
+                  </div>
+                ) : (
+                  <>
+                    {/* Header */}
+                    <div className="detail-content__header">
+                      <div className="detail-content__header__left">
+                        <div className="detail-content__header__left__title">
+                          EVENT DETAILS
+                        </div>
+                      </div>
+                      <div className="detail-content__header__right">
+                        <EventType event={event} />
+                        <EventAccessOption event={event} />
+                      </div>
                     </div>
-                  </div>
-                  <div className="detail-content__header__right">
-                    <EventType event={event} />
-                    <EventAccessOption event={event} />
-                  </div>
-                </div>
-                {/* Primary Event Details */}
-                <PrimaryEventDetails event={event} />
+                    {/* Primary Event Details */}
+                    <PrimaryEventDetails event={event} />
+                  </>
+                )}
               </div>
               {/* Footer */}
-              <Footer event={event} setEvent={setEvent} />
+              {!isLoading && <Footer event={event} setEvent={setEvent} />}
             </div>
           </div>
         </Modal>
@@ -243,6 +285,36 @@ const DetailView = (props: any) => {
           align-items: center;
           gap: 10px;
         }
+        }
+
+        .detail-content__loading {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 60px 20px;
+          gap: 20px;
+          min-height: 300px;
+        }
+
+        .spinner {
+          width: 48px;
+          height: 48px;
+          border: 5px solid #f3f3f3;
+          border-top: 5px solid #156ff7;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .detail-content__loading p {
+          color: #64748b;
+          font-size: 16px;
+          font-weight: 500;
         }
       `}</style>
     </>

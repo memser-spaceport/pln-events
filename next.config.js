@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: process.env.ALLOWED_IMAGE_DOMAINS
-      && process.env.ALLOWED_IMAGE_DOMAINS.split(',')
+    domains: [
+      'images.lumacdn.com',
+      'pl-events-service.s3.us-west-1.amazonaws.com',
+      'plabs-assets.s3.us-west-1.amazonaws.com',
+      ...(process.env.ALLOWED_IMAGE_DOMAINS
+        ? process.env.ALLOWED_IMAGE_DOMAINS.split(',')
+        : [])
+    ],
   },
   trailingSlash: false,
   webpack(config) {

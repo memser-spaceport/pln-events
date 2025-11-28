@@ -449,7 +449,8 @@ export const stringToUniqueInteger = (str: string) => {
 
 export function groupByStartDate(objects: any) {
   return objects.reduce((acc: any, obj: any) => {
-    const startDate = formatDateTime(obj?.startDate, obj.timezone, "MMM");
+    const timezone = obj?.timezone || "UTC";
+    const startDate = formatDateTime(obj?.startDate, timezone, "MMM");
 
     if (!acc[startDate]) {
       acc[startDate] = [];
@@ -461,8 +462,10 @@ export function groupByStartDate(objects: any) {
 
 export function sortEventsByStartDate(events: any) {
   return [...events].sort((a, b) => {
-    const startTimeA = formatDateTime(a.startDate, a.timezone) as Moment;
-    const startTimeB = formatDateTime(b.startDate, b.timezone) as Moment;
+    const timezoneA = a?.timezone || "UTC";
+    const timezoneB = b?.timezone || "UTC";
+    const startTimeA = formatDateTime(a.startDate, timezoneA) as Moment;
+    const startTimeB = formatDateTime(b.startDate, timezoneB) as Moment;
 
     if (!startTimeA.isValid() || !startTimeB.isValid()) {
       console.error("Invalid event start date:", { startTimeA, startTimeB });

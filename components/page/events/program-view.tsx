@@ -104,10 +104,10 @@ const ProgramView = (props: IProgramView) => {
           viewEvent = props.events.find((event: any) => event.id === calEvent.id);
         }
         analytics.captureEventCardClick(viewEvent?.id, viewEvent?.name);
-        if (viewEvent.slug) {
+        if (viewEvent.id && viewEvent.slug) {
           document.dispatchEvent(
             new CustomEvent(CUSTOM_EVENTS.SHOW_EVENT_DETAIL_MODAL, {
-              detail: { isOpen: true, event: viewEvent },
+              detail: { eventId: viewEvent.id, sessionId },
             })
           );
           const sessionParam = sessionId ? `${window.location.search ? "&" : "?"}session=${sessionId}` : "";
