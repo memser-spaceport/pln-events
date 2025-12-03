@@ -17,60 +17,33 @@ const SideBar = (props: any) => {
   const [isNavigating, setIsNavigating] = useState(false);
   const activeEventId = useEventsScrollObserver(Object.keys(events), events, clickedMenuId);
 
-  // Memoize allEvents to avoid unnecessary recalculations
-  const allEvents = useMemo(() => props?.allEvents ?? [], [props?.allEvents]);
-
   // Get current year from URL params or default to current year
   const currentYear = useMemo(() => {
     const yearParam = searchParams.get("year");
     if (yearParam) {
       return parseInt(yearParam, 10);
     }
-    // Fallback: get year from first event if available (timezone-aware)
-    if (allEvents.length > 0) {
-      const firstEvent = allEvents[0];
-      if (firstEvent.startDate && firstEvent.timezone) {
-        const eventMoment = formatDateTime(firstEvent.startDate, firstEvent.timezone);
-        if (eventMoment.isValid()) {
-          return eventMoment.year();
-        }
-      }
-    }
     return new Date().getFullYear();
-  }, [searchParams, allEvents]);
+  }, [searchParams]);
 
-  // Extract available years from all events (timezone-aware, consistent with filtering)
-  const availableYears = useMemo(() => {
-    const yearsSet = new Set<number>();
-    allEvents.forEach((event: any) => {
-      if (event.startDate && !event.isHidden && event.timezone) {
-        const eventMoment = formatDateTime(event.startDate, event.timezone);
-        if (eventMoment.isValid()) {
-          const year = eventMoment.year();
-          yearsSet.add(year);
-        }
-      }
-    });
-    return Array.from(yearsSet).sort((a, b) => b - a); // Sort descending (newest first)
-  }, [allEvents]);
+  const MIN_YEAR = 2020;
+  const MAX_YEAR = 2030;
 
-  // Check if previous/next year has events
+  // Check if previous/next year is within valid range
   const hasPreviousYear = useMemo(() => {
-    const previousYear = currentYear - 1;
-    return availableYears.includes(previousYear);
-  }, [currentYear, availableYears]);
+    return currentYear - 1 >= MIN_YEAR;
+  }, [currentYear]);
 
   const hasNextYear = useMemo(() => {
-    const nextYear = currentYear + 1;
-    return availableYears.includes(nextYear);
-  }, [currentYear, availableYears]);
+    return currentYear + 1 <= MAX_YEAR;
+  }, [currentYear]);
 
   // Handle year navigation
   const handleYearChange = (direction: "prev" | "next") => {
     const targetYear = direction === "prev" ? currentYear - 1 : currentYear + 1;
     
-    if (!availableYears.includes(targetYear) || isNavigating) {
-      return; // Don't navigate if no events exist for that year or already navigating
+    if (targetYear < MIN_YEAR || targetYear > MAX_YEAR || isNavigating) {
+      return;
     }
 
     setIsNavigating(true);
@@ -181,6 +154,7 @@ const SideBar = (props: any) => {
           </span>
         </div>
         <div className="sidebar__dates">
+          <div className="sidebar__dates__gradient-overlay"></div>
           {ABBREVIATED_MONTH_NAMES.map((val, i) => {
             const hasDate = Object.keys(events).includes(val);
             return (
@@ -241,12 +215,14 @@ const SideBar = (props: any) => {
           justify-content: space-between;
           align-items: center;
           padding: 10px;
+          padding-left: 0;
           opacity: 1;
           font-size: 14px;
           line-height: 16px;
           z-index: 10;
           margin-top: 10px;
           margin-bottom: 0px;
+          margin-left: -10px;
           background: transparent;
         }
 
@@ -294,6 +270,23 @@ const SideBar = (props: any) => {
           padding-top: 0px;
           max-height: calc(100vh - 112px - 80px);
           overflow-y: auto;
+        }
+
+        .sidebar__dates__gradient-overlay {
+          position: sticky;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 50px;
+          background: linear-gradient(to bottom, 
+            rgba(255, 255, 255, 1) 0%, 
+            rgba(255, 255, 255, 0.98) 20%, 
+            rgba(255, 255, 255, 0.85) 50%, 
+            rgba(255, 255, 255, 0) 100%
+          );
+          pointer-events: none;
+          z-index: 9;
+          margin-bottom: -50px;
         }
 
         .sidebar__dates__date {

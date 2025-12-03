@@ -341,10 +341,6 @@ export const getFilterValuesFromEvents = (events: any, queryParams = {}) => {
 };
 
 export const getFilteredEvents = (events: any, queryParams: any, type?: string) => {
-  
-  const currentYear = new Date().getFullYear();
-  const yearFilter = queryParams.year ? parseInt(queryParams.year, 10) : currentYear;
-
   let filteredEvents = [...events].filter((event) => {
     if (type === "calendar" || type === "list") {
       if (event.isHidden) {
@@ -407,14 +403,6 @@ export const getFilteredEvents = (events: any, queryParams: any, type?: string) 
       }
     }
 
-        const eventMoment = formatDateTime(event.startDate, event.timezone);
-        if (!eventMoment.isValid()) {
-          return false;
-        }
-        const eventYear = eventMoment.year();
-        if (eventYear !== yearFilter) {
-          return false;
-        }
 
     return true;
   });
