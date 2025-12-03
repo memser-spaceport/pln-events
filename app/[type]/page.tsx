@@ -14,11 +14,16 @@ async function getPageData(searchParams: any, type: string) {
     const locations = await getLocations();
     const location = searchParams?.location ?? "";
     const config = locations[location];
-    const eventsResponse = await getAllEvents(config);
+    
+    const currentYear = new Date().getFullYear();
+    const yearFilter = searchParams?.year ? parseInt(searchParams.year, 10) : currentYear;
+
+    const eventsResponse = await getAllEvents(config, yearFilter);
 
     if (eventsResponse.isError) {
       return { isError: true, filteredEvents: [] };
     }
+    
     const configLocations = Object.values(locations).map((item: any) => {
       return {
         name: item.title,
@@ -27,15 +32,17 @@ async function getPageData(searchParams: any, type: string) {
       }
     });
 
+
     eventsResponse.data.configLocations = configLocations;
     const { rawFilterValues, selectedFilterValues, initialFilters } =
       getFilterValuesFromEvents(eventsResponse.data, searchParams);
-      
-    const filteredEvents = getFilteredEvents(eventsResponse.data, searchParams,type) ?? [];
-    // Sort events server-side (consistent with filtering pattern)
+    
+
+    const filteredEvents = getFilteredEvents(eventsResponse.data, searchParams, type) ?? [];
     const sortedAndFilteredEvents = sortEventsByStartDate(filteredEvents);
+    
     return {
-      events: eventsResponse.data,
+      events: eventsResponse.data, 
       rawFilterValues,
       selectedFilterValues,
       filteredEvents: sortedAndFilteredEvents,

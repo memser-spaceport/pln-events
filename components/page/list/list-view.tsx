@@ -94,7 +94,7 @@ const ListView = (props: any) => {
     }
   };
 
-  // Scroll to current month's event (or nearest upcoming event)
+
   const handleBackToCurrentMonth = () => {
     const now = new Date();
     const currentYearInCalendar = now.getFullYear();
@@ -112,13 +112,22 @@ const ListView = (props: any) => {
     if (currentMonthKey in groupedEvents) {
       targetMonth = currentMonthKey;
     } else {
-      // Find nearest upcoming month with events
-      for (let i = 0; i < ABBREVIATED_MONTH_NAMES.length; i++) {
-        const idx = (currentMonth + i) % 12;
+      for (let i = 1; i <= 11 - currentMonth; i++) {
+        const idx = currentMonth + i;
         const key = ABBREVIATED_MONTH_NAMES[idx];
         if (key in groupedEvents) {
           targetMonth = key;
           break;
+        }
+      }
+      
+      if (!targetMonth) {
+        for (let i = currentMonth - 1; i >= 0; i--) {
+          const key = ABBREVIATED_MONTH_NAMES[i];
+          if (key in groupedEvents) {
+            targetMonth = key;
+            break;
+          }
         }
       }
     }
@@ -168,14 +177,50 @@ const ListView = (props: any) => {
       return;
     }
 
-    // Check if current month section exists in DOM
+
+    let targetMonthKey = currentMonthKey;
     const currentMonthEl = document.getElementById(currentMonthKey);
+    
     if (!currentMonthEl) {
-      // Current month has no events, show button to navigate to current month (or nearest upcoming)
-      // Default to showing normal arrow (user is likely above, scrolling down to find events)
-      if (prevButtonVisibilityRef.current !== true) {
-        setShowBackToThisMonthButton(true);
-        prevButtonVisibilityRef.current = true;
+      let nearestMonth = null;
+      
+      for (let i = 1; i <= 11 - currentMonth; i++) {
+        const idx = currentMonth + i;
+        const key = ABBREVIATED_MONTH_NAMES[idx];
+        if (key in groupedEvents) {
+          nearestMonth = key;
+          break;
+        }
+      }
+      
+      if (!nearestMonth) {
+        for (let i = currentMonth - 1; i >= 0; i--) {
+          const key = ABBREVIATED_MONTH_NAMES[i];
+          if (key in groupedEvents) {
+            nearestMonth = key;
+            break;
+          }
+        }
+      }
+      
+      if (!nearestMonth) {
+        if (prevButtonVisibilityRef.current !== false) {
+          setShowBackToThisMonthButton(false);
+          prevButtonVisibilityRef.current = false;
+        }
+        setIsBelowCurrentMonth(false);
+        return;
+      }
+      
+      targetMonthKey = nearestMonth;
+    }
+
+
+    const targetMonthEl = document.getElementById(targetMonthKey);
+    if (!targetMonthEl) {
+      if (prevButtonVisibilityRef.current !== false) {
+        setShowBackToThisMonthButton(false);
+        prevButtonVisibilityRef.current = false;
       }
       setIsBelowCurrentMonth(false);
       return;
@@ -183,25 +228,19 @@ const ListView = (props: any) => {
 
     // Calculate viewport and element positions
     const headerOffset = 140;
-    const elementRect = currentMonthEl.getBoundingClientRect();
+    const elementRect = targetMonthEl.getBoundingClientRect();
     const elementTop = elementRect.top + window.scrollY;
     const elementBottom = elementTop + elementRect.height;
     const viewportTop = window.scrollY + headerOffset;
     const viewportBottom = window.scrollY + window.innerHeight;
 
-    // Check if current month section is visible in viewport (with tolerance for header)
-    // Element is visible if any part of it is within the viewport (accounting for header offset)
     const tolerance = 100; // pixels of tolerance
-    const isCurrentMonthVisible = 
+    const isTargetMonthVisible = 
       (elementTop <= viewportBottom + tolerance && elementBottom >= viewportTop - tolerance);
 
-    // Determine if user is below or above current month
-    // User is below if viewport top is below the current month element
     const isBelow = viewportTop > elementBottom;
 
-    // Show button if user has scrolled away from current month
-    // Only update state if value actually changed to prevent unnecessary re-renders
-    const shouldShowButton = !isCurrentMonthVisible;
+    const shouldShowButton = !isTargetMonthVisible;
     if (prevButtonVisibilityRef.current !== shouldShowButton) {
       setShowBackToThisMonthButton(shouldShowButton);
       prevButtonVisibilityRef.current = shouldShowButton;
@@ -294,7 +333,7 @@ const ListView = (props: any) => {
               alt="Current month" 
               style={{ transform: isBelowCurrentMonth ? 'rotate(180deg)' : 'none' }}
             />
-            <span className="listView__back-to-this-month__text">Back to This Month</span>
+            <span className="listView__back-to-this-month__text">View Current Month</span>
           </button>
         )}
         <div className="listView__sidebar">
@@ -398,7 +437,7 @@ const ListView = (props: any) => {
           font-weight: 600;
           cursor: pointer;
           transition: all 0.2s ease;
-          z-index: 100;
+          z-index: 30;
           display: flex;
           align-items: center;
           justify-content: center;
