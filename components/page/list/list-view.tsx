@@ -437,7 +437,7 @@ const ListView = (props: any) => {
           font-weight: 600;
           cursor: pointer;
           transition: all 0.2s ease;
-          z-index: 30;
+          z-index: 4;
           display: flex;
           align-items: center;
           justify-content: center;
