@@ -26,19 +26,19 @@ const SideBar = (props: any) => {
     return new Date().getFullYear();
   }, [searchParams]);
 
-  const MIN_YEAR = 2020;
-  const MAX_YEAR = 2030;
+  const currentYearNow = new Date().getFullYear();
+  const currentMonth = new Date().getMonth(); 
+  const MIN_YEAR = 2025;
+  const MAX_YEAR = currentMonth === 11 ? currentYearNow + 1 : currentYearNow;
 
-  // Check if previous/next year is within valid range
   const hasPreviousYear = useMemo(() => {
     return currentYear - 1 >= MIN_YEAR;
-  }, [currentYear]);
+  }, [currentYear, MIN_YEAR]);
 
   const hasNextYear = useMemo(() => {
     return currentYear + 1 <= MAX_YEAR;
-  }, [currentYear]);
+  }, [currentYear, MAX_YEAR]);
 
-  // Handle year navigation
   const handleYearChange = (direction: "prev" | "next") => {
     const targetYear = direction === "prev" ? currentYear - 1 : currentYear + 1;
     
@@ -268,8 +268,10 @@ const SideBar = (props: any) => {
           position: relative;
           width: 100%;
           padding-top: 0px;
-          max-height: calc(100vh - 112px - 80px);
+          height: calc(100vh - 112px - 80px);
           overflow-y: auto;
+          display: flex;
+          flex-direction: column;
         }
 
         .sidebar__dates__gradient-overlay {
@@ -294,13 +296,14 @@ const SideBar = (props: any) => {
           display: flex;
           align-items: center;
           gap: 8px;
-          height: 48px;
+          flex: 1;
+          min-height: 48px;
           cursor: pointer;
           padding-inline: 6px;
         }
 
         .sidebar__dates__date__scroller {
-          height: 48px;
+          height: 100%;
           border-left: 1px solid #cbd5e1;
         }
 
@@ -311,6 +314,7 @@ const SideBar = (props: any) => {
 
         .sidebar__dates__date__imgWrpr {
           position: relative;
+          align-self: stretch;
         }
 
         .sidebar__dates__date__imgWrpr__img {
