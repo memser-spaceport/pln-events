@@ -139,30 +139,42 @@ export const replaceWhitespaceAndRemoveSpecialCharacters = (text: string) =>
 
 export const getFilterCount = (selectedFilterValues: any) => {
   let count = 0;
+
   if (selectedFilterValues?.isFeatured) {
     count++;
   }
+
   if (selectedFilterValues?.modes?.length > 0 && selectedFilterValues?.modes[0] !== "All") {
     count++;
   }
-  // if (selectedFilterValues?.year) {
-  //   count++;
-  // }
+
+  if (selectedFilterValues?.year) {
+    const currentYear = new Date().getFullYear();
+    const selectedYear = parseInt(selectedFilterValues.year, 10);
+    if (selectedYear !== currentYear) {
+      count++;
+    }
+  }
+
   if (selectedFilterValues?.location?.length > 0) {
     count++;
   }
-  if (selectedFilterValues?.allHost.length > 0) {
+
+  if (selectedFilterValues?.allHost?.length > 0) {
     count++;
   }
-  if (selectedFilterValues?.tags.length > 0) {
+
+  if (selectedFilterValues?.tags?.length > 0) {
     count++;
   }
-  if (selectedFilterValues?.accessOption.length > 0) {
+
+  if (selectedFilterValues?.accessOption?.length > 0) {
     count++;
   }
 
   return count;
 };
+
 
 export const getQueryParams = (searchParams: any) => {
   const queryString = Object.keys(searchParams)

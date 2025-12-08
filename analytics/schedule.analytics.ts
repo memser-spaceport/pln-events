@@ -16,6 +16,7 @@ export const useSchedulePageAnalytics = () => {
     SCHEDULE_REFRESH_CLICKED: "SCHEDULE_REFRESH_CLICKED",
     VIEW_ATTENDEES_URL_CLICKED: "VIEW_ATTENDEES_URL_CLICKED",
     BACK_TO_THIS_MONTH_CLICKED: "BACK_TO_THIS_MONTH_CLICKED",
+    YEAR_FILTER_CHANGED: "YEAR_FILTER_CHANGED",
   };
 
   const captureEvent = (eventName: string, eventParams = {}) => {
@@ -166,6 +167,19 @@ export const useSchedulePageAnalytics = () => {
     captureEvent(events.BACK_TO_THIS_MONTH_CLICKED, params);
   }
 
+  const onYearFilterChanged = (
+    direction: "prev" | "next",
+    fromYear: number,
+    toYear: number
+  ) => {
+    const params = {
+      direction,
+      fromYear,
+      toYear,
+    };
+    captureEvent(events.YEAR_FILTER_CHANGED, params);
+  }
+
   return {
     onEventClicked,
     onFilterMenuClicked,
@@ -178,6 +192,7 @@ export const useSchedulePageAnalytics = () => {
     onEventUrlClicked,
     onScheduleRefreshClick,
     onViewAttendeesUrlClicked,
-    onBackToThisMonthClicked
+    onBackToThisMonthClicked,
+    onYearFilterChanged
   };
 };

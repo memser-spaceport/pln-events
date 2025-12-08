@@ -4,17 +4,22 @@ import useEventsScrollObserver from "@/hooks/use-events-scroll-observer";
 import { CUSTOM_EVENTS } from "@/utils/constants";
 import { ABBREVIATED_MONTH_NAMES } from "@/utils/constants";
 import { formatDateTime } from "@/utils/helper";
-import { useEffect, useState, useMemo, startTransition } from "react";
+import { useEffect, useState, useMemo, startTransition, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { MIN_YEAR_COUNT, MAX_YEAR_COUNT } from "@/utils/constants";
+import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
+
 
 const SideBar = (props: any) => {
   const events = props?.events;
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { onYearFilterChanged } = useSchedulePageAnalytics();
 
   const [clickedMenuId, setClickedMenuId] = useState("");
   const [isNavigating, setIsNavigating] = useState(false);
+  const isManualScroll = useRef(false);
   const activeEventId = useEventsScrollObserver(Object.keys(events), events, clickedMenuId);
 
   // Get current year from URL params or default to current year
@@ -28,36 +33,37 @@ const SideBar = (props: any) => {
 
   const currentYearNow = new Date().getFullYear();
   const currentMonth = new Date().getMonth(); 
-  const MIN_YEAR = 2025;
-  const MAX_YEAR = currentMonth === 11 ? currentYearNow + 1 : currentYearNow;
+  const MIN_ALLOWED_YEAR = currentYearNow - MIN_YEAR_COUNT;
+  const MAX_ALLOWED_YEAR = currentYearNow + MAX_YEAR_COUNT;
 
-  const hasPreviousYear = useMemo(() => {
-    return currentYear - 1 >= MIN_YEAR;
-  }, [currentYear, MIN_YEAR]);
+const hasPreviousYear = useMemo(() => {
+  return currentYear - 1 >= MIN_ALLOWED_YEAR;
+}, [currentYear]);
 
-  const hasNextYear = useMemo(() => {
-    return currentYear + 1 <= MAX_YEAR;
-  }, [currentYear, MAX_YEAR]);
+const hasNextYear = useMemo(() => {
+  return currentYear + 1 <= MAX_ALLOWED_YEAR;
+}, [currentYear]);
 
-  const handleYearChange = (direction: "prev" | "next") => {
-    const targetYear = direction === "prev" ? currentYear - 1 : currentYear + 1;
-    
-    if (targetYear < MIN_YEAR || targetYear > MAX_YEAR || isNavigating) {
-      return;
-    }
+const handleYearChange = (direction: "prev" | "next") => {
+  const targetYear = direction === "prev" ? currentYear - 1 : currentYear + 1;
 
-    setIsNavigating(true);
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("year", targetYear.toString());
-    
-    // Use startTransition for smooth navigation
-    startTransition(() => {
-      router.push(`${pathname}?${params.toString()}`, { scroll: false });
-      setIsNavigating(false);
-    });
-  };
+  if (targetYear < MIN_ALLOWED_YEAR || targetYear > MAX_ALLOWED_YEAR || isNavigating) {
+    return;
+  }
+
+  onYearFilterChanged(direction, currentYear, targetYear);
+
+  setIsNavigating(true);
+
+  const params = new URLSearchParams(searchParams.toString());
+  params.set("year", targetYear.toString());
+
+  window.location.href = `${pathname}?${params.toString()}`;
+};
+
 
   const onItemClicked = (item: any) => {
+    isManualScroll.current = true;
     setClickedMenuId(item);
     const element = document.getElementById(item);
     if (element) {
@@ -68,12 +74,20 @@ const SideBar = (props: any) => {
         top: offsetPosition,
         behavior: "smooth",
       });
+      
+      setTimeout(() => {
+        isManualScroll.current = false;
+      }, 1000);
     }
   };
 
   useEffect(() => {
+    if (activeEventId && !isManualScroll.current) {
+        setClickedMenuId(activeEventId);
+    }
+    
     const element = document.getElementById(`agenda-${activeEventId}`);
-    setClickedMenuId(activeEventId);
+    
     document.dispatchEvent(
       new CustomEvent(CUSTOM_EVENTS.UPDATE_SELECTED_DATE, {
         detail: { activeEventId },
@@ -82,9 +96,8 @@ const SideBar = (props: any) => {
 
     if (element) {
       const parentContainer = element.parentElement;
-      const nextItem = element.nextElementSibling;
-      if (nextItem && nextItem instanceof HTMLElement && parentContainer) {
-        const topPosition = nextItem?.offsetTop - 80;
+      if (parentContainer) {
+        const topPosition = element.offsetTop - 80;
         parentContainer.scrollTo({
           top: topPosition,
           behavior: "smooth",
@@ -153,8 +166,8 @@ const SideBar = (props: any) => {
             <img src="/icons/greater-than.svg" alt="Next year" />
           </span>
         </div>
+        <div className="sidebar__gradient-overlay"></div>
         <div className="sidebar__dates">
-          <div className="sidebar__dates__gradient-overlay"></div>
           {ABBREVIATED_MONTH_NAMES.map((val, i) => {
             const hasDate = Object.keys(events).includes(val);
             return (
@@ -210,7 +223,7 @@ const SideBar = (props: any) => {
           position: sticky;
           top: 0;
           width: 138px;
-          height: 70px;
+          height: 50px;
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -223,7 +236,23 @@ const SideBar = (props: any) => {
           margin-top: 10px;
           margin-bottom: 0px;
           margin-left: -10px;
-          background: transparent;
+          background: white;
+        }
+
+        .sidebar__gradient-overlay {
+          position: sticky;
+          top: 50px;
+          left: 0;
+          width: 100%;
+          height: 30px;
+          background: linear-gradient(to bottom, 
+            rgba(255, 255, 255, 1) 0%, 
+            rgba(255, 255, 255, 0.8) 40%, 
+            rgba(255, 255, 255, 0) 100%
+          );
+          pointer-events: none;
+          z-index: 9;
+          margin-bottom: -30px;
         }
 
         .sidebar__year-filter__control {
@@ -268,27 +297,10 @@ const SideBar = (props: any) => {
           position: relative;
           width: 100%;
           padding-top: 0px;
-          height: calc(100vh - 112px - 80px);
+          height: calc(100vh - 112px - 60px);
           overflow-y: auto;
           display: flex;
           flex-direction: column;
-        }
-
-        .sidebar__dates__gradient-overlay {
-          position: sticky;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 50px;
-          background: linear-gradient(to bottom, 
-            rgba(255, 255, 255, 1) 0%, 
-            rgba(255, 255, 255, 0.98) 20%, 
-            rgba(255, 255, 255, 0.85) 50%, 
-            rgba(255, 255, 255, 0) 100%
-          );
-          pointer-events: none;
-          z-index: 9;
-          margin-bottom: -50px;
         }
 
         .sidebar__dates__date {

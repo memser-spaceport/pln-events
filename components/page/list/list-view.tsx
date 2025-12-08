@@ -319,7 +319,7 @@ const ListView = (props: any) => {
                 <div className="listView__es"></div>
               </>
             )}
-            {Object.entries(groupedEvents)?.length === 0 && <EventsNoResults />}
+            {Object.entries(groupedEvents)?.length === 0 && <EventsNoResults searchParams={searchParams} allEvents={allEvents} />}
           </div>
         </div>
         {Object.entries(groupedEvents)?.length > 0 && showBackToThisMonthButton && (
