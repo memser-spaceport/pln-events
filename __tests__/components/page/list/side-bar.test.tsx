@@ -29,6 +29,16 @@ jest.mock('../../../../utils/constants', () => ({
     UPDATE_SELECTED_DATE: 'UPDATE_SELECTED_DATE',
   },
   ABBREVIATED_MONTH_NAMES: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  MIN_YEAR_COUNT: 2,
+  MAX_YEAR_COUNT: 2,
+}));
+
+// Mock analytics
+const mockOnYearFilterChanged = jest.fn();
+jest.mock('../../../../analytics/schedule.analytics', () => ({
+  useSchedulePageAnalytics: () => ({
+    onYearFilterChanged: mockOnYearFilterChanged,
+  }),
 }));
 
 // Mock styled-jsx
@@ -758,6 +768,44 @@ describe('SideBar Component', () => {
       const prevArrow = document.querySelector('.sidebar__year-filter__control:first-child');
       // Should be enabled because 2024 has visible events
       expect(prevArrow).not.toHaveClass('disabled');
+    });
+
+    it('captures analytics when year filter arrow is clicked', () => {
+      mockSearchParams.get.mockImplementation((key: string) => {
+        if (key === 'year') return '2025';
+        return null;
+      });
+      mockSearchParams.toString.mockReturnValue('year=2025');
+
+      // Mock window.location.href to prevent actual navigation
+      delete (window as any).location;
+      (window as any).location = { href: '' };
+
+      render(<SideBar {...defaultProps} allEvents={mockAllEvents} />);
+
+      const nextArrow = document.querySelector('.sidebar__year-filter__control:last-child');
+      fireEvent.click(nextArrow!);
+
+      expect(mockOnYearFilterChanged).toHaveBeenCalledWith('next', 2025, 2026);
+    });
+
+    it('captures analytics with correct direction for previous year', () => {
+      mockSearchParams.get.mockImplementation((key: string) => {
+        if (key === 'year') return '2025';
+        return null;
+      });
+      mockSearchParams.toString.mockReturnValue('year=2025');
+
+      // Mock window.location.href to prevent actual navigation
+      delete (window as any).location;
+      (window as any).location = { href: '' };
+
+      render(<SideBar {...defaultProps} allEvents={mockAllEvents} />);
+
+      const prevArrow = document.querySelector('.sidebar__year-filter__control:first-child');
+      fireEvent.click(prevArrow!);
+
+      expect(mockOnYearFilterChanged).toHaveBeenCalledWith('prev', 2025, 2024);
     });
   });
 });

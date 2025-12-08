@@ -41,7 +41,12 @@ const FilterBox = (props: any) => {
     setIsExpand(!isExpand);
   };
 
-  const filterCount = getFilterCount(selectedFilterValues);
+  const selectedFilterValuesWithYear = {
+    ...selectedFilterValues,
+    year: searchParams.year || new Date().getFullYear().toString()
+  };
+
+  const filterCount = getFilterCount(selectedFilterValuesWithYear);
 
   const filterValues = [
     {
@@ -315,11 +320,11 @@ const FilterBox = (props: any) => {
 
             .fb {
               display: ${viewType === VIEW_TYPE.list.name || isExpand ? "block" : "none"};
-              height: calc(100svh - 60px);
+              height: calc(100svh - 112px);
               transition: width 0.3s ease;
               position: sticky;
               width: 260px;
-              top: 60px;
+              top: 112px;
               border: 1px solid #cbd5e1;
               z-index: 1;
             }
