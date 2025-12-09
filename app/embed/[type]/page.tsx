@@ -70,6 +70,12 @@ export default async function Page({ searchParams, params }: any) {
     );
   }
 
+  // Map event IDs to slugs so DetailView can fetch details based on hash
+  const eventIdSlugMap = (filteredEvents || []).map((event: any) => ({
+    id: event.id,
+    slug: event.slug,
+  }));
+
   return (
     <>
       <div className={styles.schedule}>
@@ -108,7 +114,7 @@ export default async function Page({ searchParams, params }: any) {
             </div>
         </div>
       </div>
-      <DetailView events={filteredEvents} />
+      <DetailView eventIdSlugMap={eventIdSlugMap} />
     </>
   );
 }
