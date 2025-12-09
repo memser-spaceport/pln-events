@@ -51,6 +51,7 @@ export const EVENT_FIELDS = {
     "host",
     "host_logo",
     "co_hosts",
+    "location",
   ].join(","),
 } as const;
 
@@ -522,23 +523,22 @@ export const getAllEvents = async (location: any, year?: number, viewType: strin
   const normalizedViewType = viewType === "program" ? "program" : "list";
   const fields = EVENT_FIELDS[normalizedViewType] ?? EVENT_FIELDS.list;
 
-  const params = new URLSearchParams({
-    status: "APPROVED",
-    sortByPriority: "true",
-    type: "EventAndSession",
-  });
+  // const params = new URLSearchParams({
+  //   status: "APPROVED",
+  //   sortByPriority: "true",
+  //   type: "EventAndSession",
+  // });
   
-  if (location?.title) {
-    params.append("location", location.title);
-  }
+  // if (location?.title) {
+  //   params.append("location", location.title);
+  // }
   
-  if (year) {
-    params.append("year", year.toString());
-  } 
-
+  // if (year) {
+  //   params.append("year", year.toString());  
+  // } 
   
   const result = await fetch(
-    `${process.env.WEB_API_BASE_URL}/events?${params.toString()}&fields=${fields}`,
+    `${process.env.WEB_API_BASE_URL}/events?status=APPROVED&sortByPriority=true&type=EventAndSession${location ? `&location=${location?.title}` : ""}&fields=${fields}${year ? `&year=${year}` : ""}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.WEB_API_TOKEN}`,
@@ -567,13 +567,6 @@ export const getAllEvents = async (location: any, year?: number, viewType: strin
       title: event.event_name ?? "",
       id: event.event_id,
       isFeatured: event.is_featured ?? false,
-      conference: event.conference ?? "",
-      meetingPlatform: event.meeting_platform ?? "",
-      registrationLink: event.registration_link ?? "",
-      websiteLink: event.website_link ?? "",
-      updatedAt: event.updatedAt,
-      addressInfo: event.address_info ?? "",
-      description: event.description ?? "",
       tags: event.tags ?? [],
       startDate: event.start_date,
       // timing: formatTimeRange(event.agenda?.sessions ?? [], event.start_date, event.end_date, weekStart, weekEnd),
@@ -589,41 +582,17 @@ export const getAllEvents = async (location: any, year?: number, viewType: strin
       ),
       endDate: event.end_date,
       multiday: dayDifference > 0,
-      accessType: event.access_type,
-      accessOption: event.access_option,
-      status: event.status,
       format: event.format,
       location: (event.location || location?.name) ?? "",
       locationUrl: event.location_url ?? "",
-      sponsors: event.sponsors ?? [],
-      seatCount: event.seat_count ?? "",
       hostName: event.host ?? "",
       hostLogo: event.host_logo ?? "",
       coHosts: event.co_hosts ?? [],
-      secondaryContacts: event.secondary_contacts ?? [],
-      meetingLink: event.meeting_link ?? "",
-      contactName: event.event_contact_name ?? "",
-      contactEmail: event.event_contact_email ?? "",
-      contactInfos: event.contact_infos,
-      eventLogo: event.event_logo,
-      isHidden: event.is_hidden ?? false,
       startTime: getTime(event.start_date, event.timezone || location?.timezone),
-      agenda: event.agenda,
       slug: stringToSlug(event.event_name),
       endTime: getTime(event.end_date, event.timezone || location?.timezone),
       timezone: event.timezone || location?.timezone,
       utcOffset: getUTCOffset(event.timezone || location?.timezone),
-      sessions: event.agenda?.sessions?.map((session: any, index: number) => {
-        return {
-          id:
-            replaceWhitespaceAndRemoveSpecialCharacters(session?.name) + index,
-          startDate: session.start_date,
-          endDate: session.end_date,
-          name: session.name ?? "",
-          description: session?.description ?? "",
-        };
-      }),
-      irlLink: event.additionalInfo?.irlLink ?? "",
     };
   });
   formattedEvents = assignColorsToEvents(formattedEvents);
