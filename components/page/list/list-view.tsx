@@ -39,12 +39,21 @@ const ListView = (props: any) => {
     // If viewing current year, scroll to today's month (or next available)
     if (currentYear === currentYearInCalendar) {
       const currentMonth = now.getMonth();
-      for (let i = 0; i < ABBREVIATED_MONTH_NAMES.length; i++) {
-        const idx = (currentMonth + i) % 12;
-        const key = ABBREVIATED_MONTH_NAMES[idx];
+      
+      for (let i = currentMonth; i < ABBREVIATED_MONTH_NAMES.length; i++) {
+        const key = ABBREVIATED_MONTH_NAMES[i];
         if (key in groupedEvents) {
           targetedMonth = key;
           break;
+        }
+      }
+      if (!targetedMonth) {
+        for (let i = currentMonth - 1; i >= 0; i--) {
+          const key = ABBREVIATED_MONTH_NAMES[i];
+          if (key in groupedEvents) {
+            targetedMonth = key;
+            break;
+          }
         }
       }
     } else {
