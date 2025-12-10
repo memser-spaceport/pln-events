@@ -27,8 +27,7 @@ const ListView = (props: any) => {
     return new Date().getFullYear();
   }, [searchParams]);
 
-  // Events are already sorted server-side (consistent with filtering pattern)
-  const groupedEvents = useMemo(() => groupByStartDate(events), [events]);
+  const groupedEvents = useMemo(() => groupByStartDate(events, currentYear), [events, currentYear]);
 
   useEffect(() => {
     if (!groupedEvents || Object.keys(groupedEvents).length === 0) return;

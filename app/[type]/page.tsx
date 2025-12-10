@@ -14,8 +14,8 @@ export const dynamic = 'force-dynamic';
 async function getPageData(searchParams: any, type: string) {
   try {
     const locations = await getLocations();
-    const location = searchParams?.location ?? "";
-    const config = locations[location];
+    const locationParam = searchParams?.location ?? "";
+    const config = locations[locationParam] || (locationParam ? { title: locationParam } : undefined);
     
     const currentYear = new Date().getFullYear();
     const yearFilter = searchParams?.year ? parseInt(searchParams.year, 10) : currentYear;
