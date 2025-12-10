@@ -88,11 +88,18 @@ function IconTab(props: any) {
           }
 
           .it__title {
-            display: flex;
+            display: none; 
             gap: 3px;
             padding: 3px 8px;
             background-color: #f161001a;
             border-radius: 100px;
+            align-items: center;
+          }
+
+          @media (min-width: 425px) {
+             .it__title {
+               display: flex; 
+             }
           }
 
           .it__title__txt {
@@ -147,7 +154,8 @@ function IconTab(props: any) {
             display: flex;
             padding: 8px 4px;
             flex-direction: column;
-            width: 100%;
+            width: max-content;
+            min-width: 100%;
           }
 
           .it__pane__item {

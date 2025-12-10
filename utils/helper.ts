@@ -366,16 +366,7 @@ export const getFilteredEvents = (events: any, queryParams: any, type?: string) 
       return false;
     }
 
-    if (queryParams.location) {
-      const locationValues = queryParams.location.split(URL_QUERY_VALUE_SEPARATOR).map((value: any) => value.toLowerCase());
-      const hasMatchingLocation = locationValues.some((locationValue: string) => 
-        event.location.toLowerCase().includes(locationValue)
-      );
       
-      if (!hasMatchingLocation) {
-        return false;
-      }
-    }
 
     if (queryParams.isFeatured) {
       if (!event.isFeatured) {
