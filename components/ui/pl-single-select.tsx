@@ -49,10 +49,10 @@ function PlSingleSelect(props: any) {
             }
 
         };
-        document.addEventListener("mousedown", listener);
+        document.addEventListener("click", listener);
         document.addEventListener("touchstart", listener);
         return () => {
-            document.removeEventListener("mousedown", listener);
+            document.removeEventListener("click", listener);
             document.removeEventListener("touchstart", listener);
         };
     }, [])
@@ -68,7 +68,7 @@ function PlSingleSelect(props: any) {
         <div ref={paneRef} className="plms">
             <div onClick={onSelectionBoxClicked} className="plms__info">
                 <img src={iconUrl} className="plms__info__icon"/>
-                {selectedItem.length === 0 && <div className="plms__info__text">{`Select Location`}</div>}
+                {selectedItem.length === 0 && <div className="plms__info__text">{`Select Gathering`}</div>}
                 {selectedItem.length > 0 && <div className="plms__info__text">{selectedItemObjs.map((item: any) => item.label).join(', ')}</div>}
                 {(items.length > 1) && <img className="plms__info__arrow" src={dropdownImgUrl}/>}
             </div>
@@ -80,7 +80,7 @@ function PlSingleSelect(props: any) {
                 </div>}
                 <div className="plms__pane__list">
                     {filteredItems.length === 0 && (
-                        <p className="plms__pane__empty">No options available</p>
+                        <p className="plms__pane__empty">{`No ${props.name} available`}</p>
                     )}
                     {filteredItems.map((item, index) => (
                         <div key={`${item.name}-${index}`} onClick={() => onItemSelected(item)} className="plms__pane__list__item">

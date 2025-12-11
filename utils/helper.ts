@@ -471,7 +471,6 @@ export const getBackgroundColor = (tags: any) => {
   }
 };
 
-//card hover color
 export const getHoverColor = (tags: any) => {
   const defaultTags: any = DEFAULT_TAGS;
   if (tags && tags.length) {

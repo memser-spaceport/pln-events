@@ -1,7 +1,7 @@
 "use client";
 
 import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
-import useClickedOutside from "@/hooks/use-clicked-outside";
+import useOutsideClick from "@/hooks/use-outside-click";
 import MultiSelect from "@/components/ui/multi-select";
 import OpenMultiSelect from "@/components/ui/open-multi-select";
 import TagItem from "@/components/ui/tag-item";
@@ -34,14 +34,11 @@ function FilterItem(props: any) {
   const { onScheduleFilterClicked, onFilterClearAllBtnClicked } =
     useSchedulePageAnalytics();
 
-  useClickedOutside({
-    ref: paneRef,
-    callback: () => {
+  useOutsideClick(paneRef, () => {
       setFilteredItems([...items]);
       if (isPaneActive) {
         setPaneStatus(false);
       }
-    },
   });
 
   const onInputChange = (value: any) => {
