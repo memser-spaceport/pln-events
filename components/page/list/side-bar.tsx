@@ -58,8 +58,13 @@ const handleYearChange = (direction: "prev" | "next") => {
   const params = new URLSearchParams(searchParams.toString());
   params.set("year", targetYear.toString());
 
-  window.location.href = `${pathname}?${params.toString()}`;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  router.push(`${pathname}?${params.toString()}`, { scroll: false });
 };
+
+useEffect(() => {
+  setIsNavigating(false);
+}, [currentYear]);
 
 
   const onItemClicked = (item: any) => {

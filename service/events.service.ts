@@ -80,7 +80,7 @@ export const getFilterValues = (
       selectedItems: selectedItems.locations,
       placeholder: "Filter by location",
       dropdownImgUrl: "/icons/pln-arrow-down.svg",
-      identifierId: "locations",
+      identifierId: "location",
       iconUrl: "/icons/pl-location-icon.svg",
     },
     {

@@ -9,7 +9,7 @@ import PlToggle from "@/components/ui/pl-toggle";
 import { URL_QUERY_VALUE_SEPARATOR } from "@/utils/constants";
 import { getQueryParams } from "@/utils/helper";
 import { useParams, useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PlSingleSelect from "@/components/ui/pl-single-select";
 
 function FilterItem(props: any) {
@@ -58,6 +58,10 @@ function FilterItem(props: any) {
     }
   };
 
+  useEffect(() => {
+    setFilteredItems([...items]);
+  }, [JSON.stringify(items)]);
+
   const onClearSelection = (e: any, key: any) => {
     e.preventDefault();
     e.stopPropagation();
@@ -67,7 +71,7 @@ function FilterItem(props: any) {
     const newSearchParams = { ...searchParams };
     if (key === "accessType") {
       delete newSearchParams["accessOption"];
-    } else if (key === "locations") {
+    } else if (key === "location") {
       delete newSearchParams["location"];
     } else if (key === "host") {
       delete newSearchParams["host"];
@@ -102,7 +106,7 @@ function FilterItem(props: any) {
       value &&
       typeof value === "object" &&
       value.isSelectAll &&
-      key === "locations"
+      key === "location"
     ) {
       const selectAllItems = value.items;
       const shouldSelect = value.select;
@@ -172,7 +176,7 @@ function FilterItem(props: any) {
         delete newSearchParams["accessOption"];
       }
     }
-    else if (key === "locations") {
+    else if (key === "location") {
       let selectedLocation = [...selectedFilterValues.location];
       if (selectedLocation.length === 1 && selectedLocation[0] === value) {
         selectedLocation = [];
