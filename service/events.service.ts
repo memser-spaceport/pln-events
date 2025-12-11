@@ -80,7 +80,7 @@ export const getFilterValues = (
       selectedItems: selectedItems.locations,
       placeholder: "Filter by location",
       dropdownImgUrl: "/icons/pln-arrow-down.svg",
-      identifierId: "locations",
+      identifierId: "location",
       iconUrl: "/icons/pl-location-icon.svg",
     },
     {
@@ -483,9 +483,23 @@ function assignColorsToEvents(events: any[]) {
   return events;
 }
 
-export const getAllEvents = async (location: any) => {
+export const getAllEvents = async (location: any, year?: number) => {
+  const params = new URLSearchParams({
+    status: "APPROVED",
+    sortByPriority: "true",
+    type: "EventAndSession",
+  });
+  
+  if (location?.title) {
+    params.append("location", location.title);
+  }
+  
+  if (year) {
+    params.append("year", year.toString());
+  }
+  
   const result = await fetch(
-    `${process.env.WEB_API_BASE_URL}/events?status=APPROVED&sortByPriority=true&type=EventAndSession${location ? `&location=${location?.title}` : ""}`,
+    `${process.env.WEB_API_BASE_URL}/events?${params.toString()}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.WEB_API_TOKEN}`,

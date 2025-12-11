@@ -1,9 +1,9 @@
 "use client";
 
-import { CUSTOM_EVENTS } from "@/utils/constants";
-import { getFilterCount, getQueryParams, groupByStartDate, sortEventsByStartDate } from "@/utils/helper";
+import { CUSTOM_EVENTS, MAX_YEAR_COUNT } from "@/utils/constants";
+import { getFilterCount, getQueryParams, groupByStartDate } from "@/utils/helper";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Tab from "@/components/core/tab";
 import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 
@@ -51,8 +51,55 @@ const Toolbar = (props: any) => {
     onScheduleFilterClicked,
   } = useSchedulePageAnalytics();
 
-  const sortedEvents = sortEventsByStartDate(events);
-  const groupedEvents = groupByStartDate(sortedEvents);
+  const currentDate = new Date();
+  const currentMonthIndex = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+  
+  const yearFromUrl = searchParams?.year ? parseInt(searchParams.year, 10) : currentYear;
+
+  const groupedEvents = groupByStartDate(events); 
+  
+  const getInitialMonth = () => {
+    const availableMonths = Object.keys(groupedEvents);
+
+    if (availableMonths.length === 0) return abbreviatedMonthNames[currentMonthIndex];
+    
+
+    const sortedAvailable = availableMonths.sort(
+      (a, b) => abbreviatedMonthNames.indexOf(a) - abbreviatedMonthNames.indexOf(b)
+    );
+
+    
+    if (yearFromUrl === currentYear) {
+      if (availableMonths.includes(abbreviatedMonthNames[currentMonthIndex])) {
+        return abbreviatedMonthNames[currentMonthIndex];
+      }
+      
+      
+      const futureMonths = sortedAvailable.filter(
+        m => abbreviatedMonthNames.indexOf(m) > currentMonthIndex
+      );
+      if (futureMonths.length > 0) return futureMonths[0];
+
+       
+       return sortedAvailable[0];
+    }
+    
+    return sortedAvailable[0];
+  };
+
+  const prevYearRef = useRef(yearFromUrl);
+
+  useEffect(() => {
+    if (prevYearRef.current !== yearFromUrl) {
+      setSelectedMonth(getInitialMonth());
+      prevYearRef.current = yearFromUrl;
+    }
+  }, [yearFromUrl, events, groupedEvents]); 
+  
+  const [selectedMonth, setSelectedMonth] = useState(getInitialMonth());
+  const [selectedYear, setSelectedYear] = useState(yearFromUrl);
+  const totalEventCount = events.filter((event: any) => !event.isHidden).length;
 
   const onItemClicked = (key: string, value: string) => {
     onScheduleFilterClicked(key, value, type);
@@ -80,22 +127,47 @@ const Toolbar = (props: any) => {
     );
   };
 
-  const [isDropDownPaneActive, setDropDownStatus] = useState(false);
+  const [isMonthDropDownActive, setMonthDropDownStatus] = useState(false);
+  const [isYearDropDownActive, setYearDropDownStatus] = useState(false);
   const [clickedMenuId, setClickedMenuId] = useState(Object.keys(groupedEvents)[0]);
 
-  const onToggleDropDown = () => {
-    setDropDownStatus(!isDropDownPaneActive);
+  const availableYears = Array.from(
+    { length: MAX_YEAR_COUNT + 1 },
+    (_, i) => currentYear + i
+  );
+
+  const onToggleMonthDropDown = () => {
+    setMonthDropDownStatus(!isMonthDropDownActive);
+    if (isYearDropDownActive) setYearDropDownStatus(false);
+  };
+  
+  const onToggleYearDropDown = () => {
+    setYearDropDownStatus(!isYearDropDownActive);
+    if (isMonthDropDownActive) setMonthDropDownStatus(false);
   };
 
-  const onSelectDate = (month: any, hasDate: boolean) => {
+  const onSelectMonth = (month: any, hasDate: boolean) => {
     if (hasDate) {
+      setSelectedMonth(month);
       document.dispatchEvent(
         new CustomEvent(CUSTOM_EVENTS.UPDATE_EVENTS_OBSERVER, {
           detail: { month },
         })
       );
-      onToggleDropDown();
+      onToggleMonthDropDown();
     }
+  };
+  
+  const onSelectYear = (year: number) => {
+    setSelectedYear(year);
+    onToggleYearDropDown();
+    
+    const params = new URLSearchParams(
+      typeof searchParams === 'string' ? searchParams : new URLSearchParams(searchParams).toString()
+    );
+    params.set("year", year.toString());
+    const pathname = window.location.pathname;
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   const onOpenFilterMenu = () => {
@@ -150,83 +222,114 @@ const Toolbar = (props: any) => {
 
   return (
     <>
-      <div className="toolbar">
-        <div className="toolbar__left">
-          <div className="toolbar__dayFilter">
-            {dayOptions.map((item) => (
-              <span
-                className={`toolbar__dayFilter__item
-            ${dayFilter === item.value ? "toolbar__dayFilter__item--active" : ""}
-          `}
-                onClick={() => onItemClicked("dayFilter", item?.value)}
-                key={item.value}
-              >
-                {item.name}
-              </span>
-            ))}
+      <div className="toolbar__wrapper">
+        {type === "list" && (
+          <div className="toolbar__notch">
+            <img src="/icons/notch.svg" alt="" className="toolbar__notch__bg" />
+            <p className="toolbar__notch__text">
+              {totalEventCount} {totalEventCount === 1 ? 'Event' : 'Events'}
+            </p>
           </div>
+        )}
+        <div className="toolbar">
+          <div className="toolbar__left">
+            <div className="toolbar__dayFilter">
+              {dayOptions.map((item) => (
+                <span
+                  className={`toolbar__dayFilter__item
+              ${dayFilter === item.value ? "toolbar__dayFilter__item--active" : ""}
+            `}
+                  onClick={() => onItemClicked("dayFilter", item?.value)}
+                  key={item.value}
+                >
+                  {item.name}
+                </span>
+              ))}
+            </div>
 
-          <div onClick={onOpenFilterMenu} className="toolbar__fb">
-            <img width={20} height={20} src="/icons/filter-white.svg" alt="filter" />
-            {filterCount > 0 && (
-              <div className="toolbar__fb__count">
-                <p>{filterCount}</p>
-              </div>
-            )}
-            {filterCount > 0 && (
-              <button className="toolbar__fb__close" onClick={onClearAllFilter}>
-                <img width={16} height={16} src="/icons/close-white-filter.svg" alt="close" />
-              </button>
-            )}
-          </div>
-
-          {type === "list" && (
-            <div className="toolbarDate__wrpr">
-              <button className="toolbarDate" onClick={onToggleDropDown}>
-                <span>{`${clickedMenuId}-2025`}</span>  
-                {/* hardcoded year for now need to change once year filter is implemented */}
-                <img src="/icons/down_arrow_filled.svg" alt="down arrow" />
-              </button>
-              {isDropDownPaneActive && (
-                <div className="toolbarDate__dropdown">
-                  {abbreviatedMonthNames.map((val, i) => {
-                    const hasDate = Object.keys(groupedEvents).includes(val);
-
-                    return (
-                      <div
-                        onClick={() => onSelectDate(val, hasDate)}
-                        key={`month-list-${i}`}
-                        className={` toolbarDate__dropdown__item ${hasDate ? "" : "disabled"}`}
-                      >
-                        {`${val}-2025`}
-                        {/* hardcoded year for now need to change once year filter is implemented */}
-                      </div>
-                    );
-                  })}
+            <div onClick={onOpenFilterMenu} className="toolbar__fb">
+              <img width={20} height={20} src="/icons/filter-white.svg" alt="filter" />
+              {filterCount > 0 && (
+                <div className="toolbar__fb__count">
+                  <p>{filterCount}</p>
                 </div>
               )}
+              {filterCount > 0 && (
+                <button className="toolbar__fb__close" onClick={onClearAllFilter}>
+                  <img width={16} height={16} src="/icons/close-white-filter.svg" alt="close" />
+                </button>
+              )}
             </div>
-          )}
-        </div>
 
-        <div className="toolbar__pageView">
-          <button onClick={onLegendModalOpen} title="Legends" className="toolbar__pageView__legends">
-            <img src="/icons/info-blue.svg" alt="legend" />
-          </button>
-          <div className="toolbar__pageView__tabs">
-            <Tab
-              callback={onTabClicked}
-              selectedItemId={type}
-              sectionId={`schedule-header-tab`}
-              items={filteredTabItems}
-              arrowImg="/icons/arrow-down-blue.svg"
-            />
+            {type === "list" && (
+              <div className="toolbarDate__wrpr">
+                <button className="toolbarYear" onClick={onToggleYearDropDown}>
+                  <span>{selectedYear}</span>
+                  <img src="/icons/down_arrow_filled.svg" alt="down arrow" />
+                </button>
+                {isYearDropDownActive && (
+                  <div className="toolbarDate__dropdown">
+                    {availableYears.map((year: number, i: number) => (
+                      <div
+                        onClick={() => onSelectYear(year)}
+                        key={`year-list-${i}`}
+                        className="toolbarDate__dropdown__item"
+                      >
+                        {year}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                <button className="toolbarMonth" onClick={onToggleMonthDropDown}>
+                  <span>{selectedMonth}</span>
+                  <img src="/icons/down_arrow_filled.svg" alt="down arrow" />
+                </button>
+                {isMonthDropDownActive && (
+                  <div className="toolbarDate__dropdown toolbarDate__dropdown--month">
+                    {abbreviatedMonthNames.map((val, i) => {
+                      const hasDate = Object.keys(groupedEvents).includes(val);
+
+                      return (
+                        <div
+                          onClick={() => onSelectMonth(val, hasDate)}
+                          key={`month-list-${i}`}
+                          className={`toolbarDate__dropdown__item ${hasDate ? "" : "disabled"}`}
+                        >
+                          {val}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="toolbar__pageView">
+            <button onClick={onLegendModalOpen} title="Legends" className="toolbar__pageView__legends">
+              <img src="/icons/info-blue.svg" alt="legend" />
+            </button>
+            <div className="toolbar__pageView__tabs">
+              <Tab
+                callback={onTabClicked}
+                selectedItemId={type}
+                sectionId={`schedule-header-tab`}
+                items={filteredTabItems}
+                arrowImg="/icons/arrow-down-blue.svg"
+              />
+            </div>
           </div>
         </div>
       </div>
       <style jsx>
         {`
+          .toolbar__wrapper {
+            position: relative;
+          }
+
           .toolbar {
+            position: relative;
             display: flex;
             justify-content: space-between;
             z-index: 3;
@@ -234,6 +337,39 @@ const Toolbar = (props: any) => {
             padding: 6px;
             border-top-left-radius: 12px;
             border-top-right-radius: 12px;
+          }
+
+          .toolbar__notch {
+            position: absolute;
+            bottom: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 161px;
+            height: 36px;
+          }
+
+          .toolbar__notch__bg {
+            position: absolute;
+            width: 161px;
+            height: 36px;
+            filter: drop-shadow(0px 2px 4px rgba(21, 111, 247, 0.15));
+          }
+
+          .toolbar__notch__text {
+            position: relative;
+            z-index: 1;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 24px;
+            color: #156ff7;
+            white-space: nowrap;
+            margin: 0;
+            padding-top: 2px;
           }
 
           .toolbar__dayFilter {
@@ -293,16 +429,27 @@ const Toolbar = (props: any) => {
             color: #156ff7;
           }
 
-          .toolbarDate {
+          .toolbarMonth,
+          .toolbarYear {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            width: 100px;
             height: 35px;
             border: 1px solid #156ff7;
             border-radius: 100px;
-            padding: 4px;
+            padding: 4px 8px;
             background-color: #ffffff;
+            font-size: 12px;
+            cursor: pointer;
+          }
+          
+          .toolbarYear {
+            width: 65px;
+            margin-right: 4px;
+          }
+          
+          .toolbarMonth {
+            width: 60px;
           }
 
           .toolbarDate__dropdown {
@@ -314,7 +461,13 @@ const Toolbar = (props: any) => {
             box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
             background-color: #ffffff;
             left: 0px;
-            width: 100%;
+            width: 65px;
+            z-index: 10;
+          }
+          
+          .toolbarDate__dropdown--month {
+            left: 69px;
+            width: 60px;
           }
 
           .toolbarDate__dropdown__item {
@@ -403,7 +556,9 @@ const Toolbar = (props: any) => {
 
           .toolbarDate__wrpr {
             position: relative;
-            width: 100px;
+            width: 129px;
+            display: flex;
+            align-items: center;
           }
 
           @media (orientation: landscape) {
@@ -452,6 +607,10 @@ const Toolbar = (props: any) => {
             .toolbar__pageView__tabs {
               display: block;
               height: 36px;
+            }
+
+            .toolbar__notch {
+              left: calc(50% + 50px);
             }
           }
         `}

@@ -30,7 +30,22 @@ const isMobile = () => {
   return false;
 };
 
-export const updateQueryParams = (router: any, paramsToUpdate: { [key: string]: string | null | undefined }) => {
+
+const extractYearFromDate = (dateString: string): string | null => {
+  if (!dateString || typeof dateString !== 'string') {
+    return null;
+  }
+  
+
+  const yearMatch = dateString.match(/^(\d{4})/);
+  return yearMatch ? yearMatch[1] : null;
+};
+
+export const updateQueryParams = (
+  router: any, 
+  paramsToUpdate: { [key: string]: string | null | undefined },
+  shouldRefresh: boolean = false
+) => {
   const params = new URLSearchParams(window.location.search);
 
   // Loop through each key-value pair and update the query parameters
@@ -44,6 +59,9 @@ export const updateQueryParams = (router: any, paramsToUpdate: { [key: string]: 
   });
 
   router?.push(`${window.location.pathname}?${params.toString()}`, undefined, { scroll: false });
+  if (shouldRefresh) {
+    router?.refresh();
+  }
 };
 
 const ProgramView = (props: IProgramView) => {
@@ -121,7 +139,23 @@ const ProgramView = (props: IProgramView) => {
         const viewType = view === "month-grid" || view === "month-agenda" ? "month" : view;
         analytics.captureViewChangeClick(view);
         setViewType(view);
-        updateQueryParams(router, { view: viewType, date: calendarControls.getDate() });
+        
+        const selectedDate = calendarControls.getDate();
+        const yearFromDate = extractYearFromDate(selectedDate);
+        const currentYear = searchParams.get("year") || new Date().getFullYear().toString();
+        
+        const isYearChanging = Boolean(yearFromDate && yearFromDate !== currentYear);
+        
+        const paramsToUpdate: { [key: string]: string | null | undefined } = {
+          view: viewType,
+          date: selectedDate,
+        };
+        
+        if (yearFromDate) {
+          paramsToUpdate.year = yearFromDate;
+        }
+        
+        updateQueryParams(router, paramsToUpdate, isYearChanging);
       },
     },
   });
@@ -147,7 +181,7 @@ const ProgramView = (props: IProgramView) => {
     //   events = getAgendaView(props.events);
     // }
     calendarApp?.events.set(events);
-  }, [calendarApp?.events, props.events, viewType]);
+  }, [props.events, viewType, calendarApp]);
 
   useEffect(() => {
     //To disable the typing in the date field

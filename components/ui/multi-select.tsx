@@ -66,7 +66,7 @@ function MultiSelect(props: any) {
         {isPaneActive && (
           <div className="ms__pane">
             {items.length === 0 && (
-              <p className="ms__pane__empty">No options available</p>
+              <p className="ms__pane__empty">{`No ${name} available`}</p>
             )}
             {items.length > 0 && (
               <div className="ms__pane__head">
@@ -123,9 +123,6 @@ function MultiSelect(props: any) {
               </div>
             )}
 
-            {filteredItems.length === 0 && (
-              <p className="ms__pane__empty">No options available</p>
-            )}
 
             {items.length > 0 && (
               <div className="ms__pane__list">
