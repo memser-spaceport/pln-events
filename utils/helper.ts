@@ -139,30 +139,42 @@ export const replaceWhitespaceAndRemoveSpecialCharacters = (text: string) =>
 
 export const getFilterCount = (selectedFilterValues: any) => {
   let count = 0;
+
   if (selectedFilterValues?.isFeatured) {
     count++;
   }
+
   if (selectedFilterValues?.modes?.length > 0 && selectedFilterValues?.modes[0] !== "All") {
     count++;
   }
-  // if (selectedFilterValues?.year) {
-  //   count++;
-  // }
+
+  if (selectedFilterValues?.year) {
+    const currentYear = new Date().getFullYear();
+    const selectedYear = parseInt(selectedFilterValues.year, 10);
+    if (selectedYear !== currentYear) {
+      count++;
+    }
+  }
+
   if (selectedFilterValues?.location?.length > 0) {
     count++;
   }
-  if (selectedFilterValues?.allHost.length > 0) {
+
+  if (selectedFilterValues?.allHost?.length > 0) {
     count++;
   }
-  if (selectedFilterValues?.tags.length > 0) {
+
+  if (selectedFilterValues?.tags?.length > 0) {
     count++;
   }
-  if (selectedFilterValues?.accessOption.length > 0) {
+
+  if (selectedFilterValues?.accessOption?.length > 0) {
     count++;
   }
 
   return count;
 };
+
 
 export const getQueryParams = (searchParams: any) => {
   const queryString = Object.keys(searchParams)
@@ -341,10 +353,6 @@ export const getFilterValuesFromEvents = (events: any, queryParams = {}) => {
 };
 
 export const getFilteredEvents = (events: any, queryParams: any, type?: string) => {
-  
-  const currentYear = new Date().getFullYear();
-  const yearFilter = queryParams.year ? parseInt(queryParams.year, 10) : currentYear;
-
   let filteredEvents = [...events].filter((event) => {
     if (type === "calendar" || type === "list") {
       if (event.isHidden) {
@@ -358,16 +366,7 @@ export const getFilteredEvents = (events: any, queryParams: any, type?: string) 
       return false;
     }
 
-    if (queryParams.location) {
-      const locationValues = queryParams.location.split(URL_QUERY_VALUE_SEPARATOR).map((value: any) => value.toLowerCase());
-      const hasMatchingLocation = locationValues.some((locationValue: string) => 
-        event.location.toLowerCase().includes(locationValue)
-      );
       
-      if (!hasMatchingLocation) {
-        return false;
-      }
-    }
 
     if (queryParams.isFeatured) {
       if (!event.isFeatured) {
@@ -407,11 +406,6 @@ export const getFilteredEvents = (events: any, queryParams: any, type?: string) 
       }
     }
 
-        // ✅ Filter by year of startDate
-        const eventYear = new Date(event.startDate).getFullYear();
-        if (eventYear !== yearFilter) {
-          return false;
-        }
 
     return true;
   });

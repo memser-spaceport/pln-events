@@ -1,7 +1,7 @@
 "use client";
 
 import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
-import useClickedOutside from "@/hooks/use-clicked-outside";
+import useOutsideClick from "@/hooks/use-outside-click";
 import MultiSelect from "@/components/ui/multi-select";
 import OpenMultiSelect from "@/components/ui/open-multi-select";
 import TagItem from "@/components/ui/tag-item";
@@ -9,7 +9,7 @@ import PlToggle from "@/components/ui/pl-toggle";
 import { URL_QUERY_VALUE_SEPARATOR } from "@/utils/constants";
 import { getQueryParams } from "@/utils/helper";
 import { useParams, useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PlSingleSelect from "@/components/ui/pl-single-select";
 
 function FilterItem(props: any) {
@@ -34,14 +34,11 @@ function FilterItem(props: any) {
   const { onScheduleFilterClicked, onFilterClearAllBtnClicked } =
     useSchedulePageAnalytics();
 
-  useClickedOutside({
-    ref: paneRef,
-    callback: () => {
+  useOutsideClick(paneRef, () => {
       setFilteredItems([...items]);
       if (isPaneActive) {
         setPaneStatus(false);
       }
-    },
   });
 
   const onInputChange = (value: any) => {
@@ -58,6 +55,10 @@ function FilterItem(props: any) {
     }
   };
 
+  useEffect(() => {
+    setFilteredItems([...items]);
+  }, [JSON.stringify(items)]);
+
   const onClearSelection = (e: any, key: any) => {
     e.preventDefault();
     e.stopPropagation();
@@ -67,7 +68,7 @@ function FilterItem(props: any) {
     const newSearchParams = { ...searchParams };
     if (key === "accessType") {
       delete newSearchParams["accessOption"];
-    } else if (key === "locations") {
+    } else if (key === "location") {
       delete newSearchParams["location"];
     } else if (key === "host") {
       delete newSearchParams["host"];
@@ -102,7 +103,7 @@ function FilterItem(props: any) {
       value &&
       typeof value === "object" &&
       value.isSelectAll &&
-      key === "locations"
+      key === "location"
     ) {
       const selectAllItems = value.items;
       const shouldSelect = value.select;
@@ -172,7 +173,7 @@ function FilterItem(props: any) {
         delete newSearchParams["accessOption"];
       }
     }
-    else if (key === "locations") {
+    else if (key === "location") {
       let selectedLocation = [...selectedFilterValues.location];
       if (selectedLocation.length === 1 && selectedLocation[0] === value) {
         selectedLocation = [];

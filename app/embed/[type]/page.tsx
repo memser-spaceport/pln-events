@@ -3,7 +3,7 @@ import ListView from "@/components/page/list/list-view";
 import Toolbar from "@/components/page/events/toolbar";
 import styles from "./page.module.css";
 import DetailView from "@/components/page/event-detail/event-detail-popup/detail-view";
-import { getFilterValuesFromEvents, getFilteredEvents } from "@/utils/helper";
+import { getFilterValuesFromEvents, getFilteredEvents, sortEventsByStartDate } from "@/utils/helper";
 import LegendsModal from "@/components/page/event-detail/legends-modal";
 import ProgramView from "@/components/page/events/program-view";
 import { getAllEvents, getLocations } from "@/service/events.service";
@@ -13,11 +13,16 @@ async function getPageData(searchParams: any, type: string) {
     const locations = await getLocations();
     const location = searchParams?.location ?? "";
     const config = locations[location];
-    const eventsResponse = await getAllEvents(config);
+
+    const currentYear = new Date().getFullYear();
+    const yearFilter = searchParams?.year ? parseInt(searchParams.year, 10) : currentYear;
+    
+    const eventsResponse = await getAllEvents(config, yearFilter);
 
     if (eventsResponse.isError) {
       return { isError: true, filteredEvents: [] };
     }
+    
     const configLocations = Object.values(locations).map((item: any) => {
       return {
         name: item.title,
@@ -25,16 +30,18 @@ async function getPageData(searchParams: any, type: string) {
         timezone: item.timezone,
       }
     });
+    
     eventsResponse.data.configLocations = configLocations;
     const { rawFilterValues, selectedFilterValues, initialFilters } =
       getFilterValuesFromEvents(eventsResponse.data, searchParams);
       
     const filteredEvents = getFilteredEvents(eventsResponse.data, searchParams,type) ?? [];
+    const sortedAndFilteredEvents = sortEventsByStartDate(filteredEvents);
     return {
       events: eventsResponse.data,
       rawFilterValues,
       selectedFilterValues,
-      filteredEvents,
+      filteredEvents: sortedAndFilteredEvents,
       initialFilters
     };
   } catch (e) {
@@ -47,6 +54,7 @@ export default async function Page({ searchParams, params }: any) {
   const type = params["type"];
 
   const {
+    events,
     rawFilterValues,
     selectedFilterValues,
     filteredEvents,
@@ -92,6 +100,7 @@ export default async function Page({ searchParams, params }: any) {
               {type === "list" && (
                 <ListView
                   events={filteredEvents}
+                  allEvents={events}
                   viewType={type}
                 />
               )}

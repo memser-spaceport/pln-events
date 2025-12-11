@@ -8,6 +8,20 @@ jest.mock('../../../../hooks/use-events-scroll-observer', () => ({
   default: jest.fn(),
 }));
 
+// Mock Next.js navigation
+const mockPush = jest.fn();
+const mockReplace = jest.fn();
+const mockSearchParams = {
+  get: jest.fn(),
+  toString: jest.fn(() => ''),
+};
+
+jest.mock('next/navigation', () => ({
+  useSearchParams: () => mockSearchParams,
+  useRouter: () => ({ push: mockPush, replace: mockReplace }),
+  usePathname: () => '/list',
+}));
+
 // Mock constants
 jest.mock('../../../../utils/constants', () => ({
   CUSTOM_EVENTS: {
@@ -15,6 +29,16 @@ jest.mock('../../../../utils/constants', () => ({
     UPDATE_SELECTED_DATE: 'UPDATE_SELECTED_DATE',
   },
   ABBREVIATED_MONTH_NAMES: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  MIN_YEAR_COUNT: 2,
+  MAX_YEAR_COUNT: 2,
+}));
+
+// Mock analytics
+const mockOnYearFilterChanged = jest.fn();
+jest.mock('../../../../analytics/schedule.analytics', () => ({
+  useSchedulePageAnalytics: () => ({
+    onYearFilterChanged: mockOnYearFilterChanged,
+  }),
 }));
 
 // Mock styled-jsx
@@ -591,6 +615,197 @@ describe('SideBar Component', () => {
       expect(img).toHaveClass('sidebar__dates__date__imgWrpr__img');
       expect(scroller).toHaveClass('sidebar__dates__date__scroller');
       expect(text).toHaveClass('sidebar__dates__date__text');
+    });
+  });
+
+  describe('Year Filter', () => {
+    const mockAllEvents = [
+      {
+        id: 'event1',
+        name: 'Event 1',
+        startDate: '2024-01-15',
+        isHidden: false,
+      },
+      {
+        id: 'event2',
+        name: 'Event 2',
+        startDate: '2024-02-20',
+        isHidden: false,
+      },
+      {
+        id: 'event3',
+        name: 'Event 3',
+        startDate: '2025-01-10',
+        isHidden: false,
+      },
+      {
+        id: 'event4',
+        name: 'Event 4',
+        startDate: '2025-03-15',
+        isHidden: false,
+      },
+      {
+        id: 'event5',
+        name: 'Event 5',
+        startDate: '2026-01-05',
+        isHidden: false,
+      },
+    ];
+
+    beforeEach(() => {
+      jest.clearAllMocks();
+      mockSearchParams.get.mockImplementation((key: string) => {
+        if (key === 'year') return '2025';
+        return null;
+      });
+      mockSearchParams.toString.mockReturnValue('year=2025');
+    });
+
+    it('renders year filter with current year from URL', () => {
+      render(<SideBar {...defaultProps} allEvents={mockAllEvents} />);
+
+      const yearFilter = document.querySelector('.sidebar__year-filter');
+      const yearText = document.querySelector('.sidebar__year-filter__year');
+      
+      expect(yearFilter).toBeInTheDocument();
+      expect(yearText).toHaveTextContent('2025');
+    });
+
+    it('renders year filter with default year when URL param is missing', () => {
+      const currentYear = new Date().getFullYear();
+      mockSearchParams.get.mockReturnValue(null);
+
+      render(<SideBar {...defaultProps} allEvents={mockAllEvents} />);
+
+      const yearText = document.querySelector('.sidebar__year-filter__year');
+      expect(yearText).toHaveTextContent(currentYear.toString());
+    });
+
+    it('disables previous year arrow when no events exist for previous year', () => {
+      mockSearchParams.get.mockImplementation((key: string) => {
+        if (key === 'year') return '2024';
+        return null;
+      });
+
+      const events2024Only = mockAllEvents.filter(e => e.startDate.startsWith('2024'));
+
+      render(<SideBar {...defaultProps} allEvents={events2024Only} />);
+
+      const prevArrow = document.querySelector('.sidebar__year-filter__control:first-child');
+      expect(prevArrow).toHaveClass('disabled');
+    });
+
+    it('disables next year arrow when no events exist for next year', () => {
+      mockSearchParams.get.mockImplementation((key: string) => {
+        if (key === 'year') return '2026';
+        return null;
+      });
+
+      const events2026Only = mockAllEvents.filter(e => e.startDate.startsWith('2026'));
+
+      render(<SideBar {...defaultProps} allEvents={events2026Only} />);
+
+      const nextArrow = document.querySelector('.sidebar__year-filter__control:last-child');
+      expect(nextArrow).toHaveClass('disabled');
+    });
+
+    it('enables arrows when events exist for adjacent years', () => {
+      mockSearchParams.get.mockImplementation((key: string) => {
+        if (key === 'year') return '2025';
+        return null;
+      });
+
+      render(<SideBar {...defaultProps} allEvents={mockAllEvents} />);
+
+      const prevArrow = document.querySelector('.sidebar__year-filter__control:first-child');
+      const nextArrow = document.querySelector('.sidebar__year-filter__control:last-child');
+      
+      expect(prevArrow).not.toHaveClass('disabled');
+      expect(nextArrow).not.toHaveClass('disabled');
+    });
+
+    it('updates URL when year arrow is clicked', () => {
+      mockSearchParams.get.mockImplementation((key: string) => {
+        if (key === 'year') return '2025';
+        return null;
+      });
+      mockSearchParams.toString.mockReturnValue('year=2025');
+
+      render(<SideBar {...defaultProps} allEvents={mockAllEvents} />);
+
+      const nextArrow = document.querySelector('.sidebar__year-filter__control:last-child');
+      fireEvent.click(nextArrow!);
+
+      expect(mockPush).toHaveBeenCalled();
+    });
+
+    it('shows year filter structure', () => {
+      render(<SideBar {...defaultProps} allEvents={mockAllEvents} />);
+
+      const yearText = document.querySelector('.sidebar__year-filter__year');
+      expect(yearText).toBeInTheDocument();
+    });
+
+    it('filters out hidden events when determining available years', () => {
+      const eventsWithHidden = [
+        ...mockAllEvents,
+        {
+          id: 'hidden-event',
+          name: 'Hidden Event',
+          startDate: '2023-01-01',
+          isHidden: true,
+        },
+      ];
+
+      mockSearchParams.get.mockImplementation((key: string) => {
+        if (key === 'year') return '2025';
+        return null;
+      });
+
+      render(<SideBar {...defaultProps} allEvents={eventsWithHidden} />);
+
+      // 2023 should not be available because the event is hidden
+      const prevArrow = document.querySelector('.sidebar__year-filter__control:first-child');
+      // Should be enabled because 2024 has visible events
+      expect(prevArrow).not.toHaveClass('disabled');
+    });
+
+    it('captures analytics when year filter arrow is clicked', () => {
+      mockSearchParams.get.mockImplementation((key: string) => {
+        if (key === 'year') return '2025';
+        return null;
+      });
+      mockSearchParams.toString.mockReturnValue('year=2025');
+
+      // Mock window.location.href to prevent actual navigation
+      delete (window as any).location;
+      (window as any).location = { href: '' };
+
+      render(<SideBar {...defaultProps} allEvents={mockAllEvents} />);
+
+      const nextArrow = document.querySelector('.sidebar__year-filter__control:last-child');
+      fireEvent.click(nextArrow!);
+
+      expect(mockOnYearFilterChanged).toHaveBeenCalledWith('next', 2025, 2026);
+    });
+
+    it('captures analytics with correct direction for previous year', () => {
+      mockSearchParams.get.mockImplementation((key: string) => {
+        if (key === 'year') return '2025';
+        return null;
+      });
+      mockSearchParams.toString.mockReturnValue('year=2025');
+
+      // Mock window.location.href to prevent actual navigation
+      delete (window as any).location;
+      (window as any).location = { href: '' };
+
+      render(<SideBar {...defaultProps} allEvents={mockAllEvents} />);
+
+      const prevArrow = document.querySelector('.sidebar__year-filter__control:first-child');
+      fireEvent.click(prevArrow!);
+
+      expect(mockOnYearFilterChanged).toHaveBeenCalledWith('prev', 2025, 2024);
     });
   });
 });
