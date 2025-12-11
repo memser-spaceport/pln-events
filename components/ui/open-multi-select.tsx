@@ -38,8 +38,8 @@ function OpenMultiSelect(props: any) {
                   )}
                 </div>
               ))}
-                 {filteredItems.length === 0 && (
-              <p className="ms__pane__list__empty">No options available</p>
+                  {filteredItems.length === 0 && (
+              <p className="ms__pane__list__empty">{`No ${props.name} available`}</p>
             )}
             </div>
 

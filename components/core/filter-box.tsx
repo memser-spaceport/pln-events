@@ -88,7 +88,7 @@ const FilterBox = (props: any) => {
       iconUrl: "/icons/accesstype.svg",
     },
     {
-      name: "Locations",
+      name: "Gatherings",
       type: "single-select",
       items: rawFilters.location,
       selectedItem: selectedFilterValues.location,
