@@ -9,7 +9,7 @@ import ProgramView from "@/components/page/events/program-view";
 import { getAllEvents } from "@/service/events.service";
 import { getLocations } from "@/service/events.service";
 
-export const dynamic = 'force-dynamic';
+
 
 async function getPageData(searchParams: any, type: string) {
   try {

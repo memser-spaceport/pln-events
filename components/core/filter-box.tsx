@@ -95,7 +95,7 @@ const FilterBox = (props: any) => {
       placeholder: "Filter by location",
       dropdownImgUrl: "/icons/down_arrow_filled.svg",
       searchIcon: "/icons/search.svg",
-      identifierId: "locations",
+      identifierId: "location",
       iconUrl: "/icons/location_icon.svg",
     },
 
