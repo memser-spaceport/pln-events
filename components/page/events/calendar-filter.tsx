@@ -8,6 +8,7 @@ interface ICalendarFilter {
   selectedYear: number;
   selectedMonth: string;
   calendarData?: Record<string, number[]>;
+  events?: any;
   onDateSelect?: (date: string, month: string, year: number) => void;
 }
 
