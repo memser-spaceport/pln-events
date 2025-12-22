@@ -269,7 +269,7 @@ const generateUniqueObjects = (events: any) => {
     filterValues.configLocations = [];
   }
   configLocations?.forEach((configLocation: any) => {
-    filterValues.location.push({ name: configLocation?.name, label: configLocation?.title });
+    filterValues.location.push({ name: configLocation?.name, label: configLocation?.title, locationAssociations: configLocation.locationAssociations});
   });
 
   return filterValues;
@@ -282,8 +282,28 @@ const filterUniqueObjects = (initialValues: any, rawValues: any, queryParams: an
     filteredObjects.isFeatured = Boolean(queryParams.isFeatured);
   }
   if (queryParams.location) {
-    const locationValues = queryParams.location.split(URL_QUERY_VALUE_SEPARATOR);
-    filteredObjects.location = rawFilters.location.filter((item: any) => locationValues.includes(item.name));
+    if (queryParams.location.trim().startsWith("[")) {
+      let matched = false;
+      try {
+        const matchedItem = rawFilters.location.find((item: any) => {
+             return JSON.stringify(item.locationAssociations) === queryParams.location;
+        });
+        if (matchedItem) {
+             filteredObjects.location = [matchedItem];
+             matched = true;
+        }
+      } catch (e) {
+        // ignore error, fall through to default logic
+      }
+      
+      if (!matched) {
+         const locationValues = queryParams.location.split(URL_QUERY_VALUE_SEPARATOR);
+         filteredObjects.location = rawFilters.location.filter((item: any) => locationValues.includes(item.name));
+      }
+    } else {
+      const locationValues = queryParams.location.split(URL_QUERY_VALUE_SEPARATOR);
+      filteredObjects.location = rawFilters.location.filter((item: any) => locationValues.includes(item.name));
+    }
   }
 
   if (queryParams.host) {
