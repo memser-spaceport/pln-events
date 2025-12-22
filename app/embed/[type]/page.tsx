@@ -6,18 +6,40 @@ import DetailView from "@/components/page/event-detail/event-detail-popup/detail
 import { getFilterValuesFromEvents, getFilteredEvents, sortEventsByStartDate } from "@/utils/helper";
 import LegendsModal from "@/components/page/event-detail/legends-modal";
 import ProgramView from "@/components/page/events/program-view";
-import { getAllEvents, getLocations } from "@/service/events.service";
+import { getAllEvents, getCalendarData, getLocations } from "@/service/events.service";
 
 async function getPageData(searchParams: any, type: string) {
   try {
     const locations = await getLocations();
     const location = searchParams?.location ?? "";
-    const config = locations[location];
+    // Match location by lowercase key (getLocations uses lowercase keys)
+    const locationKey = location.toLowerCase();
+    
+    let config = locations[locationKey];
+    
+    if (!config && location.trim().startsWith("[")) {
+         try {
+             const parsedAssociations = JSON.parse(location);
+             if (Array.isArray(parsedAssociations)) {
+                 config = {
+                     title: "Custom Selection", 
+                     locationAssociations: parsedAssociations,
+                     timezone: "" 
+                 };
+             }
+         } catch(e) {}
+    }
+
+    if (!config) {
+        config = location ? { title: location, locationAssociations: [] } : undefined;
+    }
 
     const currentYear = new Date().getFullYear();
     const yearFilter = searchParams?.year ? parseInt(searchParams.year, 10) : currentYear;
     
     const eventsResponse = await getAllEvents(config, yearFilter);
+    const calendarResponse = await getCalendarData(config);
+
 
     if (eventsResponse.isError) {
       return { isError: true, filteredEvents: [] };
@@ -28,6 +50,7 @@ async function getPageData(searchParams: any, type: string) {
         name: item.title,
         title: item.title,  
         timezone: item.timezone,
+        locationAssociations: item.locationAssociations
       }
     });
     
@@ -42,7 +65,8 @@ async function getPageData(searchParams: any, type: string) {
       rawFilterValues,
       selectedFilterValues,
       filteredEvents: sortedAndFilteredEvents,
-      initialFilters
+      initialFilters,
+      calendarData: calendarResponse.data ?? {}
     };
   } catch (e) {
     console.error("error response", e);
@@ -59,7 +83,8 @@ export default async function Page({ searchParams, params }: any) {
     selectedFilterValues,
     filteredEvents,
     initialFilters,
-    isError
+    isError,
+    calendarData
   } = await getPageData(searchParams,type);
 
   if (isError) {
@@ -81,6 +106,7 @@ export default async function Page({ searchParams, params }: any) {
             type={type}
             events={filteredEvents}
             isEmbed={true}
+            calendarData={calendarData}
           />
         </div>
         <LegendsModal />
