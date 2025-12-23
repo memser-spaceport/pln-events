@@ -13,7 +13,7 @@ export const EVENTS_VIEW_TYPES = {
 export const EVENT_YEARS = ["2025", "2024", "2023"];
 export const EVENT_TYPES = ["Virtual", "Conference", "Social"];
 export const MAX_YEAR_COUNT = 1; 
-export const MIN_YEAR_COUNT = 0;
+export const MIN_YEAR_COUNT = 1;
 
 export const MONTHS = [
   "January",
