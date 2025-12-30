@@ -137,6 +137,7 @@ const FilterBox = (props: any) => {
 
   return (
     <>
+      {/* Filter strip (collapsed state) - only for calendar and program views, not map */}
       {!isExpand && (viewType === VIEW_TYPE.calendar.name || viewType === VIEW_TYPE.program.name) && (
         <div className="cp__cn__filterstrip">
           <FilterStrip onStripClicked={toggleSidebar} filterCount={filterCount} onClear={onClearAllFilter} />
@@ -145,6 +146,7 @@ const FilterBox = (props: any) => {
       <div className="fb">
         <div className="fb__head">
           <div className="fb__head__title">
+            {/* Only show collapse button for calendar and program views (not map view on desktop) */}
             {(viewType === VIEW_TYPE.calendar.name || viewType === VIEW_TYPE.program.name) && (
               <button className="fb__head__title__arrowbtn" onClick={toggleSidebar}>
                 <img className="fb__head__title__img" src="/icons/double_arrow_left.svg" />
@@ -319,7 +321,7 @@ const FilterBox = (props: any) => {
             }
 
             .fb {
-              display: ${viewType === VIEW_TYPE.list.name || isExpand ? "block" : "none"};
+              display: ${viewType === VIEW_TYPE.list.name || viewType === VIEW_TYPE.map.name || isExpand ? "block" : "none"};
               height: calc(100svh - 112px);
               transition: width 0.3s ease;
               position: sticky;

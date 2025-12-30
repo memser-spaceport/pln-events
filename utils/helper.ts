@@ -432,6 +432,24 @@ export const getFilteredEvents = (events: any, queryParams: any, type?: string) 
   return filteredEvents;
 };
 
+/**
+ * Filters events to only include those with valid map coordinates
+ * Used by map view to determine which events can be displayed on the map
+ * 
+ * @param events - Array of events to filter
+ * @returns Array of events with valid latitude and longitude coordinates
+ */
+export const getEventsWithCoordinates = (events: any[]) => {
+  return events.filter(event => 
+    event.latitude != null && 
+    event.longitude != null &&
+    typeof event.latitude === 'number' &&
+    typeof event.longitude === 'number' &&
+    !isNaN(event.latitude) &&
+    !isNaN(event.longitude)
+  );
+};
+
 export const getRefreshStatus = (event: string) => {
   const refreshRestrictedEvents = process.env.REFRESH_DISABLED_EVENTS?.split(',') || [];
   const refreshAllowedEvents = process.env.REFRESH_ENABLED_EVENTS?.split(',') || [];
