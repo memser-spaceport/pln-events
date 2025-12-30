@@ -6,6 +6,7 @@ import DetailView from "@/components/page/event-detail/event-detail-popup/detail
 import { getFilterValuesFromEvents, getFilteredEvents, sortEventsByStartDate } from "@/utils/helper";
 import LegendsModal from "@/components/page/event-detail/legends-modal";
 import ProgramView from "@/components/page/events/program-view";
+import MapView from "@/components/page/events/map-view";
 import { getAllEvents, getCalendarData, getLocations } from "@/service/events.service";
 
 
@@ -137,6 +138,14 @@ export default async function Page({ searchParams, params }: any) {
                 />
               )}
               {type === "program" && <ProgramView events={filteredEvents} viewType={type} />}
+              {type === "map" && (
+                <MapView
+                  events={filteredEvents}
+                  allEvents={events}
+                  viewType={type}
+                  searchParams={searchParams}
+                />
+              )}
             </div>
         </div>
       </div>
