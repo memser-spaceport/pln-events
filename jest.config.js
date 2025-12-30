@@ -29,7 +29,6 @@ const customJestConfig = {
     '!public/**',
     '!app/api/**',
     '!app/page.tsx',
-    '!app/page-bckp.tsx',
     '!app/[type]/page.tsx',
     '!app/embed/[type]/page.tsx',
     '!app/layout.tsx',
