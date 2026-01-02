@@ -534,7 +534,16 @@ export const getAllEvents = async (location: any, year?: number) => {
 
   const allEvents = await result.json();
 
-  let formattedEvents = allEvents?.map((event: any, index: number) => {
+  // Filter events where startDate falls under the year param (using timezone conversion)
+  const filteredEvents = year
+    ? allEvents?.filter((event: any) => {
+        const eventTimezone = event.timezone || location?.timezone;
+        const startYear = formatDateTime(event.start_date, eventTimezone, "YYYY");
+        return parseInt(startYear, 10) === year;
+      })
+    : allEvents;
+
+  let formattedEvents = filteredEvents?.map((event: any, index: number) => {
     let dayDifference = differenceInDays(
       event.start_date,
       event.end_date,
