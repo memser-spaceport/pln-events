@@ -29,62 +29,95 @@ const ListView = (props: any) => {
 
   const groupedEvents = useMemo(() => groupByStartDate(events), [events, currentYear]);
 
+  // Ref to track if we have already scrolled for the current month/view
+  const hasScrolledRef = useRef<string | null>(null);
+
   useEffect(() => {
     if (!groupedEvents || Object.keys(groupedEvents).length === 0) return;
     
-    const now = new Date();
-    const currentYearInCalendar = now.getFullYear();
+    // Check if the user has manually selected a month via the 'date' param
+    const dateParam = searchParams.get("date");
     let targetedMonth = null;
-    
-    // If viewing current year, scroll to today's month (or next available)
-    if (currentYear === currentYearInCalendar) {
-      const currentMonth = now.getMonth();
+
+    if (dateParam) {
+      // If a specific date is selected, scroll to that month
+      const [year, monthIndex] = dateParam.split('-');
+      const monthIdx = parseInt(monthIndex, 10) - 1;
       
-      for (let i = currentMonth; i < ABBREVIATED_MONTH_NAMES.length; i++) {
-        const key = ABBREVIATED_MONTH_NAMES[i];
-        if (key in groupedEvents) {
-          targetedMonth = key;
-          break;
-        }
-      }
-      if (!targetedMonth) {
-        for (let i = currentMonth - 1; i >= 0; i--) {
-          const key = ABBREVIATED_MONTH_NAMES[i];
-          if (key in groupedEvents) {
-            targetedMonth = key;
-            break;
-          }
+      if (monthIdx >= 0 && monthIdx < ABBREVIATED_MONTH_NAMES.length) {
+        const monthName = ABBREVIATED_MONTH_NAMES[monthIdx];
+        if (monthName in groupedEvents) {
+          targetedMonth = monthName;
         }
       }
     } else {
-      // If viewing a different year, scroll to the first event (first month)
-      const sortedMonths = Object.keys(groupedEvents).sort((a, b) => {
-        const indexA = ABBREVIATED_MONTH_NAMES.indexOf(a);
-        const indexB = ABBREVIATED_MONTH_NAMES.indexOf(b);
-        return indexA - indexB;
-      });
-      targetedMonth = sortedMonths.length > 0 ? sortedMonths[0] : null;
+        // Default behavior: Scroll to current month or first available
+        const now = new Date();
+        const currentYearInCalendar = now.getFullYear();
+        
+        // If viewing current year, scroll to today's month (or next available)
+        if (currentYear === currentYearInCalendar) {
+          const currentMonth = now.getMonth();
+          
+          for (let i = currentMonth; i < ABBREVIATED_MONTH_NAMES.length; i++) {
+            const key = ABBREVIATED_MONTH_NAMES[i];
+            if (key in groupedEvents) {
+              targetedMonth = key;
+              break;
+            }
+          }
+          if (!targetedMonth) {
+            for (let i = currentMonth - 1; i >= 0; i--) {
+              const key = ABBREVIATED_MONTH_NAMES[i];
+              if (key in groupedEvents) {
+                targetedMonth = key;
+                break;
+              }
+            }
+          }
+        } else {
+          // If viewing a different year, scroll to the first event (first month)
+          const sortedMonths = Object.keys(groupedEvents).sort((a, b) => {
+            const indexA = ABBREVIATED_MONTH_NAMES.indexOf(a);
+            const indexB = ABBREVIATED_MONTH_NAMES.indexOf(b);
+            return indexA - indexB;
+          });
+          targetedMonth = sortedMonths.length > 0 ? sortedMonths[0] : null;
+        }
     }
     
     if (targetedMonth) {
-      const el = document.getElementById(targetedMonth);
-      if (el) {
-        const headerOffset = 140;
-        const elementPosition = el.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.scrollY - headerOffset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-        // Dispatch event to update sidebar highlight
-        document.dispatchEvent(
-          new CustomEvent(CUSTOM_EVENTS.UPDATE_EVENTS_OBSERVER, {
-            detail: { month: targetedMonth },
-          })
-        );
+      // Create a unique key for the current target (month + year + param presence) to handle re-scrolls on actual changes
+      const scrollKey = `${targetedMonth}-${currentYear}-${dateParam || 'default'}`;
+      
+      // If we haven't scrolled for this specific target yet
+      if (hasScrolledRef.current !== scrollKey) {
+          const el = document.getElementById(targetedMonth);
+          if (el) {
+            const headerOffset = 140;
+            const elementPosition = el.getBoundingClientRect().top;
+            
+            // Check if element is already roughly in view (within a small tolerance) to prevent tiny jittery scrolls
+            // But always scroll if it's a new target/param change
+             const offsetPosition = elementPosition + window.scrollY - headerOffset;
+            
+             // Mark as scrolled BEFORE the actual scroll to prevent race conditions if multiple effects fire
+             hasScrolledRef.current = scrollKey;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+            // Dispatch event to update sidebar highlight
+            document.dispatchEvent(
+              new CustomEvent(CUSTOM_EVENTS.UPDATE_EVENTS_OBSERVER, {
+                detail: { month: targetedMonth },
+              })
+            );
+          }
       }
     }
-  }, [groupedEvents, currentYear]);
+  }, [groupedEvents, currentYear, searchParams]);
 
   const [showBackToThisMonthButton, setShowBackToThisMonthButton] = useState(false);
   const [isBelowCurrentMonth, setIsBelowCurrentMonth] = useState(false);

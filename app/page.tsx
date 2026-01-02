@@ -89,7 +89,6 @@ const getPageData = async (params: any) => {
       getBannerData(),
     ]);
 
-    //console.log("test", JSON.stringify(eventsResponse?.data.length));  
 
     if (eventsResponse?.isError || bannerResponse?.isError) {
       return {

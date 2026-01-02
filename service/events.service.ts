@@ -1,6 +1,7 @@
 import { IEvent, IEventResponse, ISelectedItem } from "@/types/events.type";
 import { IEventHost } from "@/types/shared.type";
 import {
+  ABBREVIATED_MONTH_NAMES,
   CURRENT_YEAR,
   EVENT_TYPES,
   EVENT_YEARS,
@@ -490,9 +491,26 @@ export const getAllEvents = async (location: any, year?: number) => {
     type: "EventAndSession",
   });
   
-  if (location?.title) {
-    params.append("location", location.title);
-  }
+  // Transform locationAssociations to extract only city, state, country
+  if (location?.locationAssociations && Array.isArray(location.locationAssociations)) {
+    if (location.locationAssociations.length > 0) {
+      const locationAssociationsData = location.locationAssociations.map((assoc: any) => ({
+        city: assoc.city || '',
+        state: assoc.state || '',
+        country: assoc.country || ''
+      }));
+      // JSON.stringify the array and append as string (URLSearchParams will encode it)
+      params.append("location", JSON.stringify(locationAssociationsData));
+    }
+    else {
+      const locationAssociationsData = [{
+        city: null,
+        state: null,
+        country: null
+      }];
+      params.append("location", JSON.stringify(locationAssociationsData));
+    }
+  } 
   
   if (year) {
     params.append("year", year.toString());
@@ -516,7 +534,16 @@ export const getAllEvents = async (location: any, year?: number) => {
 
   const allEvents = await result.json();
 
-  let formattedEvents = allEvents?.map((event: any, index: number) => {
+  // Filter events where startDate falls under the year param (using timezone conversion)
+  const filteredEvents = year
+    ? allEvents?.filter((event: any) => {
+        const eventTimezone = event.timezone || location?.timezone;
+        const startYear = formatDateTime(event.start_date, eventTimezone, "YYYY");
+        return parseInt(startYear, 10) === year;
+      })
+    : allEvents;
+
+  let formattedEvents = filteredEvents?.map((event: any, index: number) => {
     let dayDifference = differenceInDays(
       event.start_date,
       event.end_date,
@@ -735,16 +762,24 @@ export const getRefreshedAgenda = async (eventId: string) => {
  */
 export const getLocations = async () => {
   try {
-    const response = await fetch(`${process.env.DIRECTORY_API_URL}/v1/irl/locations?pagination=false`);
+    const response = await fetch(`${process.env.DIRECTORY_API_URL}/v1/internals/irl/locations`, {
+      headers: {
+        'Authorization': `Bearer ${process.env.DIRECTORY_API_TOKEN}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    });
     // Transform array response to Record<string, LocationData> format
-    const locationsRecord = (await response.json()).reduce((acc: any, item: any) => {
-      const locationKey = (item.location || item.name || item.city || '').toLowerCase();
+    const locationsData = await response.json();
+    const locationsRecord = locationsData.reduce((acc: any, item: any) => {
+    const locationKey = (item.location || item.name || item.city || '').toLowerCase();
       
       if (locationKey) {
         acc[locationKey] = {
           title: item.location || item.name || item.city || '',
           flagURL: item.flag_url || item.flag || '',
-          timezone: item.timezone || item.tz || '' 
+          timezone: item.timezone || item.tz || '' ,
+          locationAssociations: item.locationAssociations || []
         };
       }
       
@@ -754,5 +789,90 @@ export const getLocations = async () => {
   } catch (error) {
     console.error('Error fetching locations:', error);
     return {};
+  }
+};
+
+export const getCalendarData = async (location?: any) => {
+  try {
+    const params = new URLSearchParams();
+    // Transform locationAssociations to extract only city, state, country
+    if (location?.locationAssociations && Array.isArray(location.locationAssociations)) {
+      if (location.locationAssociations.length > 0) {
+        const locationAssociationsData = location.locationAssociations.map((assoc: any) => ({
+          city: assoc.city || '',
+          state: assoc.state || '',
+          country: assoc.country || ''
+        }));
+        // JSON.stringify the array and append as string (URLSearchParams will encode it)
+        params.append("location", JSON.stringify(locationAssociationsData));
+      }
+      else {
+        const locationAssociationsData = [{
+          city: null,
+          state: null,
+          country: null
+        }];
+        params.append("location", JSON.stringify(locationAssociationsData));
+      }
+    } else if (location?.title) {
+       // Fallback for cases without associations structure
+       params.append("location", location.title);
+    }
+    
+    // Server-side call using environment variables
+    const url = `${process.env.WEB_API_BASE_URL}/events/months${params.toString() ? `?${params.toString()}` : ''}`;
+    
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${process.env.WEB_API_TOKEN}`,
+        origin: `${process.env.ORIGIN_DOMAIN}`,
+      },
+      // cache: 'force-cache', 
+      // next: { revalidate: 3600 }
+    });
+
+    if (!response.ok) {
+      console.error("Calendar API Error:", response.status, response.statusText);
+      return { isError: true, message: "Failed to fetch calendar data" };
+    }
+
+    const data = await response.json();
+    
+    // Transform API response { "2024": ["MAY", ...], ... } to { "2024": [4, ...], ... }
+    const transformedData: Record<string, number[]> = {};
+    
+    // ABBREVIATED_MONTH_NAMES are ["Jan", "Feb", ...]
+    const upperCaseMonths = ABBREVIATED_MONTH_NAMES.map(m => m.toUpperCase());
+    
+    Object.keys(data).forEach(year => {
+      const monthNames = data[year]; // e.g. ["MAY", "JUL"]
+      const indices: number[] = [];
+      
+      if (Array.isArray(monthNames)) {
+        monthNames.forEach((monthName: string) => {
+          // Normalize input just in case
+          const normalizedMonth = monthName.trim().toUpperCase();
+          
+          // Try to find index in our constant
+          const index = upperCaseMonths.indexOf(normalizedMonth);
+          
+          if (index !== -1) {
+            indices.push(index);
+          } else {
+            // Fallback to full names check
+             const fullMonthIndex = MONTHS.findIndex((m: string) => m.toUpperCase().startsWith(normalizedMonth));
+             if (fullMonthIndex !== -1) indices.push(fullMonthIndex);
+          }
+        });
+      }
+      
+      transformedData[year] = indices;
+    });
+
+    return { isError: false, data: transformedData };
+  } catch (error) {
+    console.error("Error fetching calendar data:", error);
+    return { isError: true, message: "Something went wrong" };
   }
 };

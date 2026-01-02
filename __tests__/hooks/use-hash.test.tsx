@@ -63,7 +63,7 @@ describe('useHash Hook', () => {
     const eventHandler = mockAddEventListener.mock.calls[0][1];
     
     // Debug: Check initial state
-    console.log('Initial hash:', result.current);
+    console.log('Initial hashes:', result.current);
     console.log('Mock location hash:', mockLocation.hash);
     
     // Simulate hash change by updating the mock location

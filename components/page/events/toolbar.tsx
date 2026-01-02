@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import Tab from "@/components/core/tab";
 import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
+import CalendarFilter from "./calendar-filter";
 
 const Toolbar = (props: any) => {
   const selectedFilterValues = props.selectedFilterValues;
@@ -93,6 +94,7 @@ const Toolbar = (props: any) => {
   useEffect(() => {
     if (prevYearRef.current !== yearFromUrl) {
       setSelectedMonth(getInitialMonth());
+      setSelectedYear(yearFromUrl); // Sync selectedYear state with URL prop
       prevYearRef.current = yearFromUrl;
     }
   }, [yearFromUrl, events, groupedEvents]); 
@@ -127,48 +129,7 @@ const Toolbar = (props: any) => {
     );
   };
 
-  const [isMonthDropDownActive, setMonthDropDownStatus] = useState(false);
-  const [isYearDropDownActive, setYearDropDownStatus] = useState(false);
   const [clickedMenuId, setClickedMenuId] = useState(Object.keys(groupedEvents)[0]);
-
-  const availableYears = Array.from(
-    { length: MAX_YEAR_COUNT + 1 },
-    (_, i) => currentYear + i
-  );
-
-  const onToggleMonthDropDown = () => {
-    setMonthDropDownStatus(!isMonthDropDownActive);
-    if (isYearDropDownActive) setYearDropDownStatus(false);
-  };
-  
-  const onToggleYearDropDown = () => {
-    setYearDropDownStatus(!isYearDropDownActive);
-    if (isMonthDropDownActive) setMonthDropDownStatus(false);
-  };
-
-  const onSelectMonth = (month: any, hasDate: boolean) => {
-    if (hasDate) {
-      setSelectedMonth(month);
-      document.dispatchEvent(
-        new CustomEvent(CUSTOM_EVENTS.UPDATE_EVENTS_OBSERVER, {
-          detail: { month },
-        })
-      );
-      onToggleMonthDropDown();
-    }
-  };
-  
-  const onSelectYear = (year: number) => {
-    setSelectedYear(year);
-    onToggleYearDropDown();
-    
-    const params = new URLSearchParams(
-      typeof searchParams === 'string' ? searchParams : new URLSearchParams(searchParams).toString()
-    );
-    params.set("year", year.toString());
-    const pathname = window.location.pathname;
-    router.push(`${pathname}?${params.toString()}`);
-  };
 
   const onOpenFilterMenu = () => {
     onFilterMenuClicked(type);
@@ -263,45 +224,21 @@ const Toolbar = (props: any) => {
 
             {type === "list" && (
               <div className="toolbarDate__wrpr">
-                <button className="toolbarYear" onClick={onToggleYearDropDown}>
-                  <span>{selectedYear}</span>
-                  <img src="/icons/down_arrow_filled.svg" alt="down arrow" />
-                </button>
-                {isYearDropDownActive && (
-                  <div className="toolbarDate__dropdown">
-                    {availableYears.map((year: number, i: number) => (
-                      <div
-                        onClick={() => onSelectYear(year)}
-                        key={`year-list-${i}`}
-                        className="toolbarDate__dropdown__item"
-                      >
-                        {year}
-                      </div>
-                    ))}
-                  </div>
-                )}
-                
-                <button className="toolbarMonth" onClick={onToggleMonthDropDown}>
-                  <span>{selectedMonth}</span>
-                  <img src="/icons/down_arrow_filled.svg" alt="down arrow" />
-                </button>
-                {isMonthDropDownActive && (
-                  <div className="toolbarDate__dropdown toolbarDate__dropdown--month">
-                    {abbreviatedMonthNames.map((val, i) => {
-                      const hasDate = Object.keys(groupedEvents).includes(val);
-
-                      return (
-                        <div
-                          onClick={() => onSelectMonth(val, hasDate)}
-                          key={`month-list-${i}`}
-                          className={`toolbarDate__dropdown__item ${hasDate ? "" : "disabled"}`}
-                        >
-                          {val}
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
+                <CalendarFilter
+                  events={events}
+                  selectedYear={selectedYear}
+                  selectedMonth={selectedMonth}
+                  calendarData={props.calendarData}
+                  onDateSelect={(date: string, month: string, year: number) => {
+                    setSelectedMonth(month);
+                    setSelectedYear(year);
+                    document.dispatchEvent(
+                      new CustomEvent(CUSTOM_EVENTS.UPDATE_EVENTS_OBSERVER, {
+                        detail: { month },
+                      })
+                    );
+                  }}
+                />
               </div>
             )}
           </div>
