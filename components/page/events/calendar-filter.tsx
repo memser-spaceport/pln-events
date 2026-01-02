@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ABBREVIATED_MONTH_NAMES, CUSTOM_EVENTS } from "@/utils/constants";
+import { ABBREVIATED_MONTH_NAMES, CUSTOM_EVENTS, MAX_YEAR_COUNT } from "@/utils/constants";
 
 interface ICalendarFilter {
   selectedYear: number;
@@ -23,8 +23,8 @@ const CalendarFilter = (props: ICalendarFilter) => {
   // Get available years
   const currentYear = new Date().getFullYear();
   const availableYears = Array.from(
-    { length: 2 },
-    (_, i) => currentYear + i
+    { length: 2 + MAX_YEAR_COUNT },
+    (_, i) => currentYear - 1 + i
   );
 
   // Reset when props change
