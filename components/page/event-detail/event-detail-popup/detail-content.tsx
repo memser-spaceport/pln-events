@@ -18,7 +18,6 @@ const DetailViewDesktop = ({
 }: DetailViewDesktopProps) => {
   
   const eventAccessOption = event?.accessOption;
-  console.log(eventAccessOption);
   
   return (
     <div className="detail-content">

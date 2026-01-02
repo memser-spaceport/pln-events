@@ -10,22 +10,32 @@ function PlSingleSelect(props: any) {
     const iconUrl = props.iconUrl ?? '';
     const selectedItem = props.selectedItem?? '';
 
+    // Helper function to sort items by name in ascending order
+    const sortItemsByName = (itemsToSort: any[]) => {
+        return [...itemsToSort].sort((a, b) => {
+            const nameA = (a.name || '').toLowerCase();
+            const nameB = (b.name || '').toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
+    };
+
     // Variables
     const [isPaneActive, setPaneActiveStatus] = useState(false);
-    const [filteredItems, setfilteredItems] = useState([...items])
+    const sortedItems = sortItemsByName(items);
+    const [filteredItems, setfilteredItems] = useState(sortItemsByName(items))
     const paneRef = useRef<HTMLDivElement>(null);
 
     // Methods
     const onInputChange = (e: { target: { value: string; }; }) => {
         setPaneActiveStatus(true)
         if (e.target.value.trim() === '') {
-            setfilteredItems([...items])
+            setfilteredItems(sortItemsByName(items))
         } else {
             const filteredValues = [...items].filter(v => 
                 v.label.toLowerCase().includes(e.target.value.toLowerCase()) ||
                 v.name.toLowerCase().includes(e.target.value.toLowerCase())
             )
-            setfilteredItems([...filteredValues])
+            setfilteredItems(sortItemsByName(filteredValues))
         }
     }
 
@@ -34,7 +44,7 @@ function PlSingleSelect(props: any) {
     }
 
     const onSelectionBoxClicked = () => {
-        if(items.length > 1) {
+        if(sortedItems.length > 1) {
             setPaneActiveStatus(v => !v)
         }
     }
@@ -59,22 +69,22 @@ function PlSingleSelect(props: any) {
 
     useEffect(() => {
         if(!isPaneActive) {
-            setfilteredItems([...items])
+            setfilteredItems(sortItemsByName(items))
         }
-    }, [isPaneActive])
+    }, [isPaneActive, items])
 
-    const selectedItemObjs = items.filter((item: any) => selectedItem.includes(item.name));
+    const selectedItemObjs = sortedItems.filter((item: any) => selectedItem.includes(item.name));
     return <>
         <div ref={paneRef} className="plms">
             <div onClick={onSelectionBoxClicked} className="plms__info">
                 <img src={iconUrl} className="plms__info__icon"/>
                 {selectedItem.length === 0 && <div className="plms__info__text">{`Select Gathering`}</div>}
                 {selectedItem.length > 0 && <div className="plms__info__text">{selectedItemObjs.map((item: any) => item.label).join(', ')}</div>}
-                {(items.length > 1) && <img className="plms__info__arrow" src={dropdownImgUrl}/>}
+                {(sortedItems.length > 1) && <img className="plms__info__arrow" src={dropdownImgUrl}/>}
             </div>
 
             {isPaneActive && <div className="plms__pane">
-                {(items.length > 1) && <div className="plms__pane__head">
+                {(sortedItems.length > 1) && <div className="plms__pane__head">
                     <input onChange={onInputChange} placeholder="Search" className="plms__pane__head__input" />
                     <img className="plms__pane__head__searchicon" src="/icons/pln-search-icon.svg" />
                 </div>}

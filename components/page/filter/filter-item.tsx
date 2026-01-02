@@ -175,13 +175,50 @@ function FilterItem(props: any) {
     }
     else if (key === "location") {
       let selectedLocation = [...selectedFilterValues.location];
-      if (selectedLocation.length === 1 && selectedLocation[0] === value) {
-        selectedLocation = [];
+      
+      // Check if current search param is a JSON string (from URL) and map it back to name if needed
+      // so we can correctly toggle selection.
+      // However, `value` passed here is the Name of the item clicked.
+      // `selectedLocation` might contain the JSON string if it came from URL.
+      // We should probably rely on the fact that if we click a new one, we want that new one.
+      
+      if (selectedLocation.length === 1) {
+           // If the current selection in state matches the value (Name), we are unselecting.
+           // But if state is JSON, it won't match `value`.
+           // So we need to check if the JSON corresponds to `value`.
+           
+           const currentSelection = selectedLocation[0];
+           let isMatch = currentSelection === value;
+           
+           if (!isMatch && currentSelection.startsWith("[")) {
+               try {
+                   // Try to see if this JSON matches the item we clicked
+                   const clickedItem = items.find((i: any) => i.name === value || i.title === value);
+                   if (clickedItem && clickedItem.locationAssociations) {
+                       const json = JSON.stringify(clickedItem.locationAssociations);
+                       if (json === currentSelection) {
+                           isMatch = true;
+                       }
+                   }
+               } catch (e) {
+                   // ignore
+               }
+           }
+           
+           if (isMatch) {
+               selectedLocation = [];
+           } else {
+               selectedLocation = [value];
+           }
       } else {
         selectedLocation = [value];
       }
+      
       if (selectedLocation.length > 0) {
-        newSearchParams["location"] = selectedLocation[0];
+        const selectedValue = selectedLocation[0];
+        // itemObj definition removed as it was unused in logic for simple name 
+        // We always set newSearchParams["location"] = selectedValue;
+        newSearchParams["location"] = selectedValue;
       } else {
         delete newSearchParams["location"];
       }
