@@ -32,39 +32,43 @@ const SideBar = (props: any) => {
   }, [searchParams]);
 
   const currentYearNow = new Date().getFullYear();
-  const currentMonth = new Date().getMonth(); 
-  const MIN_ALLOWED_YEAR = currentYearNow - MIN_YEAR_COUNT;
+  const currentMonth = new Date().getMonth();
+
+  const isFirstHalfOfYear = currentMonth < 6;
+  const minYearOffset = isFirstHalfOfYear ? MIN_YEAR_COUNT : MIN_YEAR_COUNT - 1;
+
+  const MIN_ALLOWED_YEAR = currentYearNow - minYearOffset;
   const MAX_ALLOWED_YEAR = currentYearNow + MAX_YEAR_COUNT;
 
-const hasPreviousYear = useMemo(() => {
-  return currentYear - 1 >= MIN_ALLOWED_YEAR;
-}, [currentYear]);
+  const hasPreviousYear = useMemo(() => {
+    return currentYear - 1 >= MIN_ALLOWED_YEAR;
+  }, [currentYear, MIN_ALLOWED_YEAR]);
 
-const hasNextYear = useMemo(() => {
-  return currentYear + 1 <= MAX_ALLOWED_YEAR;
-}, [currentYear]);
+  const hasNextYear = useMemo(() => {
+    return currentYear + 1 <= MAX_ALLOWED_YEAR;
+  }, [currentYear, MAX_ALLOWED_YEAR]);
 
-const handleYearChange = (direction: "prev" | "next") => {
-  const targetYear = direction === "prev" ? currentYear - 1 : currentYear + 1;
+  const handleYearChange = (direction: "prev" | "next") => {
+    const targetYear = direction === "prev" ? currentYear - 1 : currentYear + 1;
 
-  if (targetYear < MIN_ALLOWED_YEAR || targetYear > MAX_ALLOWED_YEAR || isNavigating) {
-    return;
-  }
+    if (targetYear < MIN_ALLOWED_YEAR || targetYear > MAX_ALLOWED_YEAR || isNavigating) {
+      return;
+    }
 
-  onYearFilterChanged(direction, currentYear, targetYear);
+    onYearFilterChanged(direction, currentYear, targetYear);
 
-  setIsNavigating(true);
+    setIsNavigating(true);
 
-  const params = new URLSearchParams(searchParams.toString());
-  params.set("year", targetYear.toString());
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("year", targetYear.toString());
 
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  router.push(`${pathname}?${params.toString()}`, { scroll: false });
-};
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  };
 
-useEffect(() => {
-  setIsNavigating(false);
-}, [currentYear]);
+  useEffect(() => {
+    setIsNavigating(false);
+  }, [currentYear]);
 
 
   const onItemClicked = (item: any) => {
@@ -79,7 +83,7 @@ useEffect(() => {
         top: offsetPosition,
         behavior: "smooth",
       });
-      
+
       setTimeout(() => {
         isManualScroll.current = false;
       }, 1000);
@@ -88,11 +92,11 @@ useEffect(() => {
 
   useEffect(() => {
     if (activeEventId && !isManualScroll.current) {
-        setClickedMenuId(activeEventId);
+      setClickedMenuId(activeEventId);
     }
-    
+
     const element = document.getElementById(`agenda-${activeEventId}`);
-    
+
     document.dispatchEvent(
       new CustomEvent(CUSTOM_EVENTS.UPDATE_SELECTED_DATE, {
         detail: { activeEventId },
@@ -118,7 +122,7 @@ useEffect(() => {
       const currentYear = new Date().getFullYear();
       const params = new URLSearchParams(searchParams.toString());
       params.set("year", currentYear.toString());
-      
+
       // Only update URL if year is not set
       startTransition(() => {
         router.replace(`${pathname}?${params.toString()}`, { scroll: false });
@@ -146,9 +150,8 @@ useEffect(() => {
       <div className="sidebar">
         <div className="sidebar__year-filter">
           <span
-            className={`sidebar__year-filter__control ${
-              !hasPreviousYear ? "disabled" : ""
-            }`}
+            className={`sidebar__year-filter__control ${!hasPreviousYear ? "disabled" : ""
+              }`}
             onClick={() => hasPreviousYear && handleYearChange("prev")}
             aria-label="Previous year"
             role="button"
@@ -160,9 +163,8 @@ useEffect(() => {
             {currentYear}
           </span>
           <span
-            className={`sidebar__year-filter__control ${
-              !hasNextYear ? "disabled" : ""
-            }`}
+            className={`sidebar__year-filter__control ${!hasNextYear ? "disabled" : ""
+              }`}
             onClick={() => hasNextYear && handleYearChange("next")}
             aria-label="Next year"
             role="button"
@@ -177,14 +179,14 @@ useEffect(() => {
             const hasDate = Object.keys(events).includes(val);
             return (
               <div
-              style={{
-                opacity: hasDate ? "" : "0.5",
-                cursor: hasDate ? "pointer" : "not-allowed",
-              }}
+                style={{
+                  opacity: hasDate ? "" : "0.5",
+                  cursor: hasDate ? "pointer" : "not-allowed",
+                }}
                 id={`agenda-${val}`}
                 key={`agenda-${val}`}
                 className="sidebar__dates__date"
-                onClick={hasDate ? () => onItemClicked(val) : () => {}}
+                onClick={hasDate ? () => onItemClicked(val) : () => { }}
               >
                 <div className="sidebar__dates__date__imgWrpr">
                   <img
@@ -195,8 +197,8 @@ useEffect(() => {
                           ? "/icons/hex-blue-outlined.svg"
                           : "/icons/hex-blue-filled.svg"
                         : clickedMenuId !== val
-                        ? "/icons/hex-green-outlined.svg"
-                        : "/icons/hex-green-filled.svg"
+                          ? "/icons/hex-green-outlined.svg"
+                          : "/icons/hex-green-filled.svg"
                     }
                     alt="icon"
                     loading="lazy"
@@ -207,9 +209,8 @@ useEffect(() => {
                   ></div>
                 </div>
                 <span
-                  className={`sidebar__dates__date__text ${
-                    clickedMenuId === val ? "active" : ""
-                  } `}
+                  className={`sidebar__dates__date__text ${clickedMenuId === val ? "active" : ""
+                    } `}
                 >
                   {`${val}-${currentYear}`}
                 </span>
