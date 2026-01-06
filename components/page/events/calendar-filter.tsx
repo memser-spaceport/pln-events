@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ABBREVIATED_MONTH_NAMES, CUSTOM_EVENTS, MAX_YEAR_COUNT } from "@/utils/constants";
+import { ABBREVIATED_MONTH_NAMES, CUSTOM_EVENTS, MAX_YEAR_COUNT, MIN_YEAR_COUNT } from "@/utils/constants";
 
 interface ICalendarFilter {
   selectedYear: number;
@@ -20,11 +20,22 @@ const CalendarFilter = (props: ICalendarFilter) => {
   const [selectedMonth, setSelectedMonth] = useState(props.selectedMonth);
   const calendarRef = useRef<HTMLDivElement>(null);
 
-  // Get available years
+  // Get available years with dynamic range based on current month
   const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth();
+
+  // Dynamic year range based on current month (matching desktop sidebar logic)
+
+  const isFirstHalfOfYear = currentMonth < 6;
+  const minYearOffset = isFirstHalfOfYear ? MIN_YEAR_COUNT : MIN_YEAR_COUNT - 1;
+
+  const minYear = currentYear - minYearOffset;
+  const maxYear = currentYear + MAX_YEAR_COUNT;
+  const yearRange = maxYear - minYear + 1;
+
   const availableYears = Array.from(
-    { length: 2 + MAX_YEAR_COUNT },
-    (_, i) => currentYear - 1 + i
+    { length: yearRange },
+    (_, i) => minYear + i
   );
 
   // Reset when props change
@@ -90,7 +101,7 @@ const CalendarFilter = (props: ICalendarFilter) => {
     params.set("year", year.toString());
     params.set("date", date);
     const pathname = window.location.pathname;
-    
+
     // Use scroll: false to prevent Next.js from handling scroll, avoiding double-scroll
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
 
@@ -113,20 +124,20 @@ const CalendarFilter = (props: ICalendarFilter) => {
     // This allows the page/ListView to determine the best default month (Today/Upcoming)
     // instead of forcing the previously selected month from another year.
     if (year === currentYear) {
-       setSelectedYear(year);
-       
-       const params = new URLSearchParams(
-         typeof searchParams === 'string' ? searchParams : new URLSearchParams(searchParams).toString()
-       );
-       params.set("year", year.toString());
-       params.delete("date"); 
+      setSelectedYear(year);
 
-       const pathname = window.location.pathname;
-       router.push(`${pathname}?${params.toString()}`, { scroll: false });
-       
-       // Do not close dropdown on year select, per user request
-       // setIsOpen(false); 
-       return;
+      const params = new URLSearchParams(
+        typeof searchParams === 'string' ? searchParams : new URLSearchParams(searchParams).toString()
+      );
+      params.set("year", year.toString());
+      params.delete("date");
+
+      const pathname = window.location.pathname;
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+
+      // Do not close dropdown on year select, per user request
+      // setIsOpen(false); 
+      return;
     }
 
     const monthsIndicesForYear = (props.calendarData || {})[year.toString()] || [];
@@ -176,28 +187,28 @@ const CalendarFilter = (props: ICalendarFilter) => {
               ))}
             </div>
           </div>
-            <div className="calendar-filter__month-section">
-              <div className="calendar-filter__month-label">Month</div>
-              <div className="calendar-filter__month-list">
-                {ABBREVIATED_MONTH_NAMES.map((month: string, index: number) => {
-                  // Get months with events for the selected year
-                  const monthsForYear = (props.calendarData || {})[selectedYear.toString()] || [];
-                  const hasEvents = monthsForYear.includes(index);
-                  const isDisabled = !hasEvents;
-                  
-                  return (
-                    <button
-                      key={month}
-                      onClick={() => !isDisabled && handleMonthSelect(month)}
-                      className={`calendar-filter__month-item ${selectedMonth === month ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`}
-                      disabled={isDisabled}
-                    >
-                      {month}
-                    </button>
-                  );
-                })}
-              </div>
+          <div className="calendar-filter__month-section">
+            <div className="calendar-filter__month-label">Month</div>
+            <div className="calendar-filter__month-list">
+              {ABBREVIATED_MONTH_NAMES.map((month: string, index: number) => {
+                // Get months with events for the selected year
+                const monthsForYear = (props.calendarData || {})[selectedYear.toString()] || [];
+                const hasEvents = monthsForYear.includes(index);
+                const isDisabled = !hasEvents;
+
+                return (
+                  <button
+                    key={month}
+                    onClick={() => !isDisabled && handleMonthSelect(month)}
+                    className={`calendar-filter__month-item ${selectedMonth === month ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`}
+                    disabled={isDisabled}
+                  >
+                    {month}
+                  </button>
+                );
+              })}
             </div>
+          </div>
         </div>
       )}
       <style jsx>{`
