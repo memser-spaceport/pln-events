@@ -105,7 +105,8 @@
   }
 
   .mapView__badge span:first-child {
-    font-size: 12px;
+    font-size: 14px;
+    display: contents;
   }
 }
 

@@ -2,8 +2,9 @@ const EventsNoResults = (props: any) => {
   const searchParams = props?.searchParams;
   const allEvents = props?.allEvents ?? [];
   
-  const hasOtherFilters = searchParams ? Array.from(searchParams.keys()).some(
-    key => key !== 'year' && searchParams.get(key)
+  // Handle both plain object and URLSearchParams
+  const hasOtherFilters = searchParams ? Object.keys(searchParams).some(
+    key => key !== 'year' && searchParams[key]
   ) : false;
   
   const showNoEventsUI = allEvents.length === 0 && !hasOtherFilters;

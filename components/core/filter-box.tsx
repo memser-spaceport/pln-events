@@ -20,7 +20,6 @@ const FilterBox = (props: any) => {
   const router = useRouter();
   const filteredEventsCount = filteredEvents?.length;
   
-  // Start expanded on desktop for all views (including map view, like program view)
   const [isExpand, setIsExpand] = useState(typeof window !== 'undefined' ? window.innerWidth >= 1024 : true);
 
   const { onFilterClearAllBtnClicked, onFilterMenuClicked } =
