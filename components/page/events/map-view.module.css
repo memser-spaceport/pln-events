@@ -4,6 +4,7 @@
   height: calc(100svh - 120px);
   min-height: 400px;
   flex: 1;
+  transition: width 0.3s ease;
 }
 
 .mapView__container {

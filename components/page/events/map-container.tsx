@@ -37,8 +37,8 @@ const MAP_CONFIG = {
   TILE_LAYER_URL: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
   TILE_LAYER_ATTRIBUTION: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
   DEFAULT_CENTER: [20, 0] as [number, number],
-  DEFAULT_ZOOM: 2,
-  MIN_ZOOM: 2,
+  DEFAULT_ZOOM: 3, // Increased to match MIN_ZOOM and prevent seeing multiple continents
+  MIN_ZOOM: 3, // Increased to prevent seeing multiple continents on widescreen
   MAX_ZOOM: 18,
   FLY_DURATION: 1.5,
 };
@@ -293,6 +293,12 @@ function MapContainerComponent({
     if (!mapRef.current || mapInstanceRef.current) return;
 
     // Create map instance
+    // Set max bounds to prevent world wrapping - limit to one world instance
+    const maxBounds = L.latLngBounds(
+      L.latLng(-85, -180), // Southwest corner
+      L.latLng(85, 180)    // Northeast corner
+    );
+
     const map = L.map(mapRef.current, {
       center: MAP_CONFIG.DEFAULT_CENTER,
       zoom: MAP_CONFIG.DEFAULT_ZOOM,
@@ -300,11 +306,15 @@ function MapContainerComponent({
       maxZoom: MAP_CONFIG.MAX_ZOOM,
       zoomControl: !isMobile,
       scrollWheelZoom: true,
+      worldCopyJump: false,
+      maxBounds: maxBounds, // Prevent panning beyond one world instance
+      maxBoundsViscosity: 1, // Make bounds sticky
     });
 
-    // Add tile layer
+    // Add tile layer with noWrap to prevent horizontal wrapping
     L.tileLayer(MAP_CONFIG.TILE_LAYER_URL, {
       attribution: MAP_CONFIG.TILE_LAYER_ATTRIBUTION,
+      noWrap: true, // Prevent tile wrapping - show only one world instance
     }).addTo(map);
 
     // Create cluster group with custom icon - only clusters 3+ markers
@@ -407,6 +417,61 @@ function MapContainerComponent({
         // Store event data for cluster icon creation
         eventData: { ...event, isFeatured },
       } as any);
+
+      // Add rich tooltip to show event details on hover (matching Figma design)
+      const eventName = event.name || event.title || 'Event';
+      const eventLocation = event.eventLocation || event.location || event.venue?.name || '';
+      const eventDate = event.dateRange || event.startDate || '';
+      const eventTime = event.timeRange || '';
+      // Use same fallback logic as detail popup: eventLogo -> hostLogo -> default
+      const eventImage = event.eventLogo || event.hostLogo || '/icons/default-event-logo.svg';
+      
+      const tooltipContent = `
+        <div class="map-event-tooltip">
+          <div class="map-event-tooltip__image-wrapper">
+            <img src="${eventImage}" alt="${eventName}" class="map-event-tooltip__image" onerror="this.src='/icons/default-event-logo.svg';" />
+          </div>
+          <div class="map-event-tooltip__content">
+            <div class="map-event-tooltip__info">
+              <p class="map-event-tooltip__title">${eventName}</p>
+              ${eventLocation ? `
+                <div class="map-event-tooltip__row">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#64748b"/>
+                  </svg>
+                  <span>${eventLocation}</span>
+                </div>
+              ` : ''}
+            </div>
+            <div class="map-event-tooltip__meta">
+              ${eventDate ? `
+                <div class="map-event-tooltip__row">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 4H18V2H16V4H8V2H6V4H5C3.89 4 3.01 4.9 3.01 6L3 20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4ZM19 20H5V10H19V20ZM19 8H5V6H19V8Z" fill="#64748b"/>
+                  </svg>
+                  <span>${eventDate}</span>
+                </div>
+              ` : ''}
+              ${eventTime ? `
+                <div class="map-event-tooltip__row">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12.5 7H11V13L16.25 16.15L17 14.92L12.5 12.25V7Z" fill="#64748b"/>
+                  </svg>
+                  <span>${eventTime}</span>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+      
+      marker.bindTooltip(tooltipContent, {
+        direction: 'right',
+        offset: [20, 0],
+        className: 'map-marker-tooltip-rich',
+        permanent: false,
+        interactive: false,
+      });
 
       // Directly open event details modal on click (no popup)
       marker.on('click', () => {
@@ -666,6 +731,102 @@ const mapStyles = `
     filter: drop-shadow(0 4px 12px rgba(21, 111, 247, 0.4));
   }
 
+  /* Rich tooltip styles for event details on hover - matching Figma design */
+  .map-marker-tooltip-rich {
+    background: white !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    padding: 7px 10px !important;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.16) !important;
+    max-width: 340px !important;
+    min-width: 280px !important;
+  }
+
+  .map-marker-tooltip-rich::before {
+    display: none !important;
+  }
+
+  .map-event-tooltip {
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  .map-event-tooltip__image-wrapper {
+    flex-shrink: 0;
+    padding: 3px 0;
+  }
+
+  .map-event-tooltip__image {
+    width: 90px;
+    height: 90px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #f1f5f9;
+    border: 1px solid #DBDBDB;
+  }
+
+  .map-event-tooltip__content {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .map-event-tooltip__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .map-event-tooltip__title {
+    font-family: 'Aileron', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+    line-height: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .map-event-tooltip__row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .map-event-tooltip__row svg {
+    flex-shrink: 0;
+  }
+
+  .map-event-tooltip__row span {
+    font-family: 'Aileron', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+    line-height: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .map-event-tooltip__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .map-event-tooltip__meta .map-event-tooltip__row span {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 22px;
+  }
+
   /* Cluster icon styles - Figma design */
   .custom-cluster-icon {
     background: transparent !important;
@@ -715,12 +876,12 @@ const mapStyles = `
 
   .cluster-stack-container {
     position: relative;
-    width: 50px;
-    height: 40px;
-    margin-top: 15px;
+    width: 44px;
+    height: 50px;
+    margin-top: 10px;
   }
 
-  /* Stacked hexagon pins in cluster - smaller */
+  /* Stacked hexagon pins in cluster - cascading diagonal overlap */
   .cluster-stack-pin {
     position: absolute;
     transition: transform 0.2s ease;
@@ -730,26 +891,28 @@ const mapStyles = `
     width: 32px;
     height: 35px;
     display: block;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
   }
 
-  .cluster-stack-pin--1 {
-    top: 0;
-    left: 0;
-    z-index: 3;
-  }
-
-  .cluster-stack-pin--2 {
-    top: 2px;
-    left: 10px;
-    z-index: 2;
-    opacity: 0.9;
-  }
-
+  /* Third pin - back layer (top-right) */
   .cluster-stack-pin--3 {
-    top: 4px;
-    left: 20px;
+    top: 0;
+    left: 12px;
     z-index: 1;
-    opacity: 0.8;
+  }
+
+  /* Second pin - middle layer (top-left) */
+  .cluster-stack-pin--2 {
+    top: 4px;
+    left: 0;
+    z-index: 2;
+  }
+
+  /* First pin - front layer (center-bottom, most prominent) */
+  .cluster-stack-pin--1 {
+    top: 14px;
+    left: 6px;
+    z-index: 3;
   }
 
   /* Hover effect for clusters */

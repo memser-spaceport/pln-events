@@ -19,6 +19,8 @@ const FilterBox = (props: any) => {
   const selectedFilterValues = { ...props.selectedFilterValues };
   const router = useRouter();
   const filteredEventsCount = filteredEvents?.length;
+  
+  // Start expanded on desktop for all views (including map view, like program view)
   const [isExpand, setIsExpand] = useState(typeof window !== 'undefined' ? window.innerWidth >= 1024 : true);
 
   const { onFilterClearAllBtnClicked, onFilterMenuClicked } =
@@ -137,8 +139,8 @@ const FilterBox = (props: any) => {
 
   return (
     <>
-      {/* Filter strip (collapsed state) - only for calendar and program views, not map */}
-      {!isExpand && (viewType === VIEW_TYPE.calendar.name || viewType === VIEW_TYPE.program.name) && (
+      {/* Filter strip (collapsed state) - for calendar, program, and map views */}
+      {!isExpand && (viewType === VIEW_TYPE.calendar.name || viewType === VIEW_TYPE.program.name || viewType === VIEW_TYPE.map.name) && (
         <div className="cp__cn__filterstrip">
           <FilterStrip onStripClicked={toggleSidebar} filterCount={filterCount} onClear={onClearAllFilter} />
         </div>
@@ -146,8 +148,8 @@ const FilterBox = (props: any) => {
       <div className="fb">
         <div className="fb__head">
           <div className="fb__head__title">
-            {/* Only show collapse button for calendar and program views (not map view on desktop) */}
-            {(viewType === VIEW_TYPE.calendar.name || viewType === VIEW_TYPE.program.name) && (
+            {/* Show collapse button for calendar, program, and map views */}
+            {(viewType === VIEW_TYPE.calendar.name || viewType === VIEW_TYPE.program.name || viewType === VIEW_TYPE.map.name) && (
               <button className="fb__head__title__arrowbtn" onClick={toggleSidebar}>
                 <img className="fb__head__title__img" src="/icons/double_arrow_left.svg" />
               </button>
@@ -321,7 +323,7 @@ const FilterBox = (props: any) => {
             }
 
             .fb {
-              display: ${viewType === VIEW_TYPE.list.name || viewType === VIEW_TYPE.map.name || isExpand ? "block" : "none"};
+              display: ${viewType === VIEW_TYPE.list.name || isExpand ? "block" : "none"};
               height: calc(100svh - 112px);
               transition: width 0.3s ease;
               position: sticky;
