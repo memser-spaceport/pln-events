@@ -7,6 +7,52 @@
   transition: width 0.3s ease;
 }
 
+/* Year Filter - Top Right Corner */
+.yearFilter {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: white;
+  padding: 6px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.yearFilter__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: #0f172a;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.yearFilter__arrow:hover:not(:disabled) {
+  background-color: #f1f5f9;
+}
+
+.yearFilter__arrow_disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.yearFilter__year {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  min-width: 50px;
+  text-align: center;
+}
+
 .mapView__container {
   width: 100%;
   height: 100%;
