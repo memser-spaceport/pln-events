@@ -42,6 +42,12 @@ const Toolbar = (props: any) => {
       activeImg: "/icons/list-view-white.svg",
       inActiveImg: "/icons/list-view.svg",
     },
+    {
+      title: "map",
+      name: "Map",
+      activeImg: "/icons/map-view-white.svg",
+      inActiveImg: "/icons/map-view.svg",
+    },
   ];
 
   const {

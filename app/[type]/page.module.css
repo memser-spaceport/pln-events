@@ -20,6 +20,7 @@
   
   .schedule__content__right {
     flex: 1;
+    position: relative;
   }
   
   .schedule__content__right__cal {
