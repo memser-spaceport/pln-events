@@ -297,6 +297,8 @@ function MapContainerComponent({
   const mapInstanceRef = useRef<L.Map | null>(null);
   const clusterGroupRef = useRef<L.MarkerClusterGroup | null>(null);
   const userLocationLayerRef = useRef<L.LayerGroup | null>(null);
+  const hasInitializedBoundsRef = useRef(false);
+  const previousEventsLengthRef = useRef(0);
   
   const [isLocating, setIsLocating] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
@@ -538,8 +540,12 @@ function MapContainerComponent({
       clusterGroup.addLayer(marker);
     });
 
-    // Fit bounds to show all markers
-    if (events.length > 0) {
+    // Fit bounds to show all markers - only on initial load or when events actually change
+    // This prevents zooming out when clicking on markers
+    const eventsChanged = events.length !== previousEventsLengthRef.current;
+    previousEventsLengthRef.current = events.length;
+    
+    if (events.length > 0 && (!hasInitializedBoundsRef.current || eventsChanged)) {
       const validEvents = events.filter(e => e.latitude && e.longitude && !(e.latitude === 0 && e.longitude === 0));
       if (validEvents.length > 0) {
         const bounds = L.latLngBounds(
@@ -550,6 +556,7 @@ function MapContainerComponent({
           maxZoom: 12,
           duration: MAP_CONFIG.FLY_DURATION,
         });
+        hasInitializedBoundsRef.current = true;
       }
     }
   }, [events, onEventClick]);
@@ -971,8 +978,8 @@ const mapStyles = `
 
   /* Third pin - back layer (top-right) */
   .cluster-stack-pin--3 {
-    top: 0;
-    left: 12px;
+    top: 3px;
+    left: 15px;
     z-index: 1;
   }
 

@@ -60,8 +60,10 @@ const groupEventsByRegion = (events: any[]): IRegionGroup[] => {
   const regionMap = new Map<string, IRegionGroup>();
 
   events.forEach((event) => {
-    // Only include events with valid coordinates
-    if (event.latitude && event.longitude) {
+    // Only include events with valid coordinates (consistent with getEventsWithCoordinates)
+    // Use != null check to allow 0 values, but exclude (0,0) coordinates
+    if (event.latitude != null && event.longitude != null && 
+        !(event.latitude === 0 && event.longitude === 0)) {
       const regionKey = `${event.city || 'Unknown'}-${event.country || 'Unknown'}`;
       
       if (regionMap.has(regionKey)) {
