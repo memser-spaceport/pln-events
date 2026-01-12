@@ -353,6 +353,10 @@ export const VIEW_TYPE = {
     name: "program",
     label: "Program",
   },
+  map: {
+    name: "map",
+    label: "Map",
+  },
 };
 
 export const ACCESS_TYPES = {

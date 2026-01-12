@@ -1,9 +1,10 @@
 const EventsNoResults = (props: any) => {
   const searchParams = props?.searchParams;
-  const allEvents = props?.allEvents ?? [];
-  
-  const hasOtherFilters = searchParams ? Array.from(searchParams.keys()).some(
-    key => key !== 'year' && searchParams.get(key)
+  const view = props?.view;
+  const allEvents = props?.allEvents ?? [];  
+  // Handle both plain object and URLSearchParams
+  const hasOtherFilters = searchParams ? Object.keys(searchParams).some(
+    key => key !== 'year' && searchParams[key]
   ) : false;
   
   const showNoEventsUI = allEvents.length === 0 && !hasOtherFilters;
@@ -16,7 +17,7 @@ const EventsNoResults = (props: any) => {
           <div className="imgWrapper">
             <img
               alt="no-results"
-              src="/icons/no-events.svg"
+              src={view === "map" ? "/images/no-results-map.svg" : "/icons/no-events.svg"}
               width={300}
               height={300}
               className="noResultImg"
@@ -95,7 +96,7 @@ const EventsNoResults = (props: any) => {
   return (
     <>
       <div className="noResult">
-        <img alt="no-results" src="/icons/no-results.svg" width={300} height={300}/>
+        <img alt="no-results" src={view === "map" ? "/images/no-results-map.svg" : "/icons/no-results.svg"} width={300} height={300}/>
       </div>
 
       <style jsx>
@@ -105,6 +106,7 @@ const EventsNoResults = (props: any) => {
             display: flex;
             align-items: center;
             justify-content: center;
+            padding-top: 10px;
           }
         `}
       </style>

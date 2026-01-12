@@ -113,4 +113,14 @@ export interface IEvent {
         locationLogo: string;
         slug: string;
         externalLinkIcon: string;
+        /** Latitude coordinate for map view */
+        latitude?: number | null;
+        /** Longitude coordinate for map view */
+        longitude?: number | null;
+        /** City name for map clustering */
+        city?: string;
+        /** State/Province name for map clustering */
+        state?: string;
+        /** Country name for map clustering */
+        country?: string;
 }
