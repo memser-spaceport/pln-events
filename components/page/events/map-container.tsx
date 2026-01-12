@@ -145,9 +145,9 @@ const createCustomMarkerIcon = (eventImage: string, isFeatured: boolean = false)
 };
 
 /**
- * Default fallback icon for events without images
+ * Default fallback icon for events without images (used in pins and hover popover)
  */
-const DEFAULT_EVENT_IMAGE = '/icons/default-event-logo.svg';
+const DEFAULT_EVENT_IMAGE = '/images/event-default.svg';
 
 /**
  * Creates cluster icon matching Figma design:
@@ -454,7 +454,7 @@ function MapContainerComponent({
 
       // Check if event is featured
       const isFeatured = event.isFeaturedEvent || event.isFeatured || false;
-      const eventImage = event.eventLogo || event.hostLogo || '/icons/default-event-logo.svg';
+      const eventImage = event.eventLogo || event.hostLogo || DEFAULT_EVENT_IMAGE;
 
       const marker = L.marker([event.latitude, event.longitude], {
         icon: createCustomMarkerIcon(eventImage, isFeatured),
@@ -472,7 +472,7 @@ function MapContainerComponent({
       const tooltipContent = `
         <div class="map-event-tooltip">
           <div class="map-event-tooltip__image-wrapper">
-            <img src="${eventImage}" alt="${eventName}" class="map-event-tooltip__image" onerror="this.src='/icons/default-event-logo.svg';" />
+            <img src="${eventImage}" alt="${eventName}" class="map-event-tooltip__image" onerror="this.src='/images/event-default.svg';" />
           </div>
           <div class="map-event-tooltip__content">
             <div class="map-event-tooltip__info">
