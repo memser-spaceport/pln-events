@@ -446,7 +446,9 @@ export const getEventsWithCoordinates = (events: any[]) => {
     typeof event.latitude === 'number' &&
     typeof event.longitude === 'number' &&
     !isNaN(event.latitude) &&
-    !isNaN(event.longitude)
+    !isNaN(event.longitude) &&
+    // Exclude events with 0,0 coordinates (invalid/missing location data)
+    !(event.latitude === 0 && event.longitude === 0)
   );
 };
 

@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState, useCallback, useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
-import { CUSTOM_EVENTS } from "@/utils/constants";
+import { CUSTOM_EVENTS, MAX_YEAR_COUNT, MIN_YEAR_COUNT } from "@/utils/constants";
 import { useSchedulePageAnalytics } from "@/analytics/schedule.analytics";
 import EventsNoResults from "@/components/ui/events-no-results";
 import { getEventsWithCoordinates } from "@/utils/helper";
@@ -92,13 +92,79 @@ interface IMapViewProps {
   searchParams?: any;
 }
 
+/**
+ * Year Filter Component for Map View
+ * Simple navigation with left/right arrows
+ */
+interface IYearFilterProps {
+  selectedYear: number;
+  onYearChange: (year: number) => void;
+}
+
+const YearFilter = ({ selectedYear, onYearChange }: IYearFilterProps) => {
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth();
+  
+  // Dynamic year range based on current month (matching other views)
+  const isFirstHalfOfYear = currentMonth < 6;
+  const minYearOffset = isFirstHalfOfYear ? MIN_YEAR_COUNT : MIN_YEAR_COUNT - 1;
+  
+  const minYear = currentYear - minYearOffset;
+  const maxYear = currentYear + MAX_YEAR_COUNT;
+  
+  const canGoBack = selectedYear > minYear;
+  const canGoForward = selectedYear < maxYear;
+  
+  return (
+    <div className={styles.yearFilter}>
+      <button 
+        className={`${styles.yearFilter__arrow} ${!canGoBack ? styles.yearFilter__arrow_disabled : ''}`}
+        onClick={() => canGoBack && onYearChange(selectedYear - 1)}
+        disabled={!canGoBack}
+        aria-label="Previous year"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+      <span className={styles.yearFilter__year}>{selectedYear}</span>
+      <button 
+        className={`${styles.yearFilter__arrow} ${!canGoForward ? styles.yearFilter__arrow_disabled : ''}`}
+        onClick={() => canGoForward && onYearChange(selectedYear + 1)}
+        disabled={!canGoForward}
+        aria-label="Next year"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  );
+};
+
 const MapView = (props: IMapViewProps) => {
   const { events = [], allEvents = [], viewType, searchParams } = props;
   const router = useRouter();
+  const urlSearchParams = useSearchParams();
   const { onEventClicked } = useSchedulePageAnalytics();
   
   const [selectedRegion, setSelectedRegion] = useState<IRegionGroup | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  
+  // Get selected year from URL params, default to current year
+  const currentYear = new Date().getFullYear();
+  const selectedYear = searchParams?.year ? parseInt(searchParams.year, 10) : currentYear;
+
+  // Handle year change - update URL params
+  const handleYearChange = useCallback((newYear: number) => {
+    const params = new URLSearchParams(urlSearchParams.toString());
+    params.set("year", newYear.toString());
+    // Remove date param when changing year to avoid conflicts
+    params.delete("date");
+    
+    const pathname = globalThis.location.pathname;
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  }, [router, urlSearchParams]);
 
   // Check for mobile viewport
   useEffect(() => {
@@ -156,7 +222,7 @@ const MapView = (props: IMapViewProps) => {
   }, [onOpenDetailPopup]);
 
   // If no events with coordinates, show appropriate message
-  if (events.length === 0) {
+  if (events.length === 0 || eventsWithCoordinates.length === 0) {
     return (
       <div className={styles.mapView__wrapper}>
         <EventsNoResults searchParams={searchParams} allEvents={allEvents} />
@@ -164,20 +230,14 @@ const MapView = (props: IMapViewProps) => {
     );
   }
 
-  if (eventsWithCoordinates.length === 0) {
-    return (
-      <div className={styles.mapView__wrapper}>
-        <div className={styles.mapView__noLocations}>
-          <img src="/icons/pl-location-icon.svg" alt="No locations" />
-          <h3>No location data available</h3>
-          <p>The events in this selection don&apos;t have map coordinates.</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className={styles.mapView__wrapper}>
+      {/* Year Filter - Top Right Corner */}
+      <YearFilter 
+        selectedYear={selectedYear} 
+        onYearChange={handleYearChange} 
+      />
+      
       <div className={styles.mapView__container}>
         <DynamicMapContainer
           regionGroups={regionGroups}

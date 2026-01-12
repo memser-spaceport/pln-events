@@ -117,21 +117,23 @@ const CLUSTER_CONFIG = {
  */
 const MARKER_ICONS = {
   default: '/icons/location-pin.svg',
-  featured: '/icons/location-featured-pin.svg',
 };
 
 /**
  * Creates a custom marker icon - always uses location pins per Figma design
  * Uses existing SVG icons from public/icons folder
+ * @param eventImage - URL of the event image
  * @param isFeatured - Whether this is a featured event
  */
-const createCustomMarkerIcon = (isFeatured: boolean = false): L.DivIcon => {
-  const iconSrc = isFeatured ? MARKER_ICONS.featured : MARKER_ICONS.default;
+const createCustomMarkerIcon = (eventImage: string, isFeatured: boolean = false): L.DivIcon => {
+  const iconSrc = MARKER_ICONS.default;
   
   return L.divIcon({
     html: `
       <div class="map-marker-pin">
-        <img src="${iconSrc}" alt="Event location" width="36" height="40" />
+        <img class="map-marker-pin-icon" src="${iconSrc}" alt="Event location" width="36" height="40" />
+        <img class="map-marker-pin-image" src="${eventImage}" alt="Event image" />
+        ${isFeatured ? `<img class="map-marker-pin-image-overlay" src="/icons/featured-logo.svg" alt="Event image overlay" />` : ''}
       </div>
     `,
     iconSize: [36, 40],
@@ -142,10 +144,15 @@ const createCustomMarkerIcon = (isFeatured: boolean = false): L.DivIcon => {
 };
 
 /**
+ * Default fallback icon for events without images
+ */
+const DEFAULT_EVENT_IMAGE = '/icons/default-event-logo.svg';
+
+/**
  * Creates cluster icon matching Figma design:
  * - White pill with "X Events" text
  * - Blue ring around the cluster
- * - Stacked hexagonal markers using existing icons (reduced sizes)
+ * - Stacked pins with event images overlaid (reduced sizes)
  */
 const createClusterIcon = (cluster: any): L.DivIcon => {
   const count = cluster.getChildCount();
@@ -154,13 +161,20 @@ const createClusterIcon = (cluster: any): L.DivIcon => {
   // Get up to 3 markers for the stack display
   const stackCount = Math.min(count, 3);
   
-  // Create stacked hexagon pins HTML using existing icons (smaller sizes)
+  // Create stacked pins HTML with event images overlaid (smaller sizes)
   let stackedPinsHtml = '';
   for (let i = 0; i < stackCount; i++) {
     const marker = markers[i];
-    const isFeatured = marker?.options?.eventData?.isFeatured || false;
-    const iconSrc = isFeatured ? MARKER_ICONS.featured : MARKER_ICONS.default;
-    stackedPinsHtml += `<div class="cluster-stack-pin cluster-stack-pin--${i + 1}"><img src="${iconSrc}" alt="Event" width="32" height="35" /></div>`;
+    const eventData = marker?.options?.eventData;
+    const isFeatured = eventData?.isFeatured || false;
+    const iconSrc = MARKER_ICONS.default;
+    const eventImage = eventData?.eventLogo || eventData?.hostLogo || DEFAULT_EVENT_IMAGE;
+    stackedPinsHtml += `
+      <div class="cluster-stack-pin cluster-stack-pin--${i + 1}">
+        <img class="cluster-stack-pin-icon" src="${iconSrc}" alt="Event" width="32" height="35" />
+        <img class="cluster-stack-pin-image" src="${eventImage}" alt="Event image" onerror="this.src='${DEFAULT_EVENT_IMAGE}';" />
+      </div>
+    `;
   }
 
   return L.divIcon({
@@ -386,6 +400,29 @@ function MapContainerComponent({
   }, [isMobile]);
 
   /**
+   * Handle container resize (e.g., when filter drawer opens/closes)
+   * Leaflet needs invalidateSize() to be called when container dimensions change
+   */
+  useEffect(() => {
+    const map = mapInstanceRef.current;
+    const container = mapRef.current;
+    if (!map || !container) return;
+
+    const resizeObserver = new ResizeObserver(() => {
+      // Small delay to let CSS transitions complete
+      setTimeout(() => {
+        map.invalidateSize();
+      }, 100);
+    });
+
+    resizeObserver.observe(container);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+
+  /**
    * Update markers when events change
    */
   useEffect(() => {
@@ -401,19 +438,22 @@ function MapContainerComponent({
     // This check serves as a safety guard
     events.forEach((event) => {
       // Safety check: skip events without valid coordinates
-      if (!event.latitude || !event.longitude || 
+      // Also skip events with 0,0 coordinates (invalid/missing location data)
+      if (event.latitude == null || event.longitude == null || 
           typeof event.latitude !== 'number' || 
           typeof event.longitude !== 'number' ||
           Number.isNaN(event.latitude) || 
-          Number.isNaN(event.longitude)) {
+          Number.isNaN(event.longitude) ||
+          (event.latitude === 0 && event.longitude === 0)) {
         return;
       }
 
       // Check if event is featured
       const isFeatured = event.isFeaturedEvent || event.isFeatured || false;
+      const eventImage = event.eventLogo || event.hostLogo || '/icons/default-event-logo.svg';
 
       const marker = L.marker([event.latitude, event.longitude], {
-        icon: createCustomMarkerIcon(isFeatured),
+        icon: createCustomMarkerIcon(eventImage, isFeatured),
         // Store event data for cluster icon creation
         eventData: { ...event, isFeatured },
       } as any);
@@ -424,7 +464,6 @@ function MapContainerComponent({
       const eventDate = event.dateRange || event.startDate || '';
       const eventTime = event.timeRange || '';
       // Use same fallback logic as detail popup: eventLogo -> hostLogo -> default
-      const eventImage = event.eventLogo || event.hostLogo || '/icons/default-event-logo.svg';
       
       const tooltipContent = `
         <div class="map-event-tooltip">
@@ -483,7 +522,6 @@ function MapContainerComponent({
         const iconElement = marker.getElement()?.querySelector('.map-marker-pin');
         if (iconElement) {
           (iconElement as HTMLElement).style.transform = 'scale(1.15)';
-          (iconElement as HTMLElement).style.filter = 'drop-shadow(0 4px 12px rgba(21, 111, 247, 0.4))';
         }
       });
 
@@ -500,7 +538,7 @@ function MapContainerComponent({
 
     // Fit bounds to show all markers
     if (events.length > 0) {
-      const validEvents = events.filter(e => e.latitude && e.longitude);
+      const validEvents = events.filter(e => e.latitude && e.longitude && !(e.latitude === 0 && e.longitude === 0));
       if (validEvents.length > 0) {
         const bounds = L.latLngBounds(
           validEvents.map(e => [e.latitude, e.longitude] as [number, number])
@@ -719,7 +757,25 @@ const mapStyles = `
     justify-content: center;
   }
 
-  .map-marker-pin img {
+  .map-marker-pin-image {
+    position: absolute;
+    width: 24px !important;
+    height: 24px;
+    border-radius: 50%;
+    top: 4.5px;
+    left: 5.5px;
+    object-fit: cover;
+  }
+
+  .map-marker-pin-image-overlay {
+    position: absolute;
+    top: 0px;
+    right: 2px;
+    width: 12px !important;
+    height: 12px;
+  }
+
+  .map-marker-pin-icon {
     display: block;
     width: 36px;
     height: 40px;
@@ -728,7 +784,6 @@ const mapStyles = `
   /* Hover effect for pins */
   .leaflet-marker-icon.custom-div-marker-icon:hover .map-marker-pin {
     transform: scale(1.15);
-    filter: drop-shadow(0 4px 12px rgba(21, 111, 247, 0.4));
   }
 
   /* Rich tooltip styles for event details on hover - matching Figma design */
@@ -881,17 +936,32 @@ const mapStyles = `
     margin-top: 10px;
   }
 
-  /* Stacked hexagon pins in cluster - cascading diagonal overlap */
+  /* Stacked pins in cluster - cascading diagonal overlap with event images */
   .cluster-stack-pin {
     position: absolute;
     transition: transform 0.2s ease;
+    width: 32px;
+    height: 35px;
   }
 
-  .cluster-stack-pin img {
+  .cluster-stack-pin-icon {
     width: 32px;
     height: 35px;
     display: block;
     filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .cluster-stack-pin-image {
+    position: absolute;
+    top: 4px;
+    left: 4.5px;
+    width: 20.5px !important;
+    height: 20.5px;
+    border-radius: 50%;
+    object-fit: cover;
   }
 
   /* Third pin - back layer (top-right) */
