@@ -28,6 +28,7 @@ interface IMapContainerComponentProps {
   selectedRegion: IRegionGroup | null;
   onCloseRegionPopup: () => void;
   isMobile: boolean;
+  onEventsAroundMeClick?: () => void;
 }
 
 /**
@@ -290,6 +291,7 @@ function MapContainerComponent({
   selectedRegion,
   onCloseRegionPopup,
   isMobile,
+  onEventsAroundMeClick,
 }: Readonly<IMapContainerComponentProps>) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -603,6 +605,9 @@ function MapContainerComponent({
    * Uses watchPosition to get progressively better location fixes
    */
   const getUserLocation = useCallback(() => {
+    // Track analytics for "Events around me" click
+    onEventsAroundMeClick?.();
+    
     if (!navigator.geolocation) {
       setLocationError('Geolocation is not supported by your browser');
       return;
@@ -672,7 +677,7 @@ function MapContainerComponent({
       navigator.geolocation.clearWatch(watchId);
       setIsLocating(false);
     }, 5000);
-  }, []);
+  }, [onEventsAroundMeClick]);
 
   return (
     <div className="map-wrapper">
