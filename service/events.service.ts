@@ -818,6 +818,8 @@ export const getCalendarData = async (location?: any) => {
        // Fallback for cases without associations structure
        params.append("location", location.title);
     }
+
+
     
     // Server-side call using environment variables
     const url = `${process.env.WEB_API_BASE_URL}/events/months${params.toString() ? `?${params.toString()}` : ''}`;
