@@ -83,7 +83,7 @@ const CalendarFilter = (props: ICalendarFilter) => {
     setIsOpen(!isOpen);
   };
 
-  const updateFilter = (year: number, month: string, shouldClose: boolean = true) => {
+  const updateFilter = (year: number, month: string, shouldClose: boolean = true, shouldScroll: boolean = true) => {
     setSelectedYear(year);
     setSelectedMonth(month);
 
@@ -106,11 +106,13 @@ const CalendarFilter = (props: ICalendarFilter) => {
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
 
     // Dispatch event to trigger scroll
-    document.dispatchEvent(
-      new CustomEvent(CUSTOM_EVENTS.UPDATE_EVENTS_OBSERVER, {
-        detail: { month },
-      })
-    );
+    if (shouldScroll) {
+      document.dispatchEvent(
+        new CustomEvent(CUSTOM_EVENTS.UPDATE_EVENTS_OBSERVER, {
+          detail: { month },
+        })
+      );
+    }
 
     if (shouldClose) {
       setIsOpen(false);
@@ -143,16 +145,14 @@ const CalendarFilter = (props: ICalendarFilter) => {
     const monthsIndicesForYear = (props.calendarData || {})[year.toString()] || [];
     let targetMonth = selectedMonth;
 
-    const currentMonthIndex = ABBREVIATED_MONTH_NAMES.indexOf(selectedMonth);
-
-    // If the current month is not available in the new year, switch to the first available month
-    if (!monthsIndicesForYear.includes(currentMonthIndex) && monthsIndicesForYear.length > 0) {
+    // If switching to a non-current year, always switch to the first available month
+    if (monthsIndicesForYear.length > 0) {
       const sortedIndices = [...monthsIndicesForYear].sort((a, b) => a - b);
       targetMonth = ABBREVIATED_MONTH_NAMES[sortedIndices[0]];
     }
 
-    // Pass false to keep dropdown open
-    updateFilter(year, targetMonth, false);
+    // Pass false to keep dropdown open, and false to skip duplicate scroll dispatch (handled by page load)
+    updateFilter(year, targetMonth, false, false);
   };
 
   const handleMonthSelect = (month: string) => {
