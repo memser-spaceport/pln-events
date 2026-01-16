@@ -300,6 +300,11 @@ function MapContainerComponent({
   const hasInitializedBoundsRef = useRef(false);
   const previousEventsLengthRef = useRef(0);
   
+  // Store callback in ref to avoid triggering marker effect on callback changes
+  // This prevents zoom reset when viewing event details (callback changes on URL update)
+  const onEventClickRef = useRef(onEventClick);
+  onEventClickRef.current = onEventClick;
+  
   const [isLocating, setIsLocating] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
   const [userLocation, setUserLocation] = useState<{lat: number; lng: number; accuracy: number} | null>(null);
@@ -517,8 +522,9 @@ function MapContainerComponent({
       });
 
       // Directly open event details modal on click (no popup)
+      // Use ref to avoid stale closure and prevent effect re-runs
       marker.on('click', () => {
-        onEventClick(event);
+        onEventClickRef.current(event);
       });
 
       // Add hover effect
@@ -559,7 +565,7 @@ function MapContainerComponent({
         hasInitializedBoundsRef.current = true;
       }
     }
-  }, [events, onEventClick]);
+  }, [events]); // Removed onEventClick - using ref to prevent zoom reset on callback changes
 
   /**
    * Update user location marker
