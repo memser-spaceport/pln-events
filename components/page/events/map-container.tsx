@@ -308,6 +308,12 @@ function MapContainerComponent({
   const [isLocating, setIsLocating] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
   const [userLocation, setUserLocation] = useState<{lat: number; lng: number; accuracy: number} | null>(null);
+  
+  // Mobile carousel state
+  const [activeCarouselIndex, setActiveCarouselIndex] = useState(0);
+  const markersMapRef = useRef<Map<string, L.Marker>>(new Map());
+  const isCarouselChangeRef = useRef(false); // Flag to prevent double-navigation
+  const previousClusterRef = useRef<any>(null); // Track previous cluster to avoid re-expanding
 
   /**
    * Initialize the map
@@ -439,8 +445,9 @@ function MapContainerComponent({
     const clusterGroup = clusterGroupRef.current;
     if (!map || !clusterGroup) return;
 
-    // Clear existing markers
+    // Clear existing markers and markers map
     clusterGroup.clearLayers();
+    markersMapRef.current.clear();
 
     // Add markers for each event
     // Note: events are already filtered for coordinates in map-view.tsx
@@ -513,18 +520,49 @@ function MapContainerComponent({
         </div>
       `;
       
-      marker.bindTooltip(tooltipContent, {
-        direction: 'right',
-        offset: [20, 0],
-        className: 'map-marker-tooltip-rich',
-        permanent: false,
-        interactive: false,
-      });
+      // Only show tooltip on desktop (mobile has carousel cards)
+      if (!isMobile) {
+        marker.bindTooltip(tooltipContent, {
+          direction: 'right',
+          offset: [20, 0],
+          className: 'map-marker-tooltip-rich',
+          permanent: false,
+          interactive: false,
+        });
+      }
 
-      // Directly open event details modal on click (no popup)
-      // Use ref to avoid stale closure and prevent effect re-runs
+      // Store marker reference for carousel sync (using event id or index)
+      const eventId = event.id || event.uid || `event-${events.indexOf(event)}`;
+      markersMapRef.current.set(eventId, marker);
+
+      // Handle marker click
+      // On mobile: only sync carousel (don't open detail - user clicks card instead)
+      // On desktop: open event details modal
       marker.on('click', () => {
-        onEventClickRef.current(event);
+        if (isMobile) {
+          // On mobile, only sync carousel to this event (don't open detail)
+          const eventIndex = events.findIndex(e => 
+            (e.id || e.uid || `event-${events.indexOf(e)}`) === eventId
+          );
+          if (eventIndex !== -1) {
+            isCarouselChangeRef.current = true;
+            setActiveCarouselIndex(eventIndex);
+            // Scroll carousel to show this card
+            setTimeout(() => {
+              const track = document.querySelector('.map-mobile-carousel__track');
+              const card = track?.querySelector(`[data-index="${eventIndex}"]`) as HTMLElement;
+              if (track && card) {
+                const trackRect = track.getBoundingClientRect();
+                const cardRect = card.getBoundingClientRect();
+                const scrollLeft = card.offsetLeft - (trackRect.width / 2) + (cardRect.width / 2);
+                track.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+              }
+            }, 0);
+          }
+        } else {
+          // On desktop, open event details
+          onEventClickRef.current(event);
+        }
       });
 
       // Add hover effect
@@ -565,7 +603,129 @@ function MapContainerComponent({
         hasInitializedBoundsRef.current = true;
       }
     }
-  }, [events]); // Removed onEventClick - using ref to prevent zoom reset on callback changes
+  }, [events, isMobile]); // Removed onEventClick - using ref to prevent zoom reset on callback changes
+
+  /**
+   * Pan map to active event when carousel index changes (mobile only)
+   */
+  useEffect(() => {
+    if (!isMobile || events.length === 0) return;
+    
+    const map = mapInstanceRef.current;
+    const clusterGroup = clusterGroupRef.current;
+    if (!map || !clusterGroup) return;
+
+    const activeEvent = events[activeCarouselIndex];
+    if (!activeEvent) return;
+    
+    // Check for valid coordinates
+    const hasValidCoords = activeEvent.latitude != null && 
+                           activeEvent.longitude != null &&
+                           typeof activeEvent.latitude === 'number' && 
+                           typeof activeEvent.longitude === 'number' &&
+                           !Number.isNaN(activeEvent.latitude) && 
+                           !Number.isNaN(activeEvent.longitude) &&
+                           !(activeEvent.latitude === 0 && activeEvent.longitude === 0);
+
+    // Remove highlight from all markers using querySelectorAll (more reliable)
+    const allActiveMarkers = document.querySelectorAll('.map-marker-active');
+    allActiveMarkers.forEach((el) => el.classList.remove('map-marker-active'));
+
+    // Skip navigation if no valid coordinates
+    if (!hasValidCoords) {
+      isCarouselChangeRef.current = false;
+      previousClusterRef.current = null;
+      return;
+    }
+
+    // Get the active marker
+    const eventId = activeEvent.id || activeEvent.uid || `event-${activeCarouselIndex}`;
+    const activeMarker = markersMapRef.current.get(eventId);
+    
+    // Skip navigation only if change came from pin click (isCarouselChangeRef is true)
+    const shouldNavigate = !isCarouselChangeRef.current;
+    isCarouselChangeRef.current = false; // Reset immediately
+    
+    // Get the current cluster parent (if any)
+    const currentClusterParent = activeMarker ? clusterGroup.getVisibleParent(activeMarker) : null;
+    const isInSameCluster = previousClusterRef.current && 
+                            currentClusterParent && 
+                            currentClusterParent !== activeMarker &&
+                            currentClusterParent === previousClusterRef.current;
+    
+    // Function to highlight the active marker
+    const highlightActiveMarker = () => {
+      if (!activeMarker) return;
+      
+      // Try to get the marker element
+      const element = activeMarker.getElement();
+      if (element) {
+        element.classList.add('map-marker-active');
+        return true;
+      }
+      return false;
+    };
+    
+    // Function to zoom to show the marker if it's in a cluster
+    const zoomToShowMarker = () => {
+      if (!activeMarker) return;
+      
+      const visibleParent = clusterGroup.getVisibleParent(activeMarker);
+      
+      // Update the previous cluster reference
+      previousClusterRef.current = visibleParent !== activeMarker ? visibleParent : null;
+      
+      // If marker is directly visible, just highlight it
+      if (visibleParent === activeMarker) {
+        setTimeout(() => highlightActiveMarker(), 100);
+        return;
+      }
+      
+      // Marker is inside a cluster - use zoomToShowLayer to break the cluster
+      (clusterGroup as any).zoomToShowLayer(activeMarker, () => {
+        // Callback after zoom completes - highlight the marker
+        previousClusterRef.current = null; // Cluster was broken
+        setTimeout(() => highlightActiveMarker(), 200);
+      });
+    };
+    
+    if (shouldNavigate) {
+      // If in the same cluster, don't expand - just pan to the cluster location
+      if (isInSameCluster) {
+        // Pan to the cluster (not the individual marker) without zooming in
+        const clusterLatLng = (currentClusterParent as any).getLatLng();
+        map.panTo(clusterLatLng, { duration: 0.3 });
+        // Don't try to highlight since marker is inside cluster
+        return;
+      }
+      
+      // First pan to the location
+      map.flyTo(
+        [activeEvent.latitude, activeEvent.longitude],
+        Math.max(map.getZoom(), 10), // Start with a reasonable zoom
+        { duration: 0.5 }
+      );
+      
+      // Wait for map movement to complete, then zoom to show marker
+      const onMoveEnd = () => {
+        map.off('moveend', onMoveEnd);
+        // Use zoomToShowLayer to properly expose the marker from cluster
+        setTimeout(zoomToShowMarker, 100);
+      };
+      map.on('moveend', onMoveEnd);
+      
+      // Fallback timeout in case moveend doesn't fire
+      setTimeout(() => {
+        map.off('moveend', onMoveEnd);
+        zoomToShowMarker();
+      }, 800);
+    } else {
+      // No navigation (pin was clicked), just try to highlight
+      // Update previous cluster ref
+      previousClusterRef.current = currentClusterParent !== activeMarker ? currentClusterParent : null;
+      setTimeout(() => highlightActiveMarker(), 100);
+    }
+  }, [activeCarouselIndex, isMobile, events]);
 
   /**
    * Update user location marker
@@ -692,6 +852,79 @@ function MapContainerComponent({
     }, 5000);
   }, [onEventsAroundMeClick]);
 
+  /**
+   * Handle carousel slide change
+   */
+  const handleCarouselChange = useCallback((index: number) => {
+    setActiveCarouselIndex(index);
+    // Scroll the carousel to show the selected card
+    const track = document.querySelector('.map-mobile-carousel__track');
+    const card = track?.querySelector(`[data-index="${index}"]`) as HTMLElement;
+    if (track && card) {
+      const trackRect = track.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      const scrollLeft = card.offsetLeft - (trackRect.width / 2) + (cardRect.width / 2);
+      track.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+    }
+  }, []);
+
+  /**
+   * Handle event card click in carousel
+   */
+  const handleCarouselEventClick = useCallback((event: any) => {
+    onEventClickRef.current(event);
+  }, []);
+
+  /**
+   * Setup carousel scroll detection (mobile only)
+   */
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const track = document.querySelector('.map-mobile-carousel__track');
+    if (!track) return;
+
+    let scrollTimeout: NodeJS.Timeout;
+    let lastDetectedIndex = activeCarouselIndex;
+    
+    const handleScroll = () => {
+      clearTimeout(scrollTimeout);
+      // Use longer debounce to ensure scroll has settled
+      scrollTimeout = setTimeout(() => {
+        const trackRect = track.getBoundingClientRect();
+        const centerX = trackRect.left + trackRect.width / 2;
+        
+        const cards = track.querySelectorAll('.map-mobile-carousel__card');
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+        
+        cards.forEach((card, index) => {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenterX = cardRect.left + cardRect.width / 2;
+          const distance = Math.abs(cardCenterX - centerX);
+          
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+        
+        // Only update if index actually changed
+        if (closestIndex !== lastDetectedIndex) {
+          lastDetectedIndex = closestIndex;
+          setActiveCarouselIndex(closestIndex);
+        }
+      }, 150); // Increased debounce for better scroll settling
+    };
+
+    track.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      track.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, [isMobile]); // Removed activeCarouselIndex dependency to prevent effect re-runs
+
   return (
     <div className="map-wrapper">
       <div ref={mapRef} className="map-container" />
@@ -736,6 +969,91 @@ function MapContainerComponent({
             onEventClick={onEventClick}
             onClose={onCloseRegionPopup}
           />
+        </div>
+      )}
+
+      {/* Mobile Event Carousel */}
+      {isMobile && events.length > 0 && (
+        <div className="map-mobile-carousel">
+          <div className="map-mobile-carousel__header">
+            <span className="map-mobile-carousel__count">{events.length} event{events.length !== 1 ? 's' : ''} on Map</span>
+          </div>
+          <div className="map-mobile-carousel__track">
+            {events.map((event, index) => {
+              const eventImage = event.eventLogo || event.hostLogo || DEFAULT_EVENT_IMAGE;
+              const eventName = event.name || event.title || 'Event';
+              const eventLocation = event.eventLocation || event.location || event.venue?.name || '';
+              const eventDate = event.dateRange || event.startDate || '';
+              const eventTime = event.timeRange || '';
+              const isActive = index === activeCarouselIndex;
+              
+              return (
+                <button
+                  key={event.id || event.uid || index}
+                  className={`map-mobile-carousel__card ${isActive ? 'map-mobile-carousel__card--active' : ''}`}
+                  onClick={() => handleCarouselEventClick(event)}
+                  type="button"
+                  data-index={index}
+                >
+                  <div className="map-mobile-carousel__card-content">
+                    <div className="map-mobile-carousel__image-wrapper">
+                      <img 
+                        src={eventImage} 
+                        alt={eventName} 
+                        className="map-mobile-carousel__image" 
+                        onError={(e) => { (e.target as HTMLImageElement).src = DEFAULT_EVENT_IMAGE; }}
+                      />
+                    </div>
+                    <div className="map-mobile-carousel__info">
+                      <p className="map-mobile-carousel__title">{eventName}</p>
+                      {eventLocation && (
+                        <div className="map-mobile-carousel__row">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#64748b"/>
+                          </svg>
+                          <span>{eventLocation}</span>
+                        </div>
+                      )}
+                      <div className="map-mobile-carousel__meta">
+                        {eventDate && (
+                          <div className="map-mobile-carousel__row">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M19 4H18V2H16V4H8V2H6V4H5C3.89 4 3.01 4.9 3.01 6L3 20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4ZM19 20H5V10H19V20ZM19 8H5V6H19V8Z" fill="#64748b"/>
+                            </svg>
+                            <span>{eventDate}</span>
+                          </div>
+                        )}
+                        {eventTime && (
+                          <div className="map-mobile-carousel__row">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12.5 7H11V13L16.25 16.15L17 14.92L12.5 12.25V7Z" fill="#64748b"/>
+                            </svg>
+                            <span>{eventTime}</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+          
+          {/* Pagination dots */}
+          <div className="map-mobile-carousel__dots">
+            {events.slice(0, Math.min(events.length, 10)).map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                className={`map-mobile-carousel__dot ${index === activeCarouselIndex ? 'map-mobile-carousel__dot--active' : ''}`}
+                onClick={() => handleCarouselChange(index)}
+                aria-label={`Go to event ${index + 1}`}
+              />
+            ))}
+            {events.length > 10 && (
+              <span className="map-mobile-carousel__dot-more">+{events.length - 10}</span>
+            )}
+          </div>
         </div>
       )}
 
@@ -1288,7 +1606,7 @@ const mapStyles = `
   /* Mobile adjustments */
   @media (max-width: 768px) {
     .map-controls {
-      bottom: 70px;
+      bottom: 180px;
       right: 12px;
     }
 
@@ -1304,6 +1622,197 @@ const mapStyles = `
       max-width: calc(100% - 40px);
       max-height: 60vh;
     }
+  }
+
+  /* Active marker highlight effect */
+  .map-marker-active {
+    z-index: 1000 !important;
+  }
+  
+  .map-marker-active .map-marker-pin {
+    transform: scale(1.25) !important;
+    filter: drop-shadow(0 0 8px rgba(21, 111, 247, 0.7)) drop-shadow(0 0 3px rgba(21, 111, 247, 0.9)) !important;
+  }
+
+  /* Mobile Event Carousel */
+  .map-mobile-carousel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background: linear-gradient(to top, white 80%, rgba(255,255,255,0.95) 90%, rgba(255,255,255,0) 100%);
+    padding: 8px 0;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .map-mobile-carousel__header {
+    display: flex;
+    justify-content: center;
+    padding: 0 16px 8px;
+  }
+
+  .map-mobile-carousel__count {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    background: white;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0f172a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  .map-mobile-carousel__track {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 8px 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .map-mobile-carousel__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .map-mobile-carousel__card {
+    flex: 0 0 calc(100% - 48px);
+    min-width: calc(100% - 48px);
+    max-width: calc(100% - 48px);
+    width: calc(100% - 48px);
+    scroll-snap-align: center;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    box-sizing: border-box;
+  }
+
+  .map-mobile-carousel__card--active {
+    border-color: #156ff7;
+    box-shadow: 0 4px 12px rgba(21, 111, 247, 0.2);
+  }
+
+  .map-mobile-carousel__card:active {
+    transform: scale(0.98);
+  }
+
+  .map-mobile-carousel__card-content {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .map-mobile-carousel__image-wrapper {
+    flex-shrink: 0;
+  }
+
+  .map-mobile-carousel__image {
+    width: 72px;
+    height: 72px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #f1f5f9;
+    border: 1px solid #DBDBDB;
+  }
+
+  .map-mobile-carousel__info {
+    flex: 1;
+    min-width: 0;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+  }
+
+  .map-mobile-carousel__title {
+    font-family: 'Aileron', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .map-mobile-carousel__row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .map-mobile-carousel__row svg {
+    flex-shrink: 0;
+  }
+
+  .map-mobile-carousel__row span {
+    font-family: 'Aileron', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .map-mobile-carousel__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 2px;
+  }
+
+  .map-mobile-carousel__meta .map-mobile-carousel__row span {
+    font-size: 11px;
+    color: #94a3b8;
+  }
+
+  /* Pagination dots */
+  .map-mobile-carousel__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .map-mobile-carousel__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .map-mobile-carousel__dot--active {
+    background: #156ff7;
+    width: 10px;
+    height: 10px;
+  }
+
+  .map-mobile-carousel__dot-more {
+    font-size: 10px;
+    color: #64748b;
+    font-weight: 500;
   }
 `;
 
