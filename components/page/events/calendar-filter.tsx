@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ABBREVIATED_MONTH_NAMES, CUSTOM_EVENTS, MAX_YEAR_COUNT } from "@/utils/constants";
+import { ABBREVIATED_MONTH_NAMES, CUSTOM_EVENTS, MAX_YEAR_COUNT, MIN_YEAR_COUNT } from "@/utils/constants";
 
 interface ICalendarFilter {
   selectedYear: number;
@@ -20,11 +20,22 @@ const CalendarFilter = (props: ICalendarFilter) => {
   const [selectedMonth, setSelectedMonth] = useState(props.selectedMonth);
   const calendarRef = useRef<HTMLDivElement>(null);
 
-  // Get available years
+  // Get available years with dynamic range based on current month
   const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth();
+
+  // Dynamic year range based on current month (matching desktop sidebar logic)
+
+  const isFirstHalfOfYear = currentMonth < 6;
+  const minYearOffset = isFirstHalfOfYear ? MIN_YEAR_COUNT : MIN_YEAR_COUNT - 1;
+
+  const minYear = currentYear - minYearOffset;
+  const maxYear = currentYear + MAX_YEAR_COUNT;
+  const yearRange = maxYear - minYear + 1;
+
   const availableYears = Array.from(
-    { length: 2 + MAX_YEAR_COUNT },
-    (_, i) => currentYear - 1 + i
+    { length: yearRange },
+    (_, i) => minYear + i
   );
 
   // Reset when props change
@@ -72,7 +83,7 @@ const CalendarFilter = (props: ICalendarFilter) => {
     setIsOpen(!isOpen);
   };
 
-  const updateFilter = (year: number, month: string, shouldClose: boolean = true) => {
+  const updateFilter = (year: number, month: string, shouldClose: boolean = true, shouldScroll: boolean = true) => {
     setSelectedYear(year);
     setSelectedMonth(month);
 
@@ -90,16 +101,18 @@ const CalendarFilter = (props: ICalendarFilter) => {
     params.set("year", year.toString());
     params.set("date", date);
     const pathname = window.location.pathname;
-    
+
     // Use scroll: false to prevent Next.js from handling scroll, avoiding double-scroll
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
 
     // Dispatch event to trigger scroll
-    document.dispatchEvent(
-      new CustomEvent(CUSTOM_EVENTS.UPDATE_EVENTS_OBSERVER, {
-        detail: { month },
-      })
-    );
+    if (shouldScroll) {
+      document.dispatchEvent(
+        new CustomEvent(CUSTOM_EVENTS.UPDATE_EVENTS_OBSERVER, {
+          detail: { month },
+        })
+      );
+    }
 
     if (shouldClose) {
       setIsOpen(false);
@@ -113,35 +126,33 @@ const CalendarFilter = (props: ICalendarFilter) => {
     // This allows the page/ListView to determine the best default month (Today/Upcoming)
     // instead of forcing the previously selected month from another year.
     if (year === currentYear) {
-       setSelectedYear(year);
-       
-       const params = new URLSearchParams(
-         typeof searchParams === 'string' ? searchParams : new URLSearchParams(searchParams).toString()
-       );
-       params.set("year", year.toString());
-       params.delete("date"); 
+      setSelectedYear(year);
 
-       const pathname = window.location.pathname;
-       router.push(`${pathname}?${params.toString()}`, { scroll: false });
-       
-       // Do not close dropdown on year select, per user request
-       // setIsOpen(false); 
-       return;
+      const params = new URLSearchParams(
+        typeof searchParams === 'string' ? searchParams : new URLSearchParams(searchParams).toString()
+      );
+      params.set("year", year.toString());
+      params.delete("date");
+
+      const pathname = window.location.pathname;
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+
+      // Do not close dropdown on year select, per user request
+      // setIsOpen(false); 
+      return;
     }
 
     const monthsIndicesForYear = (props.calendarData || {})[year.toString()] || [];
     let targetMonth = selectedMonth;
 
-    const currentMonthIndex = ABBREVIATED_MONTH_NAMES.indexOf(selectedMonth);
-
-    // If the current month is not available in the new year, switch to the first available month
-    if (!monthsIndicesForYear.includes(currentMonthIndex) && monthsIndicesForYear.length > 0) {
+    // If switching to a non-current year, always switch to the first available month
+    if (monthsIndicesForYear.length > 0) {
       const sortedIndices = [...monthsIndicesForYear].sort((a, b) => a - b);
       targetMonth = ABBREVIATED_MONTH_NAMES[sortedIndices[0]];
     }
 
-    // Pass false to keep dropdown open
-    updateFilter(year, targetMonth, false);
+    // Pass false to keep dropdown open, and false to skip duplicate scroll dispatch (handled by page load)
+    updateFilter(year, targetMonth, false, false);
   };
 
   const handleMonthSelect = (month: string) => {
@@ -176,28 +187,28 @@ const CalendarFilter = (props: ICalendarFilter) => {
               ))}
             </div>
           </div>
-            <div className="calendar-filter__month-section">
-              <div className="calendar-filter__month-label">Month</div>
-              <div className="calendar-filter__month-list">
-                {ABBREVIATED_MONTH_NAMES.map((month: string, index: number) => {
-                  // Get months with events for the selected year
-                  const monthsForYear = (props.calendarData || {})[selectedYear.toString()] || [];
-                  const hasEvents = monthsForYear.includes(index);
-                  const isDisabled = !hasEvents;
-                  
-                  return (
-                    <button
-                      key={month}
-                      onClick={() => !isDisabled && handleMonthSelect(month)}
-                      className={`calendar-filter__month-item ${selectedMonth === month ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`}
-                      disabled={isDisabled}
-                    >
-                      {month}
-                    </button>
-                  );
-                })}
-              </div>
+          <div className="calendar-filter__month-section">
+            <div className="calendar-filter__month-label">Month</div>
+            <div className="calendar-filter__month-list">
+              {ABBREVIATED_MONTH_NAMES.map((month: string, index: number) => {
+                // Get months with events for the selected year
+                const monthsForYear = (props.calendarData || {})[selectedYear.toString()] || [];
+                const hasEvents = monthsForYear.includes(index);
+                const isDisabled = !hasEvents;
+
+                return (
+                  <button
+                    key={month}
+                    onClick={() => !isDisabled && handleMonthSelect(month)}
+                    className={`calendar-filter__month-item ${selectedMonth === month ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`}
+                    disabled={isDisabled}
+                  >
+                    {month}
+                  </button>
+                );
+              })}
             </div>
+          </div>
         </div>
       )}
       <style jsx>{`
@@ -231,68 +242,89 @@ const CalendarFilter = (props: ICalendarFilter) => {
           position: absolute;
           top: 40px;
           left: 0;
-          border-radius: 8px;
-          box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
+          border-radius: 12px;
+          box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.12);
           background-color: #ffffff;
           z-index: 10;
           padding: 16px;
-          min-width: 200px;
+          min-width: 240px;
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 20px;
         }
 
         .calendar-filter__year-section,
         .calendar-filter__month-section {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 10px;
         }
 
         .calendar-filter__year-label,
         .calendar-filter__month-label {
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 600;
-          color: #156ff7;
+          color: #64748b;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
         }
 
-        .calendar-filter__year-list,
+        .calendar-filter__year-list {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 8px;
+        }
+
         .calendar-filter__month-list {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 4px;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 8px;
         }
 
         .calendar-filter__year-item,
         .calendar-filter__month-item {
-          padding: 6px 12px;
-          border: 1px solid #156ff7;
-          border-radius: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 8px 12px;
+          min-height: 36px;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
           background-color: #ffffff;
-          color: #156ff7;
-          font-size: 12px;
+          color: #334155;
+          font-size: 13px;
+          font-weight: 500;
           cursor: pointer;
-          transition: all 0.2s ease;
+          transition: all 0.15s ease;
         }
 
         .calendar-filter__year-item:hover,
         .calendar-filter__month-item:hover:not(.disabled) {
+          border-color: #156ff7;
           background-color: #f0f7ff;
+          color: #156ff7;
         }
 
         .calendar-filter__year-item.active,
         .calendar-filter__month-item.active {
           background-color: #156ff7;
+          border-color: #156ff7;
           color: #ffffff;
+          font-weight: 600;
         }
 
         .calendar-filter__month-item.disabled {
-          opacity: 0.5;
+          opacity: 0.4;
           cursor: not-allowed;
+          background-color: #f8fafc;
+          border-color: #e2e8f0;
+          color: #94a3b8;
         }
 
         .calendar-filter__month-item.disabled:hover {
-          background-color: #ffffff;
+          background-color: #f8fafc;
+          border-color: #e2e8f0;
+          color: #94a3b8;
         }
 
         @media (min-width: 1024px) {
