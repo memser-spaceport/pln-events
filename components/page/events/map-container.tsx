@@ -7,26 +7,9 @@ import "leaflet.markercluster";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 
-/**
- * Interface for region-grouped events
- */
-interface IRegionGroup {
-  region: string;
-  city: string;
-  country: string;
-  latitude: number;
-  longitude: number;
-  events: any[];
-  eventCount: number;
-}
-
 interface IMapContainerComponentProps {
-  regionGroups: IRegionGroup[];
   events: any[];
-  onMarkerClick: (region: IRegionGroup) => void;
   onEventClick: (event: any) => void;
-  selectedRegion: IRegionGroup | null;
-  onCloseRegionPopup: () => void;
   isMobile: boolean;
   onEventsAroundMeClick?: () => void;
 }
@@ -216,80 +199,12 @@ const createUserLocationIcon = (): L.DivIcon => {
 };
 
 /**
- * Region popup component for multiple events at same location
- */
-function RegionPopup({ 
-  region, 
-  onEventClick, 
-  onClose 
-}: Readonly<{ 
-  region: IRegionGroup; 
-  onEventClick: (event: any) => void;
-  onClose: () => void;
-}>) {
-  return (
-    <div className="map-region-popup">
-      <div className="map-region-popup__header">
-        <div className="map-region-popup__title">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#156ff7"/>
-          </svg>
-          <span>{region.city}{region.country ? `, ${region.country}` : ''}</span>
-        </div>
-        <button className="map-region-popup__close" onClick={onClose} type="button">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6L6 18M6 6L18 18" stroke="#64748b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
-      </div>
-      <p className="map-region-popup__count">{region.eventCount} {region.eventCount === 1 ? 'Event' : 'Events'}</p>
-      <div className="map-region-popup__events">
-        {region.events.map((event, index) => (
-          <button 
-            key={event.id || index} 
-            className="map-region-popup__event-card"
-            onClick={() => onEventClick(event)}
-            type="button"
-          >
-            <div className="map-region-popup__event-header">
-              {event.eventLogo ? (
-                <img 
-                  src={event.eventLogo} 
-                  alt={event.name || event.title} 
-                  className="map-region-popup__event-logo"
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                />
-              ) : (
-                <div className="map-region-popup__event-logo-fallback">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" fill="#156ff7"/>
-                  </svg>
-                </div>
-              )}
-              <div className="map-region-popup__event-info">
-                <h4 className="map-region-popup__event-title">{event.name || event.title}</h4>
-                <p className="map-region-popup__event-date">{event.dateRange}</p>
-              </div>
-            </div>
-            <span className="map-region-popup__event-btn">View Details</span>
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/**
  * Main Map Container Component
  * Implements vanilla Leaflet with marker clustering, matching the Figma design
  */
 function MapContainerComponent({
-  regionGroups,
   events,
-  onMarkerClick,
   onEventClick,
-  selectedRegion,
-  onCloseRegionPopup,
   isMobile,
   onEventsAroundMeClick,
 }: Readonly<IMapContainerComponentProps>) {
@@ -562,22 +477,6 @@ function MapContainerComponent({
         } else {
           // On desktop, open event details
           onEventClickRef.current(event);
-        }
-      });
-
-      // Add hover effect
-      marker.on('mouseover', () => {
-        const iconElement = marker.getElement()?.querySelector('.map-marker-pin');
-        if (iconElement) {
-          (iconElement as HTMLElement).style.transform = 'scale(1.15)';
-        }
-      });
-
-      marker.on('mouseout', () => {
-        const iconElement = marker.getElement()?.querySelector('.map-marker-pin');
-        if (iconElement) {
-          (iconElement as HTMLElement).style.transform = 'scale(1)';
-          (iconElement as HTMLElement).style.filter = 'none';
         }
       });
 
@@ -954,23 +853,6 @@ function MapContainerComponent({
           </div>
         )}
       </div>
-
-      {/* Region popup overlay for multiple events */}
-      {selectedRegion && selectedRegion.eventCount > 1 && (
-        <div className="map-region-overlay">
-          <button 
-            className="map-region-overlay__backdrop" 
-            onClick={onCloseRegionPopup}
-            type="button"
-            aria-label="Close popup"
-          />
-          <RegionPopup
-            region={selectedRegion}
-            onEventClick={onEventClick}
-            onClose={onCloseRegionPopup}
-          />
-        </div>
-      )}
 
       {/* Mobile Event Carousel */}
       {isMobile && events.length > 0 && (
@@ -1419,185 +1301,6 @@ const mapStyles = `
     background: white;
   }
 
-  /* Region popup overlay */
-  .map-region-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-
-  .map-region-overlay__backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(2px);
-  }
-
-  .map-region-popup {
-    position: relative;
-    background: white;
-    border-radius: 16px;
-    padding: 20px;
-    max-width: 420px;
-    width: 100%;
-    max-height: 70vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-  }
-
-  .map-region-popup__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 4px;
-  }
-
-  .map-region-popup__title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #0f172a;
-  }
-
-  .map-region-popup__close {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    transition: background 0.2s ease;
-  }
-
-  .map-region-popup__close:hover {
-    background: #f1f5f9;
-  }
-
-  .map-region-popup__count {
-    font-size: 14px;
-    color: #64748b;
-    margin: 0 0 16px 0;
-  }
-
-  .map-region-popup__events {
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-height: calc(70vh - 100px);
-    padding-right: 8px;
-  }
-
-  .map-region-popup__events::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  .map-region-popup__events::-webkit-scrollbar-track {
-    background: #f1f5f9;
-    border-radius: 3px;
-  }
-
-  .map-region-popup__events::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 3px;
-  }
-
-  .map-region-popup__event-card {
-    padding: 14px;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .map-region-popup__event-card:hover {
-    border-color: #156ff7;
-    background: #f8fafc;
-  }
-
-  .map-region-popup__event-header {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    margin-bottom: 12px;
-  }
-
-  .map-region-popup__event-logo {
-    width: 44px;
-    height: 44px;
-    border-radius: 8px;
-    object-fit: cover;
-    flex-shrink: 0;
-    background: #f1f5f9;
-  }
-
-  .map-region-popup__event-logo-fallback {
-    width: 44px;
-    height: 44px;
-    border-radius: 8px;
-    background: #f1f5f9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .map-region-popup__event-info {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .map-region-popup__event-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #0f172a;
-    margin: 0 0 4px 0;
-    line-height: 1.3;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .map-region-popup__event-date {
-    font-size: 12px;
-    color: #64748b;
-    margin: 0;
-  }
-
-  .map-region-popup__event-btn {
-    width: 100%;
-    padding: 8px 14px;
-    background: #156ff7;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-
-  .map-region-popup__event-btn:hover {
-    background: #1258cc;
-  }
-
   /* Hide Leaflet attribution on bottom right */
   .leaflet-bottom.leaflet-right {
     display: none;
@@ -1616,11 +1319,6 @@ const mapStyles = `
 
     .map-locate-btn {
       padding: 10px;
-    }
-
-    .map-region-popup {
-      max-width: calc(100% - 40px);
-      max-height: 60vh;
     }
   }
 
