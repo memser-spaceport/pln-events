@@ -242,68 +242,89 @@ const CalendarFilter = (props: ICalendarFilter) => {
           position: absolute;
           top: 40px;
           left: 0;
-          border-radius: 8px;
-          box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
+          border-radius: 12px;
+          box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.12);
           background-color: #ffffff;
           z-index: 10;
           padding: 16px;
-          min-width: 200px;
+          min-width: 240px;
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 20px;
         }
 
         .calendar-filter__year-section,
         .calendar-filter__month-section {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 10px;
         }
 
         .calendar-filter__year-label,
         .calendar-filter__month-label {
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 600;
-          color: #156ff7;
+          color: #64748b;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
         }
 
-        .calendar-filter__year-list,
+        .calendar-filter__year-list {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 8px;
+        }
+
         .calendar-filter__month-list {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 4px;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 8px;
         }
 
         .calendar-filter__year-item,
         .calendar-filter__month-item {
-          padding: 6px 12px;
-          border: 1px solid #156ff7;
-          border-radius: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 8px 12px;
+          min-height: 36px;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
           background-color: #ffffff;
-          color: #156ff7;
-          font-size: 12px;
+          color: #334155;
+          font-size: 13px;
+          font-weight: 500;
           cursor: pointer;
-          transition: all 0.2s ease;
+          transition: all 0.15s ease;
         }
 
         .calendar-filter__year-item:hover,
         .calendar-filter__month-item:hover:not(.disabled) {
+          border-color: #156ff7;
           background-color: #f0f7ff;
+          color: #156ff7;
         }
 
         .calendar-filter__year-item.active,
         .calendar-filter__month-item.active {
           background-color: #156ff7;
+          border-color: #156ff7;
           color: #ffffff;
+          font-weight: 600;
         }
 
         .calendar-filter__month-item.disabled {
-          opacity: 0.5;
+          opacity: 0.4;
           cursor: not-allowed;
+          background-color: #f8fafc;
+          border-color: #e2e8f0;
+          color: #94a3b8;
         }
 
         .calendar-filter__month-item.disabled:hover {
-          background-color: #ffffff;
+          background-color: #f8fafc;
+          border-color: #e2e8f0;
+          color: #94a3b8;
         }
 
         @media (min-width: 1024px) {
