@@ -921,21 +921,6 @@ function MapContainerComponent({
             })}
           </div>
           
-          {/* Pagination dots */}
-          <div className="map-mobile-carousel__dots">
-            {events.slice(0, Math.min(events.length, 10)).map((_, index) => (
-              <button
-                key={index}
-                type="button"
-                className={`map-mobile-carousel__dot ${index === activeCarouselIndex ? 'map-mobile-carousel__dot--active' : ''}`}
-                onClick={() => handleCarouselChange(index)}
-                aria-label={`Go to event ${index + 1}`}
-              />
-            ))}
-            {events.length > 10 && (
-              <span className="map-mobile-carousel__dot-more">+{events.length - 10}</span>
-            )}
-          </div>
         </div>
       )}
 
@@ -1329,7 +1314,13 @@ const mapStyles = `
   
   .map-marker-active .map-marker-pin {
     transform: scale(1.25) !important;
-    filter: drop-shadow(0 0 8px rgba(21, 111, 247, 0.7)) drop-shadow(0 0 3px rgba(21, 111, 247, 0.9)) !important;
+  }
+
+  /* Subtle box shadow on mobile for active markers */
+  @media (max-width: 1023px) {
+    .map-marker-active .map-marker-pin {
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)) !important;
+    }
   }
 
   /* Mobile Event Carousel */
@@ -1339,7 +1330,7 @@ const mapStyles = `
     left: 0;
     right: 0;
     z-index: 1;
-    background: linear-gradient(to top, white 80%, rgba(255,255,255,0.95) 90%, rgba(255,255,255,0) 100%);
+    background: transparent;
     padding: 8px 0;
     padding-bottom: max(12px, env(safe-area-inset-bottom));
   }
