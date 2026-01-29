@@ -84,6 +84,22 @@ const DetailView = (props: any) => {
         <Modal modalRef={modalRef} className="detail-view-modal">
           <div className="detail__view">
             <div className="detail-content">
+              {/* Close button for mobile */}
+              <div className="detail-content__close-button">
+                <button
+                  className="detail-content__close-button__wrapper"
+                  onClick={onClose}
+                  aria-label="Close"
+                >
+                  <Image
+                    src="/icons/close_black.svg"
+                    alt="close"
+                    width={20}
+                    height={20}
+                  />
+                </button>
+              </div>
+              {/* Back button for desktop */}
               <div className="detail-content__back-button">
                 <div
                   className="detail-content__back-button__wrapper"
@@ -206,15 +222,56 @@ const DetailView = (props: any) => {
           gap: 20px;
           justify-content: space-between;
         }
-        .detail-content__back-button {
+        /* Close button for mobile - top right */
+        .detail-content__close-button {
           display: flex;
-          justify-content: space-between;
+          justify-content: flex-end;
           align-items: center;
           position: sticky;
           top: 0;
           background: #fff;
           z-index: 2;
           padding-top: 12px;
+          padding-bottom: 8px;
+        }
+        .detail-content__close-button__wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+          padding: 0;
+          border-radius: 4px;
+          transition: background-color 0.2s ease;
+        }
+        .detail-content__close-button__wrapper:hover {
+          background-color: #f1f5f9;
+        }
+        .detail-content__close-button__wrapper:active {
+          background-color: #e2e8f0;
+        }
+
+        /* Back button for desktop */
+        .detail-content__back-button {
+          display: none;
+        }
+        @media (min-width: 1024px) {
+          .detail-content__back-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 2;
+            padding-top: 12px;
+          }
+          .detail-content__close-button {
+            display: none;
+          }
         }
         .detail-content__back-button__wrapper {
           display: flex;

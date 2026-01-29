@@ -37,56 +37,6 @@ const DynamicMapContainer = dynamic(
   }
 );
 
-/**
- * Interface for region-grouped events
- */
-interface IRegionGroup {
-  region: string;
-  city: string;
-  country: string;
-  latitude: number;
-  longitude: number;
-  events: any[];
-  eventCount: number;
-}
-
-/**
- * Groups events by region (city + country combination)
- * 
- * @param events - Array of events with location data
- * @returns Array of region groups with aggregated events
- */
-const groupEventsByRegion = (events: any[]): IRegionGroup[] => {
-  const regionMap = new Map<string, IRegionGroup>();
-
-  events.forEach((event) => {
-    // Only include events with valid coordinates (consistent with getEventsWithCoordinates)
-    // Use != null check to allow 0 values, but exclude (0,0) coordinates
-    if (event.latitude != null && event.longitude != null && 
-        !(event.latitude === 0 && event.longitude === 0)) {
-      const regionKey = `${event.city || 'Unknown'}-${event.country || 'Unknown'}`;
-      
-      if (regionMap.has(regionKey)) {
-        const existing = regionMap.get(regionKey)!;
-        existing.events.push(event);
-        existing.eventCount = existing.events.length;
-      } else {
-        regionMap.set(regionKey, {
-          region: regionKey,
-          city: event.city || event.location || 'Unknown',
-          country: event.country || '',
-          latitude: event.latitude,
-          longitude: event.longitude,
-          events: [event],
-          eventCount: 1,
-        });
-      }
-    }
-  });
-
-  return Array.from(regionMap.values());
-};
-
 interface IMapViewProps {
   events: any[];
   allEvents: any[];
@@ -150,7 +100,6 @@ const MapView = (props: IMapViewProps) => {
   const urlSearchParams = useSearchParams();
   const { onEventClicked, onYearFilterChanged, onMapEventsAroundMeClicked } = useSchedulePageAnalytics();
   
-  const [selectedRegion, setSelectedRegion] = useState<IRegionGroup | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   
   // Get selected year from URL params, default to current year
@@ -183,11 +132,6 @@ const MapView = (props: IMapViewProps) => {
     return () => globalThis.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Group events by region for clustering
-  const regionGroups = useMemo(() => {
-    return groupEventsByRegion(events);
-  }, [events]);
-
   // Get events with valid coordinates - filter happens here in map-view
   // This is view-specific logic: only map view needs coordinate filtering
   const eventsWithCoordinates = useMemo(() => {
@@ -213,19 +157,6 @@ const MapView = (props: IMapViewProps) => {
     }
   }, [onEventClicked, viewType, router]);
 
-  /**
-   * Handles marker click - shows region popup or opens event detail
-   */
-  const onMarkerClick = useCallback((region: IRegionGroup) => {
-    if (region.events.length === 1) {
-      // Single event - open detail directly
-      onOpenDetailPopup(region.events[0]);
-    } else {
-      // Multiple events - show region popup
-      setSelectedRegion(region);
-    }
-  }, [onOpenDetailPopup]);
-
   // If no events with coordinates, show appropriate message
   if (events.length === 0 || eventsWithCoordinates.length === 0) {
     return (
@@ -245,12 +176,8 @@ const MapView = (props: IMapViewProps) => {
       
       <div className={styles.mapView__container}>
         <DynamicMapContainer
-          regionGroups={regionGroups}
           events={eventsWithCoordinates}
-          onMarkerClick={onMarkerClick}
           onEventClick={onOpenDetailPopup}
-          selectedRegion={selectedRegion}
-          onCloseRegionPopup={() => setSelectedRegion(null)}
           isMobile={isMobile}
           onEventsAroundMeClick={onMapEventsAroundMeClicked}
         />
