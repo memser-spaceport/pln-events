@@ -20,7 +20,7 @@ interface IMapContainerComponentProps {
 const MAP_CONFIG = {
   TILE_LAYER_URL: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
   TILE_LAYER_ATTRIBUTION: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  DEFAULT_CENTER: [20, 0] as [number, number],
+  DEFAULT_CENTER: [39, -98] as [number, number], // Center on America (central USA)
   DEFAULT_ZOOM: 3, // Increased to match MIN_ZOOM and prevent seeing multiple continents
   MIN_ZOOM: 3, // Increased to prevent seeing multiple continents on widescreen
   MAX_ZOOM: 18,
@@ -579,35 +579,24 @@ function MapContainerComponent({
       clusterGroup.addLayer(marker);
     });
 
-    // Fit bounds to show all markers - only on initial load or when events actually change
-    // This prevents zooming out when clicking on markers
+    // Keep map centered on America (DEFAULT_CENTER) - don't fly to bounds
+    // This provides a consistent initial view regardless of event distribution
     const eventsChanged = events.length !== previousEventsLengthRef.current;
     previousEventsLengthRef.current = events.length;
     
     if (events.length > 0 && (!hasInitializedBoundsRef.current || eventsChanged)) {
-      const validEvents = events.filter(e => e.latitude && e.longitude && !(e.latitude === 0 && e.longitude === 0));
-      if (validEvents.length > 0) {
-        const bounds = L.latLngBounds(
-          validEvents.map(e => [e.latitude, e.longitude] as [number, number])
-        );
-        map.flyToBounds(bounds, {
-          padding: [50, 50],
-          maxZoom: 12,
-          duration: MAP_CONFIG.FLY_DURATION,
-        });
-        hasInitializedBoundsRef.current = true;
-        
-        // Initialize events in view after bounds are set (with delay to allow map to settle)
-        if (isMobile) {
-          setTimeout(() => {
-            updateEventsInView();
-            // Initialize active event ID with the first event
-            if (events.length > 0) {
-              const firstEvent = events[0];
-              activeEventIdRef.current = firstEvent.id || firstEvent.uid;
-            }
-          }, MAP_CONFIG.FLY_DURATION * 1000 + 100);
-        }
+      hasInitializedBoundsRef.current = true;
+      
+      // Initialize events in view (with small delay to allow map to settle)
+      if (isMobile) {
+        setTimeout(() => {
+          updateEventsInView();
+          // Initialize active event ID with the first event
+          if (events.length > 0) {
+            const firstEvent = events[0];
+            activeEventIdRef.current = firstEvent.id || firstEvent.uid;
+          }
+        }, 500);
       }
     }
   }, [events, isMobile, updateEventsInView]); // Removed onEventClick - using ref to prevent zoom reset on callback changes
@@ -976,7 +965,10 @@ function MapContainerComponent({
       {isMobile && eventsInView.length > 0 && (
         <div className="map-mobile-carousel">
           <div className="map-mobile-carousel__header">
-            <span className="map-mobile-carousel__count">{eventsInView.length} event{eventsInView.length !== 1 ? 's' : ''} in view of {events.length}</span>
+            <div className="map-mobile-carousel__count">
+              <div className="map-mobile-carousel__count-highlight">{eventsInView.length}</div>
+              <div className="map-mobile-carousel__count-text">&nbsp;/ {events.length} events in view</div>
+            </div>
           </div>
           <div className="map-mobile-carousel__track">
             {eventsInView.map((event, index) => {
@@ -1526,9 +1518,17 @@ const mapStyles = `
     background: white;
     border-radius: 20px;
     font-size: 12px;
-    font-weight: 600;
-    color: #0f172a;
+    font-weight: 500;
+    line-height: 14px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  .map-mobile-carousel__count-highlight {
+    color: #156FF7;
+  }
+
+  .map-mobile-carousel__count-text {
+    color: #0F172A;
   }
 
   .map-mobile-carousel__track {
