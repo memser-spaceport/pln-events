@@ -20,7 +20,7 @@ interface IMapContainerComponentProps {
 const MAP_CONFIG = {
   TILE_LAYER_URL: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
   TILE_LAYER_ATTRIBUTION: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  DEFAULT_CENTER: [20, 0] as [number, number],
+  DEFAULT_CENTER: [39, -98] as [number, number], // Center on America (central USA)
   DEFAULT_ZOOM: 3, // Increased to match MIN_ZOOM and prevent seeing multiple continents
   MIN_ZOOM: 3, // Increased to prevent seeing multiple continents on widescreen
   MAX_ZOOM: 18,
@@ -224,11 +224,84 @@ function MapContainerComponent({
   const [locationError, setLocationError] = useState<string | null>(null);
   const [userLocation, setUserLocation] = useState<{lat: number; lng: number; accuracy: number} | null>(null);
   
-  // Mobile carousel state
+  // Mobile carousel state - viewport filtering
+  const [eventsInView, setEventsInView] = useState<any[]>(events); // Events visible in current viewport
+  const eventsInViewRef = useRef<any[]>(events); // Ref for use in marker click handlers (avoids stale closures)
   const [activeCarouselIndex, setActiveCarouselIndex] = useState(0);
+  const activeEventIdRef = useRef<string | null>(null); // Track active event by ID to maintain selection across viewport changes
   const markersMapRef = useRef<Map<string, L.Marker>>(new Map());
-  const isCarouselChangeRef = useRef(false); // Flag to prevent double-navigation
-  const previousClusterRef = useRef<any>(null); // Track previous cluster to avoid re-expanding
+  const isCarouselChangeRef = useRef(false); // Flag to prevent re-highlighting when marker clicked
+  const isViewportUpdateRef = useRef(false); // Flag to track viewport updates
+  const updateEventsInViewTimeoutRef = useRef<NodeJS.Timeout | null>(null); // Debounce timer
+  
+  // Keep eventsInViewRef in sync with eventsInView state
+  useEffect(() => {
+    eventsInViewRef.current = eventsInView;
+  }, [eventsInView]);
+
+  /**
+   * Filter events that are visible within the current map viewport
+   * Called on map move/zoom with debounce for performance
+   */
+  const updateEventsInView = useCallback(() => {
+    const map = mapInstanceRef.current;
+    if (!map || !isMobile) return;
+
+    const bounds = map.getBounds();
+    const visibleEvents = events.filter((event) => {
+      if (event.latitude == null || event.longitude == null ||
+          typeof event.latitude !== 'number' || 
+          typeof event.longitude !== 'number' ||
+          Number.isNaN(event.latitude) || 
+          Number.isNaN(event.longitude) ||
+          (event.latitude === 0 && event.longitude === 0)) {
+        return false;
+      }
+      return bounds.contains([event.latitude, event.longitude]);
+    });
+
+    // Mark this as a viewport update (not user swipe) to prevent re-panning
+    isViewportUpdateRef.current = true;
+    
+    setEventsInView(visibleEvents);
+    
+    // Try to maintain the same active event after viewport change
+    // Find the previously active event in the new list by ID
+    if (visibleEvents.length > 0) {
+      const currentActiveId = activeEventIdRef.current;
+      let newIndex = 0;
+      
+      if (currentActiveId) {
+        // Find the same event in the new visible events list
+        const foundIndex = visibleEvents.findIndex(e => 
+          (e.id || e.uid) === currentActiveId
+        );
+        if (foundIndex !== -1) {
+          newIndex = foundIndex; // Keep the same event selected
+        }
+        // If not found, newIndex stays 0 (first event in new view)
+      }
+      
+      setActiveCarouselIndex(newIndex);
+      // Update the active event ID ref
+      const newActiveEvent = visibleEvents[newIndex];
+      if (newActiveEvent) {
+        activeEventIdRef.current = newActiveEvent.id || newActiveEvent.uid;
+      }
+    }
+  }, [events, isMobile]);
+
+  /**
+   * Debounced version of updateEventsInView (300ms delay)
+   */
+  const debouncedUpdateEventsInView = useCallback(() => {
+    if (updateEventsInViewTimeoutRef.current) {
+      clearTimeout(updateEventsInViewTimeoutRef.current);
+    }
+    updateEventsInViewTimeoutRef.current = setTimeout(() => {
+      updateEventsInView();
+    }, 300);
+  }, [updateEventsInView]);
 
   /**
    * Initialize the map
@@ -311,6 +384,10 @@ function MapContainerComponent({
       }
     });
 
+    // Handle map move/zoom to update events in view for mobile carousel
+    map.on('moveend', debouncedUpdateEventsInView);
+    map.on('zoomend', debouncedUpdateEventsInView);
+
     map.addLayer(clusterGroup);
     clusterGroupRef.current = clusterGroup;
 
@@ -322,12 +399,17 @@ function MapContainerComponent({
 
     // Cleanup on unmount
     return () => {
+      map.off('moveend', debouncedUpdateEventsInView);
+      map.off('zoomend', debouncedUpdateEventsInView);
+      if (updateEventsInViewTimeoutRef.current) {
+        clearTimeout(updateEventsInViewTimeoutRef.current);
+      }
       map.remove();
       mapInstanceRef.current = null;
       clusterGroupRef.current = null;
       userLocationLayerRef.current = null;
     };
-  }, [isMobile]);
+  }, [isMobile, debouncedUpdateEventsInView]);
 
   /**
    * Handle container resize (e.g., when filter drawer opens/closes)
@@ -456,23 +538,37 @@ function MapContainerComponent({
       marker.on('click', () => {
         if (isMobile) {
           // On mobile, only sync carousel to this event (don't open detail)
-          const eventIndex = events.findIndex(e => 
-            (e.id || e.uid || `event-${events.indexOf(e)}`) === eventId
-          );
-          if (eventIndex !== -1) {
-            isCarouselChangeRef.current = true;
-            setActiveCarouselIndex(eventIndex);
-            // Scroll carousel to show this card
-            setTimeout(() => {
-              const track = document.querySelector('.map-mobile-carousel__track');
-              const card = track?.querySelector(`[data-index="${eventIndex}"]`) as HTMLElement;
-              if (track && card) {
-                const trackRect = track.getBoundingClientRect();
-                const cardRect = card.getBoundingClientRect();
-                const scrollLeft = card.offsetLeft - (trackRect.width / 2) + (cardRect.width / 2);
-                track.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+          // First, update events in view to include clicked marker's area
+          const map = mapInstanceRef.current;
+          if (map) {
+            // Get current bounds to check if event is in view
+            const bounds = map.getBounds();
+            const isEventInCurrentView = bounds.contains([event.latitude, event.longitude]);
+            
+            if (isEventInCurrentView) {
+              // Event is in view, find its index in eventsInView (using ref to avoid stale closure)
+              const currentEventsInView = eventsInViewRef.current;
+              const eventIndex = currentEventsInView.findIndex(e => 
+                (e.id || e.uid) === (event.id || event.uid)
+              );
+              if (eventIndex !== -1) {
+                isCarouselChangeRef.current = true;
+                // Track active event by ID
+                activeEventIdRef.current = event.id || event.uid;
+                setActiveCarouselIndex(eventIndex);
+                // Scroll carousel to show this card
+                setTimeout(() => {
+                  const track = document.querySelector('.map-mobile-carousel__track');
+                  const card = track?.querySelector(`[data-index="${eventIndex}"]`) as HTMLElement;
+                  if (track && card) {
+                    const trackRect = track.getBoundingClientRect();
+                    const cardRect = card.getBoundingClientRect();
+                    const scrollLeft = card.offsetLeft - (trackRect.width / 2) + (cardRect.width / 2);
+                    track.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+                  }
+                }, 0);
               }
-            }, 0);
+            }
           }
         } else {
           // On desktop, open event details
@@ -483,148 +579,99 @@ function MapContainerComponent({
       clusterGroup.addLayer(marker);
     });
 
-    // Fit bounds to show all markers - only on initial load or when events actually change
-    // This prevents zooming out when clicking on markers
+    // Keep map centered on America (DEFAULT_CENTER) - don't fly to bounds
+    // This provides a consistent initial view regardless of event distribution
     const eventsChanged = events.length !== previousEventsLengthRef.current;
     previousEventsLengthRef.current = events.length;
     
     if (events.length > 0 && (!hasInitializedBoundsRef.current || eventsChanged)) {
-      const validEvents = events.filter(e => e.latitude && e.longitude && !(e.latitude === 0 && e.longitude === 0));
-      if (validEvents.length > 0) {
-        const bounds = L.latLngBounds(
-          validEvents.map(e => [e.latitude, e.longitude] as [number, number])
-        );
-        map.flyToBounds(bounds, {
-          padding: [50, 50],
-          maxZoom: 12,
-          duration: MAP_CONFIG.FLY_DURATION,
-        });
-        hasInitializedBoundsRef.current = true;
+      hasInitializedBoundsRef.current = true;
+      
+      // Initialize events in view (with small delay to allow map to settle)
+      if (isMobile) {
+        setTimeout(() => {
+          updateEventsInView();
+          // Initialize active event ID with the first event
+          if (events.length > 0) {
+            const firstEvent = events[0];
+            activeEventIdRef.current = firstEvent.id || firstEvent.uid;
+          }
+        }, 500);
       }
     }
-  }, [events, isMobile]); // Removed onEventClick - using ref to prevent zoom reset on callback changes
+  }, [events, isMobile, updateEventsInView]); // Removed onEventClick - using ref to prevent zoom reset on callback changes
 
   /**
-   * Pan map to active event when carousel index changes (mobile only)
+   * Highlight active marker when carousel index changes (mobile only)
+   * Option A: NO panning/zooming - just highlight the marker in current viewport
+   * This keeps all events visible and makes browsing easy
    */
   useEffect(() => {
-    if (!isMobile || events.length === 0) return;
+    if (!isMobile || eventsInView.length === 0) return;
     
-    const map = mapInstanceRef.current;
     const clusterGroup = clusterGroupRef.current;
-    if (!map || !clusterGroup) return;
+    if (!clusterGroup) return;
 
-    const activeEvent = events[activeCarouselIndex];
-    if (!activeEvent) return;
-    
-    // Check for valid coordinates
-    const hasValidCoords = activeEvent.latitude != null && 
-                           activeEvent.longitude != null &&
-                           typeof activeEvent.latitude === 'number' && 
-                           typeof activeEvent.longitude === 'number' &&
-                           !Number.isNaN(activeEvent.latitude) && 
-                           !Number.isNaN(activeEvent.longitude) &&
-                           !(activeEvent.latitude === 0 && activeEvent.longitude === 0);
-
-    // Remove highlight from all markers using querySelectorAll (more reliable)
-    const allActiveMarkers = document.querySelectorAll('.map-marker-active');
-    allActiveMarkers.forEach((el) => el.classList.remove('map-marker-active'));
-
-    // Skip navigation if no valid coordinates
-    if (!hasValidCoords) {
-      isCarouselChangeRef.current = false;
-      previousClusterRef.current = null;
-      return;
+    // Reset viewport update flag
+    if (isViewportUpdateRef.current) {
+      isViewportUpdateRef.current = false;
     }
+    
+    // Reset carousel change flag
+    isCarouselChangeRef.current = false;
 
-    // Get the active marker
-    const eventId = activeEvent.id || activeEvent.uid || `event-${activeCarouselIndex}`;
-    const activeMarker = markersMapRef.current.get(eventId);
-    
-    // Skip navigation only if change came from pin click (isCarouselChangeRef is true)
-    const shouldNavigate = !isCarouselChangeRef.current;
-    isCarouselChangeRef.current = false; // Reset immediately
-    
-    // Get the current cluster parent (if any)
-    const currentClusterParent = activeMarker ? clusterGroup.getVisibleParent(activeMarker) : null;
-    const isInSameCluster = previousClusterRef.current && 
-                            currentClusterParent && 
-                            currentClusterParent !== activeMarker &&
-                            currentClusterParent === previousClusterRef.current;
-    
-    // Function to highlight the active marker
-    const highlightActiveMarker = () => {
-      if (!activeMarker) return;
-      
-      // Try to get the marker element
-      const element = activeMarker.getElement();
-      if (element) {
-        element.classList.add('map-marker-active');
-        return true;
-      }
-      return false;
-    };
-    
-    // Function to zoom to show the marker if it's in a cluster
-    const zoomToShowMarker = () => {
-      if (!activeMarker) return;
-      
-      const visibleParent = clusterGroup.getVisibleParent(activeMarker);
-      
-      // Update the previous cluster reference
-      previousClusterRef.current = visibleParent !== activeMarker ? visibleParent : null;
-      
-      // If marker is directly visible, just highlight it
-      if (visibleParent === activeMarker) {
-        setTimeout(() => highlightActiveMarker(), 100);
-        return;
-      }
-      
-      // Marker is inside a cluster - use zoomToShowLayer to break the cluster
-      (clusterGroup as any).zoomToShowLayer(activeMarker, () => {
-        // Callback after zoom completes - highlight the marker
-        previousClusterRef.current = null; // Cluster was broken
-        setTimeout(() => highlightActiveMarker(), 200);
-      });
-    };
-    
-    if (shouldNavigate) {
-      // If in the same cluster, don't expand - just pan to the cluster location
-      if (isInSameCluster) {
-        // Pan to the cluster (not the individual marker) without zooming in
-        const clusterLatLng = (currentClusterParent as any).getLatLng();
-        map.panTo(clusterLatLng, { duration: 0.3 });
-        // Don't try to highlight since marker is inside cluster
-        return;
-      }
-      
-      // First pan to the location
-      map.flyTo(
-        [activeEvent.latitude, activeEvent.longitude],
-        Math.max(map.getZoom(), 10), // Start with a reasonable zoom
-        { duration: 0.5 }
+    const activeEvent = eventsInView[activeCarouselIndex];
+    if (!activeEvent) return;
+
+    // Function to highlight the marker with retry logic
+    const highlightMarker = (retryCount = 0) => {
+      // Remove highlight from all markers
+      document.querySelectorAll('.map-marker-active').forEach((el) => 
+        el.classList.remove('map-marker-active')
       );
       
-      // Wait for map movement to complete, then zoom to show marker
-      const onMoveEnd = () => {
-        map.off('moveend', onMoveEnd);
-        // Use zoomToShowLayer to properly expose the marker from cluster
-        setTimeout(zoomToShowMarker, 100);
-      };
-      map.on('moveend', onMoveEnd);
+      // Remove highlight from all clusters
+      document.querySelectorAll('.cluster-active').forEach((el) => 
+        el.classList.remove('cluster-active')
+      );
+
+      // Get the active marker
+      const eventId = activeEvent.id || activeEvent.uid || `event-${events.indexOf(activeEvent)}`;
+      const activeMarker = markersMapRef.current.get(eventId);
       
-      // Fallback timeout in case moveend doesn't fire
-      setTimeout(() => {
-        map.off('moveend', onMoveEnd);
-        zoomToShowMarker();
-      }, 800);
-    } else {
-      // No navigation (pin was clicked), just try to highlight
-      // Update previous cluster ref
-      previousClusterRef.current = currentClusterParent !== activeMarker ? currentClusterParent : null;
-      setTimeout(() => highlightActiveMarker(), 100);
-    }
-  }, [activeCarouselIndex, isMobile, events]);
+      if (!activeMarker) return;
+
+      // Check if marker is visible or inside a cluster
+      const visibleParent = clusterGroup.getVisibleParent(activeMarker);
+      
+      let highlighted = false;
+      
+      if (visibleParent === activeMarker) {
+        // Marker is directly visible - highlight it
+        const element = activeMarker.getElement();
+        if (element) {
+          element.classList.add('map-marker-active');
+          highlighted = true;
+        }
+      } else if (visibleParent) {
+        // Marker is inside a cluster - highlight the cluster instead
+        const clusterElement = (visibleParent as any).getElement?.();
+        if (clusterElement) {
+          clusterElement.classList.add('cluster-active');
+          highlighted = true;
+        }
+      }
+      
+      // Retry if not highlighted and we haven't exceeded max retries
+      // This handles cases where DOM hasn't updated yet
+      if (!highlighted && retryCount < 3) {
+        setTimeout(() => highlightMarker(retryCount + 1), 50);
+      }
+    };
+
+    // Small delay to ensure DOM is ready after scroll
+    setTimeout(() => highlightMarker(), 50);
+  }, [activeCarouselIndex, isMobile, eventsInView, events]);
 
   /**
    * Update user location marker
@@ -755,6 +802,12 @@ function MapContainerComponent({
    * Handle carousel slide change
    */
   const handleCarouselChange = useCallback((index: number) => {
+    // Track active event by ID
+    const currentEventsInView = eventsInViewRef.current;
+    if (currentEventsInView[index]) {
+      const event = currentEventsInView[index];
+      activeEventIdRef.current = event.id || event.uid;
+    }
     setActiveCarouselIndex(index);
     // Scroll the carousel to show the selected card
     const track = document.querySelector('.map-mobile-carousel__track');
@@ -811,6 +864,12 @@ function MapContainerComponent({
         // Only update if index actually changed
         if (closestIndex !== lastDetectedIndex) {
           lastDetectedIndex = closestIndex;
+          // Update the active event ID ref to track which event is selected
+          const currentEventsInView = eventsInViewRef.current;
+          if (currentEventsInView[closestIndex]) {
+            const event = currentEventsInView[closestIndex];
+            activeEventIdRef.current = event.id || event.uid;
+          }
           setActiveCarouselIndex(closestIndex);
         }
       }, 150); // Increased debounce for better scroll settling
@@ -824,9 +883,57 @@ function MapContainerComponent({
     };
   }, [isMobile]); // Removed activeCarouselIndex dependency to prevent effect re-runs
 
+  /**
+   * Handle zoom in
+   */
+  const handleZoomIn = useCallback(() => {
+    const map = mapInstanceRef.current;
+    if (map) {
+      map.zoomIn();
+    }
+  }, []);
+
+  /**
+   * Handle zoom out
+   */
+  const handleZoomOut = useCallback(() => {
+    const map = mapInstanceRef.current;
+    if (map) {
+      map.zoomOut();
+    }
+  }, []);
+
   return (
     <div className="map-wrapper">
       <div ref={mapRef} className="map-container" />
+      
+      {/* Mobile Zoom Controls - Top Right */}
+      {isMobile && (
+        <div className="map-zoom-controls">
+          <button
+            className="map-zoom-btn"
+            onClick={handleZoomIn}
+            title="Zoom in"
+            type="button"
+            aria-label="Zoom in"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0f172a"/>
+            </svg>
+          </button>
+          <button
+            className="map-zoom-btn"
+            onClick={handleZoomOut}
+            title="Zoom out"
+            type="button"
+            aria-label="Zoom out"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 13H5V11H19V13Z" fill="#0f172a"/>
+            </svg>
+          </button>
+        </div>
+      )}
       
       {/* Location Button */}
       <div className="map-controls">
@@ -854,14 +961,17 @@ function MapContainerComponent({
         )}
       </div>
 
-      {/* Mobile Event Carousel */}
-      {isMobile && events.length > 0 && (
+      {/* Mobile Event Carousel - shows only events in current viewport */}
+      {isMobile && eventsInView.length > 0 && (
         <div className="map-mobile-carousel">
           <div className="map-mobile-carousel__header">
-            <span className="map-mobile-carousel__count">{events.length} event{events.length !== 1 ? 's' : ''} on Map</span>
+            <div className="map-mobile-carousel__count">
+              <div className="map-mobile-carousel__count-highlight">{eventsInView.length}</div>
+              <div className="map-mobile-carousel__count-text">&nbsp;/ {events.length} events in view</div>
+            </div>
           </div>
           <div className="map-mobile-carousel__track">
-            {events.map((event, index) => {
+            {eventsInView.map((event, index) => {
               const eventImage = event.eventLogo || event.hostLogo || DEFAULT_EVENT_IMAGE;
               const eventName = event.name || event.title || 'Event';
               const eventLocation = event.eventLocation || event.location || event.venue?.name || '';
@@ -944,6 +1054,45 @@ const mapStyles = `
     height: 100%;
     width: 100%;
     z-index: 0;
+  }
+
+  /* Mobile Zoom Controls - Top Left */
+  .map-zoom-controls {
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+  }
+
+  .map-zoom-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .map-zoom-btn:hover {
+    background-color: #f1f5f9;
+  }
+
+  .map-zoom-btn:active {
+    background-color: #e2e8f0;
+  }
+
+  .map-zoom-btn:first-child {
+    border-bottom: 1px solid #e2e8f0;
   }
 
   /* Custom marker styles - Figma hexagonal pins */
@@ -1323,6 +1472,27 @@ const mapStyles = `
     }
   }
 
+  /* Active cluster highlight - when marker is inside a cluster */
+  .cluster-active {
+    z-index: 1000 !important;
+  }
+
+  .cluster-active .cluster-ring {
+    border-color: #156ff7 !important;
+    border-width: 3px !important;
+    background: rgba(21, 111, 247, 0.2) !important;
+    animation: cluster-pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes cluster-pulse {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+
   /* Mobile Event Carousel */
   .map-mobile-carousel {
     position: absolute;
@@ -1348,9 +1518,17 @@ const mapStyles = `
     background: white;
     border-radius: 20px;
     font-size: 12px;
-    font-weight: 600;
-    color: #0f172a;
+    font-weight: 500;
+    line-height: 14px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  .map-mobile-carousel__count-highlight {
+    color: #156FF7;
+  }
+
+  .map-mobile-carousel__count-text {
+    color: #0F172A;
   }
 
   .map-mobile-carousel__track {

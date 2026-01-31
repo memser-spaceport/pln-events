@@ -182,12 +182,6 @@ const MapView = (props: IMapViewProps) => {
           onEventsAroundMeClick={onMapEventsAroundMeClicked}
         />
       </div>
-      
-      {/* Event count badge */}
-      <div className={styles.mapView__badge}>
-        <span>{eventsWithCoordinates.length}</span>
-        <span>{eventsWithCoordinates.length === 1 ? 'Event' : 'Events'} on Map</span>
-      </div>
     </div>
   );
 };
