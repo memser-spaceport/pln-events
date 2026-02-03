@@ -242,10 +242,11 @@ function MapContainerComponent({
   /**
    * Filter events that are visible within the current map viewport
    * Called on map move/zoom with debounce for performance
+   * Works for both mobile and desktop to show dynamic event counts
    */
   const updateEventsInView = useCallback(() => {
     const map = mapInstanceRef.current;
-    if (!map || !isMobile) return;
+    if (!map) return;
 
     const bounds = map.getBounds();
     const visibleEvents = events.filter((event) => {
@@ -265,9 +266,8 @@ function MapContainerComponent({
     
     setEventsInView(visibleEvents);
     
-    // Try to maintain the same active event after viewport change
-    // Find the previously active event in the new list by ID
-    if (visibleEvents.length > 0) {
+    // Mobile carousel-specific: maintain active event selection
+    if (isMobile && visibleEvents.length > 0) {
       const currentActiveId = activeEventIdRef.current;
       let newIndex = 0;
       
@@ -588,16 +588,15 @@ function MapContainerComponent({
       hasInitializedBoundsRef.current = true;
       
       // Initialize events in view (with small delay to allow map to settle)
-      if (isMobile) {
-        setTimeout(() => {
-          updateEventsInView();
-          // Initialize active event ID with the first event
-          if (events.length > 0) {
-            const firstEvent = events[0];
-            activeEventIdRef.current = firstEvent.id || firstEvent.uid;
-          }
-        }, 500);
-      }
+      // Works for both mobile and desktop
+      setTimeout(() => {
+        updateEventsInView();
+        // Initialize active event ID with the first event (for mobile carousel)
+        if (isMobile && events.length > 0) {
+          const firstEvent = events[0];
+          activeEventIdRef.current = firstEvent.id || firstEvent.uid;
+        }
+      }, 500);
     }
   }, [events, isMobile, updateEventsInView]); // Removed onEventClick - using ref to prevent zoom reset on callback changes
 
@@ -935,6 +934,14 @@ function MapContainerComponent({
         </div>
       )}
       
+      {/* Desktop Events Count Capsule - Dynamic count based on viewport */}
+      {!isMobile && eventsInView.length > 0 && (
+        <div className="map-events-count-capsule">
+          <span className="map-events-count-capsule__number">{eventsInView.length}</span>
+          <span className="map-events-count-capsule__text">&nbsp;/ {events.length} events in view</span>
+        </div>
+      )}
+
       {/* Location Button */}
       <div className="map-controls">
         <button
@@ -978,6 +985,7 @@ function MapContainerComponent({
               const eventDate = event.dateRange || event.startDate || '';
               const eventTime = event.timeRange || '';
               const isActive = index === activeCarouselIndex;
+              const isFeatured = event.isFeaturedEvent || event.isFeatured || false;
               
               return (
                 <button
@@ -987,6 +995,15 @@ function MapContainerComponent({
                   type="button"
                   data-index={index}
                 >
+                  {/* Featured Event Tag - shows full text then collapses to icon only */}
+                  {/* COMMENTED OUT - Featured strip changes
+                  {isFeatured && (
+                    <div className={`map-mobile-carousel__featured-tag ${isActive ? 'map-mobile-carousel__featured-tag--animate' : ''}`}>
+                      <img src="/icons/featured-star.svg" alt="" className="map-mobile-carousel__featured-icon" />
+                      <span className="map-mobile-carousel__featured-text">Featured event</span>
+                    </div>
+                  )}
+                  */}
                   <div className="map-mobile-carousel__card-content">
                     <div className="map-mobile-carousel__image-wrapper">
                       <img 
@@ -1054,6 +1071,34 @@ const mapStyles = `
     height: 100%;
     width: 100%;
     z-index: 0;
+  }
+
+  /* Desktop Events Count Capsule - Bottom Center */
+  .map-events-count-capsule {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background: white;
+    border: 2px solid #156FF7;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    box-shadow: 0 4px 12px rgba(21, 111, 247, 0.2);
+  }
+
+  .map-events-count-capsule__number {
+    color: #156FF7;
+    font-weight: 700;
+  }
+
+  .map-events-count-capsule__text {
+    color: #0F172A;
   }
 
   /* Mobile Zoom Controls - Top Left */
@@ -1548,6 +1593,7 @@ const mapStyles = `
   }
 
   .map-mobile-carousel__card {
+    position: relative;
     flex: 0 0 calc(100% - 48px);
     min-width: calc(100% - 48px);
     max-width: calc(100% - 48px);
@@ -1573,6 +1619,69 @@ const mapStyles = `
     transform: scale(0.98);
   }
 
+  /* COMMENTED OUT - Featured strip CSS changes
+  .map-mobile-carousel__featured-tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: linear-gradient(90deg, rgba(233, 66, 255, 0.70) 0%, rgba(128, 68, 213, 0.70) 100%);
+    border-radius: 0 8px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .map-mobile-carousel__featured-icon {
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+  }
+
+  .map-mobile-carousel__featured-text {
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    line-height: 1;
+    max-width: 80px;
+    overflow: hidden;
+    transition: max-width 0.3s ease-out, opacity 0.3s ease-out;
+  }
+
+  .map-mobile-carousel__featured-tag--animate .map-mobile-carousel__featured-text {
+    animation: featured-tag-collapse 0.3s ease-out 1.5s forwards;
+  }
+
+  @keyframes featured-tag-collapse {
+    0% {
+      max-width: 80px;
+      opacity: 1;
+    }
+    100% {
+      max-width: 0;
+      opacity: 0;
+    }
+  }
+
+  .map-mobile-carousel__featured-tag--animate {
+    animation: featured-tag-shrink-gap 0.3s ease-out 1.5s forwards;
+  }
+
+  @keyframes featured-tag-shrink-gap {
+    0% {
+      gap: 4px;
+      padding: 4px 8px;
+    }
+    100% {
+      gap: 0;
+      padding: 4px 6px;
+    }
+  }
+  END COMMENTED OUT - Featured strip CSS changes */
+
   .map-mobile-carousel__card-content {
     display: flex;
     gap: 10px;
@@ -1586,8 +1695,8 @@ const mapStyles = `
   }
 
   .map-mobile-carousel__image {
-    width: 72px;
-    height: 72px;
+    width: 90px;
+    height: 90px;
     border-radius: 8px;
     object-fit: cover;
     background: #f1f5f9;
@@ -1602,6 +1711,7 @@ const mapStyles = `
     flex-direction: column;
     gap: 4px;
     overflow: hidden;
+    padding-top: 8px;
   }
 
   .map-mobile-carousel__title {
