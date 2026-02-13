@@ -996,14 +996,12 @@ function MapContainerComponent({
                   data-index={index}
                 >
                   {/* Featured Event Tag - shows full text then collapses to icon only */}
-                  {/* COMMENTED OUT - Featured strip changes
                   {isFeatured && (
                     <div className={`map-mobile-carousel__featured-tag ${isActive ? 'map-mobile-carousel__featured-tag--animate' : ''}`}>
                       <img src="/icons/featured-star.svg" alt="" className="map-mobile-carousel__featured-icon" />
                       <span className="map-mobile-carousel__featured-text">Featured event</span>
                     </div>
                   )}
-                  */}
                   <div className="map-mobile-carousel__card-content">
                     <div className="map-mobile-carousel__image-wrapper">
                       <img 
@@ -1619,7 +1617,6 @@ const mapStyles = `
     transform: scale(0.98);
   }
 
-  /* COMMENTED OUT - Featured strip CSS changes
   .map-mobile-carousel__featured-tag {
     position: absolute;
     top: 0;
@@ -1680,7 +1677,6 @@ const mapStyles = `
       padding: 4px 6px;
     }
   }
-  END COMMENTED OUT - Featured strip CSS changes */
 
   .map-mobile-carousel__card-content {
     display: flex;
