@@ -1,6 +1,7 @@
 import FilterBox from "@/components/core/filter-box";
 import ListView from "@/components/page/list/list-view";
 import Toolbar from "@/components/page/events/toolbar";
+import { EmbedUrlSync } from "@/components/embed/embed-url-sync";
 import styles from "./page.module.css";
 import DetailView from "@/components/page/event-detail/event-detail-popup/detail-view";
 import { getFilterValuesFromEvents, getFilteredEvents, sortEventsByStartDate } from "@/utils/helper";
@@ -98,6 +99,7 @@ export default async function Page({ searchParams, params }: any) {
 
   return (
     <>
+      <EmbedUrlSync />
       <div className={styles.schedule}>
         <div className={styles.schedule__tbar}>
           <Toolbar
