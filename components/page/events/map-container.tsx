@@ -39,10 +39,10 @@ const areMarkersAtSameLocation = (markers: any[]): boolean => {
   if (!markers.length) return false;
   const firstLatLng = markers[0]?.getLatLng();
   if (!firstLatLng) return false;
-  
+
   return markers.every((marker: any) => {
     const latLng = marker.getLatLng();
-    return Math.abs(latLng.lat - firstLatLng.lat) < SAME_LOCATION_THRESHOLD && 
+    return Math.abs(latLng.lat - firstLatLng.lat) < SAME_LOCATION_THRESHOLD &&
            Math.abs(latLng.lng - firstLatLng.lng) < SAME_LOCATION_THRESHOLD;
   });
 };
@@ -55,7 +55,7 @@ const handleClusterSpiderfy = (layer: any): void => {
   if (!layer.spiderfy || !layer.getChildCount || layer.getChildCount() <= 1) {
     return;
   }
-  
+
   const childMarkers = layer.getAllChildMarkers();
   if (areMarkersAtSameLocation(childMarkers)) {
     layer.spiderfy();
@@ -111,7 +111,7 @@ const MARKER_ICONS = {
  */
 const createCustomMarkerIcon = (eventImage: string, isFeatured: boolean = false): L.DivIcon => {
   const iconSrc = MARKER_ICONS.default;
-  
+
   return L.divIcon({
     html: `
       <div class="map-marker-pin">
@@ -141,10 +141,10 @@ const DEFAULT_EVENT_IMAGE = '/images/event-default.svg';
 const createClusterIcon = (cluster: any): L.DivIcon => {
   const count = cluster.getChildCount();
   const markers = cluster.getAllChildMarkers();
-  
+
   // Get up to 3 markers for the stack display
   const stackCount = Math.min(count, 3);
-  
+
   // Create stacked pins HTML with event images overlaid (smaller sizes)
   let stackedPinsHtml = '';
   for (let i = 0; i < stackCount; i++) {
@@ -214,16 +214,16 @@ function MapContainerComponent({
   const userLocationLayerRef = useRef<L.LayerGroup | null>(null);
   const hasInitializedBoundsRef = useRef(false);
   const previousEventsLengthRef = useRef(0);
-  
+
   // Store callback in ref to avoid triggering marker effect on callback changes
   // This prevents zoom reset when viewing event details (callback changes on URL update)
   const onEventClickRef = useRef(onEventClick);
   onEventClickRef.current = onEventClick;
-  
+
   const [isLocating, setIsLocating] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
   const [userLocation, setUserLocation] = useState<{lat: number; lng: number; accuracy: number} | null>(null);
-  
+
   // Mobile carousel state - viewport filtering
   const [eventsInView, setEventsInView] = useState<any[]>(events); // Events visible in current viewport
   const eventsInViewRef = useRef<any[]>(events); // Ref for use in marker click handlers (avoids stale closures)
@@ -233,7 +233,7 @@ function MapContainerComponent({
   const isCarouselChangeRef = useRef(false); // Flag to prevent re-highlighting when marker clicked
   const isViewportUpdateRef = useRef(false); // Flag to track viewport updates
   const updateEventsInViewTimeoutRef = useRef<NodeJS.Timeout | null>(null); // Debounce timer
-  
+
   // Keep eventsInViewRef in sync with eventsInView state
   useEffect(() => {
     eventsInViewRef.current = eventsInView;
@@ -251,9 +251,9 @@ function MapContainerComponent({
     const bounds = map.getBounds();
     const visibleEvents = events.filter((event) => {
       if (event.latitude == null || event.longitude == null ||
-          typeof event.latitude !== 'number' || 
+          typeof event.latitude !== 'number' ||
           typeof event.longitude !== 'number' ||
-          Number.isNaN(event.latitude) || 
+          Number.isNaN(event.latitude) ||
           Number.isNaN(event.longitude) ||
           (event.latitude === 0 && event.longitude === 0)) {
         return false;
@@ -263,17 +263,17 @@ function MapContainerComponent({
 
     // Mark this as a viewport update (not user swipe) to prevent re-panning
     isViewportUpdateRef.current = true;
-    
+
     setEventsInView(visibleEvents);
-    
+
     // Mobile carousel-specific: maintain active event selection
     if (isMobile && visibleEvents.length > 0) {
       const currentActiveId = activeEventIdRef.current;
       let newIndex = 0;
-      
+
       if (currentActiveId) {
         // Find the same event in the new visible events list
-        const foundIndex = visibleEvents.findIndex(e => 
+        const foundIndex = visibleEvents.findIndex(e =>
           (e.id || e.uid) === currentActiveId
         );
         if (foundIndex !== -1) {
@@ -281,7 +281,7 @@ function MapContainerComponent({
         }
         // If not found, newIndex stays 0 (first event in new view)
       }
-      
+
       setActiveCarouselIndex(newIndex);
       // Update the active event ID ref
       const newActiveEvent = visibleEvents[newIndex];
@@ -346,7 +346,7 @@ function MapContainerComponent({
       const childMarkers = cluster.getAllChildMarkers();
       const bounds = cluster.getBounds();
       const currentZoom = map.getZoom();
-      
+
       // Check if all markers are at the same location
       const allSameLocation = areMarkersAtSameLocation(childMarkers);
 
@@ -452,10 +452,10 @@ function MapContainerComponent({
     events.forEach((event) => {
       // Safety check: skip events without valid coordinates
       // Also skip events with 0,0 coordinates (invalid/missing location data)
-      if (event.latitude == null || event.longitude == null || 
-          typeof event.latitude !== 'number' || 
+      if (event.latitude == null || event.longitude == null ||
+          typeof event.latitude !== 'number' ||
           typeof event.longitude !== 'number' ||
-          Number.isNaN(event.latitude) || 
+          Number.isNaN(event.latitude) ||
           Number.isNaN(event.longitude) ||
           (event.latitude === 0 && event.longitude === 0)) {
         return;
@@ -477,7 +477,7 @@ function MapContainerComponent({
       const eventDate = event.dateRange || event.startDate || '';
       const eventTime = event.timeRange || '';
       // Use same fallback logic as detail popup: eventLogo -> hostLogo -> default
-      
+
       const tooltipContent = `
         <div class="map-event-tooltip">
           <div class="map-event-tooltip__image-wrapper">
@@ -516,7 +516,7 @@ function MapContainerComponent({
           </div>
         </div>
       `;
-      
+
       // Only show tooltip on desktop (mobile has carousel cards)
       if (!isMobile) {
         marker.bindTooltip(tooltipContent, {
@@ -544,11 +544,11 @@ function MapContainerComponent({
             // Get current bounds to check if event is in view
             const bounds = map.getBounds();
             const isEventInCurrentView = bounds.contains([event.latitude, event.longitude]);
-            
+
             if (isEventInCurrentView) {
               // Event is in view, find its index in eventsInView (using ref to avoid stale closure)
               const currentEventsInView = eventsInViewRef.current;
-              const eventIndex = currentEventsInView.findIndex(e => 
+              const eventIndex = currentEventsInView.findIndex(e =>
                 (e.id || e.uid) === (event.id || event.uid)
               );
               if (eventIndex !== -1) {
@@ -570,10 +570,9 @@ function MapContainerComponent({
               }
             }
           }
-        } else {
-          // On desktop, open event details
-          onEventClickRef.current(event);
         }
+
+        onEventClickRef.current(event);
       });
 
       clusterGroup.addLayer(marker);
@@ -583,10 +582,10 @@ function MapContainerComponent({
     // This provides a consistent initial view regardless of event distribution
     const eventsChanged = events.length !== previousEventsLengthRef.current;
     previousEventsLengthRef.current = events.length;
-    
+
     if (events.length > 0 && (!hasInitializedBoundsRef.current || eventsChanged)) {
       hasInitializedBoundsRef.current = true;
-      
+
       // Initialize events in view (with small delay to allow map to settle)
       // Works for both mobile and desktop
       setTimeout(() => {
@@ -607,7 +606,7 @@ function MapContainerComponent({
    */
   useEffect(() => {
     if (!isMobile || eventsInView.length === 0) return;
-    
+
     const clusterGroup = clusterGroupRef.current;
     if (!clusterGroup) return;
 
@@ -615,7 +614,7 @@ function MapContainerComponent({
     if (isViewportUpdateRef.current) {
       isViewportUpdateRef.current = false;
     }
-    
+
     // Reset carousel change flag
     isCarouselChangeRef.current = false;
 
@@ -625,26 +624,26 @@ function MapContainerComponent({
     // Function to highlight the marker with retry logic
     const highlightMarker = (retryCount = 0) => {
       // Remove highlight from all markers
-      document.querySelectorAll('.map-marker-active').forEach((el) => 
+      document.querySelectorAll('.map-marker-active').forEach((el) =>
         el.classList.remove('map-marker-active')
       );
-      
+
       // Remove highlight from all clusters
-      document.querySelectorAll('.cluster-active').forEach((el) => 
+      document.querySelectorAll('.cluster-active').forEach((el) =>
         el.classList.remove('cluster-active')
       );
 
       // Get the active marker
       const eventId = activeEvent.id || activeEvent.uid || `event-${events.indexOf(activeEvent)}`;
       const activeMarker = markersMapRef.current.get(eventId);
-      
+
       if (!activeMarker) return;
 
       // Check if marker is visible or inside a cluster
       const visibleParent = clusterGroup.getVisibleParent(activeMarker);
-      
+
       let highlighted = false;
-      
+
       if (visibleParent === activeMarker) {
         // Marker is directly visible - highlight it
         const element = activeMarker.getElement();
@@ -660,7 +659,7 @@ function MapContainerComponent({
           highlighted = true;
         }
       }
-      
+
       // Retry if not highlighted and we haven't exceeded max retries
       // This handles cases where DOM hasn't updated yet
       if (!highlighted && retryCount < 3) {
@@ -703,8 +702,8 @@ function MapContainerComponent({
       icon: createUserLocationIcon(),
     });
 
-    const accuracyText = userLocation.accuracy > 1000 
-      ? `±${(userLocation.accuracy / 1000).toFixed(1)}km` 
+    const accuracyText = userLocation.accuracy > 1000
+      ? `±${(userLocation.accuracy / 1000).toFixed(1)}km`
       : `±${Math.round(userLocation.accuracy)}m`;
 
     userMarker.bindPopup(`
@@ -725,7 +724,7 @@ function MapContainerComponent({
   const getUserLocation = useCallback(() => {
     // Track analytics for "Events around me" click
     onEventsAroundMeClick?.();
-    
+
     if (!navigator.geolocation) {
       setLocationError('Geolocation is not supported by your browser');
       return;
@@ -742,7 +741,7 @@ function MapContainerComponent({
     watchId = navigator.geolocation.watchPosition(
       (position) => {
         const { latitude, longitude, accuracy } = position.coords;
-        
+
         // Only update if this position is more accurate
         if (accuracy < bestAccuracy) {
           bestAccuracy = accuracy;
@@ -837,29 +836,29 @@ function MapContainerComponent({
 
     let scrollTimeout: NodeJS.Timeout;
     let lastDetectedIndex = activeCarouselIndex;
-    
+
     const handleScroll = () => {
       clearTimeout(scrollTimeout);
       // Use longer debounce to ensure scroll has settled
       scrollTimeout = setTimeout(() => {
         const trackRect = track.getBoundingClientRect();
         const centerX = trackRect.left + trackRect.width / 2;
-        
+
         const cards = track.querySelectorAll('.map-mobile-carousel__card');
         let closestIndex = 0;
         let closestDistance = Infinity;
-        
+
         cards.forEach((card, index) => {
           const cardRect = card.getBoundingClientRect();
           const cardCenterX = cardRect.left + cardRect.width / 2;
           const distance = Math.abs(cardCenterX - centerX);
-          
+
           if (distance < closestDistance) {
             closestDistance = distance;
             closestIndex = index;
           }
         });
-        
+
         // Only update if index actually changed
         if (closestIndex !== lastDetectedIndex) {
           lastDetectedIndex = closestIndex;
@@ -875,7 +874,7 @@ function MapContainerComponent({
     };
 
     track.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     return () => {
       track.removeEventListener('scroll', handleScroll);
       clearTimeout(scrollTimeout);
@@ -905,7 +904,7 @@ function MapContainerComponent({
   return (
     <div className="map-wrapper">
       <div ref={mapRef} className="map-container" />
-      
+
       {/* Mobile Zoom Controls - Top Right */}
       {isMobile && (
         <div className="map-zoom-controls">
@@ -933,7 +932,7 @@ function MapContainerComponent({
           </button>
         </div>
       )}
-      
+
       {/* Desktop Events Count Capsule - Dynamic count based on viewport */}
       {!isMobile && eventsInView.length > 0 && (
         <div className="map-events-count-capsule">
@@ -960,7 +959,7 @@ function MapContainerComponent({
           )}
           <span className="map-locate-text">Events around me</span>
         </button>
-        
+
         {locationError && (
           <div className="map-location-error">
             {locationError}
@@ -986,7 +985,7 @@ function MapContainerComponent({
               const eventTime = event.timeRange || '';
               const isActive = index === activeCarouselIndex;
               const isFeatured = event.isFeaturedEvent || event.isFeatured || false;
-              
+
               return (
                 <button
                   key={event.id || event.uid || index}
@@ -1006,10 +1005,10 @@ function MapContainerComponent({
                   */}
                   <div className="map-mobile-carousel__card-content">
                     <div className="map-mobile-carousel__image-wrapper">
-                      <img 
-                        src={eventImage} 
-                        alt={eventName} 
-                        className="map-mobile-carousel__image" 
+                      <img
+                        src={eventImage}
+                        alt={eventName}
+                        className="map-mobile-carousel__image"
                         onError={(e) => { (e.target as HTMLImageElement).src = DEFAULT_EVENT_IMAGE; }}
                       />
                     </div>
@@ -1047,7 +1046,7 @@ function MapContainerComponent({
               );
             })}
           </div>
-          
+
         </div>
       )}
 
