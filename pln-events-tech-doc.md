@@ -1,12 +1,27 @@
 # PLN Events – Technical Documentation
 
-Technical reference for developers joining the **pln-events** project. This document describes the stack, structure, environment, and main flows so you can run, navigate, and extend the codebase.
+**Repository**: [https://github.com/memser-spaceport/pln-events.git](https://github.com/memser-spaceport/pln-events.git)
+
+## Table of contents
+
+1. [Project overview](#1-project-overview)
+2. [Tech stack](#2-tech-stack)
+3. [Repository structure](#3-repository-structure)
+4. [Getting started](#4-getting-started)
+5. [Environment variables](#5-environment-variables)
+6. [Application architecture](#6-application-architecture)
+7. [Key modules](#7-key-modules)
+8. [Styling conventions](#8-styling-conventions)
+9. [Next.js configuration](#9-nextjs-configuration)
+10. [Testing](#10-testing)
+11. [Event content (JSON)](#11-event-content-json)
+12. [Quick reference](#12-quick-reference)
 
 ---
 
 ## 1. Project overview
 
-**pln-events** is a Next.js application that lists and displays events for Protocol Labs. Users can browse events by **list**, **program** (calendar), or **map**, filter by location, year, date range, hosts, event type, and topics, and open event details in a modal. An **embed** variant of the same views is available without the main site header.
+pln-events is a Next.js application that lists and displays events for Protocol Labs. Users can browse events by list, program (calendar), or map, filter by location, year, date range, hosts, event type, and topics, and open event details in a modal. An embed variant of the same views is available without the main site header. **Live site url:** [https://events.plnetwork.io](https://events.plnetwork.io)
 
 - **Product name (UI):** PL Events  
 - **Package name:** `pl-events`  
@@ -115,33 +130,7 @@ Tests live under `__tests__/` and mirror `components/`. Jest uses `next/jest`, p
 
 ## 5. Environment variables
 
-Configure a `.env` file at the project root. Below are all variables referenced by the application.
-
-| Variable | Used in | Purpose |
-|----------|---------|---------|
-| `NEXT_PUBLIC_ANNOUNCEMENT_API_URL` | service | Announcement banner API base URL |
-| `NEXT_PUBLIC_ANNOUNCEMENT_API_TOKEN` | service | Authorization for announcement API |
-| `NEXT_PUBLIC_BASE_URL` | service | App base URL (e.g. for internal API calls) |
-| `NEXT_PUBLIC_IRL_URL` | app-header | Link for “IRL” / attendees button |
-| `NEXT_PUBLIC_POSTHOG_KEY` | posthog-provider | PostHog project key |
-| `NEXT_PUBLIC_POSTHOG_HOST` | posthog-provider | PostHog API host (e.g. https://app.posthog.com) |
-| `NEXT_PUBLIC_REVALIDATE_TOKEN` | api/revalidate | Bearer token for POST /api/revalidate |
-| `ALLOWED_IMAGE_DOMAINS` | next.config | Comma-separated domains for next/image |
-| `WEB_API_BASE_URL` | service, next.config | Events/calendar API base URL |
-| `WEB_API_TOKEN` | service, next.config | Bearer token for events/calendar API |
-| `ORIGIN_DOMAIN` | service, next.config | Origin header sent to events/calendar API |
-| `DIRECTORY_API_URL` | service | Directory API base (e.g. …/v1/internals/irl/locations) |
-| `DIRECTORY_API_TOKEN` | service | Bearer token for directory API |
-| `EVENT_AGENDA_REFRESH_URL` | service, next.config | Base URL for agenda refresh (e.g. …/api/event/:id) |
-| `EVENT_CLIENT_SECRET` | next.config | Exposed to server for event-related calls |
-| `SUBMIT_EVENT_URL` | app-header, events-no-results, next.config | “Submit event” link URL |
-| `REFRESH_DISABLED_EVENTS` | utils/helper | Comma-separated list (refresh logic) |
-| `REFRESH_ENABLED_EVENTS` | utils/helper | Comma-separated list (refresh logic) |
-| `AUTH_API_BASE_URL` | .env.example only | Auth API (add if used) |
-| `AUTH_APP_CLIENT_ID` | .env.example only | Auth app client ID (add if used) |
-| `AUTH_APP_CLIENT_SECRET` | .env.example only | Auth app client secret (add if used) |
-
-**Revalidate API:** The route checks the `Authorization: Bearer <token>` header against `NEXT_PUBLIC_REVALIDATE_TOKEN`. Ensure this value is set in `.env` for server-side use.
+Configure a `.env` file at the project root. See [.env.example](.env.example) for all variables, generic examples, and format notes (e.g. URLs with or without trailing slash, comma-separated lists).
 
 ---
 
@@ -155,9 +144,11 @@ Configure a `.env` file at the project root. Below are all variables referenced 
 
 | Path | Description |
 |------|-------------|
-| `/` | Redirects to `/map` (next.config redirect) |
-| `/[type]` | Main app: `type` = `list` \| `program` \| `map`. Filter box + toolbar + list/program/map view + detail modal + legends. |
-| `/embed/[type]` | Same views as above; header hidden via middleware; embed-specific URL sync. |
+| `/` | Redirects to `/map` (next.config redirect). |
+| `/list` | **List view** – Timeline of events in chronological order. Users scroll through event cards grouped by time; best for scanning many events in sequence. |
+| `/program` | **Program (calendar) view** – Events on a calendar grid (Schedule-X / FullCalendar) by date and time; best for seeing what’s on in a given week or month. |
+| `/map` | **Map view** – Geographic map (Leaflet with marker clustering). Events plotted by location; users pan/zoom and click markers for details. Default view (root redirects here). |
+| `/embed/[type]` | Same three views as above (`list`, `program`, `map`); header hidden via middleware; embed-specific URL sync. |
 
 ### Middleware
 
@@ -231,7 +222,7 @@ flowchart TD
 |-------|------|------|-------------|
 | GET | `/api/events` | — | Reads all JSON files from `content/events`, returns `{ data: [...] }`. |
 | GET | `/api/eventjson` | — | Same as `/api/events`. |
-| POST | `/api/revalidate` | Bearer token (`NEXT_PUBLIC_REVALIDATE_TOKEN`) | Body: `{ tags: string[] }`. Calls Next.js `revalidateTag(tag)` for each tag. Returns 401 if token missing/invalid, 400 if `tags` is not an array. |
+| POST | `/api/revalidate` | Bearer token (`REVALIDATE_TOKEN`) | Body: `{ tags: string[] }`. Calls Next.js `revalidateTag(tag)` for each tag. Returns 401 if token missing/invalid, 400 if `tags` is not an array. |
 
 ---
 
@@ -308,12 +299,14 @@ Run: `yarn test`, `yarn test:watch`, `yarn test:coverage`.
 
 ## 11. Event content (JSON)
 
-Event data for the **main list/program/map views** comes from the **web API** (`getAllEvents`), not from the repo’s JSON files. The repo also contains:
+When the web API is used: The list, program, and map views get event data from the external web API (`WEB_API_BASE_URL`). The app calls `getAllEvents()` (and related services) to fetch and display events there. This is the source of truth for the main event listing.
 
-- **content/events/*.json** – JSON files that are served by `GET /api/events` and `GET /api/eventjson` for other consumers or tooling.
-- **eventTemplate/template_short_event.txt** – Human-readable template describing the shape and fields expected for event JSON. The main README explains how to add a new event (template, path, PR flow).
+When repo event data is used: The repo holds **content/events/*.json** files. These are:
 
-If you work on features that consume `/api/events` or `/api/eventjson`, use the template and existing JSON files in `content/events` as the schema reference.
+- Served by **`GET /api/events`** and **`GET /api/eventjson`** for other consumers (e.g. tooling, integrations, or any client that needs the raw event JSON from this app).
+- The basis for the PR-based workflow: new or updated events are added via pull requests to `content/events`; the Member Services team merges them, and the same data is then available via the app API.
+
+Schema reference: For features that use `/api/events` or `/api/eventjson`, use [eventTemplate/template_short_event.txt](eventTemplate/template_short_event.txt) and existing files in `content/events` as the schema reference. The main [README.md](README.md) describes how to add a new event (template, path, PR flow).
 
 ---
 
@@ -322,6 +315,6 @@ If you work on features that consume `/api/events` or `/api/eventjson`, use the 
 - **Add a new view type:** Extend `[type]` and embed routing and toolbar; add a view component and route segment.
 - **Change filters:** Adjust `getFilterValuesFromEvents` / `getFilteredEvents` in `utils/helper.ts` and filter config in `service/events.service.ts` / `utils/constants.ts`.
 - **New env var:** Add to `.env`, and if needed to `next.config.js` `env` for server use. Only `NEXT_PUBLIC_*` are exposed to the client.
-- **Revalidate cache:** Call `POST /api/revalidate` with `Authorization: Bearer <NEXT_PUBLIC_REVALIDATE_TOKEN>` and body `{ "tags": ["tag1", "tag2"] }`.
+- **Revalidate cache:** The Revalidate cache ensures that stale cached data is refreshed by fetching the latest content from the origin (API, database, or CMS), allowing users to always see up-to-date information. It preserves the performance benefits of static generation while enabling dynamic content updates without requiring a full application rebuild or redeployment (similar to Next.js ISR or CDN cache invalidation). Whenever event data or other content changes—such as CMS updates, API modifications, or newly merged events—a `POST /api/revalidate` request should be triggered with the header `Authorization: Bearer <REVALIDATE_TOKEN>` and a request body like `{ "tags": ["tag1", "tag2"] }` This invalidates the specified cache tags and forces Next.js to refetch and regenerate only the affected pages.
 
-For product and contribution workflow (e.g. submitting events via PR), see the main **README.md**.
+For product and contribution workflow (e.g. submitting events via PR), see the main [README.md](README.md).
