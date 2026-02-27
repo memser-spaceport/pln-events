@@ -24,3 +24,10 @@ This is a [Microgen](https://github.com/pathfindertools/microgen) site.
 To run the site locally ```yarn install``` and ```yarn dev```.
 
 See full documentation in the Microgen repository.
+
+## Handoff Documentation
+As part of the team transition, implementation notes for the featured map view are documented in:
+
+- `public/docs/FEATURED_EVENT_MAP_VIEW.md`
+
+The implementation described there was developed and pushed on a separate feature branch: `feat/mapview-featured-events`.
