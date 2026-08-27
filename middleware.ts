@@ -6,9 +6,7 @@ export function middleware(req: NextRequest) {
 
   if (req.nextUrl.pathname.startsWith("/embed")) {
     res.headers.set("x-hide-header", "true");
-  }
-
-  else{
+  } else {
     res.headers.set("x-hide-header", "false");
   }
 

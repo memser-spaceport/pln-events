@@ -17,9 +17,16 @@ interface IMapContainerComponentProps {
 /**
  * Map configuration constants
  */
+const CARTO_TILE_URL =
+  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
+const CARTO_API_KEY = process.env.NEXT_PUBLIC_CARTO_API_KEY;
+
 const MAP_CONFIG = {
-  TILE_LAYER_URL: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-  TILE_LAYER_ATTRIBUTION: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  TILE_LAYER_URL: CARTO_API_KEY
+    ? `${CARTO_TILE_URL}?key=${CARTO_API_KEY}`
+    : CARTO_TILE_URL,
+  TILE_LAYER_ATTRIBUTION:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
   DEFAULT_CENTER: [39, -98] as [number, number], // Center on America (central USA)
   DEFAULT_ZOOM: 3, // Increased to match MIN_ZOOM and prevent seeing multiple continents
   MIN_ZOOM: 3, // Increased to prevent seeing multiple continents on widescreen
@@ -42,8 +49,10 @@ const areMarkersAtSameLocation = (markers: any[]): boolean => {
 
   return markers.every((marker: any) => {
     const latLng = marker.getLatLng();
-    return Math.abs(latLng.lat - firstLatLng.lat) < SAME_LOCATION_THRESHOLD &&
-           Math.abs(latLng.lng - firstLatLng.lng) < SAME_LOCATION_THRESHOLD;
+    return (
+      Math.abs(latLng.lat - firstLatLng.lat) < SAME_LOCATION_THRESHOLD &&
+      Math.abs(latLng.lng - firstLatLng.lng) < SAME_LOCATION_THRESHOLD
+    );
   });
 };
 
@@ -78,20 +87,20 @@ const getZoomLevelForAccuracy = (accuracy: number): number => {
  * IMPORTANT: Never disable clustering to prevent same-location markers from stacking
  */
 const CLUSTER_CONFIG = {
-  showCoverageOnHover: false,  // Disabled to remove blue coverage polygon on hover
-  zoomToBoundsOnClick: false,  // We handle click manually to support spiderfy for same-location events
+  showCoverageOnHover: false, // Disabled to remove blue coverage polygon on hover
+  zoomToBoundsOnClick: false, // We handle click manually to support spiderfy for same-location events
   spiderfyOnMaxZoom: true,
-  spiderfyDistanceMultiplier: 2.5,  // Increase spider spread for better visibility with many markers
+  spiderfyDistanceMultiplier: 2.5, // Increase spider spread for better visibility with many markers
   removeOutsideVisibleBounds: true,
   animate: true,
-  maxClusterRadius: 80,  // Same as POC
+  maxClusterRadius: 80, // Same as POC
   // DO NOT set disableClusteringAtZoom - this causes same-location markers to stack invisibly
   // Instead, let clustering continue and spiderfy at max zoom
   singleMarkerMode: false,
   // Spider leg styling - light and subtle
   spiderLegPolylineOptions: {
     weight: 1,
-    color: '#94a3b8',
+    color: "#94a3b8",
     opacity: 0.4,
   },
 };
@@ -100,7 +109,7 @@ const CLUSTER_CONFIG = {
  * Paths to existing marker icons
  */
 const MARKER_ICONS = {
-  default: '/icons/location-pin.svg',
+  default: "/icons/location-pin.svg",
 };
 
 /**
@@ -109,7 +118,10 @@ const MARKER_ICONS = {
  * @param eventImage - URL of the event image
  * @param isFeatured - Whether this is a featured event
  */
-const createCustomMarkerIcon = (eventImage: string, isFeatured: boolean = false): L.DivIcon => {
+const createCustomMarkerIcon = (
+  eventImage: string,
+  isFeatured: boolean = false,
+): L.DivIcon => {
   const iconSrc = MARKER_ICONS.default;
 
   return L.divIcon({
@@ -117,20 +129,20 @@ const createCustomMarkerIcon = (eventImage: string, isFeatured: boolean = false)
       <div class="map-marker-pin">
         <img class="map-marker-pin-icon" src="${iconSrc}" alt="Event location" width="36" height="40" />
         <img class="map-marker-pin-image" src="${eventImage}" alt="Event image" />
-        ${isFeatured ? `<img class="map-marker-pin-image-overlay" src="/icons/featured-logo.svg" alt="Event image overlay" />` : ''}
+        ${isFeatured ? `<img class="map-marker-pin-image-overlay" src="/icons/featured-logo.svg" alt="Event image overlay" />` : ""}
       </div>
     `,
     iconSize: [36, 40],
     iconAnchor: [18, 40],
     popupAnchor: [0, -40],
-    className: 'custom-div-marker-icon',
+    className: "custom-div-marker-icon",
   });
 };
 
 /**
  * Default fallback icon for events without images (used in pins and hover popover)
  */
-const DEFAULT_EVENT_IMAGE = '/images/event-default.svg';
+const DEFAULT_EVENT_IMAGE = "/images/event-default.svg";
 
 /**
  * Creates cluster icon matching Figma design:
@@ -146,13 +158,14 @@ const createClusterIcon = (cluster: any): L.DivIcon => {
   const stackCount = Math.min(count, 3);
 
   // Create stacked pins HTML with event images overlaid (smaller sizes)
-  let stackedPinsHtml = '';
+  let stackedPinsHtml = "";
   for (let i = 0; i < stackCount; i++) {
     const marker = markers[i];
     const eventData = marker?.options?.eventData;
     const isFeatured = eventData?.isFeatured || false;
     const iconSrc = MARKER_ICONS.default;
-    const eventImage = eventData?.eventLogo || eventData?.hostLogo || DEFAULT_EVENT_IMAGE;
+    const eventImage =
+      eventData?.eventLogo || eventData?.hostLogo || DEFAULT_EVENT_IMAGE;
     stackedPinsHtml += `
       <div class="cluster-stack-pin cluster-stack-pin--${i + 1}">
         <img class="cluster-stack-pin-icon" src="${iconSrc}" alt="Event" width="32" height="35" />
@@ -171,7 +184,7 @@ const createClusterIcon = (cluster: any): L.DivIcon => {
         </div>
       </div>
     `,
-    className: 'custom-cluster-icon',
+    className: "custom-cluster-icon",
     iconSize: [70, 70],
     iconAnchor: [35, 45],
   });
@@ -194,7 +207,7 @@ const createUserLocationIcon = (): L.DivIcon => {
     `,
     iconSize: [20, 20],
     iconAnchor: [10, 10],
-    className: 'user-location-marker',
+    className: "user-location-marker",
   });
 };
 
@@ -222,7 +235,11 @@ function MapContainerComponent({
 
   const [isLocating, setIsLocating] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
-  const [userLocation, setUserLocation] = useState<{lat: number; lng: number; accuracy: number} | null>(null);
+  const [userLocation, setUserLocation] = useState<{
+    lat: number;
+    lng: number;
+    accuracy: number;
+  } | null>(null);
 
   // Mobile carousel state - viewport filtering
   const [eventsInView, setEventsInView] = useState<any[]>(events); // Events visible in current viewport
@@ -250,12 +267,15 @@ function MapContainerComponent({
 
     const bounds = map.getBounds();
     const visibleEvents = events.filter((event) => {
-      if (event.latitude == null || event.longitude == null ||
-          typeof event.latitude !== 'number' ||
-          typeof event.longitude !== 'number' ||
-          Number.isNaN(event.latitude) ||
-          Number.isNaN(event.longitude) ||
-          (event.latitude === 0 && event.longitude === 0)) {
+      if (
+        event.latitude == null ||
+        event.longitude == null ||
+        typeof event.latitude !== "number" ||
+        typeof event.longitude !== "number" ||
+        Number.isNaN(event.latitude) ||
+        Number.isNaN(event.longitude) ||
+        (event.latitude === 0 && event.longitude === 0)
+      ) {
         return false;
       }
       return bounds.contains([event.latitude, event.longitude]);
@@ -273,8 +293,8 @@ function MapContainerComponent({
 
       if (currentActiveId) {
         // Find the same event in the new visible events list
-        const foundIndex = visibleEvents.findIndex(e =>
-          (e.id || e.uid) === currentActiveId
+        const foundIndex = visibleEvents.findIndex(
+          (e) => (e.id || e.uid) === currentActiveId,
         );
         if (foundIndex !== -1) {
           newIndex = foundIndex; // Keep the same event selected
@@ -313,7 +333,7 @@ function MapContainerComponent({
     // Set max bounds to prevent world wrapping - limit to one world instance
     const maxBounds = L.latLngBounds(
       L.latLng(-85, -180), // Southwest corner
-      L.latLng(85, 180)    // Northeast corner
+      L.latLng(85, 180), // Northeast corner
     );
 
     const map = L.map(mapRef.current, {
@@ -341,7 +361,7 @@ function MapContainerComponent({
     });
 
     // Custom cluster click handler for proper zoom/spiderfy behavior
-    clusterGroup.on('clusterclick', (e: any) => {
+    clusterGroup.on("clusterclick", (e: any) => {
       const cluster = e.layer;
       const childMarkers = cluster.getAllChildMarkers();
       const bounds = cluster.getBounds();
@@ -353,10 +373,13 @@ function MapContainerComponent({
       // Calculate if zooming would actually help (bounds are too small to separate)
       const boundsSpan = Math.max(
         bounds.getNorth() - bounds.getSouth(),
-        bounds.getEast() - bounds.getWest()
+        bounds.getEast() - bounds.getWest(),
       );
       const zoomWouldHelp = boundsSpan > 0.001; // ~100m difference
-      const shouldSpiderfy = allSameLocation || currentZoom >= MAP_CONFIG.MAX_ZOOM - 2 || !zoomWouldHelp;
+      const shouldSpiderfy =
+        allSameLocation ||
+        currentZoom >= MAP_CONFIG.MAX_ZOOM - 2 ||
+        !zoomWouldHelp;
 
       if (shouldSpiderfy) {
         // Spiderfy immediately when:
@@ -375,7 +398,7 @@ function MapContainerComponent({
     });
 
     // Handle zoom end to auto-spiderfy clusters at max zoom
-    map.on('zoomend', () => {
+    map.on("zoomend", () => {
       if (map.getZoom() >= MAP_CONFIG.MAX_ZOOM - 1) {
         // At max zoom, spiderfy any visible clusters with same-location markers
         clusterGroup.eachLayer((layer: any) => {
@@ -385,8 +408,8 @@ function MapContainerComponent({
     });
 
     // Handle map move/zoom to update events in view for mobile carousel
-    map.on('moveend', debouncedUpdateEventsInView);
-    map.on('zoomend', debouncedUpdateEventsInView);
+    map.on("moveend", debouncedUpdateEventsInView);
+    map.on("zoomend", debouncedUpdateEventsInView);
 
     map.addLayer(clusterGroup);
     clusterGroupRef.current = clusterGroup;
@@ -399,8 +422,8 @@ function MapContainerComponent({
 
     // Cleanup on unmount
     return () => {
-      map.off('moveend', debouncedUpdateEventsInView);
-      map.off('zoomend', debouncedUpdateEventsInView);
+      map.off("moveend", debouncedUpdateEventsInView);
+      map.off("zoomend", debouncedUpdateEventsInView);
       if (updateEventsInViewTimeoutRef.current) {
         clearTimeout(updateEventsInViewTimeoutRef.current);
       }
@@ -452,18 +475,22 @@ function MapContainerComponent({
     events.forEach((event) => {
       // Safety check: skip events without valid coordinates
       // Also skip events with 0,0 coordinates (invalid/missing location data)
-      if (event.latitude == null || event.longitude == null ||
-          typeof event.latitude !== 'number' ||
-          typeof event.longitude !== 'number' ||
-          Number.isNaN(event.latitude) ||
-          Number.isNaN(event.longitude) ||
-          (event.latitude === 0 && event.longitude === 0)) {
+      if (
+        event.latitude == null ||
+        event.longitude == null ||
+        typeof event.latitude !== "number" ||
+        typeof event.longitude !== "number" ||
+        Number.isNaN(event.latitude) ||
+        Number.isNaN(event.longitude) ||
+        (event.latitude === 0 && event.longitude === 0)
+      ) {
         return;
       }
 
       // Check if event is featured
       const isFeatured = event.isFeaturedEvent || event.isFeatured || false;
-      const eventImage = event.eventLogo || event.hostLogo || DEFAULT_EVENT_IMAGE;
+      const eventImage =
+        event.eventLogo || event.hostLogo || DEFAULT_EVENT_IMAGE;
 
       const marker = L.marker([event.latitude, event.longitude], {
         icon: createCustomMarkerIcon(eventImage, isFeatured),
@@ -472,10 +499,11 @@ function MapContainerComponent({
       } as any);
 
       // Add rich tooltip to show event details on hover (matching Figma design)
-      const eventName = event.name || event.title || 'Event';
-      const eventLocation = event.eventLocation || event.location || event.venue?.name || '';
-      const eventDate = event.dateRange || event.startDate || '';
-      const eventTime = event.timeRange || '';
+      const eventName = event.name || event.title || "Event";
+      const eventLocation =
+        event.eventLocation || event.location || event.venue?.name || "";
+      const eventDate = event.dateRange || event.startDate || "";
+      const eventTime = event.timeRange || "";
       // Use same fallback logic as detail popup: eventLogo -> hostLogo -> default
 
       const tooltipContent = `
@@ -486,32 +514,44 @@ function MapContainerComponent({
           <div class="map-event-tooltip__content">
             <div class="map-event-tooltip__info">
               <p class="map-event-tooltip__title">${eventName}</p>
-              ${eventLocation ? `
+              ${
+                eventLocation
+                  ? `
                 <div class="map-event-tooltip__row">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#64748b"/>
                   </svg>
                   <span>${eventLocation}</span>
                 </div>
-              ` : ''}
+              `
+                  : ""
+              }
             </div>
             <div class="map-event-tooltip__meta">
-              ${eventDate ? `
+              ${
+                eventDate
+                  ? `
                 <div class="map-event-tooltip__row">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 4H18V2H16V4H8V2H6V4H5C3.89 4 3.01 4.9 3.01 6L3 20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4ZM19 20H5V10H19V20ZM19 8H5V6H19V8Z" fill="#64748b"/>
                   </svg>
                   <span>${eventDate}</span>
                 </div>
-              ` : ''}
-              ${eventTime ? `
+              `
+                  : ""
+              }
+              ${
+                eventTime
+                  ? `
                 <div class="map-event-tooltip__row">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12.5 7H11V13L16.25 16.15L17 14.92L12.5 12.25V7Z" fill="#64748b"/>
                   </svg>
                   <span>${eventTime}</span>
                 </div>
-              ` : ''}
+              `
+                  : ""
+              }
             </div>
           </div>
         </div>
@@ -520,9 +560,9 @@ function MapContainerComponent({
       // Only show tooltip on desktop (mobile has carousel cards)
       if (!isMobile) {
         marker.bindTooltip(tooltipContent, {
-          direction: 'right',
+          direction: "right",
           offset: [20, 0],
-          className: 'map-marker-tooltip-rich',
+          className: "map-marker-tooltip-rich",
           permanent: false,
           interactive: false,
         });
@@ -535,7 +575,7 @@ function MapContainerComponent({
       // Handle marker click
       // On mobile: only sync carousel (don't open detail - user clicks card instead)
       // On desktop: open event details modal
-      marker.on('click', () => {
+      marker.on("click", () => {
         if (isMobile) {
           // On mobile, only sync carousel to this event (don't open detail)
           // First, update events in view to include clicked marker's area
@@ -543,13 +583,16 @@ function MapContainerComponent({
           if (map) {
             // Get current bounds to check if event is in view
             const bounds = map.getBounds();
-            const isEventInCurrentView = bounds.contains([event.latitude, event.longitude]);
+            const isEventInCurrentView = bounds.contains([
+              event.latitude,
+              event.longitude,
+            ]);
 
             if (isEventInCurrentView) {
               // Event is in view, find its index in eventsInView (using ref to avoid stale closure)
               const currentEventsInView = eventsInViewRef.current;
-              const eventIndex = currentEventsInView.findIndex(e =>
-                (e.id || e.uid) === (event.id || event.uid)
+              const eventIndex = currentEventsInView.findIndex(
+                (e) => (e.id || e.uid) === (event.id || event.uid),
               );
               if (eventIndex !== -1) {
                 isCarouselChangeRef.current = true;
@@ -558,13 +601,20 @@ function MapContainerComponent({
                 setActiveCarouselIndex(eventIndex);
                 // Scroll carousel to show this card
                 setTimeout(() => {
-                  const track = document.querySelector('.map-mobile-carousel__track');
-                  const card = track?.querySelector(`[data-index="${eventIndex}"]`) as HTMLElement;
+                  const track = document.querySelector(
+                    ".map-mobile-carousel__track",
+                  );
+                  const card = track?.querySelector(
+                    `[data-index="${eventIndex}"]`,
+                  ) as HTMLElement;
                   if (track && card) {
                     const trackRect = track.getBoundingClientRect();
                     const cardRect = card.getBoundingClientRect();
-                    const scrollLeft = card.offsetLeft - (trackRect.width / 2) + (cardRect.width / 2);
-                    track.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+                    const scrollLeft =
+                      card.offsetLeft -
+                      trackRect.width / 2 +
+                      cardRect.width / 2;
+                    track.scrollTo({ left: scrollLeft, behavior: "smooth" });
                   }
                 }, 0);
               }
@@ -583,7 +633,10 @@ function MapContainerComponent({
     const eventsChanged = events.length !== previousEventsLengthRef.current;
     previousEventsLengthRef.current = events.length;
 
-    if (events.length > 0 && (!hasInitializedBoundsRef.current || eventsChanged)) {
+    if (
+      events.length > 0 &&
+      (!hasInitializedBoundsRef.current || eventsChanged)
+    ) {
       hasInitializedBoundsRef.current = true;
 
       // Initialize events in view (with small delay to allow map to settle)
@@ -624,17 +677,20 @@ function MapContainerComponent({
     // Function to highlight the marker with retry logic
     const highlightMarker = (retryCount = 0) => {
       // Remove highlight from all markers
-      document.querySelectorAll('.map-marker-active').forEach((el) =>
-        el.classList.remove('map-marker-active')
-      );
+      document
+        .querySelectorAll(".map-marker-active")
+        .forEach((el) => el.classList.remove("map-marker-active"));
 
       // Remove highlight from all clusters
-      document.querySelectorAll('.cluster-active').forEach((el) =>
-        el.classList.remove('cluster-active')
-      );
+      document
+        .querySelectorAll(".cluster-active")
+        .forEach((el) => el.classList.remove("cluster-active"));
 
       // Get the active marker
-      const eventId = activeEvent.id || activeEvent.uid || `event-${events.indexOf(activeEvent)}`;
+      const eventId =
+        activeEvent.id ||
+        activeEvent.uid ||
+        `event-${events.indexOf(activeEvent)}`;
       const activeMarker = markersMapRef.current.get(eventId);
 
       if (!activeMarker) return;
@@ -648,14 +704,14 @@ function MapContainerComponent({
         // Marker is directly visible - highlight it
         const element = activeMarker.getElement();
         if (element) {
-          element.classList.add('map-marker-active');
+          element.classList.add("map-marker-active");
           highlighted = true;
         }
       } else if (visibleParent) {
         // Marker is inside a cluster - highlight the cluster instead
         const clusterElement = (visibleParent as any).getElement?.();
         if (clusterElement) {
-          clusterElement.classList.add('cluster-active');
+          clusterElement.classList.add("cluster-active");
           highlighted = true;
         }
       }
@@ -689,11 +745,11 @@ function MapContainerComponent({
       // Add accuracy circle - subtle and capped
       L.circle([userLocation.lat, userLocation.lng], {
         radius: displayRadius,
-        color: '#3b82f6',
-        fillColor: '#3b82f6',
+        color: "#3b82f6",
+        fillColor: "#3b82f6",
         fillOpacity: 0.08,
         weight: 1.5,
-        dashArray: '4, 4',
+        dashArray: "4, 4",
       }).addTo(userLocationLayer);
     }
 
@@ -702,15 +758,16 @@ function MapContainerComponent({
       icon: createUserLocationIcon(),
     });
 
-    const accuracyText = userLocation.accuracy > 1000
-      ? `±${(userLocation.accuracy / 1000).toFixed(1)}km`
-      : `±${Math.round(userLocation.accuracy)}m`;
+    const accuracyText =
+      userLocation.accuracy > 1000
+        ? `±${(userLocation.accuracy / 1000).toFixed(1)}km`
+        : `±${Math.round(userLocation.accuracy)}m`;
 
     userMarker.bindPopup(`
       <div class="map-popup-content">
         <h4 style="font-weight: 600; color: #0f172a; margin-bottom: 8px;">Your Location</h4>
         <p style="font-size: 13px; color: #64748b; margin: 4px 0;">Accuracy: ${accuracyText}</p>
-        ${userLocation.accuracy > 500 ? '<p style="font-size: 12px; color: #f59e0b; margin: 4px 0;">⚠️ Low accuracy - try on mobile for better results</p>' : ''}
+        ${userLocation.accuracy > 500 ? '<p style="font-size: 12px; color: #f59e0b; margin: 4px 0;">⚠️ Low accuracy - try on mobile for better results</p>' : ""}
       </div>
     `);
 
@@ -726,7 +783,7 @@ function MapContainerComponent({
     onEventsAroundMeClick?.();
 
     if (!navigator.geolocation) {
-      setLocationError('Geolocation is not supported by your browser');
+      setLocationError("Geolocation is not supported by your browser");
       return;
     }
 
@@ -766,16 +823,17 @@ function MapContainerComponent({
         }
       },
       (error) => {
-        let errorMessage = 'Unable to retrieve your location';
+        let errorMessage = "Unable to retrieve your location";
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            errorMessage = 'Location access denied. Please enable location in browser settings.';
+            errorMessage =
+              "Location access denied. Please enable location in browser settings.";
             break;
           case error.POSITION_UNAVAILABLE:
-            errorMessage = 'Location unavailable';
+            errorMessage = "Location unavailable";
             break;
           case error.TIMEOUT:
-            errorMessage = 'Location request timed out';
+            errorMessage = "Location request timed out";
             break;
         }
         setLocationError(errorMessage);
@@ -786,7 +844,7 @@ function MapContainerComponent({
         enableHighAccuracy: true,
         timeout: 15000,
         maximumAge: 0,
-      }
+      },
     );
 
     // Stop watching after 5 seconds regardless
@@ -808,13 +866,14 @@ function MapContainerComponent({
     }
     setActiveCarouselIndex(index);
     // Scroll the carousel to show the selected card
-    const track = document.querySelector('.map-mobile-carousel__track');
+    const track = document.querySelector(".map-mobile-carousel__track");
     const card = track?.querySelector(`[data-index="${index}"]`) as HTMLElement;
     if (track && card) {
       const trackRect = track.getBoundingClientRect();
       const cardRect = card.getBoundingClientRect();
-      const scrollLeft = card.offsetLeft - (trackRect.width / 2) + (cardRect.width / 2);
-      track.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+      const scrollLeft =
+        card.offsetLeft - trackRect.width / 2 + cardRect.width / 2;
+      track.scrollTo({ left: scrollLeft, behavior: "smooth" });
     }
   }, []);
 
@@ -831,7 +890,7 @@ function MapContainerComponent({
   useEffect(() => {
     if (!isMobile) return;
 
-    const track = document.querySelector('.map-mobile-carousel__track');
+    const track = document.querySelector(".map-mobile-carousel__track");
     if (!track) return;
 
     let scrollTimeout: NodeJS.Timeout;
@@ -844,7 +903,7 @@ function MapContainerComponent({
         const trackRect = track.getBoundingClientRect();
         const centerX = trackRect.left + trackRect.width / 2;
 
-        const cards = track.querySelectorAll('.map-mobile-carousel__card');
+        const cards = track.querySelectorAll(".map-mobile-carousel__card");
         let closestIndex = 0;
         let closestDistance = Infinity;
 
@@ -873,10 +932,10 @@ function MapContainerComponent({
       }, 150); // Increased debounce for better scroll settling
     };
 
-    track.addEventListener('scroll', handleScroll, { passive: true });
+    track.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      track.removeEventListener('scroll', handleScroll);
+      track.removeEventListener("scroll", handleScroll);
       clearTimeout(scrollTimeout);
     };
   }, [isMobile]); // Removed activeCarouselIndex dependency to prevent effect re-runs
@@ -915,8 +974,17 @@ function MapContainerComponent({
             type="button"
             aria-label="Zoom in"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0f172a"/>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"
+                fill="#0f172a"
+              />
             </svg>
           </button>
           <button
@@ -926,8 +994,14 @@ function MapContainerComponent({
             type="button"
             aria-label="Zoom out"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H5V11H19V13Z" fill="#0f172a"/>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M19 13H5V11H19V13Z" fill="#0f172a" />
             </svg>
           </button>
         </div>
@@ -936,8 +1010,12 @@ function MapContainerComponent({
       {/* Desktop Events Count Capsule - Dynamic count based on viewport */}
       {!isMobile && eventsInView.length > 0 && (
         <div className="map-events-count-capsule">
-          <span className="map-events-count-capsule__number">{eventsInView.length}</span>
-          <span className="map-events-count-capsule__text">&nbsp;/ {events.length} events in view</span>
+          <span className="map-events-count-capsule__number">
+            {eventsInView.length}
+          </span>
+          <span className="map-events-count-capsule__text">
+            &nbsp;/ {events.length} events in view
+          </span>
         </div>
       )}
 
@@ -953,17 +1031,24 @@ function MapContainerComponent({
           {isLocating ? (
             <div className="map-locate-spinner" />
           ) : (
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 8C9.79 8 8 9.79 8 12C8 14.21 9.79 16 12 16C14.21 16 16 14.21 16 12C16 9.79 14.21 8 12 8ZM20.94 11C20.48 6.83 17.17 3.52 13 3.06V1H11V3.06C6.83 3.52 3.52 6.83 3.06 11H1V13H3.06C3.52 17.17 6.83 20.48 11 20.94V23H13V20.94C17.17 20.48 20.48 17.17 20.94 13H23V11H20.94ZM12 19C8.13 19 5 15.87 5 12C5 8.13 8.13 5 12 5C15.87 5 19 8.13 19 12C19 15.87 15.87 19 12 19Z" fill="#156ff7"/>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 8C9.79 8 8 9.79 8 12C8 14.21 9.79 16 12 16C14.21 16 16 14.21 16 12C16 9.79 14.21 8 12 8ZM20.94 11C20.48 6.83 17.17 3.52 13 3.06V1H11V3.06C6.83 3.52 3.52 6.83 3.06 11H1V13H3.06C3.52 17.17 6.83 20.48 11 20.94V23H13V20.94C17.17 20.48 20.48 17.17 20.94 13H23V11H20.94ZM12 19C8.13 19 5 15.87 5 12C5 8.13 8.13 5 12 5C15.87 5 19 8.13 19 12C19 15.87 15.87 19 12 19Z"
+                fill="#156ff7"
+              />
             </svg>
           )}
           <span className="map-locate-text">Events around me</span>
         </button>
 
         {locationError && (
-          <div className="map-location-error">
-            {locationError}
-          </div>
+          <div className="map-location-error">{locationError}</div>
         )}
       </div>
 
@@ -972,24 +1057,34 @@ function MapContainerComponent({
         <div className="map-mobile-carousel">
           <div className="map-mobile-carousel__header">
             <div className="map-mobile-carousel__count">
-              <div className="map-mobile-carousel__count-highlight">{eventsInView.length}</div>
-              <div className="map-mobile-carousel__count-text">&nbsp;/ {events.length} events in view</div>
+              <div className="map-mobile-carousel__count-highlight">
+                {eventsInView.length}
+              </div>
+              <div className="map-mobile-carousel__count-text">
+                &nbsp;/ {events.length} events in view
+              </div>
             </div>
           </div>
           <div className="map-mobile-carousel__track">
             {eventsInView.map((event, index) => {
-              const eventImage = event.eventLogo || event.hostLogo || DEFAULT_EVENT_IMAGE;
-              const eventName = event.name || event.title || 'Event';
-              const eventLocation = event.eventLocation || event.location || event.venue?.name || '';
-              const eventDate = event.dateRange || event.startDate || '';
-              const eventTime = event.timeRange || '';
+              const eventImage =
+                event.eventLogo || event.hostLogo || DEFAULT_EVENT_IMAGE;
+              const eventName = event.name || event.title || "Event";
+              const eventLocation =
+                event.eventLocation ||
+                event.location ||
+                event.venue?.name ||
+                "";
+              const eventDate = event.dateRange || event.startDate || "";
+              const eventTime = event.timeRange || "";
               const isActive = index === activeCarouselIndex;
-              const isFeatured = event.isFeaturedEvent || event.isFeatured || false;
+              const isFeatured =
+                event.isFeaturedEvent || event.isFeatured || false;
 
               return (
                 <button
                   key={event.id || event.uid || index}
-                  className={`map-mobile-carousel__card ${isActive ? 'map-mobile-carousel__card--active' : ''}`}
+                  className={`map-mobile-carousel__card ${isActive ? "map-mobile-carousel__card--active" : ""}`}
                   onClick={() => handleCarouselEventClick(event)}
                   type="button"
                   data-index={index}
@@ -1009,15 +1104,27 @@ function MapContainerComponent({
                         src={eventImage}
                         alt={eventName}
                         className="map-mobile-carousel__image"
-                        onError={(e) => { (e.target as HTMLImageElement).src = DEFAULT_EVENT_IMAGE; }}
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src =
+                            DEFAULT_EVENT_IMAGE;
+                        }}
                       />
                     </div>
                     <div className="map-mobile-carousel__info">
                       <p className="map-mobile-carousel__title">{eventName}</p>
                       {eventLocation && (
                         <div className="map-mobile-carousel__row">
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#64748b"/>
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z"
+                              fill="#64748b"
+                            />
                           </svg>
                           <span>{eventLocation}</span>
                         </div>
@@ -1025,16 +1132,34 @@ function MapContainerComponent({
                       <div className="map-mobile-carousel__meta">
                         {eventDate && (
                           <div className="map-mobile-carousel__row">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M19 4H18V2H16V4H8V2H6V4H5C3.89 4 3.01 4.9 3.01 6L3 20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4ZM19 20H5V10H19V20ZM19 8H5V6H19V8Z" fill="#64748b"/>
+                            <svg
+                              width="14"
+                              height="14"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M19 4H18V2H16V4H8V2H6V4H5C3.89 4 3.01 4.9 3.01 6L3 20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4ZM19 20H5V10H19V20ZM19 8H5V6H19V8Z"
+                                fill="#64748b"
+                              />
                             </svg>
                             <span>{eventDate}</span>
                           </div>
                         )}
                         {eventTime && (
                           <div className="map-mobile-carousel__row">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12.5 7H11V13L16.25 16.15L17 14.92L12.5 12.25V7Z" fill="#64748b"/>
+                            <svg
+                              width="14"
+                              height="14"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12.5 7H11V13L16.25 16.15L17 14.92L12.5 12.25V7Z"
+                                fill="#64748b"
+                              />
                             </svg>
                             <span>{eventTime}</span>
                           </div>
@@ -1046,7 +1171,6 @@ function MapContainerComponent({
               );
             })}
           </div>
-
         </div>
       )}
 
