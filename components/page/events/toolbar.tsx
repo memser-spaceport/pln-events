@@ -32,7 +32,7 @@ const Toolbar = (props: any) => {
   const tabItems = [
     {
       title: "program",
-      name: "Program",
+      name: "Calendar",
       activeImg: "/icons/clock-white.svg",
       inActiveImg: "/icons/clock.svg",
     },
@@ -61,37 +61,37 @@ const Toolbar = (props: any) => {
   const currentDate = new Date();
   const currentMonthIndex = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
-  
+
   const yearFromUrl = searchParams?.year ? parseInt(searchParams.year, 10) : currentYear;
 
-  const groupedEvents = groupByStartDate(events); 
-  
+  const groupedEvents = groupByStartDate(events);
+
   const getInitialMonth = () => {
     const availableMonths = Object.keys(groupedEvents);
 
     if (availableMonths.length === 0) return abbreviatedMonthNames[currentMonthIndex];
-    
+
 
     const sortedAvailable = availableMonths.sort(
       (a, b) => abbreviatedMonthNames.indexOf(a) - abbreviatedMonthNames.indexOf(b)
     );
 
-    
+
     if (yearFromUrl === currentYear) {
       if (availableMonths.includes(abbreviatedMonthNames[currentMonthIndex])) {
         return abbreviatedMonthNames[currentMonthIndex];
       }
-      
-      
+
+
       const futureMonths = sortedAvailable.filter(
         m => abbreviatedMonthNames.indexOf(m) > currentMonthIndex
       );
       if (futureMonths.length > 0) return futureMonths[0];
 
-       
+
        return sortedAvailable[0];
     }
-    
+
     return sortedAvailable[0];
   };
 
@@ -103,8 +103,8 @@ const Toolbar = (props: any) => {
       setSelectedYear(yearFromUrl); // Sync selectedYear state with URL prop
       prevYearRef.current = yearFromUrl;
     }
-  }, [yearFromUrl, events, groupedEvents]); 
-  
+  }, [yearFromUrl, events, groupedEvents]);
+
   const [selectedMonth, setSelectedMonth] = useState(getInitialMonth());
   const [selectedYear, setSelectedYear] = useState(yearFromUrl);
   const totalEventCount = events.filter((event: any) => !event.isHidden).length;
