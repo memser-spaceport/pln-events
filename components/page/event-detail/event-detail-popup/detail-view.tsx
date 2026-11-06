@@ -36,7 +36,11 @@ const DetailView = (props: any) => {
     if (hash) {
       const hashValue: string = hash;
       const slug = hashValue.split("#")[1];
-      const foundEvent = [...events].findIndex((e) => e.slug === slug);
+      // An event's id is unique; its slug (stringToSlug of the name) isn't, so a link that must open one event
+      // (LabOS Home's upcoming events) uses the id. Slug links keep working.
+      const byId = [...events].findIndex((e) => e.id === slug);
+      const foundEvent =
+        byId >= 0 ? byId : [...events].findIndex((e) => e.slug === slug);
       if (foundEvent >= 0 && slug) {
         setEvent(events[foundEvent]);
         setIsOpen(true);
