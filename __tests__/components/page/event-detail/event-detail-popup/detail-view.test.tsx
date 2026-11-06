@@ -42,7 +42,7 @@ jest.mock('@/components/page/event-detail/event-detail-popup/event-access-option
 
 jest.mock('@/components/page/event-detail/event-detail-popup/primary-event-details', () => {
   return function MockPrimaryEventDetails({ event }: { event: any }) {
-    return <div data-testid="primary-event-details">Primary Event Details Component</div>;
+    return <div data-testid="primary-event-details" data-event-id={event?.id}>Primary Event Details Component</div>;
   };
 });
 
@@ -412,6 +412,27 @@ describe('DetailView Component', () => {
       // The hash parsing logic splits on '#' and takes the second part, so '#event-1#extra' becomes 'event-1'
       // This matches the event slug 'event-1', so modal should be open
       expect(screen.getByTestId('modal')).toBeInTheDocument();
+    });
+
+    it('opens the event whose id matches the hash, even when its slug is shared', () => {
+      const propsWithDuplicateSlugs = {
+        events: [
+          { slug: 'event-1', name: 'Event 1', id: 'JdkJYigZLBTL' },
+          { slug: 'event-1', name: 'Event 1 Again', id: 'G7PqVYP7jsVr' },
+        ],
+      };
+
+      mockUseHash.mockReturnValue('#G7PqVYP7jsVr');
+      render(<DetailView {...propsWithDuplicateSlugs} />);
+
+      expect(screen.getByTestId('primary-event-details')).toHaveAttribute('data-event-id', 'G7PqVYP7jsVr');
+    });
+
+    it('still opens an event by its slug', () => {
+      mockUseHash.mockReturnValue('#event-2');
+      render(<DetailView {...defaultProps} />);
+
+      expect(screen.getByTestId('primary-event-details')).toHaveAttribute('data-event-id', '2');
     });
 
     it('handles events array with duplicate slugs', () => {
