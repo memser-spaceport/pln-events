@@ -375,6 +375,8 @@ export const TYPE_CONSTANTS = {
   HYBRID: "HYBRID",
 };
 
+export const FOCUS_AREA_TAG_CODES = ["FA1", "FA2", "FA3", "FA4"];
+
 export const DEFAULT_TAGS: any = {
   "Industry Event": ["#FF7A00", "#FFEDD5", "#FFFAF5"],
   "PL Event": ["#FFB800", "#FEF3C7", "#FFFCF5"],

@@ -1,5 +1,5 @@
 import moment, { Moment } from "moment-timezone";
-import { COLOR_PAIRS, DEFAULT_TAGS, EVENT_YEARS, URL_QUERY_VALUE_SEPARATOR } from "./constants";
+import { COLOR_PAIRS, DEFAULT_TAGS, EVENT_YEARS, FOCUS_AREA_TAG_CODES, URL_QUERY_VALUE_SEPARATOR } from "./constants";
 
 export function stringToSlug(str: string) {
     str = str.replace(/^\s+|\s+$/g, ''); 
@@ -258,10 +258,11 @@ const generateUniqueObjects = (events: any) => {
     });
 
     tags.forEach((tag: any) => {
-      if (!uniqueNames.tags.has(tag)) {
-        uniqueNames.tags.add(tag);
-        filterValues.tags.push({ name: tag, label: tag });
+      if (FOCUS_AREA_TAG_CODES.includes(tag) || uniqueNames.tags.has(tag)) {
+        return;
       }
+      uniqueNames.tags.add(tag);
+      filterValues.tags.push({ name: tag, label: tag });
     });
   });
 
