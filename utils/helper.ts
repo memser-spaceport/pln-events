@@ -1,5 +1,5 @@
 import moment, { Moment } from "moment-timezone";
-import { COLOR_PAIRS, DEFAULT_TAGS, EVENT_YEARS, FOCUS_AREA_TAG_CODES, URL_QUERY_VALUE_SEPARATOR } from "./constants";
+import { COLOR_PAIRS, DEFAULT_TAGS, EVENT_YEARS, FOCUS_AREAS, FOCUS_AREA_TAG_CODES, URL_QUERY_VALUE_SEPARATOR } from "./constants";
 
 export function stringToSlug(str: string) {
     str = str.replace(/^\s+|\s+$/g, ''); 
@@ -172,6 +172,10 @@ export const getFilterCount = (selectedFilterValues: any) => {
     count++;
   }
 
+  if (selectedFilterValues?.focusArea?.length > 0) {
+    count++;
+  }
+
   return count;
 };
 
@@ -200,6 +204,7 @@ const generateUniqueObjects = (events: any) => {
       { name: "INVITE", label: "Invite Only" },
       { name: "PAID", label: "Paid" },
     ],
+    focusArea: FOCUS_AREAS,
     tags: [],
     modes: [
       { name: "All", label: "All" },
@@ -319,9 +324,22 @@ const filterUniqueObjects = (initialValues: any, rawValues: any, queryParams: an
     );
   }
 
+  if (queryParams.focusArea) {
+    const focusAreaValues = queryParams.focusArea.split(URL_QUERY_VALUE_SEPARATOR);
+    filteredObjects.focusArea = rawFilters.focusArea.filter((item: any) =>
+      focusAreaValues.includes(item.name)
+    );
+  }
+
   if (queryParams.tags) {
     const tagValues = queryParams.tags.split(URL_QUERY_VALUE_SEPARATOR);
     filteredObjects.tags = rawFilters.tags.filter((item: any) => tagValues.includes(item.name));
+    const focusFromTags = tagValues.filter((tag: string) => FOCUS_AREA_TAG_CODES.includes(tag));
+    if (focusFromTags.length > 0) {
+      const selected = new Set((filteredObjects.focusArea ?? []).map((item: any) => item.name ?? item));
+      focusFromTags.forEach((code: string) => selected.add(code));
+      filteredObjects.focusArea = rawFilters.focusArea.filter((item: any) => selected.has(item.name));
+    }
   }
   if (queryParams.modes) {
     if (queryParams.modes === "All") {
@@ -343,6 +361,7 @@ const filterUniqueObjects = (initialValues: any, rawValues: any, queryParams: an
   filteredObjects.location = filteredObjects.location.map((item: any) => item.name);
   filteredObjects.allHost = filteredObjects.allHost.map((item: any) => item.name);
   filteredObjects.accessOption = filteredObjects.accessOption.map((item: any) => item.name);
+  filteredObjects.focusArea = filteredObjects.focusArea.map((item: any) => item.name);
   filteredObjects.tags = filteredObjects.tags.map((item: any) => item.name);
   filteredObjects.modes = filteredObjects.modes.map((item: any) => item.name);
   return filteredObjects;
@@ -357,6 +376,7 @@ export const getFilterValuesFromEvents = (events: any, queryParams = {}) => {
     location: [],
     allHost: [],
     accessOption: [],
+    focusArea: [],
     tags: [],
     modes: [
       {
@@ -408,6 +428,14 @@ export const getFilteredEvents = (events: any, queryParams: any, type?: string) 
     if (queryParams.accessOption) {
       const accessOptionsValues = queryParams.accessOption.split(URL_QUERY_VALUE_SEPARATOR);
       if (!accessOptionsValues.includes(event.accessOption)) {
+        return false;
+      }
+    }
+
+    if (queryParams.focusArea) {
+      const focusAreaValues = queryParams.focusArea.split(URL_QUERY_VALUE_SEPARATOR);
+      const hasFocusArea = focusAreaValues.some((value: string) => event.tags?.includes(value));
+      if (!hasFocusArea) {
         return false;
       }
     }

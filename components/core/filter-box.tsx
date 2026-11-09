@@ -89,6 +89,17 @@ const FilterBox = (props: any) => {
       iconUrl: "/icons/accesstype.svg",
     },
     {
+      name: "Focus Areas",
+      type: "multi-select",
+      items: rawFilters.focusArea,
+      selectedItems: selectedFilterValues.focusArea,
+      placeholder: "Filter by Focus Area",
+      dropdownImgUrl: "/icons/down_arrow_filled.svg",
+      searchIcon: "/icons/search.svg",
+      identifierId: "focusArea",
+      iconUrl: "/icons/pl-topics-icon.svg",
+    },
+    {
       name: "Gatherings",
       type: "single-select",
       items: rawFilters.location,

@@ -4,6 +4,7 @@ import Agenda from "../agenda";
 import EventType from "./event-type";
 import EventAccessOption from "./event-access-option";
 import LocationAndDate from "./location-and-date";
+import { FOCUS_AREAS } from "@/utils/constants";
 
 export default function PrimaryEventDetails({ event }: { event: any }) {
   const eventLogo = event?.eventLogo
@@ -12,6 +13,9 @@ export default function PrimaryEventDetails({ event }: { event: any }) {
 
   
   const eventTags = event?.tags ?? [];
+  const focusAreaLabels = eventTags
+    .map((tag: string) => FOCUS_AREAS.find((area) => area.name === tag)?.label)
+    .filter(Boolean);
   const sessions = event?.sessions ?? [];
 
   return (
@@ -75,6 +79,12 @@ export default function PrimaryEventDetails({ event }: { event: any }) {
           {eventTags.length > 0 && (
             <div className="event__tags">
               <Tags tags={eventTags} noOftagsToShow={eventTags.length} />
+            </div>
+          )}
+          {focusAreaLabels.length > 0 && (
+            <div className="event__focus-areas">
+              <span className="event__focus-areas__label">Focus Areas</span>
+              <Tags tags={focusAreaLabels} noOftagsToShow={focusAreaLabels.length} />
             </div>
           )}
         </div>
@@ -193,6 +203,20 @@ export default function PrimaryEventDetails({ event }: { event: any }) {
           display: flex;
           flex-direction: column;
           gap: 10px;
+        }
+
+        .event__focus-areas {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-top: 8px;
+        }
+
+        .event__focus-areas__label {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 20px;
+          color: #0f172a;
         }
 
         .primary-event-details-content-host {
