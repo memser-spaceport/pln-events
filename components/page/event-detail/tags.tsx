@@ -1,11 +1,13 @@
 import React from "react";
 import { stringToUniqueInteger } from "@/utils/helper";
 import HashIcon from "@/components/ui/hash-icon";
-import { COLOR_PAIRS, DEFAULT_TAGS } from "@/utils/constants";
+import { COLOR_PAIRS, DEFAULT_TAGS, FOCUS_AREA_TAG_CODES } from "@/utils/constants";
 
 const Tags = (props: any) => {
   const noOftagsToShow = props?.noOftagsToShow;
-  const tags = props?.tags;
+  const tags = props?.tags?.filter(
+    (tag: string) => !(FOCUS_AREA_TAG_CODES ?? []).includes(tag)
+  );
 
   const getTagColor = (tag: string) => {
     const colors = DEFAULT_TAGS[tag] || COLOR_PAIRS[stringToUniqueInteger(tag)];
