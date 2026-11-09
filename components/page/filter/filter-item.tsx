@@ -6,11 +6,23 @@ import MultiSelect from "@/components/ui/multi-select";
 import OpenMultiSelect from "@/components/ui/open-multi-select";
 import TagItem from "@/components/ui/tag-item";
 import PlToggle from "@/components/ui/pl-toggle";
-import { URL_QUERY_VALUE_SEPARATOR } from "@/utils/constants";
+import { FOCUS_AREA_TAG_CODES, URL_QUERY_VALUE_SEPARATOR } from "@/utils/constants";
 import { getQueryParams } from "@/utils/helper";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import PlSingleSelect from "@/components/ui/pl-single-select";
+
+function stripFocusAreaTags(params: Record<string, string>) {
+  if (!params.tags) return;
+  const remaining = params.tags
+    .split(URL_QUERY_VALUE_SEPARATOR)
+    .filter((tag) => !FOCUS_AREA_TAG_CODES.includes(tag));
+  if (remaining.length > 0) {
+    params.tags = remaining.join(URL_QUERY_VALUE_SEPARATOR);
+  } else {
+    delete params.tags;
+  }
+}
 
 function FilterItem(props: any) {
   const router = useRouter();
@@ -74,6 +86,9 @@ function FilterItem(props: any) {
       delete newSearchParams["host"];
     } else if (key === "tags") {
       delete newSearchParams["tags"];
+    } else if (key === "focusArea") {
+      delete newSearchParams["focusArea"];
+      stripFocusAreaTags(newSearchParams);
     }
     const pathname = window.location.pathname;
     const query = getQueryParams(newSearchParams);
@@ -172,6 +187,20 @@ function FilterItem(props: any) {
       } else {
         delete newSearchParams["accessOption"];
       }
+    }
+    else if (key === "focusArea") {
+      let selectedFocusAreas = [...(selectedFilterValues.focusArea ?? [])];
+      if (selectedFocusAreas.includes(value)) {
+        selectedFocusAreas = selectedFocusAreas.filter((option: any) => option !== value);
+      } else {
+        selectedFocusAreas.push(value);
+      }
+      if (selectedFocusAreas.length > 0) {
+        newSearchParams["focusArea"] = selectedFocusAreas.join(URL_QUERY_VALUE_SEPARATOR);
+      } else {
+        delete newSearchParams["focusArea"];
+      }
+      stripFocusAreaTags(newSearchParams);
     }
     else if (key === "location") {
       let selectedLocation = [...selectedFilterValues.location];
