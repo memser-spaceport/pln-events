@@ -189,7 +189,10 @@ function FilterItem(props: any) {
       }
     }
     else if (key === "focusArea") {
-      let selectedFocusAreas = [...(selectedFilterValues.focusArea ?? [])];
+      const currentFocusArea = new URLSearchParams(window.location.search).get("focusArea");
+      let selectedFocusAreas = currentFocusArea
+        ? currentFocusArea.split(URL_QUERY_VALUE_SEPARATOR)
+        : [...(selectedFilterValues.focusArea ?? [])];
       if (selectedFocusAreas.includes(value)) {
         selectedFocusAreas = selectedFocusAreas.filter((option: any) => option !== value);
       } else {
