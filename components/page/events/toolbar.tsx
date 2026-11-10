@@ -31,7 +31,7 @@ const Toolbar = (props: any) => {
 
   const tabItems = [
     {
-      title: "program",
+      title: "calendar",
       name: "Calendar",
       activeImg: "/icons/clock-white.svg",
       inActiveImg: "/icons/clock.svg",

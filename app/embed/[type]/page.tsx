@@ -133,7 +133,7 @@ export default async function Page({ searchParams, params }: any) {
                   viewType={type}
                 />
               )}
-              {type === "program" && (
+              {type === "calendar" && (
                 <ProgramView
                   key={[
                     searchParams.focusArea,

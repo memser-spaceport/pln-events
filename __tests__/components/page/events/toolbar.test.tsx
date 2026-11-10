@@ -185,7 +185,7 @@ describe('Toolbar Component', () => {
     it('renders program and list tabs', () => {
       render(<Toolbar {...defaultProps} />);
       
-      const programTab = screen.getByTestId('tab-program');
+      const programTab = screen.getByTestId('tab-calendar');
       const listTab = screen.getByTestId('tab-list');
       
       expect(programTab).toBeInTheDocument();
@@ -540,7 +540,7 @@ describe('Toolbar Component', () => {
       
       render(<Toolbar {...defaultProps} />);
       
-      const programTab = screen.getByTestId('tab-program');
+      const programTab = screen.getByTestId('tab-calendar');
       const listTab = screen.getByTestId('tab-list');
       
       expect(programTab).toBeInTheDocument();
