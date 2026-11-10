@@ -3,14 +3,11 @@
 import useHeaderAnalytics from "@/analytics/header.analytics";
 
 function AppHeader() {
-  const { onHostEventClicked, onDirectoryIrlClicked } = useHeaderAnalytics();
+  const { onHostEventClicked } = useHeaderAnalytics();
   const onSubmitClicked = () => {
     onHostEventClicked();
   };
 
-  const onViewDirectoryIrlClick = () => {
-    onDirectoryIrlClicked();
-  }
   return (
     <>
       <div className="ah__contianer">
@@ -25,22 +22,6 @@ function AppHeader() {
             </div>
           </div>
           <div className="ah__actions">
-            <button id="pl-events-feedback">
-              <img
-                src="/icons/feedback.svg"
-                alt="Feedback"
-                className="feedback__img"
-              />
-            </button>
-            <a className="attendees-button" href={process.env.NEXT_PUBLIC_IRL_URL} target="_blank" rel="noopener noreferrer">
-              <img
-                src="/icons/avatar-group.svg"
-                alt="Attendees"
-                className="attendees__img"
-                onClick={onViewDirectoryIrlClick}
-              />
-              <span className="attendees-text">View Attendees</span>
-            </a>
             <a
               className="ah__btn"
               onClick={onSubmitClicked}

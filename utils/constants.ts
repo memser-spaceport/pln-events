@@ -375,6 +375,15 @@ export const TYPE_CONSTANTS = {
   HYBRID: "HYBRID",
 };
 
+export const FOCUS_AREAS = [
+  { name: "FA1", label: "Digital Human Rights" },
+  { name: "FA2", label: "Economies & Governance" },
+  { name: "FA3", label: "AI & Robotics" },
+  { name: "FA4", label: "Neurotech" },
+];
+
+export const FOCUS_AREA_TAG_CODES = FOCUS_AREAS.map((area) => area.name);
+
 export const DEFAULT_TAGS: any = {
   "Industry Event": ["#FF7A00", "#FFEDD5", "#FFFAF5"],
   "PL Event": ["#FFB800", "#FEF3C7", "#FFFCF5"],

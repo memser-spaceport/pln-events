@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ScheduleXCalendar, useNextCalendarApp } from "@schedule-x/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
@@ -101,6 +101,7 @@ const ProgramView = (props: IProgramView) => {
   const analytics = useSchedulePageAnalytics();
   const router = useRouter();
   const [viewType, setViewType] = useState(initialView || "month-grid");
+  const skipMountRangeUpdate = useRef(true);
 
   const calendarApp = useNextCalendarApp({
     views: [createViewMonthAgenda(), createViewMonthGrid()],
@@ -135,6 +136,10 @@ const ProgramView = (props: IProgramView) => {
         }
       },
       onRangeUpdate(_cal: any) {
+        if (skipMountRangeUpdate.current) {
+          skipMountRangeUpdate.current = false;
+          return;
+        }
         let view = calendarControls.getView();
         const viewType = view === "month-grid" || view === "month-agenda" ? "month" : view;
         analytics.captureViewChangeClick(view);

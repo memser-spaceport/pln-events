@@ -40,9 +40,19 @@ const nextConfig = {
     return [
       {
         source: "/",
-        destination: "/program",
+        destination: "/calendar",
         permanent: false,
-      }
+      },
+      {
+        source: "/program",
+        destination: "/calendar",
+        permanent: false,
+      },
+      {
+        source: "/embed/program",
+        destination: "/embed/calendar",
+        permanent: false,
+      },
     ];
   },
 };

@@ -133,7 +133,23 @@ export default async function Page({ searchParams, params }: any) {
                   viewType={type}
                 />
               )}
-              {type === "program" && <ProgramView events={filteredEvents} viewType={type} />}
+              {type === "calendar" && (
+                <ProgramView
+                  key={[
+                    searchParams.focusArea,
+                    searchParams.tags,
+                    searchParams.accessOption,
+                    searchParams.host,
+                    searchParams.location,
+                    searchParams.modes,
+                    searchParams.isFeatured,
+                    searchParams.dayFilter,
+                    searchParams.year,
+                  ].join("|")}
+                  events={filteredEvents}
+                  viewType={type}
+                />
+              )}
               {type === "map" && (
                 <MapView
                   events={filteredEvents}

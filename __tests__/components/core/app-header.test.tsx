@@ -70,62 +70,12 @@ describe('AppHeader Component', () => {
     });
   });
 
-  describe('Feedback Button', () => {
-    it('renders feedback button', () => {
+  describe('Removed header buttons', () => {
+    it('does not render the feedback or view attendees buttons', () => {
       render(<AppHeader />);
-      
-      const feedbackButton = document.querySelector('#pl-events-feedback');
-      expect(feedbackButton).toBeInTheDocument();
-      
-      const feedbackImg = document.querySelector('.feedback__img');
-      expect(feedbackImg).toHaveAttribute('src', '/icons/feedback.svg');
-      expect(feedbackImg).toHaveAttribute('alt', 'Feedback');
-    });
 
-    it('feedback button is clickable', () => {
-      render(<AppHeader />);
-      
-      const feedbackButton = document.querySelector('#pl-events-feedback') as HTMLButtonElement;
-      expect(feedbackButton).toBeInTheDocument();
-      
-      // Test that it can be clicked (no error should occur)
-      fireEvent.click(feedbackButton);
-    });
-  });
-
-  describe('Attendees Button', () => {
-    it('renders attendees button with correct attributes', () => {
-      render(<AppHeader />);
-      
-      const attendeesButton = document.querySelector('.attendees-button') as HTMLAnchorElement;
-      expect(attendeesButton).toBeInTheDocument();
-      expect(attendeesButton).toHaveAttribute('href', 'https://example.com/irl');
-      expect(attendeesButton).toHaveAttribute('target', '_blank');
-      expect(attendeesButton).toHaveAttribute('rel', 'noopener noreferrer');
-    });
-
-    it('renders attendees icon', () => {
-      render(<AppHeader />);
-      
-      const attendeesImg = document.querySelector('.attendees__img');
-      expect(attendeesImg).toHaveAttribute('src', '/icons/avatar-group.svg');
-      expect(attendeesImg).toHaveAttribute('alt', 'Attendees');
-    });
-
-    it('renders attendees text', () => {
-      render(<AppHeader />);
-      
-      const attendeesText = document.querySelector('.attendees-text');
-      expect(attendeesText).toHaveTextContent('View Attendees');
-    });
-
-    it('calls analytics when attendees button is clicked', () => {
-      render(<AppHeader />);
-      
-      const attendeesImg = document.querySelector('.attendees__img');
-      fireEvent.click(attendeesImg!);
-      
-      expect(mockAnalytics.onDirectoryIrlClicked).toHaveBeenCalled();
+      expect(document.querySelector('#pl-events-feedback')).not.toBeInTheDocument();
+      expect(document.querySelector('.attendees-button')).not.toBeInTheDocument();
     });
   });
 
@@ -164,16 +114,6 @@ describe('AppHeader Component', () => {
   });
 
   describe('Environment Variables', () => {
-    it('handles missing IRL URL', () => {
-      delete process.env.NEXT_PUBLIC_IRL_URL;
-      
-      render(<AppHeader />);
-      
-      const attendeesButton = document.querySelector('.attendees-button') as HTMLAnchorElement;
-      expect(attendeesButton).toBeInTheDocument();
-      expect(attendeesButton.getAttribute('href')).toBe(null);
-    });
-
     it('handles missing submit URL', () => {
       delete process.env.SUBMIT_EVENT_URL;
       
@@ -190,12 +130,10 @@ describe('AppHeader Component', () => {
       
       render(<AppHeader />);
       
-      const attendeesButton = document.querySelector('.attendees-button') as HTMLAnchorElement;
       const submitButton = document.querySelector('.ah__btn') as HTMLAnchorElement;
-      
-      expect(attendeesButton).toBeInTheDocument();
+
+      expect(document.querySelector('.attendees-button')).not.toBeInTheDocument();
       expect(submitButton).toBeInTheDocument();
-      expect(attendeesButton.getAttribute('href')).toBe('undefined');
       expect(submitButton.getAttribute('href')).toBe('undefined');
     });
   });
@@ -240,12 +178,6 @@ describe('AppHeader Component', () => {
       
       const logoImg = document.querySelector('.ah__logo__img');
       expect(logoImg).toBeInTheDocument();
-      
-      const feedbackImg = document.querySelector('.feedback__img');
-      expect(feedbackImg).toHaveAttribute('alt', 'Feedback');
-      
-      const attendeesImg = document.querySelector('.attendees__img');
-      expect(attendeesImg).toHaveAttribute('alt', 'Attendees');
     });
 
     it('provides proper heading structure', () => {
@@ -258,10 +190,6 @@ describe('AppHeader Component', () => {
 
     it('provides proper target and rel attributes for external links', () => {
       render(<AppHeader />);
-      
-      const attendeesButton = document.querySelector('.attendees-button');
-      expect(attendeesButton).toHaveAttribute('target', '_blank');
-      expect(attendeesButton).toHaveAttribute('rel', 'noopener noreferrer');
       
       const submitButton = document.querySelector('.ah__btn');
       expect(submitButton).toHaveAttribute('target', '_blank');
@@ -277,12 +205,6 @@ describe('AppHeader Component', () => {
       fireEvent.click(submitButton!);
       
       expect(mockAnalytics.onHostEventClicked).toHaveBeenCalled();
-      
-      // Test attendees button analytics
-      const attendeesImg = document.querySelector('.attendees__img');
-      fireEvent.click(attendeesImg!);
-      
-      expect(mockAnalytics.onDirectoryIrlClicked).toHaveBeenCalled();
     });
 
     it('handles analytics errors gracefully', () => {
@@ -337,12 +259,10 @@ describe('AppHeader Component', () => {
     it('renders all action buttons', () => {
       render(<AppHeader />);
       
-      const feedbackButton = document.querySelector('#pl-events-feedback');
-      const attendeesButton = document.querySelector('.attendees-button');
       const submitButton = document.querySelector('.ah__btn');
-      
-      expect(feedbackButton).toBeInTheDocument();
-      expect(attendeesButton).toBeInTheDocument();
+
+      expect(document.querySelector('#pl-events-feedback')).not.toBeInTheDocument();
+      expect(document.querySelector('.attendees-button')).not.toBeInTheDocument();
       expect(submitButton).toBeInTheDocument();
     });
   });
