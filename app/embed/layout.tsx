@@ -7,8 +7,8 @@ import { labosBridgeOrigin, labosBridgeScriptUrl } from "@/utils/labos-origin";
  * and trusts only the LabOS origin that served the file. A script inserted later
  * has no `currentScript`, so it would not start.
  */
-export default function EmbedLayout({ children }: { children: ReactNode }) {
-  const requestHeaders = headers();
+export default async function EmbedLayout({ children }: { children: ReactNode }) {
+  const requestHeaders = await headers();
   const origin = labosBridgeOrigin(requestHeaders.get("referer"), requestHeaders.get("host"));
 
   return (

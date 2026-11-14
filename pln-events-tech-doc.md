@@ -25,7 +25,7 @@ pln-events is a Next.js application that lists and displays events for Protocol 
 
 - **Product name (UI):** PL Events  
 - **Package name:** `pl-events`  
-- **Repository:** Single Next.js app (App Router), TypeScript, React 18.
+- **Repository:** Single Next.js app (App Router), TypeScript, React 19.
 
 ---
 
@@ -33,8 +33,8 @@ pln-events is a Next.js application that lists and displays events for Protocol 
 
 | Layer        | Technology |
 |-------------|------------|
-| Framework   | Next.js 14 (App Router) |
-| UI          | React 18, TypeScript |
+| Framework   | Next.js 16 (App Router) |
+| UI          | React 19, TypeScript |
 | Styling     | CSS Modules (`.module.css`), styled-jsx, global `globals.css` |
 | Maps        | Leaflet, react-leaflet, leaflet.markercluster |
 | Calendar    | FullCalendar, Schedule-X (@schedule-x/*) |
@@ -42,8 +42,8 @@ pln-events is a Next.js application that lists and displays events for Protocol 
 | Analytics   | PostHog (posthog-js) |
 | Other UI    | react-toastify, react-responsive-carousel, @preact/signals |
 | Testing     | Jest, @testing-library/react, @testing-library/jest-dom, @testing-library/user-event |
-| Lint        | ESLint (eslint-config-next) |
-| Build       | Next.js (webpack); SVGs via @svgr/webpack |
+| Lint        | ESLint 9 flat config (`eslint.config.mjs`, eslint-config-next 16) |
+| Build       | Next.js (webpack, `next build --webpack`); SVGs via @svgr/webpack |
 
 ---
 
@@ -81,7 +81,7 @@ pln-events/
 ├── content/                # content/events (JSON), themes, pages, global
 ├── public/                 # Icons, images, uploads, logos, admin, ipfs-404.html
 ├── eventTemplate/          # Template for new event JSON (see README)
-├── middleware.ts           # Sets x-hide-header for /embed
+├── proxy.ts                # Sets x-hide-header for /embed (Next 16 name for middleware)
 ├── next.config.js
 ├── tsconfig.json           # Path alias: @/* → root
 ├── jest.config.js
@@ -95,7 +95,7 @@ pln-events/
 
 ### Prerequisites
 
-- Node.js (LTS recommended)
+- Node.js 20.9 or later (Next 16 minimum; LTS recommended)
 - Yarn
 
 ### Install and run
@@ -138,7 +138,7 @@ Configure a `.env` file at the project root. See [.env.example](.env.example) fo
 
 ### Entry and layout
 
-- **Root layout** (`app/layout.tsx`): Loads Inter font, metadata, PostHog provider, styled-jsx registry. Fetches announcement banner data, reads `x-hide-header` (set by middleware for `/embed`), and conditionally renders `AppHeader`. Renders `children` inside `<main>`.
+- **Root layout** (`app/layout.tsx`): Loads Inter font, metadata, PostHog provider, styled-jsx registry. Fetches announcement banner data, reads `x-hide-header` (set by `proxy.ts` for `/embed`), and conditionally renders `AppHeader`. Renders `children` inside `<main>`.
 
 ### Routes
 
@@ -148,11 +148,11 @@ Configure a `.env` file at the project root. See [.env.example](.env.example) fo
 | `/list` | **List view** – Timeline of events in chronological order. Users scroll through event cards grouped by time; best for scanning many events in sequence. |
 | `/program` | **Program (calendar) view** – Events on a calendar grid (Schedule-X / FullCalendar) by date and time; best for seeing what’s on in a given week or month. |
 | `/map` | **Map view** – Geographic map (Leaflet with marker clustering). Events plotted by location; users pan/zoom and click markers for details. Default view (root redirects here). |
-| `/embed/[type]` | Same three views as above (`list`, `program`, `map`); header hidden via middleware; embed-specific URL sync. |
+| `/embed/[type]` | Same three views as above (`list`, `program`, `map`); header hidden via `proxy.ts`; embed-specific URL sync. |
 
-### Middleware
+### Proxy (middleware)
 
-`middleware.ts` runs on each request. For paths starting with `/embed`, it sets response header `x-hide-header: true`; otherwise `x-hide-header: false`. The root layout uses this to show or hide the main header.
+`proxy.ts` runs on each request. Next 16 renamed `middleware.ts` to `proxy.ts`. For paths starting with `/embed`, it sets response header `x-hide-header: true`; otherwise `x-hide-header: false`. The root layout uses this to show or hide the main header.
 
 ### Flow chart
 

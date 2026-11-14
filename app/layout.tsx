@@ -33,7 +33,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const bannerData = await getBannerData();
-  const headersList = headers();
+  const headersList = await headers();
   const shouldHideHeader = headersList.get("x-hide-header") === "true";
   return (
     <html lang="en">

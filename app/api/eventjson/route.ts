@@ -2,6 +2,9 @@ import { NextRequest } from "next/server";
 import fs from "fs";
 import path from "path";
 
+// Next 15+ makes GET route handlers dynamic by default. Keep the Next 14 static output.
+export const dynamic = "force-static";
+
 function readJsonFiles() {
   const folderPath = path.join(process.cwd(), "content/events"); // Get the absolute path to the folder
   const fileNames = fs.readdirSync(folderPath); // Read all file names in the folder

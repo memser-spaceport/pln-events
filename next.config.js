@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: process.env.ALLOWED_IMAGE_DOMAINS
-      && process.env.ALLOWED_IMAGE_DOMAINS.split(',')
+    // Next 16 deprecates images.domains. Same hosts (any protocol), as remotePatterns.
+    remotePatterns: (process.env.ALLOWED_IMAGE_DOMAINS || "")
+      .split(",")
+      .map((hostname) => hostname.trim())
+      .filter(Boolean)
+      .map((hostname) => ({ hostname })),
   },
   trailingSlash: false,
   webpack(config) {

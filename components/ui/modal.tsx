@@ -3,7 +3,7 @@ import { ReactNode, RefObject } from "react";
 interface IModal {
   children: ReactNode;
   className?: string;
-  modalRef?: RefObject<HTMLDivElement>;
+  modalRef?: RefObject<HTMLDivElement | null>;
 }
 
 const Modal = (props: IModal) => {

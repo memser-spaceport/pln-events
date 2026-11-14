@@ -2,7 +2,7 @@ import { useRef } from "react";
 function PlTags(props: any) {
   const items = props?.items ?? [];
   const itemId = props?.identifierId;
-  const inputRef = useRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement>(undefined);
   const selectedItem = props?.selectedItem ?? "";
   const callback = props?.callback;
   const onItemSelected = (item: string) => {

@@ -82,7 +82,9 @@ async function getPageData(searchParams: any, type: string) {
   }
 }
 
-export default async function Page({ searchParams, params }: any) {
+export default async function Page(props: any) {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
   const type = params["type"];
 
   const {

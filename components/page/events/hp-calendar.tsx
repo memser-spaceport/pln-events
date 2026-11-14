@@ -18,7 +18,7 @@ function HpCalendar(props: any) {
   const filters = props?.filters;
   const eventItems = props.eventItems ?? [];
   const monthNames = [...MONTHS];
-  const calenderRef = useRef<any>();
+  const calenderRef = useRef<any>(undefined);
   const [monthIndex, setMonthIndex] = useState(0);
   const [calendarheight, setCalendarHeight] = useState(0);
   const currentYear = filters.year;
