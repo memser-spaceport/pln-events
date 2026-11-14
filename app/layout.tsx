@@ -9,7 +9,7 @@ import AnnouncementBanner from "@/components/core/announcement-banner";
 import { getBannerData } from "@/service/events.service";
 import { headers } from "next/headers";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], fallback: ["system-ui", "Arial", "sans-serif"] });
 
 export const metadata: Metadata = {
   title: "PL Events",
