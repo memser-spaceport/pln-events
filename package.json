@@ -6,7 +6,6 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "export": "yarn build && next export",
     "lint": "eslint .",
     "test": "npx jest",
     "test:watch": "npx jest --watch",
@@ -52,5 +51,8 @@
     "jest-environment-jsdom": "^29.7.0",
     "ts-jest": "^29.4.1",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.9"
   }
 }

@@ -1,14 +1,13 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+// app/layout.tsx reads x-hide-header from the request headers, so set it on the request.
 export function proxy(req: NextRequest) {
-  const res = NextResponse.next();
+  const headers = new Headers(req.headers);
+  headers.set(
+    "x-hide-header",
+    req.nextUrl.pathname.startsWith("/embed") ? "true" : "false"
+  );
 
-  if (req.nextUrl.pathname.startsWith("/embed")) {
-    res.headers.set("x-hide-header", "true");
-  } else {
-    res.headers.set("x-hide-header", "false");
-  }
-
-  return res;
+  return NextResponse.next({ request: { headers } });
 }
