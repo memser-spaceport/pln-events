@@ -232,6 +232,7 @@ describe('StyledJsxRegistry Component', () => {
     it('requires children prop', () => {
       // TypeScript would catch this, but we test runtime behavior
       expect(() => {
+        // eslint-disable-next-line react/no-children-prop -- the test passes undefined children on purpose
         render(<StyledJsxRegistry children={undefined} />);
       }).not.toThrow();
     });

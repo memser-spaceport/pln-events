@@ -74,8 +74,9 @@ describe('PlDateRange Component', () => {
       render(<PlDateRange {...propsWithoutIcon} />);
       
       const images = screen.getAllByRole('img');
+      // React 19 drops an empty src attribute instead of rendering src="".
       images.forEach(img => {
-        expect(img).toHaveAttribute('src', '');
+        expect(img).not.toHaveAttribute('src');
       });
     });
   });

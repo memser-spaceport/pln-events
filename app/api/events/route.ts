@@ -2,6 +2,9 @@ import { NextRequest } from "next/server";
 import fs from "fs";
 import path from "path";
 
+// Next 15+ makes GET route handlers dynamic by default. Keep the Next 14 static output.
+export const dynamic = "force-static";
+
 export async function GET(request: NextRequest) {
   try {
     // const eventsListData = await client.queries.eventConnection({ last: -1 });

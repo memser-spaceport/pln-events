@@ -14,7 +14,8 @@ export async function POST(request: NextRequest) {
     return Response.json(null, { status: 400 });
   }
   body?.tags?.map((tag: string) => {
-    revalidateTag(tag);
+    // Next 16 needs a profile. `expire: 0` keeps the Next 14 behavior: expire now.
+    revalidateTag(tag, { expire: 0 });
   });
   return Response.json({ message: "Success" }, { status: 200 });
 }
