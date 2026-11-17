@@ -279,7 +279,7 @@ All web API calls use server-side env vars (`WEB_API_BASE_URL`, `WEB_API_TOKEN`,
 
 - **Images:** `images.domains` is driven by `ALLOWED_IMAGE_DOMAINS` (comma-separated).
 - **SVG:** Webpack rule for `.svg` in `.tsx`/`.jsx` via `@svgr/webpack` (import SVGs as components).
-- **Env:** Selected server-side env vars are passed through `next.config.js` `env` (e.g. `WEB_API_BASE_URL`, `WEB_API_TOKEN`, `ORIGIN_DOMAIN`, `SUBMIT_EVENT_URL`, `EVENT_AGENDA_REFRESH_URL`, etc.).
+- **Env:** Non-secret env vars are passed through `next.config.js` `env` (e.g. `WEB_API_BASE_URL`, `ORIGIN_DOMAIN`, `SUBMIT_EVENT_URL`, `EVENT_AGENDA_REFRESH_URL`, etc.). Values in `env` are inlined into client JavaScript, so tokens and secrets (`WEB_API_TOKEN`) stay out of it; server code reads them from `process.env` at runtime, and `__tests__/next-config.test.ts` fails if a secret-like name is added.
 - **Rewrites:** `/` → `/index`, `/admin` → `/admin/index.html`.
 - **Redirects:** `/` → `/map` (non-permanent).
 

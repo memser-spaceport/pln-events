@@ -18,10 +18,10 @@ const nextConfig = {
 
     return config;
   },
+  // Every value in `env` is inlined into the client JavaScript at build time.
+  // Never add a token or secret here: server code reads process.env at runtime.
   env: {
     WEB_API_BASE_URL: process.env.WEB_API_BASE_URL,
-    WEB_API_TOKEN: process.env.WEB_API_TOKEN,
-    EVENT_CLIENT_SECRET: process.env.EVENT_CLIENT_SECRET,
     SUBMIT_EVENT_URL: process.env.SUBMIT_EVENT_URL,
     REFRESH_DISABLED_EVENTS: process.env.REFRESH_DISABLED_EVENTS,
     REFRESH_ENABLED_EVENTS: process.env.REFRESH_ENABLED_EVENTS,
